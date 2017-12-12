@@ -1,0 +1,72 @@
+.filter button{border: transparent;font-size: 15px;background: #ffffff;padding: 10px 20px;}
+.filter button:hover{color: #ff8000;}
+.filter-option{
+  width: 100%;
+}
+.filter-option ul{
+  padding: 0;
+  margin: 10px 0px;
+  overflow: auto;
+  white-space: nowrap;
+  background: #f2f2f2;
+}
+.filter-option ul li,.filter-option ul li a {
+  display: inline-block;
+  padding: 10px;
+  text-decoration: none;
+  color: #6c6c6c;
+}
+.filter-option ul li a:hover{
+  color: #ff8000;
+  cursor: pointer;
+}
+
+.price-filter button{
+  width: 30px;
+  height: 30px;
+  border: none;
+  margin-left: 10px;
+  border-radius: 50%;
+  -webkit-box-shadow: #6c6c6c 0px 2px 5px 0px;
+  -moz-box-shadow: #6c6c6c 0px 2px 5px 0px;
+  box-shadow: #6c6c6c 0px 2px 5px 0px;
+  padding: 0;
+}
+.price-filter button:hover{
+  background-color: #f2f2f2;
+}
+.price-filter button small{
+  margin-left: 3px;
+  color: #6c6c6c;
+}
+.price-filter input{
+  border: none;
+  background-color: #f9f9f9;
+  border-bottom: 3px solid #b5b5b5;
+  line-height: 25px;
+  width: 100px;
+  outline: none;
+  padding-left: 10px;
+  font-size: 15px;
+  transition: all 0.5s ease;
+}
+.price-filter input:focus{
+  background-color: #ffffff;
+  border-bottom: 3px solid #ff8300;
+}
+.filter-open{
+  display: block;
+  height: auto;
+  opacity: 1;
+}
+.filter-active{
+  color: #ff8000 !important;
+  font-weight: 600;
+}
+  .filter-active:after{
+    content: '▼';
+  }
+.price-filter{
+  padding: 15px;
+  background-color: #f2f2f2;
+}
