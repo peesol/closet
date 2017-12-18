@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+@section('title')
+{{__('message.cart')}}
+@endsection
 @section('css')
 <link href="{{ asset('css/slick-theme.css') }}" rel="stylesheet">
 <link href="{{ asset('css/slick.css') }}" rel="stylesheet">

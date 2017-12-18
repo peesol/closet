@@ -1,24 +1,22 @@
 @component('mail::message')
 # Welcome to Closet.
 
-Please, click this link to verify your email.
+{{__('message.verify')}}
 
 @component('mail::button', ['url' => url('/register/verify/'.$email_token)])
 
-    Verify
+    Click
 
 @endcomponent
 
 @component('mail::subcopy')
 
-If you’re having trouble clicking the "Verify" button, copy and paste the URL below into your web browser: 
+{{__('message.verify_alt')}}
 
 {{url('/register/verify/'.$email_token)}}
 
 @endcomponent
 
-Thank you,<br>
 {{config('app.name')}}
 
 @endcomponent
-

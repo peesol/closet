@@ -10,21 +10,6 @@ use App;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-
-    }
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index(Request $request)
     {
       if(App::getLocale() == 'en'){
@@ -36,5 +21,18 @@ class HomeController extends Controller
       return view('home', [
         'categories' => $categories,
       ]);
+    }
+
+    public function shops()
+    {
+      return view('shops');
+    }
+    public function brands()
+    {
+      return view('shops');
+    }
+    public function trending()
+    {
+      return view('shops');
     }
 }

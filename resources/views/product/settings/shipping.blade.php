@@ -1,5 +1,7 @@
 @extends('layouts.app')
-
+@section('title')
+{{__('message.shipping_edit')}}
+@endsection
 @section('content')
 
 <div class="container">
@@ -16,9 +18,6 @@
 
 @endsection
 
-@section('css')
-
-@endsection
 
 @section('scripts')
 <script>

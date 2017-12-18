@@ -68,7 +68,7 @@ class CollectionController extends Controller
     {
       $this->authorize('edit', $collection);
 
-      return view('collection.edit_vue' , [
+      return view('collection.edit' , [
 
         'collection' => $collection
 

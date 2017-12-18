@@ -21,7 +21,7 @@ class CreateShopsTable extends Migration
             $table->string('slug')->unique();
             $table->text('description')->nullable();
             $table->string('thumbnail')->nullable();
-            $table->integer('view_count')->nullable();
+            $table->integer('view_count')->default(0);
             $table->string('cover')->nullable();
 
             $table->timestamps();

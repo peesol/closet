@@ -1,4 +1,7 @@
 @extends('layouts.app')
+@section('title')
+{{__('message.sell')}}
+@endsection
 @section('css')
     <link href="{{ asset('css/dropzone-alt.css') }}" rel="stylesheet">
 @endsection

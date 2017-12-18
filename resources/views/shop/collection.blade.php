@@ -1,5 +1,7 @@
 @extends('layouts.app')
-
+@section('title')
+{{$shop->name}}
+@endsection
 @section('content')
 
 <div class="container">

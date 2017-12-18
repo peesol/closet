@@ -1,5 +1,7 @@
 @extends('layouts.app')
-
+@section('title')
+{{__('message.my_product')}}
+@endsection
 @section('content')
 
 <div class="container">

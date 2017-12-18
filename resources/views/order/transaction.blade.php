@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ config('app.name', 'Laravel').' - '.__('message.transaction') }}</title>
+    <title>{{__('message.transaction').' - Closet' }}</title>
     <!-- Styles -->
     <link href="{{ asset('css/all.css') }}" rel="stylesheet">
     <!-- Scripts -->
     <!-- <script src="{{ asset('js/main.js') }}"></script> -->
-    <script src="{{ asset('js/cleave.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cleave.js/1.0.9/cleave.min.js"></script>
     <script>
 window.Laravel = {!! json_encode([
         'csrfToken' => csrf_token(),

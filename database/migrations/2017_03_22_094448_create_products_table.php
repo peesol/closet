@@ -24,7 +24,7 @@ class CreateProductsTable extends Migration
             $table->integer('price');
             $table->text('description')->nullable();
             $table->string('thumbnail');
-            $table->integer('view_count')->nullable()->default(0);
+            $table->integer('view_count')->default(0);
             $table->boolean('stock')->default(true);
             $table->integer('amount')->nullable()->default(1);
             $table->string('shipping')->nullable();

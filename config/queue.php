@@ -50,11 +50,11 @@ return [
 
         'sqs' => [
             'driver' => 'sqs',
-            'key' => 'your-public-key',
-            'secret' => 'your-secret-key',
-            'prefix' => 'https://sqs.us-east-1.amazonaws.com/your-account-id',
-            'queue' => 'your-queue-name',
-            'region' => 'us-east-1',
+            'key' => env('AWS_KEY'),
+            'secret' => env('AWS_SECRET'),
+            'prefix' => 'https://sqs.ap-southeast-1.amazonaws.com/155776859019/',
+            'queue' => 'closet-jobs',
+            'region' => 'ap-southeast-1',
         ],
 
         'redis' => [

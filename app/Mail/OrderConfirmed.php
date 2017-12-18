@@ -2,7 +2,6 @@
 
 namespace Closet\Mail;
 
-use App;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
@@ -22,10 +21,9 @@ class OrderConfirmed extends Mailable
      */
     public function __construct($order, $accounts, $locale)
     {
-        App::setLocale($locale);
         $this->order = $order;
-        $this->accounts = $accounts;
         $this->locale = $locale;
+        $this->accounts = $accounts;
         $this->subject = __('message.confirmed_order_subject', ['name' => $this->order->reciever]). ' ['. $this->order->updated_at->format('d-m-Y') .']';
     }
 
@@ -36,6 +34,7 @@ class OrderConfirmed extends Mailable
      */
     public function build()
     {
-      return $this->view('email.order.confirmed');
+      app()->setLocale($this->locale);
+      return $this->markdown('email.order.confirmed');
     }
 }

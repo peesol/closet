@@ -26897,18 +26897,13 @@ __WEBPACK_IMPORTED_MODULE_0_dropzone___default.a.autoDiscover = false;
 		return {
 			images: [],
 			formVisible: false,
-			dropzoneUrl: window.Closet.url + '/collection/' + this.colSlug + '/upload/' + this.colId,
+			dropzoneUrl: window.Closet.url + '/collection/' + this.$root.colSlug + '/upload/' + this.$root.colId,
 			url: window.Closet.url
 		};
 	},
-	props: {
-		colId: null,
-		colSlug: null
-	},
-
 	methods: {
 		getPhoto() {
-			this.$http.get(this.url + '/collection_ajax/img/' + this.colSlug).then(response => {
+			this.$http.get(this.url + '/collection_ajax/img/' + this.$root.colSlug).then(response => {
 				return response.json().then(json => {
 					this.images = json.data;
 				});
@@ -26918,7 +26913,7 @@ __WEBPACK_IMPORTED_MODULE_0_dropzone___default.a.autoDiscover = false;
 			if (!confirm(this.$trans.translation.delete_photo_confirm)) {
 				return;
 			}
-			this.$http.delete('/collection/image/' + imageId).then(() => {
+			this.$http.delete(this.url + '/collection/image/' + imageId).then(() => {
 				this.images.splice(index, 1);
 				toastr.success(this.$trans.translation.success);
 			});
@@ -27040,7 +27035,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		};
 	},
 	props: {
-		colSlug: null,
 		colName: null,
 		colDescription: null,
 		colVisibility: null,
@@ -27053,7 +27047,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			if (document.getElementById("image-input").files.length == 0) {
 				this.$Progress.start();
 				toastr.info(this.$trans.translation.wait);
-				this.$http.put(this.url + '/collection/' + this.colSlug + '/edit', {
+				this.$http.put(this.url + '/collection/' + this.$root.colSlug + '/edit', {
 					name: this.name,
 					description: this.description,
 					visibility: this.visibility
@@ -27068,7 +27062,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			if (document.getElementById("image-input").files.length > 0) {
 				this.$Progress.start();
 				toastr.info(this.$trans.translation.wait);
-				this.$http.put(this.url + '/collection/' + this.colSlug + '/edit', {
+				this.$http.put(this.url + '/collection/' + this.$root.colSlug + '/edit', {
 					name: this.name,
 					description: this.description,
 					visibility: this.visibility,
@@ -27231,13 +27225,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       url: window.Closet.url
     };
   },
-  props: {
-    colId: null
-  },
-
   methods: {
     getProduct() {
-      this.$http.get(this.url + '/collection_ajax/products/' + this.colId).then(response => {
+      this.$http.get(this.url + '/collection_ajax/products/' + this.$root.colId).then(response => {
         this.products = response.body.data;
       });
     },
@@ -27246,7 +27236,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return;
       }
 
-      this.$http.delete(this.url + '/collection/' + this.colId + '/delete/' + productId).then(response => {
+      this.$http.delete(this.url + '/collection/' + this.$root.colId + '/delete/' + productId).then(response => {
         toastr.success(this.$trans.translation.success);
         this.products.splice(index, 1);
       });
@@ -29561,7 +29551,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
 
         logView() {
-            this.$http.post(this.url + '/product/' + this.productUid + '/views', { product_id: this.productUid });
+            this.$http.put(this.url + '/product/' + this.productUid + '/views', { product_id: this.productUid });
             clearInterval(this.timer);
         }
     },
@@ -30578,68 +30568,76 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
-    data() {
-        return {
-            up: null,
-            down: null,
-            userVote: null,
-            url: window.Closet.url,
-            user: window.Closet.user.user
-        };
+  data() {
+    return {
+      up: null,
+      down: null,
+      userVote: null,
+      url: window.Closet.url,
+      user: window.Closet.user.user
+    };
+  },
+  methods: {
+    getVotes() {
+      this.$http.get(this.url + '/' + this.shopSlug + '/votes').then(response => {
+        return response.json().then(parsed => {
+          this.up = parsed.data.up;
+          this.down = parsed.data.down;
+          this.userVote = parsed.data.user_vote;
+        });
+      });
     },
-    methods: {
-        getVotes() {
-            this.$http.get(this.url + '/' + this.shopSlug + '/votes').then(response => {
-                return response.json().then(parsed => {
-                    this.up = parsed.data.up;
-                    this.down = parsed.data.down;
-                    this.userVote = parsed.data.user_vote;
-                });
-            });
-        },
-        vote(type) {
-            if (this.userVote == type) {
-                this[type]--;
-                this.userVote = null;
-                this.deleteVote(type);
-                return;
-            }
+    vote(type) {
+      if (this.userVote == type) {
+        this[type]--;
+        this.userVote = null;
+        this.deleteVote(type);
+        return;
+      }
 
-            if (this.userVote) {
-                this[type == 'up' ? 'down' : 'up']--;
-            }
+      if (this.userVote) {
+        this[type == 'up' ? 'down' : 'up']--;
+      }
 
-            this[type]++;
-            this.userVote = type;
+      this[type]++;
+      this.userVote = type;
 
-            this.createVote(type);
-        },
-
-        deleteVote(type) {
-            this.$http.delete(this.url + '/' + this.shopSlug + '/votes');
-        },
-
-        createVote(type) {
-            this.$http.post(this.url + '/' + this.shopSlug + '/votes', {
-                type: type
-            });
-        },
-        loginFirst() {
-            toastr.warning(this.$trans.translation.login_first, toastr.options = {
-                "closeButton": true,
-                "preventDuplicates": true,
-                "timeOut": "1000"
-            });
-        }
+      this.createVote(type);
     },
 
-    props: {
-        shopSlug: null
+    deleteVote(type) {
+      this.$http.delete(this.url + '/' + this.shopSlug + '/votes');
     },
 
-    created() {
-        this.getVotes();
+    createVote(type) {
+      this.$http.post(this.url + '/' + this.shopSlug + '/votes', {
+        type: type
+      });
+    },
+    loginFirst() {
+      toastr.warning(this.$trans.translation.login_first, toastr.options = {
+        "closeButton": true,
+        "preventDuplicates": true,
+        "timeOut": "1000"
+      });
+    },
+
+    logView() {
+      this.$http.put(this.url + '/' + this.shopSlug + '/views');
+      clearInterval(this.timer);
     }
+  },
+
+  props: {
+    shopSlug: null
+  },
+
+  created() {
+    this.getVotes();
+  },
+  mounted() {
+    this.timer = setInterval(this.logView, 10000);
+  }
 });
 
 /***/ }),

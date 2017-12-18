@@ -1,5 +1,7 @@
-
 @extends('layouts.app')
+@section('title')
+{{__('message.edit').' '.$product->name}}
+@endsection
     @section('css')
         <link href="{{ asset('css/dropzone-alt.css') }}" rel="stylesheet">
     @endsection
@@ -25,7 +27,5 @@
             <product-dropzone product-slug="{{$product->uid}}" product-id="{{$product->id}}"></product-dropzone>
         </div>
     </div>
-
-
 
 @endsection

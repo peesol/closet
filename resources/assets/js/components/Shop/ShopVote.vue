@@ -66,15 +66,20 @@
     			});
 
     		},
-            loginFirst() {
-                toastr.warning(this.$trans.translation.login_first,
-                        toastr.options = {
-                            "closeButton": true,
-                            "preventDuplicates": true,
-                            "timeOut": "1000",
-                        }
-                    );
-            },
+        loginFirst() {
+          toastr.warning(this.$trans.translation.login_first,
+            toastr.options = {
+                "closeButton": true,
+                "preventDuplicates": true,
+                "timeOut": "1000",
+            }
+          );
+        },
+
+				logView() {
+						this.$http.put(this.url + '/' + this.shopSlug + '/views');
+						clearInterval(this.timer);
+				}
     	},
 
         props: {
@@ -83,6 +88,9 @@
 
     	created() {
     		this.getVotes();
-  		}
+  		},
+			mounted() {
+				this.timer = setInterval(this.logView, 10000);
+			}
     }
 </script>

@@ -1,5 +1,7 @@
 @extends('layouts.app')
-
+@section('title')
+{{__('message.following')}}
+@endsection
 @section('content')
 
 <div class="container">
@@ -19,9 +21,9 @@
                             <follow-button shop-slug="{{ $shop->slug}}"></follow-button>
                         </div>
                 </div>
+            @endforeach
 
-           @endforeach
-            </div>
+          </div>
 </div>
 <script>
     window.addEventListener('load', function () {

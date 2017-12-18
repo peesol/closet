@@ -17,7 +17,7 @@ class ShopSettingsController extends Controller
     {
       $this->authorize('edit', $shop);
 
-      return view('shop.settings.edit_vue' , [
+      return view('shop.settings.edit' , [
         'shop' => $shop
       ]);
     }

@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>{{__('message.transaction')}}</title>
+    <title>{{__('message.confirmation')}}</title>
     <link href="{{ asset('css/all.css') }}" rel="stylesheet">
   </head>
   <body>

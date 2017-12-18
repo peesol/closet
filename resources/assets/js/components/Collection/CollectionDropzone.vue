@@ -33,18 +33,13 @@ export default {
 		return {
 			images: [],
 			formVisible: false,
-			dropzoneUrl: window.Closet.url + '/collection/' + this.colSlug + '/upload/' + this.colId,
+			dropzoneUrl: window.Closet.url + '/collection/' + this.$root.colSlug + '/upload/' + this.$root.colId,
 			url: window.Closet.url,
 		}
 	},
-	props: {
-		colId: null,
-		colSlug: null,
-	},
-
     methods: {
 			getPhoto() {
-  					this.$http.get(this.url + '/collection_ajax/img/' + this.colSlug)
+  					this.$http.get(this.url + '/collection_ajax/img/' + this.$root.colSlug)
   					.then((response) => {return response.json()
 						.then((json) => {this.images = json.data;});
 					});
@@ -53,7 +48,7 @@ export default {
 				if(!confirm(this.$trans.translation.delete_photo_confirm)){
 						return;
 				}
-					this.$http.delete('/collection/image/' + imageId).then(() => {
+					this.$http.delete(this.url + '/collection/image/' + imageId).then(() => {
 							this.images.splice(index, 1);
 							toastr.success(this.$trans.translation.success);
 					});

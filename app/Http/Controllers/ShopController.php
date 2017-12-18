@@ -52,5 +52,10 @@ class ShopController extends Controller
             'shop' => $shop
             ]);
     }
+    public function logView(Shop $shop)
+    {
+        $shop->increment('view_count');
+        return response()->json(null, 200);
+    }
 
 }

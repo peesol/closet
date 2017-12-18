@@ -1,9 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+
 @section('scripts')
 <script type="text/javascript" src="{{asset('js/slick.min.js')}}"></script>
 @endsection
+
 @section('css')
 <link href="{{ asset('css/banner-slick-theme.css') }}" rel="stylesheet">
 <link href="{{ asset('css/slick.css') }}" rel="stylesheet">
@@ -13,8 +15,8 @@
             <div class="large-panel">
                 <div class="top-grid">
                   <div class="top-banner">
-                    <img src="{{url("/images/banner1.jpg")}}" alt="">
-                    <img src="{{url("/images/banner2.jpg")}}" alt="">
+                    <img src="https://s3.console.aws.amazon.com/s3/buckets/images.closet.com/banner/" alt="banner">
+                    <img src="https://s3.console.aws.amazon.com/s3/buckets/images.closet.com/banner/" alt="banner">
                   </div>
                   <div class="banner-side-nav">
                     <ul >
@@ -33,6 +35,7 @@
               </div>
             </div>
             @endif
+
             <div class="large-panel margin-top-10px">
 
                 <div class="panel-body">

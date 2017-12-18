@@ -1,12 +1,16 @@
 @extends('layouts.app')
 
+@section('title')
+{{$collection->name}}
+@endsection
+
 @section('css')
     <link rel="stylesheet" type="text/css" href="{{ asset('css/col-slick-theme.css') }}"/>
     <link rel="stylesheet" type="text/css" href="{{ asset('css/col-slick.css') }}"/>
 @endsection
 
 @section('scripts')
-<script type="text/javascript" src="{{ asset('js/slick.min.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
 <script>
 window.addEventListener('load', function () {
       var edit = new Vue({

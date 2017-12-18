@@ -1,5 +1,7 @@
 @extends('layouts.app')
-
+@section('title')
+{{__('message.notice')}}
+@endsection
 @section('content')
 <div class="container">
   <div class="shop-panel" style="border-radius: 5px; margin-bottom: 20px;">

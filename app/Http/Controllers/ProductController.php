@@ -291,7 +291,7 @@ class ProductController extends Controller
          * 'ip' => $ip
          * ]);
         */
-        $request->product->increment('view_count');
+      $request->product->increment('view_count');
       return response()->json(null, 200);
     }
 

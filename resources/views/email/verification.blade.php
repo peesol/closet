@@ -5,9 +5,9 @@
 <div class="container">
     <div class="row">
             <div class="login-panel">
-                <div class="panel-heading"><h3 class="no-margin">Success</h3></div>
+                <div class="panel-heading"><h3 class="no-margin">{{__('message.success')}}</h3></div>
                 <div class="panel-body">
-                <p>You have successfully registered. An email is sent to you for verification.</p>
+                <p>{{__('message.verification_sent')}}</p>
                 </div>
             </div>
     </div>

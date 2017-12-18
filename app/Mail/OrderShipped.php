@@ -2,7 +2,6 @@
 
 namespace Closet\Mail;
 
-use App;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
@@ -22,7 +21,6 @@ class OrderShipped extends Mailable
      */
     public function __construct($order, $data, $locale)
     {
-      App::setLocale($locale);
       $this->order = $order;
       $this->data = $data;
       $this->locale = $locale;
@@ -36,6 +34,7 @@ class OrderShipped extends Mailable
      */
     public function build()
     {
-      return $this->view('email.order.shipped');
+      app()->setLocale($this->locale);
+      return $this->markdown('email.order.shipped');
     }
 }

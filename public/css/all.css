@@ -2631,8 +2631,6 @@ background: rgba(0, 0, 0, 0.3);
 @media (min-width: 1200px) {
 }
 
-
-
 .filter button{border: transparent;font-size: 15px;background: #ffffff;padding: 10px 20px;}
 .filter button:hover{color: #ff8000;}
 .filter-option{
@@ -2719,9 +2717,6 @@ background: rgba(0, 0, 0, 0.3);
   width: 100%;
   display: block;
   color: #444;
-}
-.top-banner {
-    grid-column: 1 / span 2;
 }
 .top-banner img {
     max-width: 100%;

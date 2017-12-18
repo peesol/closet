@@ -1,5 +1,7 @@
 @extends('layouts.app')
-
+@section('title')
+{{__('message.reset_password')}}
+@endsection
 @section('content')
 <div class="container">
     <div class="row">

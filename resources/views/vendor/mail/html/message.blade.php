@@ -1,8 +1,9 @@
 @component('mail::layout')
+
     {{-- Header --}}
     @slot('header')
         @component('mail::header', ['url' => config('app.url')])
-            {{ config('app.name') }}
+            <img src="https://s3-ap-southeast-1.amazonaws.com/images.closet.com/misc/logo2.png">
         @endcomponent
     @endslot
 

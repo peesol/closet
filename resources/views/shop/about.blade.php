@@ -1,5 +1,7 @@
 @extends('layouts.app')
-
+@section('title')
+{{$shop->name}}
+@endsection
 @section('content')
 
 <div class="container">
@@ -8,7 +10,6 @@
               @include('shop.partials._header',[
                   'shop' => $shop
               ])
-
                     <div class="shop-nav-bar">
                         <ul class="shop-nav-ul">
                             <button type="submit" class="product-nav-btn" onclick='document.location.href="/{{$shop->slug}}"'>{{__('message.home')}}</button>

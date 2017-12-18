@@ -10,7 +10,6 @@ use Mail;
 use Illuminate\Http\Request;
 use Closet\Models\{Order, User, Account};
 use Closet\Transformer\OrderTransformer;
-use Closet\Jobs\SendOrderingEmail;
 use Closet\Mail\{Ordering, OrderConfirmed, TransactionConfirmed, OrderShipped};
 
 class OrderController extends Controller
@@ -71,10 +70,10 @@ class OrderController extends Controller
       'body' => json_encode($data),
       'total' => (int)str_replace(',', '', $request->total_price),
     ]);
-    // foreach ($request->products as $product) {
-    //   $rowId = array_get($product, 'rowId');
-    //   Cart::remove($rowId);
-    // }
+    foreach ($request->products as $product) {
+      $rowId = array_get($product, 'rowId');
+      Cart::remove($rowId);
+    }
     $order = Order::findOrFail($order->id);
 
     $reciever_email = User::where('id', $order->reciever_id)->first()->email;
@@ -146,7 +145,7 @@ class OrderController extends Controller
       'tracking_number' => $request->tracking_number,
     ];
     $locale = App::getLocale();
-    Mail::to(User::where('id', $order->sender_id)->first()->email)->send(new OrderShipped($order, $data, $locale));
+    Mail::to('scomusicrusted@gmail.com')->send(new OrderShipped($order, $data, $locale));
     return;
   }
   public function confirmShippingEmail(Order $order, Request $request)
@@ -157,7 +156,7 @@ class OrderController extends Controller
       'tracking_number' => $request->tracking_number,
     ];
     $locale = App::getLocale();
-    Mail::to(User::where('id', $order->sender_id)->first()->email)->send(new OrderShipped($order, $data, $locale));
+    Mail::to('scomusicrusted@gmail.com')->send(new OrderShipped($order, $data, $locale));
     return view('order.after.confirmed');
   }
 }

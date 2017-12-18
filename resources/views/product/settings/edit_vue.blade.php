@@ -1,9 +1,11 @@
-
 @extends('layouts.app')
-    @section('css')
-        <link href="{{ asset('css/dropzone-alt.css') }}" rel="stylesheet">
-    @endsection
-    @section('scripts')
+@section('title')
+{{__('message.product_edit')}}
+@endsection
+@section('css')
+    <link href="{{ asset('css/dropzone-alt.css') }}" rel="stylesheet">
+@endsection
+@section('scripts')
 <script>
     window.addEventListener('load', function () {
         var follow = new Vue({
@@ -11,7 +13,7 @@
         });
     });
 </script>
-    @endsection
+@endsection
 @section('content')
     <div class="container">
         <div class="product-show-panel">
@@ -23,7 +25,7 @@
             image-src="{{$product->getImage()}}">
             </product-edit>
             <div id="full-line"></div>
-        <div class="panel-heading"><h4 class="no-margin">{{__('message.shipping')}}</h4></div>
+        <div class="panel-heading"><h4 class="no-margin">{{__('message.choice')}}</h4></div>
         <product-choice product-id="{{$product->id}}"></product-choice>
         <div id="full-line"></div>
         <div class="panel-heading"><h4 class="no-margin">{{__('message.shipping')}}</h4></div>

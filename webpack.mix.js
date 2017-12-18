@@ -26,7 +26,6 @@ mix.styles([
 	'resources/assets/css/collection.css',
 	'resources/assets/css/toastr.css',
 	'resources/assets/css/category.css',
-	'resources/assets/css/showcase.css',
 	'resources/assets/css/filter.css',
 	'resources/assets/css/home.css',
 	'resources/assets/css/table.css',

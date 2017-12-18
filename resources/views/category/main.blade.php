@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+{{__('message.category')}}
+@endsection
+
 @section('content')
 
 <div class="container">
@@ -89,4 +93,3 @@ $(document).ready(function() {
 });
 </script>
 @endsection
-

@@ -2,6 +2,7 @@
 
 namespace Closet\Http\Controllers;
 
+use App;
 use Illuminate\Http\Request;
 use Closet\Models\Category;
 
@@ -12,9 +13,7 @@ class CategoryController extends Controller
     	$category = Category::all();
 
     	return view('category.main')->with([
-
-    		'categories' => $category
-
+    		'categories' => $category,
     		]);
     }
 
@@ -24,11 +23,9 @@ class CategoryController extends Controller
         $subcategories = $category->subcategory()->get();
 
       return view('category.category',[
-
         'category' => $category,
         'categories' => $categories,
-        'subcategories' => $subcategories
-
+        'subcategories' => $subcategories,
         ]);
     }
 

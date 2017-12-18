@@ -21,7 +21,10 @@ blockquote {
     line-height: 1.4;
     text-align: left;
 }
-
+ul{
+  margin: 0;
+  padding: 0;
+}
 a {
     color: #3869D4;
 }
@@ -127,24 +130,24 @@ img {
     background-color: #FFFFFF;
     margin: 0 auto;
     padding: 0;
-    width: 600px;
+    width: 750px;
     -premailer-cellpadding: 0;
     -premailer-cellspacing: 0;
-    -premailer-width: 600px;
+    -premailer-width: 750px;
 }
 
 /* Subcopy */
 
 .subcopy {
-    border-top: 1px solid #EDEFF2;
+    border-top: 1px solid #efefef;
     margin-top: 25px;
     padding-top: 25px;
 }
 
 .subcopy p {
     font-size: 12px;
+    margin: 0;
 }
-
 /* Footer */
 
 .footer {
@@ -174,12 +177,12 @@ img {
 }
 
 .table th {
-    border-bottom: 1px solid #EDEFF2;
+    border-bottom: 1px solid #efefef;
     padding-bottom: 8px;
 }
 
 .table td {
-    color: #74787E;
+    color: #444;
     font-size: 15px;
     line-height: 18px;
     padding: 10px 0;
@@ -238,6 +241,7 @@ img {
 
 .panel {
     margin: 0 0 21px;
+    background-color: #f2f2f2;
 }
 
 .panel-content {

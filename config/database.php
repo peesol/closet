@@ -53,6 +53,20 @@ return [
             'engine' => null,
         ],
 
+        'rdsmysql' => [
+            'driver' => 'mysql',
+            'host' => 'closet.cch4uznfytyw.ap-southeast-1.rds.amazonaws.com',
+            'port' => '3306',
+            'database' => 'closet',
+            'username' => 'closet',
+            'password' => 'closet159352',
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+            'prefix' => '',
+            'strict' => true,
+            'engine' => null,
+        ],
+
         'pgsql' => [
             'driver' => 'pgsql',
             'host' => env('DB_HOST', '127.0.0.1'),

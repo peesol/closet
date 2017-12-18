@@ -1,4 +1,7 @@
 @extends('layouts.app')
+@section('title')
+{{$shop->name}}
+@endsection
 @section('css')
 <link href="{{ asset('css/carousel-slick-theme.css') }}" rel="stylesheet">
 <link href="{{ asset('css/carousel-slick.css') }}" rel="stylesheet">

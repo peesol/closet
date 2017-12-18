@@ -93,7 +93,7 @@
             },
 
             logView() {
-                this.$http.post(this.url + '/product/' + this.productUid + '/views', { product_id: this.productUid });
+                this.$http.put(this.url + '/product/' + this.productUid + '/views', { product_id: this.productUid });
                 clearInterval(this.timer);
             }
     	},

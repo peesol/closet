@@ -28,20 +28,16 @@ export default {
 			url: window.Closet.url,
 		}
 	},
-	props: {
-		colId: null,
-	},
-
     methods: {
 			getProduct() {
-  					this.$http.get(this.url + '/collection_ajax/products/' + this.colId).then((response) => { this.products = response.body.data; });
+  					this.$http.get(this.url + '/collection_ajax/products/' + this.$root.colId).then((response) => { this.products = response.body.data; });
   				},
  			removeProduct(productId, index) {
  					if(!confirm(this.$trans.translation.delete_confirm)){
 						return;
 					}
 
-  					this.$http.delete(this.url + '/collection/' + this.colId + '/delete/' + productId)
+  					this.$http.delete(this.url + '/collection/' + this.$root.colId + '/delete/' + productId)
   					.then((response) => {
   						toastr.success(this.$trans.translation.success);
   						this.products.splice(index, 1);

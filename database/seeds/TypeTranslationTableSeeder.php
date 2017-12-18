@@ -275,7 +275,7 @@ class TypeTranslationTableSeeder extends Seeder
                 [
                   'category_type_id' => '54',
                   'language' => 'th',
-                  'name' => 'กระเป๋า'
+                  'name' => 'กระเป๋าทั่วไป'
                 ],
                 [
                   'category_type_id' => '55',

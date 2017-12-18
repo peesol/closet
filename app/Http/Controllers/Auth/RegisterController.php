@@ -10,6 +10,7 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Closet\Jobs\SendVerificationEmail;
 use Mail;
+use App;
 use Closet\Mail\EmailVerification;
 
 class RegisterController extends Controller
@@ -54,9 +55,11 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => 'required|max:255',
-            'shop_name' => 'required|max:255|unique:shops,name',
+            'shop_name' => 'required|max:50|unique:shops,name',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
+            'address' => 'required',
+            'country' => 'required',
         ]);
     }
 
@@ -72,14 +75,17 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
-            'email_token' => base64_encode($data['email'])
+            'email_token' => base64_encode($data['email']),
+            'address' => $data['address'],
+            'phone' => $data['phone'],
+            'country' => 'ไทย',
         ]);
 
         $user->shop()->create([
           'name' => $data['shop_name'],
           'slug' => uniqid('shop_'),
         ]);
-        
+
         return $user;
     }
     /**
@@ -91,9 +97,9 @@ class RegisterController extends Controller
     public function register(Request $request)
         {
             $this->validator($request->all())->validate();
-
+            $locale = App::getLocale();
             event(new Registered($user = $this->create($request->all())));
-            dispatch(new SendVerificationEmail($user));
+            Mail::to($user->email)->queue(new EmailVerification($user));
 
             return view('email.verification');
         }
@@ -107,7 +113,7 @@ class RegisterController extends Controller
         {
             $user = User::where('email_token',$token)->first();
             $user->verified = 1;
-            
+
             if($user->save()){
                 return view('email.success',['user'=>$user]);
             }

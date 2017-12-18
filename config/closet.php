@@ -9,7 +9,6 @@ return [
     'locale' => [
     	'th' => 'ภาษาไทย',
         'en' => 'English',
-
      ],
 
 ];
