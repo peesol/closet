@@ -18,8 +18,11 @@
 
 <div class="container">
   <div class="shop-panel">
-    <div class="panel-heading">
-      <h3 class="no-margin">{{__('message.buying_order')}}</h3>
+    <div class="tab-nav">
+        <ul class="tab-nav-ul">
+            <button class="tab-nav-btn" onclick='document.location.href="{{ url('/profile/order/selling') }}"'>{{ __('message.selling_order')}}</button>
+            <button class="tab-nav-btn current">{{ __('message.buying_order')}}</button>
+        </ul>
     </div>
     <div class="msg-container panel-body">
       <order-buying user-name="{{Auth::user()->name}}" user-address="{{Auth::user()->address}}" user-phone="{{Auth::user()->phone}}"></order-buying>
