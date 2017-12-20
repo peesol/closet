@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title')
-{{$keyword}}
+{{$keyword.' - '}}
 @endsection
 @section('content')
 

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title')
-{{$product->name}}
+{{$product->name.' - '}}
 @endsection
 @section('css')
 <link href="{{ asset('css/slick-theme.css') }}" rel="stylesheet">

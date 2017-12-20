@@ -432,7 +432,32 @@ height: 40px;
 width: 80px;
 font-size: 18px;
 }
-
+/*Tab nav*/
+.product-nav-btn{
+  margin-right: 20px !important;
+}
+.tab-nav{
+  width: 100%;
+  height: 52px;
+  border-bottom: 1px solid #efefef;
+}
+.tab-nav-ul{
+  margin: 0;
+}
+.tab-nav-ul button {
+  height: 50px;
+  color: #6c6c6c;
+  border: none;
+  background-color: #ffffff;
+  font-size: 1em;
+}
+.tab-nav-btn:hover {
+  color: #ff8000;
+}
+.tab-nav-btn.current{
+  color: #ff8000 !important;
+  border-bottom: 3px solid #ff8000;
+}
 /*Button*/
 .btn {
   border: transparent;

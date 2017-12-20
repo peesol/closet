@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-{{__('message.buying_order')}}
+{{__('message.buying_order').' - '}}
 @endsection
 
 @section('css')

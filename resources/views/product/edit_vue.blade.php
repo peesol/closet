@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title')
-{{__('message.edit').' '.$product->name}}
+{{__('message.edit').' '.$product->name.' - '}}
 @endsection
     @section('css')
         <link href="{{ asset('css/dropzone-alt.css') }}" rel="stylesheet">

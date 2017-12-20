@@ -8,13 +8,13 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>@yield('title'){{ ' - '.config('app.name') }}</title>
+    <title>@yield('title'){{config('app.name') }}</title>
 
     <!-- Styles -->
-    <link href="d298yz6uaddsvc.cloudfront.net/all.css" rel="stylesheet">
+    <link href="https://d298yz6uaddsvc.cloudfront.net/all.css" rel="stylesheet">
     @yield('css')
     <!-- Scripts -->
-    <script src="d298yz6uaddsvc.cloudfront.net/main.js"></script>
+    <script src="http://d298yz6uaddsvc.cloudfront.net/main.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.11.1/typeahead.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
     <script>
