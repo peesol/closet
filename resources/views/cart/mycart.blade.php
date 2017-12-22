@@ -4,12 +4,12 @@
 {{__('message.cart').' - '}}
 @endsection
 @section('css')
-<link href="{{ asset('css/slick-theme.css') }}" rel="stylesheet">
-<link href="{{ asset('css/slick.css') }}" rel="stylesheet">
+<link href="https://s3-ap-southeast-1.amazonaws.com/files.closet/css/extra/slick-theme.css" rel="stylesheet">
+<link href="https://s3-ap-southeast-1.amazonaws.com/files.closet/css/extra/slick.css" rel="stylesheet">
 @endsection
 
 @section('scripts')
-<script type="text/javascript" src="{{asset('js/slick.min.js')}}"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
 
 @endsection
 @section('content')

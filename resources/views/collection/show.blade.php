@@ -5,8 +5,8 @@
 @endsection
 
 @section('css')
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/col-slick-theme.css') }}"/>
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/col-slick.css') }}"/>
+    <link rel="stylesheet" href="https://s3-ap-southeast-1.amazonaws.com/files.closet/css/extra/col-slick-theme.css"/>
+    <link rel="stylesheet" href="https://s3-ap-southeast-1.amazonaws.com/files.closet/css/extra/col-slick.css"/>
 @endsection
 
 @section('scripts')

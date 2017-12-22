@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{__('message.shipped_confirm').' - Closet' }}</title>
-    <link href="{{ asset('css/all.css') }}" rel="stylesheet">
+    <link href="https://s3-ap-southeast-1.amazonaws.com/files.closet/css/all.css" rel="stylesheet">
     <script>
 window.Laravel = {!! json_encode([
         'csrfToken' => csrf_token(),
