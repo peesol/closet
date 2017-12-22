@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-{{$collection->name}}
+{{$collection->name.' - '}}
 @endsection
 
 @section('css')

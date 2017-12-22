@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title')
-{{__('message.register')}}
+{{__('message.register').' - '}}
 @endsection
 @section('content')
 <div class="container">

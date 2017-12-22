@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title')
-{{__('message.following')}}
+{{__('message.following').' - '}}
 @endsection
 @section('content')
 
