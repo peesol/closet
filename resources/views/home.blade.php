@@ -14,8 +14,8 @@
             <div class="large-panel">
                 <div class="top-grid">
                   <div class="top-banner">
-                    <img src="https://s3.console.aws.amazon.com/s3/buckets/images.closet.com/banner/" alt="banner">
-                    <img src="https://s3.console.aws.amazon.com/s3/buckets/images.closet.com/banner/" alt="banner">
+                    <img src="https://s3-ap-southeast-1.amazonaws.com/images.closet.com/banner/banner1.jpg" alt="banner">
+                    <img src="https://s3-ap-southeast-1.amazonaws.com/images.closet.com/banner/banner2.jpg" alt="banner">
                   </div>
                   <div class="banner-side-nav">
                     <ul >
