@@ -23,7 +23,6 @@
                 <div class="cart">
                   <cart-icon></cart-icon>
                 </div>
-                <!-- <li><a href="{{ url('sell/product') }}">{{__('message.sell')}}</a></li> -->
                         <button class="dropdown-btn icon-login-dropdown"></button>
                         <div id="dropdown" class="dropdown-content">
                             <div class="dropdown-name">{{ Auth::user()->name }}</div>
@@ -45,10 +44,9 @@
     <div class="second-nav">
         <div class="second-nav-cont">
             <div id="second-nav-link"><a href="/">{{__('message.home')}}</a></div>
-            <div id="second-nav-link"><a href="#">{{__('message.trending')}}</a></div>
-            <div id="second-nav-link"><a href="#">{{__('message.shops')}}</a></div>
-            @if(Auth::check())
-            @endif
+            <div id="second-nav-link"><a href="{{ url('/category/main') }}">{{__('message.category')}}</a></div>
+            <div id="second-nav-link"><a href="{{ url('/category/trending') }}">{{__('message.trending')}}</a></div>
+            <div id="second-nav-link"><a href="{{ url('/category/shops') }}">{{__('message.shops')}}</a></div>
         </div>
     </div>
 
@@ -82,8 +80,7 @@
                 <a href="#"><span class="icon-user"></span>&nbsp;{{__('message.my_closet')}}</a>
                 <a href="#"><span class="icon-bookmarks"></span>&nbsp;{{__('message.collections')}}</a>
                 <a href="{{ url('/profile/following') }}"><span class="icon-star-full">&nbsp;{{__('message.following')}}</a>
-                <a href="{{ url('/profile/order/selling') }}"><span class="icon-price-tag">&nbsp;{{__('message.my_selling')}}</a>
-                <a href="{{ url('/profile/order/buying') }}"><span class="icon-price-tag">&nbsp;{{__('message.my_buying')}}</a>
+                <a href="{{ url('/profile/order/selling') }}"><span class="icon-price-tag">&nbsp;{{__('message.orders')}}</a>
 
                 <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><span class="icon-exit"></span>&nbsp;{{__('message.logout')}}</a>
                         <a id="cat" href="" >{{__('message.categories')}}</a>

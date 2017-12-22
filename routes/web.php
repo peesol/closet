@@ -7,7 +7,6 @@ Route::get('register/verify/{token}', 'Auth\RegisterController@verify');
 Route::get('/', 'HomeController@index');
 Route::get('/shops', 'HomeController@shops');
 Route::get('/trending', 'HomeController@trending');
-Route::get('/brands', 'HomeController@brands');
 
 Route::get('/locale_ajax', 'Controller@lang');
 Route::put('/locale_ajax/{lang}', 'Controller@langChange');

@@ -3,6 +3,11 @@
 // resources/lang/en/messages.php
 
 return [
+    //title
+    'cart' => 'Cart',
+    'collection_edit' => 'Collection Edit',
+    'notice' => 'Warning',
+    //general
     'login' => 'Login',
     'logout' => 'Logout',
     'email' => 'E-mail Address',
@@ -160,6 +165,4 @@ return [
     'shipped_track' => 'Tracking number',
     'shipped_warning' => 'If you have any issues about products or shipping please contact the seller directly.',
     'not_defined' => 'Not Specified',
-
-
 ];
