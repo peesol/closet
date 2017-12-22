@@ -189,7 +189,7 @@
 	left: 50%;
 }
 .main-logo {
-	background: url("/images/logo1.png");
+	background: url("https://s3.console.aws.amazon.com/s3/buckets/images.closet.com/logo1.png");
 	width: 100px;
 	height: 50px;
 	padding: 0;

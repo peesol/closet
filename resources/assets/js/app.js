@@ -15,9 +15,9 @@ require('./bootstrap');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.use(require('vue-resource'));
-Vue.use(require('vee-validate'));
-Vue.use(require('numeral'));
+Vue.use(require('vue-resource'))
+Vue.use(require('vee-validate'))
+Vue.use(require('numeral'))
 
 import VModal from 'vue-js-modal'
 Vue.use(VModal)

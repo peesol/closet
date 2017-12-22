@@ -14,11 +14,9 @@
     });
 
     $(".left-side-menu").mouseenter(function() {
-        //$('body').toggleClass('overflow-hidden');
         $(".left-side-menu").addClass("scroll-bar");
     });
      $(".left-side-menu").mouseleave(function() {
-        //$('body').removeClass('overflow-hidden');
         $(".left-side-menu").removeClass("scroll-bar");
     });
      $(".dropdown-btn").click( function(){

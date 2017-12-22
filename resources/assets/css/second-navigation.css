@@ -60,7 +60,7 @@
 	border-right: 1px solid #efefef;
 	top: 50px;
 	overflow-x: hidden;
-	overflow: auto;
+	overflow-y: auto;
 	z-index: 9999;
 }
 .toggled{
@@ -74,8 +74,6 @@
 	background-color: white;
 	border-right: 1px solid #efefef;
 	top: 50px;
-	overflow-x: hidden;
-	overflow-y: hidden;
 	z-index: 9999;
 	-webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
@@ -87,7 +85,7 @@
 	}
 }
 .scroll-bar {
-    overflow-y: auto;
+  overflow-y: auto;
 }
 .left-side-menu::-webkit-scrollbar {
 	width: 7px;

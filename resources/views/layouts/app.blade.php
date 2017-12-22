@@ -11,10 +11,10 @@
     <title>@yield('title'){{config('app.name') }}</title>
 
     <!-- Styles -->
-    <link href="https://d298yz6uaddsvc.cloudfront.net/all.css" rel="stylesheet">
+    <link href="{{ asset('css/all.css') }}" rel="stylesheet">
     @yield('css')
     <!-- Scripts -->
-    <script src="http://d298yz6uaddsvc.cloudfront.net/main.js"></script>
+    <script src="{{ asset('js/main.min.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.11.1/typeahead.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
     <script>

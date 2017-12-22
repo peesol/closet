@@ -1,10 +1,9 @@
 <template>
-<div style="padding:5px;">
+<div style="padding:5px; height:150px;">
     <select class="lang-input" :name="lang" v-model="lang" @change="selectLang(lang)">
         <option v-for="(lang, key) in langs" :value="key">{{lang}}</option>
     </select>
 </div>
-
 </template>
 
 <script>

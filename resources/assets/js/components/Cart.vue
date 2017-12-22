@@ -15,7 +15,7 @@
 				<td class="overflow-hidden"><span class="icon-cross remove-p-cart" @click.prevent="removeProduct(item.rowId, index, item.options.shop_name)"></span>&nbsp;{{item.name}}</td>
 				<td class="m-cell">{{item.options.choice ? item.options.choice : '---'}}</td>
 				<td class="s-cell">{{numeral(item.price)}}</td>
-				<td class="s-cell"><input type="number" min="1" max="99" @change.prevent="qtyChange(item.rowId, item.qty)" :value="item.qty" v-model="item.qty"></td>
+				<td class="s-cell"><input type="number" min="1" max="99" @change.prevent="qtyChange(item.rowId, item.qty)" v-model="item.qty"></td>
 			</tr>
 			<tr>
 				<td colspan="2" class="total-price">{{$trans.translation.total_price}}&nbsp;:&nbsp;{{total(shop)}}&nbsp;<span style="font-weight: 400;">&#3647;</span></td>

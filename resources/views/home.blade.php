@@ -1,15 +1,15 @@
 @extends('layouts.app')
 
-@section('content')
-
 @section('scripts')
 <script type="text/javascript" src="{{asset('js/slick.min.js')}}"></script>
 @endsection
-
 @section('css')
 <link href="{{ asset('css/banner-slick-theme.css') }}" rel="stylesheet">
 <link href="{{ asset('css/slick.css') }}" rel="stylesheet">
 @endsection
+
+@section('content')
+
 <div class="container">
 
             <div class="large-panel">
@@ -103,7 +103,6 @@ $('.category-carousel').slick({
 .side-grid {
   display: none;
 }
-
 .content-grid{
   display: grid;
   grid-template-columns: 50% 50%;
