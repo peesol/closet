@@ -13,3 +13,4 @@ Homestead.yaml
 .env
 .env.example
 webpack.mix.js
+package.json

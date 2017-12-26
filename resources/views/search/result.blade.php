@@ -46,8 +46,6 @@
 
 <script>
 
-
-
  $(document).ready(function() {
   $('#cat-btn').click(function() {
     $('#cat-option').toggleClass('filter-open');

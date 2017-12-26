@@ -99,5 +99,4 @@
           el: '.left-side-menu'
         });
     });
-
     </script>
