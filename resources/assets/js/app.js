@@ -85,6 +85,7 @@ Vue.component('shop-thumbnail-edit', require('./components/Shop/ShopThumbnailEdi
 Vue.component('shop-collection', require('./components/Shop/ShopCollection.vue'));
 Vue.component('shop-contact-edit', require('./components/Shop/ShopContactEdit.vue'));
 Vue.component('shop-account-edit', require('./components/Shop/ShopAccountEdit.vue'));
+Vue.component('shop-user-edit', require('./components/Shop/ShopUserEdit.vue'));
 Vue.component('collection-edit', require('./components/Collection/CollectionEdit.vue'));
 Vue.component('collection-dropzone', require('./components/Collection/CollectionDropzone.vue'));
 Vue.component('collection-product', require('./components/Collection/CollectionProduct.vue'));
@@ -131,6 +132,7 @@ const translations = {
         email: 'E-mail',
         phone: 'Phone',
         link: 'Link',
+        user_info: 'Personal info',
         col_name: 'Name',
         visibility: 'Visibility',
         public: 'Public',
@@ -274,6 +276,7 @@ const translations = {
         email: 'อีเมล',
         phone: 'โทรศัพท์',
         link: 'ลิงค์',
+        user_info: 'ข้อมูลส่วนตัว',
         col_name: 'ชื่อคอลเล็คชั่น',
         visibility: 'ใครดูได้',
         public: 'สาธาณะ',

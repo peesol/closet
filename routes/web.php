@@ -143,6 +143,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::put('/{shop}/edit', 'ShopSettingsController@update');
     Route::put('/{shop}/edit/cover', 'ShopSettingsController@updateCover');
     Route::put('/{shop}/edit/thumbnail', 'ShopSettingsController@updateThumbnail');
+    Route::put('/{shop}/edit/personal_info', 'ShopSettingsController@updateUserInfo');
 
     Route::get('/{shop}/edit/info', 'ShopSettingsController@getContact');
     Route::post('/{shop}/edit/info', 'ShopSettingsController@createContact');

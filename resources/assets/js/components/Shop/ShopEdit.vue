@@ -2,9 +2,9 @@
 <div>
 <vue-progress-bar></vue-progress-bar>
                     <div style="padding: 0px 20px;">
+                      <thumbnail :shop-thumbnail="shopThumbnail"></thumbnail>
+                      <cover :shop-cover="shopCover"></cover>
                         <form v-on:submit.prevent="edit" method="post">
-                    <thumbnail :shop-thumbnail="shopThumbnail"></thumbnail>
-                    <cover :shop-cover="shopCover"></cover>
                         <div style="padding:0;">
                             <div class="form-group">
                                 <label class="form-label" for="name">{{$trans.translation.shop_name}}</label>
@@ -30,6 +30,8 @@
                             <button id="submit-all" class="col-photo-submit" style="margin-top:0;">{{$trans.translation.edit_submit}}</button>
                         </div>
                         </form>
+                        <div id="full-line" style="margin-top: 20px;"></div>
+                        <shop-user-edit :user-address="userAddress" :user-phone="userPhone"></shop-user-edit>
                     </div>
                 </div>
 </div>
@@ -38,6 +40,7 @@
 <script>
 import Cover from './ShopCoverEdit.vue'
 import Thumbnail from './ShopThumbnailEdit.vue'
+import Info from './ShopUserEdit.vue'
 export default {
 	data() {
 		return {
@@ -57,6 +60,8 @@ export default {
       shopCover: null,
       shopDescription:null,
       shopThumbnail:null,
+      userAddress:null,
+      userPhone:null,
 	},
 
     methods: {

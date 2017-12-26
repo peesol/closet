@@ -18,7 +18,9 @@
     <shop-edit shop-name="{{$shop->name}}"
     shop-description="{{$shop->description}}"
     shop-thumbnail="{{$shop->getThumbnail()}}"
-    shop-cover="{{$shop->getCover()}}"></shop-edit>
+    shop-cover="{{$shop->getCover()}}"
+    user-address="{{$shop->user->address}}"
+    user-phone="{{$shop->user->phone}}"></shop-edit>
     </div>
 
 

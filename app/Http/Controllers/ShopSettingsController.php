@@ -34,6 +34,17 @@ class ShopSettingsController extends Controller
 
       return response()->json();
     }
+    public function updateUserInfo(Request $request, Shop $shop)
+    {
+      $this->authorize('update', $shop);
+
+      $shop->user->update([
+        'address' => $request->address,
+        'phone' => $request->phone,
+      ]);
+
+      return response()->json();
+    }
     public function updateThumbnail(Request $request, Shop $shop)
     {
       if (!empty($shop->thumbnail)) {
