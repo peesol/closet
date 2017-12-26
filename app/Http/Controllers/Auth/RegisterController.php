@@ -83,7 +83,7 @@ class RegisterController extends Controller
 
         $user->shop()->create([
           'name' => $data['shop_name'],
-          'slug' => uniqid('shop_'),
+          'slug' => uniqid('s_').$user->id,
         ]);
 
         return $user;
