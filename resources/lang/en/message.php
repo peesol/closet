@@ -36,7 +36,7 @@ return [
     'my_closet' => 'My Closet',
     'my_product' => 'My Products',
     'no_my_product' => 'You have no products.',
-    'closet_edit' => 'Closet settings',
+    'closet_edit' => 'Settings',
     'home' => 'Home',
     'trending' => 'Trending',
     'shops' => 'Shops',
