@@ -33659,7 +33659,7 @@ const addToCart = ({ commit }, { product, choice }) => {
 
   commit('appendToCart', { product, choice });
 
-  return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('http://closet.app:8000/cart/add/' + product.uid, {
+  return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('https://closet.plus/cart/add/' + product.uid, {
     product, choice
   });
 };
@@ -33668,7 +33668,7 @@ const addToCart = ({ commit }, { product, choice }) => {
 
 const getCartCount = ({ commit }) => {
 
-  return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('http://closet.app:8000/cart/get').then(response => {
+  return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('https://closet.plus/cart/get').then(response => {
 
     commit('setCount', response.data);
 
