@@ -46,11 +46,9 @@
             shopSlug: '{{$shop->slug}}',
           }
         });
-    });
-    window.addEventListener('load', function(){
-        $('.setting-nav-ul button').click(function(){
+        $('.tab-nav-ul button').click(function(){
             var tab_id = $(this).attr('data-tab');
-            $('ul.setting-nav-ul button').removeClass('current');
+            $('ul.tab-nav-ul button').removeClass('current');
             $('.tab-content').removeClass('current');
             $(this).addClass('current');
             $("#"+tab_id).addClass('current');

@@ -8,6 +8,29 @@
 
 <script>
 import thai from 'vee-validate/dist/locale/th';
+const dictionary = {
+  th: {
+    messages: thai.messages,
+    attributes: {
+      product_name: 'ชื่อสินค้า',
+      name: 'ชื่อ',
+      phone: 'เบอร์โทรศัพท์',
+      address: 'ที่อยู่',
+      price: 'ราคา',
+      description: 'รายละเอียด',
+      body: 'ข้อมูล',
+      account_number: 'เลขที่บัญชี',
+      account_name: 'ชื่อบัญชี',
+    }
+  },
+  en: {
+    attributes: {
+      account_number: 'account number',
+      account_name: 'account name',
+    }
+  }
+};
+
 	export default {
 		data() {
 			return {
@@ -42,27 +65,9 @@ import thai from 'vee-validate/dist/locale/th';
 
 		created() {
 			 this.getLang();
-       this.$validator.setLocale(this.language);
-       this.$validator.updateDictionary({
-         th: {
-           messages: thai.messages,
-           attributes: {
-             product_name: 'ชื่อสินค้า',
-             name: 'ชื่อ',
-             price: 'ราคา',
-             description: 'รายละเอียด',
-             body: 'ข้อมูล',
-             account_number: 'เลขที่บัญชี',
-             account_name: 'ชื่อบัญชี',
-           }
-         },
-         en: {
-           attributes: {
-             account_number: 'account number',
-             account_name: 'account name',
-           }
-         }
-       });
+       console.log(dictionary);
+       console.log(this.$validator);
+       this.$validator.localize(this.language, dictionary.th)
 		}
 	}
 </script>

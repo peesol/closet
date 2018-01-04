@@ -29993,6 +29993,29 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 
+const dictionary = {
+  th: {
+    messages: __WEBPACK_IMPORTED_MODULE_0_vee_validate_dist_locale_th___default.a.messages,
+    attributes: {
+      product_name: 'ชื่อสินค้า',
+      name: 'ชื่อ',
+      phone: 'เบอร์โทรศัพท์',
+      address: 'ที่อยู่',
+      price: 'ราคา',
+      description: 'รายละเอียด',
+      body: 'ข้อมูล',
+      account_number: 'เลขที่บัญชี',
+      account_name: 'ชื่อบัญชี'
+    }
+  },
+  en: {
+    attributes: {
+      account_number: 'account number',
+      account_name: 'account name'
+    }
+  }
+};
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   data() {
     return {
@@ -30027,27 +30050,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
   created() {
     this.getLang();
-    this.$validator.setLocale(this.language);
-    this.$validator.updateDictionary({
-      th: {
-        messages: __WEBPACK_IMPORTED_MODULE_0_vee_validate_dist_locale_th___default.a.messages,
-        attributes: {
-          product_name: 'ชื่อสินค้า',
-          name: 'ชื่อ',
-          price: 'ราคา',
-          description: 'รายละเอียด',
-          body: 'ข้อมูล',
-          account_number: 'เลขที่บัญชี',
-          account_name: 'ชื่อบัญชี'
-        }
-      },
-      en: {
-        attributes: {
-          account_number: 'account number',
-          account_name: 'account name'
-        }
-      }
-    });
+    console.log(dictionary);
+    console.log(this.$validator);
+    this.$validator.localize(this.language, dictionary.th);
   }
 });
 
