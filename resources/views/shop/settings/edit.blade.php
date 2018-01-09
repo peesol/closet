@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title')
-{{__('message.closet_edit').' - '}}
+{{__('message.closet_edit')}}
 @endsection
 @section('content')
 <div class="container">

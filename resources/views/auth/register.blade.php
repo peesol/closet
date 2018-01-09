@@ -8,6 +8,7 @@
                 <div class="panel-heading"><h3 class="no-margin">{{__('message.register')}}</h3></div>
                 <div class="panel-body">
                     <form role="form" method="POST" action="{{ route('register') }}">
+                        {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                             <label for="name" class="form-label">{{__('message.register_name')}}</label>
@@ -72,7 +73,7 @@
                                 <button type="submit" class="login-btn">
                                     {{__('message.register')}}
                                 </button>
-                                {{ csrf_field() }}
+
                     </form>
                 </div>
             </div>

@@ -1,5 +1,5 @@
 @component('mail::message')
-# {{__('message.verification_welcome')}}
+# {{__('messages.verification_welcome')}}.
 
 {{__('message.verify')}}
 

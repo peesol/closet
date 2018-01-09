@@ -72,8 +72,6 @@
                 <p id="alt-cat">{{__('message.language')}}</p>
                 <language-select language="{{ App::getLocale() }}"></language-select>
 
-
-
         @else
                 <a href="/"><i class="icon-home"></i>&nbsp;{{__('message.home')}}</a>
                 <a href="#"><span class="icon-fire"></span>&nbsp;{{__('message.trending')}}</a>
@@ -101,5 +99,4 @@
           el: '.left-side-menu'
         });
     });
-
     </script>

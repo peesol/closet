@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title')
-{{__('message.showcase_edit').' - '}}
+{{__('message.showcase_edit')}}
 @endsection
 @section('content')
 

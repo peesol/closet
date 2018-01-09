@@ -2,6 +2,23 @@
 @section('title')
 {{$category->showTranslate(App::getLocale())->name.' - '}}
 @endsection
+@section('css')
+<link href="https://s3-ap-southeast-1.amazonaws.com/files.closet/css/extra/slick-theme.css" rel="stylesheet">
+<link href="https://s3-ap-southeast-1.amazonaws.com/files.closet/css/extra/slick.css" rel="stylesheet">
+@endsection
+
+@section('scripts')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+<script>
+	$(document).ready(function() {
+	   $('.category-nav-btn').click(function(e) {
+	     e.preventDefault();
+	     $('.category-nav').toggleClass('category-opened');
+	     $('.category-nav-btn').toggleClass('clicked');
+	   });
+	});
+</script>
+@endsection
 @section('content')
 
 <div class="container">
@@ -74,23 +91,5 @@ $('.category-carousel').slick({
     }
   ]
 });
-</script>
-@endsection
-
-@section('css')
-<link href="{{ asset('css/slick-theme.css') }}" rel="stylesheet">
-<link href="{{ asset('css/slick.css') }}" rel="stylesheet">
-@endsection
-
-@section('scripts')
-<script type="text/javascript" src="{{asset('js/slick.min.js')}}"></script>
-<script>
-	$(document).ready(function() {
-	   $('.category-nav-btn').click(function(e) {
-	     e.preventDefault();
-	     $('.category-nav').toggleClass('category-opened');
-	     $('.category-nav-btn').toggleClass('clicked');
-	   });
-	});
 </script>
 @endsection
