@@ -16,7 +16,7 @@ class CreateDiscountsTable extends Migration
         Schema::create('discounts', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
-            $table->string('code');
+            $table->string('code', 10);
             $table->integer('amount');
             $table->boolean('valid')->default(true);
 
