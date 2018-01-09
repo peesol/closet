@@ -136,14 +136,12 @@ export default {
               acceptedFiles: 'image/*',
               addRemoveLinks: true,
               paramName: "image",
-              // dictDefaultMessage: translation,
               headers: {'x-csrf-token': document.querySelectorAll('meta[name=csrf-token]')[0].getAttributeNode('content').value,},
                 init: function() {
                   this.on('addedfile', function(file) {
                     if (this.files.length > 7) {
                       this.removeFile(this.files[0]);
                     }
-                    console.log(self.$trans.translation.error);
                   });
                 },
                 sendingmultiple: function(data, xhr, formData) {

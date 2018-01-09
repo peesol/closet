@@ -22,6 +22,7 @@ class Product extends Model
       'thumbnail',
       'price',
       'description',
+      'visibility',
       'amount',
       'stock',
       'shipping',

@@ -31552,7 +31552,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     name: this.name,
                     description: this.description,
                     price: this.price,
-                    thumbnail: this.image_filename
+                    thumbnail: this.image_filename,
+                    visibility: this.visibility
                 }).then(response => {
                     this.$Progress.finish();
                     toastr.success(this.$trans.translation.success);
@@ -31710,14 +31711,12 @@ __WEBPACK_IMPORTED_MODULE_0_dropzone___default.a.autoDiscover = false;
           acceptedFiles: 'image/*',
           addRemoveLinks: true,
           paramName: "image",
-          // dictDefaultMessage: translation,
           headers: { 'x-csrf-token': document.querySelectorAll('meta[name=csrf-token]')[0].getAttributeNode('content').value },
           init: function () {
             this.on('addedfile', function (file) {
               if (this.files.length > 7) {
                 this.removeFile(this.files[0]);
               }
-              console.log(self.$trans.translation.error);
             });
           },
           sendingmultiple: function (data, xhr, formData) {

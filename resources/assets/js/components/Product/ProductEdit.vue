@@ -112,6 +112,7 @@ export default {
                     description: this.description,
                     price: this.price,
                     thumbnail: this.image_filename,
+                    visibility: this.visibility,
                     }).then((response)=> {
                         this.$Progress.finish();
                         toastr.success(this.$trans.translation.success);
