@@ -16,7 +16,7 @@
 	</div>
 	<transition name="slide-down">
 		<div v-show="formVisible" style="padding:40px 45px 25px 45px;">
-    			<div class="dropzone" id="image"></div>
+    			<div class="dropzone" id="image"><div class="dz-message" data-dz-message><span>{{$trans.translation.upload_photo_guide}}</span></div></div>
     			<div style="text-align:right;"><button class="col-photo-submit" @click.prevent="submit" id="photo-submit">{{$trans.translation.upload_submit}}</button></div>
     	</div>
     </transition>

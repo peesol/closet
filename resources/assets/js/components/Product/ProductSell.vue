@@ -6,7 +6,7 @@
                 <li style="margin: 15px 0px;">{{$trans.translation.fill_every}}</li>
                 <li style="margin: 15px 0px;">{{$trans.translation.product_photo_limit}}</li>
                     <form v-on:submit.prevent="submit" method="post">
-                      <div class="dropzone" id="image"></div>
+                      <div class="dropzone" id="image"><div class="dz-message" data-dz-message><span>{{$trans.translation.upload_photo_guide}}</span></div></div>
                       <div style="width:100%; height:20px;"></div>
                     <div>
                         <div class="form-group">
@@ -54,7 +54,7 @@
 
                         <div class="form-group">
                             <label class="full-label" for="visibility">{{$trans.translation.visibility}}</label>
-                            <select required class="select-input" :name="visibility" v-model="visibility" @change="getSubCategory(category)">
+                            <select required class="select-input" :name="visibility" v-model="visibility">
                               <option value="public">{{$trans.translation.public}}</option>
                               <option value="unlisted">{{$trans.translation.unlisted}}</option>
                             </select>
@@ -136,12 +136,14 @@ export default {
               acceptedFiles: 'image/*',
               addRemoveLinks: true,
               paramName: "image",
+              // dictDefaultMessage: translation,
               headers: {'x-csrf-token': document.querySelectorAll('meta[name=csrf-token]')[0].getAttributeNode('content').value,},
                 init: function() {
                   this.on('addedfile', function(file) {
                     if (this.files.length > 7) {
                       this.removeFile(this.files[0]);
                     }
+                    console.log(self.$trans.translation.error);
                   });
                 },
                 sendingmultiple: function(data, xhr, formData) {
@@ -177,6 +179,6 @@ export default {
     created() {
         this.getCategory();
         this.initDropzone();
-    }
+    },
 }
 </script>

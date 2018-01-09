@@ -65,8 +65,6 @@ const dictionary = {
 
 		created() {
 			 this.getLang();
-       console.log(dictionary);
-       console.log(this.$validator);
        this.$validator.localize(this.language, dictionary.th)
 		}
 	}

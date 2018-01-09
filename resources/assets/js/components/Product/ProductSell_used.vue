@@ -7,7 +7,7 @@
                 <li style="margin: 15px 0px;">{{$trans.translation.product_photo_limit}}</li>
                 <li style="margin: 15px 0px;">{{$trans.translation.used_notice}}</li>
                     <form v-on:submit.prevent="submit" method="post">
-                      <div class="dropzone" id="used"></div>
+                      <div class="dropzone" id="used"><div class="dz-message" data-dz-message><span>{{$trans.translation.upload_photo_guide}}</span></div></div>
                       <div style="width:100%; height:20px;"></div>
                     <div>
                         <div class="form-group">

@@ -28193,6 +28193,7 @@ const translations = {
     edit_submit: 'Save',
     photos: 'Photos',
     upload_photo: 'Upload Photo',
+    upload_photo_guide: 'Click here to select files',
     upload_photo_size: 'Uploaded Photo will be resized to 500px * 500px',
     delete_photo_confirm: 'Are you sure you want to delete this photo?',
     delete_confirm: 'Are you sure you want to delete this?',
@@ -28338,6 +28339,7 @@ const translations = {
     edit_submit: 'บันทึก',
     photos: 'รูปภาพ',
     upload_photo: 'อัพโหลดรูปภาพ',
+    upload_photo_guide: 'คลิกเพื่อเลือกไฟล์รูปภาพ',
     upload_photo_size: 'รูปภาพที่อัพโหลดจะถูกเปลี่ยนขนาดเป็น 500px * 500px',
     delete_photo_confirm: 'คุณแน่ใจหรือไม่ว่าจะลบรูปภาพนี้?',
     delete_confirm: 'คุณแน่ใจหรือไม่ว่าจะลบ?',
@@ -30052,8 +30054,6 @@ const dictionary = {
 
   created() {
     this.getLang();
-    console.log(dictionary);
-    console.log(this.$validator);
     this.$validator.localize(this.language, dictionary.th);
   }
 });
@@ -31710,12 +31710,14 @@ __WEBPACK_IMPORTED_MODULE_0_dropzone___default.a.autoDiscover = false;
           acceptedFiles: 'image/*',
           addRemoveLinks: true,
           paramName: "image",
+          // dictDefaultMessage: translation,
           headers: { 'x-csrf-token': document.querySelectorAll('meta[name=csrf-token]')[0].getAttributeNode('content').value },
           init: function () {
             this.on('addedfile', function (file) {
               if (this.files.length > 7) {
                 this.removeFile(this.files[0]);
               }
+              console.log(self.$trans.translation.error);
             });
           },
           sendingmultiple: function (data, xhr, formData) {
@@ -65363,7 +65365,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "id": "image"
     }
-  }), _vm._v(" "), _c('div', {
+  }, [_c('div', {
+    staticClass: "dz-message",
+    attrs: {
+      "data-dz-message": ""
+    }
+  }, [_c('span', [_vm._v(_vm._s(_vm.$trans.translation.upload_photo_guide))])])]), _vm._v(" "), _c('div', {
     staticStyle: {
       "width": "100%",
       "height": "20px"
@@ -65658,7 +65665,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "name": _vm.visibility
     },
     on: {
-      "change": [function($event) {
+      "change": function($event) {
         var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
           return o.selected
         }).map(function(o) {
@@ -65666,9 +65673,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           return val
         });
         _vm.visibility = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
-      }, function($event) {
-        _vm.getSubCategory(_vm.category)
-      }]
+      }
     }
   }, [_c('option', {
     attrs: {
@@ -67838,7 +67843,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "id": "image"
     }
-  }), _vm._v(" "), _c('div', {
+  }, [_c('div', {
+    staticClass: "dz-message",
+    attrs: {
+      "data-dz-message": ""
+    }
+  }, [_c('span', [_vm._v(_vm._s(_vm.$trans.translation.upload_photo_guide))])])]), _vm._v(" "), _c('div', {
     staticStyle: {
       "text-align": "right"
     }
@@ -70721,7 +70731,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "id": "used"
     }
-  }), _vm._v(" "), _c('div', {
+  }, [_c('div', {
+    staticClass: "dz-message",
+    attrs: {
+      "data-dz-message": ""
+    }
+  }, [_c('span', [_vm._v(_vm._s(_vm.$trans.translation.upload_photo_guide))])])]), _vm._v(" "), _c('div', {
     staticStyle: {
       "width": "100%",
       "height": "20px"
