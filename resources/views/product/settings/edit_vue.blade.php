@@ -22,6 +22,7 @@
             product-name="{{$product->name}}"
             product-price="{{$product->price}}"
             product-description="{{$product->description}}"
+            product-visibility="{{$product->visibility}}"
             image-src="{{$product->getImage()}}">
             </product-edit>
             <div id="full-line"></div>

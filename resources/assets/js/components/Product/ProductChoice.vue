@@ -4,7 +4,7 @@
   <div style="padding: 0px 15px 10px 15px">
     <div class="add-col-panel">
 		<form>
-      <label for="name" class="col-label">{{$trans.translation.choice_add}}</label>&nbsp;<span>{{$trans.translation.choice_name_ex}}</span>
+      <label for="name" class="full-label">{{$trans.translation.choice_add}}&nbsp;<span style="font-weight:400;">{{$trans.translation.choice_name_ex}}</span></label>
         <div class="input-group">
 				<input class="input-addon-field" type="text" v-model="name" name="name">
         <button class="input-addon" style="border: none;" type="submit" @click.prevent="add"><span class="icon-checkmark"></span></button>

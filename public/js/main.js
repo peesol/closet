@@ -65909,7 +65909,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "padding": "40px 15px"
     }
   }, [_c('h4', {
-    staticClass: "col-label no-margin",
+    staticClass: "full-label no-margin",
     staticStyle: {
       "position": "absolute",
       "top": "10px",
@@ -65961,10 +65961,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('div', {
     staticClass: "form-group col-flex",
     attrs: {
-      "id": "col-label"
+      "id": "full-label"
     }
   }, [_c('label', {
-    staticClass: "col-label",
+    staticClass: "full-label",
     attrs: {
       "for": "name"
     }
@@ -66007,10 +66007,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._v(_vm._s(_vm.errors.first('product_name')))])]), _vm._v(" "), _c('div', {
     staticClass: "form-group col-flex",
     attrs: {
-      "id": "col-label"
+      "id": "full-label"
     }
   }, [_c('label', {
-    staticClass: "col-label",
+    staticClass: "full-label",
     attrs: {
       "for": "price"
     }
@@ -66051,10 +66051,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._v(_vm._s(_vm.errors.first('price')))])]), _vm._v(" "), _c('div', {
     staticClass: "form-group col-flex",
     attrs: {
-      "id": "col-label"
+      "id": "full-label"
     }
   }, [_c('label', {
-    staticClass: "col-label",
+    staticClass: "full-label",
     attrs: {
       "for": "visibility"
     }
@@ -66097,10 +66097,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "position": "relative"
     },
     attrs: {
-      "id": "col-label"
+      "id": "full-label"
     }
   }, [_c('label', {
-    staticClass: "col-label",
+    staticClass: "full-label",
     attrs: {
       "for": "description"
     }
@@ -66815,11 +66815,15 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('div', {
     staticClass: "add-col-panel"
   }, [_c('form', [_c('label', {
-    staticClass: "col-label",
+    staticClass: "full-label",
     attrs: {
       "for": "name"
     }
-  }, [_vm._v(_vm._s(_vm.$trans.translation.choice_add))]), _vm._v(" "), _c('span', [_vm._v(_vm._s(_vm.$trans.translation.choice_name_ex))]), _vm._v(" "), _c('div', {
+  }, [_vm._v(_vm._s(_vm.$trans.translation.choice_add) + " "), _c('span', {
+    staticStyle: {
+      "font-weight": "400"
+    }
+  }, [_vm._v(_vm._s(_vm.$trans.translation.choice_name_ex))])]), _vm._v(" "), _c('div', {
     staticClass: "input-group"
   }, [_c('input', {
     directives: [{
@@ -67487,7 +67491,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('div', {
     staticClass: "form-group col-flex"
   }, [_c('label', {
-    staticClass: "col-label"
+    staticClass: "full-label"
   }, [_vm._v(_vm._s(_vm.$trans.translation.shipping) + " "), _c('span', {
     staticStyle: {
       "font-weight": "400"
@@ -67525,7 +67529,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "width": "160px"
     }
   }, [_c('label', {
-    staticClass: "col-label"
+    staticClass: "full-label"
   }, [_vm._v(_vm._s(_vm.$trans.translation.shipping_time))])]), _vm._v(" "), _c('td', [_c('input', {
     directives: [{
       name: "model",
@@ -67548,12 +67552,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }
   }), _c('span', {
-    staticClass: "col-label",
+    staticClass: "full-label",
     staticStyle: {
       "margin-left": "5px"
     }
   }, [_vm._v(_vm._s(_vm.$trans.translation.days))])])]), _vm._v(" "), _c('tr', [_c('td', [_c('label', {
-    staticClass: "col-label"
+    staticClass: "full-label"
   }, [_vm._v(_vm._s(_vm.$trans.translation.shipping_free))])]), _vm._v(" "), _c('td', [_c('select', {
     directives: [{
       name: "model",
@@ -67592,7 +67596,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       expression: "shipping_free == false"
     }]
   }, [_c('td', [_c('label', {
-    staticClass: "col-label"
+    staticClass: "full-label"
   }, [_vm._v(_vm._s(_vm.$trans.translation.shipping_fee))])]), _vm._v(" "), _c('td', [_c('input', {
     directives: [{
       name: "model",
@@ -67615,7 +67619,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }
   }), _c('span', {
-    staticClass: "col-label",
+    staticClass: "full-label",
     staticStyle: {
       "margin-left": "5px"
     }
@@ -69459,7 +69463,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "id": "image"
     }
-  }), _vm._v(" "), _c('div', {
+  }, [_c('div', {
+    staticClass: "dz-message",
+    attrs: {
+      "data-dz-message": ""
+    }
+  }, [_c('span', [_vm._v(_vm._s(_vm.$trans.translation.upload_photo_guide))])])]), _vm._v(" "), _c('div', {
     staticStyle: {
       "text-align": "right"
     }
