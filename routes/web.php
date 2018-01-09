@@ -131,11 +131,11 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::delete('/product/{product}', 'ProductController@delete');
 
   Route::prefix('sell')->group(function () {
-    Route::get('/sell/product', 'ProductController@create');
-    Route::get('/sell/subcat/{id}','ProductController@ajaxSubcat');
-    Route::post('/sell/product', 'ProductController@store');
-    Route::get('/sell/used', 'UsedController@create');
-    Route::post('/sell/used', 'UsedController@store');
+    Route::get('/product', 'ProductController@create');
+    Route::get('/subcat/{id}','ProductController@ajaxSubcat');
+    Route::post('/product', 'ProductController@store');
+    Route::get('/used', 'UsedController@create');
+    Route::post('/used', 'UsedController@store');
   });
   Route::delete('/product/used/{product}', 'UsedController@delete');
 

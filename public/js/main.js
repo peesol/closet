@@ -28208,6 +28208,7 @@ const translations = {
     visibility: 'Visibility',
     public: 'Public',
     private: 'Private',
+    unlisted: 'Only people that you give the link to',
     add_col: 'Add collection +',
     col_photo_limit: 'You can\'t upload more than 10 photos.',
     col_photo_none: 'This collection has no photo.',
@@ -28352,6 +28353,7 @@ const translations = {
     visibility: 'ใครดูได้',
     public: 'สาธาณะ',
     private: 'ส่วนตัว',
+    unlisted: 'เฉพาะผู้ที่มีลิงค์',
     add_col: 'สร้างคอลเล็คชั่น +',
     col_photo_limit: 'คุณสามารถมีรูปภาพได้ไม่เกิน 10 รูป',
     col_photo_none: 'คอลเล็คชั่นนี้ไม่มีรูป',
@@ -31480,6 +31482,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -31489,6 +31496,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             name: this.productName,
             price: this.productPrice,
             description: this.productDescription,
+            visibility: this.productVisibility,
             formVisible: false,
             url: window.Closet.url,
             trans: this.$trans
@@ -31499,6 +31507,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         productName: null,
         productPrice: null,
         productDescription: null,
+        productVisibility: null,
         imageSrc: null
     },
 
@@ -31527,7 +31536,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 this.$http.put(this.url + '/product/' + this.productSlug + '/edit', {
                     name: this.name,
                     description: this.description,
-                    price: this.price
+                    price: this.price,
+                    visibility: this.visibility
                 }).then(response => {
                     this.$Progress.finish();
                     toastr.success(this.$trans.translation.success);
@@ -31627,6 +31637,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 __WEBPACK_IMPORTED_MODULE_0_dropzone___default.a.autoDiscover = false;
@@ -31642,6 +31660,7 @@ __WEBPACK_IMPORTED_MODULE_0_dropzone___default.a.autoDiscover = false;
       name: null,
       price: null,
       description: null,
+      visibility: null,
       url: window.Closet.url,
       trans: this.$trans,
       categorySelect: false,
@@ -31703,6 +31722,7 @@ __WEBPACK_IMPORTED_MODULE_0_dropzone___default.a.autoDiscover = false;
             formData.append("name", self.name);
             formData.append("price", self.price);
             formData.append("description", self.description);
+            formData.append("visibility", self.visibility);
             formData.append("category_id", self.category);
             formData.append("subcategory_id", self.subcategory);
             formData.append("type_id", self.type);
@@ -65349,12 +65369,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "height": "20px"
     }
   }), _vm._v(" "), _c('div', [_c('div', {
-    staticClass: "form-group col-flex",
-    attrs: {
-      "id": "col-label"
-    }
+    staticClass: "form-group"
   }, [_c('label', {
-    staticClass: "col-label",
+    staticClass: "full-label",
     attrs: {
       "for": "name"
     }
@@ -65393,12 +65410,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }],
     staticClass: "span-error"
   }, [_vm._v(_vm._s(_vm.errors.first('product_name')))])]), _vm._v(" "), _c('div', {
-    staticClass: "form-group col-flex",
-    attrs: {
-      "id": "col-label"
-    }
+    staticClass: "form-group"
   }, [_c('label', {
-    staticClass: "col-label",
+    staticClass: "full-label",
     attrs: {
       "for": "price"
     }
@@ -65437,12 +65451,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }],
     staticClass: "span-error"
   }, [_vm._v(_vm._s(_vm.errors.first('price')))])]), _vm._v(" "), _c('div', {
-    staticClass: "form-group col-flex",
-    attrs: {
-      "id": "col-label"
-    }
+    staticClass: "form-group"
   }, [_c('label', {
-    staticClass: "col-label",
+    staticClass: "full-label",
     attrs: {
       "for": "category"
     }
@@ -65494,12 +65505,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       value: (_vm.categorySelect),
       expression: "categorySelect"
     }],
-    staticClass: "form-group col-flex",
-    attrs: {
-      "id": "col-label"
-    }
+    staticClass: "form-group"
   }, [_c('label', {
-    staticClass: "col-label",
+    staticClass: "full-label",
     attrs: {
       "for": "subcategory"
     }
@@ -65547,12 +65555,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "name": "slide-down-input"
     }
   }, [(_vm.types.length) ? _c('div', {
-    staticClass: "form-group col-flex",
-    attrs: {
-      "id": "col-label"
-    }
+    staticClass: "form-group "
   }, [_c('label', {
-    staticClass: "col-label",
+    staticClass: "full-label",
     attrs: {
       "for": "type"
     }
@@ -65594,12 +65599,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }, [_vm._v(_vm._s(type.translate[0].name))]) : _vm._e()
   })], 2)]) : _vm._e()])], 1), _vm._v(" "), _c('div', {
-    staticClass: "form-group col-flex",
-    attrs: {
-      "id": "col-label"
-    }
+    staticClass: "form-group"
   }, [_c('label', {
-    staticClass: "col-label",
+    staticClass: "full-label",
     attrs: {
       "for": "decription"
     }
@@ -65637,6 +65639,46 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }],
     staticClass: "span-error"
   }, [_vm._v(_vm._s(_vm.errors.first('description')))])]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "full-label",
+    attrs: {
+      "for": "visibility"
+    }
+  }, [_vm._v(_vm._s(_vm.$trans.translation.visibility))]), _vm._v(" "), _c('select', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.visibility),
+      expression: "visibility"
+    }],
+    staticClass: "select-input",
+    attrs: {
+      "required": "",
+      "name": _vm.visibility
+    },
+    on: {
+      "change": [function($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
+          return o.selected
+        }).map(function(o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val
+        });
+        _vm.visibility = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+      }, function($event) {
+        _vm.getSubCategory(_vm.category)
+      }]
+    }
+  }, [_c('option', {
+    attrs: {
+      "value": "public"
+    }
+  }, [_vm._v(_vm._s(_vm.$trans.translation.public))]), _vm._v(" "), _c('option', {
+    attrs: {
+      "value": "unlisted"
+    }
+  }, [_vm._v(_vm._s(_vm.$trans.translation.unlisted))])])]), _vm._v(" "), _c('div', {
     staticStyle: {
       "position": "relative",
       "text-align": "right"
@@ -66001,7 +66043,50 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       expression: "errors.has('price')"
     }],
     staticClass: "span-error"
-  }, [_vm._v(_vm._s(_vm.errors.first('price')))])])]), _vm._v(" "), _c('div', {
+  }, [_vm._v(_vm._s(_vm.errors.first('price')))])]), _vm._v(" "), _c('div', {
+    staticClass: "form-group col-flex",
+    attrs: {
+      "id": "col-label"
+    }
+  }, [_c('label', {
+    staticClass: "col-label",
+    attrs: {
+      "for": "visibility"
+    }
+  }, [_vm._v(_vm._s(_vm.$trans.translation.visibility))]), _vm._v(" "), _c('select', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.visibility),
+      expression: "visibility"
+    }],
+    staticClass: "select-input",
+    attrs: {
+      "required": "",
+      "name": _vm.visibility
+    },
+    on: {
+      "change": [function($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
+          return o.selected
+        }).map(function(o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val
+        });
+        _vm.visibility = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+      }, function($event) {
+        _vm.getSubCategory(_vm.category)
+      }]
+    }
+  }, [_c('option', {
+    attrs: {
+      "value": "public"
+    }
+  }, [_vm._v(_vm._s(_vm.$trans.translation.public))]), _vm._v(" "), _c('option', {
+    attrs: {
+      "value": "unlisted"
+    }
+  }, [_vm._v(_vm._s(_vm.$trans.translation.unlisted))])])])]), _vm._v(" "), _c('div', {
     staticClass: "form-group",
     staticStyle: {
       "position": "relative"
@@ -70642,12 +70727,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "height": "20px"
     }
   }), _vm._v(" "), _c('div', [_c('div', {
-    staticClass: "form-group col-flex",
-    attrs: {
-      "id": "col-label"
-    }
+    staticClass: "form-group"
   }, [_c('label', {
-    staticClass: "col-label",
+    staticClass: "full-label",
     attrs: {
       "for": "name"
     }
@@ -70686,12 +70768,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }],
     staticClass: "span-error"
   }, [_vm._v(_vm._s(_vm.errors.first('product_name')))])]), _vm._v(" "), _c('div', {
-    staticClass: "form-group col-flex",
-    attrs: {
-      "id": "col-label"
-    }
+    staticClass: "form-group"
   }, [_c('label', {
-    staticClass: "col-label",
+    staticClass: "full-label",
     attrs: {
       "for": "price"
     }
@@ -70730,12 +70809,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }],
     staticClass: "span-error"
   }, [_vm._v(_vm._s(_vm.errors.first('price')))])]), _vm._v(" "), _c('div', {
-    staticClass: "form-group col-flex",
-    attrs: {
-      "id": "col-label"
-    }
+    staticClass: "form-group"
   }, [_c('label', {
-    staticClass: "col-label",
+    staticClass: "full-label",
     attrs: {
       "for": "category"
     }
@@ -70787,12 +70863,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       value: (_vm.categorySelect),
       expression: "categorySelect"
     }],
-    staticClass: "form-group col-flex",
-    attrs: {
-      "id": "col-label"
-    }
+    staticClass: "form-group"
   }, [_c('label', {
-    staticClass: "col-label",
+    staticClass: "full-label",
     attrs: {
       "for": "subcategory"
     }
@@ -70840,12 +70913,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "name": "slide-down-input"
     }
   }, [(_vm.types.length) ? _c('div', {
-    staticClass: "form-group col-flex",
-    attrs: {
-      "id": "col-label"
-    }
+    staticClass: "form-group"
   }, [_c('label', {
-    staticClass: "col-label",
+    staticClass: "full-label",
     attrs: {
       "for": "type"
     }
@@ -70887,12 +70957,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }, [_vm._v(_vm._s(type.translate[0].name))]) : _vm._e()
   })], 2)]) : _vm._e()])], 1), _vm._v(" "), _c('div', {
-    staticClass: "form-group col-flex",
-    attrs: {
-      "id": "col-label"
-    }
+    staticClass: "form-group"
   }, [_c('label', {
-    staticClass: "col-label",
+    staticClass: "full-label",
     attrs: {
       "for": "decription"
     }
@@ -70974,7 +71041,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('div', [_c('div', {
     staticClass: "form-group"
   }, [_c('label', {
-    staticClass: "col-label",
+    staticClass: "full-label",
     staticStyle: {
       "padding": "0"
     }
@@ -71013,7 +71080,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }))]), _vm._v(" "), _c('div', {
     staticClass: "form-group"
   }, [_c('label', {
-    staticClass: "col-label"
+    staticClass: "full-label"
   }, [_vm._v(_vm._s(_vm.$trans.translation.account_number))]), _vm._v(" "), _c('div', {
     staticClass: "input-group",
     staticStyle: {
@@ -71058,7 +71125,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._v(_vm._s(_vm.errors.first('account_number')))])]), _vm._v(" "), _c('div', {
     staticClass: "form-group"
   }, [_c('label', {
-    staticClass: "col-label"
+    staticClass: "full-label"
   }, [_vm._v(_vm._s(_vm.$trans.translation.account_name))]), _vm._v(" "), _c('div', {
     staticClass: "input-group",
     staticStyle: {

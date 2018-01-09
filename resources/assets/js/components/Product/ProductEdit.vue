@@ -27,8 +27,13 @@
                 <input v-validate="'required|numeric'" class="col-edit-input" type="text" v-model="price" name="price">
                 <span v-show="errors.has('price')" class="span-error">{{ errors.first('price') }}</span>
             </div>
-
-
+            <div class="form-group col-flex" id="col-label">
+                <label class="col-label" for="visibility">{{$trans.translation.visibility}}</label>
+                <select required class="select-input" :name="visibility" v-model="visibility" @change="getSubCategory(category)">
+                  <option value="public">{{$trans.translation.public}}</option>
+                  <option value="unlisted">{{$trans.translation.unlisted}}</option>
+                </select>
+            </div>
         </div>
         <div class="form-group" id="col-label" style="position:relative;">
             <label class="col-label" for="description">{{$trans.translation.description}}</label>
@@ -50,6 +55,7 @@ export default {
 			name: this.productName,
 			price: this.productPrice,
 			description: this.productDescription,
+			visibility: this.productVisibility,
 			formVisible: false,
 			url: window.Closet.url,
       trans: this.$trans,
@@ -60,7 +66,8 @@ export default {
 		productName: null,
 		productPrice:null,
 		productDescription:null,
-        imageSrc: null,
+		productVisibility:null,
+    imageSrc: null,
 	},
 
     methods: {
@@ -89,6 +96,7 @@ export default {
                     name: this.name,
                     description: this.description,
                     price: this.price,
+                    visibility: this.visibility,
                     }).then((response)=> {
                         this.$Progress.finish();
                         toastr.success(this.$trans.translation.success);

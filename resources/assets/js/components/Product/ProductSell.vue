@@ -9,26 +9,26 @@
                       <div class="dropzone" id="image"></div>
                       <div style="width:100%; height:20px;"></div>
                     <div>
-                        <div class="form-group col-flex" id="col-label">
-                            <label class="col-label" for="name">{{$trans.translation.product_name}}</label>
+                        <div class="form-group">
+                            <label class="full-label" for="name">{{$trans.translation.product_name}}</label>
                             <input v-validate="'required|min:6'" type="text" class="col-edit-input" name="product_name" v-model="name">
                             <span v-show="errors.has('product_name')" class="span-error">{{ errors.first('product_name') }}</span>
                         </div>
-                        <div class="form-group col-flex" id="col-label">
-                            <label class="col-label" for="price">{{$trans.translation.price}}</label>
+                        <div class="form-group">
+                            <label class="full-label" for="price">{{$trans.translation.price}}</label>
                             <input v-validate="'required|numeric|max_value:10000000'" type="text" class="col-edit-input" name="price" v-model="price">
                             <span v-show="errors.has('price')" class="span-error">{{ errors.first('price') }}</span>
                         </div>
-                        <div class="form-group col-flex" id="col-label">
-                            <label class="col-label" for="category">{{$trans.translation.category}}</label>
+                        <div class="form-group">
+                            <label class="full-label" for="category">{{$trans.translation.category}}</label>
                             <select required class="select-input" :name="category" v-model="category" @change="getSubCategory(category)">
                                 <option v-if="locale == 'en'" v-for="category in categories" :value="category.id">{{category.name}}</option>
                                 <option v-if="locale == 'th'" v-for="category in categories" :value="category.id">{{category.translate[0].name}}</option>
                             </select>
                         </div>
                         <transition name="slide-down-input">
-                        <div v-show="categorySelect" class="form-group col-flex" id="col-label">
-                            <label class="col-label" for="subcategory">{{$trans.translation.subcategory}}</label>
+                        <div v-show="categorySelect" class="form-group">
+                            <label class="full-label" for="subcategory">{{$trans.translation.subcategory}}</label>
                             <select required class="select-input" :name="subcategory" v-model="subcategory" @change="getType(subcategory)">
                                 <option v-if="locale == 'en'" v-for="subcategory in subcategories" :selected="subcategory.name" :value="subcategory.id">{{subcategory.name}}</option>
                                 <option v-if="locale == 'th'" v-for="subcategory in subcategories" :selected="subcategory.name" :value="subcategory.id">{{subcategory.translate[0].name}}</option>
@@ -36,8 +36,8 @@
                         </div>
                         </transition>
                         <transition name="slide-down-input">
-                        <div v-if="types.length" class="form-group col-flex" id="col-label">
-                            <label class="col-label" for="type">{{$trans.translation.type}}</label>
+                        <div v-if="types.length" class="form-group ">
+                            <label class="full-label" for="type">{{$trans.translation.type}}</label>
                             <select required class="select-input" :name="type" v-model="type">
                                 <option v-if="locale == 'en'" v-for="type in types" :selected="type.name" :value="type.id">{{type.name}}</option>
                                 <option v-if="locale == 'th'" v-for="type in types" :selected="type.name" :value="type.id">{{type.translate[0].name}}</option>
@@ -45,11 +45,19 @@
                         </div>
                         </transition>
                     </div>
-                         <div class="form-group col-flex" id="col-label">
-                            <label class="col-label" for="decription">{{$trans.translation.description}}</label>
+                         <div class="form-group">
+                            <label class="full-label" for="decription">{{$trans.translation.description}}</label>
                             <textarea v-validate="'required'" class="description-input" name="description" v-model="description">
                             </textarea>
                             <span v-show="errors.has('description')" class="span-error">{{ errors.first('description') }}</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="full-label" for="visibility">{{$trans.translation.visibility}}</label>
+                            <select required class="select-input" :name="visibility" v-model="visibility" @change="getSubCategory(category)">
+                              <option value="public">{{$trans.translation.public}}</option>
+                              <option value="unlisted">{{$trans.translation.unlisted}}</option>
+                            </select>
                         </div>
 
                         <div style="position: relative; text-align: right;">
@@ -76,6 +84,7 @@ export default {
 			      name: null,
 			      price: null,
 			      description: null,
+			      visibility: null,
             url: window.Closet.url,
             trans: this.$trans,
             categorySelect: false,
@@ -139,6 +148,7 @@ export default {
                   formData.append("name", self.name);
                   formData.append("price", self.price);
                   formData.append("description", self.description);
+                  formData.append("visibility", self.visibility);
                   formData.append("category_id", self.category);
                   formData.append("subcategory_id", self.subcategory);
                   formData.append("type_id", self.type);

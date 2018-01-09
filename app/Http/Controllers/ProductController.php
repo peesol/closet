@@ -99,6 +99,7 @@ class ProductController extends Controller
         'type_id' => $type_id,
         'price' => $request->price,
         'description' => $request->description,
+        'visibility' => $request->visibility,
         'thumbnail' => '',
       ]);
 
@@ -179,6 +180,7 @@ class ProductController extends Controller
         'product_name' => $request->name,
         'price' => $request->price,
         'description' => $request->description,
+        'visibility' => $request->visibility,
       ]);
 
       if (!empty($request->thumbnail)) {

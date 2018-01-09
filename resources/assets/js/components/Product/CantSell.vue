@@ -5,13 +5,13 @@
                         <form v-on:submit.prevent="add" method="post">
                         <div>
                             <div class="form-group">
-                                     <label class="col-label" style="padding: 0;">{{$trans.translation.account_provider}}</label>
+                                     <label class="full-label" style="padding: 0;">{{$trans.translation.account_provider}}</label>
                                      <select required class="select-input" name="provider" v-model="provider">
                                         <option v-for="option in options" :value="{'name': option.name, 'code': option.code}">{{option.name}}</option>
                                       </select>
                             </div>
                             <div class="form-group">
-                              <label class="col-label">{{$trans.translation.account_number}}</label>
+                              <label class="full-label">{{$trans.translation.account_number}}</label>
                                  <div class="input-group" style="margin-bottom:8px;">
                                      <input type="text" v-validate="'required|numeric|min:10|max:12'" :class="{'input-addon-field': true,'is-error': errors.has('account_number')}" v-model="number" name="account_number">
                                  </div>
@@ -19,7 +19,7 @@
                             </div>
 
                             <div class="form-group">
-                              <label class="col-label">{{$trans.translation.account_name}}</label>
+                              <label class="full-label">{{$trans.translation.account_name}}</label>
                                  <div class="input-group" style="margin-bottom:8px;">
                                      <input type="text" v-validate="'required'" :class="{'input-addon-field': true,'is-error': errors.has('account_name')}" v-model="name" name="account_name">
                                  </div>
