@@ -250,7 +250,7 @@ class TypeTranslationTableSeeder extends Seeder
                 [
                   'category_type_id' => '49',
                   'language' => 'th',
-                  'name' => 'กระดาษซับ สำลี & อื่นๆ'
+                  'name' => 'หมวก'
                 ],
                 [
                   'category_type_id' => '50',
