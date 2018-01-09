@@ -1,5 +1,5 @@
 @component('mail::message')
-# Welcome to Closet.
+# {{__('message.verification_welcome')}}
 
 {{__('message.verify')}}
 

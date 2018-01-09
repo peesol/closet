@@ -12,14 +12,17 @@ class EmailVerification extends Mailable
     use Queueable, SerializesModels;
 
     protected $user;
+    protected $locale;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($user)
+    public function __construct($user, $locale)
     {
         $this->user = $user;
+        $this->locale = $locale;
+        $this->subject = __('message.email_verification_subject');
     }
 
     /**
@@ -29,6 +32,7 @@ class EmailVerification extends Mailable
      */
     public function build()
     {
+        app()->setLocale($this->locale);
         return $this->markdown('email.markdown.verifyemail')->with([
         'email_token' => $this->user->email_token,
         'name' => $this->user->name,

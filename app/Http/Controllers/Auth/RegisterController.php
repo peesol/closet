@@ -98,7 +98,7 @@ class RegisterController extends Controller
             $this->validator($request->all())->validate();
             $locale = App::getLocale();
             event(new Registered($user = $this->create($request->all())));
-            Mail::to($user->email)->queue(new EmailVerification($user));
+            Mail::to($user->email)->queue(new EmailVerification($user, $locale));
 
             return view('email.verification');
         }
