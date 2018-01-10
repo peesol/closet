@@ -30,7 +30,7 @@ class SearchController extends Controller
     	  }
         $categories = Category::all();
     		$keyword = $request->input('p');
-    		$products = Product::where('name', 'LIKE', "%$keyword%")->filter($request)->paginate(20);
+    		$products = Product::where('name', 'LIKE', "%$keyword%")->where('visibility','public')->filter($request)->paginate(20);
 
         if($request->query('c')){
           $id = $request->query('c');

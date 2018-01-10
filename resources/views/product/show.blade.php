@@ -37,7 +37,9 @@
                         </div>
                         <div class="details-header-sub">
                             <product-vote product-uid="{{ $product->uid }}" product-id="{{ $product->id }}"></product-vote>
+                            @if($product->visibility == 'public')
                             <collection-product product-id="{{ $product->id }}" shop-slug="{{Auth::check() ? Auth::user()->shop->slug : 'null'}}"></collection-product>
+                            @endif
                         </div>
                         <div style="padding: 15px 15px;">
                             <p class=""><span class="font-bold grey-font">{{__('message.price')}}</span> : <span class="font-bold font-large">{{ number_format($product->price) }}</span> {{__('message.baht')}}</p>
