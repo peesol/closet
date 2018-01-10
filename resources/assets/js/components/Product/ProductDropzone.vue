@@ -66,7 +66,7 @@ export default {
 						this.$http.delete('/product_ajax/' + imageId + '/img').then(() => {
 						this.deleteById(imageId);
 						this.$Progress.finish();
-						toastr.success("Success.");
+						toastr.success(this.$trans.translation.success);
 				});
   			},
 
@@ -81,15 +81,15 @@ export default {
 		    		parallelUploads: 7,
 		    		maxFiles: 7,
 		    		maxFilesize: 2,
-		    		acceptedFiles: 'image/*',
+		    		acceptedFiles: '.jpg',
 		    		addRemoveLinks: true,
 		    		paramName: "image",
 		    		headers: {'x-csrf-token': document.querySelectorAll('meta[name=csrf-token]')[0].getAttributeNode('content').value,},
 		    				init: function() {
  							this.on('addedfile', function(file) {
-  								if (this.files.length > 7) {
-   									this.removeFile(this.files[0]);
-  								}
+									if (this.files.length + self.images.length > 7 || this.files.length > 7) {
+										this.removeFile(this.files[0])
+									}
  								});
 					},
     				processing: function() {

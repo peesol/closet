@@ -31373,7 +31373,7 @@ __WEBPACK_IMPORTED_MODULE_0_dropzone___default.a.autoDiscover = false;
 			this.$http.delete('/product_ajax/' + imageId + '/img').then(() => {
 				this.deleteById(imageId);
 				this.$Progress.finish();
-				toastr.success("Success.");
+				toastr.success(this.$trans.translation.success);
 			});
 		},
 
@@ -31388,13 +31388,17 @@ __WEBPACK_IMPORTED_MODULE_0_dropzone___default.a.autoDiscover = false;
 					parallelUploads: 7,
 					maxFiles: 7,
 					maxFilesize: 2,
-					acceptedFiles: 'image/*',
+					acceptedFiles: '.jpg',
 					addRemoveLinks: true,
 					paramName: "image",
 					headers: { 'x-csrf-token': document.querySelectorAll('meta[name=csrf-token]')[0].getAttributeNode('content').value },
 					init: function () {
 						this.on('addedfile', function (file) {
+							console.log(this.files.length + self.images.length);
 							if (this.files.length > 7) {
+								this.removeFile(this.files[0]);
+							}
+							if (this.files.length + self.images.length > 7) {
 								this.removeFile(this.files[0]);
 							}
 						});

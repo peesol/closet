@@ -65,13 +65,13 @@ export default {
 		    		parallelUploads: 10,
 		    		maxFiles: 10,
 		    		maxFilesize: 2,
-		    		acceptedFiles: 'image/*',
+		    		acceptedFiles: '.jpg',
 		    		addRemoveLinks: true,
 		    		paramName: "image",
 		    		headers: {'x-csrf-token': document.querySelectorAll('meta[name=csrf-token]')[0].getAttributeNode('content').value,},
 		    				init: function() {
  							this.on('addedfile', function(file) {
-  								if (this.files.length > 10) {
+  								if (this.files.length + self.images.length > 10 || this.files.length > 10) {
    									this.removeFile(this.files[0]);
   								}
  								});

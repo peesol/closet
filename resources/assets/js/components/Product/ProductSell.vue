@@ -133,7 +133,7 @@ export default {
               parallelUploads: 7,
               maxFiles: 7,
               maxFilesize: 2,
-              acceptedFiles: 'image/*',
+              acceptedFiles: '.jpg',
               addRemoveLinks: true,
               paramName: "image",
               headers: {'x-csrf-token': document.querySelectorAll('meta[name=csrf-token]')[0].getAttributeNode('content').value,},
