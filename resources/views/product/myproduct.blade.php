@@ -35,8 +35,10 @@
                                 <a href="/product/{{ $product->uid}}">
                                 <img class="products-img-thumb" src="{{$product->getImage()}}" alt="{{$product->thumbnail}}">
                                 </a>
+                                @if($product->visibility === 'unlisted')
+                                <span class="private icon-private" style="font-size:25px;"></span>
+                                @endif
                             </div>
-
                             <h3 class="product-name"><a class="link-text" href="/product/{{ $product->uid}}">{{ $product->name }}</a></h3>
                             <div class="product-detail-wrap">
                             <p class="product-p">{{__('message.price')}} : {{ number_format($product->price) }}</p>

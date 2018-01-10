@@ -29547,6 +29547,7 @@ __WEBPACK_IMPORTED_MODULE_0_dropzone___default.a.autoDiscover = false;
 					addRemoveLinks: true,
 					paramName: "image",
 					dictRemoveFile: "&times;",
+					dictCancelUpload: "&times;",
 					headers: { 'x-csrf-token': document.querySelectorAll('meta[name=csrf-token]')[0].getAttributeNode('content').value },
 					init: function () {
 						this.on('addedfile', function (file) {
@@ -31393,6 +31394,7 @@ __WEBPACK_IMPORTED_MODULE_0_dropzone___default.a.autoDiscover = false;
 					addRemoveLinks: true,
 					paramName: "image",
 					dictRemoveFile: "&times;",
+					dictCancelUpload: "&times;",
 					headers: { 'x-csrf-token': document.querySelectorAll('meta[name=csrf-token]')[0].getAttributeNode('content').value },
 					init: function () {
 						this.on('addedfile', function (file) {
@@ -31714,6 +31716,7 @@ __WEBPACK_IMPORTED_MODULE_0_dropzone___default.a.autoDiscover = false;
           addRemoveLinks: true,
           paramName: "image",
           dictRemoveFile: "&times;",
+          dictCancelUpload: "&times;",
           headers: { 'x-csrf-token': document.querySelectorAll('meta[name=csrf-token]')[0].getAttributeNode('content').value },
           init: function () {
             this.on('addedfile', function (file) {
@@ -31895,6 +31898,7 @@ __WEBPACK_IMPORTED_MODULE_0_dropzone___default.a.autoDiscover = false;
           addRemoveLinks: true,
           paramName: "image",
           dictRemoveFile: "&times;",
+          dictCancelUpload: "&times;",
           headers: { 'x-csrf-token': document.querySelectorAll('meta[name=csrf-token]')[0].getAttributeNode('content').value },
           init: function () {
             this.on('addedfile', function (file) {
