@@ -157,7 +157,7 @@ class ProductController extends Controller
         if(ProductImage::where('product_id', $id)->count() < 7){
           $photos = [];
           foreach ($request->file('image') as $image) {
-            $photo = uniqid('p_img_');
+            $photo = uniqid('p_img_'.$request->user()->id);
             Storage::disk('uploads')->putFileAs('product/photo/', $image, $photo);
             $photos[] = $photo;
             ProductImage::create([

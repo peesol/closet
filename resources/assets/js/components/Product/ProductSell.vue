@@ -137,6 +137,7 @@ export default {
               addRemoveLinks: true,
               paramName: "image",
               dictRemoveFile: "&times;",
+              dictCancelUpload: "&times;",
               headers: {'x-csrf-token': document.querySelectorAll('meta[name=csrf-token]')[0].getAttributeNode('content').value,},
                 init: function() {
                   this.on('addedfile', function(file) {
