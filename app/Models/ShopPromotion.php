@@ -4,15 +4,11 @@ namespace Closet\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Discount extends Model
+class ShopPromotion extends Model
 {
-    protected $fillable = [
-      'code',
-      'discount',
-      'amount',
-      'type',
-      'used',
-    ];
+    protected $fillable = ['discount', 'get_another', 'flash_sale'];
+    protected $table = 'shop_promotions';
+
     public function shop()
     {
       return $this->belongsTo(Shop::class);

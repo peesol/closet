@@ -49,7 +49,10 @@ class User extends Authenticatable
     {
       return $this->hasManyThrough(Showcase::class, Shop::class)->orderBy('order', 'asc');
     }
-
+    // public function availablePromotions()
+    // {
+    //   return $this->hasOne(ShopPromotion::class);
+    // }
     public function used()
     {
       return $this->hasManyThrough(UsedProduct::class, Shop::class);

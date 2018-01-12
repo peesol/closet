@@ -21,6 +21,8 @@ class Product extends Model
       'type_id',
       'thumbnail',
       'price',
+      'discount_price',
+      'discount_date',
       'description',
       'visibility',
       'amount',

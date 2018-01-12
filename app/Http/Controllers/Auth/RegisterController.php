@@ -80,9 +80,15 @@ class RegisterController extends Controller
             'country' => 'ไทย',
         ]);
 
-        $user->shop()->create([
+        $shop = $user->shop()->create([
           'name' => $data['shop_name'],
           'slug' => uniqid('shop_'),
+        ]);
+
+        $shop->availablePromotions()->create([
+          'discount' => 5,
+          'get_another' => 5,
+          'flash_sale' => 2,
         ]);
 
         return $user;
