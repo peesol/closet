@@ -80,13 +80,16 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/order/sending', 'OrderController@store');
 
     Route::prefix('profile')->group(function () {
-      Route::get('/following', 'FollowingController@index');
+      Route::get('/following', 'FollowingController@index')->name('following');
+      //AJAX
       Route::get('/inbox_messages/selling', 'OrderController@getSellingInbox');
       Route::get('/inbox_messages/buying', 'OrderController@getBuyingInbox');
 
+      Route::get('/promotions/manage', 'PromotionController@index')->name('promotionEdit');
+
       Route::prefix('order')->group(function () {
-        Route::get('/selling', 'OrderController@sellingPage');
-        Route::get('/buying', 'OrderController@buyingPage');
+        Route::get('/selling', 'OrderController@sellingPage')->name('sellingOrder');
+        Route::get('/buying', 'OrderController@buyingPage')->name('buyingOrder');
         Route::delete('/{order}/deny', 'OrderController@deny');
         Route::put('/{order}/transaction', 'OrderController@transactionConfirm');
         Route::put('/{order}/confirm_shipping', 'OrderController@confirmShipping');
