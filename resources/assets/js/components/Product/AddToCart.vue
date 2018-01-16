@@ -43,7 +43,6 @@ export default {
   methods: {
     ...mapActions([
       'addToCart',
-      'getCart',
     ]),
     add(){
       this.addToCart({ product: this.product, choice: this.selected });

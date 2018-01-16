@@ -21,7 +21,8 @@ class CartController extends Controller
         'options' => [
             'shop_name' => $request->input('product.shop_name'),
             'shop_id' => $request->input('product.shop_id'),
-            'choice' => $request->input('choice')
+            'choice' => $request->input('choice'),
+            'total' => null,
           ]
       ]);
 
@@ -29,7 +30,6 @@ class CartController extends Controller
     }
     public function getProduct(Product $product)
     {
-
       return response()->json( Fractal::item($product, new CartProductTransformer) );
     }
     public function getCart()
@@ -42,14 +42,29 @@ class CartController extends Controller
 
     public function getCartByShop()
     {
+
+      $target = [];
       $data = Cart::content()->groupBy('options.shop_name');
 
-      return response()->json($data);
+      foreach ($data as $key => $value) {
+      $sum = [];
+        foreach ($value as $item) {
+          $sum[] = $item->price * $item->qty;
+          $item->subtotal = array_sum($sum);
+        }
+        //$item = array_add($value, 'total' , null);
+        $target[$key] = $value;
+      }
+      return response()->json($target);
     }
 
     public function userCart()
     {
       return view('cart.mycart');
+    }
+    public function checkout()
+    {
+      return view('cart.checkout');
     }
 
     public function updateQty(Request $request)
@@ -57,7 +72,8 @@ class CartController extends Controller
       $rowId = $request->rowId;
       $qty = (int)$request->qty;
       if($qty >= 1){
-        return Cart::update($rowId, ['qty' => $qty]);
+        $data = Cart::update($rowId, ['qty' => $qty]);
+        return response($data);
       } else {
         return;
       }

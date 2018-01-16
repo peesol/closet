@@ -67,6 +67,18 @@ font-size: 18px;
   color: #ffffff;
   background: #bebebe;
 }
+.green-btn {
+  border: transparent;
+  color: #ffffff;
+  font-size: 15px;
+  background: #4aae2a;
+  padding: 10px 20px;
+  text-decoration: none;
+  box-shadow:0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+}
+.green-btn:hover{
+  opacity: 0.8;
+}
 .danger-btn {
   border:transparent;
   color: #333333;

@@ -165,4 +165,7 @@ return [
     'shipped_track' => 'Tracking number',
     'shipped_warning' => 'If you have any issues about products or shipping please contact the seller directly.',
     'not_defined' => 'Not Specified',
+    //Promotion
+    'promotions' => 'โปรโมชั่น',
+    'promotions_manage' => 'จัดการโปรโมชั่น',
 ];

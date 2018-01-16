@@ -94,7 +94,9 @@
 					this.$Progress.finish()
 					this.collections.push(response.body)
 					toastr.success(this.$trans.translation.col_created, {timeOut: 1000});
-				});
+				}, (response) => {
+	          toastr.error(this.$trans.translation.error);
+	      });
 			},
 
 			removeCol(collectionSlug, index){
@@ -106,7 +108,9 @@
 					this.$delete(this.collections, index)
 					this.$Progress.finish()
 					toastr.success(this.$trans.translation.col_deleted, {timeOut: 1000})
-				});
+				}, (response) => {
+	          toastr.error(this.$trans.translation.error);
+	      });
 			},
 		},
 		created() {

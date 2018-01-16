@@ -165,4 +165,13 @@ return [
     'shipped_track' => 'เลขติดตามพัสดุ',
     'shipped_warning' => 'หากเกิดปัญหา หรือข้อสงสัยเกี่ยวกับสินค้าที่สั่ง หรือการขนส่งให้ติดต่อกับผู้ขายโดยตรง',
     'not_defined' => 'ไม่ระบุ',
+    //Promotion
+    'promotions' => 'โปรโมชั่น',
+    'promotions_manage' => 'จัดการโปรโมชั่น',
+    'discount_code' => 'โค๊ดส่วนลด',
+    'discount_code_info' => 'สร้างโค๊ดในการใช้ลดราคาสินค้าในร้านของคุณ ใช้ลดราคาจาก :bill ไม่ใช่รายชิ้น',
+    'flash_sale' => 'Flash sale',
+    'flash_sale_info' => 'ลงขายสินค้าของคุณใน Flash sale หน้าเว็บไซต์',
+    'product_discount' => 'ลดราคาสินค้า',
+    'product_discount_info' => 'ลดราคาสินค้าเป็นรายชิ้น',
 ];

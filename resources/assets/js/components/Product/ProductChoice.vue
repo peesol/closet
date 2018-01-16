@@ -14,20 +14,20 @@
 
     <div style="padding:15px;" v-if="choices.length">
       <h4>{{$trans.translation.current_choices}}</h4>
-      <table>
+      <table class="c-table">
         <tr>
           <th>{{$trans.translation.choice}}</th>
           <th>{{$trans.translation.show}}</th>
           <th>{{$trans.translation.delete}}</th>
         </tr>
         <tr v-for="choice in choices">
-          <td class="showcase-name">{{choice.name}}</td>
-          <td class="showcase-btn">
+          <td class="m-cell overflow-hidden" style="width:100%;">{{choice.name}}</td>
+          <td class="s-cell">
             <button @click.prevent="toggleChoice(choice.id)" class="round-btn" v-bind:class="{ 'red-bg': choice.stock == true, 'green-bg': choice.stock == false}">
               <small v-bind:class="{ 'icon-cross': choice.stock == true, 'icon-checkmark': choice.stock == false}"></small>
             </button>
           </td>
-          <td class="showcase-btn">
+          <td class="s-cell">
             <button @click.prevent="remove(choice.id)" class="red-bg round-btn">
               <small style="margin-left: 3px;" class="icon-bin"></small>
             </button>

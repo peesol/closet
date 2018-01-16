@@ -43,7 +43,8 @@ const store = new Vuex.Store({
   getters,
   state: {
     cart: [],
-    count: null
+    count: null,
+    checkout: []
   },
 })
 
@@ -54,6 +55,10 @@ window.addEventListener('load', function () {
   });
   const cart = new Vue({
     el: '.cart',
+    store
+  });
+  const mycart = new Vue({
+    el: '.cart-wrap',
     store
   });
 });
@@ -76,7 +81,7 @@ Vue.component('product-choice', require('./components/Product/ProductChoice.vue'
 Vue.component('follow-button', require('./components/Follow.vue'));
 Vue.component('add-to-cart', require('./components/Product/AddToCart.vue'));
 Vue.component('cart-icon', require('./components/CartIcon.vue'));
-Vue.component('cart', require('./components/Cart.vue'));
+Vue.component('cart', require('./components/Cart/Cart.vue'));
 Vue.component('shop-stats', require('./components/Shop/ShopStats.vue'));
 Vue.component('shop-vote', require('./components/Shop/ShopVote.vue'));
 Vue.component('shop-edit', require('./components/Shop/ShopEdit.vue'));
@@ -100,6 +105,9 @@ Vue.component('order-buying', require('./components/Order/Buying.vue'));
 Vue.component('confirm-selling', require('./components/Order/ConfirmSelling.vue'));
 Vue.component('confirm-trans', require('./components/Order/ConfirmTrans.vue'));
 Vue.component('cant-sell', require('./components/Product/CantSell.vue'));
+Vue.component('discount-code', require('./components/Promotion/CodeGenerator.vue'));
+Vue.component('product-discount', require('./components/Promotion/Discount.vue'));
+Vue.component('flash-sale', require('./components/Promotion/FlashSale.vue'));
 
 const translations = {
     en: {
@@ -232,6 +240,8 @@ const translations = {
         transacted: 'Transaction confirmed',
         shipped: 'Delivered',
         confirm_order: 'Confirm',
+        confirm_order_notice: 'Once you have confirmed this order you can\'t change order information anymore.',
+        place_order: 'Place Order',
         close: 'Close',
         confirm: 'Confirm',
         deny: 'Deny',
@@ -246,6 +256,9 @@ const translations = {
         payment_date: 'Payment date',
         wait_delivery: 'Wait for delivery',
         date_placeholder: 'dd/mm/YY',
+        discount: 'Discount',
+        apply_discount: 'Discount code',
+        discount_not_valid: 'This discount code is not valid or expired.',
       },
 
     th: {
@@ -378,6 +391,8 @@ const translations = {
         transacted: 'แจ้งโอนเงินแล้ว',
         shipped: 'ส่งสินค้าแล้ว',
         confirm_order: 'ยืนยันการสั่งซื้อ',
+        confirm_order_notice: 'เมื่อทำการยืนยันแล้วคุณจะไม่สามารถแก้ไขรายการสินค้าได้อีก',
+        place_order: 'สั่งซื้อ',
         close: 'ปิด',
         confirm: 'ยืนยัน',
         deny: 'ปฏิเสธ',
@@ -392,6 +407,9 @@ const translations = {
         payment_date: 'เวลาที่ชำระเงิน',
         wait_delivery: 'รอส่งสินค้า',
         date_placeholder: 'วัน/เดือน/ปี',
+        discount: 'ส่วนลด',
+        apply_discount: 'ใช้โค๊ดส่วนลด',
+        discount_not_valid: 'ไม่สามารถใช้ส่วนลดได้ อาจกรอกข้อมูลผิดหรือส่วนลดได้ถูกใช้หมดแล้ว',
     },
     translation:[],
     translate(lang) {

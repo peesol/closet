@@ -29,11 +29,11 @@ $('.product-showcase').slick({
     dots: true
 });
 
-window.addEventListener('load', function () {
-    var comment = new Vue({
-      el: '.cart-wrap',
-    });
-});
+// window.addEventListener('load', function () {
+//     var comment = new Vue({
+//       el: '.cart-wrap',
+//     });
+// });
 </script>
 
 @endsection

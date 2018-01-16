@@ -21,6 +21,7 @@ const dictionary = {
       body: 'ข้อมูล',
       account_number: 'เลขที่บัญชี',
       account_name: 'ชื่อบัญชี',
+      amount: 'จำนวน',
     }
   },
   en: {

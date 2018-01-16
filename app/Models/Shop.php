@@ -106,6 +106,10 @@ class Shop extends Model
     {
       return $this->votes->where('user_id', $user->id);
     }
+    public function code()
+    {
+      return $this->hasMany(Discount::class);
+    }
     public function availablePromotions()
     {
       return $this->hasOne(ShopPromotion::class);
