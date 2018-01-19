@@ -259,6 +259,8 @@ const translations = {
         discount: 'Discount',
         apply_discount: 'Discount code',
         discount_not_valid: 'This discount code is not valid or expired.',
+        points: 'Points',
+        not_enough_points: 'You don\'t have enough points to proceed.',
       },
 
     th: {
@@ -410,6 +412,8 @@ const translations = {
         discount: 'ส่วนลด',
         apply_discount: 'ใช้โค๊ดส่วนลด',
         discount_not_valid: 'ไม่สามารถใช้ส่วนลดได้ อาจกรอกข้อมูลผิดหรือส่วนลดได้ถูกใช้หมดแล้ว',
+        points: 'คะแนน',
+        not_enough_points: 'คะแนนของคุณมีไม่เพียงพอที่จะใช้สิทธิ์ได้',
     },
     translation:[],
     translate(lang) {

@@ -103,6 +103,15 @@ font-size: 18px;
 .delete-btn:hover{
       background: rgb(240, 56, 56);
 }
+.add-btn {
+    border: none;
+    color: #ffffff;
+    font-size: 15px;
+    background: #4aae2a;
+}
+.add-btn:hover{
+    opacity: 0.8;
+}
 .edit-btn {
     border: none;
     color: #ffffff;
@@ -123,6 +132,9 @@ font-size: 18px;
   height: 40px;
   border: none;
 }
+.round-btn:hover {
+  opacity: 0.8 !important;
+}
 .round-btn span, .round-btn small{
   color: #ffffff;
 }
@@ -130,6 +142,7 @@ font-size: 18px;
 .vote-btn-voted{color: #e43727;}
 /*Properties*/
 .absolute {position: absolute;}
+.relative {position: relative;}
 .margin-bot-10px{margin-bottom: 10px;}
 .margin-top-10px{margin-top: 10px;}
 .margin-left-10px{margin-left: 10px;}
@@ -140,11 +153,11 @@ font-size: 18px;
 .font-medium{font-weight: 400;}
 .font-bold{font-weight: 600;}
 .font-large{font-size: large;}
-.grey-font{color: #6c6c6c}
-.red-bg {background-color: #fe4747;}
-.red-font {color: #fe4747;}
-.green-bg {background-color: #4aae2a;}
-.green-font {color: #4aae2a;}
+.grey-font{color: #6c6c6c !important;}
+.red-bg {background-color: #fe4747 !important;}
+.red-font {color: #fe4747 !important;}
+.green-bg {background-color: #4aae2a !important;}
+.green-font {color: #4aae2a !important;}
 .link-text {
     color: #167ac6;
     text-decoration: none;

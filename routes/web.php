@@ -91,6 +91,9 @@ Route::group(['middleware' => ['auth']], function () {
       Route::post('/promotions/code', 'PromotionController@createCode');
       Route::delete('/promotions/code/{discount}', 'PromotionController@removeCode');
       Route::post('/promotions/code/validate', 'PromotionController@validateCode');
+      Route::get('/promotions/discount/product', 'PromotionController@getProduct');
+      Route::put('/promotions/discount/{product}/add', 'PromotionController@applyDiscount');
+      Route::put('/promotions/discount/{product}/delete', 'PromotionController@removeDiscount');
 
       Route::prefix('order')->group(function () {
         Route::get('/selling', 'OrderController@sellingPage')->name('sellingOrder');

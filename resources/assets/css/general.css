@@ -303,6 +303,32 @@ label.input-addon{
     width: 200px;
     height: 200px;
 }
+span.discount {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 5px;
+  background: #4aae2a;
+  color: white;
+  opacity: 0.8;
+}
+span.discount-price {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 5px;
+  background: #4aae2a;
+  color: white;
+  opacity: 0.8;
+}
+span.private{
+    position: absolute;
+    padding: 4px;
+    bottom: 4px;
+    left: 0;
+    color: white;
+    background-color: #ff514c;
+}
 .products-img-thumb {
     width: 100%;
 }

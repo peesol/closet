@@ -15,6 +15,7 @@ class CartProductTransformer extends TransformerAbstract
 		'id' => $product->id,
 		'name' => $product->name,
 		'price' => $product->price,
+		'discount_price' => $product->discount_price,
 		'shop_name' => $product->shop->name,
 		'shop_id' => $product->shop->id,
 		];

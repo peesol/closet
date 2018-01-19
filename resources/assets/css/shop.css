@@ -447,12 +447,3 @@ width: auto;
     background-color: rgba(0, 0, 0, 0.3);
     color: white;
 }
-.private{
-    position: absolute;
-    padding: 4px;
-    bottom: 4px;
-    left: 0;
-    font-weight: 600;
-    color: white;
-    background-color: #ff514c;
-}

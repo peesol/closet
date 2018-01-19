@@ -1,16 +1,27 @@
 <?php
 
 namespace Closet\Http\Controllers;
-
+use DateTime;
+use DateInterval;
+use DateTimeZone;
 use Illuminate\Http\Request;
-use Closet\Models\{Discount, Shop};
+use Closet\Models\{Discount, Shop, Product};
 
 class PromotionController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-      return view('promotion.index');
+        $promotions = $request->user()->shop->availablePromotions;
+      return view('promotion.index', [
+        'promotions' => $promotions,
+      ]);
     }
+    public function getShopPromotion(Request $request)
+    {
+      $promotions = $request->user()->shop->availablePromotions;
+      return response()->json($promotions);
+    }
+    //Discount Codes
     public function getCodes(Request $request)
     {
       $codes = $request->user()->shop->code;
@@ -43,5 +54,31 @@ class PromotionController extends Controller
       } else {
         return response()->json(false, 200);
       }
+    }
+    //Product Discount
+    public function getProduct(Request $request)
+    {
+      $products = $request->user()->shop->product->where('discount_date', null);
+      $discount = $request->user()->shop->product->where('discount_date','!==', null);
+      return response()->json([
+        'products' => $products,
+        'discount_products' => $discount
+      ]);
+    }
+    public function applyDiscount(Product $product, Request $request)
+    {
+      $amount = $request->user()->shop->availablePromotions->discount;
+      if ($amount === 0) {
+        return response()->json(false, 200);
+      } else {
+        $request->user()->shop->availablePromotions->decrement('discount', 1);
+        $target = $product->update(['discount_price' => $product->price - $request->discount]);
+        return response()->json($product);
+      }
+    }
+    public function removeDiscount(Product $product)
+    {
+      $product->update(['discount_price' => null]);
+      return response()->json(null, 200);
     }
 }

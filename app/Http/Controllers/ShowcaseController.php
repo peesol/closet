@@ -23,7 +23,7 @@ class ShowcaseController extends Controller
   public function getProduct(Request $request, $id)
   {
       $shop = $request->user()->shop()->first();
-      $product = $shop->product->all();
+      $product = $shop->product->where('visibility', 'public');
 
       return response()->json(Fractal::collection($product, new ShowcaseProductTransformer($id) ));
   }

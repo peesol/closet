@@ -13,20 +13,20 @@ class CartController extends Controller
 {
     public function addToCart(Request $request)
     {
+      $price = $request->input('product.discount_price') ? $request->input('product.discount_price') : $request->input('product.price');
       Cart::add([
         'id' => $request->input('product.id'),
         'name' => $request->input('product.name'),
-        'price' => $request->input('product.price'),
+        'price' => $price,
         'qty' => 1,
         'options' => [
             'shop_name' => $request->input('product.shop_name'),
             'shop_id' => $request->input('product.shop_id'),
             'choice' => $request->input('choice'),
-            'total' => null,
           ]
       ]);
 
-      return response()->json();
+      return response()->json($price);
     }
     public function getProduct(Product $product)
     {

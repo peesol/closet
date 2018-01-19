@@ -21,10 +21,6 @@ class StockController extends Controller
     {
       $products = $request->user()->products()->latestFirst()->get();
 
-      foreach ($products as $item) {
-        $product = $item;
-      }
-
       return response()->json($products);
     }
 

@@ -169,6 +169,9 @@
 .icon-private:before {
   content: "\e9d1";
 }
+.icon-plus:before {
+  content: "\ea0a";
+}
 .icon-login-dropdown:before {
   content: "\e971 \e901";
 }

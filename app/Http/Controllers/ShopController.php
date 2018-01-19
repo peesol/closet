@@ -11,7 +11,7 @@ class ShopController extends Controller
     public function index(Shop $shop)
     {
     	$showcases = $shop->showcase()->where('show', true)->orderBy('order', 'asc')->get();
-    	$populars = $shop->product()->popular()->get();
+    	$populars = $shop->product()->where('visibility', 'public')->popular()->get();
 
     	return view('shop.home', [
     	  'populars' => $populars,
@@ -33,7 +33,7 @@ class ShopController extends Controller
     }
     public function product(Shop $shop)
     {
-        $products = $shop->product()->latestFirst()->get();
+        $products = $shop->product()->where('visibility', 'public')->latestFirst()->get();
 
         return view('shop.product', [
             'products' => $products,

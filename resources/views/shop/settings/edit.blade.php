@@ -23,7 +23,6 @@
     user-phone="{{$shop->user->phone}}"></shop-edit>
     </div>
 
-
           <div class="tab-content" id="tab-2" style="padding: 35px 35px;">
             <shop-contact-edit></shop-contact-edit>
           </div>

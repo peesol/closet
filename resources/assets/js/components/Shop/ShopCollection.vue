@@ -38,7 +38,7 @@
 					<a v-bind:href="'/collection/' + collection.slug">
 						<img class="products-img-thumb" v-bind:src="collection.thumbnail">
 					</a>
-					<span class="private" v-show="collection.visibility === 'private'">{{$trans.translation.private}}</span>
+					<span class="private icon-private" v-show="collection.visibility === 'private'"></span>
 				</div>
 				<div v-show="user_id == shop_user">
 					<a class="btn absolute margin-top-10px" v-bind:href="'/collection/' + collection.slug + '/edit'" >{{$trans.translation.edit}}</a>

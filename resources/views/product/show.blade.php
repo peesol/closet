@@ -42,7 +42,16 @@
                             @endif
                         </div>
                         <div style="padding: 15px 15px;">
-                            <p class=""><span class="font-bold grey-font">{{__('message.price')}}</span> : <span class="font-bold font-large">{{ number_format($product->price) }}</span> {{__('message.baht')}}</p>
+                            <p class="">
+                              <span class="font-bold grey-font">{{__('message.price')}}</span>&nbsp;:&nbsp;
+                              @if($product->discount_price)
+                              <strike>{{ number_format($product->price) }}&#3647;</strike>
+                              <small class="icon-next-arrow grey-font"></small>
+                              <font class="font-bold font-large green-font">{{ number_format($product->discount_price) }}&#3647;</font>
+                              @else
+                              <font class="font-bold font-large">{{ number_format($product->price) }}</font>&#3647;
+                              @endif
+                            </p>
                             <h3 class="{{ $product->stock ? 'green-font' : 'red-font'}}" style="margin: 10px 0px;">{{ $product->stock ? __('message.instock') : __('message.outstock')}}</h3>
                             <h4 class="no-margin {{ $product->shipping_free ? 'green-font' : 'not-display'}}">{{__('message.free_shipping')}}</h4>
                             <p class="no-margin"><span class="font-bold grey-font">{{__('message.shipping')}}</span> : {{ $product->shipping ? $product->shipping : __('message.undefined') }}</p>

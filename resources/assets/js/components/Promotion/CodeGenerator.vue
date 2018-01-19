@@ -50,7 +50,7 @@
       <td class="s-cell">{{code.discount}}{{code.type == 'percent' ? '%' : ' '+$trans.translation.baht}}</td>
       <td class="s-cell">{{code.amount}}</td>
       <td class="s-cell">
-        <button @click.prevent="remove(code.id, index)" class="red-bg round-btn">
+        <button @click.prevent="remove(code.id, index)" class="delete-btn round-btn">
           <small class="icon-bin"></small>
         </button>
       </td>

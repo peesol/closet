@@ -35,13 +35,24 @@
                                 <a href="/product/{{ $product->uid}}">
                                 <img class="products-img-thumb" src="{{$product->getImage()}}" alt="{{$product->thumbnail}}">
                                 </a>
+                                @if($product->discount_price)
+                                <span class="discount">Sale</span>
+                                @endif
                                 @if($product->visibility === 'unlisted')
                                 <span class="private icon-private" style="font-size:25px;"></span>
                                 @endif
                             </div>
                             <h3 class="product-name"><a class="link-text" href="/product/{{ $product->uid}}">{{ $product->name }}</a></h3>
                             <div class="product-detail-wrap">
-                            <p class="product-p">{{__('message.price')}} : {{ number_format($product->price) }}</p>
+                            @if (!$product->discount_price)
+                            <p class="product-p">{{__('message.price')}} : {{ number_format($product->price) }}&#3647;</p>
+                            @else
+                            <p class="product-p">
+                              {{__('message.price')}}&nbsp;:&nbsp;<strike>{{ number_format($product->price) }}&#3647;</strike>
+                              <small class="icon-next-arrow grey-font"></small>
+                              <font class="green-font">{{ number_format($product->discount_price) }}&#3647;</font>
+                            </p>
+                            @endif
                             <p class="product-p">{{ $product->category->showTranslate(App::getLocale())->name }}</p>
                             <p class="product-p">{{ $product->subcategory->showTranslate(App::getLocale())->name }}</p>
                                     @if($product->type->id !== 1)

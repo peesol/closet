@@ -303,6 +303,32 @@ label.input-addon{
     width: 200px;
     height: 200px;
 }
+span.discount {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 5px;
+  background: #4aae2a;
+  color: white;
+  opacity: 0.8;
+}
+span.discount-price {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 5px;
+  background: #4aae2a;
+  color: white;
+  opacity: 0.8;
+}
+span.private{
+    position: absolute;
+    padding: 4px;
+    bottom: 4px;
+    left: 0;
+    color: white;
+    background-color: #ff514c;
+}
 .products-img-thumb {
     width: 100%;
 }
@@ -517,6 +543,15 @@ font-size: 18px;
 .delete-btn:hover{
       background: rgb(240, 56, 56);
 }
+.add-btn {
+    border: none;
+    color: #ffffff;
+    font-size: 15px;
+    background: #4aae2a;
+}
+.add-btn:hover{
+    opacity: 0.8;
+}
 .edit-btn {
     border: none;
     color: #ffffff;
@@ -537,6 +572,9 @@ font-size: 18px;
   height: 40px;
   border: none;
 }
+.round-btn:hover {
+  opacity: 0.8 !important;
+}
 .round-btn span, .round-btn small{
   color: #ffffff;
 }
@@ -544,6 +582,7 @@ font-size: 18px;
 .vote-btn-voted{color: #e43727;}
 /*Properties*/
 .absolute {position: absolute;}
+.relative {position: relative;}
 .margin-bot-10px{margin-bottom: 10px;}
 .margin-top-10px{margin-top: 10px;}
 .margin-left-10px{margin-left: 10px;}
@@ -554,11 +593,11 @@ font-size: 18px;
 .font-medium{font-weight: 400;}
 .font-bold{font-weight: 600;}
 .font-large{font-size: large;}
-.grey-font{color: #6c6c6c}
-.red-bg {background-color: #fe4747;}
-.red-font {color: #fe4747;}
-.green-bg {background-color: #4aae2a;}
-.green-font {color: #4aae2a;}
+.grey-font{color: #6c6c6c !important;}
+.red-bg {background-color: #fe4747 !important;}
+.red-font {color: #fe4747 !important;}
+.green-bg {background-color: #4aae2a !important;}
+.green-font {color: #4aae2a !important;}
 .link-text {
     color: #167ac6;
     text-decoration: none;
@@ -1347,6 +1386,9 @@ input.is-error{
 }
 .icon-private:before {
   content: "\e9d1";
+}
+.icon-plus:before {
+  content: "\ea0a";
 }
 .icon-login-dropdown:before {
   content: "\e971 \e901";
@@ -2181,15 +2223,6 @@ width: auto;
     position: absolute;
     background-color: rgba(0, 0, 0, 0.3);
     color: white;
-}
-.private{
-    position: absolute;
-    padding: 4px;
-    bottom: 4px;
-    left: 0;
-    font-weight: 600;
-    color: white;
-    background-color: #ff514c;
 }
 
 .image-input{
