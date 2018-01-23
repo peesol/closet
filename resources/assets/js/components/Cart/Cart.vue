@@ -25,7 +25,7 @@
 				<td colspan="2">
 					{{$trans.translation.total_price}}&nbsp;:&nbsp;{{confirmed.totalPrice}}&nbsp;&#3647;
 					<a href="#" class="link-text" @click.prevent="toggleForm(key)" v-show="confirmed.discount_applied === false">{{$trans.translation.apply_discount}}</a>
-					<span class="green-font bold-font">{{confirmed.discount}}</span>
+					<span class="green-font bold-font" v-show="confirmed.discount">{{$trans.translation.discount}}&nbsp;{{confirmed.discount}}</span>
 				</td>
 				<td colspan="2"><button class="green-btn float-right" @click.prevent="confirmOrder(shop, key)">{{$trans.translation.place_order}}</button></td>
 			</tr>
@@ -157,15 +157,25 @@ export default {
 						if (response.body.type == 'percent') {
 							var price = this.confirmed.totalPrice.split(',').join('')
 							var calculated = price - ((response.body.discount / 100) * price).toFixed(0)
-							this.confirmed.totalPrice = numeral(calculated).format('0,0')
-							this.confirmed.discount = this.$trans.translation.discount + ' ' + response.body.discount + '%'
-							this.confirmed.discount_applied = true
+							if (calculated < 0) {
+								alert(this.$trans.translation.discount_not_valid)
+							} else {
+								this.confirmed.totalPrice = numeral(calculated).format('0,0')
+								this.confirmed.discount = response.body.discount + '%'
+								this.confirmed.discount_applied = true
+								this.formVisible = null
+							}
 						} else if (response.body.type == 'baht') {
 							var price = this.confirmed.totalPrice.split(',').join('')
 							var calculated = price - response.body.discount
-							this.confirmed.totalPrice = numeral(calculated).format('0,0')
-							this.confirmed.discount = this.$trans.translation.discount + ' ' + response.body.discount + this.$trans.translation.baht
-							this.confirmed.discount_applied = true
+							if (calculated < 0) {
+								alert(this.$trans.translation.discount_not_valid)
+							} else {
+								this.confirmed.totalPrice = numeral(calculated).format('0,0')
+								this.confirmed.discount = response.body.discount + ' ฿'
+								this.confirmed.discount_applied = true
+								this.formVisible = null
+							}
 						}
 					} else {
 						alert(this.$trans.translation.discount_not_valid)

@@ -39,7 +39,7 @@ font-size: 18px;
 .tab-nav-ul{
   margin: 0;
 }
-.tab-nav-ul button {
+.tab-nav-ul button{
   height: 50px;
   color: #6c6c6c;
   border: none;
@@ -140,32 +140,65 @@ font-size: 18px;
 }
 .vote-btn:hover {color: #e43727;}
 .vote-btn-voted{color: #e43727;}
+.alert-box {
+  color:#555;
+  border-radius:10px;
+  font-size:14px;
+  padding:10px;
+  margin:8px;
+}
+.alert-box span {
+  font-size: 1.5em;
+}
+.alert-box.warning {
+  background-color:#fff8c4;
+  border:1px solid #f2c779;
+}
+.alert-box.success {
+  background-color:#e9ffd9;
+  border:1px solid #a6ca8a;
+}
+.alert-box.error {
+  background-color:#ffecec;
+  border:1px solid #f5aca6;
+}
+.alert-box.info {
+  background-color:#e3f7fc;
+  border:1px solid #8ed9f6;
+}
 /*Properties*/
-.absolute {position: absolute;}
-.relative {position: relative;}
-.margin-bot-10px{margin-bottom: 10px;}
-.margin-top-10px{margin-top: 10px;}
-.margin-left-10px{margin-left: 10px;}
-.no-margin{margin: 0;}
-.float-left {float: left;}
-.float-right {float: right;}
-.font-light{font-weight: 200;}
-.font-medium{font-weight: 400;}
-.font-bold{font-weight: 600;}
-.font-large{font-size: large;}
+.absolute {position: absolute !important;}
+.relative {position: relative !important;}
+.margin-bot-10px{margin-bottom: 10px !important;}
+.margin-top-10px{margin-top: 10px !important;}
+.margin-left-10px{margin-left: 10px !important;}
+.no-margin{margin: 0 !important;}
+.float-left {float: left !important;}
+.float-right {float: right !important;}
+.font-light{font-weight: 200 !important;}
+.font-medium{font-weight: 400 !important;}
+.font-bold{font-weight: 600 !important;}
+.font-large{font-size: large !important;}
 .grey-font{color: #6c6c6c !important;}
 .red-bg {background-color: #fe4747 !important;}
 .red-font {color: #fe4747 !important;}
 .green-bg {background-color: #4aae2a !important;}
 .green-font {color: #4aae2a !important;}
 .link-text {
-    color: #167ac6;
-    text-decoration: none;
-    font-size: 1em;
-    font-weight: 400;
+  color: #167ac6;
+  text-decoration: none;
+  font-size: 1em;
+  font-weight: 400;
 }
 .link-text:hover {
-    color: #0a92f9;
+  color: #0a92f9;
+}
+.link-text.grey {
+  color: #6c6c6c;
+  text-decoration: none;
+}
+.link-text.grey:hover {
+  opacity: 0.8;
 }
 .flex {
 	flex-shrink: 0;

@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "./";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 188);
+/******/ 	return __webpack_require__(__webpack_require__.s = 187);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -16533,7 +16533,7 @@ if (typeof DEBUG !== 'undefined' && DEBUG) {
   ) }
 }
 
-var listToStyles = __webpack_require__(185)
+var listToStyles = __webpack_require__(184)
 
 /*
 type StyleObject = {
@@ -27551,7 +27551,7 @@ Vue$3.compile = compileToFunctions;
 
 module.exports = Vue$3;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(11), __webpack_require__(95).setImmediate))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(11), __webpack_require__(96).setImmediate))
 
 /***/ }),
 /* 11 */
@@ -27857,7 +27857,7 @@ module.exports = function bind(fn, thisArg) {
 
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(74),
+  __webpack_require__(73),
   /* template */
   __webpack_require__(152),
   /* scopeId */
@@ -27891,7 +27891,7 @@ module.exports = Component.exports
 
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(77),
+  __webpack_require__(76),
   /* template */
   __webpack_require__(149),
   /* scopeId */
@@ -27925,7 +27925,7 @@ module.exports = Component.exports
 
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(78),
+  __webpack_require__(77),
   /* template */
   __webpack_require__(163),
   /* scopeId */
@@ -28063,11 +28063,11 @@ module.exports = function(module) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* WEBPACK VAR INJECTION */(function($) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_js_modal__ = __webpack_require__(99);
+/* WEBPACK VAR INJECTION */(function($) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_js_modal__ = __webpack_require__(100);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_js_modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_js_modal__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_progressbar__ = __webpack_require__(179);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_progressbar__ = __webpack_require__(178);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_progressbar___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vue_progressbar__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__router__ = __webpack_require__(83);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__router__ = __webpack_require__(84);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vuex__ = __webpack_require__(5);
 
 /**
@@ -28078,7 +28078,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 window.Laravel = { csrfToken: $('meta[name=csrf-token]').attr("content") };
 
-__webpack_require__(82);
+__webpack_require__(81);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -28086,8 +28086,8 @@ __webpack_require__(82);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.use(__webpack_require__(180));
-Vue.use(__webpack_require__(97));
+Vue.use(__webpack_require__(179));
+Vue.use(__webpack_require__(98));
 Vue.use(__webpack_require__(8));
 
 
@@ -28105,9 +28105,9 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_1_vue_progressbar___default.a, {
 
 Vue.use(__WEBPACK_IMPORTED_MODULE_3_vuex__["a" /* default */]);
 
-const mutations = __webpack_require__(86);
-const actions = __webpack_require__(84);
-const getters = __webpack_require__(85);
+const mutations = __webpack_require__(87);
+const actions = __webpack_require__(85);
+const getters = __webpack_require__(86);
 const store = new __WEBPACK_IMPORTED_MODULE_3_vuex__["a" /* default */].Store({
   mutations,
   actions,
@@ -28139,20 +28139,20 @@ Vue.http.interceptors.push((request, next) => {
   next();
 });
 
-Vue.component('product-vote', __webpack_require__(124));
-Vue.component('product-comment', __webpack_require__(116));
-Vue.component('product-edit', __webpack_require__(119));
-Vue.component('product-dropzone', __webpack_require__(118));
-Vue.component('product-shipping', __webpack_require__(122));
-Vue.component('product-sell', __webpack_require__(120));
-Vue.component('used-sell', __webpack_require__(121));
-Vue.component('used-comment', __webpack_require__(117));
-Vue.component('product-stock', __webpack_require__(123));
-Vue.component('product-choice', __webpack_require__(115));
-Vue.component('follow-button', __webpack_require__(107));
-Vue.component('add-to-cart', __webpack_require__(113));
-Vue.component('cart-icon', __webpack_require__(101));
-Vue.component('cart', __webpack_require__(100));
+Vue.component('product-vote', __webpack_require__(125));
+Vue.component('product-comment', __webpack_require__(117));
+Vue.component('product-edit', __webpack_require__(120));
+Vue.component('product-dropzone', __webpack_require__(119));
+Vue.component('product-shipping', __webpack_require__(123));
+Vue.component('product-sell', __webpack_require__(121));
+Vue.component('used-sell', __webpack_require__(122));
+Vue.component('used-comment', __webpack_require__(118));
+Vue.component('product-stock', __webpack_require__(124));
+Vue.component('product-choice', __webpack_require__(116));
+Vue.component('follow-button', __webpack_require__(108));
+Vue.component('add-to-cart', __webpack_require__(114));
+Vue.component('cart-icon', __webpack_require__(102));
+Vue.component('cart', __webpack_require__(101));
 Vue.component('shop-stats', __webpack_require__(134));
 Vue.component('shop-vote', __webpack_require__(135));
 Vue.component('shop-edit', __webpack_require__(133));
@@ -28162,339 +28162,34 @@ Vue.component('shop-collection', __webpack_require__(131));
 Vue.component('shop-contact-edit', __webpack_require__(132));
 Vue.component('shop-account-edit', __webpack_require__(130));
 Vue.component('shop-user-edit', __webpack_require__(20));
-Vue.component('collection-edit', __webpack_require__(103));
-Vue.component('collection-dropzone', __webpack_require__(102));
-Vue.component('collection-product', __webpack_require__(104));
-Vue.component('collection-product-edit', __webpack_require__(105));
-Vue.component('collection-product-show', __webpack_require__(106));
-Vue.component('language-select', __webpack_require__(108));
+Vue.component('collection-edit', __webpack_require__(104));
+Vue.component('collection-dropzone', __webpack_require__(103));
+Vue.component('collection-product', __webpack_require__(105));
+Vue.component('collection-product-edit', __webpack_require__(106));
+Vue.component('collection-product-show', __webpack_require__(107));
+Vue.component('language-select', __webpack_require__(109));
 Vue.component('showcase', __webpack_require__(136));
 Vue.component('showcase-edit', __webpack_require__(137));
 Vue.component('shipping-edit', __webpack_require__(129));
-Vue.component('order-selling', __webpack_require__(112));
-Vue.component('order-buying', __webpack_require__(109));
-Vue.component('confirm-selling', __webpack_require__(110));
-Vue.component('confirm-trans', __webpack_require__(111));
-Vue.component('cant-sell', __webpack_require__(114));
-Vue.component('discount-code', __webpack_require__(125));
-Vue.component('product-discount', __webpack_require__(126));
-Vue.component('flash-sale', __webpack_require__(127));
+Vue.component('order-selling', __webpack_require__(113));
+Vue.component('order-buying', __webpack_require__(110));
+Vue.component('confirm-selling', __webpack_require__(111));
+Vue.component('confirm-trans', __webpack_require__(112));
+Vue.component('cant-sell', __webpack_require__(115));
+Vue.component('discount-code', __webpack_require__(126));
+Vue.component('product-discount', __webpack_require__(127));
 
+const english = __webpack_require__(82);
+const thai = __webpack_require__(83);
 const translations = {
-  en: {
-    sell: 'Sell something',
-    product_name: 'Product Name',
-    products: 'Products',
-    product: 'Product',
-    product_none: 'You don\'t have any product.',
-    price: 'Price',
-    category: 'Category',
-    subcategory: 'Subcategory',
-    type: 'Product Type',
-    description: 'Description',
-    by: 'By',
-    sell_submit: 'Submit',
-    thumbnail: 'Thumbnail',
-    cover: 'Cover',
-    choose_file: 'Choose File',
-    remove: 'Remove',
-    edit_submit: 'Save',
-    photos: 'Photos',
-    upload_photo: 'Upload Photo',
-    upload_photo_guide: 'Click here to select files',
-    upload_photo_size: 'Uploaded Photo will be resized to 500px * 500px',
-    delete_photo_confirm: 'Are you sure you want to delete this photo?',
-    delete_confirm: 'Are you sure you want to delete this?',
-    upload_submit: 'Upload',
-    name: 'Name',
-    shop_name: 'Closet Name',
-    shop_url: 'Unique URL',
-    email: 'E-mail',
-    phone: 'Phone',
-    link: 'Link',
-    user_info: 'Personal info',
-    col_name: 'Name',
-    visibility: 'Visibility',
-    public: 'Public',
-    private: 'Private',
-    unlisted: 'Only people that you give the link to',
-    add_col: 'Add collection +',
-    col_photo_limit: 'You can\'t upload more than 10 photos.',
-    col_photo_none: 'This collection has no photo.',
-    col_product_none: 'This collection has no product.',
-    col_none: 'No collection.',
-    col_created: 'Collection created.',
-    col_deleted: 'Collection deleted.',
-    col_delete_confirm: 'Are you sure you want to delete this collection?',
-    create: 'Create',
-    add_to_col: 'Add to',
-    delete_from_col: 'this product is deleted from collection.',
-    added_to_col: 'this product is added to collection.',
-    col_null: 'You don\'t have any collection.',
-    follow: 'Follow',
-    followers: 'Followers',
-    follower: 'Follower',
-    unfollow: 'Unfollow',
-    likes: 'Likes',
-    like: 'Like',
-    dislikes: 'Dislikes',
-    dislike: 'Dislike',
-    comments: 'Comments',
-    comment: 'Comment',
-    comment_delete_confirm: 'Are you sure that you want to delete this comment?',
-    reply: 'Reply',
-    delete: 'Delete',
-    cancle: 'Cancle',
-    edit: 'Edit',
-    show_reply: 'Show reply',
-    hide_reply: 'Hide reply',
-    login_first: 'Please Login.',
-    login: 'Login',
-    success: 'Success',
-    error: 'Error',
-    wait: 'Please wait...',
-    saved: 'Saved',
-    dropzone_null: 'Nothing to upload.',
-    fill_every: 'Please fill out every field.',
-    product_photo_limit: 'You can upload up to 7 photos.',
-    used_notice: 'Used product is valid for 30 days and will be removed after.',
-    new: 'New',
-    used: 'Used',
-    create_showcase: 'Create showcase +',
-    showcase_created: 'Showcase created.',
-    showcase_add: 'Add',
-    showcase_empty: 'Your showcase has no product.',
-    showcase_products: 'Products in your showcase',
-    showcase_choice: 'Show on your shop homepage',
-    showcase_drag: 'You can change the order of your showcases by dragging the number.',
-    no_showcase: 'You don\'t have any showcase.',
-    no_contact: 'You don\'t have any contact.',
-    no_account: 'You don\'t have any account.',
-    shop_products: 'My products',
-    show: 'Show',
-    hide: 'Hide',
-    showing: 'Showing',
-    hiding: 'Hiding',
-    yes: 'Yes',
-    no: 'No',
-    days: 'Days',
-    baht: 'Baht',
-    min: 'Min',
-    max: 'Max',
-    stock_edit: 'Stock management',
-    stock: 'Instock',
-    amount: 'Amount',
-    shipping: 'Shipping',
-    shipping_time: 'Shipping within',
-    shipping_free: 'Shipping for free?',
-    shipping_fee: 'Shipping fee',
-    shipping_inter: 'Shipping international?',
-    shipping_ex: 'ex.Post,DHL,etc.',
-    choice_add: 'Add options',
-    choice: 'Options',
-    choice_name_ex: 'ex.color,size',
-    current_choices: 'This product options',
-    website: 'Website',
-    location: 'Location',
-    optional: 'Optional',
-    add: 'Add +',
-    show_product: 'Show on product page',
-    show_cover: 'Show on cover',
-    field: 'this field',
-    added_to_cart: 'Added to cart',
-    add_to_cart: 'Add to cart',
-    total_price: 'total price',
-    order: 'Order',
-    pending_order: 'Pending...',
-    wait_transaction: 'Waiting for transaction',
-    completed_transaction: 'Payment confirmed',
-    transacted: 'Transaction confirmed',
-    shipped: 'Delivered',
-    confirm_order: 'Confirm',
-    confirm_order_notice: 'Once you have confirmed this order you can\'t change order information anymore.',
-    place_order: 'Place Order',
-    close: 'Close',
-    confirm: 'Confirm',
-    deny: 'Deny',
-    deny_confirm: 'Deny this order?',
-    account_number: 'Account number',
-    account_name: 'Account name',
-    account_provider: 'Provider',
-    address: 'Address for delivery',
-    track_info: 'Carrier service',
-    track_number: 'Tracking number',
-    delivered: 'Delivered',
-    payment_date: 'Payment date',
-    wait_delivery: 'Wait for delivery',
-    date_placeholder: 'dd/mm/YY',
-    discount: 'Discount',
-    apply_discount: 'Discount code',
-    discount_not_valid: 'This discount code is not valid or expired.',
-    points: 'Points',
-    not_enough_points: 'You don\'t have enough points to proceed.'
-  },
-
-  th: {
-    sell: 'ขายสินค้า',
-    product_name: 'ชื่อสินค้า',
-    products: 'สินค้า',
-    product: 'สินค้า',
-    product_none: 'คุณไม่มีสินค้าเลย',
-    price: 'ราคา',
-    category: 'หมวดหมู่',
-    subcategory: 'หมวดหมู่รอง',
-    type: 'ประเภทสินค้า',
-    description: 'รายละเอียด',
-    by: 'โดย',
-    sell_submit: 'ลงขาย',
-    thumbnail: 'รูปขนาดย่อ',
-    cover: 'รูปภาพหน้าปก',
-    choose_file: 'เลือกรูป',
-    remove: 'ลบ',
-    edit_submit: 'บันทึก',
-    photos: 'รูปภาพ',
-    upload_photo: 'อัพโหลดรูปภาพ',
-    upload_photo_guide: 'คลิกเพื่อเลือกไฟล์รูปภาพ',
-    upload_photo_size: 'รูปภาพที่อัพโหลดจะถูกเปลี่ยนขนาดเป็น 500px * 500px',
-    delete_photo_confirm: 'คุณแน่ใจหรือไม่ว่าจะลบรูปภาพนี้?',
-    delete_confirm: 'คุณแน่ใจหรือไม่ว่าจะลบ?',
-    upload_submit: 'อัพโหลด',
-    name: 'ชื่อ',
-    shop_name: 'ชื่อร้าน',
-    shop_url: 'URL ของร้าน',
-    email: 'อีเมล',
-    phone: 'โทรศัพท์',
-    link: 'ลิงค์',
-    user_info: 'ข้อมูลส่วนตัว',
-    col_name: 'ชื่อคอลเล็คชั่น',
-    visibility: 'ใครดูได้',
-    public: 'สาธาณะ',
-    private: 'ส่วนตัว',
-    unlisted: 'เฉพาะผู้ที่มีลิงค์',
-    add_col: 'สร้างคอลเล็คชั่น +',
-    col_photo_limit: 'คุณสามารถมีรูปภาพได้ไม่เกิน 10 รูป',
-    col_photo_none: 'คอลเล็คชั่นนี้ไม่มีรูป',
-    col_product_none: 'คอลเล็คชั่นนี้ไม่มีสินค้า',
-    col_none: 'ไม่มีคอลเล็คชั่น',
-    col_created: 'สร้างคอลเล็คชั่นแล้ว',
-    col_deleted: 'ลบคอลเล็คชั่นแล้ว',
-    col_delete_confirm: 'คุณแน่ใจหรือไม่ว่าจะลบคอลเล็คชั่นนี้?',
-    create: 'สร้าง',
-    add_to_col: 'เพิ่มลงใน',
-    delete_from_col: 'ลบออกจากคอลเล็คชั่นแล้ว',
-    added_to_col: 'เพิ่มลงในคอลเล็คชั่นแล้ว',
-    col_null: 'คุณไม่มีคอลเล็คชั่น',
-    follow: 'ติดตาม',
-    followers: 'ผู้ติดตาม',
-    follower: 'ผู้ติดตาม',
-    unfollow: 'เลิกติดตาม',
-    likes: 'ถูกใจ',
-    like: 'ถูกใจ',
-    dislikes: 'ไม่ถูกใจ',
-    dislike: 'ไม่ถูกใจ',
-    comments: 'คอมเมนต์',
-    comment: 'คอมเมนต์',
-    comment_delete_confirm: 'คุณแน่ใจหรือไม่ว่าจะลบคอมเมนต์นี้?',
-    reply: 'ตอบ',
-    delete: 'ลบ',
-    cancle: 'ยกเลิก',
-    edit: 'แก้ไข',
-    show_reply: 'แสดง',
-    hide_reply: 'ซ่อน',
-    login_first: 'โปรดล็อกอินก่อน',
-    login: 'ล็อกอิน',
-    success: 'สำเร็จ',
-    error: 'เกิดข้อผิดพลาด',
-    wait: 'โปรดรอ...',
-    saved: 'บันทึกแล้ว',
-    dropzone_null: 'ไม่มีอะไรให้อัพโหลด',
-    fill_every: 'กรุณากรอกข้อมูลให้ครบทุกช่อง',
-    product_photo_limit: 'คุณสามารถอัพโหลดรูปสินค้าได้สูงสุด 7 รูป',
-    used_notice: 'สินค้ามือสองจะถูกลบโดยอัตโนมัติ 30 วัน หลังจากลงขาย',
-    new: 'สินค้าใหม่',
-    used: 'มือสอง',
-    create_showcase: 'สร้างตู้แสดงสินค้า +',
-    showcase_created: 'สร้างตู้แสดงสินค้าแล้ว',
-    showcase_add: 'เพิ่ม',
-    showcase_empty: 'ตู้แสดงสินค้าของคุณไม่มีสินค้า',
-    showcase_products: 'สินค้าที่แสดงอยู่',
-    showcase_choice: 'แสดงบนหน้าแรกของร้าน',
-    showcase_drag: 'คุณสามารถจัดลำดับของตู้โชว์ได้โดยการลากปุ่มตัวเลข',
-    no_showcase: 'คุณไม่มีตู้แสดงสินค้า',
-    no_contact: 'คุณไม่มีช่องทางการติดต่อ',
-    no_account: 'คุณไม่มีบัญชีธนาคาร',
-    shop_products: 'สินค้าในร้านของฉัน',
-    show: 'แสดง',
-    hide: 'ซ่อน',
-    showing: 'แสดงอยู่',
-    hiding: 'ไม่แสดง',
-    yes: 'ใช่',
-    no: 'ไม่',
-    days: 'วัน',
-    baht: 'บาท',
-    min: 'ต่ำสุด',
-    max: 'สูงสุด',
-    stock_edit: 'การจัดการสต๊อกสินค้า',
-    stock: 'มีสินค้า',
-    amount: 'จำนวน',
-    shipping: 'การจัดส่ง',
-    shipping_time: 'ส่งภายใน',
-    shipping_free: 'ส่งฟรีหรือไม่',
-    shipping_fee: 'ค่าขนส่ง',
-    shipping_inter: 'ส่งไปต่างประเทศ?',
-    shipping_ex: 'เช่น EMS kerry หรืออื่นๆ',
-    choice_add: 'เพิ่มตัวเลือก',
-    choice: 'ตัวเลือก',
-    choice_name_ex: 'เช่น สี ไซส์',
-    current_choices: 'ตัวเลือกของสินค้านี้',
-    website: 'เว็บไซต์',
-    location: 'ที่อยู่',
-    optional: 'ไม่มีก็ได้',
-    add: 'เพิ่ม +',
-    show_product: 'แสดงที่สินค้าของฉัน',
-    show_cover: 'แสดงที่หน้าร้าน',
-    field: 'ข้อมูล',
-    added_to_cart: 'เพิ่มในตะกร้าแล้ว',
-    add_to_cart: 'เพิ่มลงตระกร้า',
-    total_price: 'รวมทั้งหมด',
-    order: 'รายการสั่งซื้อ',
-    pending_order: 'รายการที่ยังไม่ยืนยัน',
-    wait_transaction: 'รอแจ้งชำระเงิน',
-    completed_transaction: 'แจ้งชำระเงินแล้ว',
-    transacted: 'แจ้งโอนเงินแล้ว',
-    shipped: 'ส่งสินค้าแล้ว',
-    confirm_order: 'ยืนยันการสั่งซื้อ',
-    confirm_order_notice: 'เมื่อทำการยืนยันแล้วคุณจะไม่สามารถแก้ไขรายการสินค้าได้อีก',
-    place_order: 'สั่งซื้อ',
-    close: 'ปิด',
-    confirm: 'ยืนยัน',
-    deny: 'ปฏิเสธ',
-    deny_confirm: 'ปฏิเสธรายการนี้?',
-    account_number: 'เลขที่บัญชี',
-    account_name: 'ชื่อบัญชี',
-    account_provider: 'ธนาคาร',
-    address: 'ที่อยู่ในการจัดส่ง',
-    track_info: 'ผู้ให้บริการขนส่ง',
-    track_number: 'เลขติดตามพัสดุ',
-    delivered: 'ส่งสินค้าแล้ว',
-    payment_date: 'เวลาที่ชำระเงิน',
-    wait_delivery: 'รอส่งสินค้า',
-    date_placeholder: 'วัน/เดือน/ปี',
-    discount: 'ส่วนลด',
-    apply_discount: 'ใช้โค๊ดส่วนลด',
-    discount_not_valid: 'ไม่สามารถใช้ส่วนลดได้ อาจกรอกข้อมูลผิดหรือส่วนลดได้ถูกใช้หมดแล้ว',
-    points: 'คะแนน',
-    not_enough_points: 'คะแนนของคุณมีไม่เพียงพอที่จะใช้สิทธิ์ได้'
-  },
   translation: [],
   translate(lang) {
     if (lang === 'en') {
-      this.translation = this.en;
+      this.translation = english.en;
     } else if (lang === 'th') {
-      this.translation = this.th;
+      this.translation = thai.th;
     }
   }
-
 };
 
 translations.install = function () {
@@ -29513,15 +29208,25 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 					if (response.body.type == 'percent') {
 						var price = this.confirmed.totalPrice.split(',').join('');
 						var calculated = price - (response.body.discount / 100 * price).toFixed(0);
-						this.confirmed.totalPrice = __WEBPACK_IMPORTED_MODULE_1_numeral___default()(calculated).format('0,0');
-						this.confirmed.discount = this.$trans.translation.discount + ' ' + response.body.discount + '%';
-						this.confirmed.discount_applied = true;
+						if (calculated < 0) {
+							alert(this.$trans.translation.discount_not_valid);
+						} else {
+							this.confirmed.totalPrice = __WEBPACK_IMPORTED_MODULE_1_numeral___default()(calculated).format('0,0');
+							this.confirmed.discount = response.body.discount + '%';
+							this.confirmed.discount_applied = true;
+							this.formVisible = null;
+						}
 					} else if (response.body.type == 'baht') {
 						var price = this.confirmed.totalPrice.split(',').join('');
 						var calculated = price - response.body.discount;
-						this.confirmed.totalPrice = __WEBPACK_IMPORTED_MODULE_1_numeral___default()(calculated).format('0,0');
-						this.confirmed.discount = this.$trans.translation.discount + ' ' + response.body.discount + this.$trans.translation.baht;
-						this.confirmed.discount_applied = true;
+						if (calculated < 0) {
+							alert(this.$trans.translation.discount_not_valid);
+						} else {
+							this.confirmed.totalPrice = __WEBPACK_IMPORTED_MODULE_1_numeral___default()(calculated).format('0,0');
+							this.confirmed.discount = response.body.discount + ' ฿';
+							this.confirmed.discount_applied = true;
+							this.formVisible = null;
+						}
 					}
 				} else {
 					alert(this.$trans.translation.discount_not_valid);
@@ -29817,7 +29522,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_clickaway__ = __webpack_require__(98);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_clickaway__ = __webpack_require__(99);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_clickaway___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_clickaway__);
 //
 //
@@ -30086,7 +29791,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vee_validate_dist_locale_th__ = __webpack_require__(96);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vee_validate_dist_locale_th__ = __webpack_require__(97);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vee_validate_dist_locale_th___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vee_validate_dist_locale_th__);
 //
 //
@@ -30166,7 +29871,7 @@ const dictionary = {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_cleave_js__ = __webpack_require__(88);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_cleave_js__ = __webpack_require__(89);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_cleave_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_cleave_js__);
 //
 //
@@ -32395,12 +32100,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
   methods: {
     getCodes() {
-      this.$http.get(this.$root.url + '/profile/promotions/code').then(response => {
+      this.$http.get(this.$root.url + '/profile/promotions/manage/code_get').then(response => {
         this.codes = response.body;
       });
     },
     create() {
-      this.$http.post(this.$root.url + '/profile/promotions/code', {
+      this.$http.post(this.$root.url + '/profile/promotions/manage/code', {
         code: this.code,
         discount: this.discount,
         amount: this.amount,
@@ -32416,7 +32121,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       if (!confirm(this.$trans.translation.delete_confirm)) {
         return;
       }
-      this.$http.delete(this.$root.url + '/profile/promotions/code/' + id).then(response => {
+      this.$http.delete(this.$root.url + '/profile/promotions/manage/code/' + id).then(response => {
         this.codes.splice(index, 1);
         toastr.success(this.$trans.translation.success);
       }, response => {
@@ -32512,7 +32217,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.formVisible = id;
     },
     getProduct() {
-      this.$http.get(this.$root.url + '/profile/promotions/discount/product').then(response => {
+      this.$http.get(this.$root.url + '/profile/promotions/manage/discount/product').then(response => {
         this.products = response.data.products;
         this.discount_products = response.data.discount_products;
       });
@@ -32521,7 +32226,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       if (!confirm(this.$trans.translation.confirm + '?')) {
         return;
       } else {
-        this.$http.put(this.$root.url + '/profile/promotions/discount/' + uid + '/add', { discount: this.discount }).then(response => {
+        this.$http.put(this.$root.url + '/profile/promotions/manage/discount/' + uid + '/add', { discount: this.discount }).then(response => {
           if (this.$root.promotions.discount === 0) {
             alert(this.$trans.translation.not_enough_points);
           } else {
@@ -32537,7 +32242,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       if (!confirm(this.$trans.translation.delete_confirm)) {
         return;
       } else {
-        this.$http.put(this.$root.url + '/profile/promotions/discount/' + uid + '/delete').then(response => {
+        this.$http.put(this.$root.url + '/profile/promotions/manage/discount/' + uid + '/delete').then(response => {
           this.discount_products.splice(index, 1);
         });
       }
@@ -32550,23 +32255,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 /* 68 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  data() {
-    return {};
-  }
-});
-
-/***/ }),
-/* 69 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -32702,7 +32390,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 70 */
+/* 69 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -32790,7 +32478,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 71 */
+/* 70 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -32916,7 +32604,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 72 */
+/* 71 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -33041,7 +32729,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 73 */
+/* 72 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -33227,7 +32915,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 74 */
+/* 73 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -33313,7 +33001,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 75 */
+/* 74 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -33414,7 +33102,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 76 */
+/* 75 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -33464,7 +33152,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 77 */
+/* 76 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -33550,7 +33238,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 78 */
+/* 77 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -33612,7 +33300,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 79 */
+/* 78 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -33708,12 +33396,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 80 */
+/* 79 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuedraggable__ = __webpack_require__(186);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuedraggable__ = __webpack_require__(185);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuedraggable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vuedraggable__);
 //
 //
@@ -33852,7 +33540,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 81 */
+/* 80 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -33954,11 +33642,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 82 */
+/* 81 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-window._ = __webpack_require__(92);
+window._ = __webpack_require__(93);
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
@@ -33968,7 +33656,7 @@ window._ = __webpack_require__(92);
 
 window.$ = window.jQuery = __webpack_require__(3);
 
-__webpack_require__(87);
+__webpack_require__(88);
 
 /**
  * Vue is a modern JavaScript library for building interactive web interfaces
@@ -34005,13 +33693,335 @@ window.axios.defaults.headers.common = {
 // });
 
 /***/ }),
+/* 82 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+const en = {
+    sell: 'Sell something',
+    product_name: 'Product Name',
+    products: 'Products',
+    product: 'Product',
+    product_none: 'You don\'t have any product.',
+    price: 'Price',
+    category: 'Category',
+    subcategory: 'Subcategory',
+    type: 'Product Type',
+    description: 'Description',
+    by: 'By',
+    sell_submit: 'Submit',
+    thumbnail: 'Thumbnail',
+    cover: 'Cover',
+    choose_file: 'Choose File',
+    remove: 'Remove',
+    edit_submit: 'Save',
+    photos: 'Photos',
+    upload_photo: 'Upload Photo',
+    upload_photo_guide: 'Click here to select files',
+    upload_photo_size: 'Uploaded Photo will be resized to 500px * 500px',
+    delete_photo_confirm: 'Are you sure you want to delete this photo?',
+    delete_confirm: 'Are you sure you want to delete this?',
+    upload_submit: 'Upload',
+    name: 'Name',
+    shop_name: 'Closet Name',
+    shop_url: 'Unique URL',
+    email: 'E-mail',
+    phone: 'Phone',
+    link: 'Link',
+    user_info: 'Personal info',
+    col_name: 'Name',
+    visibility: 'Visibility',
+    public: 'Public',
+    private: 'Private',
+    unlisted: 'Only people that you give the link to',
+    add_col: 'Add collection +',
+    col_photo_limit: 'You can\'t upload more than 10 photos.',
+    col_photo_none: 'This collection has no photo.',
+    col_product_none: 'This collection has no product.',
+    col_none: 'No collection.',
+    col_created: 'Collection created.',
+    col_deleted: 'Collection deleted.',
+    col_delete_confirm: 'Are you sure you want to delete this collection?',
+    create: 'Create',
+    add_to_col: 'Add to',
+    delete_from_col: 'this product is deleted from collection.',
+    added_to_col: 'this product is added to collection.',
+    col_null: 'You don\'t have any collection.',
+    follow: 'Follow',
+    followers: 'Followers',
+    follower: 'Follower',
+    unfollow: 'Unfollow',
+    likes: 'Likes',
+    like: 'Like',
+    dislikes: 'Dislikes',
+    dislike: 'Dislike',
+    comments: 'Comments',
+    comment: 'Comment',
+    comment_delete_confirm: 'Are you sure that you want to delete this comment?',
+    reply: 'Reply',
+    delete: 'Delete',
+    cancle: 'Cancle',
+    edit: 'Edit',
+    show_reply: 'Show reply',
+    hide_reply: 'Hide reply',
+    login_first: 'Please Login.',
+    login: 'Login',
+    success: 'Success',
+    error: 'Error',
+    wait: 'Please wait...',
+    saved: 'Saved',
+    dropzone_null: 'Nothing to upload.',
+    fill_every: 'Please fill out every field.',
+    product_photo_limit: 'You can upload up to 7 photos.',
+    used_notice: 'Used product is valid for 30 days and will be removed after.',
+    new: 'New',
+    used: 'Used',
+    create_showcase: 'Create showcase +',
+    showcase_created: 'Showcase created.',
+    showcase_add: 'Add',
+    showcase_empty: 'Your showcase has no product.',
+    showcase_products: 'Products in your showcase',
+    showcase_choice: 'Show on your shop homepage',
+    showcase_drag: 'You can change the order of your showcases by dragging the number.',
+    no_showcase: 'You don\'t have any showcase.',
+    no_contact: 'You don\'t have any contact.',
+    no_account: 'You don\'t have any account.',
+    shop_products: 'My products',
+    show: 'Show',
+    hide: 'Hide',
+    showing: 'Showing',
+    hiding: 'Hiding',
+    yes: 'Yes',
+    no: 'No',
+    days: 'Days',
+    baht: 'Baht',
+    min: 'Min',
+    max: 'Max',
+    stock_edit: 'Stock management',
+    stock: 'Instock',
+    amount: 'Amount',
+    shipping: 'Shipping',
+    shipping_time: 'Shipping within',
+    shipping_free: 'Shipping for free?',
+    shipping_fee: 'Shipping fee',
+    shipping_inter: 'Shipping international?',
+    shipping_ex: 'ex.Post,DHL,etc.',
+    choice_add: 'Add options',
+    choice: 'Options',
+    choice_name_ex: 'ex.color,size',
+    current_choices: 'This product options',
+    website: 'Website',
+    location: 'Location',
+    optional: 'Optional',
+    add: 'Add +',
+    show_product: 'Show on product page',
+    show_cover: 'Show on cover',
+    field: 'this field',
+    added_to_cart: 'Added to cart',
+    add_to_cart: 'Add to cart',
+    total_price: 'total price',
+    order: 'Order',
+    pending_order: 'Pending...',
+    wait_transaction: 'Waiting for transaction',
+    completed_transaction: 'Payment confirmed',
+    transacted: 'Transaction confirmed',
+    shipped: 'Delivered',
+    confirm_order: 'Confirm',
+    confirm_order_notice: 'Once you have confirmed this order you can\'t change order information anymore.',
+    place_order: 'Place Order',
+    close: 'Close',
+    confirm: 'Confirm',
+    deny: 'Deny',
+    deny_confirm: 'Deny this order?',
+    account_number: 'Account number',
+    account_name: 'Account name',
+    account_provider: 'Provider',
+    address: 'Address for delivery',
+    track_info: 'Carrier service',
+    track_number: 'Tracking number',
+    delivered: 'Delivered',
+    payment_date: 'Payment date',
+    wait_delivery: 'Wait for delivery',
+    date_placeholder: 'dd/mm/YY',
+    discount: 'Discount',
+    apply_discount: 'Discount code',
+    discount_not_valid: 'This discount code is not valid or expired.',
+    points: 'Points',
+    not_enough_points: 'You don\'t have enough points.'
+};
+/* harmony export (immutable) */ __webpack_exports__["en"] = en;
+
+
+/***/ }),
 /* 83 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+const th = {
+    sell: 'ขายสินค้า',
+    product_name: 'ชื่อสินค้า',
+    products: 'สินค้า',
+    product: 'สินค้า',
+    product_none: 'คุณไม่มีสินค้าเลย',
+    price: 'ราคา',
+    category: 'หมวดหมู่',
+    subcategory: 'หมวดหมู่รอง',
+    type: 'ประเภทสินค้า',
+    description: 'รายละเอียด',
+    by: 'โดย',
+    sell_submit: 'ลงขาย',
+    thumbnail: 'รูปขนาดย่อ',
+    cover: 'รูปภาพหน้าปก',
+    choose_file: 'เลือกรูป',
+    remove: 'ลบ',
+    edit_submit: 'บันทึก',
+    photos: 'รูปภาพ',
+    upload_photo: 'อัพโหลดรูปภาพ',
+    upload_photo_guide: 'คลิกเพื่อเลือกไฟล์รูปภาพ',
+    upload_photo_size: 'รูปภาพที่อัพโหลดจะถูกเปลี่ยนขนาดเป็น 500px * 500px',
+    delete_photo_confirm: 'คุณแน่ใจหรือไม่ว่าจะลบรูปภาพนี้?',
+    delete_confirm: 'คุณแน่ใจหรือไม่ว่าจะลบ?',
+    upload_submit: 'อัพโหลด',
+    name: 'ชื่อ',
+    shop_name: 'ชื่อร้าน',
+    shop_url: 'URL ของร้าน',
+    email: 'อีเมล',
+    phone: 'โทรศัพท์',
+    link: 'ลิงค์',
+    user_info: 'ข้อมูลส่วนตัว',
+    col_name: 'ชื่อคอลเล็คชั่น',
+    visibility: 'ใครดูได้',
+    public: 'สาธาณะ',
+    private: 'ส่วนตัว',
+    unlisted: 'เฉพาะผู้ที่มีลิงค์',
+    add_col: 'สร้างคอลเล็คชั่น +',
+    col_photo_limit: 'คุณสามารถมีรูปภาพได้ไม่เกิน 10 รูป',
+    col_photo_none: 'คอลเล็คชั่นนี้ไม่มีรูป',
+    col_product_none: 'คอลเล็คชั่นนี้ไม่มีสินค้า',
+    col_none: 'ไม่มีคอลเล็คชั่น',
+    col_created: 'สร้างคอลเล็คชั่นแล้ว',
+    col_deleted: 'ลบคอลเล็คชั่นแล้ว',
+    col_delete_confirm: 'คุณแน่ใจหรือไม่ว่าจะลบคอลเล็คชั่นนี้?',
+    create: 'สร้าง',
+    add_to_col: 'เพิ่มลงใน',
+    delete_from_col: 'ลบออกจากคอลเล็คชั่นแล้ว',
+    added_to_col: 'เพิ่มลงในคอลเล็คชั่นแล้ว',
+    col_null: 'คุณไม่มีคอลเล็คชั่น',
+    follow: 'ติดตาม',
+    followers: 'ผู้ติดตาม',
+    follower: 'ผู้ติดตาม',
+    unfollow: 'เลิกติดตาม',
+    likes: 'ถูกใจ',
+    like: 'ถูกใจ',
+    dislikes: 'ไม่ถูกใจ',
+    dislike: 'ไม่ถูกใจ',
+    comments: 'คอมเมนต์',
+    comment: 'คอมเมนต์',
+    comment_delete_confirm: 'คุณแน่ใจหรือไม่ว่าจะลบคอมเมนต์นี้?',
+    reply: 'ตอบ',
+    delete: 'ลบ',
+    cancle: 'ยกเลิก',
+    edit: 'แก้ไข',
+    show_reply: 'แสดง',
+    hide_reply: 'ซ่อน',
+    login_first: 'โปรดล็อกอินก่อน',
+    login: 'ล็อกอิน',
+    success: 'สำเร็จ',
+    error: 'เกิดข้อผิดพลาด',
+    wait: 'โปรดรอ...',
+    saved: 'บันทึกแล้ว',
+    dropzone_null: 'ไม่มีอะไรให้อัพโหลด',
+    fill_every: 'กรุณากรอกข้อมูลให้ครบทุกช่อง',
+    product_photo_limit: 'คุณสามารถอัพโหลดรูปสินค้าได้สูงสุด 7 รูป',
+    used_notice: 'สินค้ามือสองจะถูกลบโดยอัตโนมัติ 30 วัน หลังจากลงขาย',
+    new: 'สินค้าใหม่',
+    used: 'มือสอง',
+    create_showcase: 'สร้างตู้แสดงสินค้า +',
+    showcase_created: 'สร้างตู้แสดงสินค้าแล้ว',
+    showcase_add: 'เพิ่ม',
+    showcase_empty: 'ตู้แสดงสินค้าของคุณไม่มีสินค้า',
+    showcase_products: 'สินค้าที่แสดงอยู่',
+    showcase_choice: 'แสดงบนหน้าแรกของร้าน',
+    showcase_drag: 'คุณสามารถจัดลำดับของตู้โชว์ได้โดยการลากปุ่มตัวเลข',
+    no_showcase: 'คุณไม่มีตู้แสดงสินค้า',
+    no_contact: 'คุณไม่มีช่องทางการติดต่อ',
+    no_account: 'คุณไม่มีบัญชีธนาคาร',
+    shop_products: 'สินค้าในร้านของฉัน',
+    show: 'แสดง',
+    hide: 'ซ่อน',
+    showing: 'แสดงอยู่',
+    hiding: 'ไม่แสดง',
+    yes: 'ใช่',
+    no: 'ไม่',
+    days: 'วัน',
+    baht: 'บาท',
+    min: 'ต่ำสุด',
+    max: 'สูงสุด',
+    stock_edit: 'การจัดการสต๊อกสินค้า',
+    stock: 'มีสินค้า',
+    amount: 'จำนวน',
+    shipping: 'การจัดส่ง',
+    shipping_time: 'ส่งภายใน',
+    shipping_free: 'ส่งฟรีหรือไม่',
+    shipping_fee: 'ค่าขนส่ง',
+    shipping_inter: 'ส่งไปต่างประเทศ?',
+    shipping_ex: 'เช่น EMS kerry หรืออื่นๆ',
+    choice_add: 'เพิ่มตัวเลือก',
+    choice: 'ตัวเลือก',
+    choice_name_ex: 'เช่น สี ไซส์',
+    current_choices: 'ตัวเลือกของสินค้านี้',
+    website: 'เว็บไซต์',
+    location: 'ที่อยู่',
+    optional: 'ไม่มีก็ได้',
+    add: 'เพิ่ม +',
+    show_product: 'แสดงที่สินค้าของฉัน',
+    show_cover: 'แสดงที่หน้าร้าน',
+    field: 'ข้อมูล',
+    added_to_cart: 'เพิ่มในตะกร้าแล้ว',
+    add_to_cart: 'เพิ่มลงตระกร้า',
+    total_price: 'รวมทั้งหมด',
+    order: 'รายการสั่งซื้อ',
+    pending_order: 'รายการที่ยังไม่ยืนยัน',
+    wait_transaction: 'รอแจ้งชำระเงิน',
+    completed_transaction: 'แจ้งชำระเงินแล้ว',
+    transacted: 'แจ้งโอนเงินแล้ว',
+    shipped: 'ส่งสินค้าแล้ว',
+    confirm_order: 'ยืนยันการสั่งซื้อ',
+    confirm_order_notice: 'เมื่อทำการยืนยันแล้วคุณจะไม่สามารถแก้ไขรายการสินค้าได้อีก',
+    place_order: 'สั่งซื้อ',
+    close: 'ปิด',
+    confirm: 'ยืนยัน',
+    deny: 'ปฏิเสธ',
+    deny_confirm: 'ปฏิเสธรายการนี้?',
+    account_number: 'เลขที่บัญชี',
+    account_name: 'ชื่อบัญชี',
+    account_provider: 'ธนาคาร',
+    address: 'ที่อยู่ในการจัดส่ง',
+    track_info: 'ผู้ให้บริการขนส่ง',
+    track_number: 'เลขติดตามพัสดุ',
+    delivered: 'ส่งสินค้าแล้ว',
+    payment_date: 'เวลาที่ชำระเงิน',
+    wait_delivery: 'รอส่งสินค้า',
+    date_placeholder: 'วัน/เดือน/ปี',
+    discount: 'ส่วนลด',
+    apply_discount: 'ใช้โค๊ดส่วนลด',
+    discount_not_valid: 'ไม่สามารถใช้ส่วนลดได้ อาจกรอกข้อมูลผิดหรือส่วนลดได้ถูกใช้หมดแล้ว',
+    points: 'คะแนน',
+    not_enough_points: 'คะแนนของคุณมีไม่เพียงพอที่จะใช้สิทธิ์ได้'
+};
+/* harmony export (immutable) */ __webpack_exports__["th"] = th;
+
+
+/***/ }),
+/* 84 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_router__ = __webpack_require__(181);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_router__ = __webpack_require__(180);
 
 
 
@@ -34036,7 +34046,7 @@ window.addEventListener('load', function () {
 });
 
 /***/ }),
-/* 84 */
+/* 85 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -34081,7 +34091,7 @@ const removeFromCart = ({ commit }) => {
 
 
 /***/ }),
-/* 85 */
+/* 86 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -34093,7 +34103,7 @@ const count = state => {
 
 
 /***/ }),
-/* 86 */
+/* 87 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -34130,7 +34140,7 @@ const appendToCart = (state, { product, choice }) => {
 
 
 /***/ }),
-/* 87 */
+/* 88 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(jQuery) {/*!
@@ -36514,7 +36524,7 @@ if (typeof jQuery === 'undefined') {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
-/* 88 */
+/* 89 */
 /***/ (function(module, exports, __webpack_require__) {
 
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -37634,13 +37644,6 @@ return /******/ (function(modules) { // webpackBootstrap
 ;
 
 /***/ }),
-/* 89 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(7)();
-exports.push([module.i, "\n.msg-btn {\r\n  width: 100%;\r\n  height: 50px;\n}\n.msg-btn button{\r\n  float: left;\r\n  width: 33.33%;\r\n  height: 100%;\r\n  border: none;\r\n  background-color: #f7f7f7;\r\n  color: #6c6c6c;\n}\n.msg-btn button:hover{\r\n  background-color: #ffffff;\n}\n.msg-btn-full {\r\n  width: 100% !important;\r\n  border: none !important;\n}\n.msg-btn-half{\r\n  width: 50% !important;\n}\n.msg-btn button:nth-child(1n+2){\r\n  border-left: 1px solid #b5b5b5;\n}\n.no-border{\r\n  border: none !important;\n}\n.shipping-table td:first-child{\r\n  width: 150px;\n}\n.shipping-table td:nth-child(2){\r\n  width: 120px;\n}\n.shipping-table td{\r\n  border: none;\n}\r\n", ""]);
-
-/***/ }),
 /* 90 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -37652,10 +37655,17 @@ exports.push([module.i, "\n.msg-btn {\r\n  width: 100%;\r\n  height: 50px;\n}\n.
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(7)();
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n.msg-btn {\r\n  width: 100%;\r\n  height: 50px;\n}\n.msg-btn button{\r\n  float: left;\r\n  width: 33.33%;\r\n  height: 100%;\r\n  border: none;\r\n  background-color: #f7f7f7;\r\n  color: #6c6c6c;\n}\n.msg-btn button:hover{\r\n  background-color: #ffffff;\n}\n.msg-btn-full {\r\n  width: 100% !important;\r\n  border: none !important;\n}\n.msg-btn-half{\r\n  width: 50% !important;\n}\n.msg-btn button:nth-child(1n+2){\r\n  border-left: 1px solid #b5b5b5;\n}\n.no-border{\r\n  border: none !important;\n}\n.shipping-table td:first-child{\r\n  width: 150px;\n}\n.shipping-table td:nth-child(2){\r\n  width: 120px;\n}\n.shipping-table td{\r\n  border: none;\n}\r\n", ""]);
 
 /***/ }),
 /* 92 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(7)();
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+/***/ }),
+/* 93 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, module) {var __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -54747,7 +54757,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(11), __webpack_require__(21)(module)))
 
 /***/ }),
-/* 93 */
+/* 94 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
@@ -54940,7 +54950,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(11), __webpack_require__(2)))
 
 /***/ }),
-/* 94 */
+/* 95 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**!
@@ -56490,7 +56500,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**!
 
 
 /***/ }),
-/* 95 */
+/* 96 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var apply = Function.prototype.apply;
@@ -56543,19 +56553,19 @@ exports._unrefActive = exports.active = function(item) {
 };
 
 // setimmediate attaches itself to the global object
-__webpack_require__(93);
+__webpack_require__(94);
 exports.setImmediate = setImmediate;
 exports.clearImmediate = clearImmediate;
 
 
 /***/ }),
-/* 96 */
+/* 97 */
 /***/ (function(module, exports, __webpack_require__) {
 
 !function(n,e){ true?module.exports=e():"function"==typeof define&&define.amd?define(e):(n.__vee_validate_locale__th=n.__vee_validate_locale__th||{},n.__vee_validate_locale__th.js=e())}(this,function(){"use strict";var n={name:"th",messages:{_default:function(n){return"ข้อมูล "+n+" ไม่ถูกต้อง"},after:function(n,e){return n+" ต้องเป็นวันที่หลังจาก "+e[0]},alpha_dash:function(n){return n+" สามารถมีตัวอักษร ตัวเลข เครื่องหมายขีดกลาง (-) และเครื่องหมายขีดล่าง (_)"},alpha_num:function(n){return n+" ต้องเป็นตัวอักษร และตัวเลขเท่านั้น"},alpha_spaces:function(n){return n+" ต้องเป็นตัวอักษร และช่องว่างเท่านั้น"},alpha:function(n){return n+" ต้องเป็นตัวอักษรเท่านั้น"},before:function(n,e){return n+" ต้องเป็นวันที่ก่อน "+e[0]},between:function(n,e){return n+" ต้องเป็นค่าระหว่าง "+e[0]+" และ "+e[1]},confirmed:function(n){return"การยืนยันข้อมูลของ "+n+" ไม่ตรงกัน"},credit_card:function(n){return"ข้อมูล "+n+" ไม่ถูกต้อง"},date_between:function(n,e){return"วันที่ "+n+" ต้องอยู่ระหว่าง "+e[0]+" และ "+e[1]},date_format:function(n,e){return"วันที่ "+n+" ต้องอยู่ในรูปแบบ "+e[0]},decimal:function(n,e){void 0===e&&(e=[]);var t=e[0];return void 0===t&&(t="*"),n+" ต้องเป็นตัวเลข และสามารถมีจุดทศนิยม "+("*"===t?"":t+" จุด")},digits:function(n,e){return n+" ต้องเป็นตัวเลข "+e[0]+" หลักเท่านั้น"},dimensions:function(n,e){return n+" ต้องมีขนาด "+e[0]+" x "+e[1]+" px"},email:function(n){return n+" ต้องเป็นรูปแบบอีเมล"},ext:function(n){return n+" สกุลไฟล์ไม่ถูกต้อง"},image:function(n){return n+" ต้องเป็นรูปภาพเท่านั้น"},in:function(n){return n+" เป็นค่าทีไม่ถูกต้องตามเงื่อนไขที่กำหนด"},integer:function(n){return n+" ต้องเป็นเลขจำนวนเต็ม"},ip:function(n){return n+" ไม่ถูกต้องตามรูปแบบ ip address"},length:function(n,e){var t=e[0],r=e[1];return r?"ความยาว "+n+" อยู่ระหว่าง "+t+" และ "+r:n+" ต้องมีความยาว "+t},max:function(n,e){return n+" ต้องมีความยาวไม่เกิน "+e[0]+" ตัวอักษร"},max_value:function(n,e){return n+" ต้องมีค่าไม่เกิน "+e[0]},mimes:function(n){return n+" ประเภทไฟล์ไม่ถูกต้อง"},min:function(n,e){return n+" ต้องมีความยาวอย่างน้อย "+e[0]+" ตัวอักษร"},min_value:function(n,e){return n+" ต้องมีค่าตั้งแต่ "+e[0]+" ขึ้นไป"},not_in:function(n){return n+" เป็นค่าทีไม่ถูกต้องตามเงื่อนไขที่กำหนด"},numeric:function(n){return n+" ต้องเป็นตัวเลขเท่านั้น"},regex:function(n){return"รูปแบบ "+n+" ไม่ถูกต้อง"},required:function(n){return"กรุณากรอก "+n},size:function(n,e){return n+" ต้องมีขนาดไม่เกิน "+function(n){var e=0==(n=1024*Number(n))?0:Math.floor(Math.log(n)/Math.log(1024));return 1*(n/Math.pow(1024,e)).toFixed(2)+" "+["Byte","KB","MB","GB","TB","PB","EB","ZB","YB"][e]}(e[0])},url:function(n){return n+" ไม่ใช่รูปแบบของ URL ที่ถูกต้อง"}},attributes:{}};return"undefined"!=typeof VeeValidate&&VeeValidate.Validator.addLocale(n),n});
 
 /***/ }),
-/* 97 */
+/* 98 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -63546,7 +63556,7 @@ var index_esm = {
 
 
 /***/ }),
-/* 98 */
+/* 99 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -63630,7 +63640,7 @@ exports.mixin = mixin;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 99 */
+/* 100 */
 /***/ (function(module, exports, __webpack_require__) {
 
 !function(root, factory) {
@@ -64518,7 +64528,7 @@ exports.mixin = mixin;
 });
 
 /***/ }),
-/* 100 */
+/* 101 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
@@ -64552,14 +64562,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 101 */
+/* 102 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(42),
   /* template */
-  __webpack_require__(175),
+  __webpack_require__(174),
   /* scopeId */
   null,
   /* cssModules */
@@ -64586,7 +64596,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 102 */
+/* 103 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
@@ -64620,7 +64630,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 103 */
+/* 104 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
@@ -64654,7 +64664,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 104 */
+/* 105 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
@@ -64688,14 +64698,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 105 */
+/* 106 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(46),
   /* template */
-  __webpack_require__(177),
+  __webpack_require__(176),
   /* scopeId */
   null,
   /* cssModules */
@@ -64722,7 +64732,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 106 */
+/* 107 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
@@ -64756,7 +64766,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 107 */
+/* 108 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
@@ -64790,7 +64800,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 108 */
+/* 109 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
@@ -64824,12 +64834,12 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 109 */
+/* 110 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
 /* styles */
-__webpack_require__(183)
+__webpack_require__(182)
 
 var Component = __webpack_require__(0)(
   /* script */
@@ -64862,7 +64872,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 110 */
+/* 111 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
@@ -64896,12 +64906,12 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 111 */
+/* 112 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
 /* styles */
-__webpack_require__(184)
+__webpack_require__(183)
 
 var Component = __webpack_require__(0)(
   /* script */
@@ -64934,12 +64944,12 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 112 */
+/* 113 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
 /* styles */
-__webpack_require__(182)
+__webpack_require__(181)
 
 var Component = __webpack_require__(0)(
   /* script */
@@ -64972,7 +64982,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 113 */
+/* 114 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
@@ -65006,14 +65016,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 114 */
+/* 115 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(55),
   /* template */
-  __webpack_require__(174),
+  __webpack_require__(173),
   /* scopeId */
   null,
   /* cssModules */
@@ -65040,7 +65050,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 115 */
+/* 116 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
@@ -65074,14 +65084,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 116 */
+/* 117 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(57),
   /* template */
-  __webpack_require__(178),
+  __webpack_require__(177),
   /* scopeId */
   null,
   /* cssModules */
@@ -65108,7 +65118,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 117 */
+/* 118 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
@@ -65142,7 +65152,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 118 */
+/* 119 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
@@ -65176,7 +65186,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 119 */
+/* 120 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
@@ -65210,7 +65220,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 120 */
+/* 121 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
@@ -65244,7 +65254,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 121 */
+/* 122 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
@@ -65278,7 +65288,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 122 */
+/* 123 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
@@ -65312,14 +65322,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 123 */
+/* 124 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(64),
   /* template */
-  __webpack_require__(176),
+  __webpack_require__(175),
   /* scopeId */
   null,
   /* cssModules */
@@ -65346,7 +65356,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 124 */
+/* 125 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
@@ -65380,7 +65390,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 125 */
+/* 126 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
@@ -65414,7 +65424,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 126 */
+/* 127 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
@@ -65448,46 +65458,12 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 127 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var Component = __webpack_require__(0)(
-  /* script */
-  __webpack_require__(68),
-  /* template */
-  __webpack_require__(173),
-  /* scopeId */
-  null,
-  /* cssModules */
-  null
-)
-Component.options.__file = "/home/vagrant/projects/closet/resources/assets/js/components/Promotion/FlashSale.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] FlashSale.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-b510e5aa", Component.options)
-  } else {
-    hotAPI.reload("data-v-b510e5aa", Component.options)
-  }
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
 /* 128 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(69),
+  __webpack_require__(68),
   /* template */
   __webpack_require__(170),
   /* scopeId */
@@ -65521,7 +65497,7 @@ module.exports = Component.exports
 
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(70),
+  __webpack_require__(69),
   /* template */
   __webpack_require__(159),
   /* scopeId */
@@ -65555,7 +65531,7 @@ module.exports = Component.exports
 
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(71),
+  __webpack_require__(70),
   /* template */
   __webpack_require__(161),
   /* scopeId */
@@ -65589,7 +65565,7 @@ module.exports = Component.exports
 
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(72),
+  __webpack_require__(71),
   /* template */
   __webpack_require__(169),
   /* scopeId */
@@ -65623,7 +65599,7 @@ module.exports = Component.exports
 
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(73),
+  __webpack_require__(72),
   /* template */
   __webpack_require__(153),
   /* scopeId */
@@ -65657,7 +65633,7 @@ module.exports = Component.exports
 
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(75),
+  __webpack_require__(74),
   /* template */
   __webpack_require__(171),
   /* scopeId */
@@ -65691,7 +65667,7 @@ module.exports = Component.exports
 
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(76),
+  __webpack_require__(75),
   /* template */
   __webpack_require__(145),
   /* scopeId */
@@ -65725,7 +65701,7 @@ module.exports = Component.exports
 
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(79),
+  __webpack_require__(78),
   /* template */
   __webpack_require__(147),
   /* scopeId */
@@ -65759,7 +65735,7 @@ module.exports = Component.exports
 
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(80),
+  __webpack_require__(79),
   /* template */
   __webpack_require__(142),
   /* scopeId */
@@ -65793,7 +65769,7 @@ module.exports = Component.exports
 
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(81),
+  __webpack_require__(80),
   /* template */
   __webpack_require__(144),
   /* scopeId */
@@ -67263,8 +67239,14 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         }
       }
     }, [_vm._v(_vm._s(_vm.$trans.translation.apply_discount))]), _vm._v(" "), _c('span', {
+      directives: [{
+        name: "show",
+        rawName: "v-show",
+        value: (_vm.confirmed.discount),
+        expression: "confirmed.discount"
+      }],
       staticClass: "green-font bold-font"
-    }, [_vm._v(_vm._s(_vm.confirmed.discount))])]), _vm._v(" "), _c('td', {
+    }, [_vm._v(_vm._s(_vm.$trans.translation.discount) + " " + _vm._s(_vm.confirmed.discount))])]), _vm._v(" "), _c('td', {
       attrs: {
         "colspan": "2"
       }
@@ -69984,7 +69966,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.createCol($event)
       }
     }
-  }, [_vm._v(">")])])])], 1)])], 1)])
+  }, [_c('span', {
+    staticClass: "icon-checkmark grey-font"
+  })])])])], 1)])], 1)])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -72015,21 +71999,6 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c("div")
-},staticRenderFns: []}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-b510e5aa", module.exports)
-  }
-}
-
-/***/ }),
-/* 174 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', [_c('vue-progress-bar'), _vm._v(" "), _c('div', {
     staticStyle: {
       "padding": "20px"
@@ -72197,7 +72166,7 @@ if (false) {
 }
 
 /***/ }),
-/* 175 */
+/* 174 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -72223,7 +72192,7 @@ if (false) {
 }
 
 /***/ }),
-/* 176 */
+/* 175 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -72296,7 +72265,7 @@ if (false) {
 }
 
 /***/ }),
-/* 177 */
+/* 176 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -72364,7 +72333,7 @@ if (false) {
 }
 
 /***/ }),
-/* 178 */
+/* 177 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -72601,14 +72570,14 @@ if (false) {
 }
 
 /***/ }),
-/* 179 */
+/* 178 */
 /***/ (function(module, exports, __webpack_require__) {
 
 !function(t,o){ true?o():"function"==typeof define&&define.amd?define(o):o()}(0,function(){"use strict";function t(t,o){for(var i,e,s=1;s<arguments.length;++s){e=arguments[s];for(i in e)Object.prototype.hasOwnProperty.call(e,i)&&(t[i]=e[i])}return t}!function(){if("undefined"!=typeof document){var t=document.head||document.getElementsByTagName("head")[0],o=document.createElement("style"),i=" .__cov-progress { position: fixed; opacity: 1; z-index: 999999; } ";o.type="text/css",o.styleSheet?o.styleSheet.cssText=i:o.appendChild(document.createTextNode(i)),t.appendChild(o)}}();var o="undefined"!=typeof window,i={render:function(){var t=this,o=t.$createElement;return(t._self._c||o)("div",{staticClass:"__cov-progress",style:t.style})},staticRenderFns:[],name:"VueProgress",serverCacheKey:function(){return"Progress"},computed:{style:function(){var t=this.progress.options.location,o={"background-color":this.progress.options.canSuccess?this.progress.options.color:this.progress.options.failedColor,opacity:this.progress.options.show?1:0};return"top"==t||"bottom"==t?("top"===t?o.top="0px":o.bottom="0px",this.progress.options.inverse?o.right="0px":o.left="0px",o.width=this.progress.percent+"%",o.height=this.progress.options.thickness,o.transition="width "+this.progress.options.transition.speed+", opacity "+this.progress.options.transition.opacity):"left"!=t&&"right"!=t||("left"===t?o.left="0px":o.right="0px",this.progress.options.inverse?o.top="0px":o.bottom="0px",o.height=this.progress.percent+"%",o.width=this.progress.options.thickness,o.transition="height "+this.progress.options.transition.speed+", opacity "+this.progress.options.transition.opacity),o},progress:function(){return o?window.VueProgressBarEventBus.RADON_LOADING_BAR:{percent:0,options:{canSuccess:!0,show:!1,color:"rgb(19, 91, 55)",failedColor:"red",thickness:"2px",transition:{speed:"0.2s",opacity:"0.6s",termination:300},location:"top",autoRevert:!0,inverse:!1}}}}};module.exports.install=function(o){var e=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},s=(o.version.split(".")[0],"undefined"!=typeof window),n={$vm:null,state:{tFailColor:"",tColor:"",timer:null,cut:0},init:function(t){this.$vm=t},start:function(t){var o=this;this.$vm&&(t||(t=3e3),this.$vm.RADON_LOADING_BAR.percent=0,this.$vm.RADON_LOADING_BAR.options.show=!0,this.$vm.RADON_LOADING_BAR.options.canSuccess=!0,this.state.cut=1e4/Math.floor(t),clearInterval(this.state.timer),this.state.timer=setInterval(function(){o.increase(o.state.cut*Math.random()),o.$vm.RADON_LOADING_BAR.percent>95&&o.finish()},100))},set:function(t){this.$vm.RADON_LOADING_BAR.options.show=!0,this.$vm.RADON_LOADING_BAR.options.canSuccess=!0,this.$vm.RADON_LOADING_BAR.percent=Math.floor(t)},get:function(){return Math.floor(this.$vm.RADON_LOADING_BAR.percent)},increase:function(t){this.$vm.RADON_LOADING_BAR.percent=this.$vm.RADON_LOADING_BAR.percent+Math.floor(t)},decrease:function(t){this.$vm.RADON_LOADING_BAR.percent=this.$vm.RADON_LOADING_BAR.percent-Math.floor(t)},hide:function(){var t=this;clearInterval(this.state.timer),this.state.timer=null,setTimeout(function(){t.$vm.RADON_LOADING_BAR.options.show=!1,o.nextTick(function(){setTimeout(function(){t.$vm.RADON_LOADING_BAR.percent=0},100),t.$vm.RADON_LOADING_BAR.options.autoRevert&&setTimeout(function(){t.revert()},300)})},this.$vm.RADON_LOADING_BAR.options.transition.termination)},pause:function(){clearInterval(this.state.timer)},finish:function(){this.$vm&&(this.$vm.RADON_LOADING_BAR.percent=100,this.hide())},fail:function(){this.$vm.RADON_LOADING_BAR.options.canSuccess=!1,this.$vm.RADON_LOADING_BAR.percent=100,this.hide()},setFailColor:function(t){this.$vm.RADON_LOADING_BAR.options.failedColor=t},setColor:function(t){this.$vm.RADON_LOADING_BAR.options.color=t},setLocation:function(t){this.$vm.RADON_LOADING_BAR.options.location=t},setTransition:function(t){this.$vm.RADON_LOADING_BAR.options.transition=t},tempFailColor:function(t){this.state.tFailColor=this.$vm.RADON_LOADING_BAR.options.failedColor,this.$vm.RADON_LOADING_BAR.options.failedColor=t},tempColor:function(t){this.state.tColor=this.$vm.RADON_LOADING_BAR.options.color,this.$vm.RADON_LOADING_BAR.options.color=t},tempLocation:function(t){this.state.tLocation=this.$vm.RADON_LOADING_BAR.options.location,this.$vm.RADON_LOADING_BAR.options.location=t},tempTransition:function(t){this.state.tTransition=this.$vm.RADON_LOADING_BAR.options.transition,this.$vm.RADON_LOADING_BAR.options.transition=t},revertColor:function(){this.$vm.RADON_LOADING_BAR.options.color=this.state.tColor,this.state.tColor=""},revertFailColor:function(){this.$vm.RADON_LOADING_BAR.options.failedColor=this.state.tFailColor,this.state.tFailColor=""},revertLocation:function(){this.$vm.RADON_LOADING_BAR.options.location=this.state.tLocation,this.state.tLocation=""},revertTransition:function(){this.$vm.RADON_LOADING_BAR.options.transition=this.state.tTransition,this.state.tTransition={}},revert:function(){this.$vm.RADON_LOADING_BAR.options.autoRevert&&(this.state.tColor&&this.revertColor(),this.state.tFailColor&&this.revertFailColor(),this.state.tLocation&&this.revertLocation(),!this.state.tTransition||void 0===this.state.tTransition.speed&&void 0===this.state.tTransition.opacity||this.revertTransition())},parseMeta:function(t){for(var o in t.func){var i=t.func[o];switch(i.call){case"color":switch(i.modifier){case"set":this.setColor(i.argument);break;case"temp":this.tempColor(i.argument)}break;case"fail":switch(i.modifier){case"set":this.setFailColor(i.argument);break;case"temp":this.tempFailColor(i.argument)}break;case"location":switch(i.modifier){case"set":this.setLocation(i.argument);break;case"temp":this.tempLocation(i.argument)}break;case"transition":switch(i.modifier){case"set":this.setTransition(i.argument);break;case"temp":this.tempTransition(i.argument)}}}}},r=t({canSuccess:!0,show:!1,color:"#73ccec",failedColor:"red",thickness:"2px",transition:{speed:"0.2s",opacity:"0.6s",termination:300},autoRevert:!0,location:"top",inverse:!1},e),a=new o({data:{RADON_LOADING_BAR:{percent:0,options:r}}});s&&(window.VueProgressBarEventBus=a,n.init(a)),o.component("vue-progress-bar",i),o.prototype.$Progress=n}});
 
 
 /***/ }),
-/* 180 */
+/* 179 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -73711,7 +73680,7 @@ function xhrClient (request) {
 
 function nodeClient (request) {
 
-    var client = __webpack_require__(187);
+    var client = __webpack_require__(186);
 
     return new PromiseObj(function (resolve) {
 
@@ -74187,7 +74156,7 @@ if (typeof window !== 'undefined' && window.Vue) {
 
 
 /***/ }),
-/* 181 */
+/* 180 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -76818,13 +76787,13 @@ if (inBrowser && window.Vue) {
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(2)))
 
 /***/ }),
-/* 182 */
+/* 181 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(89);
+var content = __webpack_require__(90);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -76844,13 +76813,13 @@ if(false) {
 }
 
 /***/ }),
-/* 183 */
+/* 182 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(90);
+var content = __webpack_require__(91);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -76870,13 +76839,13 @@ if(false) {
 }
 
 /***/ }),
-/* 184 */
+/* 183 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(91);
+var content = __webpack_require__(92);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -76896,7 +76865,7 @@ if(false) {
 }
 
 /***/ }),
-/* 185 */
+/* 184 */
 /***/ (function(module, exports) {
 
 /**
@@ -76929,7 +76898,7 @@ module.exports = function listToStyles (parentId, list) {
 
 
 /***/ }),
-/* 186 */
+/* 185 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -77295,7 +77264,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   }
 
   if (true) {
-    var Sortable = __webpack_require__(94);
+    var Sortable = __webpack_require__(95);
     module.exports = buildDraggable(Sortable);
   } else if (typeof define == "function" && define.amd) {
     define(['sortablejs'], function (Sortable) {
@@ -77317,13 +77286,13 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 
 /***/ }),
-/* 187 */
+/* 186 */
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
 /***/ }),
-/* 188 */
+/* 187 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(22);

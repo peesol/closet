@@ -59,7 +59,6 @@ Route::prefix('cart')->group(function () {
   Route::put('/update/qty', 'CartController@updateQty');
   Route::put('/remove/{rowId}', 'CartController@removeProduct');
   Route::get('/mycart', 'CartController@userCart');
-  Route::get('/mycart/checkout', 'CartController@checkout');
 });
 
 
@@ -87,13 +86,18 @@ Route::group(['middleware' => ['auth']], function () {
       Route::get('/inbox_messages/buying', 'OrderController@getBuyingInbox');
 
       Route::get('/promotions/manage', 'PromotionController@index')->name('promotionEdit');
-      Route::get('/promotions/code', 'PromotionController@getCodes');
-      Route::post('/promotions/code', 'PromotionController@createCode');
-      Route::delete('/promotions/code/{discount}', 'PromotionController@removeCode');
+      Route::get('/promotions/manage/code', 'PromotionController@codePage')->name('promotionCode');
+      Route::get('/promotions/manage/code_get', 'PromotionController@getCodes');
+      Route::post('/promotions/manage/code', 'PromotionController@createCode');
+      Route::delete('/promotions/manage/code/{discount}', 'PromotionController@removeCode');
       Route::post('/promotions/code/validate', 'PromotionController@validateCode');
-      Route::get('/promotions/discount/product', 'PromotionController@getProduct');
-      Route::put('/promotions/discount/{product}/add', 'PromotionController@applyDiscount');
-      Route::put('/promotions/discount/{product}/delete', 'PromotionController@removeDiscount');
+
+      Route::get('/promotions/manage/discount', 'PromotionController@discountPage')->name('promotionDiscount');
+      Route::get('/promotions/manage/discount/product', 'PromotionController@getProduct');
+      Route::put('/promotions/manage/discount/{product}/add', 'PromotionController@applyDiscount');
+      Route::put('/promotions/manage/discount/{product}/delete', 'PromotionController@removeDiscount');
+
+      // Route::get('/promotions/manage/getanother', 'PromotionController@dealsPage')->name('promotionSale');
 
       Route::prefix('order')->group(function () {
         Route::get('/selling', 'OrderController@sellingPage')->name('sellingOrder');

@@ -9,10 +9,10 @@
 @foreach(json_decode($order->body) as $item)
 | {{$item->name}} | {{$item->options->choice}} | {{number_format($item->price)}} | {{$item->qty}} |
 @endforeach
-|  |
+| |
 @endcomponent
 @component('mail::panel')
-# {{__('message.total')}} {{number_format($order->total)}} {{__('message.baht')}}
+**{{__('message.total')}} {{number_format($order->total)}} {{__('message.baht')}}** *{{__('message.discount')}} {{$order->discount}}*
 @endcomponent
 ##{{__('message.confirm_order')}}
 

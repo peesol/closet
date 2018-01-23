@@ -11,10 +11,8 @@ class PromotionController extends Controller
 {
     public function index(Request $request)
     {
-        $promotions = $request->user()->shop->availablePromotions;
-      return view('promotion.index', [
-        'promotions' => $promotions,
-      ]);
+      $promotions = $request->user()->shop->availablePromotions;
+      return view('promotion.index',['points' => $promotions]);
     }
     public function getShopPromotion(Request $request)
     {
@@ -22,6 +20,10 @@ class PromotionController extends Controller
       return response()->json($promotions);
     }
     //Discount Codes
+    public function codePage(Request $request)
+    {
+      return view('promotion.code');
+    }
     public function getCodes(Request $request)
     {
       $codes = $request->user()->shop->code;
@@ -56,10 +58,17 @@ class PromotionController extends Controller
       }
     }
     //Product Discount
+    public function discountPage(Request $request)
+    {
+      $promotions = $request->user()->shop->availablePromotions;
+      return view('promotion.discount', [
+        'promotions' => $promotions,
+      ]);
+    }
     public function getProduct(Request $request)
     {
-      $products = $request->user()->shop->product->where('discount_date', null);
-      $discount = $request->user()->shop->product->where('discount_date','!==', null);
+      $products = $request->user()->shop->product->where('discount_price', null);
+      $discount = $request->user()->shop->product->where('discount_price','!==', null);
       return response()->json([
         'products' => $products,
         'discount_products' => $discount

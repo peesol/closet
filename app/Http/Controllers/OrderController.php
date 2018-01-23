@@ -69,10 +69,11 @@ class OrderController extends Controller
       'title' => 'Order' . ' - ' . $request->sender_name . ' [' . date("d-m-Y", time()) . ']',
       'body' => json_encode($data),
       'total' => (int)str_replace(',', '', $request->total_price),
+      'discount' => $request->discount,
     ]);
     foreach ($request->products as $product) {
       $rowId = array_get($product, 'rowId');
-      Cart::remove($rowId);
+      //Cart::remove($rowId);
     }
     $order = Order::findOrFail($order->id);
 

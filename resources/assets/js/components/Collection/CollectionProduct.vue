@@ -12,7 +12,7 @@
                 </ul>
                                     <li><button @click.prevent="create = !create" class="create-col">{{$trans.translation.add_col}}</button></li>
                     <transition name="slide-down-col">
-                    <li class="col-add-li" v-show="create"><input class="col-add-input" type="text" v-model="col_name"><button @click.prevent="createCol">></button></li>
+                    <li class="col-add-li" v-show="create"><input class="col-add-input" type="text" v-model="col_name"><button @click.prevent="createCol"><span class="icon-checkmark grey-font"></span></button></li>
                     </transition>
             </div>
         </transition>

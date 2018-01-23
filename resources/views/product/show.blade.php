@@ -58,11 +58,9 @@
                             <p class="no-margin {{ $product->shipping_free ? 'not-display' : ''}}"><span class="font-bold grey-font">{{__('message.shipping_fee')}}</span> : {{ $product->shipping_fee ? $product->shipping_fee.'&nbsp;'.__('message.baht') : __('message.undefined') }}</p>
                             <p class="no-margin"><span class="font-bold grey-font">{{__('message.shipping_time')}}</span> : {{ $product->shipping_time ? $product->shipping_time.'&nbsp;'.__('message.days') : __('message.undefined') }}</p>
                         </div>
-
-                        <add-to-cart
-                        product-id="{{ $product->id }}"
-                        product-slug="{{ $product->uid }}">
-                      </add-to-cart>
+                        @if(Auth::user()->id !== $product->shop_id)
+                        <add-to-cart product-id="{{ $product->id }}" product-slug="{{ $product->uid }}"></add-to-cart>
+                        @endif
                     </div>
                 </div>
             </div>

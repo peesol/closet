@@ -73,7 +73,7 @@ export default {
       this.formVisible = id;
     },
     getProduct() {
-      this.$http.get(this.$root.url + '/profile/promotions/discount/product').then((response) => {
+      this.$http.get(this.$root.url + '/profile/promotions/manage/discount/product').then((response) => {
         this.products = response.data.products;
         this.discount_products = response.data.discount_products;
       });
@@ -82,7 +82,7 @@ export default {
       if (!confirm(this.$trans.translation.confirm + '?')) {
         return
       } else {
-        this.$http.put(this.$root.url + '/profile/promotions/discount/' + uid + '/add', {discount:this.discount}).then((response) => {
+        this.$http.put(this.$root.url + '/profile/promotions/manage/discount/' + uid + '/add', {discount:this.discount}).then((response) => {
           if (this.$root.promotions.discount === 0) {
             alert(this.$trans.translation.not_enough_points)
           } else {
@@ -98,7 +98,7 @@ export default {
       if (!confirm(this.$trans.translation.delete_confirm)) {
         return
       } else {
-        this.$http.put(this.$root.url + '/profile/promotions/discount/' + uid + '/delete').then((response) => {
+        this.$http.put(this.$root.url + '/profile/promotions/manage/discount/' + uid + '/delete').then((response) => {
             this.discount_products.splice(index, 1);
         });
       }

@@ -29,7 +29,9 @@
                         </ul>
                     </div>
             <div style="padding: 15px 45px;">
-
+              @if($shop->description)
+              <p>{!! nl2br(e($shop->description)) !!}</p>
+              @endif
                     @if ($showcases->count())
                         @foreach ($showcases as $showcase)
                           <div class="no-border-heading margin-bot-10px"><h3 class="no-margin">{{$showcase->name}}</h3></div>

@@ -74,12 +74,12 @@ export default {
   },
   methods: {
     getCodes() {
-      this.$http.get(this.$root.url + '/profile/promotions/code').then((response)=> {
+      this.$http.get(this.$root.url + '/profile/promotions/manage/code_get').then((response)=> {
         this.codes = response.body
       });
     },
     create() {
-      this.$http.post(this.$root.url + '/profile/promotions/code', {
+      this.$http.post(this.$root.url + '/profile/promotions/manage/code', {
         code: this.code,
         discount: this.discount,
         amount: this.amount,
@@ -95,7 +95,7 @@ export default {
       if(!confirm(this.$trans.translation.delete_confirm)){
         return
       }
-      this.$http.delete(this.$root.url + '/profile/promotions/code/' + id).then((response)=> {
+      this.$http.delete(this.$root.url + '/profile/promotions/manage/code/' + id).then((response)=> {
         this.codes.splice(index, 1)
         toastr.success(this.$trans.translation.success);
       }, (response) => {

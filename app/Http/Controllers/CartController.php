@@ -34,7 +34,6 @@ class CartController extends Controller
     }
     public function getCart()
     {
-      //Cart::destroy();
       $data = Cart::content()->toArray();
 
       return response()->json(array_values($data));
@@ -42,17 +41,10 @@ class CartController extends Controller
 
     public function getCartByShop()
     {
-
       $target = [];
       $data = Cart::content()->groupBy('options.shop_name');
 
       foreach ($data as $key => $value) {
-      $sum = [];
-        foreach ($value as $item) {
-          $sum[] = $item->price * $item->qty;
-          $item->subtotal = array_sum($sum);
-        }
-        //$item = array_add($value, 'total' , null);
         $target[$key] = $value;
       }
       return response()->json($target);
@@ -61,10 +53,6 @@ class CartController extends Controller
     public function userCart()
     {
       return view('cart.mycart');
-    }
-    public function checkout()
-    {
-      return view('cart.checkout');
     }
 
     public function updateQty(Request $request)
