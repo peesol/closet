@@ -77,15 +77,14 @@ class OrderController extends Controller
     }
     $order = Order::findOrFail($order->id);
 
-    $reciever_email = User::where('id', $order->reciever_id)->first()->email;
-    $reciever = User::find($order->reciever_id)->country;
-    if ($reciever == 'ไทย') {
+    $reciever = User::find($order->reciever_id);
+    if ($reciever->country == 'ไทย') {
       $locale = 'th';
     } else {
       $locale = 'en';
     }
 
-    Mail::to($reciever_email)->queue(new Ordering($order, $locale));
+    Mail::to($reciever->email)->queue(new Ordering($order, $locale));
 
     return response()->json($locale);
   }
@@ -97,9 +96,14 @@ class OrderController extends Controller
       'shipping_fee' => $request->shipping_fee ? $request->shipping_fee : null,
     ]);
     $accounts = Account::where('shop_id', $order->reciever_id)->get();
-    $locale = App::getLocale();
+    $sender = User::find($order->sender_id);
+    if ($sender->country == 'ไทย') {
+      $locale = 'th';
+    } else {
+      $locale = 'en';
+    }
 
-    Mail::to(User::where('id', $order->sender_id)->first()->email)->queue(new OrderConfirmed($order, $accounts, $locale));
+    Mail::to($sender->email)->queue(new OrderConfirmed($order, $accounts, $locale));
 
     return response()->json(null, 200);
   }
@@ -123,8 +127,13 @@ class OrderController extends Controller
       'address' => $request->address,
       'phone' => $request->phone,
     ];
-    $locale = App::getLocale();
-    Mail::to(User::where('id', $order->reciever_id)->first()->email)->queue(new TransactionConfirmed($order, $data, $locale));
+    $reciever = User::find($order->$reciever_id);
+    if ($reciever->country == 'ไทย') {
+      $locale = 'th';
+    } else {
+      $locale = 'en';
+    }
+    Mail::to($reciever->email)->queue(new TransactionConfirmed($order, $data, $locale));
     return view('order.after.transaction');
   }
   public function transactionConfirmEmail(Order $order, Request $request)
@@ -137,8 +146,13 @@ class OrderController extends Controller
       'address' => $request->address,
       'phone' => $request->phone,
     ];
-    $locale = App::getLocale();
-    Mail::to(User::where('id', $order->reciever_id)->first()->email)->queue(new TransactionConfirmed($order, $data, $locale));
+    $reciever = User::find($order->$reciever_id);
+    if ($reciever->country == 'ไทย') {
+      $locale = 'th';
+    } else {
+      $locale = 'en';
+    }
+    Mail::to($reciever->email)->queue(new TransactionConfirmed($order, $data, $locale));
     return view('order.after.transaction');
   }
 
@@ -149,8 +163,13 @@ class OrderController extends Controller
       'carrier' => $request->carrier,
       'tracking_number' => $request->tracking_number,
     ];
-    $locale = App::getLocale();
-    Mail::to('scomusicrusted@gmail.com')->send(new OrderShipped($order, $data, $locale));
+    $sender = User::find($order->$sender_id);
+    if ($sender->country == 'ไทย') {
+      $locale = 'th';
+    } else {
+      $locale = 'en';
+    }
+    Mail::to($sender->email)->send(new OrderShipped($order, $data, $locale));
     return;
   }
   public function confirmShippingEmail(Order $order, Request $request)
@@ -160,8 +179,13 @@ class OrderController extends Controller
       'carrier' => $request->carrier,
       'tracking_number' => $request->tracking_number,
     ];
-    $locale = App::getLocale();
-    Mail::to('scomusicrusted@gmail.com')->send(new OrderShipped($order, $data, $locale));
+    $sender = User::find($order->$sender_id);
+    if ($sender->country == 'ไทย') {
+      $locale = 'th';
+    } else {
+      $locale = 'en';
+    }
+    Mail::to($sender->email)->send(new OrderShipped($order, $data, $locale));
     return view('order.after.confirmed');
   }
 }
