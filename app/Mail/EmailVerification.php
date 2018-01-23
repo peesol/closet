@@ -22,7 +22,6 @@ class EmailVerification extends Mailable
     {
         $this->user = $user;
         $this->locale = $locale;
-        $this->subject = __('message.email_verification_subject');
     }
 
     /**
@@ -36,6 +35,6 @@ class EmailVerification extends Mailable
         return $this->markdown('email.markdown.verifyemail')->with([
         'email_token' => $this->user->email_token,
         'name' => $this->user->name,
-        ]);
+        ])->subject(__('message.email_verification_subject'));
     }
 }

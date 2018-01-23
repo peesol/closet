@@ -23,7 +23,6 @@ class Ordering extends Mailable
     {
         $this->order = $order;
         $this->locale = $locale;
-        $this->subject = __('message.ordering_subject').' '.$this->order->sender.' ['. $this->order->created_at->format('d-m-Y') .']';
     }
 
     /**
@@ -34,6 +33,6 @@ class Ordering extends Mailable
     public function build()
     {
         app()->setLocale($this->locale);
-        return $this->markdown('email.order.ordering');
+        return $this->markdown('email.order.ordering')->subject(__('message.ordering_subject').' '.$this->order->sender.' ['. $this->order->created_at->format('d-m-Y') .']');
     }
 }

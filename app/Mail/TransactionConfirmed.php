@@ -24,7 +24,6 @@ class TransactionConfirmed extends Mailable
       $this->order = $order;
       $this->data = $data;
       $this->locale = $locale;
-      $this->subject = __('message.transaction_subject').' '.$this->order->sender.' ['. $this->order->updated_at->format('d-m-Y') .']';
     }
 
     /**
@@ -35,6 +34,6 @@ class TransactionConfirmed extends Mailable
     public function build()
     {
       app()->setLocale($this->locale);
-      return $this->markdown('email.order.transaction');
+      return $this->markdown('email.order.transaction')->subject(__('message.transaction_subject').' '.$this->order->sender.' ['. $this->order->updated_at->format('d-m-Y') .']');
     }
 }

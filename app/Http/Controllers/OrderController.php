@@ -78,12 +78,16 @@ class OrderController extends Controller
     $order = Order::findOrFail($order->id);
 
     $reciever_email = User::where('id', $order->reciever_id)->first()->email;
-
-    $locale = App::getLocale();
+    $reciever = User::find($order->reciever_id)->country;
+    if ($reciever == 'ไทย') {
+      $locale = 'th';
+    } else {
+      $locale = 'en';
+    }
 
     Mail::to($reciever_email)->queue(new Ordering($order, $locale));
 
-    return response()->json($reciever_email);
+    return response()->json($locale);
   }
   public function confirm(Order $order, Request $request)
   {

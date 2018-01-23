@@ -13,7 +13,7 @@
 @endcomponent
 @component('mail::panel')
 
-**{{__('message.total')}} {{number_format($order->total)}} {{__('message.baht')}}** *{{__('message.discount')}} {{$order->discount}}*
+**{{__('message.total')}} {{number_format($order->total)}} {{__('message.baht')}}** @if($order->discount)*{{__('message.discount')}} {{$order->discount}}*@endif
 ### {{__('message.shipping_fee')}} : {{$order->shipping_fee ? number_format($order->shipping_fee).' '.__('message.baht') : __('message.free_shipping') }}
 #{{__('message.total_price')}} {{number_format($order->total + $order->shipping_fee)}} {{__('message.baht')}}
 

@@ -24,7 +24,6 @@ class OrderShipped extends Mailable
       $this->order = $order;
       $this->data = $data;
       $this->locale = $locale;
-      $this->subject = __('message.shipped_subject', ['name' => $this->order->reciever]).' ['. $this->order->updated_at->format('d-m-Y') .']';
     }
 
     /**
@@ -35,6 +34,6 @@ class OrderShipped extends Mailable
     public function build()
     {
       app()->setLocale($this->locale);
-      return $this->markdown('email.order.shipped');
+      return $this->markdown('email.order.shipped')->subject(__('message.shipped_subject', ['name' => $this->order->reciever]).' ['. $this->order->updated_at->format('d-m-Y') .']');
     }
 }

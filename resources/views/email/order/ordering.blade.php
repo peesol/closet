@@ -12,7 +12,7 @@
 | |
 @endcomponent
 @component('mail::panel')
-**{{__('message.total')}} {{number_format($order->total)}} {{__('message.baht')}}** *{{__('message.discount')}} {{$order->discount}}*
+**{{__('message.total')}} {{number_format($order->total)}} {{__('message.baht')}}** @if($order->discount)*{{__('message.discount')}} {{$order->discount}}*@endif
 @endcomponent
 ##{{__('message.confirm_order')}}
 

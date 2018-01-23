@@ -24,7 +24,6 @@ class OrderConfirmed extends Mailable
         $this->order = $order;
         $this->locale = $locale;
         $this->accounts = $accounts;
-        $this->subject = __('message.confirmed_order_subject', ['name' => $this->order->reciever]). ' ['. $this->order->updated_at->format('d-m-Y') .']';
     }
 
     /**
@@ -35,6 +34,7 @@ class OrderConfirmed extends Mailable
     public function build()
     {
       app()->setLocale($this->locale);
-      return $this->markdown('email.order.confirmed');
+      return $this->markdown('email.order.confirmed')
+      ->subject(__('message.confirmed_order_subject', ['name' => $this->order->reciever]). ' ['. $this->order->updated_at->format('d-m-Y') .']');
     }
 }
