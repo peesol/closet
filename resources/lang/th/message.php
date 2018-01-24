@@ -20,6 +20,14 @@ return [
     'register' => 'สมัครสมาชิก',
     'register_name' => 'ชื่อ นามสกุล',
     'register_shop' => 'ชื่อตู้ของฉัน',
+    'gender' => 'เพศ',
+    'men' => 'ชาย',
+    'women' => 'หญิง',
+    //tooltip
+    'shop_name_tip' => 'เป็นชื่อร้านหรือชื่อโปรไฟล์ของคุณ',
+    'shop_name_placeholder' => 'ตัวเลขหรือตัวอักษรอย่างน้อย 6 ตัว แต่ไม่เกิน 50',
+    'password_placeholder' => 'ตัวเลขหรือตัวอักษรอย่างน้อย 8 ตัว แต่ไม่เกิน 20',
+    'address_tip' => 'ข้อมูลนี้จะถูกใช้ในขั้นตอนการสั่งซื้อสินค้า',
     //Verification Email
     'success' => 'สำเร็จ',
     'email_verification_subject' => 'การยืนยันอีเมล',

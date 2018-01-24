@@ -55,10 +55,11 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => 'required|max:255',
-            'shop_name' => 'required|max:50|unique:shops,name',
+            'shop_name' => 'required|min:6|max:50|unique:shops,name|alpha_num',
             'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|min:6|confirmed',
+            'password' => 'required|min:8|max:20|confirmed|alpha_num',
             'address' => 'required',
+            'gender' => 'required',
         ]);
     }
 
@@ -78,6 +79,7 @@ class RegisterController extends Controller
             'address' => $data['address'],
             'phone' => $data['phone'],
             'country' => 'ไทย',
+            'gender' => $data['gender'],
         ]);
 
         $shop = $user->shop()->create([
@@ -102,8 +104,12 @@ class RegisterController extends Controller
     public function register(Request $request)
         {
             $this->validator($request->all())->validate();
-            $locale = App::getLocale();
             event(new Registered($user = $this->create($request->all())));
+            if($user->country == 'ไทย') {
+              $locale = 'th';
+            } else {
+              $locale = 'en';
+            }
             Mail::to($user->email)->queue(new EmailVerification($user, $locale));
 
             return view('email.verification');
