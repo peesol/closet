@@ -70,15 +70,16 @@ window.Closet = {
                                     </label>
                                 </div>
 
-                                <button type="submit" class="login-btn">
-                                    {{__('message.login')}}
-                                </button>
+                                <button type="submit" class="login-btn">{{__('message.login')}}</button>
 
-                                <a class="forgot-password" href="{{ route('password.request') }}">
-                                    {{__('message.forgot_password')}}
-                                </a>
+                                <a class="forgot-password" href="{{ route('password.request') }}">{{__('message.forgot_password')}}</a>
                             </div>
                    </form>
+            </div>
+            <div id="full-line"></div>
+            <div class="panel-body">
+              <p>{{__('auth.register')}}<a class="link-text" href="{{ route('register')}}">{{__('message.register')}}</a></p>
+              <p>{{__('auth.verify')}}<a class="link-text" href="{{ route('resendEmail')}}">{{__('auth.resend')}}</a></p>
             </div>
         </div>
     </div>

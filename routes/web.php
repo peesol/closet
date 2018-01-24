@@ -3,6 +3,8 @@
 Auth::routes();
 
 Route::get('register/verify/{token}', 'Auth\RegisterController@verify');
+Route::get('register/email/resend', 'Auth\RegisterController@resendEmailPage')->name('resendEmail');
+Route::post('register/email/resend', 'Auth\RegisterController@resendEmail')->name('resendEmailPost');
 
 Route::get('/', 'HomeController@index');
 Route::get('/shops', 'HomeController@shops');
@@ -32,7 +34,7 @@ Route::get('/product/used/{product}/comments', 'UsedCommentController@index');
 Route::get('/category_ajax/get_category', 'ProductController@getCategory');
 Route::get('/category_ajax/get_subcategory/{categoryId}', 'ProductController@getSubcategory');
 Route::get('/category_ajax/get_type/{subcategoryId}', 'ProductController@getType');
-Route::get('/category/main', 'CategoryController@main');
+Route::get('/category/main', 'CategoryController@main')->name('categoryMain');
 Route::get('/category/{category}', 'CategoryController@category');
 
 

@@ -15,11 +15,9 @@ class CreateFlashSalesTable extends Migration
     {
         Schema::create('flash_sales', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('shop_id');
-            $table->integer('product_id');
+            $table->integer('product_id')->unsigned();
             $table->integer('price');
 
-            $table->foreign('shop_id')->references('id')->on('shops')->onDelete('cascade');
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->timestamps();
         });

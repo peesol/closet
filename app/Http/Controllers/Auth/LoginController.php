@@ -46,5 +46,5 @@ class LoginController extends Controller
             'verified' => 1,
         ];
     }
-    
+
 }

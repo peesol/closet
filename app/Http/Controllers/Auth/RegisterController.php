@@ -2,6 +2,8 @@
 
 namespace Closet\Http\Controllers\Auth;
 
+use Mail;
+use App;
 use Closet\Models\User;
 use Closet\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -9,8 +11,6 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Closet\Jobs\SendVerificationEmail;
-use Mail;
-use App;
 use Closet\Mail\EmailVerification;
 
 class RegisterController extends Controller
@@ -129,4 +129,30 @@ class RegisterController extends Controller
                 return view('email.success',['user'=>$user]);
             }
         }
+    public function resendEmailPage()
+    {
+      return view('auth.email.resend');
+    }
+    public function resendEmail(Request $request)
+    {
+      $user = User::where('email', $request->email)->first();
+
+      if($user) {
+        if ($user->verified == false) {
+          if($user->country == 'ไทย') {
+            $locale = 'th';
+          } else {
+            $locale = 'en';
+          }
+          Mail::to($user->email)->queue(new EmailVerification($user, $locale));
+          return view('email.verification');
+
+        } else {
+          return view('auth.email.resend', ['message' => __('auth.verified')]);
+        }
+      } else {
+        return view('auth.email.resend', ['message' => __('auth.failed')]);
+      }
+
+    }
 }

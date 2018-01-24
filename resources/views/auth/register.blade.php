@@ -20,8 +20,8 @@
 
                         <div class="form-group">
                           <label for="gender">{{__('message.gender')}}</label>
-                          <input type="radio" name="gender" value="men"><font>&nbsp;{{__('message.men')}}</font>
-                          <input type="radio" name="gender" value="women"><font>&nbsp;{{__('message.women')}}</font>
+                          <input required type="radio" name="gender" value="men"><font>&nbsp;{{__('message.men')}}</font>
+                          <input required type="radio" name="gender" value="women"><font>&nbsp;{{__('message.women')}}</font>
                         </div>
 
                         <div class="form-group{{ $errors->has('shop_name') ? ' has-error' : '' }}">

@@ -15,37 +15,44 @@ class TranslationTableSeeder extends Seeder
                 [
                 	'category_id' => '1',
                 	'language' => 'th',
-                	'name' => 'ผู้ชาย'
+                	'name' => 'ผู้ชาย',
+                  'slug' => 'men'
                 ],
                 [
                 	'category_id' => '2',
                 	'language' => 'th',
-                	'name' => 'ผู้หญิง'
+                	'name' => 'ผู้หญิง',
+                  'slug' => 'women'
                 ],
                 [
                 	'category_id' => '3',
                 	'language' => 'th',
-                	'name' => 'กระเป๋า'
+                	'name' => 'กระเป๋า',
+                  'slug' => 'bags_luggage'
                 ],
                 [
                 	'category_id' => '4',
                 	'language' => 'th',
-                	'name' => 'เครื่องสำอาง'
+                	'name' => 'เครื่องสำอาง',
+                  'slug' => 'cosmetics'
                 ],
                 [
                 	'category_id' => '5',
                 	'language' => 'th',
-                	'name' => 'ดูแลผิว'
+                	'name' => 'ดูแลผิว',
+                  'slug' => 'skincare'
                 ],
                 [
                 	'category_id' => '6',
                 	'language' => 'th',
-                	'name' => 'ผลิตภัณฑ์เกี่ยวกับเส้นผม'
+                	'name' => 'ผลิตภัณฑ์เกี่ยวกับเส้นผม',
+                  'slug' => 'hair'
                 ],
                 [
                 	'category_id' => '7',
                 	'language' => 'th',
-                	'name' => 'ของใช้ส่วนตัว'
+                	'name' => 'ของใช้ส่วนตัว',
+                  'slug' => 'personal_care'
                 ],
 
         ]);

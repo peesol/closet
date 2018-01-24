@@ -20,7 +20,7 @@ class CreateCategoryTranslationTable extends Migration
             $table->integer('category_type_id')->unsigned()->nullable();
             $table->char('language', 2);
             $table->string('name');
-            $table->timestamps();
+            $table->string('slug', 45)->nullable();
 
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->foreign('subcategory_id')->references('id')->on('subcategories')->onDelete('cascade');
