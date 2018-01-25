@@ -161,21 +161,6 @@ width: auto;
 .p-carousel-margin{
     margin-right: 10px;
 }
-.col-wrap {
-    width: 200px;
-    height: 210px;
-    margin-bottom: 10px;
-    display: inline-block;
-}
-.col-wrap-owner {
-    width: 200px;
-    height: 270px;
-    margin-bottom: 10px;
-    display: inline-block;
-}
-.col-margin {
-    margin: 0 auto;
-}
 .add-col-panel{
     width: 100%;
     height: auto;
@@ -198,7 +183,6 @@ width: auto;
     border-bottom:3px solid #ff8000;
     transition: all 0.30s;
 }
-
 .col-select{
     border: 1px solid #b5b5b5;
     height: 40px;
@@ -270,9 +254,6 @@ width: auto;
     .s-products-margin {
     margin: 0 23px 10px 23px;
     }
-    .col-margin {
-    margin: 0 18px 10px 18px;
-    }
     .add-col-panel{
     width: 400px;
     height: auto;
@@ -326,9 +307,6 @@ width: auto;
     .s-products-margin {
     margin: 0 11.25px 10px 11.25px;
     }
-    .col-margin {
-    margin: 0 7.5px 10px 7.5px;
-    }
 }
 @media (min-width: 1200px) {
     .shop-panel {
@@ -342,9 +320,6 @@ width: auto;
     }
     .s-products-margin {
     margin: 0 33.75px 10px 33.75px;
-    }
-    .col-margin{
-    margin: 0 30px 10px 30px;
     }
 }
 

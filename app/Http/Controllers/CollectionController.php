@@ -13,14 +13,14 @@ use Closet\Transformer\{CollectionTransformer, CollectionImageTransformer, Colle
 
 class CollectionController extends Controller
 {
-
+    public function myCollection(Request $request)
+    {
+      $collection = $request->user()->collections;
+      return view('collection.mycollection', ['collections' => $collection]);
+    }
     public function index(Collection $collection)
     {
-      return view('collection.show', [
-
-        'collection' => $collection,
-
-        ]);
+      return view('collection.show', ['collection' => $collection]);
     }
     public function collectionAjax(Request $request, Shop $shop)
     {

@@ -32664,12 +32664,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	data() {
 		return {
 			collections: [],
 			formVisible: false,
+			trans: this.$trans,
 			name: null,
 			description: null,
 			visibility: null,
@@ -71059,8 +71064,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "show",
       rawName: "v-show",
-      value: (_vm.user_id == _vm.shop_user),
-      expression: "user_id == shop_user"
+      value: (_vm.user_id == _vm.shopUser),
+      expression: "user_id == shopUser"
     }],
     staticClass: "add-col-btn",
     on: {
@@ -71192,12 +71197,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "type": "submit"
     }
   }, [_vm._v(_vm._s(_vm.$trans.translation.create))])])])])])]), _vm._v(" "), (_vm.collections.length) ? _c('div', {
-    staticClass: "no-border-heading flex"
+    staticClass: "thumbnail-grid margin-top-10px"
   }, _vm._l((_vm.collections), function(collection, index) {
-    return _c('div', {
-      staticClass: "col-wrap-owner col-margin"
-    }, [_c('div', {
-      staticClass: "products-img"
+    return _c('div', {}, [_c('div', {
+      staticClass: "products-img",
+      staticStyle: {
+        "white-space": "nowrap"
+      }
     }, [_c('a', {
       staticClass: "link-text",
       attrs: {
@@ -71226,26 +71232,33 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       directives: [{
         name: "show",
         rawName: "v-show",
-        value: (_vm.user_id == _vm.shop_user),
-        expression: "user_id == shop_user"
-      }]
-    }, [_c('a', {
-      staticClass: "btn absolute margin-top-10px",
+        value: (_vm.user_id == _vm.shopUser),
+        expression: "user_id == shopUser"
+      }],
+      staticStyle: {
+        "padding": "10px 5px"
+      },
+      attrs: {
+        "id": "full-line"
+      }
+    }, [_c('button', {
+      staticClass: "round-btn edit-btn",
       attrs: {
         "href": '/collection/' + collection.slug + '/edit'
       }
-    }, [_vm._v(_vm._s(_vm.$trans.translation.edit))]), _vm._v(" "), _c('button', {
-      staticClass: "danger-btn absolute margin-top-10px",
-      staticStyle: {
-        "margin-left": "90px"
-      },
+    }, [_c('small', {
+      staticClass: "icon-cog"
+    })]), _vm._v(" "), _c('button', {
+      staticClass: "round-btn delete-btn",
       on: {
         "click": function($event) {
           $event.preventDefault();
           _vm.removeCol(collection.slug, index)
         }
       }
-    }, [_vm._v(_vm._s(_vm.$trans.translation.delete))])])])
+    }, [_c('small', {
+      staticClass: "icon-bin"
+    })])])])
   })) : _c('div', {
     staticStyle: {
       "padding": "10px 30px"

@@ -1,7 +1,7 @@
 <template>
 <div>
 <vue-progress-bar></vue-progress-bar>
-	<button v-show="user_id == shop_user" class="add-col-btn" @click.prevent="formVisible = !formVisible" >{{$trans.translation.add_col}}</button>
+	<button class="add-col-btn" @click.prevent="formVisible = !formVisible" v-show="user_id == shopUser">{{$trans.translation.add_col}}</button>
 	<transition name="slide-down">
 	<div id="add-collection" v-show="formVisible">
 		<div class="add-col-panel">
@@ -30,19 +30,23 @@
 	</div>
 	</transition>
 
-	<div class="no-border-heading flex" v-if="collections.length">
+	<div class="thumbnail-grid margin-top-10px" v-if="collections.length">
 
-			<div class="col-wrap-owner col-margin" v-for="(collection, index) in collections">
-				<div class="products-img">
+			<div class="" v-for="(collection, index) in collections">
+				<div class="products-img" style="white-space:nowrap;">
 					<a v-bind:href="'/collection/' + collection.slug" class="link-text"><h3 class="col-name">{{ collection.name }}</h3></a>
 					<a v-bind:href="'/collection/' + collection.slug">
 						<img class="products-img-thumb" v-bind:src="collection.thumbnail">
 					</a>
 					<span class="private icon-private" v-show="collection.visibility === 'private'"></span>
 				</div>
-				<div v-show="user_id == shop_user">
-					<a class="btn absolute margin-top-10px" v-bind:href="'/collection/' + collection.slug + '/edit'" >{{$trans.translation.edit}}</a>
-					<button class="danger-btn absolute margin-top-10px" style="margin-left:90px;" @click.prevent="removeCol(collection.slug, index)">{{$trans.translation.delete}}</button>
+				<div v-show="user_id == shopUser" style="padding: 10px 5px;" id="full-line">
+					<button class="round-btn edit-btn" v-bind:href="'/collection/' + collection.slug + '/edit'" >
+						<small class="icon-cog"></small>
+					</button>
+					<button class="round-btn delete-btn" @click.prevent="removeCol(collection.slug, index)">
+						<small class="icon-bin"></small>
+					</button>
 				</div>
 			</div>
 
@@ -59,6 +63,7 @@
 			return {
 				collections: [],
 				formVisible: false,
+				trans: this.$trans,
 				name: null,
 				description: null,
 				visibility:null,

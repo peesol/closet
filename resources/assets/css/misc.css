@@ -91,7 +91,6 @@ font-size: 18px;
 .danger-btn:hover {
   color: #ffffff;
   background: #fb4742;
-  padding: 10px 20px 10px 20px;
 }
 .delete-btn {
     border: none;

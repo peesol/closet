@@ -40,7 +40,7 @@ class Collection extends Model
     public function getImage()
     {
       if (!$this->thumbnail){
-        return config('closet.buckets.images') . '/collection/thumbnail/default.png';
+        return config('closet.buckets.images') . '/collection/thumbnail/default.jpg';
       }
 
       return config('closet.buckets.images') . '/collection/thumbnail/' . $this->thumbnail;

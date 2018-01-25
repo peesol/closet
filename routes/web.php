@@ -82,7 +82,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/order/sending', 'OrderController@store');
 
     Route::prefix('profile')->group(function () {
+      Route::get('/mycollection', 'CollectionController@myCollection')->name('myCollection');
       Route::get('/following', 'FollowingController@index')->name('following');
+
       //AJAX
       Route::get('/inbox_messages/selling', 'OrderController@getSellingInbox');
       Route::get('/inbox_messages/buying', 'OrderController@getBuyingInbox');

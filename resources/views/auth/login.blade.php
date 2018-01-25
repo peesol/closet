@@ -40,7 +40,7 @@ window.Closet = {
                    <form role="form" method="POST" action="{{ route('login') }}">
                     {{ csrf_field() }}
                         <div class="form-group {{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="form-label">{{__('message.email')}}</label>
+                            <label for="email" class="full-label">{{__('message.email')}}</label>
 
                                 <input id="email" type="email" class="form-input {{ $errors->has('email') ? ' error-input' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
 
@@ -52,7 +52,7 @@ window.Closet = {
                         </div>
 
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="form-label">{{__('message.password')}}</label>
+                            <label for="password" class="full-label">{{__('message.password')}}</label>
 
                                 <input id="password" type="password" class="form-input" name="password" required>
 
@@ -65,8 +65,9 @@ window.Closet = {
 
                             <div class="submit-group">
                                 <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}>{{__('message.remember')}}
+                                    <label class="full-label">
+                                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}>
+                                        <font class="font-light">{{__('message.remember')}}</font>
                                     </label>
                                 </div>
 

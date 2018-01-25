@@ -65,9 +65,9 @@
                 <p id="alt-cat">{{__('message.account')}}</p>
                 <a href="{{ route('login') }}">{{__('message.login')}}</a>
                 <a href="{{ route('register') }}">{{__('message.register')}}</a>
-                <a id="cat" href="" >{{__('message.categories')}}</a>
+                <a id="cat" href="{{route('categoryMain')}}" >{{__('message.categories')}}</a>
                         @foreach($categories as $category)
-                          <a href="#">{{$category->name}}</a>
+                          <a href="{{ url('/category/'.$category->slug) }}">{{$category->name}}</a>
                         @endforeach
                 <p id="alt-cat">{{__('message.language')}}</p>
                 <language-select language="{{ App::getLocale() }}"></language-select>
@@ -78,7 +78,7 @@
                 <a href="#"><span class="icon-front-store"></span>&nbsp;{{__('message.shops')}}</a>
                 <p id="alt-cat">{{__('message.account')}}</p>
                 <a href="#"><span class="icon-user"></span>&nbsp;{{__('message.my_closet')}}</a>
-                <a href="#"><span class="icon-bookmarks"></span>&nbsp;{{__('message.collections')}}</a>
+                <a href="{{route('myCollection')}}"><span class="icon-bookmarks"></span>&nbsp;{{__('message.collections')}}</a>
                 <a href="{{route('promotionEdit')}}"><span class="icon-price-tag"></span>&nbsp;{{__('message.promotions')}}</a>
                 <a href="{{ url('/profile/following') }}"><span class="icon-star-full"></span>&nbsp;{{__('message.following')}}</a>
                 <a href="{{ route('sellingOrder') }}"><span class="icon-order"></span>&nbsp;{{__('message.orders')}}</a>

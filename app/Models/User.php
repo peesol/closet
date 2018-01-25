@@ -44,15 +44,15 @@ class User extends Authenticatable
     {
       return $this->hasManyThrough(Product::class, Shop::class);
     }
+    public function collections()
+    {
+      return $this->hasManyThrough(Collection::class, Shop::class);
+    }
 
     public function showcase()
     {
       return $this->hasManyThrough(Showcase::class, Shop::class)->orderBy('order', 'asc');
     }
-    // public function availablePromotions()
-    // {
-    //   return $this->hasOne(ShopPromotion::class);
-    // }
     public function used()
     {
       return $this->hasManyThrough(UsedProduct::class, Shop::class);
