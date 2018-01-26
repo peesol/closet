@@ -96,11 +96,11 @@
 }
 .slick-prev:before
 {
-    content: '\e903';
+    content: '\e902';
 }
 [dir='rtl'] .slick-prev:before
 {
-    content: '\e903';
+    content: '\e902';
 }
 
 .slick-next
@@ -115,11 +115,11 @@
 }
 .slick-next:before
 {
-    content: '\e905';
+    content: '\e903';
 }
 [dir='rtl'] .slick-next:before
 {
-    content: '\e905';
+    content: '\e903';
 }
 
 @media (min-width: 768px) {

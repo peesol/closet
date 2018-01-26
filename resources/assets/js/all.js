@@ -42,7 +42,7 @@ if(window.Closet.user.user !== null){
         queryTokenizer: Bloodhound.tokenizers.whitespace,
         remote: {
             wildcard: '%QUERY%',
-            url: "http://closet.app:8000/search/by/%QUERY%",
+            url: window.Closet.url + "/search/by/%QUERY%",
                 transform: function(response) {
                     return $.map(response, function(products) {
                         return { value: products.name };

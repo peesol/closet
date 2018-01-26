@@ -13,7 +13,22 @@ const { mix } = require('laravel-mix');
 mix.js([
 	'resources/assets/js/all.js',
 	'resources/assets/js/app.js',
-	], 'public/js/main.js');
+], 'public/js/main.js').extract([
+	'vue',
+	'jquery',
+	'cleave.js',
+	'axios',
+	'vuex',
+	'dropzone',
+	'numeral',
+	'vue-resource',
+	'vee-validate',
+	'vue-clickaway',
+	'vue-js-modal',
+	'vue-progressbar',
+	'vue-router',
+	'vuedraggable',
+], 'public/js/vendor.js');
 
 mix.styles([
 	'resources/assets/css/general.css',

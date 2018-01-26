@@ -14,10 +14,19 @@ require('./bootstrap');
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
+ Vue.http.interceptors.push((request, next) => {
+     request.headers.set('X-CSRF-TOKEN', Laravel.csrfToken);
+     next();
+ });
 
-Vue.use(require('vue-resource'))
-Vue.use(require('vee-validate'))
-Vue.use(require('numeral'))
+import VueValidate from 'vee-validate'
+Vue.use(VueValidate)
+
+import VueResource from 'vue-resource'
+Vue.use(VueResource)
+
+import Vuex from 'vuex'
+Vue.use(Vuex)
 
 import VModal from 'vue-js-modal'
 Vue.use(VModal)
@@ -30,9 +39,6 @@ Vue.use(VueProgressBar, {
 });
 
 import router from './router'
-
-import Vuex from 'vuex'
-Vue.use(Vuex)
 
 const mutations = require('./store/mutations');
 const actions = require('./store/actions');
@@ -63,10 +69,7 @@ window.addEventListener('load', function () {
   });
 });
 
-Vue.http.interceptors.push((request, next) => {
-    request.headers.set('X-CSRF-TOKEN', Laravel.csrfToken);
-    next();
-});
+
 
 Vue.component('product-vote', require('./components/Product/ProductVote.vue'));
 Vue.component('product-comment', require('./components/Product/ProductComment.vue'));
