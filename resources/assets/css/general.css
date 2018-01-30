@@ -289,6 +289,7 @@ label {
     overflow: hidden;
 }
 .product-p {
+    font-family: 'Roboto','Arial';
     font-size: .9em;
     line-height: 17px;
     margin: 0;
@@ -318,6 +319,13 @@ span.discount-price {
   background: #4aae2a;
   color: white;
   opacity: 0.8;
+}
+span.caution, button.caution{
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  padding: 5px;
+  background: #fdc930;
 }
 span.private{
     position: absolute;

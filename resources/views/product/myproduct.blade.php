@@ -42,7 +42,7 @@
                                 <span class="private icon-private" style="font-size:25px;"></span>
                                 @endif
                             </div>
-                            <h3 class="product-name"><a class="link-text" href="/product/{{ $product->uid}}">{{ $product->name }}</a></h3>
+                            <h4 class="product-name"><a class="link-text" href="/product/{{ $product->uid}}">{{ $product->name }}</a></h4>
                             <div class="product-detail-wrap">
                             @if (!$product->discount_price)
                             <p class="product-p">{{__('message.price')}} : {{ number_format($product->price) }}&#3647;</p>
@@ -64,22 +64,21 @@
 
                             <form action="/product/{{ $product->uid}}" method="post">
 
-                            <a href="/product/{{ $product->uid}}/edit" class="btn" style="margin:10px 0 0 0; position:absolute; bottom:0;">{{__('message.edit')}}</a>
+                            <button type="button" onclick='document.location.href="/product/{{ $product->uid}}/edit"' class="edit-btn round-btn">
+                              <small class="icon-cog"></small>
+                            </button>
 
-                            <button type="submit" class="danger-btn" style="margin:10px 0 0 80px; position:absolute; bottom:0;">{{__('message.delete')}}</button>
+                            <button type="submit" class="delete-btn round-btn" >
+                              <small class="icon-bin"></small>
+                            </button>
 
                             {{ csrf_field() }}
                             {{ method_field('DELETE') }}
                             </form>
 
-
-
                             </div>
 
-
-
                     	@endforeach
-
 
                     @else
 
@@ -94,7 +93,7 @@
             </div>
 </div>
 <script>
-    $(".danger-btn").click(function() {
+    $(".delete-btn").click(function() {
             if(confirm('Are you sure you want to delete this?')){
                 return true;
             }

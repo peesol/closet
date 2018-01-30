@@ -41,7 +41,7 @@ class UsedUpload implements ShouldQueue
     {
       if($this->thumbnail) {
         $file = storage_path() . '/uploads/used/thumbnail/' . $this->thumbnail;
-        $img = Image::make($file)->encode('jpg')->fit(200, 200, function ($c) {
+        $img = Image::make($file)->encode('jpg')->fit(160, 160, function ($c) {
             $c->upsize();
         });
         $img = $img->stream();

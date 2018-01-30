@@ -6,6 +6,7 @@ use Storage;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Closet\Jobs\Product\UsedUpload;
+use Closet\Jobs\Images\DeleteImage;
 use Closet\Models\{UsedProduct,UsedProductImage};
 
 class UsedController extends Controller

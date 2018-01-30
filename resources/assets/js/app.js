@@ -69,8 +69,6 @@ window.addEventListener('load', function () {
   });
 });
 
-
-
 Vue.component('product-vote', require('./components/Product/ProductVote.vue'));
 Vue.component('product-comment', require('./components/Product/ProductComment.vue'));
 Vue.component('product-edit', require('./components/Product/ProductEdit.vue'));

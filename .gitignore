@@ -1,4 +1,7 @@
 /node_modules
+/app/Http/Controllers/Test
+/resources/views/test
+/resources/assets/js/components/Test.vue
 /public/storage
 /public/hot
 /storage/*.key

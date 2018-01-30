@@ -203,4 +203,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/collection/{collectionId}/add/{productId}', 'CollectionController@storeProduct');
     Route::delete('/collection/{collectionId}/delete/{productId}', 'CollectionController@deleteProduct');
     Route::get('/collection_ajax/{shop}/add/{productId}', 'CollectionController@getAddCollection');
+
+    // Route::get('/test/upload', 'Test\Test@index');
+    // Route::post('/test/upload/test', 'Test\Test@upload');
 });

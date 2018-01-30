@@ -26,12 +26,15 @@
 
                             <div class="my-products-wrap">
                             <div class="products-img">
+                              <button class="caution round-btn">
+                                <span class="icon-refresh"></span>
+                              </button>
                                 <a href="/product/used/{{$product->uid}}">
                                 <img class="products-img-thumb" src="{{$product->getImage()}}" alt="{{$product->thumbnail}}">
                                 </a>
                             </div>
 
-                            <h3 class="product-name"><a class="link-text" href="/product/used/{{ $product->uid}}">{{ $product->name }}</a></h3>
+                            <h4 class="product-name"><a class="link-text" href="/product/used/{{ $product->uid}}">{{ $product->name }}</a></h4>
                             <div class="product-detail-wrap">
                             <p class="product-p">{{__('message.price')}} : {{ number_format($product->price) }}</p>
                             <p class="product-p">{{ $product->category->showTranslate(App::getLocale())->name }}</p>
@@ -44,13 +47,13 @@
                             </div>
 
                             <form action="/product/used/{{ $product->uid}}" method="post">
-                            <button type="submit" class="danger-btn" style="margin:10px 0 0 0px; position:absolute; bottom:0;">{{__('message.delete')}}</button>
+                            <button type="submit" class="delete-btn round-btn" style="margin:10px 0 0 0px; position:absolute; bottom:0;">
+                              <small class="icon-bin"></small>
+                            </button>
 
                             {{ csrf_field() }}
                             {{ method_field('DELETE') }}
                             </form>
-
-
 
                             </div>
 
@@ -71,7 +74,7 @@
             </div>
 </div>
 <script>
-    $(".danger-btn").click(function() {
+    $(".delete-btn").click(function() {
             if(confirm('Are you sure you want to delete this?')){
                 return true;
             }

@@ -87,7 +87,8 @@
 </div>
 <script>
 $('.product-showcase').slick({
-    dots: true
+    dots: true,
+    lazyLoading: true
 });
 
 window.addEventListener('load', function () {

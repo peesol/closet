@@ -40,7 +40,7 @@
                               <span class="private icon-private" style="font-size:25px;"></span>
                               @endif
                           </div>
-                              <h3 class="product-name"><a class="link-text" href="/product/{{ $product->uid}}">{{ $product->name }}</a></h3>
+                              <h4 class="product-name"><a class="link-text" href="/product/{{ $product->uid}}">{{ $product->name }}</a></h4>
                           <div class="product-detail-wrap">
                             @if (!$product->discount_price)
                             <p class="product-p">{{__('message.price')}} : {{ number_format($product->price) }}&#3647;</p>

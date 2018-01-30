@@ -3239,16 +3239,6 @@ __WEBPACK_IMPORTED_MODULE_0_dropzone___default.a.autoDiscover = false;
   },
 
   methods: {
-    watchCategory: function watchCategory() {
-      if (this.category !== null) {
-        return this.getSubCategory(this.category);
-      }
-    },
-    watchSubcategory: function watchSubcategory() {
-      if (this.subcategory !== null && this.subcategory !== undefined) {
-        return this.getType(this.subcategory);
-      }
-    },
     getCategory: function getCategory() {
       var _this = this;
 
@@ -3256,29 +3246,33 @@ __WEBPACK_IMPORTED_MODULE_0_dropzone___default.a.autoDiscover = false;
         _this.categories = response.body;
       });
     },
-    getSubCategory: function getSubCategory(category) {
+    getSubcategory: function getSubcategory(category) {
       var _this2 = this;
 
-      this.$http.get(this.url + '/category_ajax/get_subcategory/' + category).then(function (response) {
-        _this2.subcategory = null;
-        _this2.subcategories = response.body;
-        _this2.type = null;
-        _this2.types = [];
-      });
+      if (this.category !== null) {
+        return this.$http.get(this.url + '/category_ajax/get_subcategory/' + category).then(function (response) {
+          _this2.subcategory = null;
+          _this2.subcategories = response.body;
+          _this2.type = null;
+          _this2.types = [];
+        });
+      }
     },
     getType: function getType(subcategory) {
       var _this3 = this;
 
-      this.$http.get(this.url + '/category_ajax/get_type/' + subcategory).then(function (response) {
-        _this3.types = response.body;
-        _this3.type = null;
-      });
+      if (this.subcategory !== null && this.subcategory !== undefined) {
+        this.$http.get(this.url + '/category_ajax/get_type/' + subcategory).then(function (response) {
+          _this3.types = response.body;
+          _this3.type = null;
+        });
+      }
     },
 
     initDropzone: function initDropzone() {
       self = this;
       self.$nextTick(function () {
-        self.image = new __WEBPACK_IMPORTED_MODULE_0_dropzone___default.a("#image", {
+        self.image = new __WEBPACK_IMPORTED_MODULE_0_dropzone___default.a('#image', {
           method: 'post',
           url: self.url + '/sell/product',
           autoProcessQueue: false,
@@ -3286,11 +3280,11 @@ __WEBPACK_IMPORTED_MODULE_0_dropzone___default.a.autoDiscover = false;
           parallelUploads: 7,
           maxFiles: 7,
           maxFilesize: 2,
-          acceptedFiles: '.jpg',
+          acceptedFiles: 'image/*',
           addRemoveLinks: true,
-          paramName: "image",
-          dictRemoveFile: "&times;",
-          dictCancelUpload: "&times;",
+          paramName: 'image',
+          dictRemoveFile: '&times;',
+          dictCancelUpload: '&times;',
           headers: { 'x-csrf-token': document.querySelectorAll('meta[name=csrf-token]')[0].getAttributeNode('content').value },
           init: function init() {
             this.on('addedfile', function (file) {
@@ -24511,7 +24505,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           return val
         });
         _vm.category = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
-      }, _vm.watchCategory]
+      }, function($event) {
+        _vm.getSubcategory(_vm.category)
+      }]
     }
   }, _vm._l((_vm.categories), function(category) {
     return _c('option', {
@@ -24559,7 +24555,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           return val
         });
         _vm.subcategory = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
-      }, _vm.watchSubcategory]
+      }, function($event) {
+        _vm.getType(_vm.subcategory)
+      }]
     }
   }, _vm._l((_vm.subcategories), function(subcategory) {
     return _c('option', {

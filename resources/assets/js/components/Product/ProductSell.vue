@@ -21,14 +21,14 @@
                         </div>
                         <div class="form-group">
                             <label class="full-label" for="category">{{$trans.translation.category}}</label>
-                            <select required class="select-input" v-model="category" @change="watchCategory">
+                            <select required class="select-input" v-model="category" @change="getSubcategory(category)">
                                 <option v-for="category in categories" :value="category.id">{{category.name}}</option>
                             </select>
                         </div>
                         <transition name="slide-down-input">
                         <div v-show="subcategories.length" class="form-group">
                             <label class="full-label" for="subcategory">{{$trans.translation.subcategory}}</label>
-                            <select required class="select-input" v-model.lazy="subcategory" @change="watchSubcategory">
+                            <select required class="select-input" v-model.lazy="subcategory" @change="getType(subcategory)">
                                 <option v-for="subcategory in subcategories" :value="subcategory.subcategory_id || subcategory.id">{{subcategory.name}}</option>
                             </select>
                         </div>
@@ -88,39 +88,33 @@ export default {
 		}
 	},
     methods: {
-      watchCategory: function () {
-        if (this.category !== null) {
-          return this.getSubCategory(this.category)
-        }
-      },
-      watchSubcategory: function () {
-        if (this.subcategory !== null && this.subcategory !== undefined) {
-          return this.getType(this.subcategory)
-        }
-      },
       getCategory() {
-              this.$http.get(this.url + '/category_ajax/get_category' ).then((response)=> {
-                      this.categories = response.body;
-              });
+          this.$http.get(this.url + '/category_ajax/get_category' ).then((response)=> {
+            this.categories = response.body;
+          });
       },
-      getSubCategory(category) {
-              this.$http.get(this.url + '/category_ajax/get_subcategory/' + category ).then((response)=> {
-                this.subcategory = null;
-                      this.subcategories = response.body;
-                      this.type = null;
-                      this.types = [];
-              });
+      getSubcategory(category) {
+        if (this.category !== null) {
+          return this.$http.get(this.url + '/category_ajax/get_subcategory/' + category ).then((response)=> {
+            this.subcategory = null;
+            this.subcategories = response.body;
+            this.type = null;
+            this.types = [];
+          });
+        }
       },
       getType(subcategory) {
-              this.$http.get(this.url + '/category_ajax/get_type/' + subcategory ).then((response)=> {
-                      this.types = response.body;
-                      this.type = null;
-              });
+        if (this.subcategory !== null && this.subcategory !== undefined) {
+          this.$http.get(this.url + '/category_ajax/get_type/' + subcategory ).then((response)=> {
+            this.types = response.body;
+            this.type = null;
+          });
+        }
       },
       initDropzone: function() {
             self = this;
             self.$nextTick(function() {
-            self.image = new Dropzone("#image", {
+            self.image = new Dropzone('#image', {
               method: 'post',
               url: self.url + '/sell/product',
               autoProcessQueue: false,
@@ -128,11 +122,11 @@ export default {
               parallelUploads: 7,
               maxFiles: 7,
               maxFilesize: 2,
-              acceptedFiles: '.jpg',
+              acceptedFiles: 'image/*',
               addRemoveLinks: true,
-              paramName: "image",
-              dictRemoveFile: "&times;",
-              dictCancelUpload: "&times;",
+              paramName: 'image',
+              dictRemoveFile: '&times;',
+              dictCancelUpload: '&times;',
               headers: {'x-csrf-token': document.querySelectorAll('meta[name=csrf-token]')[0].getAttributeNode('content').value,},
                 init: function() {
                   this.on('addedfile', function(file) {
