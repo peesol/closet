@@ -3,9 +3,9 @@
 <vue-progress-bar></vue-progress-bar>
 
                 <div style="padding: 0px 20px 30px;">
-                <li style="margin: 15px 0px;">{{$trans.translation.fill_every}}</li>
+                <li class="red-font font-bold" style="margin: 15px 0px;">{{$trans.translation.fill_every}}</li>
                 <li style="margin: 15px 0px;">{{$trans.translation.product_photo_limit}}</li>
-                <li style="margin: 15px 0px;">{{$trans.translation.used_notice}}</li>
+                <li style="margin: 15px 0px;">{{$trans.translation.product_photo_notice}}</li>
                     <form v-on:submit.prevent="submit" method="post">
                       <div class="dropzone" id="used"><div class="dz-message" data-dz-message><span>{{$trans.translation.upload_photo_guide}}</span></div></div>
                       <div style="width:100%; height:20px;"></div>
@@ -75,7 +75,7 @@ export default {
 			      price: null,
 			      description: null,
             url: window.Closet.url,
-            trans: this.$trans,
+            
             locale: window.Closet.locale,
 		}
 	},

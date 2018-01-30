@@ -86,6 +86,7 @@
 				replyBody: null,
 				replyFormVisible: null,
 				showReply: null,
+
 				url: window.Closet.url,
         user_id: window.Closet.user.user
 			}

@@ -25,6 +25,9 @@ const dictionary = {
     }
   },
   en: {
+    messages: {
+      required: 'This field is required.'
+    },
     attributes: {
       account_number: 'account number',
       account_name: 'account name',
@@ -38,7 +41,8 @@ const dictionary = {
 				langs: [],
 				lang: this.language,
 				url: window.Closet.url,
-				current_url: window.location.href
+				current_url: window.location.href,
+        trans: this.$trans
 			}
 		},
 

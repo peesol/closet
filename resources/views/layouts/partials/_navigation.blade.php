@@ -95,9 +95,5 @@
         </div>
     </div>
     <script>
-    window.addEventListener('load', function () {
-        var edit = new Vue({
-          el: '.left-side-menu'
-        });
-    });
+
     </script>

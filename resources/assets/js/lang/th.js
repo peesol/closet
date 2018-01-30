@@ -1,4 +1,4 @@
-export const th = {
+export default {
     sell: 'ขายสินค้า',
     product_name: 'ชื่อสินค้า',
     products: 'สินค้า',
@@ -74,6 +74,7 @@ export const th = {
     dropzone_null: 'ไม่มีอะไรให้อัพโหลด',
     fill_every: 'กรุณากรอกข้อมูลให้ครบทุกช่อง',
     product_photo_limit: 'คุณสามารถอัพโหลดรูปสินค้าได้สูงสุด 7 รูป',
+    product_photo_notice: 'รูปแรกจะถูกใช้เป็นภาพขนาดย่อของสินค้า',
     used_notice: 'สินค้ามือสองจะถูกลบโดยอัตโนมัติ 30 วัน หลังจากลงขาย',
     new: 'สินค้าใหม่',
     used: 'มือสอง',

@@ -551,14 +551,15 @@ module.exports = Component.exports
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function($) {Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vee_validate__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_resource__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuex__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vue_js_modal__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vue_js_modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_vue_js_modal__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vue_progressbar__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vue_progressbar___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_vue_progressbar__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__router__ = __webpack_require__(92);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__lang_translate__ = __webpack_require__(186);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vee_validate__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vue_resource__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vuex__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vue_js_modal__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vue_js_modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_vue_js_modal__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_vue_progressbar__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_vue_progressbar___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_vue_progressbar__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__router__ = __webpack_require__(92);
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -575,21 +576,28 @@ __webpack_require__(89);
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
+window.addEventListener('load', function () {
+  var language = new Vue({
+    el: '.left-side-menu'
+  });
+});
+
+Vue.use(__WEBPACK_IMPORTED_MODULE_0__lang_translate__["a" /* default */]);
 
 
-Vue.use(__WEBPACK_IMPORTED_MODULE_0_vee_validate__["default"]);
+Vue.use(__WEBPACK_IMPORTED_MODULE_1_vee_validate__["default"]);
 
 
-Vue.use(__WEBPACK_IMPORTED_MODULE_1_vue_resource__["default"]);
+Vue.use(__WEBPACK_IMPORTED_MODULE_2_vue_resource__["default"]);
 
 
-Vue.use(__WEBPACK_IMPORTED_MODULE_2_vuex__["default"]);
+Vue.use(__WEBPACK_IMPORTED_MODULE_3_vuex__["default"]);
 
 
-Vue.use(__WEBPACK_IMPORTED_MODULE_3_vue_js_modal___default.a);
+Vue.use(__WEBPACK_IMPORTED_MODULE_4_vue_js_modal___default.a);
 
 
-Vue.use(__WEBPACK_IMPORTED_MODULE_4_vue_progressbar___default.a, {
+Vue.use(__WEBPACK_IMPORTED_MODULE_5_vue_progressbar___default.a, {
   color: '#ff8300',
   failedColor: 'red',
   thickness: '5px'
@@ -600,7 +608,7 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_4_vue_progressbar___default.a, {
 var mutations = __webpack_require__(95);
 var actions = __webpack_require__(93);
 var getters = __webpack_require__(94);
-var store = new __WEBPACK_IMPORTED_MODULE_2_vuex__["default"].Store({
+var store = new __WEBPACK_IMPORTED_MODULE_3_vuex__["default"].Store({
   mutations: mutations,
   actions: actions,
   getters: getters,
@@ -615,6 +623,7 @@ Vue.http.interceptors.push(function (request, next) {
   next();
 });
 window.addEventListener('load', function () {
+
   var details = new Vue({
     el: '.product-details',
     store: store
@@ -668,29 +677,6 @@ Vue.component('confirm-trans', __webpack_require__(113));
 Vue.component('cant-sell', __webpack_require__(116));
 Vue.component('discount-code', __webpack_require__(127));
 Vue.component('product-discount', __webpack_require__(128));
-
-var english = __webpack_require__(90);
-var thai = __webpack_require__(91);
-var translations = {
-  translation: [],
-  translate: function translate(lang) {
-    if (lang === 'en') {
-      this.translation = english.en;
-    } else if (lang === 'th') {
-      this.translation = thai.th;
-    }
-  }
-};
-
-translations.install = function () {
-  Object.defineProperty(Vue.prototype, '$trans', {
-    get: function get() {
-      return translations;
-    }
-  });
-};
-
-Vue.use(translations);
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(4)))
 
 /***/ }),
@@ -785,7 +771,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 			},
 			code: [],
 			products: [],
-			trans: this.$trans,
+
 			url: window.Closet.url
 
 		};
@@ -1145,8 +1131,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			description: this.colDescription,
 			visibility: this.colVisibility,
 			url: window.Closet.url,
-			user_id: window.Closet.user.user,
-			trans: this.$trans
+			user_id: window.Closet.user.user
+
 		};
 	},
 
@@ -1256,8 +1242,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             formVisible: false,
             create: false,
             url: window.Closet.url,
-            user_id: window.Closet.user.user,
-            trans: this.$trans
+            user_id: window.Closet.user.user
+
         };
     },
 
@@ -1532,6 +1518,9 @@ var dictionary = {
     }
   },
   en: {
+    messages: {
+      required: 'This field is required.'
+    },
     attributes: {
       account_number: 'account number',
       account_name: 'account name'
@@ -1545,7 +1534,8 @@ var dictionary = {
       langs: [],
       lang: this.language,
       url: window.Closet.url,
-      current_url: window.location.href
+      current_url: window.location.href,
+      trans: this.$trans
     };
   },
 
@@ -1836,14 +1826,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       shipping_fee: null,
       index: null,
       translate: this.$trans,
-      url: window.Closet.url,
-      trans: this.$trans.translate(this.locale)
+      url: window.Closet.url
     };
   },
 
   props: {
-    uid: null,
-    locale: null
+    uid: null
   },
   methods: {
     confirm: function confirm(uid) {
@@ -1916,7 +1904,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       address: null,
       phone: null,
       name: null,
-      trans: this.$trans,
+
       url: window.Closet.url
     };
   },
@@ -2223,7 +2211,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 /* harmony default export */ __webpack_exports__["default"] = {
   data: function data() {
     return {
-      trans: this.$trans,
+
       url: window.Closet.url,
       product: [],
       choices: [],
@@ -2312,7 +2300,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             provider: null,
             number: null,
             name: null,
-            trans: this.$trans,
+
             url: window.Closet.url,
             locale: window.Closet.locale,
             options: [{ 'name': 'ธนาคารกรุงเทพ', 'code': 'BBL' }, { 'name': 'ธนาคารกสิกรไทย', 'code': 'KBANK' }, { 'name': 'ธนาคารกรุงไทย', 'code': 'KTB' }, { 'name': 'ธนาคารไทยพาณิชย์', 'code': 'SCB' }, { 'name': 'ธนาคารทหารไทย', 'code': 'TMB' }, { 'name': 'ธนาคารออมสิน', 'code': 'GSB' }, { 'name': 'ธนาคารกรุงศรีอยุธยา', 'code': 'BAY' }]
@@ -2402,8 +2390,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       name: null,
       status: null,
       url: window.Closet.url,
-      user_id: window.Closet.user.user,
-      trans: this.$trans
+      user_id: window.Closet.user.user
+
     };
   },
 
@@ -2554,6 +2542,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			replyBody: null,
 			replyFormVisible: null,
 			showReply: null,
+
 			url: window.Closet.url,
 			user_id: window.Closet.user.user
 		};
@@ -3069,8 +3058,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             description: this.productDescription,
             visibility: this.productVisibility,
             formVisible: false,
-            url: window.Closet.url,
-            trans: this.$trans
+            url: window.Closet.url
+
         };
     },
 
@@ -3216,6 +3205,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 __WEBPACK_IMPORTED_MODULE_0_dropzone___default.a.autoDiscover = false;
@@ -3233,7 +3223,7 @@ __WEBPACK_IMPORTED_MODULE_0_dropzone___default.a.autoDiscover = false;
       description: null,
       visibility: null,
       url: window.Closet.url,
-      trans: this.$trans,
+
       locale: window.Closet.locale
     };
   },
@@ -3423,7 +3413,7 @@ __WEBPACK_IMPORTED_MODULE_0_dropzone___default.a.autoDiscover = false;
       price: null,
       description: null,
       url: window.Closet.url,
-      trans: this.$trans,
+
       locale: window.Closet.locale
     };
   },
@@ -3593,8 +3583,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             shipping_free: this.shippingFree,
             shipping_time: this.shippingTime,
             shipping_inter: this.shippingInter,
-            url: window.Closet.url,
-            trans: this.$trans
+            url: window.Closet.url
+
         };
     },
 
@@ -3666,8 +3656,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   data: function data() {
     return {
       products: [],
-      url: window.Closet.url,
-      trans: this.$trans
+      url: window.Closet.url
+
     };
   },
 
@@ -3883,7 +3873,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       discount: null,
       amount: null,
       type: null,
-      trans: this.$trans,
+
       formVisible: false
     };
   },
@@ -3997,7 +3987,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       products: [],
       discount: null,
       formVisible: null,
-      trans: this.$trans,
+
       count: this.$root.promotions.discount
     };
   },
@@ -4112,8 +4102,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       typez: this.$route.query.type,
       formVisible: false,
       url: window.Closet.url,
-      current_url: window.location.href,
-      trans: this.$trans
+      current_url: window.location.href
+
     };
   },
 
@@ -4246,8 +4236,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             shipping_free: null,
             shipping_time: null,
             shipping_inter: null,
-            url: window.Closet.url,
-            trans: this.$trans
+            url: window.Closet.url
+
         };
     },
 
@@ -4351,7 +4341,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       number: null,
       name: null,
       formVisible: false,
-      trans: this.$trans,
+
       url: window.Closet.url,
       locale: window.Closet.locale,
       options: [{ 'name': 'ธนาคารกรุงเทพ', 'code': 'BBL' }, { 'name': 'ธนาคารกสิกรไทย', 'code': 'KBANK' }, { 'name': 'ธนาคารกรุงไทย', 'code': 'KTB' }, { 'name': 'ธนาคารไทยพาณิชย์', 'code': 'SCB' }, { 'name': 'ธนาคารทหารไทย', 'code': 'TMB' }, { 'name': 'ธนาคารออมสิน', 'code': 'GSB' }, { 'name': 'ธนาคารกรุงศรีอยุธยา', 'code': 'BAY' }]
@@ -4482,7 +4472,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		return {
 			collections: [],
 			formVisible: false,
-			trans: this.$trans,
+
 			name: null,
 			description: null,
 			visibility: null,
@@ -4897,8 +4887,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             name: this.shopName,
             slug: this.$root.shopSlug,
             description: this.shopDescription,
-            url: window.Closet.url,
-            trans: this.$trans
+            url: window.Closet.url
+
         };
     },
 
@@ -4963,8 +4953,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       followers: null,
       up: null,
       down: null,
-      url: window.Closet.url,
-      trans: this.$trans
+      url: window.Closet.url
+
     };
   },
 
@@ -5303,8 +5293,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       formVisible: false,
       shop_user: this.shopId,
       url: window.Closet.url,
-      user_id: window.Closet.user.user,
-      trans: this.$trans
+      user_id: window.Closet.user.user
+
     };
   },
 
@@ -5443,8 +5433,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             name: this.showcaseName,
             products: [],
             url: window.Closet.url,
-            user_id: window.Closet.user.user,
-            trans: this.$trans
+            user_id: window.Closet.user.user
+
         };
     },
 
@@ -5530,9 +5520,7 @@ window.axios.defaults.headers.common = {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "en", function() { return en; });
-var en = {
+/* harmony default export */ __webpack_exports__["a"] = {
     sell: 'Sell something',
     product_name: 'Product Name',
     products: 'Products',
@@ -5608,6 +5596,7 @@ var en = {
     dropzone_null: 'Nothing to upload.',
     fill_every: 'Please fill out every field.',
     product_photo_limit: 'You can upload up to 7 photos.',
+    product_photo_notice: 'First photo will be this product thumbnail.',
     used_notice: 'Used product is valid for 30 days and will be removed after.',
     new: 'New',
     used: 'Used',
@@ -5690,9 +5679,7 @@ var en = {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "th", function() { return th; });
-var th = {
+/* harmony default export */ __webpack_exports__["a"] = {
     sell: 'ขายสินค้า',
     product_name: 'ชื่อสินค้า',
     products: 'สินค้า',
@@ -5768,6 +5755,7 @@ var th = {
     dropzone_null: 'ไม่มีอะไรให้อัพโหลด',
     fill_every: 'กรุณากรอกข้อมูลให้ครบทุกช่อง',
     product_photo_limit: 'คุณสามารถอัพโหลดรูปสินค้าได้สูงสุด 7 รูป',
+    product_photo_notice: 'รูปแรกจะถูกใช้เป็นภาพขนาดย่อของสินค้า',
     used_notice: 'สินค้ามือสองจะถูกลบโดยอัตโนมัติ 30 วัน หลังจากลงขาย',
     new: 'สินค้าใหม่',
     used: 'มือสอง',
@@ -24377,6 +24365,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "padding": "0px 20px 30px"
     }
   }, [_c('li', {
+    staticClass: "red-font font-bold",
     staticStyle: {
       "margin": "15px 0px"
     }
@@ -24384,7 +24373,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticStyle: {
       "margin": "15px 0px"
     }
-  }, [_vm._v(_vm._s(_vm.$trans.translation.product_photo_limit))]), _vm._v(" "), _c('form', {
+  }, [_vm._v(_vm._s(_vm.$trans.translation.product_photo_limit))]), _vm._v(" "), _c('li', {
+    staticStyle: {
+      "margin": "15px 0px"
+    }
+  }, [_vm._v(_vm._s(_vm.$trans.translation.product_photo_notice))]), _vm._v(" "), _c('form', {
     attrs: {
       "method": "post"
     },
@@ -30233,6 +30226,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "padding": "0px 20px 30px"
     }
   }, [_c('li', {
+    staticClass: "red-font font-bold",
     staticStyle: {
       "margin": "15px 0px"
     }
@@ -30244,7 +30238,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticStyle: {
       "margin": "15px 0px"
     }
-  }, [_vm._v(_vm._s(_vm.$trans.translation.used_notice))]), _vm._v(" "), _c('form', {
+  }, [_vm._v(_vm._s(_vm.$trans.translation.product_photo_notice))]), _vm._v(" "), _c('form', {
     attrs: {
       "method": "post"
     },
@@ -31232,6 +31226,31 @@ module.exports = function listToStyles (parentId, list) {
 __webpack_require__(30);
 module.exports = __webpack_require__(31);
 
+
+/***/ }),
+/* 185 */,
+/* 186 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__en__ = __webpack_require__(90);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__th__ = __webpack_require__(91);
+
+
+/* harmony default export */ __webpack_exports__["a"] = {
+  install: function install(Vue) {
+    Vue.prototype.$trans = {
+      translation: [],
+      translate: function translate(lang) {
+        if (lang === 'en') {
+          this.translation = __WEBPACK_IMPORTED_MODULE_0__en__["a" /* default */];
+        } else if (lang === 'th') {
+          this.translation = __WEBPACK_IMPORTED_MODULE_1__th__["a" /* default */];
+        }
+      }
+    };
+  }
+};
 
 /***/ })
 ],[184]);

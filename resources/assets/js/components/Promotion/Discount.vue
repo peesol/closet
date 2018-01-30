@@ -57,7 +57,7 @@ export default {
       products: [],
       discount: null,
       formVisible: null,
-      trans: this.$trans,
+      
       count: this.$root.promotions.discount,
     }
   },

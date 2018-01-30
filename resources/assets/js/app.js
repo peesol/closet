@@ -14,7 +14,13 @@ require('./bootstrap');
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
-
+ window.addEventListener('load', function () {
+   var language = new Vue({
+     el: '.left-side-menu'
+   });
+});
+import Trans from './lang/translate'
+Vue.use(Trans);
 
 import VueValidate from 'vee-validate'
 Vue.use(VueValidate)
@@ -55,6 +61,7 @@ Vue.http.interceptors.push((request, next) => {
     next();
 });
 window.addEventListener('load', function () {
+
   const details = new Vue({
     el: '.product-details',
     store
@@ -108,24 +115,3 @@ Vue.component('confirm-trans', require('./components/Order/ConfirmTrans.vue'));
 Vue.component('cant-sell', require('./components/Product/CantSell.vue'));
 Vue.component('discount-code', require('./components/Promotion/CodeGenerator.vue'));
 Vue.component('product-discount', require('./components/Promotion/Discount.vue'));
-
-const english = require('./lang/en');
-const thai = require('./lang/th');
-const translations = {
-    translation:[],
-    translate(lang) {
-      if(lang === 'en') {
-        this.translation = english.en;
-      } else if (lang === 'th') {
-        this.translation = thai.th;
-      }
-    },
-}
-
-translations.install = function(){
-  Object.defineProperty(Vue.prototype, '$trans', {
-    get: function () { return translations; }
-  });
-}
-
-Vue.use(translations);

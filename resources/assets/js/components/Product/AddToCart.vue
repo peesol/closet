@@ -27,7 +27,7 @@ import { mapActions } from 'vuex'
 export default {
   data() {
     return {
-      trans: this.$trans,
+      
       url: window.Closet.url,
       product: [],
       choices: [],

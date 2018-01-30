@@ -49,7 +49,7 @@ export default {
         formVisible: false,
         url: window.Closet.url,
         current_url: window.location.href,
-        trans: this.$trans,
+        
       }
     },
     props: {

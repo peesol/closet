@@ -49,7 +49,7 @@
 				visibility:this.colVisibility,
         url: window.Closet.url,
         user_id: window.Closet.user.user,
-				trans: this.$trans,
+				
 			}
 		},
 		props: {

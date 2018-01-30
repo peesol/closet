@@ -63,7 +63,7 @@
 			return {
 				collections: [],
 				formVisible: false,
-				trans: this.$trans,
+				
 				name: null,
 				description: null,
 				visibility:null,

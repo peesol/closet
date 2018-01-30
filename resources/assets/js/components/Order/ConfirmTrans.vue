@@ -31,7 +31,7 @@ export default {
       address: null,
       phone: null,
       name: null,
-      trans: this.$trans,
+      
       url: window.Closet.url,
     }
   },

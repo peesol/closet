@@ -68,7 +68,7 @@ export default {
       discount: null,
       amount: null,
       type: null,
-      trans: this.$trans,
+      
       formVisible: false,
     }
   },

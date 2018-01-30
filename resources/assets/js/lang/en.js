@@ -1,4 +1,4 @@
-export const en = {
+export default {
     sell: 'Sell something',
     product_name: 'Product Name',
     products: 'Products',
@@ -74,6 +74,7 @@ export const en = {
     dropzone_null: 'Nothing to upload.',
     fill_every: 'Please fill out every field.',
     product_photo_limit: 'You can upload up to 7 photos.',
+    product_photo_notice: 'First photo will be this product thumbnail.',
     used_notice: 'Used product is valid for 30 days and will be removed after.',
     new: 'New',
     used: 'Used',

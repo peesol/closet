@@ -32,7 +32,7 @@ export default {
 		return {
       products: [],
 			url: window.Closet.url,
-      trans: this.$trans,
+      
 		}
 	},
   methods: {

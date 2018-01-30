@@ -60,7 +60,7 @@ export default {
 			},
 			code: [],
 			products: [],
-			trans: this.$trans,
+			
 			url: window.Closet.url,
 
 		}

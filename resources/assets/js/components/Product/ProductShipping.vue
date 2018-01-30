@@ -51,7 +51,7 @@ export default {
       shipping_time: this.shippingTime,
       shipping_inter: this.shippingInter,
 			url: window.Closet.url,
-      trans: this.$trans,
+      
 		}
 	},
 	props: {

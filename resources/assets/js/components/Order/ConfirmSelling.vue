@@ -41,12 +41,10 @@ export default {
       index: null,
       translate: this.$trans,
       url: window.Closet.url,
-      trans: this.$trans.translate(this.locale),
     }
   },
   props: {
-    uid: null,
-    locale: null,
+    uid: null, 
   },
   methods: {
     confirm(uid) {

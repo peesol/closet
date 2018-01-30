@@ -54,7 +54,7 @@
         shop_user: this.shopId,
         url: window.Closet.url,
         user_id: window.Closet.user.user,
-				trans: this.$trans,
+				
 			}
 		},
     components: {

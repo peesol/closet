@@ -58,7 +58,7 @@ export default {
 			visibility: this.productVisibility,
 			formVisible: false,
 			url: window.Closet.url,
-      trans: this.$trans,
+      
 		}
 	},
 	props: {

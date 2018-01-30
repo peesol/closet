@@ -41,7 +41,7 @@ export default {
       provider: null,
       number: null,
       name: null,
-      trans: this.$trans,
+      
 			url: window.Closet.url,
       locale: window.Closet.locale,
       options: [

@@ -16,7 +16,7 @@
 				up:null,
 				down:null,
         url: window.Closet.url,
-				trans: this.$trans,
+				
 			}
 		},
 		props: {

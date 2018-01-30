@@ -65,7 +65,7 @@ export default {
       number: null,
       name: null,
       formVisible: false,
-      trans: this.$trans,
+      
 			url: window.Closet.url,
       locale: window.Closet.locale,
       options: [

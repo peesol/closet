@@ -48,7 +48,7 @@ export default {
 			slug: this.$root.shopSlug,
 			description: this.shopDescription,
 			url: window.Closet.url,
-      trans: this.$trans,
+
 		}
 	},
   components: {

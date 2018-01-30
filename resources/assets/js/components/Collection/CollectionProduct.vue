@@ -34,7 +34,7 @@ import { mixin as clickaway } from 'vue-clickaway';
     			create: false,
           url: window.Closet.url,
           user_id: window.Closet.user.user,
-          trans: this.$trans,
+          
     		}
     	},
 
