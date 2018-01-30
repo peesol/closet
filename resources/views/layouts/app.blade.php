@@ -12,6 +12,9 @@
 
     <!-- Styles -->
     <link href="{{asset('css/all.css')}}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Athiti" rel="stylesheet">
+
     @yield('css')
     <!-- Scripts -->
     <script src="{{asset('js/manifest.js')}}"></script>
@@ -35,16 +38,20 @@ window.Closet = {
     </script>
     @yield('scripts')
 </head>
-<body>
+<body style="font-family: Roboto, Athiti, sans-serif;">
     <div class="overlay"></div>
     <div id="app">
 
         @include('layouts.partials._navigation')
-
 
         @yield('content')
 
     </div>
 <footer></footer>
 </body>
+<style media="screen">
+  button{
+    font-family: Roboto, Athiti, sans-serif;
+  }
+</style>
 </html>

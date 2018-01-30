@@ -6,9 +6,9 @@ Route::get('register/verify/{token}', 'Auth\RegisterController@verify');
 Route::get('register/email/resend', 'Auth\RegisterController@resendEmailPage')->name('resendEmail');
 Route::post('register/email/resend', 'Auth\RegisterController@resendEmail')->name('resendEmailPost');
 
-Route::get('/', 'HomeController@index');
-Route::get('/shops', 'HomeController@shops');
-Route::get('/trending', 'HomeController@trending');
+Route::get('/', 'HomeController@index')->name('home');
+Route::get('/shops', 'HomeController@shops')->name('shops');
+Route::get('/trending', 'HomeController@trending')->name('trending');
 
 Route::get('/locale_ajax', 'Controller@lang');
 Route::put('/locale_ajax/{lang}', 'Controller@langChange');

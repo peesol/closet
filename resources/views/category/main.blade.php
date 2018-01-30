@@ -29,7 +29,7 @@ $(document).ready(function() {
                 </div>
                 <div class="category-nav">
                         @foreach ($categories as $category)
-                        <a href="/category/{{$category->name}}">{{$category->showTranslate(App::getLocale())->name}}</a>
+                        <a href="/category/{{$category->slug}}">{{$category->showTranslate(App::getLocale())->name}}</a>
                         @endforeach
                 </div>
                 @foreach ($categories as $category)

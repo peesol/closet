@@ -205,15 +205,15 @@
 	padding: 0;
 	}
 	.sub-left-menu a {
-	font-size: 0.9em;
+	font-size: 1em;
 	}
 	#cat {
-	font-size: 14px;
+	font-size: 1em;
 	color: #ff8000;
 	text-decoration: none;
 	}
 	#alt-cat {
-	font-size: 14px;
+	font-size: 1em;
 	color: #6c6c6c;
 	text-decoration: none;
 	}

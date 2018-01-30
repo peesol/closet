@@ -5,6 +5,7 @@ namespace Closet\Http\Controllers;
 use Closet\Models\{Category, Translation};
 use Illuminate\Http\Request;
 use Closet\Repositories\UserRepository;
+use Cache;
 use Auth;
 use App;
 
@@ -12,12 +13,9 @@ class HomeController extends Controller
 {
     public function index(Request $request)
     {
-      if(App::getLocale() == 'en'){
-        $categories = Category::all();
-      }
-      if(App::getLocale() == 'th'){
-        $categories = Translation::whereNotNull('category_id')->where('language', 'th')->get();
-      }
+      $categories = Cache::rememberForever('categories', function() {
+        return Category::all();
+      });
       return view('home', [
         'categories' => $categories,
       ]);

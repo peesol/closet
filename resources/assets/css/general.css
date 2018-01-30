@@ -164,6 +164,7 @@ label {
 }
 .full-label {
   width: 100% !important;
+  font-size: 1.2em;
 }
 .file-input {
     font-size: 1em;

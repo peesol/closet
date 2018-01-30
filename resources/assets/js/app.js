@@ -14,10 +14,7 @@ require('./bootstrap');
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
- Vue.http.interceptors.push((request, next) => {
-     request.headers.set('X-CSRF-TOKEN', Laravel.csrfToken);
-     next();
- });
+
 
 import VueValidate from 'vee-validate'
 Vue.use(VueValidate)
@@ -53,7 +50,10 @@ const store = new Vuex.Store({
     checkout: []
   },
 })
-
+Vue.http.interceptors.push((request, next) => {
+    request.headers.set('X-CSRF-TOKEN', Laravel.csrfToken);
+    next();
+});
 window.addEventListener('load', function () {
   const details = new Vue({
     el: '.product-details',

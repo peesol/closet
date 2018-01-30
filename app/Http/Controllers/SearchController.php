@@ -28,7 +28,9 @@ class SearchController extends Controller
     	  if(!$request->p){
     		   return redirect('/');
     	  }
-        $categories = Category::all();
+        $categories = Cache::rememberForever('categories', function() {
+          return Category::all();
+        });
     		$keyword = $request->input('p');
     		$products = Product::where('name', 'LIKE', "%$keyword%")->where('visibility','public')->filter($request)->paginate(20);
 

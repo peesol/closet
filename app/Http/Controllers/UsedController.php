@@ -3,6 +3,7 @@
 namespace Closet\Http\Controllers;
 
 use Storage;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Closet\Jobs\Product\UsedUpload;
 use Closet\Models\{UsedProduct,UsedProductImage};
@@ -28,7 +29,6 @@ class UsedController extends Controller
 
     public function store(Request $request,UsedProduct $product,UsedProductImage $productimage)
     {
-
       $type_id = $request->type_id == 'null' ? '1' : $request->type_id;
       $uid = uniqid('p_2');
       $shop = $request->user()->shop()->first();
@@ -60,13 +60,12 @@ class UsedController extends Controller
 
     public function delete(UsedProduct $product)
     {
-        $thumb = $product->thumbnail;
-        Storage::disk('s3images')->delete('used/thumbnail/' . $thumb);
+        $path = 'used/thumbnail/' . $product->thumbnail;
+        $this->dispatch(new DeleteImage($path));
       foreach ($product->productimages as $image) {
-        $file = $image->filename;
-        Storage::disk('s3images')->delete('used/photo/' . $file);
+        $path = 'used/photo/' . $image->filename;
+        $this->dispatch(new DeleteImage($path));
       }
-
       $product->delete();
 
       return redirect()->back();

@@ -22,7 +22,7 @@ class UsedProduct extends Model
       'thumbnail',
       'price',
       'description',
-
+      'delete_at',
     ];
 
     public function shop()

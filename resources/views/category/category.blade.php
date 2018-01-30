@@ -29,7 +29,7 @@
                 </div>
                 <div class="category-nav">
                         @foreach ($categories as $cat)
-                        <a href="/category/{{$cat->name}}">{{$cat->showTranslate(App::getLocale())->name}}</a>
+                        <a href="/category/{{$cat->slug}}">{{$cat->showTranslate(App::getLocale())->name}}</a>
                         @endforeach
                 </div>
 

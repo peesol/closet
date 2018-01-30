@@ -1,9 +1,6 @@
 <?php
 
 namespace Closet\Http\Controllers;
-use DateTime;
-use DateInterval;
-use DateTimeZone;
 use Illuminate\Http\Request;
 use Closet\Models\{Discount, Shop, Product};
 

@@ -21,7 +21,7 @@
                     <ul >
                       <li><h4 class="no-margin">{{__('message.category')}}</h4></li>
                       @foreach($categories as $category)
-                      <li><a href="#" class="link-text">{{$category->name}}</a></li>
+                      <li><a href="#" class="link-text">{{$category->showTranslate(App::getLocale())->name}}</a></li>
                       @endforeach
                     </ul>
                   </div>

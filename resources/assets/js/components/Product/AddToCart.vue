@@ -2,7 +2,7 @@
 <div>
 <form name="myform" v-on:submit.prevent="add" method="post">
   <div style="padding: 0px 15px; height:200px">
-    <select v-show="choices.length" v-bind:required="choices.length ? true : false" class="select-input" v-model="selected">
+    <select v-show="choices.length" v-bind:required="choices.length" class="select-input" v-model="selected">
       <option value="" disabled selected>---{{$trans.translation.choice}}---</option>
       <option v-for="choice in choices" :value="choice.name">{{choice.name}}</option>
     </select>

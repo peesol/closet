@@ -4,6 +4,7 @@ namespace Closet\Http\Controllers;
 
 use App;
 use Storage;
+use Cache;
 use Image;
 use Fractal;
 use Auth;
@@ -52,23 +53,23 @@ class ProductController extends Controller
     public function getCategory(Category $category,Translation $translate)
     {
       $lang = App::getLocale();
-      if($lang == 'en'){
-        $category = $category->get();
+      $data = Cache::rememberForever('categories', function() {
+        return Category::all();
+      });
+      $categories = [];
+      foreach ($data as $category) {
+        $categories[] = $category->showTranslate($lang);
       }
-      if($lang == 'th') {
-        $category = $category->select(['id', 'name'])->with(array('translate' => function($query) use ($lang) {$query->where('language', $lang);}))->get();
-      }
-      return response()->json($category);
+      return response()->json($categories);
     }
 
     public function getSubcategory($categoryId)
     {
       $lang = App::getLocale();
-      if($lang == 'en') {
-        $subcategories = Subcategory::where('category_id', '=', $categoryId)->get();
-      }
-      if($lang == 'th') {
-        $subcategories = Subcategory::where('category_id', '=', $categoryId)->with(array('translate' => function($query) use ($lang) {$query->where('language', $lang);}))->get();
+      $data = Subcategory::where('category_id', $categoryId)->get();
+      $subcategories = [];
+      foreach ($data as $subcategory) {
+        $subcategories[] = $subcategory->showTranslate($lang);
       }
       return response()->json($subcategories);
     }
@@ -76,13 +77,11 @@ class ProductController extends Controller
     public function getType($subcategoryId)
     {
       $lang = App::getLocale();
-      if($lang == 'en'){
-        $types = CategoryType::where('subcategory_id', '=', $subcategoryId)->get();
+      $data = CategoryType::where('subcategory_id', $subcategoryId)->get();
+      $types = [];
+      foreach ($data as $type) {
+        $types[] = $type->showTranslate($lang);
       }
-      if($lang == 'th'){
-        $types = CategoryType::where('subcategory_id', '=', $subcategoryId)->with(array('translate' => function($query) use ($lang) {$query->where('language', $lang);}))->get();
-      }
-
       return response()->json($types);
     }
 

@@ -21,26 +21,23 @@
                         </div>
                         <div class="form-group">
                             <label class="full-label" for="category">{{$trans.translation.category}}</label>
-                            <select required class="select-input" :name="category" v-model="category" @change="getSubCategory(category)">
-                                <option v-if="locale == 'en'" v-for="category in categories" :value="category.id">{{category.name}}</option>
-                                <option v-if="locale == 'th'" v-for="category in categories" :value="category.id">{{category.translate[0].name}}</option>
+                            <select required class="select-input" v-model="category" @change="watchCategory">
+                                <option v-for="category in categories" :value="category.id">{{category.name}}</option>
                             </select>
                         </div>
                         <transition name="slide-down-input">
-                        <div v-show="categorySelect" class="form-group">
+                        <div v-show="subcategories.length" class="form-group">
                             <label class="full-label" for="subcategory">{{$trans.translation.subcategory}}</label>
-                            <select required class="select-input" :name="subcategory" v-model="subcategory" @change="getType(subcategory)">
-                                <option v-if="locale == 'en'" v-for="subcategory in subcategories" :selected="subcategory.name" :value="subcategory.id">{{subcategory.name}}</option>
-                                <option v-if="locale == 'th'" v-for="subcategory in subcategories" :selected="subcategory.name" :value="subcategory.id">{{subcategory.translate[0].name}}</option>
+                            <select required class="select-input" v-model.lazy="subcategory" @change="watchSubcategory">
+                                <option v-for="subcategory in subcategories" :value="subcategory.subcategory_id || subcategory.id">{{subcategory.name}}</option>
                             </select>
                         </div>
                         </transition>
                         <transition name="slide-down-input">
-                        <div v-if="types.length" class="form-group ">
+                        <div v-show="types.length" class="form-group ">
                             <label class="full-label" for="type">{{$trans.translation.type}}</label>
-                            <select required class="select-input" :name="type" v-model="type">
-                                <option v-if="locale == 'en'" v-for="type in types" :selected="type.name" :value="type.id">{{type.name}}</option>
-                                <option v-if="locale == 'th'" v-for="type in types" :selected="type.name" :value="type.id">{{type.translate[0].name}}</option>
+                            <select v-bind:required="types.length" class="select-input" v-model="type">
+                                <option v-for="type in types" :selected="type.name" :value="type.type_id || type.id">{{type.name}}</option>
                             </select>
                         </div>
                         </transition>
@@ -87,41 +84,39 @@ export default {
 			      visibility: null,
             url: window.Closet.url,
             trans: this.$trans,
-            categorySelect: false,
             locale: window.Closet.locale,
 		}
 	},
-	props: {
-
-	},
-
     methods: {
+      watchCategory: function () {
+        if (this.category !== null) {
+          return this.getSubCategory(this.category)
+        }
+      },
+      watchSubcategory: function () {
+        if (this.subcategory !== null && this.subcategory !== undefined) {
+          return this.getType(this.subcategory)
+        }
+      },
       getCategory() {
               this.$http.get(this.url + '/category_ajax/get_category' ).then((response)=> {
-                  return response.json().then((json) => {
-                      this.categories = json;
-                  });
+                      this.categories = response.body;
               });
       },
       getSubCategory(category) {
               this.$http.get(this.url + '/category_ajax/get_subcategory/' + category ).then((response)=> {
-                  return response.json().then((json) => {
-                      this.subcategories = json;
-                      this.subcategory = null;
+                this.subcategory = null;
+                      this.subcategories = response.body;
                       this.type = null;
-                      this.categorySelect = true;
-                  });
+                      this.types = [];
               });
       },
       getType(subcategory) {
               this.$http.get(this.url + '/category_ajax/get_type/' + subcategory ).then((response)=> {
-                  return response.json().then((json) => {
-                      this.types = json;
+                      this.types = response.body;
                       this.type = null;
-                  });
               });
       },
-
       initDropzone: function() {
             self = this;
             self.$nextTick(function() {

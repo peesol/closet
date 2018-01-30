@@ -3,6 +3,7 @@
 namespace Closet\Http\ViewComposers;
 
 use Auth;
+use Cache;
 use App;
 use Illuminate\View\View;
 use Closet\Models\Translation;
@@ -12,13 +13,15 @@ class NavigationComposer
 {
   public function compose(View $view)
   {
-    if(App::getLocale() == 'en'){
-      $view->with('categories', Category::all());
-    }
-    if(App::getLocale() == 'th'){
-      $category = Translation::whereNotNull('category_id')->where('language', 'th')->get();
-      $view->with('categories', $category);
-    }
+    $categories = Cache::rememberForever('categories', function() {
+      return Category::all();
+    });
+    $view->with('categories', $categories );
+
+    // if(App::getLocale() == 'th'){
+    //   $category = Translation::whereNotNull('category_id')->where('language', 'th')->get();
+    //   $view->with('categories', $category);
+    // }
     if(!Auth::check()){
       return;
     } else {

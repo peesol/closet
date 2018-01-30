@@ -69,8 +69,10 @@ return [
     | correspond to a connection in your database configuration options.
     |
     */
-
-    'connection' => 'clusters',
+    //Database driver
+    'connection' => 'mysql',
+    //For redis
+    //'connection' => 'clusters',
 
     /*
     |--------------------------------------------------------------------------

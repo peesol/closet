@@ -51,7 +51,7 @@ return [
     'shops' => 'Shops',
     'following' => 'Following',
     'account' => 'ACCOUNT',
-    'categories' => 'categories',
+    'categories' => 'Categories',
     'collections' => 'collections',
     'edit' => 'Edit',
     'delete' => 'Delete',

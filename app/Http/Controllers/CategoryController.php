@@ -3,6 +3,7 @@
 namespace Closet\Http\Controllers;
 
 use App;
+use Cache;
 use Illuminate\Http\Request;
 use Closet\Models\Category;
 
@@ -10,17 +11,23 @@ class CategoryController extends Controller
 {
     public function main()
     {
-    	$category = Category::all();
+      $categories = Cache::rememberForever('categories', function() {
+        return Category::all();
+      });
 
     	return view('category.main')->with([
-    		'categories' => $category,
+    		'categories' => $categories,
     		]);
     }
 
     public function category(Category $category)
     {
-        $categories = Category::all();
-        $subcategories = $category->subcategory()->get();
+        $categories = Cache::rememberForever('categories', function() {
+          return Category::all();
+        });
+        $subcategories = Cache::rememberForever('subcategories', function() {
+          return $category->subcategory()->get();
+        });
 
       return view('category.category',[
         'category' => $category,
