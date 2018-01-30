@@ -13,9 +13,7 @@ class HomeController extends Controller
 {
     public function index(Request $request)
     {
-      $categories = Cache::rememberForever('categories', function() {
-        return Category::all();
-      });
+      $categories = Cache::get('categories');
       return view('home', [
         'categories' => $categories,
       ]);

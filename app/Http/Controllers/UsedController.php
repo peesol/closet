@@ -30,8 +30,8 @@ class UsedController extends Controller
 
     public function store(Request $request,UsedProduct $product,UsedProductImage $productimage)
     {
-      $type_id = $request->type_id == 'null' ? '1' : $request->type_id;
-      $uid = uniqid('p_2');
+      $type_id = !$request->type_id ? $request->type_id : 1;
+      $uid = uniqid('p_used');
       $shop = $request->user()->shop()->first();
       $product = $shop->used()->create([
         'uid' => $uid,
@@ -46,11 +46,11 @@ class UsedController extends Controller
 
       $images =  $request->file('image');
       if($images[0]) {
-        $thumbnail = uniqid('p_thumb_2');
+        $thumbnail = uniqid('p_thumb_2_').$request->user()->id;
         Storage::disk('uploads')->putFileAs('used/thumbnail/', $images[0], $thumbnail);
       }
       foreach ($images as $image) {
-        $photo = uniqid('p_img_');
+        $photo = uniqid('p_img_2_').$request->user()->id;
         Storage::disk('uploads')->putFileAs('used/photo/', $image, $photo);
         $photos[] = $photo;
       }

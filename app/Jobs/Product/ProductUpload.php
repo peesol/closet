@@ -41,10 +41,13 @@ class ProductUpload implements ShouldQueue
     {
       if($this->thumbnail) {
         $file = storage_path() . '/uploads/product/thumbnail/' . $this->thumbnail;
-        $img = Image::make($file)->encode('jpg', 10)->fit(160, 160, function ($c) {
+        $background = Image::canvas(200, 200, '#ffffff');
+        $img = Image::make($file)->encode('jpg', 10)->fit(200, 200, function ($c) {
             $c->upsize();
+            $c->aspectRatio();
         });
-        $img = $img->stream();
+        $background->insert($img, 'center');
+        $img = $background->stream();
         Storage::disk('s3images')->put('product/thumbnail/' . $this->thumbnail . '.jpg', $img->__toString());
         $this->product->thumbnail = $this->thumbnail . '.jpg';
         $this->product->save();

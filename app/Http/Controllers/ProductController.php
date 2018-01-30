@@ -53,9 +53,7 @@ class ProductController extends Controller
     public function getCategory(Category $category,Translation $translate)
     {
       $lang = App::getLocale();
-      $data = Cache::rememberForever('categories', function() {
-        return Category::all();
-      });
+      $data = Cache::get('categories');
       $categories = [];
       foreach ($data as $category) {
         $categories[] = $category->showTranslate($lang);
@@ -66,7 +64,8 @@ class ProductController extends Controller
     public function getSubcategory($categoryId)
     {
       $lang = App::getLocale();
-      $data = Subcategory::where('category_id', $categoryId)->get();
+      //$data = Subcategory::where('category_id', $categoryId)->get();
+      $data = Cache::get('subcategories')->where('category_id', $categoryId);
       $subcategories = [];
       foreach ($data as $subcategory) {
         $subcategories[] = $subcategory->showTranslate($lang);
@@ -77,7 +76,7 @@ class ProductController extends Controller
     public function getType($subcategoryId)
     {
       $lang = App::getLocale();
-      $data = CategoryType::where('subcategory_id', $subcategoryId)->get();
+      $data = Cache::get('types')->where('subcategory_id', $subcategoryId);
       $types = [];
       foreach ($data as $type) {
         $types[] = $type->showTranslate($lang);

@@ -13,9 +13,7 @@ class NavigationComposer
 {
   public function compose(View $view)
   {
-    $categories = Cache::rememberForever('categories', function() {
-      return Category::all();
-    });
+    $categories = Cache::get('categories');
     $view->with('categories', $categories );
 
     // if(App::getLocale() == 'th'){

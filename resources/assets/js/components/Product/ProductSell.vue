@@ -34,9 +34,9 @@
                         </div>
                         </transition>
                         <transition name="slide-down-input">
-                        <div v-show="types.length" class="form-group ">
+                        <div v-show="showElement" class="form-group ">
                             <label class="full-label" for="type">{{$trans.translation.type}}</label>
-                            <select v-bind:required="types.length" class="select-input" v-model="type">
+                            <select v-bind:required="showElement" class="select-input" v-model="type">
                                 <option v-for="type in types" :selected="type.name" :value="type.type_id || type.id">{{type.name}}</option>
                             </select>
                         </div>
@@ -87,6 +87,15 @@ export default {
             locale: window.Closet.locale,
 		}
 	},
+  computed: {
+    showElement: function () {
+      if (this.types.length) {
+        return true
+      } else {
+        return false
+      }
+    },
+  },
     methods: {
       getCategory() {
           this.$http.get(this.url + '/category_ajax/get_category' ).then((response)=> {

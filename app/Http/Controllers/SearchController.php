@@ -2,6 +2,7 @@
 
 namespace Closet\Http\Controllers;
 
+use Cache;
 use Illuminate\Http\Request;
 use Closet\Models\Product;
 use Closet\Models\Category;
@@ -28,9 +29,7 @@ class SearchController extends Controller
     	  if(!$request->p){
     		   return redirect('/');
     	  }
-        $categories = Cache::rememberForever('categories', function() {
-          return Category::all();
-        });
+        $categories = Cache::get('categories');
     		$keyword = $request->input('p');
     		$products = Product::where('name', 'LIKE', "%$keyword%")->where('visibility','public')->filter($request)->paginate(20);
 
@@ -58,7 +57,7 @@ class SearchController extends Controller
 
     public function getCategory(Category $category)
     {
-      $categories = Category::all();
+      $categories = Cache::get('categories');
 
       return response()->json($categories);
     }

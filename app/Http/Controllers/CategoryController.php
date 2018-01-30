@@ -11,9 +11,7 @@ class CategoryController extends Controller
 {
     public function main()
     {
-      $categories = Cache::rememberForever('categories', function() {
-        return Category::all();
-      });
+      $categories = Cache::get('categories');
 
     	return view('category.main')->with([
     		'categories' => $categories,
@@ -22,12 +20,8 @@ class CategoryController extends Controller
 
     public function category(Category $category)
     {
-        $categories = Cache::rememberForever('categories', function() {
-          return Category::all();
-        });
-        $subcategories = Cache::rememberForever('subcategories', function() {
-          return $category->subcategory()->get();
-        });
+        $categories = Cache::get('categories');
+        $subcategories = Cache::get('subcategories');
 
       return view('category.category',[
         'category' => $category,

@@ -3238,6 +3238,15 @@ __WEBPACK_IMPORTED_MODULE_0_dropzone___default.a.autoDiscover = false;
     };
   },
 
+  computed: {
+    showElement: function showElement() {
+      if (this.types.length) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  },
   methods: {
     getCategory: function getCategory() {
       var _this = this;
@@ -3419,7 +3428,15 @@ __WEBPACK_IMPORTED_MODULE_0_dropzone___default.a.autoDiscover = false;
     };
   },
 
-  props: {},
+  computed: {
+    showElement: function showElement() {
+      if (this.types.length) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  },
 
   methods: {
     watchCategory: function watchCategory() {
@@ -4080,9 +4097,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = {
   data: function data() {
@@ -4098,7 +4112,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       typez: this.$route.query.type,
       formVisible: false,
       url: window.Closet.url,
-      locale: window.Closet.locale,
       current_url: window.location.href,
       trans: this.$trans
     };
@@ -24573,8 +24586,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "show",
       rawName: "v-show",
-      value: (_vm.types.length),
-      expression: "types.length"
+      value: (_vm.showElement),
+      expression: "showElement"
     }],
     staticClass: "form-group "
   }, [_c('label', {
@@ -24591,7 +24604,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }],
     staticClass: "select-input",
     attrs: {
-      "required": _vm.types.length
+      "required": _vm.showElement
     },
     on: {
       "change": function($event) {
@@ -29886,8 +29899,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "id": "cat-option"
     }
-  }, [_c('ul', {}, [_vm._l((_vm.cats), function(category) {
-    return (_vm.locale == 'en') ? _c('li', [_c('a', {
+  }, [_c('ul', {}, _vm._l((_vm.cats), function(category) {
+    return _c('li', [_c('a', {
       class: {
         'filter-active': category.id == _vm.c
       },
@@ -29897,28 +29910,16 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           _vm.getSub(category.id)
         }
       }
-    }, [_vm._v(_vm._s(category.name))])]) : _vm._e()
-  }), _vm._v(" "), _vm._l((_vm.cats), function(category) {
-    return (_vm.locale == 'th') ? _c('li', [_c('a', {
-      class: {
-        'filter-active': category.id == _vm.c
-      },
-      on: {
-        "click": function($event) {
-          $event.preventDefault();
-          _vm.getSub(category.id)
-        }
-      }
-    }, [_vm._v(_vm._s(category.translate[0].name))])]) : _vm._e()
-  })], 2), _vm._v(" "), _c('ul', {
+    }, [_vm._v(_vm._s(category.name))])])
+  })), _vm._v(" "), _c('ul', {
     directives: [{
       name: "show",
       rawName: "v-show",
       value: (_vm.subcats.length > 0),
       expression: "subcats.length > 0"
     }]
-  }, [_vm._l((_vm.subcats), function(subcategory) {
-    return (_vm.locale == 'en') ? _c('li', [_c('a', {
+  }, _vm._l((_vm.subcats), function(subcategory) {
+    return _c('li', [_c('a', {
       class: {
         'filter-active': subcategory.id == _vm.sub
       },
@@ -29928,28 +29929,16 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           _vm.getType(subcategory.id)
         }
       }
-    }, [_vm._v(_vm._s(subcategory.name))])]) : _vm._e()
-  }), _vm._v(" "), _vm._l((_vm.subcats), function(subcategory) {
-    return (_vm.locale == 'th') ? _c('li', [_c('a', {
-      class: {
-        'filter-active': subcategory.id == _vm.sub
-      },
-      on: {
-        "click": function($event) {
-          $event.preventDefault();
-          _vm.getType(subcategory.id)
-        }
-      }
-    }, [_vm._v(_vm._s(subcategory.translate[0].name))])]) : _vm._e()
-  })], 2), _vm._v(" "), _c('ul', {
+    }, [_vm._v(_vm._s(subcategory.name))])])
+  })), _vm._v(" "), _c('ul', {
     directives: [{
       name: "show",
       rawName: "v-show",
       value: (_vm.types.length > 0),
       expression: "types.length > 0"
     }]
-  }, [_vm._l((_vm.types), function(type) {
-    return (_vm.locale == 'en') ? _c('li', [_c('a', {
+  }, _vm._l((_vm.types), function(type) {
+    return _c('li', [_c('a', {
       class: {
         'filter-active': type.id == _vm.typez
       },
@@ -29959,20 +29948,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           _vm.query(type.id)
         }
       }
-    }, [_vm._v(_vm._s(type.name))])]) : _vm._e()
-  }), _vm._v(" "), _vm._l((_vm.types), function(type) {
-    return (_vm.locale == 'th') ? _c('li', [_c('a', {
-      class: {
-        'filter-active': type.id == _vm.typez
-      },
-      on: {
-        "click": function($event) {
-          $event.preventDefault();
-          _vm.query(type.id)
-        }
-      }
-    }, [_vm._v(_vm._s(type.translate[0].name))])]) : _vm._e()
-  })], 2), _vm._v(" "), _c('div', {
+    }, [_vm._v(_vm._s(type.name))])])
+  })), _vm._v(" "), _c('div', {
     staticClass: "price-filter"
   }, [_c('label', {
     staticClass: "col-label"
@@ -30377,10 +30354,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._v(_vm._s(_vm.errors.first('price')))])]), _vm._v(" "), _c('div', {
     staticClass: "form-group"
   }, [_c('label', {
-    staticClass: "full-label",
-    attrs: {
-      "for": "category"
-    }
+    staticClass: "full-label"
   }, [_vm._v(_vm._s(_vm.$trans.translation.category))]), _vm._v(" "), _c('select', {
     directives: [{
       name: "model",
@@ -30422,10 +30396,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }],
     staticClass: "form-group"
   }, [_c('label', {
-    staticClass: "full-label",
-    attrs: {
-      "for": "subcategory"
-    }
+    staticClass: "full-label"
   }, [_vm._v(_vm._s(_vm.$trans.translation.subcategory))]), _vm._v(" "), _c('select', {
     directives: [{
       name: "model",
@@ -30465,15 +30436,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "show",
       rawName: "v-show",
-      value: (_vm.types.length),
-      expression: "types.length"
+      value: (_vm.showElement),
+      expression: "showElement"
     }],
     staticClass: "form-group "
   }, [_c('label', {
-    staticClass: "full-label",
-    attrs: {
-      "for": "type"
-    }
+    staticClass: "full-label"
   }, [_vm._v(_vm._s(_vm.$trans.translation.type))]), _vm._v(" "), _c('select', {
     directives: [{
       name: "model",
@@ -30483,7 +30451,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }],
     staticClass: "select-input",
     attrs: {
-      "required": _vm.types.length
+      "required": _vm.showElement
     },
     on: {
       "change": function($event) {
@@ -30554,6 +30522,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "margin-top": "0"
     },
     attrs: {
+      "type": "submit",
       "id": "submit-all"
     }
   }, [_vm._v(_vm._s(_vm.$trans.translation.sell_submit))])])])])], 1)

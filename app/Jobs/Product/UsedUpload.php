@@ -41,10 +41,13 @@ class UsedUpload implements ShouldQueue
     {
       if($this->thumbnail) {
         $file = storage_path() . '/uploads/used/thumbnail/' . $this->thumbnail;
-        $img = Image::make($file)->encode('jpg')->fit(160, 160, function ($c) {
+        $background = Image::canvas(200, 200, '#ffffff');
+        $img = Image::make($file)->encode('jpg')->resize(200, 200, function ($c) {
+            $c->aspectRatio();
             $c->upsize();
         });
-        $img = $img->stream();
+        $background->insert($img, 'center');
+        $img = $background->stream();
         Storage::disk('s3images')->put('used/thumbnail/' . $this->thumbnail . '.jpg', $img->__toString());
         $this->product->thumbnail = $this->thumbnail . '.jpg';
         $this->product->save();

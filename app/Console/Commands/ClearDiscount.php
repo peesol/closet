@@ -13,7 +13,7 @@ class ClearDiscount extends Command
      *
      * @var string
      */
-    protected $signature = 'ClearDiscount:cleardiscount';
+    protected $signature = 'discount:clear';
 
     /**
      * The console command description.
@@ -39,6 +39,7 @@ class ClearDiscount extends Command
      */
     public function handle()
     {
-        DB::table('products')->whereNotNull('discount_date')->update(['discount_price' => null]);
+        DB::table('products')->update(['discount_price' => null, 'discount_date' => null]);
+        $this->info('All discounts are cleared!!!');
     }
 }

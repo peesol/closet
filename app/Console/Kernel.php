@@ -16,6 +16,8 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         \Closet\Console\Commands\ClearDiscount::class,
+        \Closet\Console\Commands\CacheCategory::class,
+        \Closet\Console\Commands\RemoveUsed::class,
     ];
 
     /**

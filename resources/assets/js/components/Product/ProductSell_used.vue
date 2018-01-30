@@ -21,23 +21,23 @@
                             <span v-show="errors.has('price')" class="span-error">{{ errors.first('price') }}</span>
                         </div>
                         <div class="form-group">
-                            <label class="full-label" for="category">{{$trans.translation.category}}</label>
+                            <label class="full-label">{{$trans.translation.category}}</label>
                             <select required class="select-input" v-model="category" @change="watchCategory">
                                 <option v-for="category in categories" :value="category.id">{{category.name}}</option>
                             </select>
                         </div>
                         <transition name="slide-down-input">
                         <div v-show="subcategories.length" class="form-group">
-                            <label class="full-label" for="subcategory">{{$trans.translation.subcategory}}</label>
+                            <label class="full-label">{{$trans.translation.subcategory}}</label>
                             <select required class="select-input" v-model.lazy="subcategory" @change="watchSubcategory">
                                 <option v-for="subcategory in subcategories" :value="subcategory.subcategory_id || subcategory.id">{{subcategory.name}}</option>
                             </select>
                         </div>
                         </transition>
                         <transition name="slide-down-input">
-                        <div v-show="types.length" class="form-group ">
-                            <label class="full-label" for="type">{{$trans.translation.type}}</label>
-                            <select v-bind:required="types.length" class="select-input" v-model="type">
+                        <div v-show="showElement" class="form-group ">
+                            <label class="full-label">{{$trans.translation.type}}</label>
+                            <select v-bind:required="showElement" class="select-input" v-model="type">
                                 <option v-for="type in types" :selected="type.name" :value="type.type_id || type.id">{{type.name}}</option>
                             </select>
                         </div>
@@ -51,7 +51,7 @@
                         </div>
 
                         <div style="position: relative; text-align: right;">
-                            <button id="submit-all" class="col-photo-submit" style="margin-top:0;">{{$trans.translation.sell_submit}}</button>
+                            <button type="submit" id="submit-all" class="col-photo-submit" style="margin-top:0;">{{$trans.translation.sell_submit}}</button>
                         </div>
                         </form>
                     </div>
@@ -79,9 +79,15 @@ export default {
             locale: window.Closet.locale,
 		}
 	},
-	props: {
-
-	},
+  computed: {
+    showElement: function () {
+      if (this.types.length) {
+        return true
+      } else {
+        return false
+      }
+    },
+  },
 
     methods: {
       watchCategory: function () {

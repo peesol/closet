@@ -9,18 +9,15 @@
     </ul>
   <div v-show="formVisible" class="filter-option" id="cat-option">
       <ul class="">
-        <li v-if="locale == 'en'" v-for="category in cats" ><a @click.prevent="getSub(category.id)" v-bind:class="{'filter-active': category.id == c }">{{ category.name }}</a></li>
-        <li v-if="locale == 'th'" v-for="category in cats"><a @click.prevent="getSub(category.id)" v-bind:class="{'filter-active': category.id == c }">{{ category.translate[0].name }}</a></li>
+        <li v-for="category in cats" ><a @click.prevent="getSub(category.id)" v-bind:class="{'filter-active': category.id == c }">{{ category.name }}</a></li>
       </ul>
 
       <ul v-show="subcats.length > 0" class="">
-        <li v-if="locale == 'en'" v-for="subcategory in subcats"><a @click.prevent="getType(subcategory.id)" v-bind:class="{'filter-active': subcategory.id == sub }">{{ subcategory.name }}</a></li>
-        <li v-if="locale == 'th'" v-for="subcategory in subcats"><a @click.prevent="getType(subcategory.id)" v-bind:class="{'filter-active': subcategory.id == sub }">{{ subcategory.translate[0].name }}</a></li>
+        <li v-for="subcategory in subcats"><a @click.prevent="getType(subcategory.id)" v-bind:class="{'filter-active': subcategory.id == sub }">{{ subcategory.name }}</a></li>
       </ul>
-
+      
       <ul v-show="types.length > 0" class="">
-        <li v-if="locale == 'en'" v-for="type in types"><a @click.prevent="query(type.id)" :class="{'filter-active': type.id == typez }">{{ type.name }}</a></li>
-        <li v-if="locale == 'th'" v-for="type in types"><a @click.prevent="query(type.id)" :class="{'filter-active': type.id == typez }">{{ type.translate[0].name }}</a></li>
+        <li v-for="type in types"><a @click.prevent="query(type.id)" :class="{'filter-active': type.id == typez }">{{ type.name }}</a></li>
       </ul>
 
       <div class="price-filter">
@@ -51,7 +48,6 @@ export default {
         typez : this.$route.query.type,
         formVisible: false,
         url: window.Closet.url,
-        locale: window.Closet.locale,
         current_url: window.location.href,
         trans: this.$trans,
       }
