@@ -7,10 +7,10 @@
 <div class="container">
             <div class="large-panel">
                 <div class="panel-heading"><h3 class="no-margin">{{__('message.my_product')}}</h3></div>
-                <div class="shop-nav-bar" style="border: none;">
-                    <ul class="shop-nav-ul" style="border-top: none; border-bottom: 1px solid #efefef;">
-                      <button class="product-nav-btn current">{{__('message.new')}}</button>
-                      <button class="product-nav-btn" onclick='document.location.href="/profile/myproduct/used"'>{{__('message.used')}}</button>
+                <div class="tab-nav" style="border: none;">
+                    <ul class="tab-nav-ul" style="border-top: none; border-bottom: 1px solid #efefef;">
+                      <button class="tab-nav-btn static current">{{__('message.new')}}</button>
+                      <button class="tab-nav-btn static" onclick='document.location.href="/profile/myproduct/used"'>{{__('message.used')}}</button>
                     </ul>
                 </div>
                 @if ($products->count())
@@ -35,11 +35,19 @@
                                 <a href="/product/{{ $product->uid}}">
                                 <img class="products-img-thumb" src="{{$product->getImage()}}" alt="{{$product->thumbnail}}">
                                 </a>
-                                @if($product->discount_price)
-                                <span class="discount">Sale</span>
-                                @endif
                                 @if($product->visibility === 'unlisted')
                                 <span class="private icon-private" style="font-size:25px;"></span>
+                                @endif
+
+                                @if (!$product->discount_price)
+                                <span class="price">{{ number_format($product->price) }}&#3647;</span>
+                                @else
+                                <span class="discount">Sale</span>
+                                <span class="price">
+                                  <strike>{{ number_format($product->price) }}&#3647;</strike>
+                                  <small class="icon-next-arrow"></small>
+                                  <font>{{ number_format($product->discount_price) }}&#3647;</font>
+                                </span>
                                 @endif
                             </div>
                             <h4 class="product-name"><a class="link-text" href="/product/{{ $product->uid}}">{{ $product->name }}</a></h4>

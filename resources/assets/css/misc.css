@@ -28,16 +28,18 @@ width: 80px;
 font-size: 18px;
 }
 /*Tab nav*/
-.product-nav-btn{
-  margin-right: 20px !important;
-}
 .tab-nav{
   width: 100%;
-  height: 52px;
   border-bottom: 1px solid #efefef;
 }
 .tab-nav-ul{
+  padding: 0;
   margin: 0;
+  display: grid;
+  width: 100%;
+  grid-gap: 10px;
+  grid-template-columns: repeat(4, minmax(60px, 1fr));
+  justify-items: center;
 }
 .tab-nav-ul button{
   height: 50px;
@@ -46,12 +48,28 @@ font-size: 18px;
   background-color: #ffffff;
   font-size: 1em;
 }
+.tab-nav-ul button font{display: none}
+.tab-nav-ul button span{display: block; font-size: 2em;}
+.tab-nav-btn.current, .tab-nav-btn.static.current{
+  color: #ff8000 !important;
+  font-weight: 600;
+}
+@media (min-width:768px) {
+  .tab-nav-ul{display: block; padding-left: 40px; margin: 0}
+  .tab-nav-ul button font{display: block}
+  .tab-nav-ul button span{display: none}
+  .tab-nav-btn.static {
+    min-width: 100px !important;
+    margin-right: 40px !important;
+  }
+  .tab-nav-btn.current, .tab-nav-btn.static.current{
+    color: #ff8000 !important;
+    border-bottom: 3px solid #ff8000;
+    font-weight: 600;
+  }
+}
 .tab-nav-btn:hover {
   color: #ff8000;
-}
-.tab-nav-btn.current{
-  color: #ff8000 !important;
-  border-bottom: 3px solid #ff8000;
 }
 /*Button*/
 .btn {
@@ -96,37 +114,53 @@ font-size: 18px;
     border: none;
     color: #ffffff;
     font-size: 15px;
-    background: rgba(254, 71, 71, 0.79);
+    background: #ff514c;
     padding: 10px;
 }
-.delete-btn:hover{
-      background: rgb(240, 56, 56);
-}
+.delete-btn:hover{opacity: 0.8}
 .add-btn {
     border: none;
     color: #ffffff;
     font-size: 15px;
     background: #4aae2a;
 }
-.add-btn:hover{
-    opacity: 0.8;
-}
+.add-btn:hover{opacity: 0.8;}
 .edit-btn {
     border: none;
     color: #ffffff;
     font-size: 15px;
-    background: rgba(89, 89, 89, 0.5);
+    background: #b8b8b8;
     padding: 10px;
 }
-.edit-btn:hover{
-    background: rgba(139, 139, 139, 0.5);
-}
+.edit-btn:hover{opacity: 0.8}
 .vote-btn {
   text-decoration: none;
   color: #b3b3b3;
 }
+span.contact-btn , small.contact-btn {
+  position: relative;
+  cursor: pointer;
+  -moz-background-clip: border;
+  -moz-background-inline-policy: continuous;
+  -moz-background-origin: padding;
+  font-size: 1.8em;
+  top: 10px;
+}
+span.contact-btn.instagram , small.contact-btn.instagram{
+    background: #d6249f;
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
+    border-radius: 15px;
+    color: #fff;
+}
+span.contact-btn.facebook , small.contact-btn.facebook{color:#316fbb }
+span.contact-btn.youtube , small.contact-btn.youtube{color:#f00 }
+span.contact-btn.phone , small.contact-btn.phone{color:#34a853 }
+span.contact-btn.mail , small.contact-btn.mail{color:#4285f4 }
+span.contact-btn.twitter , small.contact-btn.twitter{color:#41abe1 }
+span.contact-btn.website , small.contact-btn.website{color:#167ac6 }
+span.contact-btn.line , small.contact-btn.line{color:#4ecd00 }
 .round-btn{
-  border-radius: 50px;
+  border-radius: 50%;
   width: 40px;
   height: 40px;
   border: none;
@@ -134,7 +168,7 @@ font-size: 18px;
 .round-btn:hover {
   opacity: 0.8 !important;
 }
-.round-btn span, .round-btn small{
+.round-btn span, .round-btn small, .contact-btn span, .contact-btn small{
   color: #ffffff;
 }
 .vote-btn:hover {color: #e43727;}
@@ -162,8 +196,8 @@ font-size: 18px;
   border:1px solid #f5aca6;
 }
 .alert-box.info {
-  background-color:#e3f7fc;
-  border:1px solid #8ed9f6;
+  background-color: #f9f9f9;
+  border: 1px solid #eeeeee;
 }
 /*Properties*/
 .absolute {position: absolute !important;}
@@ -188,6 +222,7 @@ font-size: 18px;
   text-decoration: none;
   font-size: 1em;
   font-weight: 400;
+  cursor: pointer;
 }
 .link-text:hover {
   color: #0a92f9;

@@ -7,7 +7,7 @@
 @endif
         <img src="{{ $shop->getCover() }}" class="shop-cover">
 </div>
-<div class="shop-header-wrap">
+<div class="shop-header-wrap" id="full-line">
          <div class="shop-header">
        <img class="shop-thumb" src="{{ $shop->getThumbnail() }}" alt="{{ $shop->thumbnail }}">
         <div class="shop-wrapper flex">

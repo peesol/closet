@@ -52,7 +52,6 @@ export default {
       shipping_time: null,
       shipping_inter: null,
 			url: window.Closet.url,
-      
 		}
 	},
 	props: {

@@ -45,6 +45,10 @@ class UsedProduct extends Model
     {
       return $this->belongsToMany(Collection::class, 'collection_products', 'collection_id', 'product_id');
     }
+    public function contactsProduct()
+    {
+      return $this->shop->contact()->where('show_product', true)->get();
+    }
     public function productimages()
     {
       return $this->hasMany(UsedProductImage::class, 'product_id');

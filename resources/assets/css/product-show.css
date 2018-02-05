@@ -162,161 +162,31 @@
 .tab-content.current{
     display: inherit;
 }
-/*ul.shop-nav-ul li {
-    cursor: pointer;
-}
-li.current a{
-    background: #ffffff;
-    color: #ff8000;
-    border-bottom: 3px solid #ff8000;
-}*/
-.product-nav-btn{
-    width: 100px;
-    height: 48px;
-    border: none;
-    outline: none;
-    color: #6c6c6c;
-    font-size: 1em;
-    margin-right: 40px;
-    background-color: #ffffff;
-    cursor: pointer;
-    border-bottom: 3px solid #efefef;
-}
-.product-nav-btn:hover{
-    border-bottom: 3px solid #ff8000;
-    color: #ff8000;
-    transition: all 0.3s ease;
-}
-.product-nav-btn.current{
-    border-bottom: 3px solid #ff8000;
-    color: #ff8000;
-}
-.product-nav-btn-active{
-    width: 100px;
-    height: 48px;
-    border: none;
-    outline: none;
-    color: #ff8000;
-    font-weight: 600;
-    font-size: 1em;
-    margin-right: 40px;
-    background-color: #ffffff;
-    cursor: pointer;
-    border-bottom: 3px solid #ff8000;
-}
 .comments-header{
     width: 100%;
     height: 55px;
     padding: 1px 15px;
     border-bottom: 1px solid #efefef;
 }
-.comments-field-wrap{
-    width: 100%;
-    height: 160px;
-    padding: 15px 15px;
-}
-.comments-field {
-    resize: none;
-    font-family: 'Arial', sans-serif;
-    font-size: 1em;
-    width: 100%;
-    height: 80px;
-    padding-left: 10px;
-    outline: none;
-    border: 1px solid transparent;
-    background-color: #f9f9f9;
-    border-bottom: 3px solid #b5b5b5;
-}
-.comments-field:focus{
-    border: 1px solid transparent;
-    background-color: #ffffff;
-    border-bottom: 3px solid #ff8000;
-    transition: all 0.30s;
-}
-.comments-wrap {
-    width: 100%;
-    height: auto;
-    background-color: #fff;
-}
-.comments-time {
-    margin-left:10px;
-    width:180px;
-    margin:0 0 0 10px;
-    float: left;
-    font-weight: 200;
-    line-height: 20px;
-    height: .8em;
-    font-size: .8em;
-}
-.comments-thumb {
-    float: left;
-    width: 40px;
-    height: 40px;
-}
-.comments-thumb img {
-    width: 100%;
-}
-.comments-body {
-    float: left;
-    width: 100%;
-    padding-left: 8px;
-}
-.comments-area {
-    font-family: 'Arial', sans-serif;
-    width: 100%;
-    height: auto;
-    margin: 5px 0;
-    word-wrap: break-word;
-}
-.reply-thumb {
-    float: left;
-    width: 30px;
-    height: 30px;
-}
-.reply-thumb img {
-    width: 100%;
-}
-.reply-list {
-    list-style-type: none;
-    float: left;
-    font-weight: 200;
-}
-.reply-field{
-    resize: none;
-    font-weight: 200;
-    width: 100%;
-    border: transparent;
-    outline: none;
-    border: 1px solid transparent;
-    background-color: #f9f9f9;
-    border-bottom: 3px solid #b5b5b5;
-}
-.reply-field:focus {
-    border: 1px solid transparent;
-    background-color: #ffffff;
-    border-bottom: 3px solid #ff8000;
-    transition: all 0.30s;
-}
-.comment {
-    margin: 0;
-    font-weight: 200;
-}
-.reply-list-wrap {
-    width: 100%;
-    height: 30px;
-}
-.reply-body-wrap {
-    margin-left: 40px;
-}
-.reply-body {
-    float: left;
-    padding-left: 8px;
-}
 .product-show-panel {
     width: 100%;
     margin: 0 auto;
     height: auto;
     background-color: #fff;
+}
+.comments-thumb{
+	width: 40px;
+float: left;
+margin-right: 10px;
+}
+.comments-body{
+	width: calc(100% - 50px);
+	display: inline-block;
+}
+.comment{
+  font-family: 'Arial';
+	word-wrap: break-word;
+	margin: 5px 0px;
 }
 /* Small devices (tablets, 768px and up) */
 
@@ -328,10 +198,7 @@ li.current a{
     }
     .product-details {
         width: 388px;
-
     }
-    .comments-field-wrap {width: 100%;}
-    .comments-body {width: 418px;}
 }
 /* Medium devices (desktops, 992px and up) */
 
@@ -347,9 +214,6 @@ li.current a{
         width: 410px;
         margin-right: 15px;
     }
-    .comments-field-wrap {width: 630px;}
-    .comments-body {width: 550px;}
-    .reply-body {width: 534px;}
 }
 /* Large devices (large desktops, 1200px and up) */
 
@@ -366,15 +230,4 @@ li.current a{
         margin-left: 9px;
         margin-right: 24px;
     }
-    .comments-field-wrap {width: 754px;}
-    .comments-body {width: 674px;}
-    .reply-body {width: 658px;}
-
-}
-
-.recommend {
-    width: 200px;
-    height: 400px;
-    margin:0 20px 0 20px;
-    background-color: green;
 }

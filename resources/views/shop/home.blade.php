@@ -3,8 +3,8 @@
 {{$shop->name.' - '}}
 @endsection
 @section('css')
-<link href="https://s3-ap-southeast-1.amazonaws.com/files.closet/css/extra/carousel-slick-theme.css" rel="stylesheet">
-<link href="https://s3-ap-southeast-1.amazonaws.com/files.closet/css/extra/carousel-slick.css" rel="stylesheet">
+<link href="https://s3-ap-southeast-1.amazonaws.com/files.closet/css/extra/slick-theme.css" rel="stylesheet">
+<link href="https://s3-ap-southeast-1.amazonaws.com/files.closet/css/extra/slick.css" rel="stylesheet">
 @endsection
 @section('scripts')
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
@@ -20,18 +20,36 @@
                   'shop' => $shop
               ])
 
-                    <div class="shop-nav-bar">
-                        <ul class="shop-nav-ul">
-                            <button class="product-nav-btn-active">{{__('message.home')}}</button>
-                            <button class="product-nav-btn" onclick='document.location.href="/{{$shop->slug}}/products"'>{{__('message.product')}}</button>
-                            <button class="product-nav-btn" onclick='document.location.href="/{{$shop->slug}}/collection"'>{{__('message.collection')}}</button>
-                            <button class="product-nav-btn" onclick='document.location.href="/{{$shop->slug}}/about"'>{{__('message.about')}}</button>
+                    <div class="tab-nav">
+                        <ul class="tab-nav-ul">
+                            <button class="tab-nav-btn static current"><span class="icon-home"></span><font>{{__('message.home')}}</font></button>
+                            <button class="tab-nav-btn static" onclick='document.location.href="/{{$shop->slug}}/products"'><span class="icon-silhouette"></span><font>{{__('message.product')}}</font></button>
+                            <button class="tab-nav-btn static" onclick='document.location.href="/{{$shop->slug}}/collection"'><span class="icon-map"></span><font>{{__('message.collection')}}</font></button>
+                            <button class="tab-nav-btn static" onclick='document.location.href="/{{$shop->slug}}/about"'><span class="icon-user"></span><font>{{__('message.about')}}</font></button>
                         </ul>
                     </div>
+                    <div class="panel-body" id="full-line">
+                      @if($shop->description)
+                      <p>{!! nl2br(e($shop->description)) !!}</p>
+                      @endif
+                      @if($shop->contact->count())
+                      <div>
+                        @foreach($shop->contact as $contact)
+                          <div class="full-label" style="height:40px">
+                            @if($contact->link)
+                              <span class="contact-btn {{$contact->type}} icon-{{$contact->type}}"></span>&nbsp;
+                              <a class="link-text" href="{{$contact->link}}">{{$contact->body}}</a>
+                            @else
+                              <span class="contact-btn {{$contact->type}} icon-{{$contact->type}}"></span>&nbsp;<label class="grey-font font-light">{{$contact->body}}</label>
+                            @endif
+                          </div>
+                        @endforeach
+                      </div>
+                      @endif
+                    </div>
             <div style="padding: 15px 45px;">
-              @if($shop->description)
-              <p>{!! nl2br(e($shop->description)) !!}</p>
-              @endif
+
+
                     @if ($showcases->count())
                         @foreach ($showcases as $showcase)
                           <div class="no-border-heading margin-bot-10px"><h3 class="no-margin">{{$showcase->name}}</h3></div>
@@ -58,7 +76,6 @@
                         @else
                         <h3 style="text-align: center; margin:50px auto;">{{__('message.no_shop_product')}}</h3>
                         @endif
-
                     @endif
 
                     </div>

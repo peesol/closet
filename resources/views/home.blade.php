@@ -30,7 +30,7 @@
             @if(Auth::guest())
             <div class="large-panel margin-top-10px">
               <div class="panel-body">
-                <p class="no-margin">{{__('message.home_signup')}}&nbsp;<a href="#" class="link-text">{{__('message.home_signup_link')}}</a></p>
+                <p class="no-margin">{{__('message.home_signup')}}&nbsp;<a href="route('register')" class="link-text">{{__('message.home_signup_link')}}</a></p>
               </div>
             </div>
             @endif

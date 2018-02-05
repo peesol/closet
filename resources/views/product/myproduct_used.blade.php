@@ -7,10 +7,10 @@
 <div class="container">
             <div class="large-panel">
                 <div class="panel-heading"><h3 class="no-margin">{{__('message.my_product')}}</h3></div>
-                <div class="shop-nav-bar" style="border: none;">
-                    <ul class="shop-nav-ul" style="border-top: none; border-bottom: 1px solid #efefef;">
-                      <button class="product-nav-btn" onclick='document.location.href="/profile/myproduct/new"'>{{__('message.new')}}</button>
-                      <button class="product-nav-btn current">{{__('message.used')}}</button>
+                <div class="tab-nav">
+                    <ul class="tab-nav-ul">
+                      <button class="tab-nav-btn static" onclick='document.location.href="/profile/myproduct/new"'>{{__('message.new')}}</button>
+                      <button class="tab-nav-btn static current">{{__('message.used')}}</button>
                     </ul>
                 </div>
 
@@ -32,6 +32,7 @@
                                 <a href="/product/used/{{$product->uid}}">
                                 <img class="products-img-thumb" src="{{$product->getImage()}}" alt="{{$product->thumbnail}}">
                                 </a>
+                                <span class="price">{{ number_format($product->price) }}</span>
                             </div>
 
                             <h4 class="product-name"><a class="link-text" href="/product/used/{{ $product->uid}}">{{ $product->name }}</a></h4>

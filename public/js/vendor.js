@@ -307,7 +307,7 @@ module.exports = {
 
 /***/ }),
 
-/***/ 100:
+/***/ 101:
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**!
@@ -12056,7 +12056,7 @@ function xhrClient (request) {
 
 function nodeClient (request) {
 
-    var client = __webpack_require__(183);
+    var client = __webpack_require__(184);
 
     return new PromiseObj(function (resolve) {
 
@@ -15166,14 +15166,14 @@ if (inBrowser && window.Vue) {
 
 /***/ }),
 
-/***/ 183:
+/***/ 184:
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
 /***/ }),
 
-/***/ 185:
+/***/ 186:
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(6);
@@ -15560,7 +15560,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   }
 
   if (true) {
-    var Sortable = __webpack_require__(100);
+    var Sortable = __webpack_require__(101);
     module.exports = buildDraggable(Sortable);
   } else if (typeof define == "function" && define.amd) {
     define(['sortablejs'], function (Sortable) {
@@ -41973,4 +41973,4 @@ module.exports = defaults;
 
 /***/ })
 
-},[185]);
+},[186]);

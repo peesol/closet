@@ -11,12 +11,12 @@
                   'shop' => $shop
               ])
 
-                    <div class="shop-nav-bar">
-                        <ul class="shop-nav-ul">
-                            <button type="submit" class="product-nav-btn" onclick='document.location.href="/{{$shop->slug}}"'>{{__('message.home')}}</button>
-                            <button type="submit" class="product-nav-btn-active">{{__('message.product')}}</button>
-                            <button type="submit" class="product-nav-btn" onclick='document.location.href="/{{$shop->slug}}/collection"'>{{__('message.collection')}}</button>
-                            <button type="submit" class="product-nav-btn" onclick='document.location.href="/{{$shop->slug}}/about"'>{{__('message.about')}}</button>
+                    <div class="tab-nav">
+                        <ul class="tab-nav-ul">
+                          <button class="tab-nav-btn static" onclick='document.location.href="/{{$shop->slug}}"'><span class="icon-home"></span><font>{{__('message.home')}}</font></button>
+                          <button class="tab-nav-btn static current"><span class="icon-silhouette"></span><font>{{__('message.product')}}</font></button>
+                          <button class="tab-nav-btn static" onclick='document.location.href="/{{$shop->slug}}/collection"'><span class="icon-map"></span><font>{{__('message.collection')}}</font></button>
+                          <button class="tab-nav-btn static" onclick='document.location.href="/{{$shop->slug}}/about"'><span class="icon-user"></span><font>{{__('message.about')}}</font></button>
                         </ul>
                     </div>
         <div style="padding: 15px 45px;"><h3 class="no-margin">{{__('message.products')}}&nbsp;({{$products->count()}})</h3></div>
@@ -31,13 +31,12 @@
                               </a>
                               @if($product->discount_price)
                               <span class="discount">Sale</span>
-                              <span class="discount-price">
-                                <p class="no-margin"><strike>{{ number_format($product->price) }}&#3647;</strike></p>
-                                <p class="no-margin">{{ number_format($product->discount_price) }}&#3647;</p>
+                              <span class="price">
+                                <strike>{{ number_format($product->price) }}&#3647;</strike>
+                                {{ number_format($product->discount_price) }}&#3647;
                               </span>
-                              @endif
-                              @if($product->visibility === 'unlisted')
-                              <span class="private icon-private" style="font-size:25px;"></span>
+                              @else
+                              <span class="price">{{ number_format($product->price) }}&#3647;</span>
                               @endif
                           </div>
                               <h4 class="product-name"><a class="link-text" href="/product/{{ $product->uid}}">{{ $product->name }}</a></h4>

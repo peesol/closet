@@ -172,6 +172,9 @@
 .icon-plus:before {
   content: "\ea0a";
 }
+.icon-map:before {
+  content: "\e94c";
+}
 .icon-login-dropdown:before {
   content: "\e971 \e901";
 }

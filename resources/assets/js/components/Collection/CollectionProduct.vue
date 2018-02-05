@@ -10,9 +10,12 @@
                     v-bind:class="{'added': collection.added === true}"
                     >{{ collection.name }}</a></li>
                 </ul>
-                                    <li><button @click.prevent="create = !create" class="create-col">{{$trans.translation.add_col}}</button></li>
+                    <li><button @click.prevent="create = !create" class="create-col">{{$trans.translation.add_col}}</button></li>
                     <transition name="slide-down-col">
-                    <li class="col-add-li" v-show="create"><input class="col-add-input" type="text" v-model="col_name"><button @click.prevent="createCol"><span class="icon-checkmark grey-font"></span></button></li>
+                    <li class="input-group" style="padding:5px;" v-show="create">
+											<input style="height:30px;" class="form-input" type="text" v-model="col_name">
+											<button style="height:30px;border:none;" class="" @click.prevent="createCol"><small class="icon-checkmark grey-font"></small></button>
+										</li>
                     </transition>
             </div>
         </transition>
@@ -34,7 +37,7 @@ import { mixin as clickaway } from 'vue-clickaway';
     			create: false,
           url: window.Closet.url,
           user_id: window.Closet.user.user,
-          
+          authenticated: window.Closet.user.authenticated
     		}
     	},
 
@@ -79,8 +82,9 @@ import { mixin as clickaway } from 'vue-clickaway';
         },
 
       created() {
-            this.getCollection();
+				if (this.authenticated) {
+					this.getCollection()
+				}
   		},
-
     }
 </script>

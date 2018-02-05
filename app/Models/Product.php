@@ -37,7 +37,6 @@ class Product extends Model
     {
     	return $this->belongsTo(Shop::class);
     }
-
 	  public function category()
     {
     	return $this->belongsTo(Category::class);
@@ -61,6 +60,10 @@ class Product extends Model
     public function choices()
     {
       return $this->hasMany(ProductChoice::class);
+    }
+    public function contactsProduct()
+    {
+      return $this->shop->contact()->where('show_product', true)->get();
     }
     public function views()
     {

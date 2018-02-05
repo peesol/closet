@@ -139,23 +139,6 @@
         height: 432px;
     }
 }
-
-.col-add-input{
-    width: calc(100% - 30px);
-    height: 30px;
-    outline: none;
-    padding-left: 10px;
-}
-.col-add-li{
-    padding: 10px;
-}
-.col-add-li button{
-    width: 30px;
-    height: 30px;
-    margin-left: -1px;
-    background-color: #ffffff;
-    border: 1px solid #b5b5b5;
-}
 .create-col{
     background-color: #ffffff;
     margin-top: 10px;

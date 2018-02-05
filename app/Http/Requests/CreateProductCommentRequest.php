@@ -24,7 +24,7 @@ class CreateProductCommentRequest extends FormRequest
     public function rules()
     {
         return [
-            'body' => 'required|max:255',
+            'body' => 'required|max:1000',
             'reply_id' => 'exists:comments,id'
         ];
     }

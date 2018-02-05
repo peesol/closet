@@ -11,16 +11,9 @@ use Closet\Models\CategoryType;
 
 class SearchController extends Controller
 {
-   /* public function index()
-    {
-    	 $products = Product::get(array('product_name','uid'));
-
-        return response()->json($products);
-    }*/
-
     public function searchByProduct($keyword){
 
-        $products  = Product::where('name', 'LIKE', "%$keyword%")->take(10)->get(array('name'));
+        $products  = Product::where('name', 'LIKE', "%$keyword%")->where('visibility','public')->distinct()->get(['name']);
         return response()->json($products);
     }
 

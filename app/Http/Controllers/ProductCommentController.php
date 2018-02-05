@@ -35,7 +35,7 @@ class ProductCommentController extends Controller
     	return response()->json(
 
     	Fractal::item($comment)
-    			->parseIncludes(['shop'])
+    			->parseIncludes(['shop', 'replies', 'replies.shop'])
     			->transformWith(new CommentTransformer)
     			->toArray()
     	);

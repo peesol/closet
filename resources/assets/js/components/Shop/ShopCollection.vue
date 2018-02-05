@@ -41,7 +41,7 @@
 					<span class="private icon-private" v-show="collection.visibility === 'private'"></span>
 				</div>
 				<div v-show="user_id == shopUser" style="padding: 10px 5px;" id="full-line">
-					<button class="round-btn edit-btn" v-bind:href="'/collection/' + collection.slug + '/edit'" >
+					<button class="round-btn edit-btn"  @click.prevent="edit(collection.slug)">
 						<small class="icon-cog"></small>
 					</button>
 					<button class="round-btn delete-btn" @click.prevent="removeCol(collection.slug, index)">
@@ -63,7 +63,6 @@
 			return {
 				collections: [],
 				formVisible: false,
-				
 				name: null,
 				description: null,
 				visibility:null,
@@ -79,12 +78,11 @@
 		},
 		methods: {
 			getCollection() {
+					this.$Progress.start();
   					this.$http.get(this.url + '/collection_ajax/' + this.shopSlug).then((response)=> {
-						return response.json()
-						.then((json) => {
-							this.collections = json.data;
-  						});
-				});
+							this.collections = response.body.data
+							this.$Progress.finish()
+						});
   			},
 			create(){
 				this.$Progress.start();
@@ -103,7 +101,9 @@
 	          toastr.error(this.$trans.translation.error);
 	      });
 			},
-
+			edit(collectionSlug){
+				document.location.href= this.url + '/collection/' + collectionSlug + '/edit';
+			},
 			removeCol(collectionSlug, index){
 				if(!confirm(this.$trans.translation.col_delete_confirm)){
 					return;

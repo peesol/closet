@@ -42,7 +42,7 @@ class ProductUpload implements ShouldQueue
       if($this->thumbnail) {
         $file = storage_path() . '/uploads/product/thumbnail/' . $this->thumbnail;
         $background = Image::canvas(200, 200, '#ffffff');
-        $img = Image::make($file)->encode('jpg', 10)->fit(200, 200, function ($c) {
+        $img = Image::make($file)->encode('jpg', 10)->resize(200, 200, function ($c) {
             $c->upsize();
             $c->aspectRatio();
         });

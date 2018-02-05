@@ -65,7 +65,7 @@ export default {
       number: null,
       name: null,
       formVisible: false,
-      
+
 			url: window.Closet.url,
       locale: window.Closet.locale,
       options: [
@@ -81,8 +81,10 @@ export default {
 	},
     methods: {
             getAccounts() {
+              this.$Progress.start()
               this.$http.get(this.url + '/' + this.$root.shopSlug + '/edit/account').then((response) => {
                 this.accounts = response.body
+                this.$Progress.finish()
               });
             },
             add() {

@@ -5,10 +5,12 @@
       </a>
       @if($product->discount_price)
       <span class="discount">Sale</span>
-      <span class="discount-price">
-        <p class="no-margin"><strike>{{ number_format($product->price) }}&#3647;</strike></p>
-        <p class="no-margin">{{ number_format($product->discount_price) }}&#3647;</p>
+      <span class="price">
+        <strike>{{ number_format($product->price) }}&#3647;</strike>
+        {{ number_format($product->discount_price) }}&#3647;
       </span>
+      @else
+      <span class="price">{{ number_format($product->price) }}&#3647;</span>
       @endif
     </div>
       <h3 class="s-product-name"><a class="link-text" href="/product/{{ $product->uid}}">{{ $product->name }}</a></h3>

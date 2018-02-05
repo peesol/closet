@@ -13,7 +13,11 @@ class UsedController extends Controller
 {
     public function show(UsedProduct $product)
     {
-        return view('product.show_used', ['product' => $product]);
+        $contacts = $product->contactsProduct();
+        return view('product.show_used', [
+          'product' => $product,
+          'contacts' => $contacts,
+        ]);
     }
 
     public function create()

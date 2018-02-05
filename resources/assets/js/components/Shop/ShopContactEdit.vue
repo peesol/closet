@@ -98,8 +98,10 @@ export default {
 	},
     methods: {
             getContact() {
+              this.$Progress.start();
               this.$http.get(this.url + '/' + this.$root.shopSlug + '/edit/info').then((response) => {
                 this.contacts = response.body
+                this.$Progress.finish();
               });
             },
             updateBody(contactId, contactBody) {
@@ -122,7 +124,6 @@ export default {
                   } else {
                     toastr.error(this.$trans.translation.error);
                   }
-
               });
             },
             toggleShowProduct(contactId){

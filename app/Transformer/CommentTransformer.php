@@ -11,9 +11,7 @@ use League\Fractal\TransformerAbstract;
 class CommentTransformer extends TransformerAbstract
 {
 	protected $availableIncludes = [
-
 	'shop', 'replies'
-
 	];
 
 	public function transform(Comment $comment)

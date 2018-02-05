@@ -3,16 +3,16 @@
 {{__('message.sell').' - '}}
 @endsection
 @section('css')
-    <link href="{{ asset('css/dropzone-alt.css') }}" rel="stylesheet">
+    <link href="https://s3-ap-southeast-1.amazonaws.com/files.closet/css/extra/dropzone-alt.css" rel="stylesheet">
 @endsection
 @section('content')
 
 <div class="container">
             <div class="listing-panel">
-              <div class="shop-nav-bar" style="border: none;">
-                  <ul class="shop-nav-ul" style="border-top: none; border-bottom: 1px solid #efefef;">
-                    <button class="product-nav-btn" onclick='document.location.href="/sell/product"'>{{__('message.new')}}</button>
-                    <button class="product-nav-btn current">{{__('message.used')}}</button>
+              <div class="tab-nav" style="border: none;">
+                  <ul class="tab-nav-ul" style="border-top: none; border-bottom: 1px solid #efefef;">
+                    <button class="tab-nav-btn static" onclick='document.location.href="/sell/product"'>{{__('message.new')}}</button>
+                    <button class="tab-nav-btn static current">{{__('message.used')}}</button>
                   </ul>
               </div>
 

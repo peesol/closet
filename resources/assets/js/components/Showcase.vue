@@ -1,6 +1,6 @@
 <template>
-
 <div>
+  <vue-progress-bar></vue-progress-bar>
   <button v-if="user_id == shop_user" class="add-col-btn" @click.prevent="formVisible = !formVisible">{{$trans.translation.create_showcase}}</button>
 	<transition name="slide-down-showcase">
 	<div v-show="formVisible" style="height: 175px;">
@@ -16,7 +16,9 @@
 	</div>
 	</transition>
   <div class="margin-top-10px">
-    <li v-show="showcases.length" style="padding: 15px;">{{$trans.translation.showcase_drag}}</li>
+    <div v-show="showcases.length" class="alert-box info">
+      <h3 class="no-margin"><span class="icon-notification"></span>&nbsp;{{$trans.translation.showcase_drag}}</h3>
+    </div>
       <draggable :list="showcases" :options="{animation: 200, handle: '.showcase-handle'}" @change="order">
       <div class="round-div" v-for="(showcase, index) in showcases" v-show="showcases.length">
         <table class="c-table">
@@ -54,7 +56,7 @@
         shop_user: this.shopId,
         url: window.Closet.url,
         user_id: window.Closet.user.user,
-				
+
 			}
 		},
     components: {
@@ -67,14 +69,14 @@
 
 		methods: {
       getShowcase() {
+          this.$Progress.start()
           this.$http.get(this.url + '/showcase_ajax/' + this.$root.shopSlug + '/showcase').then((response)=> {
-          return response.json()
-          .then((json) => {
-            this.showcases = json;
-            });
+            this.showcases = response.body;
+            this.$Progress.finish()
         });
       },
       create(index){
+        this.$Progress.start()
 				this.$http.post(this.url + '/showcase_ajax/' + this.$root.shopSlug + '/showcase' ,{
 					name: this.name,
           order: this.showcases.length ? this.showcases.length + 1 : 1
@@ -82,7 +84,9 @@
 							this.name = null;
   						this.showcases.push(response.body)
   						toastr.success(this.$trans.translation.showcase_created);
+              this.$Progress.finish()
 				}, (response) => {
+          this.$Progress.fail()
             toastr.error(this.$trans.translation.error);
         });
 			},

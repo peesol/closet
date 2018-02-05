@@ -19,4 +19,7 @@ return [
     'resend' => 'Resend email',
     'register' => 'Dont\'t have an account? ',
     'verify' => 'Haven\'t received the confirmation email yet? ',
+    'login_notice' => 'You must login to buy or sell.',
+    'login_notice2' => 'If you don\'t have an accont yet',
+    'comment_notice' => 'You must login to leave a comment.',
 ];

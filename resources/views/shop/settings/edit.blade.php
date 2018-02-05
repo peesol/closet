@@ -8,9 +8,9 @@
         <div class="tab-nav">
             <ul class="tab-nav-ul">
                 <button class="tab-nav-btn current" data-tab="tab-1">{{ __('message.general')}}</button>
-                <button class="tab-nav-btn" data-tab="tab-2">{{ __('message.contact')}}</button>
-                <button class="tab-nav-btn" data-tab="tab-3">{{ __('message.showcase')}}</button>
-                <button class="tab-nav-btn" data-tab="tab-4">{{ __('message.bank_account')}}</button>
+                <button class="tab-nav-btn" data-tab="tab-2" id="contact">{{ __('message.contact')}}</button>
+                <button class="tab-nav-btn" data-tab="tab-3" id="showcase">{{ __('message.showcase')}}</button>
+                <button class="tab-nav-btn" data-tab="tab-4" id="account">{{ __('message.bank_account')}}</button>
             </ul>
         </div>
 
@@ -38,20 +38,44 @@
   </div>
 </div>
 <script>
-    window.addEventListener('load', function () {
-        var edit = new Vue({
-          el: '.container',
-          data: {
-            shopSlug: '{{$shop->slug}}',
-          }
-        });
-        $('.tab-nav-ul button').click(function(){
-            var tab_id = $(this).attr('data-tab');
-            $('ul.tab-nav-ul button').removeClass('current');
-            $('.tab-content').removeClass('current');
-            $(this).addClass('current');
-            $("#"+tab_id).addClass('current');
-        });
+$('#contact').one('click', function() {
+  var contact = new Vue({
+    el: '#tab-2',
+    data: {
+      shopSlug: '{{$shop->slug}}',
+    }
+  });
+});
+$('#showcase').one('click', function() {
+  var showcase = new Vue({
+    el: '#tab-3',
+    data: {
+      shopSlug: '{{$shop->slug}}',
+    }
+  });
+});
+$('#account').one('click', function() {
+  var account = new Vue({
+    el: '#tab-4',
+    data: {
+      shopSlug: '{{$shop->slug}}',
+    }
+  });
+});
+window.addEventListener('load', function () {
+    var edit = new Vue({
+      el: '#tab-1',
+      data: {
+        shopSlug: '{{$shop->slug}}',
+      }
     });
+    $('.tab-nav-ul button').click(function(){
+        var tab_id = $(this).attr('data-tab');
+        $('ul.tab-nav-ul button').removeClass('current');
+        $('.tab-content').removeClass('current');
+        $(this).addClass('current');
+        $("#"+tab_id).addClass('current');
+    });
+});
 </script>
 @endsection

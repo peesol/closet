@@ -27,7 +27,7 @@ import { mapActions } from 'vuex'
 export default {
   data() {
     return {
-      
+
       url: window.Closet.url,
       product: [],
       choices: [],
@@ -60,8 +60,10 @@ export default {
     }
   },
   mounted(){
-    this.getProduct();
-    this.getChoice();
+    if (this.authenticated) {
+      this.getProduct();
+      this.getChoice();
+    }
   }
 }
 </script>

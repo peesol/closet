@@ -21,9 +21,11 @@ class ProductController extends Controller
 {
     public function show(Product $product)
     {
+      $contacts = $product->contactsProduct();
         return view('product.show', [
           'product' => $product,
-      ]);
+          'contacts' => $contacts,
+        ]);
     }
     public function productAjax(Product $product)
     {

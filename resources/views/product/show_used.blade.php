@@ -25,6 +25,19 @@
 @section('content')
 
 <div class="container">
+  @if(!Auth::check())
+  <div class="product-show-panel">
+    <div class="panel-body" id="full-line">
+      <div class="alert-box info">
+        <h3 class="no-margin">
+          <span class="icon-notification"></span>
+          {{__('auth.login_notice')}}<a class="link-text font-bold" href="{{ route('login')}}">&nbsp;{{__('message.login')}}</a>
+          {{__('auth.login_notice2')}}<a class="link-text font-bold" href="{{ route('register')}}">&nbsp;{{__('message.register')}}</a>
+        </h3>
+      </div>
+    </div>
+  </div>
+  @endif
             <div class="product-show-panel">
                 <div class="panel-heading"><p class="product-title">{{__('message.product_name')}} : {{ $product->name }}</p></div>
                 <div class="panel-body-alt flex">
@@ -60,22 +73,38 @@
                 </div>
             </div>
                 <div class="product-show-panel" style="margin-top: 10px;">
-                    <div class="shop-nav-bar">
-                        <ul class="shop-nav-ul">
-                            <button class="product-nav-btn" data-tab="tab-2">{{__('message.comment')}}</button>
-                            <button class="product-nav-btn" data-tab="tab-3">{{__('message.contact')}}</button>
+                    <div class="tab-nav">
+                        <ul class="tab-nav-ul">
+                          <button class="tab-nav-btn static current" data-tab="tab-1">{{__('message.details')}}</button>
+                          <button class="tab-nav-btn static" data-tab="tab-2" id="tab-comment">{{__('message.comment')}}</button>
                         </ul>
                     </div>
                         <div class="tab-content flex current"  style="padding: 15px 30px;" id="tab-1">
-
+                          @foreach($contacts as $contact)
+                            <div class="full-label" style="height:40px">
+                              @if($contact->link)
+                                <span class="contact-btn {{$contact->type}} icon-{{$contact->type}}"></span>&nbsp;
+                                <a class="link-text" href="{{$contact->link}}">{{$contact->body}}<sup>*</sup></a>
+                              @else
+                                <span class="contact-btn {{$contact->type}} icon-{{$contact->type}}"></span>&nbsp;<label class="grey-font font-light">{{$contact->body}}</label>
+                              @endif
+                            </div>
+                          @endforeach
+                          <div class="panel-body">
+                            <p class="comment">{!! nl2br(e($product->description)) !!}</p>
+                          </div>
                         </div>
-                        <div class="comment tab-content flex" id="tab-2">
+                        <div class="comment-vue tab-content flex" id="tab-2">
+                          @if(!Auth::check())
+                          <div class="alert-box info">
+                            <h3 class="no-margin">
+                              <span class="icon-notification"></span>
+                              {{__('auth.comment_notice')}}<a class="link-text font-bold" href="{{ route('login')}}">&nbsp;{{__('message.login')}}</a>
+                            </h3>
+                          </div>
+                          @endif
                             <used-comment product-uid="{{ $product->uid }}"></used-comment>
                         </div>
-                        <div class="comment tab-content flex" id="tab-3">
-                            <p>Contact info</p>
-                        </div>
-
                 </div>
 
 </div>
@@ -83,15 +112,17 @@
 $('.product-showcase').slick({
     dots: true
 });
-
+$('#tab-comment').one('click', function() {
+  var comment = new Vue({
+    el: '.comment-vue',
+    data: window.Closet
+  });
+});
 window.addEventListener('load', function () {
     var details = new Vue({
       el: '.product-details'
     });
-    var comment = new Vue({
-      el: '.comment',
-      data: window.Closet
-    });
+
 });
 
 $(document).ready(function(){
