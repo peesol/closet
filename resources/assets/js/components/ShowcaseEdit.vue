@@ -58,11 +58,11 @@
 		},
 		methods: {
       getProduct() {
-          this.$http.get(this.url + '/showcase_ajax/myproducts/' + this.showcaseId).then((response)=> { this.products = response.body.data });
+          this.$http.get(this.$root.url + '/showcase_ajax/myproducts/' + this.showcaseId).then((response)=> { this.products = response.body.data });
       },
 
       edit(){
-				this.$http.put(this.url + '/showcase_ajax/update/' + this.showcaseId ,{
+				this.$http.put(this.$root.url + '/showcase_ajax/update/' + this.showcaseId ,{
 					name: this.name
 				}).then((response)=> {
   					toastr.success(this.$trans.translation.success)
@@ -72,7 +72,7 @@
 			},
 
       add(productId, index){
-        this.$http.post(this.url + '/showcase_ajax/products/' + productId + '/showcase/' + this.showcaseId).then((response)=> {
+        this.$http.post(this.$root.url + '/showcase_ajax/products/' + productId + '/showcase/' + this.showcaseId).then((response)=> {
             if (this.products[index].added) {
               this.$set(this.products[index], 'added', false)
             } else {

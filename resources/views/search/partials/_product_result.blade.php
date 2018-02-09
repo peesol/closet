@@ -1,5 +1,5 @@
 <div class="products-wrap">
-<div class="products-img">
+<div class="products-img" onclick='document.location.href="/product/{{ $product->uid}}"'>
   <a href="/product/{{ $product->uid}}">
     <img class="products-img-thumb" src="{{config('closet.buckets.images') . '/product/thumbnail/' . $product->thumbnail}}"alt="{{$product->thumbnail}} image">
   </a>
@@ -13,6 +13,7 @@
     <font>{{ number_format($product->discount_price) }}&#3647;</font>
   </span>
   @endif
+  <span class="shop">{{ $product->shop->name}}</span>
 </div>
             <h4 class="product-name"><a class="link-text" href="/product/{{ $product->uid}}">{{ $product->name }}</a></h4>
             <div class="product-detail-wrap">

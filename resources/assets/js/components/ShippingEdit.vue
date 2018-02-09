@@ -61,7 +61,7 @@ export default {
     methods: {
       edit() {
         this.$Progress.start();
-        this.$http.put(this.url + '/profile/myproduct/options/' + this.shopSlug + '/shipping', {
+        this.$http.put(this.$root.url + '/profile/myproduct/options/' + this.shopSlug + '/shipping', {
           shipping: this.shipping,
           shipping_fee: this.shipping_fee,
           shipping_free: this.shipping_free,

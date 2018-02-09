@@ -24,7 +24,7 @@
 		},
 		methods: {
     		getStats () {
-    			this.$http.get(this.url + '/' + this.shopSlug + '/status').then((response) => {
+    			this.$http.get(this.$root.url + '/' + this.shopSlug + '/status').then((response) => {
     				return response.json()
   					.then((parsed) => {
   					  this.up = parsed.up;

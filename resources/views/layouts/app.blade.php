@@ -15,32 +15,29 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Athiti" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/balloon-css/0.5.0/balloon.min.css">
-
     @yield('css')
     <!-- Scripts -->
     <script src="{{asset('js/manifest.js')}}"></script>
     <script src="{{asset('js/vendor.js')}}"></script>
     <script src="{{asset('js/main.js')}}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.11.1/typeahead.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
     <script>
-window.Laravel = {!! json_encode([
-        'csrfToken' => csrf_token(),
-    ]) !!};
+window.Laravel = {!! json_encode(['csrfToken' => csrf_token()]) !!};
 
 window.Closet = {
     url:'{{ config('app.url') }}',
     locale:'{{ App::getLocale() }}',
         user:{
-            user: {{ Auth::check() ? Auth::user()->id : 'null' }},
-            authenticated: {{ Auth::check() ? 'true':'false'}},
+            authenticated: {{ Auth::check() ? 'true' : 'false'}},
+            user: {{ Auth::check() ? Auth::user()->id : 'null' }}
         }
     };
     </script>
+
     @yield('scripts')
 </head>
-<body style="font-family: Roboto, Athiti, sans-serif;">
-    <div class="overlay"></div>
+<body>
+  <div class="overlay"></div>
     <div id="app">
 
         @include('layouts.partials._navigation')
@@ -49,10 +46,6 @@ window.Closet = {
 
     </div>
 <footer></footer>
+
 </body>
-<style media="screen">
-  button{
-    font-family: Roboto, Athiti, sans-serif;
-  }
-</style>
 </html>

@@ -176,6 +176,7 @@ return [
         Spatie\Fractal\FractalServiceProvider::class,
         Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
         Jenssegers\Date\DateServiceProvider::class,
+        Elasticquent\ElasticquentServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -239,6 +240,7 @@ return [
         'Fractal' => Spatie\Fractal\FractalFacade::class,
         'Cart' => Gloudemans\Shoppingcart\Facades\Cart::class,
         'Date' => Jenssegers\Date\Date::class,
+        'Es' => Elasticquent\ElasticquentElasticsearchFacade::class,
 
     ],
 

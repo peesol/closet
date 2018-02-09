@@ -11,7 +11,6 @@ const { mix } = require('laravel-mix');
  |
  */
 mix.js([
-	'resources/assets/js/all.js',
 	'resources/assets/js/app.js',
 ], 'public/js/main.js').extract([
 	'vue',

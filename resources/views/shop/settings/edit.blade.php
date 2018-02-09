@@ -38,37 +38,8 @@
   </div>
 </div>
 <script>
-$('#contact').one('click', function() {
-  var contact = new Vue({
-    el: '#tab-2',
-    data: {
-      shopSlug: '{{$shop->slug}}',
-    }
-  });
-});
-$('#showcase').one('click', function() {
-  var showcase = new Vue({
-    el: '#tab-3',
-    data: {
-      shopSlug: '{{$shop->slug}}',
-    }
-  });
-});
-$('#account').one('click', function() {
-  var account = new Vue({
-    el: '#tab-4',
-    data: {
-      shopSlug: '{{$shop->slug}}',
-    }
-  });
-});
-window.addEventListener('load', function () {
-    var edit = new Vue({
-      el: '#tab-1',
-      data: {
-        shopSlug: '{{$shop->slug}}',
-      }
-    });
+
+
     $('.tab-nav-ul button').click(function(){
         var tab_id = $(this).attr('data-tab');
         $('ul.tab-nav-ul button').removeClass('current');
@@ -76,6 +47,6 @@ window.addEventListener('load', function () {
         $(this).addClass('current');
         $("#"+tab_id).addClass('current');
     });
-});
+
 </script>
 @endsection

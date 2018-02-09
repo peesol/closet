@@ -41,7 +41,7 @@
 
     	methods: {
     		getVotes () {
-    			this.$http.get(this.url + '/product/' + this.productUid + '/votes').then((response) => {
+    			this.$http.get(this.$root.url + '/product/' + this.productUid + '/votes').then((response) => {
     				return response.json()
   					.then((parsed) => {
   					  this.up = parsed.data.up;
@@ -71,12 +71,12 @@
     		},
 
     		deleteVote(type) {
-    			this.$http.delete(this.url + '/product/' + this.productUid + '/votes');
+    			this.$http.delete(this.$root.url + '/product/' + this.productUid + '/votes');
 
     		},
 
     		createVote(type) {
-    			this.$http.post(this.url + '/product/' + this.productUid + '/votes', {
+    			this.$http.post(this.$root.url + '/product/' + this.productUid + '/votes', {
     				type: type,
     			});
 
@@ -93,7 +93,7 @@
             },
 
             logView() {
-                this.$http.put(this.url + '/product/' + this.productUid + '/views', { product_id: this.productUid });
+                this.$http.put(this.$root.url + '/product/' + this.productUid + '/views', { product_id: this.productUid });
                 clearInterval(this.timer);
             }
     	},

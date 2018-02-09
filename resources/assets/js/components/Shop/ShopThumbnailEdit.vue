@@ -49,7 +49,7 @@ export default {
                 if(document.getElementById("thumb-input").files.length > 0){
                     this.$Progress.start();
                     toastr.info(this.$trans.translation.wait);
-                this.$http.put(this.url + '/' + this.$root.shopSlug + '/edit/thumbnail', {
+                this.$http.put(this.$root.url + '/' + this.$root.shopSlug + '/edit/thumbnail', {
                     thumbnail: this.thumbnail,
                     }).then((response)=> {
                         this.$Progress.finish();

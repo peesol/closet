@@ -1,8 +1,11 @@
 @extends('layouts.app')
+
 @section('title')
 {{__('message.notice').' - '}}
 @endsection
+
 @section('content')
+
 <div class="container">
   <div class="shop-panel" style="border-radius: 5px; margin-bottom: 20px;">
     <div class="panel-body">
@@ -12,22 +15,12 @@
     </div>
   </div>
 
-
   <div class="listing-panel">
     <div class="cant-sell" style="padding: 35px 35px;">
-      <cant-sell></cant-sell>
+      <cant-sell shop-slug="{{$shop->slug}}"></cant-sell>
     </div>
   </div>
 
 </div>
-<script>
-    window.addEventListener('load', function () {
-        var edit = new Vue({
-          el: '.cant-sell',
-          data: {
-            shopSlug: '{{$shop->slug}}',
-          }
-        });
-    });
-</script>
+
 @endsection

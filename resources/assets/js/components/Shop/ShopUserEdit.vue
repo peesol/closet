@@ -39,7 +39,7 @@ export default {
                 toastr.options.preventDuplicates = true;
                 toastr.options.timeOut = 2000;
 
-                this.$http.put(this.url + '/' + this.$root.shopSlug + '/edit/personal_info', {
+                this.$http.put(this.$root.url + '/' + this.$root.shopSlug + '/edit/personal_info', {
                     address: this.address,
                     phone: this.phone,
                     }).then((response)=> {

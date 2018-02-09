@@ -41,7 +41,7 @@ export default {
   methods: {
     confirm(uid) {
       this.$Progress.start();
-      this.$http.put(this.url + '/order/' + uid + '/confirm', {
+      this.$http.put(this.$root.url + '/order/' + uid + '/confirm', {
         shipping: this.shipping,
         shipping_fee: this.shipping_fee,
       }).then((response) => {
@@ -49,7 +49,7 @@ export default {
         this.shipping_fee = null;
         toastr.success(this.$trans.translation.success);
         this.$Progress.finish()
-        document.location.href= this.url + '/order/' + uid + '/confirm';
+        document.location.href= this.$root.url + '/order/' + uid + '/confirm';
       });
     },
     deny(uid) {
@@ -57,10 +57,10 @@ export default {
         return
       } else {
       this.$Progress.start();
-      this.$http.delete(this.url + '/order/' + uid + '/deny').then((response) => {
+      this.$http.delete(this.$root.url + '/order/' + uid + '/deny').then((response) => {
         toastr.success(this.$trans.translation.success);
         this.$Progress.finish()
-        document.location.href= this.url;
+        document.location.href= this.$root.url;
       });
       }
     },

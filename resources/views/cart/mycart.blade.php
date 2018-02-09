@@ -3,15 +3,7 @@
 @section('title')
 {{__('message.cart').' - '}}
 @endsection
-@section('css')
-<link href="https://s3-ap-southeast-1.amazonaws.com/files.closet/css/extra/slick-theme.css" rel="stylesheet">
-<link href="https://s3-ap-southeast-1.amazonaws.com/files.closet/css/extra/slick.css" rel="stylesheet">
-@endsection
 
-@section('scripts')
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
-
-@endsection
 @section('content')
 
 <div class="container">
@@ -24,16 +16,5 @@
     </div>
   </div>
 </div>
-<script>
-$('.product-showcase').slick({
-    dots: true
-});
-
-// window.addEventListener('load', function () {
-//     var comment = new Vue({
-//       el: '.cart-wrap',
-//     });
-// });
-</script>
 
 @endsection

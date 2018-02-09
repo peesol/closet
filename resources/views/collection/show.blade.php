@@ -11,13 +11,6 @@
 
 @section('scripts')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
-<script>
-window.addEventListener('load', function () {
-      var edit = new Vue({
-        el: '#product-show'
-      });
-  });
-</script>
 @endsection
 
 @section('content')
@@ -51,9 +44,29 @@ window.addEventListener('load', function () {
                 	<div id="full-line"></div>
                 @endif
 
-                <div id="product-show">
-                <collection-product-show col-id="{{$collection->id}}"></collection-product-show>
-                </div>
+
+
+                  <div class="thumbnail-grid margin-top-10px">
+                    @if($products->count())
+                      @foreach($products as $product)
+                        <div v-if="products.length" class="panel-body thumbnail-grid">
+                            <div v-for="product in products" class="products-wrap">
+                                <a  href="/product/{{ $product->uid}}">
+                                  <img class="products-img-thumb" src="{{config('closet.buckets.images') . '/product/thumbnail/' . $product->thumbnail}}"alt="{{$product->thumbnail}} image"></a>
+                                <div>
+                                <h4 class="no-margin"><a class="link-text" :href="url + '/product/'+ product.uid" style="font-size:1.2em;">{{$product->name}}</a></h4>
+                                <p class="no-margin">{{__('message.price')}}&nbsp:&nbsp{{$product->price}}</p>
+                                <p class="no-margin">{{__('message.category')}}&nbsp:&nbsp{{$product->subcategory->showTranslate(App::getLocale())->name}}</p>
+                                <p class="no-margin">{{__('message.by')}}&nbsp<a class="link-text" :href="url + '/'+ product.slug">{{$product->shop->name}}</a></p>
+                                </div>
+                            </div>
+                        </div>
+                      @endforeach
+                    @else
+                  <div class="panel-body">
+                      <p>{{__('message.no_products')}}</p>
+                  </div>
+                  @endif
             </div>
 </div>
 

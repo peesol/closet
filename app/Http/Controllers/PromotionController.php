@@ -9,7 +9,7 @@ class PromotionController extends Controller
     public function index(Request $request)
     {
       $promotions = $request->user()->shop->availablePromotions;
-      return view('promotion.index',['points' => $promotions]);
+      return view('promotion.index', ['points' => $promotions]);
     }
     public function getShopPromotion(Request $request)
     {
@@ -59,7 +59,7 @@ class PromotionController extends Controller
     {
       $promotions = $request->user()->shop->availablePromotions;
       return view('promotion.discount', [
-        'promotions' => $promotions,
+        'points' => $promotions,
       ]);
     }
     public function getProduct(Request $request)

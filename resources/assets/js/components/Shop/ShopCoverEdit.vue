@@ -49,7 +49,7 @@ export default {
                 if(document.getElementById("cover-input").files.length > 0){
                     this.$Progress.start();
                     toastr.info(this.$trans.translation.wait);
-                this.$http.put(this.url + '/' + this.$root.shopSlug + '/edit/cover', {
+                this.$http.put(this.$root.url + '/' + this.$root.shopSlug + '/edit/cover', {
                     cover: this.cover,
                     }).then((response)=> {
                         this.$Progress.finish();

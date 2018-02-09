@@ -29,20 +29,5 @@
 @endif
 
 </div>
-<script>
-    window.addEventListener('load', function () {
-        var follow = new Vue({
-          el: '.shop-header'
-        });
-        var vote = new Vue({
-          el: '.shop-vote',
-          data: {
-            url: '{{config('app.url')}}'
-          }
-        });
-        var collection = new Vue({
-          el: '.panel-body',
-        });
-    });
-</script>
+
 @endsection

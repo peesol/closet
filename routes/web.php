@@ -150,7 +150,7 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::delete('/product/{product}', 'ProductController@delete');
 
   Route::prefix('sell')->group(function () {
-    Route::get('/product', 'ProductController@create');
+    Route::get('/new', 'ProductController@create');
     Route::get('/subcat/{id}','ProductController@ajaxSubcat');
     Route::post('/product', 'ProductController@store');
     Route::get('/used', 'UsedController@create');

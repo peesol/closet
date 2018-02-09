@@ -15,12 +15,20 @@ require('./bootstrap');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
  window.addEventListener('load', function () {
-   var language = new Vue({
-     el: '.left-side-menu'
-   });
-});
-import Trans from './lang/translate'
-Vue.use(Trans);
+    var vue = new Vue({
+      el: '#app',
+      data: {
+        url: window.Closet.url,
+        authenticated: window.Closet.user.authenticated,
+        locale: window.Closet.locale,
+      },
+      router,
+      store
+    });
+ });
+
+import VueTrans from './lang/translate'
+Vue.use(VueTrans)
 
 import VueValidate from 'vee-validate'
 Vue.use(VueValidate)
@@ -56,26 +64,14 @@ const store = new Vuex.Store({
     checkout: []
   },
 })
+
 Vue.http.interceptors.push((request, next) => {
     request.headers.set('X-CSRF-TOKEN', Laravel.csrfToken);
     next();
-});
-window.addEventListener('load', function () {
+})
 
-  const details = new Vue({
-    el: '.product-details',
-    store
-  });
-  const cart = new Vue({
-    el: '.cart',
-    store
-  });
-  const mycart = new Vue({
-    el: '.cart-wrap',
-    store
-  });
-});
-
+Vue.component('user-dropdown', require('./components/Navigation/UserDropdown.vue'));
+Vue.component('side-menu', require('./components/Navigation/SideMenu.vue'));
 Vue.component('product-vote', require('./components/Product/ProductVote.vue'));
 Vue.component('product-comment', require('./components/Product/ProductComment.vue'));
 Vue.component('product-edit', require('./components/Product/ProductEdit.vue'));
@@ -104,7 +100,8 @@ Vue.component('collection-dropzone', require('./components/Collection/Collection
 Vue.component('collection-product', require('./components/Collection/CollectionProduct.vue'));
 Vue.component('collection-product-edit', require('./components/Collection/CollectionProductEdit.vue'));
 Vue.component('collection-product-show', require('./components/Collection/CollectionProductShow.vue'));
-Vue.component('language-select', require('./components/Language.vue'));
+Vue.component('dropdown-language', require('./components/Language/DropdownLanguage.vue'));
+Vue.component('language-select', require('./components/Language/Language.vue'));
 Vue.component('showcase', require('./components/Showcase.vue'));
 Vue.component('showcase-edit', require('./components/ShowcaseEdit.vue'));
 Vue.component('shipping-edit', require('./components/ShippingEdit.vue'));

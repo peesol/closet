@@ -33,8 +33,8 @@ export default {
 
     methods: {
             getProduct() {
-                    this.$http.get(this.url + '/collection_ajax/products/' + this.colId).then((response) => { this.products = response.body.data; });
-                },
+                    this.$http.get(this.$root.url + '/collection_ajax/products/' + this.colId).then((response) => { this.products = response.body.data; });
+            },
     },
 
     created() {

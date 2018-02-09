@@ -49,12 +49,12 @@ export default {
       toastr.success(this.$trans.translation.added_to_cart);
     },
     getProduct() {
-        this.$http.get(this.url + '/cart/get_product/' + this.productSlug).then((response)=> {
+        this.$http.get(this.$root.url + '/cart/get_product/' + this.productSlug).then((response)=> {
             this.product = response.body.data;
         });
     },
     getChoice() {
-        this.$http.get(this.url + '/product/' + this.productSlug + '/get_choice').then((response)=> {
+        this.$http.get(this.$root.url + '/product/' + this.productSlug + '/get_choice').then((response)=> {
             this.choices = response.body;
         });
     }

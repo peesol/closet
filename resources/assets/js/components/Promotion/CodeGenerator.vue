@@ -68,7 +68,6 @@ export default {
       discount: null,
       amount: null,
       type: null,
-      
       formVisible: false,
     }
   },

@@ -578,7 +578,7 @@
             thumbprint: "thumbprint"
         };
         function Prefetch(o) {
-            this.url = o.url;
+            this.$root.url = o.url;
             this.ttl = o.ttl;
             this.cache = o.cache;
             this.prepare = o.prepare;
@@ -590,7 +590,7 @@
         _.mixin(Prefetch.prototype, {
             _settings: function settings() {
                 return {
-                    url: this.url,
+                    url: this.$root.url,
                     type: "GET",
                     dataType: "json"
                 };
@@ -638,7 +638,7 @@
     var Remote = function() {
         "use strict";
         function Remote(o) {
-            this.url = o.url;
+            this.$root.url = o.url;
             this.prepare = o.prepare;
             this.transform = o.transform;
             this.indexResponse = o.indexResponse;
@@ -652,7 +652,7 @@
         _.mixin(Remote.prototype, {
             _settings: function settings() {
                 return {
-                    url: this.url,
+                    url: this.$root.url,
                     type: "GET",
                     dataType: "json"
                 };

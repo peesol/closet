@@ -119,14 +119,5 @@ $('.shop-carousel').slick({
   ]
 });
 </script>
-<script>
-window.addEventListener('load', function () {
-    var follow = new Vue({
-      el: '.shop-header'
-    });
-    var vote = new Vue({
-      el: '.shop-vote'
-    });
-});
-</script>
+
 @endsection

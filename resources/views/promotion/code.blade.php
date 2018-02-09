@@ -20,14 +20,5 @@
     </div>
   </div>
 </div>
-<script>
-window.addEventListener('load', function () {
-    var promotion = new Vue({
-      el: '.panel-body',
-      data: {
-        url: window.Closet.url,
-      }
-    });
-});
-</script>
+
 @endsection

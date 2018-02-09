@@ -13,11 +13,4 @@
   </div>
 </div>
 
-<script>
-window.addEventListener('load', function () {
-    var follow = new Vue({
-      el: '.container'
-    });
-});
-</script>
 @endsection

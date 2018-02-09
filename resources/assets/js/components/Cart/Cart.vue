@@ -93,12 +93,12 @@ export default {
 			this.formVisible = key;
 		},
 		getCart() {
-			this.$http.get(this.url + '/cart/get_shop').then((response) => {
+			this.$http.get(this.$root.url + '/cart/get_shop').then((response) => {
 				this.products = response.data
 			});
 		},
 		qtyChange(item) {
-				this.$http.put(this.url + '/cart/update/qty', {rowId: item.rowId, qty: item.qty}).then((response)=>{
+				this.$http.put(this.$root.url + '/cart/update/qty', {rowId: item.rowId, qty: item.qty}).then((response)=>{
 					this.products[item.options.shop_name]
 				});
 		},
@@ -107,7 +107,7 @@ export default {
 			if (!confirm(this.$trans.translation.delete_confirm)) {
 				return
 			} else {
-				return this.$http.put(this.url + '/cart/remove/' + id, {rowId: id}).then((response) => {
+				return this.$http.put(this.$root.url + '/cart/remove/' + id, {rowId: id}).then((response) => {
 					this.products[shop].splice(index, 1)
 					if(this.products[shop].length === 0) {
 						this.$delete(this.products, shop)
@@ -133,7 +133,7 @@ export default {
 				return
 			} else {
 				this.$Progress.start()
-				return this.$http.post(this.url + '/order/sending', {
+				return this.$http.post(this.$root.url + '/order/sending', {
 					products: shop,
 					sender_id: this.userId,
 					sender_name: this.userName,
@@ -152,7 +152,7 @@ export default {
 			}
 		},
 		applyDiscount(id, key) {
-				this.$http.post(this.url + '/profile/promotions/code/validate', {code: this.code[key], shop_id: id}).then((response)=>{
+				this.$http.post(this.$root.url + '/profile/promotions/code/validate', {code: this.code[key], shop_id: id}).then((response)=>{
 					if (response.body.status === true) {
 						if (response.body.type == 'percent') {
 							var price = this.confirmed.totalPrice.split(',').join('')

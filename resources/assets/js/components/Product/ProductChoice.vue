@@ -62,13 +62,13 @@
 
 		methods: {
       getChoice() {
-          this.$http.get(this.url + '/product_ajax/' + this.productId + '/choice').then((response)=> {
+          this.$http.get(this.$root.url + '/product_ajax/' + this.productId + '/choice').then((response)=> {
           this.choices = response.body;
         });
       },
 
       add(){
-        this.$http.post(this.url + '/product_ajax/' + this.productId + '/choice', {
+        this.$http.post(this.$root.url + '/product_ajax/' + this.productId + '/choice', {
           name: this.name
         }).then((response)=> {
               this.getChoice();
@@ -78,7 +78,7 @@
       },
 
       toggleChoice(choiceId){
-        this.$http.put(this.url + '/product_ajax/' + this.productId + '/choice', {
+        this.$http.put(this.$root.url + '/product_ajax/' + this.productId + '/choice', {
           id: choiceId
         }).then((response)=> {
               this.getChoice();
@@ -91,7 +91,7 @@
       if(!confirm(this.$trans.translation.delete_confirm)){
         return;
       }
-        this.$http.delete(this.url + '/product_ajax/delete/choice/' + choiceId).then(() => {
+        this.$http.delete(this.$root.url + '/product_ajax/delete/choice/' + choiceId).then(() => {
           this.getChoice();
           toastr.success(this.$trans.translation.success, toastr.options = {"preventDuplicates": true,});
         });

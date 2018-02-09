@@ -22,7 +22,7 @@
 		},
 		methods: {
 			getFollowStatus() {
-				axios.get(this.url + '/follow/' + this.shopSlug)
+				axios.get(this.$root.url + '/follow/' + this.shopSlug)
   					.then((response) => {
   					  	this.followers = response.data.data.count;
   					  	this.userFollowed = response.data.data.user_followed;
@@ -44,7 +44,7 @@
 			follow() {
 				this.userFollowed = true;
 				this.followers++;
-				axios.post(this.url + '/follow/' + this.shopSlug);
+				axios.post(this.$root.url + '/follow/' + this.shopSlug);
 			},
 			unfollow() {
 				if(!confirm('Are you sure you want to unfollow?')){
@@ -52,7 +52,7 @@
 				}
 				this.userFollowed = false;
 				this.followers--;
-				axios.delete(this.url + '/follow/' + this.shopSlug);
+				axios.delete(this.$root.url + '/follow/' + this.shopSlug);
 			}
 		},
 

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title')
-
+{{__('message.discount_code')}}
 @endsection
 @section('content')
 
@@ -17,23 +17,9 @@
       <div class="alert-box warning">
         <span class="icon-warning"></span>&nbsp;{{__('message.product_discount_warn')}}
       </div>
-      <product-discount></product-discount>
+      <product-discount points="{{$points->discount}}"></product-discount>
     </div>
   </div>
 </div>
-<script>
-window.addEventListener('load', function () {
-    var promotion = new Vue({
-      el: '.panel-body',
-      data: {
-        url: window.Closet.url,
-        promotions: {
-          discount: {{$promotions->discount}},
-          getAnother: {{$promotions->get_another}},
-          flashSale: {{$promotions->flash_sale}},
-        }
-      }
-    });
-});
-</script>
+
 @endsection

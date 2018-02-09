@@ -15,7 +15,7 @@
       <ul v-show="subcats.length > 0" class="">
         <li v-for="subcategory in subcats"><a @click.prevent="getType(subcategory.id)" v-bind:class="{'filter-active': subcategory.id == sub }">{{ subcategory.name }}</a></li>
       </ul>
-      
+
       <ul v-show="types.length > 0" class="">
         <li v-for="type in types"><a @click.prevent="query(type.id)" :class="{'filter-active': type.id == typez }">{{ type.name }}</a></li>
       </ul>
@@ -48,8 +48,7 @@ export default {
         typez : this.$route.query.type,
         formVisible: false,
         url: window.Closet.url,
-        current_url: window.location.href,
-        
+        current_url: window.location.href,  
       }
     },
     props: {
@@ -57,13 +56,13 @@ export default {
     },
     methods: {
       getCategory() {
-        this.$http.get(this.url + '/category_ajax/get_category').then((response)=> {this.cats = response.body; });
+        this.$http.get(this.$root.url + '/category_ajax/get_category').then((response)=> {this.cats = response.body; });
         if(this.$route.query.c) {
-          this.$http.get(this.url + '/category_ajax/get_subcategory/' + this.$route.query.c).then((response)=> {this.subcats = response.body; });
+          this.$http.get(this.$root.url + '/category_ajax/get_subcategory/' + this.$route.query.c).then((response)=> {this.subcats = response.body; });
         }
 
         if(this.$route.query.sub) {
-          this.$http.get(this.url + '/category_ajax/get_type/' + this.$route.query.sub).then((response)=> {this.types = response.body; });
+          this.$http.get(this.$root.url + '/category_ajax/get_type/' + this.$route.query.sub).then((response)=> {this.types = response.body; });
         }
 
       },

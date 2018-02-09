@@ -95,7 +95,7 @@
 
 			createReply(commentId) {
 
-				this.$http.post(this.url + '/product/used/' + this.productUid + '/comments', {
+				this.$http.post(this.$root.url + '/product/used/' + this.productUid + '/comments', {
 					body: this.replyBody,
 					reply_id: commentId
 				}).then((response)=> {
@@ -113,7 +113,7 @@
 			},
 
 			createComment() {
-				this.$http.post(this.url + '/product/used/' + this.productUid + '/comments', {
+				this.$http.post(this.$root.url + '/product/used/' + this.productUid + '/comments', {
 					body: this.body
 				}).then((response)=> {
 						this.comments.unshift(response.body.data);
@@ -128,7 +128,7 @@
 					return;
 				}
 
-				this.$http.delete(this.url + '/product/used/' + this.productUid + '/comments/' + commentId).then(() => {
+				this.$http.delete(this.$root.url + '/product/used/' + this.productUid + '/comments/' + commentId).then(() => {
 					this.deleteById(commentId);
 				});
 			},
@@ -153,7 +153,7 @@
 
 			getComments() {
 						this.$Progress.start();
-  					this.$http.get(this.url + '/product/used/' + this.productUid + '/comments' ).then((response)=> {
+  					this.$http.get(this.$root.url + '/product/used/' + this.productUid + '/comments' ).then((response)=> {
 						this.comments = response.body.data;
 						this.$Progress.finish();
 				});

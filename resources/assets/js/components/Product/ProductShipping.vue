@@ -65,7 +65,7 @@ export default {
 
     methods: {
       edit() {
-        this.$http.put(this.url + '/product/' + this.productSlug + '/edit/shipping', {
+        this.$http.put(this.$root.url + '/product/' + this.productSlug + '/edit/shipping', {
           shipping: this.shipping,
           shipping_fee: this.shipping_fee,
           shipping_free: this.shipping_free,

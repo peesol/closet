@@ -136,7 +136,7 @@ export default {
   },
   methods: {
     getMessages() {
-      this.$http.get(this.url + '/profile/inbox_messages/buying').then((response)=> {
+      this.$http.get(this.$root.url + '/profile/inbox_messages/buying').then((response)=> {
          this.orders = response.body.data;
        });
     },
@@ -157,7 +157,7 @@ export default {
     },
     confirm(uid, index) {
       this.$Progress.start();
-      this.$http.put(this.url + '/order/' + uid + '/transaction', {
+      this.$http.put(this.$root.url + '/order/' + uid + '/transaction', {
         date: this.date,
         time: this.time,
         address: this.address,

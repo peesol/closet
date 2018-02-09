@@ -1,6 +1,6 @@
 <template>
 <div style="padding:15px;">
-  <h2 v-bind:class="{ 'red-font' : $root.promotions.discount === 0 ,'green-font' : $root.promotions.discount !== 0}">{{$trans.translation.points}}&nbsp;:&nbsp;{{$root.promotions.discount}}</h2>
+  <h2 v-bind:class="{ 'red-font' : points === 0 ,'green-font' : points !== 0}">{{$trans.translation.points}}&nbsp;:&nbsp;{{points}}</h2>
   <table class="c-table" v-show="discount_products.length">
     <tr>
       <th colspan="5">{{$trans.translation.discount}}</th>
@@ -57,9 +57,10 @@ export default {
       products: [],
       discount: null,
       formVisible: null,
-      
-      count: this.$root.promotions.discount,
     }
+  },
+  props: {
+    points: null,
   },
   methods: {
     numeral: function(price) {
@@ -83,11 +84,11 @@ export default {
         return
       } else {
         this.$http.put(this.$root.url + '/profile/promotions/manage/discount/' + uid + '/add', {discount:this.discount}).then((response) => {
-          if (this.$root.promotions.discount === 0) {
+          if (this.promotions.discount === 0) {
             alert(this.$trans.translation.not_enough_points)
           } else {
             this.products.splice(index, 1);
-            this.$root.promotions.discount--
+            this.promotions.discount--
             this.discount_products.push(response.body);
             this.discount = null;
           }

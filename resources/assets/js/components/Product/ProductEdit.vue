@@ -92,7 +92,7 @@ export default {
                 if(document.getElementById("image-input").files.length == 0) {
                     this.$Progress.start();
                     toastr.info(this.$trans.translation.wait);
-                    this.$http.put(this.url + '/product/' + this.productSlug + '/edit', {
+                    this.$http.put(this.$root.url + '/product/' + this.productSlug + '/edit', {
                     name: this.name,
                     description: this.description,
                     price: this.price,
@@ -107,7 +107,7 @@ export default {
                 } else if (document.getElementById("image-input").files.length > 0) {
                     this.$Progress.start();
                     toastr.info(this.$trans.translation.wait);
-                this.$http.put(this.url + '/product/' + this.productSlug + '/edit', {
+                this.$http.put(this.$root.url + '/product/' + this.productSlug + '/edit', {
                     name: this.name,
                     description: this.description,
                     price: this.price,

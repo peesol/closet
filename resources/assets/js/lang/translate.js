@@ -1,5 +1,6 @@
 import english from './en'
 import thai from './th'
+
 export default {
   install: (Vue) => {
     Vue.prototype.$trans = {

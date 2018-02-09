@@ -20,7 +20,11 @@ class CollectionController extends Controller
     }
     public function index(Collection $collection)
     {
-      return view('collection.show', ['collection' => $collection]);
+      $products = $collection->products;
+      return view('collection.show', [
+        'collection' => $collection,
+        'products' => $products,
+      ]);
     }
     public function collectionAjax(Request $request, Shop $shop)
     {

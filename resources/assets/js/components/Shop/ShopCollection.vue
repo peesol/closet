@@ -79,14 +79,14 @@
 		methods: {
 			getCollection() {
 					this.$Progress.start();
-  					this.$http.get(this.url + '/collection_ajax/' + this.shopSlug).then((response)=> {
+  					this.$http.get(this.$root.url + '/collection_ajax/' + this.shopSlug).then((response)=> {
 							this.collections = response.body.data
 							this.$Progress.finish()
 						});
   			},
 			create(){
 				this.$Progress.start();
-				this.$http.post(this.url + '/collection_ajax/' + this.shopSlug ,{
+				this.$http.post(this.$root.url + '/collection_ajax/' + this.shopSlug ,{
 					name: this.name,
 					description: this.description,
 					visibility: this.visibility,
@@ -102,14 +102,14 @@
 	      });
 			},
 			edit(collectionSlug){
-				document.location.href= this.url + '/collection/' + collectionSlug + '/edit';
+				document.location.href= this.$root.url + '/collection/' + collectionSlug + '/edit';
 			},
 			removeCol(collectionSlug, index){
 				if(!confirm(this.$trans.translation.col_delete_confirm)){
 					return;
 				}
 				this.$Progress.start();
-				this.$http.delete(this.url + '/collection/' + collectionSlug).then(() => {
+				this.$http.delete(this.$root.url + '/collection/' + collectionSlug).then(() => {
 					this.$delete(this.collections, index)
 					this.$Progress.finish()
 					toastr.success(this.$trans.translation.col_deleted, {timeOut: 1000})

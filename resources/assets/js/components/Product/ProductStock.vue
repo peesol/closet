@@ -37,7 +37,7 @@ export default {
 	},
   methods: {
       getProduct() {
-          this.$http.get(this.url + '/profile/myproduct/get').then((response)=> {
+          this.$http.get(this.$root.url + '/profile/myproduct/get').then((response)=> {
             return response.json()
             .then((json) => {
               this.products = json;
@@ -46,7 +46,7 @@ export default {
         },
 
         setAmount(productSlug, productAmount, index){
-          this.$http.put(this.url + '/profile/myproduct/stock/set_amount/' + productSlug , {
+          this.$http.put(this.$root.url + '/profile/myproduct/stock/set_amount/' + productSlug , {
             amount: productAmount
           }).then((response) => {
             toastr.success(this.$trans.translation.saved);

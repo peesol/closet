@@ -112,18 +112,6 @@
 $('.product-showcase').slick({
     dots: true
 });
-$('#tab-comment').one('click', function() {
-  var comment = new Vue({
-    el: '.comment-vue',
-    data: window.Closet
-  });
-});
-window.addEventListener('load', function () {
-    var details = new Vue({
-      el: '.product-details'
-    });
-
-});
 
 $(document).ready(function(){
     $('ul.shop-nav-ul button').click(function(){

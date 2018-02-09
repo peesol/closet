@@ -145,7 +145,7 @@ export default {
   },
   methods: {
     getMessages() {
-      this.$http.get(this.url + '/profile/inbox_messages/selling').then((response)=> {
+      this.$http.get(this.$root.url + '/profile/inbox_messages/selling').then((response)=> {
          this.orders = response.body.data;
        });
     },
@@ -165,7 +165,7 @@ export default {
     },
     confirm(uid, index) {
       this.$Progress.start();
-      this.$http.put(this.url + '/order/' + uid + '/confirm', {
+      this.$http.put(this.$root.url + '/order/' + uid + '/confirm', {
         shipping: this.shipping,
         shipping_fee: this.shipping_fee,
       }).then((response) => {
@@ -182,7 +182,7 @@ export default {
         return
       } else {
       this.$Progress.start();
-      this.$http.delete(this.url + '/order/' + uid + '/deny').then((response) => {
+      this.$http.delete(this.$root.url + '/order/' + uid + '/deny').then((response) => {
         this.$modal.hide('open-msg');
         this.$delete(this.orders, index);
         toastr.success(this.$trans.translation.success);
@@ -192,7 +192,7 @@ export default {
     },
     confirmShipping(uid, index){
       this.$Progress.start();
-      this.$http.put(this.url + '/order/' + uid + '/confirm_shipping', {
+      this.$http.put(this.$root.url + '/order/' + uid + '/confirm_shipping', {
         carrier: this.track_info,
         tracking_number: this.tracking_number,
       }).then((response) => {

@@ -70,14 +70,14 @@ export default {
                 toastr.options.timeOut = 2000;
                     this.$Progress.start();
                     toastr.info(this.$trans.translation.wait);
-                    this.$http.put(this.url + '/' + this.$root.shopSlug + '/edit', {
+                    this.$http.put(this.$root.url + '/' + this.$root.shopSlug + '/edit', {
                     name: this.name,
                     slug: this.slug,
                     description: this.description,
                     }).then((response)=> {
                         this.$Progress.finish();
                         toastr.success(this.$trans.translation.success);
-                        document.location.href= this.url + '/' + this.slug + '/edit';
+                        document.location.href= this.$root.url + '/' + this.slug + '/edit';
                     }, (response) => {
                         toastr.error(this.$trans.translation.error);
                         this.$Progress.fail();

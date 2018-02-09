@@ -21,13 +21,11 @@
     			up: null,
     			down: null,
     			userVote: null,
-                url: window.Closet.url,
-                user: window.Closet.user.user,
     		}
     	},
     	methods: {
     		 getVotes () {
-    			this.$http.get(this.url + '/' + this.shopSlug + '/votes').then((response) => {
+    			this.$http.get(this.$root.url + '/' + this.shopSlug + '/votes').then((response) => {
     				return response.json()
   					.then((parsed) => {
   					  this.up = parsed.data.up;
@@ -56,28 +54,22 @@
     		},
 
     		deleteVote(type) {
-    			this.$http.delete(this.url + '/' + this.shopSlug + '/votes');
+    			this.$http.delete(this.$root.url + '/' + this.shopSlug + '/votes');
 
     		},
 
     		createVote(type) {
-    			this.$http.post(this.url + '/' + this.shopSlug + '/votes', {
+    			this.$http.post(this.$root.url + '/' + this.shopSlug + '/votes', {
     				type: type,
     			});
 
     		},
         loginFirst() {
-          toastr.warning(this.$trans.translation.login_first,
-            toastr.options = {
-                "closeButton": true,
-                "preventDuplicates": true,
-                "timeOut": "1000",
-            }
-          );
+          toastr.warning(this.$trans.translation.login_first)
         },
 
 				logView() {
-						this.$http.put(this.url + '/' + this.shopSlug + '/views');
+						this.$http.put(this.$root.url + '/' + this.shopSlug + '/views');
 						clearInterval(this.timer);
 				}
     	},

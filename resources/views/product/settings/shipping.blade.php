@@ -1,7 +1,9 @@
 @extends('layouts.app')
+
 @section('title')
 {{__('message.shipping_edit').' - '}}
 @endsection
+
 @section('content')
 
 <div class="container">
@@ -16,15 +18,4 @@
   </div>
 </div>
 
-@endsection
-
-
-@section('scripts')
-<script>
-window.addEventListener('load', function () {
-    var details = new Vue({
-      el: '.panel-body'
-    });
-});
-</script>
 @endsection

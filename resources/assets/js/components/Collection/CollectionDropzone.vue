@@ -26,29 +26,31 @@
 
 <script>
 import Dropzone from 'dropzone'
-//import jQuery from 'jquery'
 Dropzone.autoDiscover = false
 export default {
 	data() {
 		return {
 			images: [],
 			formVisible: false,
-			dropzoneUrl: window.Closet.url + '/collection/' + this.$root.colSlug + '/upload/' + this.$root.colId,
-			url: window.Closet.url,
+			dropzoneUrl: window.Closet.url + '/collection/' + this.colSlug + '/upload/' + this.colId,
 		}
+	},
+	props: {
+		colSlug: null,
+		colId: null
 	},
     methods: {
 			getPhoto() {
-  					this.$http.get(this.url + '/collection_ajax/img/' + this.$root.colSlug)
+  					this.$http.get(this.$root.url + '/collection_ajax/img/' + this.colSlug)
   					.then((response) => {return response.json()
 						.then((json) => {this.images = json.data;});
 					});
-  				},
+  		},
 			removePhoto(imageId, index) {
 				if(!confirm(this.$trans.translation.delete_photo_confirm)){
 						return;
 				}
-					this.$http.delete(this.url + '/collection/image/' + imageId).then(() => {
+					this.$http.delete(this.$root.url + '/collection/image/' + imageId).then(() => {
 							this.images.splice(index, 1);
 							toastr.success(this.$trans.translation.success);
 					});

@@ -1,6 +1,6 @@
 <template>
 <div style="padding:5px; height:150px;">
-    <select class="lang-input" :name="lang" v-model="lang" @change="selectLang(lang)">
+    <select class="lang-input" :name="selectedLang" v-model="selectedLang" @change="selectLang(selectedLang)">
         <option v-for="(lang, key) in langs" :value="key">{{lang}}</option>
     </select>
 </div>
@@ -38,40 +38,26 @@ const dictionary = {
 	export default {
 		data() {
 			return {
-				langs: [],
-				lang: this.language,
-				url: window.Closet.url,
-				current_url: window.location.href,
-        trans: this.$trans
+        selectedLang: this.$root.locale,
+				langs: {
+          th: 'ภาษาไทย',
+          en: 'English',
+        },
 			}
 		},
-
-		props: {
-			language: null
-		},
 		methods: {
-            getLang() {
-                    this.$http.get(this.url + '/locale_ajax')
-                    .then((response) => {return response.json()
-                        .then((json) => {
-                          this.langs = json.locale;
-                          this.$trans.translate(json.current_locale);
-                        });
-                    });
-                },
-
-            selectLang() {
-                    this.$http.put(this.url + '/locale_ajax/' + this.lang)
-                    .then((response) => {return response.json()
-                        .then((json) => {document.location.href= this.current_url;});
-                    });
-                },
-			},
+      selectLang(lang) {
+        this.$http.put(this.$root.url + '/locale_ajax/' + lang)
+          .then((response) => {
+            document.location.href= window.location.href;
+          });
+      },
+		},
 
 		created() {
-			 this.getLang();
+			 this.$trans.translate(this.$root.locale)
        this.$validator.localize(dictionary)
-       this.$validator.localize(this.language)
+       this.$validator.localize(this.$root.locale)
 		}
 	}
 </script>

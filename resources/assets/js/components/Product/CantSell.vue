@@ -41,9 +41,6 @@ export default {
       provider: null,
       number: null,
       name: null,
-      
-			url: window.Closet.url,
-      locale: window.Closet.locale,
       options: [
         {'name':'ธนาคารกรุงเทพ', 'code':'BBL'},
         {'name':'ธนาคารกสิกรไทย', 'code':'KBANK'},
@@ -55,20 +52,21 @@ export default {
       ],
 		}
 	},
+  props: {
+    shopSlug: null
+  },
     methods: {
       add() {
-        toastr.options.preventDuplicates = true;
-        toastr.options.timeOut = 2000;
           this.$Progress.start()
           toastr.info(this.$trans.translation.wait);
-          this.$http.post(this.url + '/' + this.$root.shopSlug + '/edit/account', {
-          provider: this.provider,
-          number: this.number,
-          name: this.name,
+          this.$http.post(this.$root.url + '/' + this.shopSlug + '/edit/account', {
+            provider: this.provider,
+            number: this.number,
+            name: this.name,
           }).then((response)=> {
               this.$Progress.finish()
               toastr.success(this.$trans.translation.saved)
-              document.location.href= this.url + '/sell/product';
+              document.location.href= this.$root.url + '/sell/product';
           }, (response) => {
               toastr.error(this.$trans.translation.error)
               this.$Progress.fail()

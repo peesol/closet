@@ -35,20 +35,18 @@ import { mixin as clickaway } from 'vue-clickaway';
           added: null,
           formVisible: false,
     			create: false,
-          url: window.Closet.url,
           user_id: window.Closet.user.user,
-          authenticated: window.Closet.user.authenticated
     		}
     	},
 
     	methods: {
         getCollection() {
-          this.$http.get(this.url + '/collection_ajax/'+ this.shopSlug +'/add/' + this.productId).then((response)=> {
+          this.$http.get(this.$root.url + '/collection_ajax/'+ this.shopSlug +'/add/' + this.productId).then((response)=> {
               this.collections = response.body.data;
             });
         },
     		addToCollection(productId, collectionId, index) {
-					this.$http.post(this.url + '/collection/' + collectionId + '/add/' + productId).then((response)=> {
+					this.$http.post(this.$root.url + '/collection/' + collectionId + '/add/' + productId).then((response)=> {
 						if (this.collections[index].added) {
 							this.$set(this.collections[index], 'added', false)
 							toastr.success(this.$trans.translation.delete_from_col)
@@ -65,7 +63,7 @@ import { mixin as clickaway } from 'vue-clickaway';
           this.formVisible = false;
         },
         createCol () {
-          this.$http.post(this.url + '/collection_ajax/' + this.shopSlug ,{
+          this.$http.post(this.$root.url + '/collection_ajax/' + this.shopSlug ,{
               name: this.col_name,
           }).then((response)=> {
 						this.col_name = null,
@@ -82,7 +80,7 @@ import { mixin as clickaway } from 'vue-clickaway';
         },
 
       created() {
-				if (this.authenticated) {
+				if (this.$root.authenticated) {
 					this.getCollection()
 				}
   		},

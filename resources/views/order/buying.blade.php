@@ -4,16 +4,10 @@
 {{__('message.buying_order').' - '}}
 @endsection
 
-@section('css')
-<link href="https://s3-ap-southeast-1.amazonaws.com/files.closet/css/extra/slick-theme.css" rel="stylesheet">
-<link href="https://s3-ap-southeast-1.amazonaws.com/files.closet/css/extra/slick.css" rel="stylesheet">
-@endsection
-
 @section('scripts')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/cleave.js/1.0.9/cleave.min.js"></script>
-
 @endsection
+
 @section('content')
 
 <div class="container">
@@ -29,12 +23,5 @@
     </div>
   </div>
 </div>
-<script>
-window.addEventListener('load', function () {
-    var list = new Vue({
-      el: '.msg-container',
-    });
-});
-</script>
 
 @endsection

@@ -1,11 +1,3 @@
-button{
-    font-family: Arial, sans-serif;
-    outline: none;
-    cursor: pointer;
-}
-a {
-  outline: none;
-}
 .not-display{display: none;}
 /*INPUT*/
 .s-input{

@@ -99,13 +99,13 @@ export default {
   },
     methods: {
       getCategory() {
-          this.$http.get(this.url + '/category_ajax/get_category' ).then((response)=> {
+          this.$http.get(this.$root.url + '/category_ajax/get_category' ).then((response)=> {
             this.categories = response.body;
           });
       },
       getSubcategory(category) {
         if (this.category !== null) {
-          return this.$http.get(this.url + '/category_ajax/get_subcategory/' + category ).then((response)=> {
+          return this.$http.get(this.$root.url + '/category_ajax/get_subcategory/' + category ).then((response)=> {
             this.subcategory = null;
             this.subcategories = response.body;
             this.type = null;
@@ -115,7 +115,7 @@ export default {
       },
       getType(subcategory) {
         if (this.subcategory !== null && this.subcategory !== undefined) {
-          this.$http.get(this.url + '/category_ajax/get_type/' + subcategory ).then((response)=> {
+          this.$http.get(this.$root.url + '/category_ajax/get_type/' + subcategory ).then((response)=> {
             this.types = response.body;
             this.type = null;
           });

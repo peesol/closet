@@ -65,7 +65,7 @@
 				if(document.getElementById("image-input").files.length == 0) {
 					this.$Progress.start();
 					toastr.info(this.$trans.translation.wait);
-					this.$http.put(this.url + '/collection/' + this.$root.colSlug + '/edit', {
+					this.$http.put(this.$root.url + '/collection/' + this.$root.colSlug + '/edit', {
 					name: this.name,
 					description: this.description,
 					visibility: this.visibility,
@@ -80,7 +80,7 @@
 				if(document.getElementById("image-input").files.length > 0){
 					this.$Progress.start();
 					toastr.info(this.$trans.translation.wait);
-  				this.$http.put(this.url + '/collection/' + this.$root.colSlug + '/edit', {
+  				this.$http.put(this.$root.url + '/collection/' + this.$root.colSlug + '/edit', {
 					name: this.name,
 					description: this.description,
 					visibility: this.visibility,

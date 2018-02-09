@@ -70,14 +70,14 @@
 		methods: {
       getShowcase() {
           this.$Progress.start()
-          this.$http.get(this.url + '/showcase_ajax/' + this.$root.shopSlug + '/showcase').then((response)=> {
+          this.$http.get(this.$root.url + '/showcase_ajax/' + this.$root.shopSlug + '/showcase').then((response)=> {
             this.showcases = response.body;
             this.$Progress.finish()
         });
       },
       create(index){
         this.$Progress.start()
-				this.$http.post(this.url + '/showcase_ajax/' + this.$root.shopSlug + '/showcase' ,{
+				this.$http.post(this.$root.url + '/showcase_ajax/' + this.$root.shopSlug + '/showcase' ,{
 					name: this.name,
           order: this.showcases.length ? this.showcases.length + 1 : 1
 				}).then((response)=> {
@@ -95,18 +95,18 @@
       if(!confirm(this.$trans.translation.delete_confirm)){
         return;
       }
-        this.$http.delete(this.url + '/showcase_ajax/delete/' + showcaseId).then(() => {
+        this.$http.delete(this.$root.url + '/showcase_ajax/delete/' + showcaseId).then(() => {
           this.showcases.splice(index, 1)
           toastr.success(this.$trans.translation.success, toastr.options = {"preventDuplicates": true,});
         });
       },
 
       edit(showcaseId){
-        document.location.href= this.url + '/profile/showcase/' + showcaseId + '/edit';
+        document.location.href= this.$root.url + '/profile/showcase/' + showcaseId + '/edit';
       },
 
       showToggle(showcaseId, index){
-        this.$http.put(this.url + '/showcase_ajax/show/' + showcaseId ).then((response) => {
+        this.$http.put(this.$root.url + '/showcase_ajax/show/' + showcaseId ).then((response) => {
             toastr.success(this.$trans.translation.saved);
             if (this.showcases[index].show) {
               this.$set(this.showcases[index], 'show', false)
@@ -122,7 +122,7 @@
         this.showcases.map((showcase, index) => {
           showcase.order = index + 1;
         });
-        this.$http.put(this.url + '/showcase_ajax/update/all/order', {
+        this.$http.put(this.$root.url + '/showcase_ajax/update/all/order', {
           showcases: this.showcases
         }).then((response) => {
             toastr.success(this.$trans.translation.saved);

@@ -32,8 +32,7 @@ export default {
 		return {
 			images: [],
 			formVisible: false,
-			dropzoneUrl: window.Closet.url + '/product_ajax/' + this.productId + '/img',
-			url: window.Closet.url,
+			dropzoneUrl: this.$root.url + '/product_ajax/' + this.productId + '/img',
 		}
 	},
 	props: {
@@ -43,7 +42,7 @@ export default {
 
     methods: {
 			getPhoto() {
-  					this.$http.get(this.url + '/product_ajax/' + this.productSlug + '/img/')
+  					this.$http.get(this.$root.url + '/product_ajax/' + this.productSlug + '/img/')
   					.then((response) => {return response.json()
 						.then((json) => {this.images = json.data;});
 					});

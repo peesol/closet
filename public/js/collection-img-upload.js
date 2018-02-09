@@ -619,7 +619,7 @@
         })(this);
         setupHiddenFileInput();
       }
-      this.URL = (ref = window.URL) != null ? ref : window.webkitURL;
+      this.$root.url = (ref = window.URL) != null ? ref : window.webkitURL;
       ref1 = this.events;
       for (j = 0, len = ref1.length; j < len; j++) {
         eventName = ref1[j];

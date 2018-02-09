@@ -56,6 +56,7 @@
 	position: fixed;
 	height: 100%;
 	width: 0;
+	left: 0;
 	background-color: white;
 	border-right: 1px solid #efefef;
 	top: 50px;
@@ -148,7 +149,6 @@
 	margin: 5px 0px 5px 0px;
 	padding: 10px 0px 0px 12px;
 	display: block;
-	border-top: 1px solid #eeeeee;
 	text-decoration: underline;
 }
 #cat:hover {
@@ -160,7 +160,6 @@
     font-size: 1.2em;
     color: #6c6c6c;
     font-weight: 600;
-        border-top: 1px solid #eeeeee;
     margin: 0;
     padding: 10px 0 10px 12px;
     text-decoration: none;
