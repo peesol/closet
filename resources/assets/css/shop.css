@@ -251,9 +251,6 @@ width: auto;
     .s-product-name{
     width: 280px;
     }
-    .s-products-margin {
-    margin: 0 23px 10px 23px;
-    }
     .add-col-panel{
     width: 400px;
     height: auto;
@@ -304,9 +301,6 @@ width: auto;
     .s-product-name{
     width: 140px;
     }
-    .s-products-margin {
-    margin: 0 11.25px 10px 11.25px;
-    }
 }
 @media (min-width: 1200px) {
     .shop-panel {
@@ -317,9 +311,6 @@ width: auto;
     }
     .s-product-name{
     width: 180px;
-    }
-    .s-products-margin {
-    margin: 0 33.75px 10px 33.75px;
     }
 }
 

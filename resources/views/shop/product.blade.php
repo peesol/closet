@@ -24,7 +24,7 @@
                     @if ($products->count())
                         @foreach ($products as $product)
 
-                        <div class="products-wrap s-products-margin">
+                        <div class="products-wrap">
                           <div class="products-img">
                               <a href="/product/{{ $product->uid}}">
                               <img class="products-img-thumb" src="{{$product->getImage()}}" alt="{{$product->thumbnail}}">

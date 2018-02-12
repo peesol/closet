@@ -14,7 +14,7 @@ return array(
     */
 
     'config' => [
-        'hosts'     => ['localhost:9200'],
+        'hosts'     => ['https://vpc-closet-e5xa36vqf7redrw6rbhsxorw6e.ap-southeast-1.es.amazonaws.com'],
         'retries'   => 1,
     ],
 
@@ -27,6 +27,6 @@ return array(
     | Elasticquent models.
     */
 
-    'default_index' => 'my_custom_index_name',
+    'default_index' => 'products',
 
 );
