@@ -10,8 +10,8 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('/shops', 'HomeController@shops')->name('shops');
 Route::get('/trending', 'HomeController@trending')->name('trending');
 
-Route::get('/locale_ajax', 'Controller@lang');
-Route::put('/locale_ajax/{lang}', 'Controller@langChange');
+Route::get('/locale_ajax', 'Language\LanguageController@getLanguage');
+Route::put('/locale_ajax/{lang}', 'Language\LanguageController@languageChange');
 
 Route::get('/search/by/{keyword}', 'SearchController@searchByProduct');
 Route::get('/search/result', 'SearchController@index')->name('result');
@@ -37,15 +37,6 @@ Route::get('/category_ajax/get_type/{subcategoryId}', 'ProductController@getType
 Route::get('/category/main', 'CategoryController@main')->name('categoryMain');
 Route::get('/category/{category}', 'CategoryController@category');
 
-
-Route::get('/{shop}', 'ShopController@index');
-Route::get('/{shop}/products', 'ShopController@product');
-Route::get('/{shop}/collection', 'ShopController@collection');
-Route::get('/{shop}/about', 'ShopController@about');
-Route::get('/{shop}/votes', 'ShopVoteController@show');
-Route::get('/{shop}/status', 'ShopController@ajaxStat');
-Route::put('/{shop}/views', 'ShopController@logView');
-
 Route::get('/follow/{shop}', 'ShopFollowController@show');
 
 Route::get('/collection_ajax/{shop}', 'CollectionController@collectionAjax');
@@ -53,28 +44,46 @@ Route::get('/collection_ajax/img/{collection}', 'CollectionController@getPhoto')
 Route::get('/collection_ajax/products/{collectionId}', 'CollectionController@getProduct');
 Route::get('/collection/{collection}', 'CollectionController@index');
 
-Route::prefix('cart')->group(function () {
-  Route::get('/get', 'CartController@getCart');
-  Route::get('/get_product/{product}', 'CartController@getProduct');
-  Route::get('/get_shop', 'CartController@getCartByShop');
-  Route::post('/add/{product}', 'CartController@addToCart');
-  Route::put('/update/qty', 'CartController@updateQty');
-  Route::put('/remove/{rowId}', 'CartController@removeProduct');
-  Route::get('/mycart', 'CartController@userCart');
+/*
+|--------------------------------------------------------------------------
+| Cart Routes
+|--------------------------------------------------------------------------
+*/
+Route::namespace('Cart')->group(function () {
+  Route::get('/cart/get', 'CartController@getCart');
+  Route::get('/cart/get_product/{product}', 'CartController@getProduct');
+  Route::get('/cart/get_shop', 'CartController@getCartByShop');
+  Route::post('/cart/add/{product}', 'CartController@addToCart');
+  Route::put('/cart/update/qty', 'CartController@updateQty');
+  Route::put('/cart/remove/{rowId}', 'CartController@removeProduct');
+  Route::get('/cart/mycart', 'CartController@userCart');
 });
 
 
-// Order via Email
-Route::get('/order/{order}/confirm', 'OrderController@confirmPage');
-Route::put('/order/{order}/confirm', 'OrderController@confirm');
+/*
+|--------------------------------------------------------------------------
+| Order via Email
+|--------------------------------------------------------------------------
+*/
+Route::get('/order/{order}/confirm', 'Order\EmailController@confirmPage');
+Route::put('/order/{order}/confirm', 'Order\EmailController@confirm');
 
-Route::get('/order/{order}/shipped_email', 'OrderController@shippedPage');
-Route::put('/order/{order}/shipped_email', 'OrderController@confirmShippingEmail');
+Route::get('/order/{order}/shipped_email', 'Order\EmailController@shippedPage');
+Route::put('/order/{order}/shipped_email', 'Order\EmailController@confirmShipping');
 
-Route::get('/order/confirmed_page', 'OrderController@confirmedPage');
-Route::delete('/order/{order}/deny_email', 'OrderController@denyEmail');
-Route::get('/order/{order}/transaction_email', 'OrderController@transactionPage');
-Route::put('/order/{order}/transaction_email', 'OrderController@transactionConfirmEmail');
+Route::get('/order/confirmed_page', 'Order\EmailController@confirmedPage');
+Route::delete('/order/{order}/deny_email', 'Order\EmailController@deny');
+
+Route::get('/order/{order}/transaction_email', 'Order\EmailController@transactionPage');
+Route::put('/order/{order}/transaction_email', 'Order\EmailController@transactionConfirm');
+
+Route::group(['middleware' => ['auth']], function () {
+  Route::get('/profile/order/selling', 'Order\OrderController@sellingPage')->name('sellingOrder');
+  Route::get('/profile/order/buying', 'Order\OrderController@buyingPage')->name('buyingOrder');
+  Route::delete('/profile/order/{order}/deny', 'Order\OrderController@deny');
+  Route::put('/profile/order/{order}/transaction', 'Order\OrderController@transactionConfirm');
+  Route::put('/profile/order/{order}/confirm_shipping', 'Order\OrderController@confirmShipping');
+});
 
 
 Route::group(['middleware' => ['auth']], function () {
@@ -103,13 +112,7 @@ Route::group(['middleware' => ['auth']], function () {
 
       // Route::get('/promotions/manage/getanother', 'PromotionController@dealsPage')->name('promotionSale');
 
-      Route::prefix('order')->group(function () {
-        Route::get('/selling', 'OrderController@sellingPage')->name('sellingOrder');
-        Route::get('/buying', 'OrderController@buyingPage')->name('buyingOrder');
-        Route::delete('/{order}/deny', 'OrderController@deny');
-        Route::put('/{order}/transaction', 'OrderController@transactionConfirm');
-        Route::put('/{order}/confirm_shipping', 'OrderController@confirmShipping');
-      });
+
       Route::prefix('myproduct')->group(function () {
         Route::get('/new', 'ProductController@userProduct');
         Route::get('/used', 'UsedController@userProduct');
@@ -158,29 +161,7 @@ Route::group(['middleware' => ['auth']], function () {
   });
   Route::delete('/product/used/{product}', 'UsedController@delete');
 
-    Route::get('/{shop}/edit', 'ShopSettingsController@edit');
-    Route::put('/{shop}/edit', 'ShopSettingsController@update');
-    Route::put('/{shop}/edit/cover', 'ShopSettingsController@updateCover');
-    Route::put('/{shop}/edit/thumbnail', 'ShopSettingsController@updateThumbnail');
-    Route::put('/{shop}/edit/personal_info', 'ShopSettingsController@updateUserInfo');
 
-    Route::get('/{shop}/edit/info', 'ShopSettingsController@getContact');
-    Route::post('/{shop}/edit/info', 'ShopSettingsController@createContact');
-    Route::put('/{shop}/edit/info/{contact}', 'ShopSettingsController@updateContact');
-    Route::put('/{shop}/edit/info/{contact}/show_product', 'ShopSettingsController@toggleShowProduct');
-    Route::put('/{shop}/edit/info/{contact}/show_cover', 'ShopSettingsController@toggleShowCover');
-    Route::delete('/{shop}/edit/info/{contact}/delete', 'ShopSettingsController@deleteContact');
-
-    Route::get('/{shop}/edit/account', 'ShopSettingsController@getAccounts');
-    Route::post('/{shop}/edit/account', 'ShopSettingsController@addAccount');
-    Route::delete('/{shop}/edit/account/{account}/delete', 'ShopSettingsController@removeAccount');
-    Route::put('/{shop}/edit/set_sell_status', 'ShopSettingsController@setSellStatus');
-
-    Route::post('/product/{product}/votes', 'ProductVoteController@create');
-    Route::delete('/product/{product}/votes', 'ProductVoteController@delete');
-
-    Route::post('/{shop}/votes', 'ShopVoteController@create');
-    Route::delete('/{shop}/votes', 'ShopVoteController@delete');
 
     Route::post('/product/{product}/comments', 'ProductCommentController@create');
     Route::delete('/product/{product}/comments/{comment}', 'ProductCommentController@delete');
@@ -206,4 +187,38 @@ Route::group(['middleware' => ['auth']], function () {
 
     // Route::get('/test/upload', 'Test\Test@index');
     // Route::post('/test/upload/test', 'Test\Test@upload');
+});
+
+Route::get('/{shop}', 'ShopController@index');
+Route::get('/{shop}/products', 'ShopController@product');
+Route::get('/{shop}/collection', 'ShopController@collection');
+Route::get('/{shop}/about', 'ShopController@about');
+Route::get('/{shop}/votes', 'ShopVoteController@show');
+Route::get('/{shop}/status', 'ShopController@ajaxStat');
+Route::put('/{shop}/views', 'ShopController@logView');
+
+Route::group(['middleware' => ['auth']], function () {
+  Route::get('/{shop}/edit', 'ShopSettingsController@edit');
+  Route::put('/{shop}/edit', 'ShopSettingsController@update');
+  Route::put('/{shop}/edit/cover', 'ShopSettingsController@updateCover');
+  Route::put('/{shop}/edit/thumbnail', 'ShopSettingsController@updateThumbnail');
+  Route::put('/{shop}/edit/personal_info', 'ShopSettingsController@updateUserInfo');
+
+  Route::get('/{shop}/edit/info', 'ShopSettingsController@getContact');
+  Route::post('/{shop}/edit/info', 'ShopSettingsController@createContact');
+  Route::put('/{shop}/edit/info/{contact}', 'ShopSettingsController@updateContact');
+  Route::put('/{shop}/edit/info/{contact}/show_product', 'ShopSettingsController@toggleShowProduct');
+  Route::put('/{shop}/edit/info/{contact}/show_cover', 'ShopSettingsController@toggleShowCover');
+  Route::delete('/{shop}/edit/info/{contact}/delete', 'ShopSettingsController@deleteContact');
+
+  Route::get('/{shop}/edit/account', 'ShopSettingsController@getAccounts');
+  Route::post('/{shop}/edit/account', 'ShopSettingsController@addAccount');
+  Route::delete('/{shop}/edit/account/{account}/delete', 'ShopSettingsController@removeAccount');
+  Route::put('/{shop}/edit/set_sell_status', 'ShopSettingsController@setSellStatus');
+
+  Route::post('/product/{product}/votes', 'ProductVoteController@create');
+  Route::delete('/product/{product}/votes', 'ProductVoteController@delete');
+
+  Route::post('/{shop}/votes', 'ShopVoteController@create');
+  Route::delete('/{shop}/votes', 'ShopVoteController@delete');
 });

@@ -1,6 +1,6 @@
 <?php
 
-namespace Closet\Http\Controllers;
+namespace Closet\Http\Controllers\Order;
 
 use App;
 use Cart;
@@ -8,6 +8,7 @@ use Auth;
 use Fractal;
 use Mail;
 use Illuminate\Http\Request;
+use Closet\Http\Controllers\Controller;
 use Closet\Models\{Order, User, Account};
 use Closet\Transformer\OrderTransformer;
 use Closet\Mail\{Ordering, OrderConfirmed, TransactionConfirmed, OrderShipped};
@@ -22,24 +23,11 @@ class OrderController extends Controller
   {
     return view('order.buying');
   }
-  // Page from email
-  public function confirmPage(Order $order)
-  {
-    return view('order.confirmation', ['order' => $order]);
-  }
-  public function confirmedPage()
-  {
-    return view('order.after.confirmed');
-  }
-  public function transactionPage(Order $order)
-  {
-    return view('order.transaction', ['order' => $order]);
-  }
-  public function shippedPage(Order $order)
-  {
-    return view('order.shipped', ['order' => $order]);
-  }
-  // AJAX
+  /*
+  |--------------------------------------------------------------------------
+  | Ajax
+  |--------------------------------------------------------------------------
+  */
   public function getSellingInbox()
   {
     $id = Auth::user()->id;
@@ -52,7 +40,11 @@ class OrderController extends Controller
     $order = Order::where('sender_id', $id)->latest()->get();
     return Fractal::collection($order, new OrderTransformer);
   }
-  // Actions
+  /*
+  |--------------------------------------------------------------------------
+  | Actions
+  |--------------------------------------------------------------------------
+  */
   public function store(Order $order, Request $request)
   {
     $data = [];
@@ -73,10 +65,8 @@ class OrderController extends Controller
     ]);
     foreach ($request->products as $product) {
       $rowId = array_get($product, 'rowId');
-      //Cart::remove($rowId);
+      Cart::remove($rowId);
     }
-    $order = Order::findOrFail($order->id);
-
     $reciever = User::find($order->reciever_id);
     if ($reciever->country == 'ไทย') {
       $locale = 'th';
@@ -112,31 +102,7 @@ class OrderController extends Controller
     $order->delete();
     return;
   }
-  public function denyEmail(Order $order)
-  {
-    $order->delete();
-    return;
-  }
   public function transactionConfirm(Order $order, Request $request)
-  {
-    $order->update(['trans' => true]);
-    $data = [
-      'date' => $request->date,
-      'time' => $request->time,
-      'name' => $request->name,
-      'address' => $request->address,
-      'phone' => $request->phone,
-    ];
-    $reciever = User::find($order->$reciever_id);
-    if ($reciever->country == 'ไทย') {
-      $locale = 'th';
-    } else {
-      $locale = 'en';
-    }
-    Mail::to($reciever->email)->queue(new TransactionConfirmed($order, $data, $locale));
-    return view('order.after.transaction');
-  }
-  public function transactionConfirmEmail(Order $order, Request $request)
   {
     $order->update(['trans' => true]);
     $data = [
@@ -171,21 +137,5 @@ class OrderController extends Controller
     }
     Mail::to($sender->email)->send(new OrderShipped($order, $data, $locale));
     return;
-  }
-  public function confirmShippingEmail(Order $order, Request $request)
-  {
-    $order->update(['shipped' => true]);
-    $data = [
-      'carrier' => $request->carrier,
-      'tracking_number' => $request->tracking_number,
-    ];
-    $sender = User::find($order->$sender_id);
-    if ($sender->country == 'ไทย') {
-      $locale = 'th';
-    } else {
-      $locale = 'en';
-    }
-    Mail::to($sender->email)->send(new OrderShipped($order, $data, $locale));
-    return view('order.after.confirmed');
   }
 }
