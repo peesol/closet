@@ -1,21 +1,24 @@
 <template>
 <div>
-	<div class="panel-heading" style="border-top:1px solid #efefef"><h3 class="no-margin">{{$trans.translation.photos}}</h3></div>
-	<div class="panel-heading" v-show="images.length >= 10"><p class="no-margin">{{$trans.translation.col_photo_limit}}</p></div>
+	<div class="panel-heading" style="border-top:1px solid #efefef"><label class="full-label no-margin">{{$trans.translation.photos}}</label></div>
+	<div class="alert-box info">
+		<h3 class="no-margin"><span class="icon-notification"></span>&nbsp;{{$trans.translation.col_photo_limit}}</h3>
+	</div>
 		<div class="panel-body thumbnail-grid" v-if="images.length">
 			<div v-for="(image, index) in images" class="products-img">
-				<img class="full-img" :alt="image.filename" :src="image.filename"><button style="position:absolute;top:5px; right:5px; border-radius: 50%;" @click.prevent="removePhoto(image.id, index)" class="delete-btn"><span class="icon-bin"></span></button>
+				<img class="full-img" :alt="image.filename" :src="image.filename">
+				<button v-show="image.id && images.length > 1" @click.prevent="remove(image.id, index)" class="caution round-btn red-bg"><span class="icon-bin"></span></button>
 			</div>
 		</div>
 		<div v-else class="panel-body">
 			<p class="no-margin">{{$trans.translation.col_photo_none}}</p>
 		</div>
 		<div id="full-line"></div>
-	<div class="panel-heading">
-		<h4 @click.prevent="formVisible = !formVisible" class="no-margin" style="color:#6c6c6c; cursor:pointer;">{{$trans.translation.upload_photo}}&nbsp&nbsp<span class="icon-arrows-down"></span></h4>
-	</div>
+		<div class="panel-heading">
+			<label class="full-label no-margin"  style="cursor:pointer" @click.prevent="formVisible = !formVisible">{{$trans.translation.upload_photo}}&nbsp;&nbsp;<small class="icon-arrows-down"></small></label>
+		</div>
 	<transition name="slide-down">
-		<div v-show="formVisible" style="padding:40px 45px 25px 45px;">
+		<div v-show="formVisible" class="panel-body">
     			<div class="dropzone" id="image"><div class="dz-message" data-dz-message><span>{{$trans.translation.upload_photo_guide}}</span></div></div>
     			<div style="text-align:right;"><button class="col-photo-submit" @click.prevent="submit" id="photo-submit">{{$trans.translation.upload_submit}}</button></div>
     	</div>
@@ -32,7 +35,7 @@ export default {
 		return {
 			images: [],
 			formVisible: false,
-			dropzoneUrl: window.Closet.url + '/collection/' + this.colSlug + '/upload/' + this.colId,
+			dropzoneUrl: this.$root.url + '/collection/' + this.colSlug + '/upload/' + this.colId,
 		}
 	},
 	props: {
@@ -46,7 +49,7 @@ export default {
 						.then((json) => {this.images = json.data;});
 					});
   		},
-			removePhoto(imageId, index) {
+			remove(imageId, index) {
 				if(!confirm(this.$trans.translation.delete_photo_confirm)){
 						return;
 				}
@@ -83,14 +86,11 @@ export default {
     				processing: function() {
 							self.$Progress.start();
     				},
-						sendingmultiple: function(){
-							var list = document.getElementsByClassName("dz-image");
-							for (var i = 0; i < list.length; i++) {
-								var img = list[i].getElementsByTagName('img')[0].getAttribute('src');
-										self.images.push({filename: img})
-								}
-						},
-    				success: function() {
+    				success: function(file, response) {
+							self.images.push({
+								id: null,
+								filename: file.dataURL,
+							})
     					toastr.success(self.$trans.translation.success, toastr.options = {"preventDuplicates": true,});
     					this.removeFile(this.files[0])
     					self.$Progress.finish()

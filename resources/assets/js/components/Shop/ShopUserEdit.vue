@@ -25,21 +25,16 @@
 export default {
 	data() {
 		return {
-      phone: this.userPhone,
-      address: this.userAddress,
-			url: window.Closet.url,
+      phone: this.$parent.userPhone,
+      address: this.$parent.userAddress,
 		}
-	},
-	props: {
-    userPhone: null,
-    userAddress: null,
 	},
     methods: {
             edit() {
                 toastr.options.preventDuplicates = true;
                 toastr.options.timeOut = 2000;
 
-                this.$http.put(this.$root.url + '/' + this.$root.shopSlug + '/edit/personal_info', {
+                this.$http.put(this.$root.url + '/' + this.$parent.shopSlug + '/edit/personal_info', {
                     address: this.address,
                     phone: this.phone,
                     }).then((response)=> {
@@ -51,8 +46,5 @@ export default {
                     });
             },
     },
-    created() {
-
-    }
 }
 </script>

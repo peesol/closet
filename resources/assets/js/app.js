@@ -14,6 +14,7 @@ require('./bootstrap');
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
+
  window.addEventListener('load', function () {
     var vue = new Vue({
       el: '#app',
@@ -76,7 +77,7 @@ Vue.component('product-vote', require('./components/Product/ProductVote.vue'));
 Vue.component('product-comment', require('./components/Product/ProductComment.vue'));
 Vue.component('product-edit', require('./components/Product/ProductEdit.vue'));
 Vue.component('product-dropzone', require('./components/Product/ProductDropzone.vue'));
-Vue.component('product-shipping', require('./components/Product/ProductShipping.vue'));
+Vue.component('shipping-edit', require('./components/Product/ShippingEdit.vue'));
 Vue.component('product-sell', require('./components/Product/ProductSell.vue'));
 Vue.component('used-sell', require('./components/Product/ProductSell_used.vue'));
 Vue.component('used-comment', require('./components/Product/ProductComment_used.vue'));
@@ -104,7 +105,6 @@ Vue.component('dropdown-language', require('./components/Language/DropdownLangua
 Vue.component('language-select', require('./components/Language/Language.vue'));
 Vue.component('showcase', require('./components/Showcase.vue'));
 Vue.component('showcase-edit', require('./components/ShowcaseEdit.vue'));
-Vue.component('shipping-edit', require('./components/ShippingEdit.vue'));
 Vue.component('order-selling', require('./components/Order/Selling.vue'));
 Vue.component('order-buying', require('./components/Order/Buying.vue'));
 Vue.component('confirm-selling', require('./components/Order/ConfirmSelling.vue'));

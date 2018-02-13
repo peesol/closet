@@ -12,8 +12,10 @@
       <h3 class="no-margin">{{__('message.shipping_edit')}}</h3>
     </div>
     <div class="panel-body">
-      <li>{{__('message.shipping_edit_notice')}}</li>
-      <shipping-edit></shipping-edit>
+      <div class="alert-box info">
+        <h3 class="no-margin"><span class="icon-notification"></span>&nbsp;{{__('message.shipping_edit_notice')}}</h3>
+      </div>
+      <shipping-edit shop-slug="{{$shop->slug}}"></shipping-edit>
     </div>
   </div>
 </div>

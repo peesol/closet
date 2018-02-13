@@ -66,7 +66,7 @@ export default {
           }).then((response)=> {
               this.$Progress.finish()
               toastr.success(this.$trans.translation.saved)
-              document.location.href= this.$root.url + '/sell/product';
+              document.location.href= this.$root.url + '/sell/new';
           }, (response) => {
               toastr.error(this.$trans.translation.error)
               this.$Progress.fail()

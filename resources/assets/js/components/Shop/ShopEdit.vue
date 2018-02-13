@@ -2,8 +2,8 @@
 <div>
 <vue-progress-bar></vue-progress-bar>
                     <div style="padding: 0px 20px;">
-                      <thumbnail :shop-thumbnail="shopThumbnail"></thumbnail>
-                      <cover :shop-cover="shopCover"></cover>
+                      <thumbnail></thumbnail>
+                      <cover></cover>
                         <form v-on:submit.prevent="edit" method="post">
                         <div style="padding:0;">
                             <div class="form-group">
@@ -14,7 +14,7 @@
                             <div class="form-group">
                                  <label class="form-label" for="URL">{{$trans.translation.shop_url}}</label>
                                  <div class="input-group" style="margin-bottom:8px;">
-                                     <span class="input-addon">{{ url }}/</span>
+                                     <span class="input-addon">{{ $root.url }}/</span>
                                      <input type="text" v-validate="'required|alpha_dash|min:3|max:30'" :class="{'input-addon-field': true,'is-error': errors.has('URL')}" v-model="slug" name="URL">
                                  </div>
                                  <span v-show="errors.has('URL')" class="span-error">{{ errors.first('URL') }}</span>
@@ -31,7 +31,7 @@
                         </div>
                         </form>
                         <div id="full-line" style="margin-top: 20px;"></div>
-                        <shop-user-edit :user-address="userAddress" :user-phone="userPhone"></shop-user-edit>
+                        <shop-user-edit></shop-user-edit>
                     </div>
                 </div>
 </div>
@@ -45,10 +45,8 @@ export default {
 	data() {
 		return {
 			name: this.shopName,
-			slug: this.$root.shopSlug,
+			slug: this.shopSlug,
 			description: this.shopDescription,
-			url: window.Closet.url,
-
 		}
 	},
   components: {
@@ -60,6 +58,7 @@ export default {
       shopCover: null,
       shopDescription:null,
       shopThumbnail:null,
+      shopSlug:null,
       userAddress:null,
       userPhone:null,
 	},
@@ -70,7 +69,7 @@ export default {
                 toastr.options.timeOut = 2000;
                     this.$Progress.start();
                     toastr.info(this.$trans.translation.wait);
-                    this.$http.put(this.$root.url + '/' + this.$root.shopSlug + '/edit', {
+                    this.$http.put(this.$root.url + '/' + this.shopSlug + '/edit', {
                     name: this.name,
                     slug: this.slug,
                     description: this.description,
@@ -84,8 +83,5 @@ export default {
                     });
             },
     },
-    created() {
-
-    }
 }
 </script>

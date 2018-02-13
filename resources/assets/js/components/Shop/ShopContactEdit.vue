@@ -92,20 +92,21 @@ export default {
 			body: null,
 			link: null,
       formVisible: false,
-			url: window.Closet.url,
-      locale: window.Closet.locale,
 		}
 	},
+  props: {
+    shopSlug: null
+  },
     methods: {
             getContact() {
               this.$Progress.start();
-              this.$http.get(this.$root.url + '/' + this.$root.shopSlug + '/edit/info').then((response) => {
+              this.$http.get(this.$root.url + '/' + this.shopSlug + '/edit/info').then((response) => {
                 this.contacts = response.body
                 this.$Progress.finish();
               });
             },
             updateBody(contactId, contactBody) {
-              this.$http.put(this.$root.url + '/' + this.$root.shopSlug + '/edit/info/' + contactId, {
+              this.$http.put(this.$root.url + '/' + this.shopSlug + '/edit/info/' + contactId, {
               body: contactBody,
               }).then((response)=> {
                   toastr.success(this.$trans.translation.saved);
@@ -114,7 +115,7 @@ export default {
               });
             },
             updateLink(contactId, contactLink) {
-              this.$http.put(this.$root.url + '/' + this.$root.shopSlug + '/edit/info/' + contactId, {
+              this.$http.put(this.$root.url + '/' + this.shopSlug + '/edit/info/' + contactId, {
               link: contactLink,
               }).then((response)=> {
                   toastr.success(this.$trans.translation.saved);
@@ -127,14 +128,14 @@ export default {
               });
             },
             toggleShowProduct(contactId){
-              this.$http.put(this.$root.url + '/' + this.$root.shopSlug + '/edit/info/' + contactId + '/show_product').then((response)=> {
+              this.$http.put(this.$root.url + '/' + this.shopSlug + '/edit/info/' + contactId + '/show_product').then((response)=> {
                   toastr.success(this.$trans.translation.saved);
               }, (response) => {
                   toastr.error(this.$trans.translation.error);
               });
             },
             toggleShowCover(contactId){
-              this.$http.put(this.$root.url + '/' + this.$root.shopSlug + '/edit/info/' + contactId + '/show_cover').then((response)=> {
+              this.$http.put(this.$root.url + '/' + this.shopSlug + '/edit/info/' + contactId + '/show_cover').then((response)=> {
                   toastr.success(this.$trans.translation.saved);
               }, (response) => {
                   toastr.error(this.$trans.translation.error);
@@ -145,7 +146,7 @@ export default {
                 toastr.options.timeOut = 2000;
                     this.$Progress.start();
                     toastr.info(this.$trans.translation.wait);
-                    this.$http.post(this.$root.url + '/' + this.$root.shopSlug + '/edit/info', {
+                    this.$http.post(this.$root.url + '/' + this.shopSlug + '/edit/info', {
                     type: this.type,
                     body: this.body,
                     link: this.link,
@@ -167,7 +168,7 @@ export default {
               if(!confirm(this.$trans.translation.delete_confirm)){
                 return;
               }
-              this.$http.delete(this.$root.url + '/' + this.$root.shopSlug + '/edit/info/' + contactId + '/delete').then((response)=> {
+              this.$http.delete(this.$root.url + '/' + this.shopSlug + '/edit/info/' + contactId + '/delete').then((response)=> {
                   toastr.success(this.$trans.translation.success);
                   this.contacts.splice(index, 1)
               }, (response) => {

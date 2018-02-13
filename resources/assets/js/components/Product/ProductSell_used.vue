@@ -74,9 +74,6 @@ export default {
 			      name: null,
 			      price: null,
 			      description: null,
-            url: window.Closet.url,
-            
-            locale: window.Closet.locale,
 		}
 	},
   computed: {
@@ -125,7 +122,7 @@ export default {
             self.$nextTick(function() {
             self.dz = new Dropzone("#used", {
               method: 'post',
-              url: self.url + '/sell/used',
+              url: self.$root.url + '/sell/used',
               autoProcessQueue: false,
               uploadMultiple: true,
               parallelUploads: 7,
@@ -159,7 +156,7 @@ export default {
                   toastr.success(self.$trans.translation.success, toastr.options = {"preventDuplicates": true,});
                   this.removeFile(this.files[0]);
                   self.$Progress.finish();
-                  document.location.href= self.url + '/sell/used';
+                  document.location.href= self.$root.url + '/sell/used';
                 },
                 error: function() {
                   self.$Progress.fail();

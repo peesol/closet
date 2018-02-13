@@ -21,6 +21,7 @@ table {
 }
 button{
   font-family: Roboto, Athiti, sans-serif;
+  outline: none !important;
   cursor: pointer;
 }
 td, th {
@@ -88,6 +89,7 @@ a {outline: none}
 .input-group {
     display: flex;
 }
+button.input-addon:hover, button.input-addon:focus{opacity: 0.8}
 .input-addon {
     font-size: 1em;
     position: relative;
@@ -703,8 +705,8 @@ span.contact-btn.line , small.contact-btn.line{color:#4ecd00 }
   border:1px solid #f5aca6;
 }
 .alert-box.info {
-  background-color: #f9f9f9;
-  border: 1px solid #eeeeee;
+  background-color: #eef8ff;
+  border: 1px solid #8bcdff;
 }
 /*Properties*/
 .absolute {position: absolute !important;}
@@ -1517,20 +1519,19 @@ input.is-error{
   border: transparent;
   font-size: 15px;
   font-weight: 600;
-  cursor: pointer;
     outline: none;
-
+    border-radius: 5px;
 }
 .unfollow-btn {
     height: 100%;
     width: 100%;
-    color: black;
+    color: #6c6c6c;
     background: #f2f2f2;
     border: transparent;
     font-size: 15px;
     font-weight: 600;
-    cursor: pointer;
-        outline: none;
+    outline: none;
+    border-radius: 5px;
 }
 .vote {
     width: 120px;
@@ -1955,9 +1956,6 @@ width: auto;
     .s-product-name{
     width: 280px;
     }
-    .s-products-margin {
-    margin: 0 23px 10px 23px;
-    }
     .add-col-panel{
     width: 400px;
     height: auto;
@@ -2008,9 +2006,6 @@ width: auto;
     .s-product-name{
     width: 140px;
     }
-    .s-products-margin {
-    margin: 0 11.25px 10px 11.25px;
-    }
 }
 @media (min-width: 1200px) {
     .shop-panel {
@@ -2021,9 +2016,6 @@ width: auto;
     }
     .s-product-name{
     width: 180px;
-    }
-    .s-products-margin {
-    margin: 0 33.75px 10px 33.75px;
     }
 }
 

@@ -3,7 +3,7 @@
 <vue-progress-bar></vue-progress-bar>
         <form v-on:submit.prevent="edit" method="post" enctype="multipart/form-data" class="flex">
             <div class="add-col-panel flex" style="padding: 40px 15px;">
-                <h4 class="full-label no-margin" style="position:absolute; top:10px; left:0;">{{$trans.translation.thumbnail}}</h4>
+                <label class="full-label no-margin" style="position:absolute; top:10px; left:0;">{{$trans.translation.thumbnail}}</label>
                 <div class="image-input">
                 <span class="icon-images"></span>
                 <img class="image-input-img" :src="image_filename">
@@ -57,8 +57,6 @@ export default {
 			description: this.productDescription,
 			visibility: this.productVisibility,
 			formVisible: false,
-			url: window.Closet.url,
-      
 		}
 	},
 	props: {
@@ -123,7 +121,5 @@ export default {
                 }
             }
     },
-    created() {
-    }
 }
 </script>

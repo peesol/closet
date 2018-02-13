@@ -1,7 +1,7 @@
 <template>
 <div>
   <vue-progress-bar></vue-progress-bar>
-  <button v-if="user_id == shop_user" class="add-col-btn" @click.prevent="formVisible = !formVisible">{{$trans.translation.create_showcase}}</button>
+  <button class="add-col-btn" @click.prevent="formVisible = !formVisible">{{$trans.translation.create_showcase}}</button>
 	<transition name="slide-down-showcase">
 	<div v-show="formVisible" style="height: 175px;">
 		<div class="add-col-panel">
@@ -31,7 +31,7 @@
           <tr>
             <td colspan="4">
               <label>{{$trans.translation.showcase_choice}}</label>&nbsp;<small v-bind:class="{ 'icon-checkmark green-font': showcase.show == true, 'icon-cross red-font': showcase.show == false}"></small>
-              <button class="round-sq-btn" type="submit" @click.prevent="showToggle(showcase.id, index)">{{showcase.show ? $trans.translation.hide : $trans.translation.show}}</button>
+              <button class="round-sq-btn" @click.prevent="showToggle(showcase.id, index)">{{showcase.show ? $trans.translation.hide : $trans.translation.show}}</button>
             </td>
           </tr>
         </table>
@@ -53,10 +53,6 @@
         products: null,
         showcases: [],
         formVisible: false,
-        shop_user: this.shopId,
-        url: window.Closet.url,
-        user_id: window.Closet.user.user,
-
 			}
 		},
     components: {
@@ -64,20 +60,20 @@
     },
 
 		props: {
-			shopId: null,
+			shopSlug: null,
 		},
 
 		methods: {
       getShowcase() {
           this.$Progress.start()
-          this.$http.get(this.$root.url + '/showcase_ajax/' + this.$root.shopSlug + '/showcase').then((response)=> {
+          this.$http.get(this.$root.url + '/showcase_ajax/' + this.shopSlug + '/showcase').then((response)=> {
             this.showcases = response.body;
             this.$Progress.finish()
         });
       },
       create(index){
         this.$Progress.start()
-				this.$http.post(this.$root.url + '/showcase_ajax/' + this.$root.shopSlug + '/showcase' ,{
+				this.$http.post(this.$root.url + '/showcase_ajax/' + this.shopSlug + '/showcase' ,{
 					name: this.name,
           order: this.showcases.length ? this.showcases.length + 1 : 1
 				}).then((response)=> {

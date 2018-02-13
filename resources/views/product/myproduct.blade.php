@@ -16,7 +16,7 @@
                 @if ($products->count())
                 <div class="no-border-heading margin-top-10px">
                   <button class="btn" onclick='document.location.href="/profile/myproduct/stock"'>{{__('message.stock_edit')}}</button>
-                  <button class="btn" onclick='document.location.href="/profile/myproduct/options"' style="margin-left:20px;">{{__('message.shipping_edit')}}</button>
+                  <button class="btn" onclick='document.location.href="/profile/myproduct/shipping"' style="margin-left:20px;">{{__('message.shipping_edit')}}</button>
                 </div>
                 @endif
 

@@ -46,6 +46,5 @@ window.Closet = {
 
     </div>
 <footer></footer>
-
 </body>
 </html>

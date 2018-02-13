@@ -1,5 +1,6 @@
 <template>
 <div style="padding: 0 15px;">
+<vue-progress-bar></vue-progress-bar>
 <div class="col-edit-panel">
   <form v-on:submit.prevent="edit" method="post" enctype="multipart/form-data" class="flex">
 
@@ -35,7 +36,6 @@
     </table>
   </form>
 </div>
-
 </div>
 
 </template>
@@ -50,8 +50,6 @@ export default {
       shipping_free: this.shippingFree,
       shipping_time: this.shippingTime,
       shipping_inter: this.shippingInter,
-			url: window.Closet.url,
-      
 		}
 	},
 	props: {
@@ -60,25 +58,34 @@ export default {
     shippingFee: null,
     shippingTime: null,
     shippingInter: null,
-    productSlug:null
+    productSlug:null,
 	},
-
+  computed: {
+    url: function () {
+      if (this.productSlug) {
+        return this.$root.url + '/product/' + this.productSlug + '/edit/shipping'
+      } else {
+        return this.$root.url + '/profile/myproduct/shipping/update'
+      }
+    }
+  },
     methods: {
       edit() {
-        this.$http.put(this.$root.url + '/product/' + this.productSlug + '/edit/shipping', {
+        this.$Progress.start()
+        this.$http.put(this.url, {
           shipping: this.shipping,
           shipping_fee: this.shipping_fee,
           shipping_free: this.shipping_free,
           shipping_time: this.shipping_time,
-          shipping_inter: this.shipping_inter,
+          shipping_inter: 'no',
         }).then((response)=> {
-            toastr.success(this.$trans.translation.saved);
+            toastr.success(this.$trans.translation.saved)
+            this.$Progress.finish()
         }, (response) => {
-            toastr.error(this.$trans.translation.error);
+            toastr.error(this.$trans.translation.error)
+            this.$Progress.fail()
         });
       },
-    },
-    created() {
     }
 }
 </script>

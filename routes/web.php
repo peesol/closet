@@ -76,7 +76,11 @@ Route::delete('/order/{order}/deny_email', 'Order\EmailController@deny');
 
 Route::get('/order/{order}/transaction_email', 'Order\EmailController@transactionPage');
 Route::put('/order/{order}/transaction_email', 'Order\EmailController@transactionConfirm');
-
+/*
+|--------------------------------------------------------------------------
+| Order via Site with auth middleware
+|--------------------------------------------------------------------------
+*/
 Route::group(['middleware' => ['auth']], function () {
   Route::get('/profile/order/selling', 'Order\OrderController@sellingPage')->name('sellingOrder');
   Route::get('/profile/order/buying', 'Order\OrderController@buyingPage')->name('buyingOrder');
@@ -112,55 +116,68 @@ Route::group(['middleware' => ['auth']], function () {
 
       // Route::get('/promotions/manage/getanother', 'PromotionController@dealsPage')->name('promotionSale');
 
-
-      Route::prefix('myproduct')->group(function () {
-        Route::get('/new', 'ProductController@userProduct');
-        Route::get('/used', 'UsedController@userProduct');
-        Route::get('/get', 'StockController@getProduct');
-        Route::put('/stock/set_amount/{product}', 'StockController@setAmount');
-        Route::get('/stock', 'StockController@index');
-        Route::get('/options', 'ProductController@shippingIndex');
-        Route::put('/options/{shop}/shipping', 'ProductController@shippingEditAll');
-      });
     });
 
-    Route::prefix('showcase_ajax')->group(function () {
-      Route::get('/myproducts/{showcase}', 'ShowcaseController@getProduct');
-      Route::post('/products/{productId}/showcase/{showcaseId}', 'ShowcaseController@storeProduct');
-      Route::get('/{shop}/showcase', 'ShowcaseController@getShowcase');
-      Route::post('/{shop}/showcase', 'ShowcaseController@store');
-      Route::put('/update/{id}', 'ShowcaseController@update');
-      Route::put('/update/all/order', 'ShowcaseController@updateOrder');
-      Route::delete('/delete/{showcase}', 'ShowcaseController@remove');
-      Route::put('/show/{showcase}', 'ShowcaseController@showOption');
-    });
+      Route::get('/profile/showcase/{showcase}/edit', 'ShowcaseController@edit');
 
-    Route::get('/profile/showcase/{showcase}/edit', 'ShowcaseController@edit');
+      Route::get('/showcase_ajax/myproducts/{showcase}', 'ShowcaseController@getProduct');
+      Route::post('/showcase_ajax/products/{productId}/showcase/{showcaseId}', 'ShowcaseController@storeProduct');
+      Route::get('/showcase_ajax/{shop}/showcase', 'ShowcaseController@getShowcase');
+      Route::post('/showcase_ajax/{shop}/showcase', 'ShowcaseController@store');
+      Route::put('/showcase_ajax/update/{id}', 'ShowcaseController@update');
+      Route::put('/showcase_ajax/update/all/order', 'ShowcaseController@updateOrder');
+      Route::delete('/showcase_ajax/delete/{showcase}', 'ShowcaseController@remove');
+      Route::put('/showcase_ajax/show/{showcase}', 'ShowcaseController@showOption');
 
-    Route::prefix('product_ajax')->group(function () {
-      Route::get('/{product}/img', 'ProductController@getPhoto');
-      Route::post('/{id}/img', 'ProductController@uploadPhoto');
-      Route::delete('/{id}/img', 'ProductController@deletePhoto');
-      Route::get('/{productId}/choice', 'ProductController@getChoice');
-      Route::post('/{productId}/choice', 'ProductController@addChoice');
-      Route::put('/{productId}/choice', 'ProductController@toggleChoice');
-      Route::delete('/delete/choice/{id}', 'ProductController@removeChoice');
-    });
+/*
+|--------------------------------------------------------------------------
+| Product Routes
+|--------------------------------------------------------------------------
+*/
+//Product Sell
+Route::namespace('Product\Sell')->group(function () {
+  Route::get('/sell/new', 'NewProductController@index');
+  Route::post('/sell/new', 'NewProductController@create');
+  Route::get('/sell/used', 'UsedProductController@index');
+  Route::post('/sell/used', 'UsedProductController@create');
+});
+//Product Delete
+Route::delete('/product/used/{product}', 'Product\DeleteController@deleteUsedProduct');
+Route::delete('/product/{product}', 'Product\DeleteController@deleteNewProduct');
 
-	Route::get('/product/{product}/edit', 'ProductController@edit');
-	Route::put('/product/{product}/edit', 'ProductController@update');
-	Route::put('/product/{product}/edit/shipping', 'ProductController@updateShipping');
-	Route::delete('/product/{product}', 'ProductController@delete');
-
-  Route::prefix('sell')->group(function () {
-    Route::get('/new', 'ProductController@create');
-    Route::get('/subcat/{id}','ProductController@ajaxSubcat');
-    Route::post('/product', 'ProductController@store');
-    Route::get('/used', 'UsedController@create');
-    Route::post('/used', 'UsedController@store');
-  });
-  Route::delete('/product/used/{product}', 'UsedController@delete');
-
+/*
+|--------------------------------------------------------------------------
+| Product Edit Routes
+|--------------------------------------------------------------------------
+*/
+Route::get('/product/{product}/edit', 'Product\Edit\UpdateController@index');
+Route::put('/product/{product}/edit', 'Product\Edit\UpdateController@update');
+//Shipping
+Route::put('/product/{product}/edit/shipping', 'Product\Shipping\ShippingController@updateByProduct');
+//Photo Upload & Delete
+Route::get('/product/{product}/get_photo', 'Product\Photo\PhotoController@get');
+Route::post('/product/{product}/upload_photo', 'Product\Photo\PhotoController@upload');
+Route::delete('/product/delete_photo/{photo_id}', 'Product\Photo\PhotoController@delete');
+//Choices
+Route::get('/product/{product}/get_choice', 'Product\Edit\ChoiceController@get');
+Route::post('/product/{product}/create', 'Product\Edit\ChoiceController@create');
+Route::put('/product/{product}/toggle_choice', 'Product\Edit\ChoiceController@toggle');
+Route::delete('/product/{product}/choice/delete/{id}', 'Product\Edit\ChoiceController@remove');
+/*
+|--------------------------------------------------------------------------
+| My Product Routes
+|--------------------------------------------------------------------------
+*/
+Route::get('/profile/myproduct/new', 'ProductController@userProduct');
+Route::get('/profile/myproduct/used', 'UsedController@userProduct');
+// get my product
+Route::get('/profile/myproduct/get', 'Product\User\MyProductController@getProduct');
+//Stock
+Route::get('/profile/myproduct/stock', 'Product\Stock\StockController@index');
+Route::put('/profile/myproduct/stock/set_amount/{product}', 'Product\Stock\StockController@update');
+//Shipping edit for all products
+Route::get('/profile/myproduct/shipping', 'Product\Shipping\ShippingController@index');
+Route::put('/profile/myproduct/shipping/update', 'Product\Shipping\ShippingController@updateAll');
 
 
     Route::post('/product/{product}/comments', 'ProductCommentController@create');
@@ -168,6 +185,9 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::post('/product/used/{product}/comments', 'UsedCommentController@create');
     Route::delete('/product/used/{product}/comments/{comment}', 'UsedCommentController@delete');
+
+    Route::post('/product/{product}/votes', 'ProductVoteController@create');
+    Route::delete('/product/{product}/votes', 'ProductVoteController@delete');
 
     Route::post('/follow/{shop}', 'ShopFollowController@create');
     Route::delete('/follow/{shop}', 'ShopFollowController@delete');
@@ -188,7 +208,11 @@ Route::group(['middleware' => ['auth']], function () {
     // Route::get('/test/upload', 'Test\Test@index');
     // Route::post('/test/upload/test', 'Test\Test@upload');
 });
-
+/*
+|--------------------------------------------------------------------------
+| Shop Routes
+|--------------------------------------------------------------------------
+*/
 Route::get('/{shop}', 'ShopController@index');
 Route::get('/{shop}/products', 'ShopController@product');
 Route::get('/{shop}/collection', 'ShopController@collection');
@@ -215,9 +239,6 @@ Route::group(['middleware' => ['auth']], function () {
   Route::post('/{shop}/edit/account', 'ShopSettingsController@addAccount');
   Route::delete('/{shop}/edit/account/{account}/delete', 'ShopSettingsController@removeAccount');
   Route::put('/{shop}/edit/set_sell_status', 'ShopSettingsController@setSellStatus');
-
-  Route::post('/product/{product}/votes', 'ProductVoteController@create');
-  Route::delete('/product/{product}/votes', 'ProductVoteController@delete');
 
   Route::post('/{shop}/votes', 'ShopVoteController@create');
   Route::delete('/{shop}/votes', 'ShopVoteController@delete');

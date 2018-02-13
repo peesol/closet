@@ -1,19 +1,21 @@
 <template>
 <div>
-	<div class="panel-heading" style="border-top:1px solid #efefef"><h4 class="no-margin">{{$trans.translation.photos}}</h4></div>
-	<li style="margin: 10px 15px">{{$trans.translation.product_photo_limit}}</li>
-		<div v-if="images.length" class="panel-body thumbnail-grid">
+	<div class="panel-heading" style="border-top:1px solid #efefef"><label class="full-label no-margin">{{$trans.translation.photos}}</label></div>
+	<div class="alert-box info">
+		<h3 class="no-margin"><span class="icon-notification"></span>&nbsp;{{$trans.translation.product_photo_limit}}</h3>
+	</div>
+		<div v-show="images.length" class="panel-body thumbnail-grid">
 			<div v-for="(image, index) in images" class="products-img">
-				<img class="full-img" alt="currently uploading..." :src="image.filename">
-				<button style="position:absolute;top:5px; right:5px; border-radius: 50%;" @click.prevent="removePhoto(image.id, index)" class="delete-btn"><span class="icon-bin"></span></button>
+				<img class="products-img-thumb" alt="currently uploading..." :src="image.filename">
+				<button v-show="image.id && images.length > 1" @click.prevent="remove(image.id, index)" class="caution round-btn red-bg"><span class="icon-bin"></span></button>
 			</div>
 		</div>
 		<div id="full-line"></div>
-	<div class="panel-heading" id="col-photo-toggle">
-		<h4 class="no-margin" @click.prevent="formVisible = !formVisible" style="color:#6c6c6c;cursor:pointer;">{{$trans.translation.upload_photo}}&nbsp&nbsp<span class="icon-arrows-down"></span></h4>
+	<div class="panel-heading">
+		<label class="full-label no-margin"  style="cursor:pointer" @click.prevent="formVisible = !formVisible">{{$trans.translation.upload_photo}}&nbsp;&nbsp;<small class="icon-arrows-down"></small></label>
 	</div>
 	<transition name="slide-down">
-		<div v-show="formVisible" style="padding:40px 45px 25px 45px;">
+		<div v-show="formVisible" class="panel-body">
 			<p>{{$trans.translation.upload_photo_size}}</p>
     	<div class="dropzone" id="image"><div class="dz-message" data-dz-message><span>{{$trans.translation.upload_photo_guide}}</span></div></div>
     	<div style="text-align:right;">
@@ -32,7 +34,7 @@ export default {
 		return {
 			images: [],
 			formVisible: false,
-			dropzoneUrl: this.$root.url + '/product_ajax/' + this.productId + '/img',
+			dropzoneUrl: this.$root.url + '/product/' + this.productSlug + '/upload_photo',
 		}
 	},
 	props: {
@@ -42,31 +44,22 @@ export default {
 
     methods: {
 			getPhoto() {
-  					this.$http.get(this.$root.url + '/product_ajax/' + this.productSlug + '/img/')
+  					this.$http.get(this.$root.url + '/product/' + this.productSlug + '/get_photo')
   					.then((response) => {return response.json()
 						.then((json) => {this.images = json.data;});
 					});
   				},
 
-			deleteById(imageId) {
-				this.images.map((image, index)=> {
-					if (image.id === imageId) {
-						this.images.splice(index, 1);
-						return;
-					}
-				});
-			},
-
-  			removePhoto(imageId) {
+  			remove(imageId, index) {
 				if(!confirm(this.$trans.translation.photo_delete_confirm)){
 					return;
 				}
-						this.$Progress.start();
-						this.$http.delete('/product_ajax/' + imageId + '/img').then(() => {
-						this.deleteById(imageId);
-						this.$Progress.finish();
-						toastr.success(this.$trans.translation.success);
-				});
+					this.$Progress.start();
+					this.$http.delete(this.$root.url + '/product/delete_photo/' + imageId).then(() => {
+						this.images.splice(index, 1)
+						this.$Progress.finish()
+						toastr.success(this.$trans.translation.success)
+					});
   			},
 
     		initDropzone: function() {
@@ -86,27 +79,24 @@ export default {
 						dictRemoveFile: "&times;",
 						dictCancelUpload: "&times;",
 		    		headers: {'x-csrf-token': document.querySelectorAll('meta[name=csrf-token]')[0].getAttributeNode('content').value,},
-		    				init: function() {
+		    		init: function() {
  							this.on('addedfile', function(file) {
 									if (this.files.length + self.images.length > 7 || this.files.length > 7) {
 										this.removeFile(this.files[0])
 									}
  								});
-					},
+						},
     				processing: function() {
     					self.$Progress.start();
     				},
-						sendingmultiple: function(){
-							var list = document.getElementsByClassName("dz-image");
-							for (var i = 0; i < list.length; i++) {
-								var img = list[i].getElementsByTagName('img')[0].getAttribute('src');
-										self.images.push({filename: img})
-								}
-						},
-    				success: function() {
-    					toastr.success(self.$trans.translation.success, toastr.options = {"preventDuplicates": true,});
-    					this.removeFile(this.files[0]);
-    					self.$Progress.finish();
+    				success: function(file, response) {
+							self.images.push({
+								id: null,
+								filename: file.dataURL,
+							})
+    					toastr.success(self.$trans.translation.success, toastr.options = {"preventDuplicates": true,})
+    					this.removeFile(this.files[0])
+    					self.$Progress.finish()
     				},
     				error: function() {
     					self.$Progress.fail();

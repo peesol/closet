@@ -21,6 +21,7 @@ table {
 }
 button{
   font-family: Roboto, Athiti, sans-serif;
+  outline: none !important;
   cursor: pointer;
 }
 td, th {
@@ -88,6 +89,7 @@ a {outline: none}
 .input-group {
     display: flex;
 }
+button.input-addon:hover, button.input-addon:focus{opacity: 0.8}
 .input-addon {
     font-size: 1em;
     position: relative;

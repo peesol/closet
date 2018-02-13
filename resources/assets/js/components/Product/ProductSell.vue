@@ -83,9 +83,6 @@ export default {
 			      price: null,
 			      description: null,
 			      visibility: null,
-            url: window.Closet.url,
-            
-            locale: window.Closet.locale,
 		}
 	},
   computed: {
@@ -126,7 +123,7 @@ export default {
             self.$nextTick(function() {
             self.image = new Dropzone('#image', {
               method: 'post',
-              url: self.url + '/sell/product',
+              url: self.$root.url + '/sell/new',
               autoProcessQueue: false,
               uploadMultiple: true,
               parallelUploads: 7,
@@ -161,7 +158,7 @@ export default {
                   toastr.success(self.$trans.translation.success, toastr.options = {"preventDuplicates": true,});
                   this.removeFile(this.files[0]);
                   self.$Progress.finish();
-                  document.location.href= self.url + '/sell/product';
+                  document.location.href= self.$root.url + '/sell/new';
                 },
                 error: function() {
                   self.$Progress.fail();

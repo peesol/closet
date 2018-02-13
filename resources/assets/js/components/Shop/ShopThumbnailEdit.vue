@@ -29,14 +29,9 @@
 export default {
 	data() {
 		return {
-      thumbnail: this.shopThumbnail,
-			url: window.Closet.url,
+      thumbnail: this.$parent.shopThumbnail,
 		}
 	},
-	props: {
-    shopThumbnail: null,
-	},
-
     methods: {
             edit() {
                 toastr.options.preventDuplicates = true;
@@ -49,7 +44,7 @@ export default {
                 if(document.getElementById("thumb-input").files.length > 0){
                     this.$Progress.start();
                     toastr.info(this.$trans.translation.wait);
-                this.$http.put(this.$root.url + '/' + this.$root.shopSlug + '/edit/thumbnail', {
+                this.$http.put(this.$root.url + '/' + this.$parent.shopSlug + '/edit/thumbnail', {
                     thumbnail: this.thumbnail,
                     }).then((response)=> {
                         this.$Progress.finish();
@@ -75,8 +70,5 @@ export default {
                 this.thumbnail = null;
             },
     },
-    created() {
-
-    }
 }
 </script>
