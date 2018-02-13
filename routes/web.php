@@ -159,10 +159,10 @@ Route::get('/product/{product}/get_photo', 'Product\Photo\PhotoController@get');
 Route::post('/product/{product}/upload_photo', 'Product\Photo\PhotoController@upload');
 Route::delete('/product/delete_photo/{photo_id}', 'Product\Photo\PhotoController@delete');
 //Choices
-Route::get('/product/{product}/get_choice', 'Product\Edit\ChoiceController@get');
-Route::post('/product/{product}/create', 'Product\Edit\ChoiceController@create');
-Route::put('/product/{product}/toggle_choice', 'Product\Edit\ChoiceController@toggle');
-Route::delete('/product/{product}/choice/delete/{id}', 'Product\Edit\ChoiceController@remove');
+Route::get('/product/{product}/get_choice', 'Product\Choice\ChoiceController@get');
+Route::post('/product/{product}/create', 'Product\Choice\ChoiceController@create');
+Route::put('/product/{product}/toggle_choice', 'Product\Choice\ChoiceController@toggle');
+Route::delete('/product/{product}/choice/delete/{id}', 'Product\Choice\ChoiceController@remove');
 /*
 |--------------------------------------------------------------------------
 | My Product Routes

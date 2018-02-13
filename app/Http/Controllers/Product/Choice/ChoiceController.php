@@ -1,6 +1,6 @@
 <?php
 
-namespace Closet\Http\Controllers\Product\Edit;
+namespace Closet\Http\Controllers\Product\Choice;
 
 use Illuminate\Http\Request;
 use Closet\Models\{Product, ProductChoice};

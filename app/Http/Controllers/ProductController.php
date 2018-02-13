@@ -77,12 +77,6 @@ class ProductController extends Controller
       return response()->json($types);
     }
 
-
-
-
-
-
-
     public function logView(Request $request, Product $product)
     {
         /*$ip = $request->ip();
