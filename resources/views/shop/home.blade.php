@@ -47,29 +47,31 @@
                       </div>
                       @endif
                     </div>
-            <div style="padding: 15px 45px;">
 
                     @if ($showcases->count())
                         @foreach ($showcases as $showcase)
-                          <div class="panel-heading margin-bot-10px"><h3 class="no-margin">{{$showcase->name}}</h3></div>
-                          <div class="shop-carousel">
-                              <vue-slick :products="{{$showcase->product()->get()}}" path="/product/thumbnail/" slick-for="shop"></vue-slick>
+                          <div class="panel-body" id="full-line">
+                            <h3 class="">{{$showcase->name}}</h3>
+                            <div class="shop-carousel">
+                                <vue-slick :products="{{$showcase->product()->get()}}" path="/product/thumbnail/" slick-for="shop"></vue-slick>
+                            </div>
                           </div>
                         @endforeach
-                        
+
                     @else
                       @if($populars->count())
                       <div class="panel-heading margin-bot-10px"><h3 class="no-margin">{{__('message.popular')}}</h3></div>
-                      <div class="shop-carousel">
-                        <vue-slick :products="{{$populars}}" path="/product/thumbnail/" slick-for="shop"></vue-slick>
-                        @else
-                        <h3 style="text-align: center; margin:50px auto;">{{__('message.no_shop_product')}}</h3>
-                        @endif
+                      <div class="panel-body">
+                        <div class="shop-carousel">
+                          <vue-slick :products="{{$populars}}" path="/product/thumbnail/" slick-for="shop"></vue-slick>
+                          @else
+                          <h3 style="text-align: center; margin:50px auto;">{{__('message.no_shop_product')}}</h3>
+                          @endif
+                        </div>
+                      </div>
                     @endif
 
-                    </div>
 
-                </div>
 
             </div>
             @endif

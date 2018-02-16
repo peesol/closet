@@ -203,32 +203,44 @@ Route::put('/profile/myproduct/shipping/update', 'Product\Shipping\ShippingContr
 | Shop Routes
 |--------------------------------------------------------------------------
 */
-Route::get('/{shop}', 'ShopController@index');
-Route::get('/{shop}/products', 'ShopController@product');
-Route::get('/{shop}/collection', 'ShopController@collection');
-Route::get('/{shop}/about', 'ShopController@about');
-Route::get('/{shop}/votes', 'ShopVoteController@show');
-Route::get('/{shop}/status', 'ShopController@ajaxStat');
-Route::put('/{shop}/views', 'ShopController@logView');
-
+Route::namespace('Shop')->group(function () {
+  Route::get('/{shop}', 'ShopController@index');
+  Route::get('/{shop}/products', 'ShopController@product');
+  Route::get('/{shop}/collection', 'ShopController@collection');
+  Route::get('/{shop}/about', 'ShopController@about');
+  Route::get('/{shop}/status', 'ShopController@getStatus');
+  Route::put('/{shop}/views', 'ShopController@logView');
+  // Shop Votes
+  Route::get('/{shop}/votes', 'VoteController@get');
+  Route::post('/{shop}/votes', 'VoteController@create');
+  Route::delete('/{shop}/votes', 'VoteController@delete');
+});
+/*
+|--------------------------------------------------------------------------
+| Shop Edit Routes
+|--------------------------------------------------------------------------
+*/
 Route::group(['middleware' => ['auth']], function () {
-  Route::get('/{shop}/edit', 'ShopSettingsController@edit');
-  Route::put('/{shop}/edit', 'ShopSettingsController@update');
-  Route::put('/{shop}/edit/cover', 'ShopSettingsController@updateCover');
-  Route::put('/{shop}/edit/thumbnail', 'ShopSettingsController@updateThumbnail');
-  Route::put('/{shop}/edit/personal_info', 'ShopSettingsController@updateUserInfo');
 
-  Route::get('/{shop}/edit/info', 'ShopSettingsController@getContact');
-  Route::post('/{shop}/edit/info', 'ShopSettingsController@createContact');
-  Route::put('/{shop}/edit/info/{contact}', 'ShopSettingsController@updateContact');
-  Route::put('/{shop}/edit/info/{contact}/show_product', 'ShopSettingsController@toggleShowProduct');
-  Route::put('/{shop}/edit/info/{contact}/show_cover', 'ShopSettingsController@toggleShowCover');
-  Route::delete('/{shop}/edit/info/{contact}/delete', 'ShopSettingsController@deleteContact');
+  Route::get('/{shop}/edit', 'Shop\Settings\ShopEditController@index');
+  Route::put('/{shop}/edit/public_info', 'Shop\Settings\ShopEditController@updatePublicInfo');
+  Route::put('/{shop}/edit/personal_info', 'Shop\Settings\ShopEditController@updatePrivateInfo');
+  Route::put('/{shop}/edit/cover', 'Shop\Settings\ShopEditController@updateCover');
+  Route::put('/{shop}/edit/thumbnail', 'Shop\Settings\ShopEditController@updateThumbnail');
 
-  Route::get('/{shop}/edit/account', 'ShopSettingsController@getAccounts');
-  Route::post('/{shop}/edit/account', 'ShopSettingsController@addAccount');
-  Route::delete('/{shop}/edit/account/{account}/delete', 'ShopSettingsController@removeAccount');
-  Route::put('/{shop}/edit/set_sell_status', 'ShopSettingsController@setSellStatus');
+
+  Route::get('/{shop}/edit/contact', 'Shop\Settings\ContactController@get');
+  Route::post('/{shop}/edit/contact', 'Shop\Settings\ContactController@create');
+  Route::put('/{shop}/edit/contact/{contact}', 'Shop\Settings\ContactController@update');
+  Route::delete('/{shop}/edit/contact/{contact}/delete', 'Shop\Settings\ContactController@delete');
+  Route::put('/{shop}/edit/contact/{contact}/show_product', 'Shop\Settings\ContactController@toggleShowProduct');
+  Route::put('/{shop}/edit/contact/{contact}/show_cover', 'Shop\Settings\ContactController@toggleShowCover');
+
+
+  Route::get('/{shop}/edit/account', 'Shop\Settings\AccountController@get');
+  Route::post('/{shop}/edit/account', 'Shop\Settings\AccountController@create');
+  Route::delete('/{shop}/edit/account/{account}/delete', 'Shop\Settings\AccountController@delete');
+  Route::put('/{shop}/edit/set_sell_status', 'Shop\Settings\AccountController@setSellStatus');
   /*
   |--------------------------------------------------------------------------
   | Showcases Routes
@@ -244,11 +256,5 @@ Route::group(['middleware' => ['auth']], function () {
   Route::get('/{shop}/edit/showcase/{showcase}/get_product', 'Showcase\ShowcaseEditController@getProduct');
   Route::post('/{shop}/edit/showcase/{showcase}/add_product/{id}', 'Showcase\ShowcaseEditController@storeProduct');
   Route::put('/{shop}/edit/showcase/{showcase}/update', 'Showcase\ShowcaseEditController@update');
-  /*
-  |--------------------------------------------------------------------------
-  | Vote Routes
-  |--------------------------------------------------------------------------
-  */
-  Route::post('/{shop}/votes', 'ShopVoteController@create');
-  Route::delete('/{shop}/votes', 'ShopVoteController@delete');
+
 });

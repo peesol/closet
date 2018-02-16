@@ -1,6 +1,5 @@
 <template>
-
-<div v-if="user !== null">
+<div v-if="$root.authenticated">
 	<button class="s-vote" v-bind:class="{'s-vote-btn-voted': userVote == 'up'}" @click.prevent="vote('up')">{{ up > 1 ? $trans.translation.likes : $trans.translation.like }}&nbsp;{{ up }}
 	</button>
 	<button class="s-vote" v-bind:class="{'s-vote-btn-voted': userVote == 'down'}" @click.prevent="vote('down')">{{ down > 1 ? $trans.translation.dislikes : $trans.translation.dislike }}&nbsp;{{ down }}
@@ -23,6 +22,9 @@
     			userVote: null,
     		}
     	},
+			props: {
+				shopSlug: null,
+			},
     	methods: {
     		 getVotes () {
     			this.$http.get(this.$root.url + '/' + this.shopSlug + '/votes').then((response) => {
@@ -73,10 +75,6 @@
 						clearInterval(this.timer);
 				}
     	},
-
-        props: {
-        	shopSlug: null,
-        },
 
     	created() {
     		this.getVotes();

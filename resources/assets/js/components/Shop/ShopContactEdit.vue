@@ -62,16 +62,16 @@
                       <tr>
                         <td></td>
                         <td class="m-cell" colspan="1"><label>{{$trans.translation.show_product}}</label>
-                          <input id="checkbox" type="checkbox" v-model="contact.show_product" @change.prevent="toggleShowProduct(contact.id)">
-                          {{contact.show_product ? $trans.translation.showing : $trans.translation.hiding}}
+                          <small v-bind:class="{ 'icon-checkmark green-font': contact.show_product == true, 'icon-cross red-font': contact.show_product == false}"></small>
+                          <button class="round-sq-btn" @click.prevent="toggleShowProduct(contact.id, index)">{{contact.show_product ? $trans.translation.hide : $trans.translation.show}}</button>
                         </td>
                       </tr>
 
                       <tr>
                         <td></td>
                         <td class="m-cell" colspan="1"><label>{{$trans.translation.show_cover}}</label>
-                          <input id="checkbox" type="checkbox" v-model="contact.show_cover" @change.prevent="toggleShowCover(contact.id)">
-                          {{contact.show_cover ? $trans.translation.showing : $trans.translation.hiding}}
+                          <small v-bind:class="{ 'icon-checkmark green-font': contact.show_cover == true, 'icon-cross red-font': contact.show_cover == false}"></small>
+                          <button class="round-sq-btn" @click.prevent="toggleShowCover(contact.id, index)">{{contact.show_cover ? $trans.translation.hide : $trans.translation.show}}</button>
                         </td>
                         <td class="s-cell"><button type="button" @click.prevent="remove(contact.id, index)" class="delete-btn round-btn float-right"><small class="icon-bin"></small></button></td>
                       </tr>
@@ -100,13 +100,13 @@ export default {
     methods: {
             getContact() {
               this.$Progress.start();
-              this.$http.get(this.$root.url + '/' + this.shopSlug + '/edit/info').then((response) => {
+              this.$http.get(this.$root.url + '/' + this.shopSlug + '/edit/contact').then((response) => {
                 this.contacts = response.body
                 this.$Progress.finish();
               });
             },
             updateBody(contactId, contactBody) {
-              this.$http.put(this.$root.url + '/' + this.shopSlug + '/edit/info/' + contactId, {
+              this.$http.put(this.$root.url + '/' + this.shopSlug + '/edit/contact/' + contactId, {
               body: contactBody,
               }).then((response)=> {
                   toastr.success(this.$trans.translation.saved);
@@ -115,7 +115,7 @@ export default {
               });
             },
             updateLink(contactId, contactLink) {
-              this.$http.put(this.$root.url + '/' + this.shopSlug + '/edit/info/' + contactId, {
+              this.$http.put(this.$root.url + '/' + this.shopSlug + '/edit/contact/' + contactId, {
               link: contactLink,
               }).then((response)=> {
                   toastr.success(this.$trans.translation.saved);
@@ -127,16 +127,26 @@ export default {
                   }
               });
             },
-            toggleShowProduct(contactId){
-              this.$http.put(this.$root.url + '/' + this.shopSlug + '/edit/info/' + contactId + '/show_product').then((response)=> {
-                  toastr.success(this.$trans.translation.saved);
+            toggleShowProduct(contactId, index){
+              this.$http.put(this.$root.url + '/' + this.shopSlug + '/edit/contact/' + contactId + '/show_product').then((response)=> {
+                if (this.contacts[index].show_product) {
+                  this.$set(this.contacts[index], 'show_product', false)
+                } else {
+                  this.$set(this.contacts[index], 'show_product', true)
+                }
+                  toastr.success(this.$trans.translation.saved)
               }, (response) => {
                   toastr.error(this.$trans.translation.error);
               });
             },
-            toggleShowCover(contactId){
-              this.$http.put(this.$root.url + '/' + this.shopSlug + '/edit/info/' + contactId + '/show_cover').then((response)=> {
-                  toastr.success(this.$trans.translation.saved);
+            toggleShowCover(contactId, index){
+              this.$http.put(this.$root.url + '/' + this.shopSlug + '/edit/contact/' + contactId + '/show_cover').then((response)=> {
+                if (this.contacts[index].show_cover) {
+                  this.$set(this.contacts[index], 'show_cover', false)
+                } else {
+                  this.$set(this.contacts[index], 'show_cover', true)
+                }
+                  toastr.success(this.$trans.translation.saved)
               }, (response) => {
                   toastr.error(this.$trans.translation.error);
               });
@@ -146,7 +156,7 @@ export default {
                 toastr.options.timeOut = 2000;
                     this.$Progress.start();
                     toastr.info(this.$trans.translation.wait);
-                    this.$http.post(this.$root.url + '/' + this.shopSlug + '/edit/info', {
+                    this.$http.post(this.$root.url + '/' + this.shopSlug + '/edit/contact', {
                     type: this.type,
                     body: this.body,
                     link: this.link,
@@ -168,7 +178,7 @@ export default {
               if(!confirm(this.$trans.translation.delete_confirm)){
                 return;
               }
-              this.$http.delete(this.$root.url + '/' + this.shopSlug + '/edit/info/' + contactId + '/delete').then((response)=> {
+              this.$http.delete(this.$root.url + '/' + this.shopSlug + '/edit/contact/' + contactId + '/delete').then((response)=> {
                   toastr.success(this.$trans.translation.success);
                   this.contacts.splice(index, 1)
               }, (response) => {

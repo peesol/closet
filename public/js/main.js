@@ -4533,7 +4533,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var _this = this;
 
       this.$Progress.start();
-      this.$http.get(this.$root.url + '/' + this.shopSlug + '/edit/info').then(function (response) {
+      this.$http.get(this.$root.url + '/' + this.shopSlug + '/edit/contact').then(function (response) {
         _this.contacts = response.body;
         _this.$Progress.finish();
       });
@@ -4541,7 +4541,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     updateBody: function updateBody(contactId, contactBody) {
       var _this2 = this;
 
-      this.$http.put(this.$root.url + '/' + this.shopSlug + '/edit/info/' + contactId, {
+      this.$http.put(this.$root.url + '/' + this.shopSlug + '/edit/contact/' + contactId, {
         body: contactBody
       }).then(function (response) {
         toastr.success(_this2.$trans.translation.saved);
@@ -4552,7 +4552,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     updateLink: function updateLink(contactId, contactLink) {
       var _this3 = this;
 
-      this.$http.put(this.$root.url + '/' + this.shopSlug + '/edit/info/' + contactId, {
+      this.$http.put(this.$root.url + '/' + this.shopSlug + '/edit/contact/' + contactId, {
         link: contactLink
       }).then(function (response) {
         toastr.success(_this3.$trans.translation.saved);
@@ -4564,19 +4564,29 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
       });
     },
-    toggleShowProduct: function toggleShowProduct(contactId) {
+    toggleShowProduct: function toggleShowProduct(contactId, index) {
       var _this4 = this;
 
-      this.$http.put(this.$root.url + '/' + this.shopSlug + '/edit/info/' + contactId + '/show_product').then(function (response) {
+      this.$http.put(this.$root.url + '/' + this.shopSlug + '/edit/contact/' + contactId + '/show_product').then(function (response) {
+        if (_this4.contacts[index].show_product) {
+          _this4.$set(_this4.contacts[index], 'show_product', false);
+        } else {
+          _this4.$set(_this4.contacts[index], 'show_product', true);
+        }
         toastr.success(_this4.$trans.translation.saved);
       }, function (response) {
         toastr.error(_this4.$trans.translation.error);
       });
     },
-    toggleShowCover: function toggleShowCover(contactId) {
+    toggleShowCover: function toggleShowCover(contactId, index) {
       var _this5 = this;
 
-      this.$http.put(this.$root.url + '/' + this.shopSlug + '/edit/info/' + contactId + '/show_cover').then(function (response) {
+      this.$http.put(this.$root.url + '/' + this.shopSlug + '/edit/contact/' + contactId + '/show_cover').then(function (response) {
+        if (_this5.contacts[index].show_cover) {
+          _this5.$set(_this5.contacts[index], 'show_cover', false);
+        } else {
+          _this5.$set(_this5.contacts[index], 'show_cover', true);
+        }
         toastr.success(_this5.$trans.translation.saved);
       }, function (response) {
         toastr.error(_this5.$trans.translation.error);
@@ -4589,7 +4599,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       toastr.options.timeOut = 2000;
       this.$Progress.start();
       toastr.info(this.$trans.translation.wait);
-      this.$http.post(this.$root.url + '/' + this.shopSlug + '/edit/info', {
+      this.$http.post(this.$root.url + '/' + this.shopSlug + '/edit/contact', {
         type: this.type,
         body: this.body,
         link: this.link
@@ -4612,7 +4622,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       if (!confirm(this.$trans.translation.delete_confirm)) {
         return;
       }
-      this.$http.delete(this.$root.url + '/' + this.shopSlug + '/edit/info/' + contactId + '/delete').then(function (response) {
+      this.$http.delete(this.$root.url + '/' + this.shopSlug + '/edit/contact/' + contactId + '/delete').then(function (response) {
         toastr.success(_this7.$trans.translation.success);
         _this7.contacts.splice(index, 1);
       }, function (response) {
@@ -4794,7 +4804,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             toastr.options.timeOut = 2000;
             this.$Progress.start();
             toastr.info(this.$trans.translation.wait);
-            this.$http.put(this.$root.url + '/' + this.shopSlug + '/edit', {
+            this.$http.put(this.$root.url + '/' + this.shopSlug + '/edit/public_info', {
                 name: this.name,
                 slug: this.slug,
                 description: this.description
@@ -5023,7 +5033,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -5034,6 +5043,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     };
   },
 
+  props: {
+    shopSlug: null
+  },
   methods: {
     getVotes: function getVotes() {
       var _this = this;
@@ -5078,10 +5090,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.$http.put(this.$root.url + '/' + this.shopSlug + '/views');
       clearInterval(this.timer);
     }
-  },
-
-  props: {
-    shopSlug: null
   },
 
   created: function created() {
@@ -28515,7 +28523,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       attrs: {
         "colspan": "4"
       }
-    }, [_c('label', [_vm._v(_vm._s(_vm.$trans.translation.showcase_choice))]), _vm._v(" "), _c('small', {
+    }, [_c('label', [_vm._v(_vm._s(_vm.$trans.translation.show_cover))]), _vm._v(" "), _c('small', {
       class: {
         'icon-checkmark green-font': showcase.show == true, 'icon-cross red-font': showcase.show == false
       }
@@ -29133,7 +29141,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return (_vm.user !== null) ? _c('div', [_c('button', {
+  return (_vm.$root.authenticated) ? _c('div', [_c('button', {
     staticClass: "s-vote",
     class: {
       's-vote-btn-voted': _vm.userVote == 'up'
@@ -30081,82 +30089,36 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       attrs: {
         "colspan": "1"
       }
-    }, [_c('label', [_vm._v(_vm._s(_vm.$trans.translation.show_product))]), _vm._v(" "), _c('input', {
-      directives: [{
-        name: "model",
-        rawName: "v-model",
-        value: (contact.show_product),
-        expression: "contact.show_product"
-      }],
-      attrs: {
-        "id": "checkbox",
-        "type": "checkbox"
-      },
-      domProps: {
-        "checked": Array.isArray(contact.show_product) ? _vm._i(contact.show_product, null) > -1 : (contact.show_product)
-      },
-      on: {
-        "change": [function($event) {
-          var $$a = contact.show_product,
-            $$el = $event.target,
-            $$c = $$el.checked ? (true) : (false);
-          if (Array.isArray($$a)) {
-            var $$v = null,
-              $$i = _vm._i($$a, $$v);
-            if ($$el.checked) {
-              $$i < 0 && (contact.show_product = $$a.concat([$$v]))
-            } else {
-              $$i > -1 && (contact.show_product = $$a.slice(0, $$i).concat($$a.slice($$i + 1)))
-            }
-          } else {
-            _vm.$set(contact, "show_product", $$c)
-          }
-        }, function($event) {
-          $event.preventDefault();
-          _vm.toggleShowProduct(contact.id)
-        }]
+    }, [_c('label', [_vm._v(_vm._s(_vm.$trans.translation.show_product))]), _vm._v(" "), _c('small', {
+      class: {
+        'icon-checkmark green-font': contact.show_product == true, 'icon-cross red-font': contact.show_product == false
       }
-    }), _vm._v("\n                          " + _vm._s(contact.show_product ? _vm.$trans.translation.showing : _vm.$trans.translation.hiding) + "\n                        ")])]), _vm._v(" "), _c('tr', [_c('td'), _vm._v(" "), _c('td', {
+    }), _vm._v(" "), _c('button', {
+      staticClass: "round-sq-btn",
+      on: {
+        "click": function($event) {
+          $event.preventDefault();
+          _vm.toggleShowProduct(contact.id, index)
+        }
+      }
+    }, [_vm._v(_vm._s(contact.show_product ? _vm.$trans.translation.hide : _vm.$trans.translation.show))])])]), _vm._v(" "), _c('tr', [_c('td'), _vm._v(" "), _c('td', {
       staticClass: "m-cell",
       attrs: {
         "colspan": "1"
       }
-    }, [_c('label', [_vm._v(_vm._s(_vm.$trans.translation.show_cover))]), _vm._v(" "), _c('input', {
-      directives: [{
-        name: "model",
-        rawName: "v-model",
-        value: (contact.show_cover),
-        expression: "contact.show_cover"
-      }],
-      attrs: {
-        "id": "checkbox",
-        "type": "checkbox"
-      },
-      domProps: {
-        "checked": Array.isArray(contact.show_cover) ? _vm._i(contact.show_cover, null) > -1 : (contact.show_cover)
-      },
-      on: {
-        "change": [function($event) {
-          var $$a = contact.show_cover,
-            $$el = $event.target,
-            $$c = $$el.checked ? (true) : (false);
-          if (Array.isArray($$a)) {
-            var $$v = null,
-              $$i = _vm._i($$a, $$v);
-            if ($$el.checked) {
-              $$i < 0 && (contact.show_cover = $$a.concat([$$v]))
-            } else {
-              $$i > -1 && (contact.show_cover = $$a.slice(0, $$i).concat($$a.slice($$i + 1)))
-            }
-          } else {
-            _vm.$set(contact, "show_cover", $$c)
-          }
-        }, function($event) {
-          $event.preventDefault();
-          _vm.toggleShowCover(contact.id)
-        }]
+    }, [_c('label', [_vm._v(_vm._s(_vm.$trans.translation.show_cover))]), _vm._v(" "), _c('small', {
+      class: {
+        'icon-checkmark green-font': contact.show_cover == true, 'icon-cross red-font': contact.show_cover == false
       }
-    }), _vm._v("\n                          " + _vm._s(contact.show_cover ? _vm.$trans.translation.showing : _vm.$trans.translation.hiding) + "\n                        ")]), _vm._v(" "), _c('td', {
+    }), _vm._v(" "), _c('button', {
+      staticClass: "round-sq-btn",
+      on: {
+        "click": function($event) {
+          $event.preventDefault();
+          _vm.toggleShowCover(contact.id, index)
+        }
+      }
+    }, [_vm._v(_vm._s(contact.show_cover ? _vm.$trans.translation.hide : _vm.$trans.translation.show))])]), _vm._v(" "), _c('td', {
       staticClass: "s-cell"
     }, [_c('button', {
       staticClass: "delete-btn round-btn float-right",

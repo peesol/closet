@@ -1,7 +1,7 @@
 <template>
 <div class="follow-btn-wrap" v-if="canFollow">
-<button v-if="userFollowed === false" @click.prevent="handle" class="follow-btn">{{$trans.translation.follow}}&nbsp</button>
-<button v-if="userFollowed === true" @click.prevent="handle" class="unfollow-btn">{{$trans.translation.unfollow}}&nbsp</button>
+	<button v-if="userFollowed === false" @click.prevent="handle" class="follow-btn">{{$trans.translation.follow}}&nbsp</button>
+	<button v-if="userFollowed === true" @click.prevent="handle" class="unfollow-btn">{{$trans.translation.unfollow}}&nbsp</button>
 </div>
 
 </template>

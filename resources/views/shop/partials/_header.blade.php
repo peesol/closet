@@ -18,7 +18,6 @@
             <div class="shop-follow-btn">
                 <follow-button shop-slug="{{ $shop->slug}}"></follow-button>
             </div>
-
         </div>
         </div>
         <shop-stats shop-slug="{{ $shop->slug}}"></shop-stats>

@@ -45,7 +45,6 @@ class ShopUpdateRequest extends FormRequest
             'name.unique' => 'This name has already been taken.',
             'name.required' => 'Name field is required.',
             'description.max' => 'Description must not exeed 1000 characters',
-
         ];
     }
 }

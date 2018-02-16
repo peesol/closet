@@ -69,7 +69,7 @@ export default {
                 toastr.options.timeOut = 2000;
                     this.$Progress.start();
                     toastr.info(this.$trans.translation.wait);
-                    this.$http.put(this.$root.url + '/' + this.shopSlug + '/edit', {
+                    this.$http.put(this.$root.url + '/' + this.shopSlug + '/edit/public_info', {
                     name: this.name,
                     slug: this.slug,
                     description: this.description,

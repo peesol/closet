@@ -30,7 +30,7 @@
           </tr>
           <tr>
             <td colspan="4">
-              <label>{{$trans.translation.showcase_choice}}</label>&nbsp;<small v-bind:class="{ 'icon-checkmark green-font': showcase.show == true, 'icon-cross red-font': showcase.show == false}"></small>
+              <label>{{$trans.translation.show_cover}}</label>&nbsp;<small v-bind:class="{ 'icon-checkmark green-font': showcase.show == true, 'icon-cross red-font': showcase.show == false}"></small>
               <button class="round-sq-btn" @click.prevent="showToggle(showcase.id, index)">{{showcase.show ? $trans.translation.hide : $trans.translation.show}}</button>
             </td>
           </tr>

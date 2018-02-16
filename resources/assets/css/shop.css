@@ -41,8 +41,9 @@
 	color: #ffffff;
 }
 .name-wrap{
-min-width: 100%;
-    height: 30px;
+  min-width: 100%;
+  max-width: 100%;
+  height: 30px;
 }
 .shop-thumb {
 	float: left;
@@ -212,12 +213,13 @@ width: auto;
         height: 220px;
     }
     .name-wrap{
-    max-width: 280px;
+    max-width: calc(100% - 100px);
     min-width: 100px;
     height: 30px;
 	}
 	.shop-follow-btn {
-	width: 100px;
+	  max-width: 100px;
+    min-width: 100px;
     height: 100%;
     margin: 0;
 	}
