@@ -20,9 +20,7 @@
                 @if ($collection->images->count())
                 	<div style="padding: 30px 50px;">
                 		  <div class="col-carousel">
-                	        @foreach ($collection->images as $image)
-                	            <img src="{{config('closet.buckets.images') . '/collection/photo/' . $image->filename}}">
-                	        @endforeach
+                        <vue-slick :imgs="{{json_encode($collection->images)}}" path="/collection/photo/" slick-for="collection"></vue-slick>
                 	    </div>
                 	</div>
                 @else
@@ -43,12 +41,13 @@
                 	</div>
                 	<div id="full-line"></div>
                 @endif
+                <div class="panel-heading">
+                  <h3 class="no-margin">{{__('message.featured_product')}}</h3>
+                </div>
 
-
-
-                  <div class="thumbnail-grid margin-top-10px">
                     @if($products->count())
-                      @foreach($products as $product)
+                      <div class="thumbnail-grid margin-top-10px">
+                        @foreach($products as $product)
                         <div v-if="products.length" class="panel-body thumbnail-grid">
                             <div v-for="product in products" class="products-wrap">
                                 <a  href="/product/{{ $product->uid}}">
@@ -61,20 +60,15 @@
                                 </div>
                             </div>
                         </div>
-                      @endforeach
+                        @endforeach
+                      </div>
                     @else
                   <div class="panel-body">
-                      <p>{{__('message.no_products')}}</p>
+                      <p>{{__('message.no_shop_product')}}</p>
                   </div>
                   @endif
-            </div>
+
 </div>
 
 </div>
-    <script>
-      $('.col-carousel').slick({
-        slidesToShow: 1,
-        dots: true,
-      });
-    </script>
 @endsection

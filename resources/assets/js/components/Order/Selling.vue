@@ -145,7 +145,7 @@ export default {
   },
   methods: {
     getMessages() {
-      this.$http.get(this.$root.url + '/profile/inbox_messages/selling').then((response)=> {
+      this.$http.get(this.$root.url + '/profile/order/selling/get').then((response)=> {
          this.orders = response.body.data;
        });
     },
@@ -212,43 +212,3 @@ export default {
   }
 }
 </script>
-
-<style lang="css">
-.msg-btn {
-  width: 100%;
-  height: 50px;
-}
-.msg-btn button{
-  float: left;
-  width: 33.33%;
-  height: 100%;
-  border: none;
-  background-color: #f7f7f7;
-  color: #6c6c6c;
-}
-.msg-btn button:hover{
-  background-color: #ffffff;
-}
-.msg-btn-full {
-  width: 100% !important;
-  border: none !important;
-}
-.msg-btn-half{
-  width: 50% !important;
-}
-.msg-btn button:nth-child(1n+2){
-  border-left: 1px solid #b5b5b5;
-}
-.no-border{
-  border: none !important;
-}
-.shipping-table td:first-child{
-  width: 150px;
-}
-.shipping-table td:nth-child(2){
-  width: 120px;
-}
-.shipping-table td{
-  border: none;
-}
-</style>

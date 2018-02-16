@@ -82,6 +82,9 @@ Route::put('/order/{order}/transaction_email', 'Order\EmailController@transactio
 |--------------------------------------------------------------------------
 */
 Route::group(['middleware' => ['auth']], function () {
+  Route::get('/profile/order/selling/get', 'Order\OrderController@getSellingInbox');
+  Route::get('/profile/order/buying/get', 'Order\OrderController@getBuyingInbox');
+
   Route::get('/profile/order/selling', 'Order\OrderController@sellingPage')->name('sellingOrder');
   Route::get('/profile/order/buying', 'Order\OrderController@buyingPage')->name('buyingOrder');
   Route::delete('/profile/order/{order}/deny', 'Order\OrderController@deny');
@@ -99,8 +102,6 @@ Route::group(['middleware' => ['auth']], function () {
       Route::get('/following', 'FollowingController@index')->name('following');
 
       //AJAX
-      Route::get('/inbox_messages/selling', 'OrderController@getSellingInbox');
-      Route::get('/inbox_messages/buying', 'OrderController@getBuyingInbox');
 
       Route::get('/promotions/manage', 'PromotionController@index')->name('promotionEdit');
       Route::get('/promotions/manage/code', 'PromotionController@codePage')->name('promotionCode');
@@ -115,19 +116,9 @@ Route::group(['middleware' => ['auth']], function () {
       Route::put('/promotions/manage/discount/{product}/delete', 'PromotionController@removeDiscount');
 
       // Route::get('/promotions/manage/getanother', 'PromotionController@dealsPage')->name('promotionSale');
-
     });
 
-      Route::get('/profile/showcase/{showcase}/edit', 'ShowcaseController@edit');
 
-      Route::get('/showcase_ajax/myproducts/{showcase}', 'ShowcaseController@getProduct');
-      Route::post('/showcase_ajax/products/{productId}/showcase/{showcaseId}', 'ShowcaseController@storeProduct');
-      Route::get('/showcase_ajax/{shop}/showcase', 'ShowcaseController@getShowcase');
-      Route::post('/showcase_ajax/{shop}/showcase', 'ShowcaseController@store');
-      Route::put('/showcase_ajax/update/{id}', 'ShowcaseController@update');
-      Route::put('/showcase_ajax/update/all/order', 'ShowcaseController@updateOrder');
-      Route::delete('/showcase_ajax/delete/{showcase}', 'ShowcaseController@remove');
-      Route::put('/showcase_ajax/show/{showcase}', 'ShowcaseController@showOption');
 
 /*
 |--------------------------------------------------------------------------
@@ -144,7 +135,12 @@ Route::namespace('Product\Sell')->group(function () {
 //Product Delete
 Route::delete('/product/used/{product}', 'Product\DeleteController@deleteUsedProduct');
 Route::delete('/product/{product}', 'Product\DeleteController@deleteNewProduct');
-
+//Comments
+Route::post('/product/{product}/comments', 'ProductCommentController@create');
+Route::delete('/product/{product}/comments/{comment}', 'ProductCommentController@delete');
+//Votes
+Route::post('/product/{product}/votes', 'ProductVoteController@create');
+Route::delete('/product/{product}/votes', 'ProductVoteController@delete');
 /*
 |--------------------------------------------------------------------------
 | Product Edit Routes
@@ -180,14 +176,8 @@ Route::get('/profile/myproduct/shipping', 'Product\Shipping\ShippingController@i
 Route::put('/profile/myproduct/shipping/update', 'Product\Shipping\ShippingController@updateAll');
 
 
-    Route::post('/product/{product}/comments', 'ProductCommentController@create');
-    Route::delete('/product/{product}/comments/{comment}', 'ProductCommentController@delete');
-
     Route::post('/product/used/{product}/comments', 'UsedCommentController@create');
     Route::delete('/product/used/{product}/comments/{comment}', 'UsedCommentController@delete');
-
-    Route::post('/product/{product}/votes', 'ProductVoteController@create');
-    Route::delete('/product/{product}/votes', 'ProductVoteController@delete');
 
     Route::post('/follow/{shop}', 'ShopFollowController@create');
     Route::delete('/follow/{shop}', 'ShopFollowController@delete');
@@ -239,7 +229,26 @@ Route::group(['middleware' => ['auth']], function () {
   Route::post('/{shop}/edit/account', 'ShopSettingsController@addAccount');
   Route::delete('/{shop}/edit/account/{account}/delete', 'ShopSettingsController@removeAccount');
   Route::put('/{shop}/edit/set_sell_status', 'ShopSettingsController@setSellStatus');
-
+  /*
+  |--------------------------------------------------------------------------
+  | Showcases Routes
+  |--------------------------------------------------------------------------
+  */
+  Route::get('/{shop}/edit/showcase/get', 'Showcase\ShowcaseController@get');
+  Route::post('/{shop}/edit/showcase/create', 'Showcase\ShowcaseController@create');
+  Route::put('/{shop}/edit/showcase/order/update', 'Showcase\ShowcaseController@updateOrder');
+  Route::delete('/{shop}/edit/showcase/{showcase}/delete', 'Showcase\ShowcaseController@remove');
+  Route::put('/{shop}/edit/showcase/{showcase}/toggle_show', 'Showcase\ShowcaseController@showOption');
+  //Showcase Edit
+  Route::get('/{shop}/edit/showcase/{showcase}/edit', 'Showcase\ShowcaseEditController@index');
+  Route::get('/{shop}/edit/showcase/{showcase}/get_product', 'Showcase\ShowcaseEditController@getProduct');
+  Route::post('/{shop}/edit/showcase/{showcase}/add_product/{id}', 'Showcase\ShowcaseEditController@storeProduct');
+  Route::put('/{shop}/edit/showcase/{showcase}/update', 'Showcase\ShowcaseEditController@update');
+  /*
+  |--------------------------------------------------------------------------
+  | Vote Routes
+  |--------------------------------------------------------------------------
+  */
   Route::post('/{shop}/votes', 'ShopVoteController@create');
   Route::delete('/{shop}/votes', 'ShopVoteController@delete');
 });

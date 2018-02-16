@@ -5,46 +5,24 @@
 @section('css')
 <link href="https://s3-ap-southeast-1.amazonaws.com/files.closet/css/extra/slick-theme.css" rel="stylesheet">
 <link href="https://s3-ap-southeast-1.amazonaws.com/files.closet/css/extra/slick.css" rel="stylesheet">
-<style>
-#info{
-  padding: 15px 15px;
-  height: auto;
-}
-  @media (min-width: 768px) {
-    #info{
-      height: calc(100% - 153px);
-    }
-  }
-</style>
 @endsection
 
 @section('scripts')
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
-
+<script type="text/javascript">
+window.addEventListener("load",function(){var t=document.querySelectorAll(".tab-nav-btn");function e(e){for(var r=0;r<t.length;r++)t[r].classList.remove("current");e.currentTarget.classList.add("current"),e.preventDefault();var n=document.querySelectorAll(".tab-content");for(r=0;r<n.length;r++)n[r].classList.remove("current");var a=e.target.getAttribute("data-tab");document.querySelector(a).classList.add("current")}for(i=0;i<t.length;i++)t[i].addEventListener("click",e)});
+</script>
 @endsection
 @section('content')
 
 <div class="container">
-  @if(!Auth::check())
-  <div class="product-show-panel">
-    <div class="panel-body" id="full-line">
-      <div class="alert-box info">
-        <h3 class="no-margin">
-          <span class="icon-notification"></span>
-          {{__('auth.login_notice')}}<a class="link-text font-bold" href="{{ route('login')}}">&nbsp;{{__('message.login')}}</a>
-          {{__('auth.login_notice2')}}<a class="link-text font-bold" href="{{ route('register')}}">&nbsp;{{__('message.register')}}</a>
-        </h3>
-      </div>
-    </div>
-  </div>
-  @endif
+  @include('product.partials._login_warn')
             <div class="product-show-panel">
-                <div class="panel-heading"><p class="product-title">{{__('message.product_name')}} : {{ $product->name }}</p></div>
-                <div class="panel-body-alt flex">
+                <div class="panel-heading margin-bot-10px"><p class="product-title">{{__('message.product_name')}} : {{ $product->name }}</p></div>
+                <div class="flex">
+
                     <div class="product-showcase">
-                        @foreach ($product->productimages as $image)
-                                <img src="{{config('closet.buckets.images') . '/used/photo/' . $image->filename}}" alt="{{$image->filename}}">
-                        @endforeach
+                      <vue-slick :imgs="{{json_encode($product->productimages)}}" path="/used/photo/"></vue-slick>
                     </div>
 
                     <div class="product-details">
@@ -60,68 +38,42 @@
                             </div>
 
                         </div>
-                        <div style="padding: 15px 15px;">
+                        <div class="panel-body">
                           <h3 class="no-margin red-font">{{__('message.used')}}</h3>
-                            <p class="no-margin"><span class="font-bold grey-font">{{__('message.price')}}</span> : <span class="font-bold font-large">{{ number_format($product->price) }}</span> {{__('message.baht')}}</p>
+                          <p class="no-margin"><span class="font-bold grey-font">{{__('message.price')}}</span> : <span class="font-bold font-large">{{ number_format($product->price) }}</span> {{__('message.baht')}}</p>
                         </div>
 
-                        <div id="info">
-                        {!! nl2br(e($product->description)) !!}
+                        <div class="panel-body">
+                        <p class="comment">{!! nl2br(e($product->description)) !!}</p>
                         </div>
 
                     </div>
                 </div>
             </div>
-                <div class="product-show-panel" style="margin-top: 10px;">
-                    <div class="tab-nav">
-                        <ul class="tab-nav-ul">
-                          <button class="tab-nav-btn static current" data-tab="tab-1">{{__('message.details')}}</button>
-                          <button class="tab-nav-btn static" data-tab="tab-2" id="tab-comment">{{__('message.comment')}}</button>
-                        </ul>
-                    </div>
-                        <div class="tab-content flex current"  style="padding: 15px 30px;" id="tab-1">
-                          @foreach($contacts as $contact)
-                            <div class="full-label" style="height:40px">
-                              @if($contact->link)
-                                <span class="contact-btn {{$contact->type}} icon-{{$contact->type}}"></span>&nbsp;
-                                <a class="link-text" href="{{$contact->link}}">{{$contact->body}}<sup>*</sup></a>
-                              @else
-                                <span class="contact-btn {{$contact->type}} icon-{{$contact->type}}"></span>&nbsp;<label class="grey-font font-light">{{$contact->body}}</label>
-                              @endif
-                            </div>
-                          @endforeach
-                          <div class="panel-body">
-                            <p class="comment">{!! nl2br(e($product->description)) !!}</p>
-                          </div>
-                        </div>
-                        <div class="comment-vue tab-content flex" id="tab-2">
-                          @if(!Auth::check())
-                          <div class="alert-box info">
-                            <h3 class="no-margin">
-                              <span class="icon-notification"></span>
-                              {{__('auth.comment_notice')}}<a class="link-text font-bold" href="{{ route('login')}}">&nbsp;{{__('message.login')}}</a>
-                            </h3>
-                          </div>
-                          @endif
-                            <used-comment product-uid="{{ $product->uid }}"></used-comment>
-                        </div>
-                </div>
+  <div class="product-show-panel" style="margin-top: 10px;">
+    <div class="tab-nav">
+      <ul class="tab-nav-ul">
+        <button class="tab-nav-btn static current" data-tab="#tab-1">{{__('message.details')}}</button>
+        <button class="tab-nav-btn static" data-tab="#tab-2">{{__('message.comment')}}</button>
+      </ul>
+    </div>
+
+    <div class="tab-content flex current" id="tab-1">
+      @include('product.partials._contacts', [ 'contacts' => $contacts ])
+    </div>
+
+    <div class="tab-content flex" id="tab-2">
+      @if(!Auth::check())
+      <div class="alert-box info">
+        <h3 class="no-margin">
+          <span class="icon-notification"></span>
+          {{__('auth.comment_notice')}}<a class="link-text font-bold" href="{{ route('login')}}">&nbsp;{{__('message.login')}}</a>
+        </h3>
+      </div>
+      @endif
+        <used-comment product-uid="{{ $product->uid }}"></used-comment>
+    </div>
+  </div>
 
 </div>
-<script>
-$('.product-showcase').slick({
-    dots: true
-});
-
-$(document).ready(function(){
-    $('ul.shop-nav-ul button').click(function(){
-        var tab_id = $(this).attr('data-tab');
-        $('ul.shop-nav-ul button').removeClass('current');
-        $('.tab-content').removeClass('current');
-        $(this).addClass('current');
-        $("#"+tab_id).addClass('current');
-    });
-});
-</script>
-
 @endsection

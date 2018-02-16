@@ -93,6 +93,7 @@ return [
     'bank_account' => 'บัญชีธนาคาร',
     //collection
     'no_image' => 'คอลเล็คชั่นนี้ไม่มีรูปภาพ',
+    'featured_product' => 'สินค้าที่เกี่ยวข้อง',
     //showcase
     'showcase' => 'ตู้แสดงสินค้า',
     'showcase_edit' => 'การตั้งค่าตู้แสดงสินค้า',

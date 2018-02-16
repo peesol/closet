@@ -1,7 +1,5 @@
 <template>
-
 <div>
-  <div style="padding: 0 15px 10px 15px;">
     <div class="add-col-panel">
 		<form>
         <div class="input-group">
@@ -10,14 +8,19 @@
         </div>
 		</form>
 		</div>
-    <div class="panel-body"><h4 class="no-margin">{{$trans.translation.showcase_products}}</h4></div>
-    <div v-if="products.length" class="panel-body thumbnail-grid">
+    <div  id="full-line"></div>
+    <div class="panel-heading">
+      <label class="full-label no-margin">{{$trans.translation.showcase_products}}</label>
+    </div>
+    <div v-if="products.length" class="panel-body thumbnail-grid" id="full-line">
         <img v-for="product in products" :src="product.thumbnail" v-show="product.added" class="products-img-thumb">
     </div>
-    <div v-else class="panel-body"><h4>{{$trans.translation.showcase_empty}}</h4></div>
+    <div v-else class="panel-body" id="full-line"><h4>{{$trans.translation.showcase_empty}}</h4></div>
 
-    <div style="padding:15px;">
-      <h4>{{$trans.translation.shop_products}}</h4>
+    <div class="panel-heading">
+      <label class="full-label no-margin">{{$trans.translation.shop_products}}</label>
+    </div>
+    <div class="panel-body">
       <table class="c-table">
         <tr>
           <th>{{$trans.translation.product_name}}</th>
@@ -33,8 +36,6 @@
         </tr>
       </table>
     </div>
-
-  </div>
 </div>
 
 </template>
@@ -45,9 +46,6 @@
 			return {
         name: this.showcaseName,
         products: [],
-        url: window.Closet.url,
-        user_id: window.Closet.user.user,
-				
 			}
 		},
 
@@ -58,11 +56,11 @@
 		},
 		methods: {
       getProduct() {
-          this.$http.get(this.$root.url + '/showcase_ajax/myproducts/' + this.showcaseId).then((response)=> { this.products = response.body.data });
+          this.$http.get(this.$root.url + '/' + this.shopSlug + '/edit/showcase/' + this.showcaseId + '/get_product').then((response)=> { this.products = response.body.data });
       },
 
       edit(){
-				this.$http.put(this.$root.url + '/showcase_ajax/update/' + this.showcaseId ,{
+				this.$http.put(this.$root.url + '/' + this.shopSlug + '/edit/showcase/' + this.showcaseId + '/update',{
 					name: this.name
 				}).then((response)=> {
   					toastr.success(this.$trans.translation.success)
@@ -72,7 +70,7 @@
 			},
 
       add(productId, index){
-        this.$http.post(this.$root.url + '/showcase_ajax/products/' + productId + '/showcase/' + this.showcaseId).then((response)=> {
+        this.$http.post(this.$root.url + '/' + this.shopSlug + '/edit/showcase/' + this.showcaseId + '/add_product/' + productId).then((response)=> {
             if (this.products[index].added) {
               this.$set(this.products[index], 'added', false)
             } else {
@@ -86,8 +84,7 @@
     },
 
     created() {
-      this.getProduct();
-      this.getCurrentProduct();
+      this.getProduct()
   	}
 
 	}

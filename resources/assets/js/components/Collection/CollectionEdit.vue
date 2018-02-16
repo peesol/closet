@@ -47,9 +47,6 @@
 				name: this.colName,
 				description: this.colDescription,
 				visibility:this.colVisibility,
-        url: window.Closet.url,
-        user_id: window.Closet.user.user,
-				
 			}
 		},
 		props: {
@@ -60,8 +57,6 @@
 		},
 		methods: {
 			edit() {
-                toastr.options.preventDuplicates = true;
-                toastr.options.timeOut = 2000;
 				if(document.getElementById("image-input").files.length == 0) {
 					this.$Progress.start();
 					toastr.info(this.$trans.translation.wait);
@@ -105,15 +100,10 @@
                 	reader.readAsDataURL(input.files[0]);
             	}
         	},
-
         	removeFile() {
         		this.image_filename = null;
         	},
 
 		},
-
-		created() {
-
-		}
 	}
 </script>

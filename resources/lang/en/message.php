@@ -93,6 +93,7 @@ return [
     'bank_account' => 'Bank Accounts',
     //collection
     'no_image' => 'No image.',
+    'featured_product' => 'Featured Product',
     //showcase
     'showcase' => 'Showcase',
     'showcase_edit' => 'Showcase settings',

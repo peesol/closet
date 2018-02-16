@@ -14,9 +14,10 @@ require('./bootstrap');
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
-
+// import Slick from 'vue-slick';
  window.addEventListener('load', function () {
     var vue = new Vue({
+
       el: '#app',
       data: {
         url: window.Closet.url,
@@ -112,3 +113,5 @@ Vue.component('confirm-trans', require('./components/Order/ConfirmTrans.vue'));
 Vue.component('cant-sell', require('./components/Product/CantSell.vue'));
 Vue.component('discount-code', require('./components/Promotion/CodeGenerator.vue'));
 Vue.component('product-discount', require('./components/Promotion/Discount.vue'));
+// Vue.component('slick', require('./components/Slick.vue'));
+Vue.component('vue-slick', require('./components/VueSlick.vue'));

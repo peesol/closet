@@ -49,30 +49,19 @@
                     </div>
             <div style="padding: 15px 45px;">
 
-
                     @if ($showcases->count())
                         @foreach ($showcases as $showcase)
-                          <div class="no-border-heading margin-bot-10px"><h3 class="no-margin">{{$showcase->name}}</h3></div>
+                          <div class="panel-heading margin-bot-10px"><h3 class="no-margin">{{$showcase->name}}</h3></div>
                           <div class="shop-carousel">
-
-                            @include('shop.partials._showcase',[
-                                'showcase' => $showcase
-                            ])
-
+                              <vue-slick :products="{{$showcase->product()->get()}}" path="/product/thumbnail/" slick-for="shop"></vue-slick>
                           </div>
                         @endforeach
+                        
                     @else
                       @if($populars->count())
-                      <div class="no-border-heading margin-bot-10px"><h3 class="no-margin">{{__('message.popular')}}</h3></div>
+                      <div class="panel-heading margin-bot-10px"><h3 class="no-margin">{{__('message.popular')}}</h3></div>
                       <div class="shop-carousel">
-
-                          @foreach ($populars as $product)
-
-                          @include('shop.partials._carousel',[
-                              'product' => $product
-                              ])
-
-                          @endforeach
+                        <vue-slick :products="{{$populars}}" path="/product/thumbnail/" slick-for="shop"></vue-slick>
                         @else
                         <h3 style="text-align: center; margin:50px auto;">{{__('message.no_shop_product')}}</h3>
                         @endif
@@ -86,38 +75,4 @@
             @endif
 
 </div>
-
-<script>
-$('.shop-carousel').slick({
-  infinite: false,
-  speed: 300,
-  slidesToShow: 5,
-  slidesToScroll: 5,
-  responsive: [
-    {
-      breakpoint: 1024,
-      settings: {
-        slidesToShow: 4,
-        slidesToScroll: 4,
-        infinite: false,
-      }
-    },
-    {
-      breakpoint: 600,
-      settings: {
-        slidesToShow: 3,
-        slidesToScroll: 3
-      }
-    },
-    {
-      breakpoint: 480,
-      settings: {
-        slidesToShow: 1,
-        slidesToScroll: 1
-      }
-    }
-  ]
-});
-</script>
-
 @endsection

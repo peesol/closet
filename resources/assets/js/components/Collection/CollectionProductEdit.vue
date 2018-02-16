@@ -38,9 +38,7 @@ export default {
  					if(!confirm(this.$trans.translation.delete_confirm)){
 						return;
 					}
-
-  					this.$http.delete(this.$root.url + '/collection/' + this.colId + '/delete/' + productId)
-  					.then((response) => {
+  				this.$http.delete(this.$root.url + '/collection/' + this.colId + '/delete/' + productId).then((response) => {
   						toastr.success(this.$trans.translation.success)
   						this.products.splice(index, 1)
 					});

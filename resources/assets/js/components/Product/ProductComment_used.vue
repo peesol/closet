@@ -4,7 +4,7 @@
 	<div class="comments-header">
 	<p>{{ comments.length }}&nbsp;{{ comments.length > 1 ? $trans.translation.comments : $trans.translation.comment }}</p>
 	</div>
-	<div class="panel-body relative" v-if="$root.user.authenticated"  id="full-line">
+	<div class="panel-body relative" v-if="$root.authenticated"  id="full-line">
 		<textarea :placeholder="$trans.translation.comment+ '...'" class="description-input" v-model="body" style="height:100px;"></textarea>
 		<button class="btn margin-top-10px" style="margin-left:auto;display:block;" type="submit" @click.prevent="createComment">{{$trans.translation.comment}}</button>
 	</div>
@@ -48,8 +48,8 @@
 			</div>
 		</div>
 
-		</div><!--reply -->
-</div><!--END COMMENT WRAP -->
+		</div>
+</div>
 
 </div>
 
@@ -64,10 +64,11 @@
 				replyBody: null,
 				replyFormVisible: null,
 				showReply: null,
-				url: window.Closet.url,
         user_id: window.Closet.user.user,
-        authenticated: window.Closet.user.authenticated
 			}
+		},
+		props: {
+					productUid: null
 		},
 		methods: {
 
@@ -148,7 +149,6 @@
 						}
 					})
 				});
-
 			},
 
 			getComments() {
@@ -160,13 +160,8 @@
 
 			},
 		},
-
-		props: {
-        	productUid: null
-        },
-
 		created() {
-			this.getComments();
+			this.getComments()
 		}
 	}
 </script>
