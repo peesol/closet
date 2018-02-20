@@ -18,6 +18,7 @@ class Kernel extends ConsoleKernel
         \Closet\Console\Commands\ClearDiscount::class,
         \Closet\Console\Commands\CacheCategory::class,
         \Closet\Console\Commands\RemoveUsed::class,
+        \Closet\Console\Commands\IndexProduct::class,
     ];
 
     /**

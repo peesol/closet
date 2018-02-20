@@ -258,3 +258,5 @@ Route::group(['middleware' => ['auth']], function () {
   Route::put('/{shop}/edit/showcase/{showcase}/update', 'Showcase\ShowcaseEditController@update');
 
 });
+
+Route::get('/test/els', 'Test\TestController@index');

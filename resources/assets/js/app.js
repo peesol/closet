@@ -32,6 +32,9 @@ require('./bootstrap');
 import VueTrans from './lang/translate'
 Vue.use(VueTrans)
 
+import number from './misc/number-filter'
+Vue.use(number)
+
 import VueValidate from 'vee-validate'
 Vue.use(VueValidate)
 
@@ -43,6 +46,9 @@ Vue.use(Vuex)
 
 import VModal from 'vue-js-modal'
 Vue.use(VModal)
+
+import Vue2Filters from 'vue2-filters'
+Vue.use(Vue2Filters)
 
 import VueProgressBar from 'vue-progressbar'
 Vue.use(VueProgressBar, {

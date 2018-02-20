@@ -1641,6 +1641,7 @@ input.is-error{
     float: left;
     overflow: hidden;
     text-overflow: ellipsis;
+    white-space: nowrap;
 }
 .tab-content {
     display: none;

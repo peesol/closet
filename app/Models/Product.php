@@ -2,18 +2,18 @@
 
 namespace Closet\Models;
 
+use Laravel\Scout\Searchable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Closet\Filters\Product\ProductFilters;
 use Closet\Traits\Orderable;
 use Illuminate\Http\Request;
-use Elasticquent\ElasticquentTrait;
 
 class Product extends Model
 {
 
   use Orderable;
-  use ElasticquentTrait;
+  use Searchable;
 
 	protected $fillable = [
       'uid',

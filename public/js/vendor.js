@@ -12355,7 +12355,7 @@ function xhrClient (request) {
 
 function nodeClient (request) {
 
-    var client = __webpack_require__(196);
+    var client = __webpack_require__(197);
 
     return new PromiseObj(function (resolve) {
 
@@ -16040,14 +16040,14 @@ module.exports = function xhrAdapter(config) {
 
 /***/ }),
 
-/***/ 196:
+/***/ 197:
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
 /***/ }),
 
-/***/ 198:
+/***/ 199:
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(5);
@@ -43882,4 +43882,4 @@ return numeral;
 
 /***/ })
 
-},[198]);
+},[199]);

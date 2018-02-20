@@ -7,8 +7,8 @@
     </tr>
     <tr v-for="(item, index) in discount_products">
       <td class="m-cell overflow-hidden" style="width:100%;">{{item.name}}</td>
-      <td class="m-cell"><strike>{{numeral(item.price)}}&nbsp;&#3647;</strike>&nbsp;<small class="icon-next-arrow"></small>
-        <font class="green-font">{{numeral(item.discount_price)}}&nbsp;&#3647;</font>
+      <td class="m-cell"><strike>{{$number.currency(item.price)}}&nbsp;&#3647;</strike>&nbsp;<small class="icon-next-arrow"></small>
+        <font class="green-font">{{$number.currency(item.discount_price)}}&nbsp;&#3647;</font>
       </td>
       <td class="m-cell">{{item.discount_date}}</td>
       <td class="s-cell">
@@ -26,7 +26,7 @@
   <table class="c-table" v-for="(item, index) in products">
     <tr>
       <td class="m-cell overflow-hidden" style="width:100%;">{{item.name}}</td>
-      <td class="m-cell">{{numeral(item.price)}}&nbsp;&#3647;</td>
+      <td class="m-cell">{{$number.currency(item.price)}}&nbsp;&#3647;</td>
       <td class="s-cell">
         <button @click.prevent="toggleForm(item.id)" class="round-btn">
           <small class="icon-plus grey-font"></small>
@@ -49,7 +49,6 @@
 </template>
 
 <script>
-import numeral from 'numeral'
 export default {
   data() {
     return {
@@ -63,9 +62,6 @@ export default {
     points: null,
   },
   methods: {
-    numeral: function(price) {
-      return numeral(price).format('0,0')
-    },
     toggleForm(id) {
       if (this.formVisible === id){
         this.formVisible = null;

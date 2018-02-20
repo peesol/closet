@@ -14,16 +14,16 @@
 			<tr v-for="(item, index) in shop">
 				<td class="overflow-hidden"><span v-show="confirmed.shop !== key" class="icon-cross remove-p-cart" @click.prevent="removeProduct(item.rowId, index, item.options.shop_name)"></span>&nbsp;{{item.name}}</td>
 				<td class="m-cell">{{item.options.choice ? item.options.choice : '---'}}</td>
-				<td class="s-cell">{{numeral(item.price)}}</td>
+				<td class="s-cell">{{$number.currency(item.price)}}</td>
 				<td class="s-cell"><input v-bind:disabled="confirmed.shop == key" type="number" min="1" max="99" @change.prevent="qtyChange(item)" v-model="item.qty"></td>
 			</tr>
 			<tr v-show="confirmed.shop !== key">
-				<td colspan="2" class="total-price">{{$trans.translation.total_price}}&nbsp;:&nbsp;{{total(shop)}}&nbsp;&#3647;</td>
+				<td colspan="2" class="total-price">{{$trans.translation.total_price}}&nbsp;:&nbsp;{{total(shop)}}&#3647;</td>
 				<td colspan="2"><button class="btn float-right" @click.prevent="proceed(key, total(shop))">{{$trans.translation.confirm_order}}</button></td>
 			</tr>
 			<tr v-show="confirmed.shop == key">
 				<td colspan="2">
-					{{$trans.translation.total_price}}&nbsp;:&nbsp;{{confirmed.totalPrice}}&nbsp;&#3647;
+					{{$trans.translation.total_price}}&nbsp;:&nbsp;{{confirmed.totalPrice}}&#3647;
 					<a href="#" class="link-text" @click.prevent="toggleForm(key)" v-show="confirmed.discount_applied === false">{{$trans.translation.apply_discount}}</a>
 					<span class="green-font bold-font" v-show="confirmed.discount">{{$trans.translation.discount}}&nbsp;{{confirmed.discount}}</span>
 				</td>
@@ -46,7 +46,6 @@
 
 <script>
 import { mapActions } from 'vuex'
-import numeral from 'numeral'
 
 export default {
 	data() {
@@ -60,9 +59,6 @@ export default {
 			},
 			code: [],
 			products: [],
-			
-			url: window.Closet.url,
-
 		}
 	},
 	props: {
@@ -77,10 +73,7 @@ export default {
 					totalPrice.push(subTotal)
 			});
 			var total = totalPrice.reduce(function(total, num){ return total + num }, 0);
-			return numeral(total).format('0,0')
-		},
-		numeral: function(price) {
-			return numeral(price).format('0,0')
+			return this.$number.currency(total)
 		},
 		...mapActions([
 			'removeFromCart',
@@ -160,7 +153,7 @@ export default {
 							if (calculated < 0) {
 								alert(this.$trans.translation.discount_not_valid)
 							} else {
-								this.confirmed.totalPrice = numeral(calculated).format('0,0')
+								this.confirmed.totalPrice = this.$number.currency(calculated)
 								this.confirmed.discount = response.body.discount + '%'
 								this.confirmed.discount_applied = true
 								this.formVisible = null
@@ -171,7 +164,9 @@ export default {
 							if (calculated < 0) {
 								alert(this.$trans.translation.discount_not_valid)
 							} else {
-								this.confirmed.totalPrice = numeral(calculated).format('0,0')
+								console.log(calculated);
+								console.log(price);
+								this.confirmed.totalPrice = this.$number.currency(calculated)
 								this.confirmed.discount = response.body.discount + ' ฿'
 								this.confirmed.discount_applied = true
 								this.formVisible = null

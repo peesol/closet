@@ -19,7 +19,6 @@ mix.js([
 	'axios',
 	'vuex',
 	'dropzone',
-	'numeral',
 	'vue-resource',
 	'vee-validate',
 	'vue-clickaway',

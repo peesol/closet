@@ -12,7 +12,7 @@
             {{ product.discount_price }}&#3647;
           </span>
 
-          <span v-show="!product.discount_price" class="thumb-price">{{ product.price }}&#3647;</span>
+          <span v-show="!product.discount_price" class="thumb-price">{{ $number.currency(product.price) }}&#3647;</span>
 
         </a>
       </div>
@@ -24,8 +24,8 @@
 
 <script>
 
-import Slick from 'vue-slick';
-import { options } from '../misc/slick-options';
+import Slick from 'vue-slick'
+import { options } from '../misc/slick-options'
 
 export default {
   components: { Slick },

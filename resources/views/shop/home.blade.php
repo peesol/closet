@@ -19,7 +19,6 @@
               @include('shop.partials._header',[
                   'shop' => $shop
               ])
-
                     <div class="tab-nav">
                         <ul class="tab-nav-ul">
                             <button class="tab-nav-btn static current"><span class="icon-home"></span><font>{{__('message.home')}}</font></button>
@@ -31,6 +30,8 @@
                     <div class="panel-body" id="full-line">
                       @if($shop->description)
                       <p>{!! nl2br(e($shop->description)) !!}</p>
+                      @else
+                        {{__('message.no_description')}}
                       @endif
                       @if($shop->contact->count())
                       <div>
@@ -64,14 +65,14 @@
                       <div class="panel-body">
                         <div class="shop-carousel">
                           <vue-slick :products="{{$populars}}" path="/product/thumbnail/" slick-for="shop"></vue-slick>
-                          @else
-                          <h3 style="text-align: center; margin:50px auto;">{{__('message.no_shop_product')}}</h3>
-                          @endif
                         </div>
                       </div>
+                      @else
+                        <div class="panel-body">
+                          <h3 style="text-align: center; margin:50px auto;">{{__('message.no_shop_product')}}</h3>
+                        </div>
+                      @endif
                     @endif
-
-
 
             </div>
             @endif
