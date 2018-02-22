@@ -21,24 +21,24 @@
                             <span v-show="errors.has('price')" class="span-error">{{ errors.first('price') }}</span>
                         </div>
                         <div class="form-group">
-                            <label class="full-label">{{$trans.translation.category}}</label>
-                            <select required class="select-input" v-model="category" @change="watchCategory">
-                                <option v-for="category in categories" :value="category.id">{{category.name}}</option>
+                            <label class="full-label" for="category">{{$trans.translation.category}}</label>
+                            <select required class="select-input" v-model="category" @change.prevent="selectCategory(category)">
+                                <option v-for="category in categories" :value="category">{{category.name}}</option>
                             </select>
                         </div>
                         <transition name="slide-down-input">
                         <div v-show="subcategories.length" class="form-group">
-                            <label class="full-label">{{$trans.translation.subcategory}}</label>
-                            <select required class="select-input" v-model.lazy="subcategory" @change="watchSubcategory">
-                                <option v-for="subcategory in subcategories" :value="subcategory.subcategory_id || subcategory.id">{{subcategory.name}}</option>
+                            <label class="full-label" for="subcategory">{{$trans.translation.subcategory}}</label>
+                            <select required class="select-input" v-model="subcategory" @change.prevent="selectSubcategory(subcategory)">
+                                <option v-for="(subcategory, index) in subcategories" :value="subcategory">{{subcategory.name}}</option>
                             </select>
                         </div>
                         </transition>
                         <transition name="slide-down-input">
-                        <div v-show="showElement" class="form-group ">
-                            <label class="full-label">{{$trans.translation.type}}</label>
-                            <select v-bind:required="showElement" class="select-input" v-model="type">
-                                <option v-for="type in types" :selected="type.name" :value="type.type_id || type.id">{{type.name}}</option>
+                        <div class="form-group" v-show="types.length >= 1">
+                            <label class="full-label" for="type">{{$trans.translation.type}}</label>
+                            <select :required="types.length >= 1" class="select-input" v-model="type">
+                                <option v-for="type in types" :value="type.id">{{type.name}}</option>
                             </select>
                         </div>
                         </transition>
@@ -61,11 +61,12 @@
 
 <script>
 import Dropzone from 'dropzone'
+import {categories} from '../../category/getter'
 Dropzone.autoDiscover = false
 export default {
 	data() {
 		return {
-            categories: [],
+            categories: categories({locale: this.$root.locale}),
             subcategories: [],
             types: [],
             category: null,
@@ -76,45 +77,16 @@ export default {
 			      description: null,
 		}
 	},
-  computed: {
-    showElement: function () {
-      if (this.types.length) {
-        return true
-      } else {
-        return false
-      }
-    },
-  },
-
     methods: {
-      watchCategory: function () {
-        if (this.category !== null) {
-          return this.getSubCategory(this.category)
-        }
+      selectCategory(category) {
+          this.subcategories = category.subcategory
+          this.subcategory = []
+          this.type = null
+          this.types = []
       },
-      watchSubcategory: function () {
-        if (this.subcategory !== null && this.subcategory !== undefined) {
-          return this.getType(this.subcategory)
-        }
-      },
-      getCategory() {
-              this.$http.get(this.$root.url + '/category_ajax/get_category' ).then((response)=> {
-                      this.categories = response.body;
-              });
-      },
-      getSubCategory(category) {
-              this.$http.get(this.$root.url + '/category_ajax/get_subcategory/' + category ).then((response)=> {
-                this.subcategory = null;
-                      this.subcategories = response.body;
-                      this.type = null;
-                      this.types = [];
-              });
-      },
-      getType(subcategory) {
-              this.$http.get(this.$root.url + '/category_ajax/get_type/' + subcategory ).then((response)=> {
-                      this.types = response.body;
-                      this.type = null;
-              });
+      selectSubcategory(subcategory) {
+          this.types = subcategory.type
+          this.type = null
       },
 
       initDropzone: function() {
@@ -171,7 +143,6 @@ export default {
       }
     },
     created() {
-        this.getCategory();
         this.initDropzone();
     }
 }

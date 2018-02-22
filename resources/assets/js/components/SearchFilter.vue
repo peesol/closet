@@ -9,23 +9,24 @@
     </ul>
   <div v-show="formVisible" class="filter-option" id="cat-option">
       <ul class="">
-        <li v-for="category in cats" ><a @click.prevent="getSub(category.id)" v-bind:class="{'filter-active': category.id == c }">{{ category.name }}</a></li>
+        <li v-for="category in categories"><a @click.prevent="getSub(category)" v-bind:class="{'filter-active': category.id == $route.query.c }">{{ category.name }}</a></li>
       </ul>
 
-      <ul v-show="subcats.length > 0" class="">
-        <li v-for="subcategory in subcats"><a @click.prevent="getType(subcategory.id)" v-bind:class="{'filter-active': subcategory.id == sub }">{{ subcategory.name }}</a></li>
+      <ul v-show="$route.query.c" class="">
+        <li v-for="subcategory in subcategories"><a @click.prevent="getType(subcategory)" v-bind:class="{'filter-active': subcategory.id == $route.query.sub }">{{ subcategory.name }}</a></li>
       </ul>
 
-      <ul v-show="types.length > 0" class="">
-        <li v-for="type in types"><a @click.prevent="query(type.id)" :class="{'filter-active': type.id == typez }">{{ type.name }}</a></li>
+      <ul v-show="$route.query.sub" class="">
+        <li v-for="type in types"><a @click.prevent="query(type.id)" :class="{'filter-active': type.id == $route.query.type }">{{ type.name }}</a></li>
       </ul>
-
+      {{categories.subcategory}}
       <div class="price-filter">
           <label class="col-label">{{ $trans.translation.price}}</label>
           <input type="number" min="0" max="9999999" v-model="min" autocomplete="off" placeholder="">&nbsp;-&nbsp;
           <input type="number" min="0" max="9999999" v-model="max" autocomplete="off" placeholder="">
           <button @click.prevent="queryPrice()"><small class="icon-next-arrow"></small></button>
       </div>
+      <button type="button" @click.prevent="getProduct">SEARCH</button>
   </div>
 
 
@@ -34,56 +35,51 @@
 </template>
 
 <script>
+import algolia from 'algoliasearch'
+import {mapGetters} from 'vuex'
+import {categories} from '../category/getter'
 export default {
     data() {
       return {
-        cats : [],
-        subcats : [],
+        categories : categories({locale: this.$root.locale}),
+        subcategories : [],
         types : [],
         products : [],
         min : this.$route.query.min,
         max : this.$route.query.max,
-        c : this.$route.query.c,
-        sub : this.$route.query.sub,
-        typez : this.$route.query.type,
         formVisible: false,
-        url: window.Closet.url,
-        current_url: window.location.href,  
+        current_url: window.location.href,
       }
     },
-    props: {
-
+    computed: {
+      selectCategory: function () {
+        if (this.$route.query.c) {
+          return this.categories[this.$route.query.c - 1].subcategory
+        }
+      },
+      selectSubcategory: function () {
+        if (this.$route.query.sub) {
+          return this.categories[this.$route.query.c - 1].subcategory[this.$route.query.sub]
+        }
+      }
     },
     methods: {
-      getCategory() {
-        this.$http.get(this.$root.url + '/category_ajax/get_category').then((response)=> {this.cats = response.body; });
-        if(this.$route.query.c) {
-          this.$http.get(this.$root.url + '/category_ajax/get_subcategory/' + this.$route.query.c).then((response)=> {this.subcats = response.body; });
-        }
-
-        if(this.$route.query.sub) {
-          this.$http.get(this.$root.url + '/category_ajax/get_type/' + this.$route.query.sub).then((response)=> {this.types = response.body; });
-        }
-
-      },
-
-      getSub(categoryId) {
+      getSub(category) {
+        this.subcategories = category.subcategory
         this.$router.push({ query: {
                 	p : this.$route.query.p,
-                	c : categoryId
+                	c : category.id
                 }
               });
-        this.getProduct();
       },
-
-     getType(subcategoryId) {
+     getType(subcategory) {
+      this.types = subcategory.type
       this.$router.push({ query: {
                 p : this.$route.query.p,
                 c : this.$route.query.c,
-                sub : subcategoryId
+                sub : subcategory.id
               }
             });
-          this.getProduct();
         },
       query(typeId) {
         this.$router.push({ query: {
@@ -93,7 +89,6 @@ export default {
                   type : typeId,
                 }
               });
-        this.getProduct();
       },
 
       queryPrice() {
@@ -106,18 +101,10 @@ export default {
                   max : this.max,
                 }
               });
-              this.getProduct();
       },
-
       getProduct() {
-        //this.$http.get(this.$route.fullPath).then((response)=> {this.products = response.body; });
         this.$router.go(this.$route.fullPath);
       }
-    },
-
-
-    created() {
-      this.getCategory();
     }
 }
 </script>

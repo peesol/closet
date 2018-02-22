@@ -40,20 +40,3 @@
 </div>
 
 @endsection
-
-
-@section('scripts')
-
-<script>
- $(document).ready(function() {
-  $('#cat-btn').click(function() {
-    $('#cat-option').toggleClass('filter-open');
-    $('#price-option').removeClass('filter-open');
-  });
-  $('#price-btn').click(function() {
-    $('#cat-option').removeClass('filter-open');
-    $('#price-option').toggleClass('filter-open');
-  });
-});
-</script>
-@endsection

@@ -15,19 +15,7 @@ require('./bootstrap');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 // import Slick from 'vue-slick';
- window.addEventListener('load', function () {
-    var vue = new Vue({
 
-      el: '#app',
-      data: {
-        url: window.Closet.url,
-        authenticated: window.Closet.user.authenticated,
-        locale: window.Closet.locale,
-      },
-      router,
-      store
-    });
- });
 
 import VueTrans from './lang/translate'
 Vue.use(VueTrans)
@@ -41,14 +29,8 @@ Vue.use(VueValidate)
 import VueResource from 'vue-resource'
 Vue.use(VueResource)
 
-import Vuex from 'vuex'
-Vue.use(Vuex)
-
 import VModal from 'vue-js-modal'
 Vue.use(VModal)
-
-import Vue2Filters from 'vue2-filters'
-Vue.use(Vue2Filters)
 
 import VueProgressBar from 'vue-progressbar'
 Vue.use(VueProgressBar, {
@@ -57,21 +39,23 @@ Vue.use(VueProgressBar, {
   thickness: '5px'
 });
 
-import router from './router'
+import {store} from './store/store'
+import {router} from './route/router'
+import parse from './category/en'
 
-const mutations = require('./store/mutations');
-const actions = require('./store/actions');
-const getters = require('./store/getters');
-const store = new Vuex.Store({
-  mutations,
-  actions,
-  getters,
-  state: {
-    cart: [],
-    count: null,
-    checkout: []
-  },
-})
+window.addEventListener('load', function () {
+   const vue = new Vue({
+     el: '#app',
+     data: {
+       url: window.Closet.url,
+       authenticated: window.Closet.user.authenticated,
+       locale: window.Closet.locale,
+     },
+     store,
+     router
+   })
+   console.log(parse);
+});
 
 Vue.http.interceptors.push((request, next) => {
     request.headers.set('X-CSRF-TOKEN', Laravel.csrfToken);
@@ -119,5 +103,5 @@ Vue.component('confirm-trans', require('./components/Order/ConfirmTrans.vue'));
 Vue.component('cant-sell', require('./components/Product/CantSell.vue'));
 Vue.component('discount-code', require('./components/Promotion/CodeGenerator.vue'));
 Vue.component('product-discount', require('./components/Promotion/Discount.vue'));
-// Vue.component('slick', require('./components/Slick.vue'));
 Vue.component('vue-slick', require('./components/VueSlick.vue'));
+Vue.component('search-input', require('./components/Search/SearchInput.vue'));

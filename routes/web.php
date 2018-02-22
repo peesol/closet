@@ -13,9 +13,9 @@ Route::get('/trending', 'HomeController@trending')->name('trending');
 Route::get('/locale_ajax', 'Language\LanguageController@getLanguage');
 Route::put('/locale_ajax/{lang}', 'Language\LanguageController@languageChange');
 
-Route::get('/search/by/{keyword}', 'SearchController@searchByProduct');
-Route::get('/search/result', 'SearchController@index')->name('result');
-Route::get('/search/result/products', 'SearchController@productResult');
+//Route::get('/search/by/{keyword}', 'SearchController@searchByProduct');
+Route::get('/search/result', 'Search\SearchController@index')->name('result');
+Route::get('/search/result/products', 'Search\SearchController@productResult');
 
 Route::prefix('product')->group(function () {
   Route::get('/{product}', 'ProductController@show');
@@ -259,4 +259,4 @@ Route::group(['middleware' => ['auth']], function () {
 
 });
 
-Route::get('/test/els', 'Test\TestController@index');
+Route::get('/test/cat', 'Test\TestController@test');

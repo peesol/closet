@@ -1,3 +1,3 @@
- export default {
-  cart: [{id: 1, name: "John"},]
+export default {
+   cart: [],
 }

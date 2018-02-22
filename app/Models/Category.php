@@ -22,6 +22,10 @@ class Category extends Model
     {
     	return $this->hasMany(Subcategory::class);
     }
+    public function type()
+    {
+    	return $this->hasManyThrough(CategoryType::class, Subcategory::class);
+    }
      public function translation()
     {
         return $this->hasMany(Translation::class);

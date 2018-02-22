@@ -1,4 +1,11 @@
 <?php
+/*
+|--------------------------------------------------------------------------
+| This is the original search Controller that doesn't use algolia
+| to search the database
+|
+|--------------------------------------------------------------------------
+*/
 
 namespace Closet\Http\Controllers;
 

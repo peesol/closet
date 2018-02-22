@@ -2,7 +2,7 @@
   <div class="nav-container">
     <side-menu></side-menu>
     <div class="main-logo"><a href="/"></a></div>
-
+    <search-input></search-input>
     <div class="login-box">
       @if (Auth::guest())
           <li><a href="{{ route('login') }}">{{__('message.login')}}</a></li>

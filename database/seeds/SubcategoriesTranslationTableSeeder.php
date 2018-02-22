@@ -70,7 +70,7 @@ class SubcategoriesTranslationTableSeeder extends Seeder
       [
         'subcategory_id' => '12',
         'language' => 'th',
-        'name' => 'เครื่องสำอางสำหรับริมฝีปาก'
+        'name' => 'เครื่องสำอางสำหรับปาก'
       ],
       [
         'subcategory_id' => '13',
