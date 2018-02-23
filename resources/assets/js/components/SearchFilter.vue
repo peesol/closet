@@ -1,13 +1,12 @@
 <template>
 <div>
-  <div class="filter-bar">
+  <div class="filter-bar" id="full-line">
     <button class="filter-btn" @click.prevent="formVisible = !formVisible">{{ $trans.translation.choice}}&nbsp;<small class="icon-arrows-down"></small></button>
   </div>
-    <div id="full-line"></div>
     <ul class="breadcrumb">
       <li v-show="">{{ }}</li>
     </ul>
-  <div v-show="formVisible" class="filter-option" id="cat-option">
+  <div v-show="formVisible" class="filter-option">
       <ul class="">
         <li v-for="category in categories"><a @click.prevent="getSub(category)" v-bind:class="{'filter-active': category.id == $route.query.c }">{{ category.name }}</a></li>
       </ul>
@@ -36,7 +35,6 @@
 
 <script>
 import algolia from 'algoliasearch'
-import {mapGetters} from 'vuex'
 import {categories} from '../category/getter'
 export default {
     data() {
@@ -48,18 +46,12 @@ export default {
         min : this.$route.query.min,
         max : this.$route.query.max,
         formVisible: false,
-        current_url: window.location.href,
-      }
-    },
-    computed: {
-      selectCategory: function () {
-        if (this.$route.query.c) {
-          return this.categories[this.$route.query.c - 1].subcategory
-        }
-      },
-      selectSubcategory: function () {
-        if (this.$route.query.sub) {
-          return this.categories[this.$route.query.c - 1].subcategory[this.$route.query.sub]
+        selected: {
+          category: null,
+          subcategory: null,
+          type: null,
+          min_price: null,
+          max_price: null,
         }
       }
     },

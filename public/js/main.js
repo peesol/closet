@@ -224,7 +224,8 @@ module.exports = {
 /***/ }),
 /* 8 */,
 /* 9 */,
-/* 10 */
+/* 10 */,
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -237,7 +238,7 @@ module.exports = {
 var inherits = __webpack_require__(16);
 
 function AlgoliaSearchError(message, extraProperties) {
-  var forEach = __webpack_require__(11);
+  var forEach = __webpack_require__(12);
 
   var error = this;
 
@@ -309,7 +310,7 @@ module.exports = {
 
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports) {
 
 
@@ -337,12 +338,11 @@ module.exports = function forEach (obj, fn, ctx) {
 
 
 /***/ }),
-/* 12 */,
 /* 13 */,
 /* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var foreach = __webpack_require__(11);
+var foreach = __webpack_require__(12);
 
 module.exports = function map(arr, fn) {
   var newArr = [];
@@ -363,7 +363,7 @@ module.exports = function map(arr, fn) {
  * Expose `debug()` as the module.
  */
 
-exports = module.exports = __webpack_require__(152);
+exports = module.exports = __webpack_require__(154);
 exports.log = log;
 exports.formatArgs = formatArgs;
 exports.save = save;
@@ -721,7 +721,7 @@ module.exports = css;
 "use strict";
 
 
-var immediate = __webpack_require__(156);
+var immediate = __webpack_require__(158);
 var splitter = /\s+/;
 
 module.exports = {
@@ -829,628 +829,20 @@ function bindContext(fn, context) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony default export */ __webpack_exports__["a"] = ([{
-	id: 1,
-	name: 'Men',
-	slug: 'men',
-	subcategory: [{
-		id: 1,
-		name: 'Clothing',
-		slug: 'clothing',
-		category_id: 1,
-		type: [{
-			id: 2,
-			name: 'Shirts',
-			subcategory_id: 1
-		}, {
-			id: 3,
-			name: 'T-shirts & Tanks',
-			subcategory_id: 1
-		}, {
-			id: 4,
-			name: 'Jackets',
-			subcategory_id: 1
-		}, {
-			id: 5,
-			name: 'Sweaters',
-			subcategory_id: 1
-		}, {
-			id: 6,
-			name: 'Suits',
-			subcategory_id: 1
-		}, {
-			id: 7,
-			name: 'Active',
-			subcategory_id: 1
-		}, {
-			id: 8,
-			name: 'Pants',
-			subcategory_id: 1
-		}, {
-			id: 9,
-			name: 'Shorts',
-			subcategory_id: 1
-		}, {
-			id: 10,
-			name: 'Jeans',
-			subcategory_id: 1
-		}, {
-			id: 11,
-			name: 'Underwear',
-			subcategory_id: 1
-		}, {
-			id: 12,
-			name: 'Socks',
-			subcategory_id: 1
-		}, {
-			id: 13,
-			name: 'Swim',
-			subcategory_id: 1
-		}]
-	}, {
-		id: 2,
-		name: 'Shoes',
-		slug: 'shoes',
-		category_id: 1,
-		type: [{
-			id: 14,
-			name: 'Athletic',
-			subcategory_id: 2
-		}, {
-			id: 15,
-			name: 'Fashion Sneakers',
-			subcategory_id: 2
-		}, {
-			id: 16,
-			name: 'Boots',
-			subcategory_id: 2
-		}, {
-			id: 17,
-			name: 'Loafters & Slip-ons',
-			subcategory_id: 2
-		}, {
-			id: 18,
-			name: 'Oxfords',
-			subcategory_id: 2
-		}, {
-			id: 19,
-			name: 'Sandals & Slippers',
-			subcategory_id: 2
-		}]
-	}, {
-		id: 3,
-		name: 'Accessories',
-		slug: 'accessories',
-		category_id: 1,
-		type: [{
-			id: 20,
-			name: 'Sunglasses & Eyewear',
-			subcategory_id: 3
-		}, {
-			id: 21,
-			name: 'Hats',
-			subcategory_id: 3
-		}, {
-			id: 22,
-			name: 'Belts',
-			subcategory_id: 3
-		}, {
-			id: 23,
-			name: 'Jewelry',
-			subcategory_id: 3
-		}, {
-			id: 24,
-			name: 'Watches',
-			subcategory_id: 3
-		}, {
-			id: 25,
-			name: 'Ties',
-			subcategory_id: 3
-		}, {
-			id: 26,
-			name: 'Others',
-			subcategory_id: 3
-		}]
-	}]
-}, {
-	id: 2,
-	name: 'Women',
-	slug: 'women',
-	subcategory: [{
-		id: 4,
-		name: 'Clothing',
-		slug: 'clothing',
-		category_id: 2,
-		type: [{
-			id: 27,
-			name: 'Dresses',
-			subcategory_id: 4
-		}, {
-			id: 28,
-			name: 'T-shirts & Tops',
-			subcategory_id: 4
-		}, {
-			id: 29,
-			name: 'Sweaters',
-			subcategory_id: 4
-		}, {
-			id: 30,
-			name: 'Suits & Blazers',
-			subcategory_id: 4
-		}, {
-			id: 31,
-			name: 'Active',
-			subcategory_id: 4
-		}, {
-			id: 32,
-			name: 'Pants',
-			subcategory_id: 4
-		}, {
-			id: 33,
-			name: 'Shorts',
-			subcategory_id: 4
-		}, {
-			id: 34,
-			name: 'Jeans',
-			subcategory_id: 4
-		}, {
-			id: 35,
-			name: 'Skirts',
-			subcategory_id: 4
-		}, {
-			id: 36,
-			name: 'Leggings',
-			subcategory_id: 4
-		}, {
-			id: 37,
-			name: 'Underwear',
-			subcategory_id: 4
-		}, {
-			id: 38,
-			name: 'Swim',
-			subcategory_id: 4
-		}, {
-			id: 39,
-			name: 'Socks',
-			subcategory_id: 4
-		}]
-	}, {
-		id: 5,
-		name: 'Shoes',
-		slug: 'shoes',
-		category_id: 2,
-		type: [{
-			id: 40,
-			name: 'Athletic',
-			subcategory_id: 5
-		}, {
-			id: 41,
-			name: 'Fashion Sneakers',
-			subcategory_id: 5
-		}, {
-			id: 42,
-			name: 'Boots',
-			subcategory_id: 5
-		}, {
-			id: 43,
-			name: 'Flats',
-			subcategory_id: 5
-		}, {
-			id: 44,
-			name: 'Pumps',
-			subcategory_id: 5
-		}, {
-			id: 45,
-			name: 'Loafters & Slip-ons',
-			subcategory_id: 5
-		}, {
-			id: 46,
-			name: 'Oxfords',
-			subcategory_id: 5
-		}, {
-			id: 47,
-			name: 'Sandals & Slippers',
-			subcategory_id: 5
-		}]
-	}, {
-		id: 6,
-		name: 'Accessories',
-		slug: 'accessories',
-		category_id: 2,
-		type: [{
-			id: 48,
-			name: 'Sunglasses & Eyewear',
-			subcategory_id: 6
-		}, {
-			id: 49,
-			name: 'Hats',
-			subcategory_id: 6
-		}, {
-			id: 50,
-			name: 'Belts',
-			subcategory_id: 6
-		}, {
-			id: 51,
-			name: 'Jewelry',
-			subcategory_id: 6
-		}, {
-			id: 52,
-			name: 'Watches',
-			subcategory_id: 6
-		}, {
-			id: 53,
-			name: 'Others',
-			subcategory_id: 6
-		}]
-	}]
-}, {
-	id: 3,
-	name: 'Luggage & Bags',
-	slug: 'bags_luggage',
-	subcategory: [{
-		id: 7,
-		name: 'Men',
-		slug: 'men',
-		category_id: 3,
-		type: [{
-			id: 54,
-			name: 'Bags',
-			subcategory_id: 7
-		}, {
-			id: 55,
-			name: 'Wallets',
-			subcategory_id: 7
-		}]
-	}, {
-		id: 8,
-		name: 'Women',
-		slug: 'women',
-		category_id: 3,
-		type: [{
-			id: 56,
-			name: 'Handbags',
-			subcategory_id: 8
-		}, {
-			id: 57,
-			name: 'Wallets',
-			subcategory_id: 8
-		}, {
-			id: 58,
-			name: 'Other Bags',
-			subcategory_id: 8
-		}]
-	}, {
-		id: 9,
-		name: 'Luggage',
-		slug: 'luggage',
-		category_id: 3,
-		type: [{
-			id: 59,
-			name: 'Luggage',
-			subcategory_id: 9
-		}, {
-			id: 60,
-			name: 'Travel Accessories',
-			subcategory_id: 9
-		}]
-	}]
-}, {
-	id: 4,
-	name: 'Cosmetics',
-	slug: 'cosmetics',
-	subcategory: [{
-		id: 10,
-		name: 'Face',
-		slug: 'face',
-		category_id: 4,
-		type: [{
-			id: 61,
-			name: 'Powder',
-			subcategory_id: 10
-		}, {
-			id: 62,
-			name: 'Blushes',
-			subcategory_id: 10
-		}, {
-			id: 63,
-			name: 'BB & CC Cream',
-			subcategory_id: 10
-		}, {
-			id: 64,
-			name: 'Foundation',
-			subcategory_id: 10
-		}, {
-			id: 65,
-			name: 'Primers',
-			subcategory_id: 10
-		}, {
-			id: 66,
-			name: 'Bronzers & Highlighters',
-			subcategory_id: 10
-		}, {
-			id: 67,
-			name: 'Concealers & Neutralizers',
-			subcategory_id: 10
-		}]
-	}, {
-		id: 11,
-		name: 'Eyes',
-		slug: 'eyes',
-		category_id: 4,
-		type: [{
-			id: 68,
-			name: 'Mascara',
-			subcategory_id: 11
-		}, {
-			id: 69,
-			name: 'Eye Liner',
-			subcategory_id: 11
-		}, {
-			id: 70,
-			name: 'Eye Shadow',
-			subcategory_id: 11
-		}, {
-			id: 71,
-			name: 'Eye Lash',
-			subcategory_id: 11
-		}, {
-			id: 72,
-			name: 'Eyebrow',
-			subcategory_id: 11
-		}]
-	}, {
-		id: 12,
-		name: 'Lips',
-		slug: 'lips',
-		category_id: 4,
-		type: [{
-			id: 73,
-			name: 'Lipstick',
-			subcategory_id: 12
-		}, {
-			id: 74,
-			name: 'Liquid Lipstick',
-			subcategory_id: 12
-		}, {
-			id: 75,
-			name: 'Lip Glosses',
-			subcategory_id: 12
-		}, {
-			id: 76,
-			name: 'Lip Liners',
-			subcategory_id: 12
-		}, {
-			id: 77,
-			name: 'Lip Tints',
-			subcategory_id: 12
-		}, {
-			id: 78,
-			name: 'Lip Plumpers',
-			subcategory_id: 12
-		}]
-	}, {
-		id: 13,
-		name: 'Nails',
-		slug: 'nails',
-		category_id: 4,
-		type: [{
-			id: 79,
-			name: 'Nail Polish',
-			subcategory_id: 13
-		}, {
-			id: 80,
-			name: 'Nail Polish Remover',
-			subcategory_id: 13
-		}, {
-			id: 81,
-			name: 'False Nails & Accessories',
-			subcategory_id: 13
-		}]
-	}, {
-		id: 14,
-		name: 'Makeup Sets & Palettes',
-		slug: 'sets',
-		category_id: 4,
-		type: []
-	}, {
-		id: 15,
-		name: 'Makeup Remover',
-		slug: 'makeup_remover',
-		category_id: 4,
-		type: []
-	}, {
-		id: 16,
-		name: 'Tools & Brushes',
-		slug: 'tools',
-		category_id: 4,
-		type: [{
-			id: 82,
-			name: 'Face',
-			subcategory_id: 16
-		}, {
-			id: 83,
-			name: 'Eye',
-			subcategory_id: 16
-		}, {
-			id: 84,
-			name: 'Nail',
-			subcategory_id: 16
-		}]
-	}]
-}, {
-	id: 5,
-	name: 'Skincare',
-	slug: 'skincare',
-	subcategory: [{
-		id: 17,
-		name: 'Face',
-		slug: 'face',
-		category_id: 5,
-		type: [{
-			id: 85,
-			name: 'Facial Cleansing Products',
-			subcategory_id: 17
-		}, {
-			id: 86,
-			name: 'Facial Treatments & Masks',
-			subcategory_id: 17
-		}, {
-			id: 87,
-			name: 'Facial Creams & Moisturizers',
-			subcategory_id: 17
-		}, {
-			id: 88,
-			name: 'Facial Toners',
-			subcategory_id: 17
-		}, {
-			id: 89,
-			name: 'Facial Exfoliators',
-			subcategory_id: 17
-		}]
-	}, {
-		id: 18,
-		name: 'Eyes',
-		slug: 'eyes',
-		category_id: 5,
-		type: []
-	}, {
-		id: 19,
-		name: 'Body',
-		slug: 'body',
-		category_id: 5,
-		type: [{
-			id: 90,
-			name: 'Sunscreen',
-			subcategory_id: 19
-		}, {
-			id: 91,
-			name: 'Body Moisturizers & Treatments',
-			subcategory_id: 19
-		}]
-	}, {
-		id: 20,
-		name: 'Fragrance',
-		slug: 'fragrance',
-		category_id: 5,
-		type: [{
-			id: 92,
-			name: 'Men',
-			subcategory_id: 20
-		}, {
-			id: 93,
-			name: 'Women',
-			subcategory_id: 20
-		}]
-	}]
-}, {
-	id: 6,
-	name: 'Hair Products',
-	slug: 'hair',
-	subcategory: [{
-		id: 21,
-		name: 'Hair Styling',
-		slug: 'styling',
-		category_id: 6,
-		type: [{
-			id: 94,
-			name: 'Hair Color',
-			subcategory_id: 21
-		}, {
-			id: 95,
-			name: 'Hair Spray',
-			subcategory_id: 21
-		}, {
-			id: 96,
-			name: 'Hair Wax',
-			subcategory_id: 21
-		}, {
-			id: 97,
-			name: 'Pomade',
-			subcategory_id: 21
-		}, {
-			id: 98,
-			name: 'Hair Mousse',
-			subcategory_id: 21
-		}, {
-			id: 99,
-			name: 'Hair Gel',
-			subcategory_id: 21
-		}]
-	}, {
-		id: 22,
-		name: 'Hair Care',
-		slug: 'care',
-		category_id: 6,
-		type: [{
-			id: 100,
-			name: 'Hair Treatment',
-			subcategory_id: 22
-		}, {
-			id: 101,
-			name: 'Shampoo',
-			subcategory_id: 22
-		}, {
-			id: 102,
-			name: 'Conditioner',
-			subcategory_id: 22
-		}]
-	}, {
-		id: 23,
-		name: 'Hair Tools',
-		slug: 'tools',
-		category_id: 6,
-		type: [{
-			id: 103,
-			name: 'Tools & More',
-			subcategory_id: 23
-		}, {
-			id: 104,
-			name: 'Wigs & Extensions',
-			subcategory_id: 23
-		}, {
-			id: 105,
-			name: 'Combs & Brushes',
-			subcategory_id: 23
-		}]
-	}]
-}, {
-	id: 7,
-	name: 'Personal Care',
-	slug: 'personal_care',
-	subcategory: [{
-		id: 24,
-		name: 'Baths & Body',
-		slug: 'baths_body',
-		category_id: 7,
-		type: [{
-			id: 106,
-			name: 'Soaps & Shower Gels',
-			subcategory_id: 24
-		}, {
-			id: 107,
-			name: 'Moisturizers',
-			subcategory_id: 24
-		}, {
-			id: 108,
-			name: 'Scrubs',
-			subcategory_id: 24
-		}, {
-			id: 109,
-			name: 'Deodorants',
-			subcategory_id: 24
-		}, {
-			id: 110,
-			name: 'Hair Removal',
-			subcategory_id: 24
-		}]
-	}, {
-		id: 25,
-		name: 'Wipes & Cotton',
-		slug: 'wipes_cotton',
-		category_id: 7,
-		type: []
-	}]
-}]);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return categories; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__en__ = __webpack_require__(138);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__th__ = __webpack_require__(139);
+
+
+var categories = function categories(_ref) {
+  var locale = _ref.locale;
+
+  if (locale == 'th') {
+    return __WEBPACK_IMPORTED_MODULE_1__th__["a" /* default */];
+  } else {
+    return __WEBPACK_IMPORTED_MODULE_0__en__["a" /* default */];
+  }
+};
 
 /***/ }),
 /* 25 */,
@@ -1463,7 +855,7 @@ function bindContext(fn, context) {
 /* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var buildSearchMethod = __webpack_require__(33);
+var buildSearchMethod = __webpack_require__(34);
 var deprecate = __webpack_require__(19);
 var deprecatedMessage = __webpack_require__(20);
 
@@ -1617,7 +1009,7 @@ IndexCore.prototype.similarSearch = buildSearchMethod('similarQuery');
 * @see {@link https://www.algolia.com/doc/rest_api#Browse|Algolia REST API Documentation}
 */
 IndexCore.prototype.browse = function(query, queryParameters, callback) {
-  var merge = __webpack_require__(35);
+  var merge = __webpack_require__(36);
 
   var indexObj = this;
 
@@ -1852,9 +1244,22 @@ IndexCore.prototype.typeAheadValueOption = null;
 /* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
+"use strict";
+
+
+var AlgoliaSearch = __webpack_require__(53);
+var createAlgoliasearch = __webpack_require__(57);
+
+module.exports = createAlgoliasearch(AlgoliaSearch);
+
+
+/***/ }),
+/* 34 */
+/***/ (function(module, exports, __webpack_require__) {
+
 module.exports = buildSearchMethod;
 
-var errors = __webpack_require__(10);
+var errors = __webpack_require__(11);
 
 /**
  * Creates a search method to be used in clients
@@ -1922,7 +1327,7 @@ function buildSearchMethod(queryParam, url) {
 
 
 /***/ }),
-/* 34 */
+/* 35 */
 /***/ (function(module, exports) {
 
 // Parse cloud does not supports setTimeout
@@ -1935,10 +1340,10 @@ module.exports = function exitPromise(fn, _setTimeout) {
 
 
 /***/ }),
-/* 35 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var foreach = __webpack_require__(11);
+var foreach = __webpack_require__(12);
 
 module.exports = function merge(destination/* , sources */) {
   var sources = Array.prototype.slice.call(arguments);
@@ -1960,7 +1365,7 @@ module.exports = function merge(destination/* , sources */) {
 
 
 /***/ }),
-/* 36 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2002,7 +1407,7 @@ module.exports = EventBus;
 
 
 /***/ }),
-/* 37 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2018,7 +1423,7 @@ module.exports = {
 
 
 /***/ }),
-/* 38 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2031,26 +1436,26 @@ module.exports = function parseAlgoliaClientVersion(agent) {
 
 
 /***/ }),
-/* 39 */
+/* 40 */
 /***/ (function(module, exports) {
 
 module.exports = "0.29.0";
 
 
 /***/ }),
-/* 40 */,
 /* 41 */,
 /* 42 */,
 /* 43 */,
 /* 44 */,
-/* 45 */
+/* 45 */,
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(101),
   /* template */
-  __webpack_require__(219),
+  __webpack_require__(221),
   /* scopeId */
   null,
   /* cssModules */
@@ -2077,14 +1482,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 46 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(102),
   /* template */
-  __webpack_require__(215),
+  __webpack_require__(217),
   /* scopeId */
   null,
   /* cssModules */
@@ -2111,14 +1516,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 47 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(128),
   /* template */
-  __webpack_require__(229),
+  __webpack_require__(231),
   /* scopeId */
   null,
   /* cssModules */
@@ -2145,14 +1550,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 48 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(131),
   /* template */
-  __webpack_require__(226),
+  __webpack_require__(228),
   /* scopeId */
   null,
   /* cssModules */
@@ -2179,14 +1584,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 49 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(132),
   /* template */
-  __webpack_require__(240),
+  __webpack_require__(242),
   /* scopeId */
   null,
   /* cssModules */
@@ -2213,23 +1618,22 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 50 */,
-/* 51 */
+/* 51 */,
+/* 52 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* WEBPACK VAR INJECTION */(function($) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__lang_translate__ = __webpack_require__(141);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__misc_number_filter__ = __webpack_require__(142);
+/* WEBPACK VAR INJECTION */(function($) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__lang_translate__ = __webpack_require__(143);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__misc_number_filter__ = __webpack_require__(144);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vee_validate__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vue_resource__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vue_js_modal__ = __webpack_require__(27);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vue_js_modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_vue_js_modal__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_vue_progressbar__ = __webpack_require__(28);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_vue_progressbar___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_vue_progressbar__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__store_store__ = __webpack_require__(149);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__route_router__ = __webpack_require__(144);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__category_en__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__store_store__ = __webpack_require__(151);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__route_router__ = __webpack_require__(146);
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -2274,7 +1678,6 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_5_vue_progressbar___default.a, {
 
 
 
-
 window.addEventListener('load', function () {
   var vue = new Vue({
     el: '#app',
@@ -2286,7 +1689,6 @@ window.addEventListener('load', function () {
     store: __WEBPACK_IMPORTED_MODULE_6__store_store__["a" /* store */],
     router: __WEBPACK_IMPORTED_MODULE_7__route_router__["a" /* router */]
   });
-  console.log(__WEBPACK_IMPORTED_MODULE_8__category_en__["a" /* default */]);
 });
 
 Vue.http.interceptors.push(function (request, next) {
@@ -2294,63 +1696,63 @@ Vue.http.interceptors.push(function (request, next) {
   next();
 });
 
-Vue.component('user-dropdown', __webpack_require__(182));
-Vue.component('side-menu', __webpack_require__(181));
-Vue.component('product-vote', __webpack_require__(197));
-Vue.component('product-comment', __webpack_require__(190));
-Vue.component('product-edit', __webpack_require__(193));
-Vue.component('product-dropzone', __webpack_require__(192));
-Vue.component('shipping-edit', __webpack_require__(198));
-Vue.component('product-sell', __webpack_require__(194));
-Vue.component('used-sell', __webpack_require__(195));
-Vue.component('used-comment', __webpack_require__(191));
-Vue.component('product-stock', __webpack_require__(196));
-Vue.component('product-choice', __webpack_require__(189));
-Vue.component('follow-button', __webpack_require__(180));
-Vue.component('add-to-cart', __webpack_require__(187));
-Vue.component('cart-icon', __webpack_require__(174));
-Vue.component('cart', __webpack_require__(173));
-Vue.component('shop-stats', __webpack_require__(207));
-Vue.component('shop-vote', __webpack_require__(208));
-Vue.component('shop-edit', __webpack_require__(206));
-Vue.component('shop-cover-edit', __webpack_require__(47));
-Vue.component('shop-thumbnail-edit', __webpack_require__(48));
-Vue.component('shop-collection', __webpack_require__(204));
-Vue.component('shop-contact-edit', __webpack_require__(205));
-Vue.component('shop-account-edit', __webpack_require__(203));
-Vue.component('shop-user-edit', __webpack_require__(49));
-Vue.component('collection-edit', __webpack_require__(176));
-Vue.component('collection-dropzone', __webpack_require__(175));
-Vue.component('collection-product', __webpack_require__(177));
-Vue.component('collection-product-edit', __webpack_require__(178));
-Vue.component('collection-product-show', __webpack_require__(179));
-Vue.component('dropdown-language', __webpack_require__(45));
-Vue.component('language-select', __webpack_require__(46));
-Vue.component('showcase', __webpack_require__(209));
-Vue.component('showcase-edit', __webpack_require__(210));
-Vue.component('order-selling', __webpack_require__(186));
-Vue.component('order-buying', __webpack_require__(183));
-Vue.component('confirm-selling', __webpack_require__(184));
-Vue.component('confirm-trans', __webpack_require__(185));
-Vue.component('cant-sell', __webpack_require__(188));
-Vue.component('discount-code', __webpack_require__(199));
-Vue.component('product-discount', __webpack_require__(200));
-Vue.component('vue-slick', __webpack_require__(211));
-Vue.component('search-input', __webpack_require__(201));
+Vue.component('user-dropdown', __webpack_require__(184));
+Vue.component('side-menu', __webpack_require__(183));
+Vue.component('product-vote', __webpack_require__(199));
+Vue.component('product-comment', __webpack_require__(192));
+Vue.component('product-edit', __webpack_require__(195));
+Vue.component('product-dropzone', __webpack_require__(194));
+Vue.component('shipping-edit', __webpack_require__(200));
+Vue.component('product-sell', __webpack_require__(196));
+Vue.component('used-sell', __webpack_require__(197));
+Vue.component('used-comment', __webpack_require__(193));
+Vue.component('product-stock', __webpack_require__(198));
+Vue.component('product-choice', __webpack_require__(191));
+Vue.component('follow-button', __webpack_require__(182));
+Vue.component('add-to-cart', __webpack_require__(189));
+Vue.component('cart-icon', __webpack_require__(176));
+Vue.component('cart', __webpack_require__(175));
+Vue.component('shop-stats', __webpack_require__(209));
+Vue.component('shop-vote', __webpack_require__(210));
+Vue.component('shop-edit', __webpack_require__(208));
+Vue.component('shop-cover-edit', __webpack_require__(48));
+Vue.component('shop-thumbnail-edit', __webpack_require__(49));
+Vue.component('shop-collection', __webpack_require__(206));
+Vue.component('shop-contact-edit', __webpack_require__(207));
+Vue.component('shop-account-edit', __webpack_require__(205));
+Vue.component('shop-user-edit', __webpack_require__(50));
+Vue.component('collection-edit', __webpack_require__(178));
+Vue.component('collection-dropzone', __webpack_require__(177));
+Vue.component('collection-product', __webpack_require__(179));
+Vue.component('collection-product-edit', __webpack_require__(180));
+Vue.component('collection-product-show', __webpack_require__(181));
+Vue.component('dropdown-language', __webpack_require__(46));
+Vue.component('language-select', __webpack_require__(47));
+Vue.component('showcase', __webpack_require__(211));
+Vue.component('showcase-edit', __webpack_require__(212));
+Vue.component('order-selling', __webpack_require__(188));
+Vue.component('order-buying', __webpack_require__(185));
+Vue.component('confirm-selling', __webpack_require__(186));
+Vue.component('confirm-trans', __webpack_require__(187));
+Vue.component('cant-sell', __webpack_require__(190));
+Vue.component('discount-code', __webpack_require__(201));
+Vue.component('product-discount', __webpack_require__(202));
+Vue.component('vue-slick', __webpack_require__(213));
+Vue.component('search-input', __webpack_require__(203));
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(8)))
 
 /***/ }),
-/* 52 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = AlgoliaSearch;
 
-var Index = __webpack_require__(54);
+var Index = __webpack_require__(55);
 var deprecate = __webpack_require__(19);
 var deprecatedMessage = __webpack_require__(20);
-var AlgoliaSearchCore = __webpack_require__(53);
+var AlgoliaSearchCore = __webpack_require__(54);
 var inherits = __webpack_require__(16);
-var errors = __webpack_require__(10);
+var errors = __webpack_require__(11);
 
 function AlgoliaSearch() {
   AlgoliaSearchCore.apply(this, arguments);
@@ -3002,13 +2404,13 @@ function notImplemented() {
 
 
 /***/ }),
-/* 53 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process) {module.exports = AlgoliaSearchCore;
 
-var errors = __webpack_require__(10);
-var exitPromise = __webpack_require__(34);
+var errors = __webpack_require__(11);
+var exitPromise = __webpack_require__(35);
 var IndexCore = __webpack_require__(32);
 var store = __webpack_require__(63);
 
@@ -3499,7 +2901,7 @@ AlgoliaSearchCore.prototype._getSearchParams = function(args, params) {
  * @param [Object] options.headers Extra headers to send
  */
 AlgoliaSearchCore.prototype._computeRequestHeaders = function(options) {
-  var forEach = __webpack_require__(11);
+  var forEach = __webpack_require__(12);
 
   var ua = options.additionalUA ?
     this._ua + ';' + options.additionalUA :
@@ -3720,7 +3122,7 @@ AlgoliaSearchCore.prototype._cacheAppIdData = function(data) {
 };
 
 AlgoliaSearchCore.prototype._partialAppIdDataUpdate = function(newData) {
-  var foreach = __webpack_require__(11);
+  var foreach = __webpack_require__(12);
   var currentData = this._getAppIdData();
   foreach(newData, function(value, key) {
     currentData[key] = value;
@@ -3838,15 +3240,15 @@ function removeCredentials(headers) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
-/* 54 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var inherits = __webpack_require__(16);
 var IndexCore = __webpack_require__(32);
 var deprecate = __webpack_require__(19);
 var deprecatedMessage = __webpack_require__(20);
-var exitPromise = __webpack_require__(34);
-var errors = __webpack_require__(10);
+var exitPromise = __webpack_require__(35);
+var errors = __webpack_require__(11);
 
 var deprecateForwardToSlaves = deprecate(
   function() {},
@@ -4269,9 +3671,9 @@ Index.prototype.browseAll = function(query, queryParameters) {
     query = undefined;
   }
 
-  var merge = __webpack_require__(35);
+  var merge = __webpack_require__(36);
 
-  var IndexBrowser = __webpack_require__(55);
+  var IndexBrowser = __webpack_require__(56);
 
   var browser = new IndexBrowser();
   var client = this.as;
@@ -5074,7 +4476,7 @@ Index.prototype.updateApiKey = function(key, acls, params, callback) {
 
 
 /***/ }),
-/* 55 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5085,7 +4487,7 @@ Index.prototype.updateApiKey = function(key, acls, params, callback) {
 module.exports = IndexBrowser;
 
 var inherits = __webpack_require__(16);
-var EventEmitter = __webpack_require__(154).EventEmitter;
+var EventEmitter = __webpack_require__(156).EventEmitter;
 
 function IndexBrowser() {
 }
@@ -5120,34 +4522,21 @@ IndexBrowser.prototype._clean = function() {
 
 
 /***/ }),
-/* 56 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var AlgoliaSearch = __webpack_require__(52);
-var createAlgoliasearch = __webpack_require__(57);
-
-module.exports = createAlgoliasearch(AlgoliaSearch);
-
-
-/***/ }),
 /* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {
 
-var global = __webpack_require__(155);
-var Promise = global.Promise || __webpack_require__(153).Promise;
+var global = __webpack_require__(157);
+var Promise = global.Promise || __webpack_require__(155).Promise;
 
 // This is the standalone browser build entry point
 // Browser implementation of the Algolia Search JavaScript client,
 // using XMLHttpRequest, XDomainRequest and JSONP as fallback
 module.exports = function createAlgoliasearch(AlgoliaSearch, uaSuffix) {
   var inherits = __webpack_require__(16);
-  var errors = __webpack_require__(10);
+  var errors = __webpack_require__(11);
   var inlineHeaders = __webpack_require__(59);
   var jsonpRequest = __webpack_require__(60);
   var places = __webpack_require__(62);
@@ -5389,7 +4778,7 @@ function getDocumentProtocol() {
 
 module.exports = inlineHeaders;
 
-var encode = __webpack_require__(166);
+var encode = __webpack_require__(168);
 
 function inlineHeaders(url, headers) {
   if (/\?/.test(url)) {
@@ -5411,7 +4800,7 @@ function inlineHeaders(url, headers) {
 
 module.exports = jsonpRequest;
 
-var errors = __webpack_require__(10);
+var errors = __webpack_require__(11);
 
 var JSONPCounter = 0;
 
@@ -5539,8 +4928,8 @@ function jsonpRequest(url, opts, cb) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = function omit(obj, test) {
-  var keys = __webpack_require__(164);
-  var foreach = __webpack_require__(11);
+  var keys = __webpack_require__(166);
+  var foreach = __webpack_require__(12);
 
   var filtered = {};
 
@@ -5560,7 +4949,7 @@ module.exports = function omit(obj, test) {
 
 module.exports = createPlacesClient;
 
-var buildSearchMethod = __webpack_require__(33);
+var buildSearchMethod = __webpack_require__(34);
 
 function createPlacesClient(algoliasearch) {
   return function places(appID, apiKey, opts) {
@@ -5723,7 +5112,7 @@ var datumKey = 'aaDatum';
 
 var _ = __webpack_require__(4);
 var DOM = __webpack_require__(7);
-var html = __webpack_require__(37);
+var html = __webpack_require__(38);
 var css = __webpack_require__(21);
 var EventEmitter = __webpack_require__(22);
 
@@ -6755,10 +6144,10 @@ var attrsKey = 'aaAttrs';
 
 var _ = __webpack_require__(4);
 var DOM = __webpack_require__(7);
-var EventBus = __webpack_require__(36);
+var EventBus = __webpack_require__(37);
 var Input = __webpack_require__(68);
 var Dropdown = __webpack_require__(67);
-var html = __webpack_require__(37);
+var html = __webpack_require__(38);
 var css = __webpack_require__(21);
 
 // constructor
@@ -7397,8 +6786,8 @@ module.exports = Typeahead;
 
 
 var _ = __webpack_require__(4);
-var version = __webpack_require__(39);
-var parseAlgoliaClientVersion = __webpack_require__(38);
+var version = __webpack_require__(40);
+var parseAlgoliaClientVersion = __webpack_require__(39);
 
 module.exports = function search(index, params) {
   var algoliaVersion = parseAlgoliaClientVersion(index.as._ua);
@@ -7441,8 +6830,8 @@ module.exports = {
 
 
 var _ = __webpack_require__(4);
-var version = __webpack_require__(39);
-var parseAlgoliaClientVersion = __webpack_require__(38);
+var version = __webpack_require__(40);
+var parseAlgoliaClientVersion = __webpack_require__(39);
 
 module.exports = function popularIn(index, params, details, options) {
   var algoliaVersion = parseAlgoliaClientVersion(index.as._ua);
@@ -7558,7 +6947,7 @@ _.Event = zepto.Event;
 
 var typeaheadKey = 'aaAutocomplete';
 var Typeahead = __webpack_require__(69);
-var EventBus = __webpack_require__(36);
+var EventBus = __webpack_require__(37);
 
 function autocomplete(selector, options, datasets, typeaheadObject) {
   datasets = _.isArray(datasets) ? datasets : [].slice.call(arguments, 2);
@@ -8977,7 +8366,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 // Check if request comes from browser and is not server rendered
 if (typeof window !== 'undefined') {
-  var slick = __webpack_require__(168);
+  var slick = __webpack_require__(170);
 }
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -9122,7 +8511,7 @@ if (typeof window !== 'undefined') {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(10);
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -9333,7 +8722,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(10);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 //
@@ -9366,7 +8755,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_dropzone__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_dropzone__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_dropzone___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_dropzone__);
 //
 //
@@ -9933,7 +9322,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vee_validate_dist_locale_th__ = __webpack_require__(171);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vee_validate_dist_locale_th__ = __webpack_require__(173);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vee_validate_dist_locale_th___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vee_validate_dist_locale_th__);
 //
 //
@@ -10006,9 +9395,9 @@ var dictionary = {
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_clickaway__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_clickaway___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_clickaway__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Language_Language_vue__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Language_Language_vue__ = __webpack_require__(47);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Language_Language_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__Language_Language_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__lang_category_js__ = __webpack_require__(138);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__lang_category_js__ = __webpack_require__(140);
 //
 //
 //
@@ -10086,7 +9475,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_clickaway__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_clickaway___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_clickaway__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Language_DropdownLanguage_vue__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Language_DropdownLanguage_vue__ = __webpack_require__(46);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Language_DropdownLanguage_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__Language_DropdownLanguage_vue__);
 //
 //
@@ -10771,7 +10160,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(10);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 //
@@ -11392,7 +10781,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_dropzone__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_dropzone__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_dropzone___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_dropzone__);
 //
 //
@@ -11658,9 +11047,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_dropzone__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_dropzone__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_dropzone___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_dropzone__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__category_getter__ = __webpack_require__(265);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__category_getter__ = __webpack_require__(24);
 //
 //
 //
@@ -11833,9 +11222,9 @@ __WEBPACK_IMPORTED_MODULE_0_dropzone___default.a.autoDiscover = false;
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_dropzone__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_dropzone__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_dropzone___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_dropzone__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__category_getter__ = __webpack_require__(265);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__category_getter__ = __webpack_require__(24);
 //
 //
 //
@@ -12516,7 +11905,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_autocomplete_js__ = __webpack_require__(65);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_autocomplete_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_autocomplete_js__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_algoliasearch__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_algoliasearch__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_algoliasearch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_algoliasearch__);
 //
 //
@@ -12564,10 +11953,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_algoliasearch__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_algoliasearch__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_algoliasearch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_algoliasearch__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__category_getter__ = __webpack_require__(265);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__category_getter__ = __webpack_require__(24);
 //
 //
 //
@@ -12604,14 +11992,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      categories: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__category_getter__["a" /* categories */])({ locale: this.$root.locale }),
+      categories: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__category_getter__["a" /* categories */])({ locale: this.$root.locale }),
       subcategories: [],
       types: [],
       products: [],
@@ -12622,20 +12009,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     };
   },
 
-  computed: {
-    selectCategory: function selectCategory() {
-      if (this.$route.query.c) {
-        return this.categories[this.$route.query.c - 1].subcategory;
-      }
-    },
-    selectSubcategory: function selectSubcategory() {
-      if (this.$route.query.sub) {
-        return this.categories[this.$route.query.c - 1].subcategory[this.$route.query.sub];
-      }
-    }
-  },
   methods: {
     getSub: function getSub(category) {
+      console.log(category);
       this.subcategories = category.subcategory;
       this.$router.push({ query: {
           p: this.$route.query.p,
@@ -13253,11 +12629,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ShopCoverEdit_vue__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ShopCoverEdit_vue__ = __webpack_require__(48);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ShopCoverEdit_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__ShopCoverEdit_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ShopThumbnailEdit_vue__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ShopThumbnailEdit_vue__ = __webpack_require__(49);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ShopThumbnailEdit_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__ShopThumbnailEdit_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ShopUserEdit_vue__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ShopUserEdit_vue__ = __webpack_require__(50);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ShopUserEdit_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__ShopUserEdit_vue__);
 //
 //
@@ -13887,9 +13263,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_slick__ = __webpack_require__(172);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_slick__ = __webpack_require__(174);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_slick___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_slick__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__misc_slick_options__ = __webpack_require__(143);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__misc_slick_options__ = __webpack_require__(145);
 //
 //
 //
@@ -13940,7 +13316,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /***/ (function(module, exports, __webpack_require__) {
 
 
-window._ = __webpack_require__(162);
+window._ = __webpack_require__(164);
 
 window.$ = window.jQuery = __webpack_require__(8);
 
@@ -13968,6 +13344,1262 @@ window.axios.defaults.headers.common = {
 
 /***/ }),
 /* 138 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony default export */ __webpack_exports__["a"] = ([{
+	id: 1,
+	name: 'Men',
+	slug: 'men',
+	subcategory: [{
+		id: 1,
+		name: 'Clothing',
+		slug: 'clothing',
+		category_id: 1,
+		type: [{
+			id: 2,
+			name: 'Shirts',
+			subcategory_id: 1
+		}, {
+			id: 3,
+			name: 'T-shirts & Tanks',
+			subcategory_id: 1
+		}, {
+			id: 4,
+			name: 'Jackets',
+			subcategory_id: 1
+		}, {
+			id: 5,
+			name: 'Sweaters',
+			subcategory_id: 1
+		}, {
+			id: 6,
+			name: 'Suits',
+			subcategory_id: 1
+		}, {
+			id: 7,
+			name: 'Active',
+			subcategory_id: 1
+		}, {
+			id: 8,
+			name: 'Pants',
+			subcategory_id: 1
+		}, {
+			id: 9,
+			name: 'Shorts',
+			subcategory_id: 1
+		}, {
+			id: 10,
+			name: 'Jeans',
+			subcategory_id: 1
+		}, {
+			id: 11,
+			name: 'Underwear',
+			subcategory_id: 1
+		}, {
+			id: 12,
+			name: 'Socks',
+			subcategory_id: 1
+		}, {
+			id: 13,
+			name: 'Swim',
+			subcategory_id: 1
+		}]
+	}, {
+		id: 2,
+		name: 'Shoes',
+		slug: 'shoes',
+		category_id: 1,
+		type: [{
+			id: 14,
+			name: 'Athletic',
+			subcategory_id: 2
+		}, {
+			id: 15,
+			name: 'Fashion Sneakers',
+			subcategory_id: 2
+		}, {
+			id: 16,
+			name: 'Boots',
+			subcategory_id: 2
+		}, {
+			id: 17,
+			name: 'Loafters & Slip-ons',
+			subcategory_id: 2
+		}, {
+			id: 18,
+			name: 'Oxfords',
+			subcategory_id: 2
+		}, {
+			id: 19,
+			name: 'Sandals & Slippers',
+			subcategory_id: 2
+		}]
+	}, {
+		id: 3,
+		name: 'Accessories',
+		slug: 'accessories',
+		category_id: 1,
+		type: [{
+			id: 20,
+			name: 'Sunglasses & Eyewear',
+			subcategory_id: 3
+		}, {
+			id: 21,
+			name: 'Hats',
+			subcategory_id: 3
+		}, {
+			id: 22,
+			name: 'Belts',
+			subcategory_id: 3
+		}, {
+			id: 23,
+			name: 'Jewelry',
+			subcategory_id: 3
+		}, {
+			id: 24,
+			name: 'Watches',
+			subcategory_id: 3
+		}, {
+			id: 25,
+			name: 'Ties',
+			subcategory_id: 3
+		}, {
+			id: 26,
+			name: 'Others',
+			subcategory_id: 3
+		}]
+	}]
+}, {
+	id: 2,
+	name: 'Women',
+	slug: 'women',
+	subcategory: [{
+		id: 4,
+		name: 'Clothing',
+		slug: 'clothing',
+		category_id: 2,
+		type: [{
+			id: 27,
+			name: 'Dresses',
+			subcategory_id: 4
+		}, {
+			id: 28,
+			name: 'T-shirts & Tops',
+			subcategory_id: 4
+		}, {
+			id: 29,
+			name: 'Sweaters',
+			subcategory_id: 4
+		}, {
+			id: 30,
+			name: 'Suits & Blazers',
+			subcategory_id: 4
+		}, {
+			id: 31,
+			name: 'Active',
+			subcategory_id: 4
+		}, {
+			id: 32,
+			name: 'Pants',
+			subcategory_id: 4
+		}, {
+			id: 33,
+			name: 'Shorts',
+			subcategory_id: 4
+		}, {
+			id: 34,
+			name: 'Jeans',
+			subcategory_id: 4
+		}, {
+			id: 35,
+			name: 'Skirts',
+			subcategory_id: 4
+		}, {
+			id: 36,
+			name: 'Leggings',
+			subcategory_id: 4
+		}, {
+			id: 37,
+			name: 'Underwear',
+			subcategory_id: 4
+		}, {
+			id: 38,
+			name: 'Swim',
+			subcategory_id: 4
+		}, {
+			id: 39,
+			name: 'Socks',
+			subcategory_id: 4
+		}]
+	}, {
+		id: 5,
+		name: 'Shoes',
+		slug: 'shoes',
+		category_id: 2,
+		type: [{
+			id: 40,
+			name: 'Athletic',
+			subcategory_id: 5
+		}, {
+			id: 41,
+			name: 'Fashion Sneakers',
+			subcategory_id: 5
+		}, {
+			id: 42,
+			name: 'Boots',
+			subcategory_id: 5
+		}, {
+			id: 43,
+			name: 'Flats',
+			subcategory_id: 5
+		}, {
+			id: 44,
+			name: 'Pumps',
+			subcategory_id: 5
+		}, {
+			id: 45,
+			name: 'Loafters & Slip-ons',
+			subcategory_id: 5
+		}, {
+			id: 46,
+			name: 'Oxfords',
+			subcategory_id: 5
+		}, {
+			id: 47,
+			name: 'Sandals & Slippers',
+			subcategory_id: 5
+		}]
+	}, {
+		id: 6,
+		name: 'Accessories',
+		slug: 'accessories',
+		category_id: 2,
+		type: [{
+			id: 48,
+			name: 'Sunglasses & Eyewear',
+			subcategory_id: 6
+		}, {
+			id: 49,
+			name: 'Hats',
+			subcategory_id: 6
+		}, {
+			id: 50,
+			name: 'Belts',
+			subcategory_id: 6
+		}, {
+			id: 51,
+			name: 'Jewelry',
+			subcategory_id: 6
+		}, {
+			id: 52,
+			name: 'Watches',
+			subcategory_id: 6
+		}, {
+			id: 53,
+			name: 'Others',
+			subcategory_id: 6
+		}]
+	}]
+}, {
+	id: 3,
+	name: 'Luggage & Bags',
+	slug: 'bags_luggage',
+	subcategory: [{
+		id: 7,
+		name: 'Men',
+		slug: 'men',
+		category_id: 3,
+		type: [{
+			id: 54,
+			name: 'Bags',
+			subcategory_id: 7
+		}, {
+			id: 55,
+			name: 'Wallets',
+			subcategory_id: 7
+		}]
+	}, {
+		id: 8,
+		name: 'Women',
+		slug: 'women',
+		category_id: 3,
+		type: [{
+			id: 56,
+			name: 'Handbags',
+			subcategory_id: 8
+		}, {
+			id: 57,
+			name: 'Wallets',
+			subcategory_id: 8
+		}, {
+			id: 58,
+			name: 'Other Bags',
+			subcategory_id: 8
+		}]
+	}, {
+		id: 9,
+		name: 'Luggage',
+		slug: 'luggage',
+		category_id: 3,
+		type: [{
+			id: 59,
+			name: 'Luggage',
+			subcategory_id: 9
+		}, {
+			id: 60,
+			name: 'Travel Accessories',
+			subcategory_id: 9
+		}]
+	}]
+}, {
+	id: 4,
+	name: 'Cosmetics',
+	slug: 'cosmetics',
+	subcategory: [{
+		id: 10,
+		name: 'Face',
+		slug: 'face',
+		category_id: 4,
+		type: [{
+			id: 61,
+			name: 'Powder',
+			subcategory_id: 10
+		}, {
+			id: 62,
+			name: 'Blushes',
+			subcategory_id: 10
+		}, {
+			id: 63,
+			name: 'BB & CC Cream',
+			subcategory_id: 10
+		}, {
+			id: 64,
+			name: 'Foundation',
+			subcategory_id: 10
+		}, {
+			id: 65,
+			name: 'Primers',
+			subcategory_id: 10
+		}, {
+			id: 66,
+			name: 'Bronzers & Highlighters',
+			subcategory_id: 10
+		}, {
+			id: 67,
+			name: 'Concealers & Neutralizers',
+			subcategory_id: 10
+		}]
+	}, {
+		id: 11,
+		name: 'Eyes',
+		slug: 'eyes',
+		category_id: 4,
+		type: [{
+			id: 68,
+			name: 'Mascara',
+			subcategory_id: 11
+		}, {
+			id: 69,
+			name: 'Eye Liner',
+			subcategory_id: 11
+		}, {
+			id: 70,
+			name: 'Eye Shadow',
+			subcategory_id: 11
+		}, {
+			id: 71,
+			name: 'Eye Lash',
+			subcategory_id: 11
+		}, {
+			id: 72,
+			name: 'Eyebrow',
+			subcategory_id: 11
+		}]
+	}, {
+		id: 12,
+		name: 'Lips',
+		slug: 'lips',
+		category_id: 4,
+		type: [{
+			id: 73,
+			name: 'Lipstick',
+			subcategory_id: 12
+		}, {
+			id: 74,
+			name: 'Liquid Lipstick',
+			subcategory_id: 12
+		}, {
+			id: 75,
+			name: 'Lip Glosses',
+			subcategory_id: 12
+		}, {
+			id: 76,
+			name: 'Lip Liners',
+			subcategory_id: 12
+		}, {
+			id: 77,
+			name: 'Lip Tints',
+			subcategory_id: 12
+		}, {
+			id: 78,
+			name: 'Lip Plumpers',
+			subcategory_id: 12
+		}]
+	}, {
+		id: 13,
+		name: 'Nails',
+		slug: 'nails',
+		category_id: 4,
+		type: [{
+			id: 79,
+			name: 'Nail Polish',
+			subcategory_id: 13
+		}, {
+			id: 80,
+			name: 'Nail Polish Remover',
+			subcategory_id: 13
+		}, {
+			id: 81,
+			name: 'False Nails & Accessories',
+			subcategory_id: 13
+		}]
+	}, {
+		id: 14,
+		name: 'Makeup Sets & Palettes',
+		slug: 'sets',
+		category_id: 4,
+		type: []
+	}, {
+		id: 15,
+		name: 'Makeup Remover',
+		slug: 'makeup_remover',
+		category_id: 4,
+		type: []
+	}, {
+		id: 16,
+		name: 'Tools & Brushes',
+		slug: 'tools',
+		category_id: 4,
+		type: [{
+			id: 82,
+			name: 'Face',
+			subcategory_id: 16
+		}, {
+			id: 83,
+			name: 'Eye',
+			subcategory_id: 16
+		}, {
+			id: 84,
+			name: 'Nail',
+			subcategory_id: 16
+		}]
+	}]
+}, {
+	id: 5,
+	name: 'Skincare',
+	slug: 'skincare',
+	subcategory: [{
+		id: 17,
+		name: 'Face',
+		slug: 'face',
+		category_id: 5,
+		type: [{
+			id: 85,
+			name: 'Facial Cleansing Products',
+			subcategory_id: 17
+		}, {
+			id: 86,
+			name: 'Facial Treatments & Masks',
+			subcategory_id: 17
+		}, {
+			id: 87,
+			name: 'Facial Creams & Moisturizers',
+			subcategory_id: 17
+		}, {
+			id: 88,
+			name: 'Facial Toners',
+			subcategory_id: 17
+		}, {
+			id: 89,
+			name: 'Facial Exfoliators',
+			subcategory_id: 17
+		}]
+	}, {
+		id: 18,
+		name: 'Eyes',
+		slug: 'eyes',
+		category_id: 5,
+		type: []
+	}, {
+		id: 19,
+		name: 'Body',
+		slug: 'body',
+		category_id: 5,
+		type: [{
+			id: 90,
+			name: 'Sunscreen',
+			subcategory_id: 19
+		}, {
+			id: 91,
+			name: 'Body Moisturizers & Treatments',
+			subcategory_id: 19
+		}]
+	}, {
+		id: 20,
+		name: 'Fragrance',
+		slug: 'fragrance',
+		category_id: 5,
+		type: [{
+			id: 92,
+			name: 'Men',
+			subcategory_id: 20
+		}, {
+			id: 93,
+			name: 'Women',
+			subcategory_id: 20
+		}]
+	}]
+}, {
+	id: 6,
+	name: 'Hair Products',
+	slug: 'hair',
+	subcategory: [{
+		id: 21,
+		name: 'Hair Styling',
+		slug: 'styling',
+		category_id: 6,
+		type: [{
+			id: 94,
+			name: 'Hair Color',
+			subcategory_id: 21
+		}, {
+			id: 95,
+			name: 'Hair Spray',
+			subcategory_id: 21
+		}, {
+			id: 96,
+			name: 'Hair Wax',
+			subcategory_id: 21
+		}, {
+			id: 97,
+			name: 'Pomade',
+			subcategory_id: 21
+		}, {
+			id: 98,
+			name: 'Hair Mousse',
+			subcategory_id: 21
+		}, {
+			id: 99,
+			name: 'Hair Gel',
+			subcategory_id: 21
+		}]
+	}, {
+		id: 22,
+		name: 'Hair Care',
+		slug: 'care',
+		category_id: 6,
+		type: [{
+			id: 100,
+			name: 'Hair Treatment',
+			subcategory_id: 22
+		}, {
+			id: 101,
+			name: 'Shampoo',
+			subcategory_id: 22
+		}, {
+			id: 102,
+			name: 'Conditioner',
+			subcategory_id: 22
+		}]
+	}, {
+		id: 23,
+		name: 'Hair Tools',
+		slug: 'tools',
+		category_id: 6,
+		type: [{
+			id: 103,
+			name: 'Tools & More',
+			subcategory_id: 23
+		}, {
+			id: 104,
+			name: 'Wigs & Extensions',
+			subcategory_id: 23
+		}, {
+			id: 105,
+			name: 'Combs & Brushes',
+			subcategory_id: 23
+		}]
+	}]
+}, {
+	id: 7,
+	name: 'Personal Care',
+	slug: 'personal_care',
+	subcategory: [{
+		id: 24,
+		name: 'Baths & Body',
+		slug: 'baths_body',
+		category_id: 7,
+		type: [{
+			id: 106,
+			name: 'Soaps & Shower Gels',
+			subcategory_id: 24
+		}, {
+			id: 107,
+			name: 'Moisturizers',
+			subcategory_id: 24
+		}, {
+			id: 108,
+			name: 'Scrubs',
+			subcategory_id: 24
+		}, {
+			id: 109,
+			name: 'Deodorants',
+			subcategory_id: 24
+		}, {
+			id: 110,
+			name: 'Hair Removal',
+			subcategory_id: 24
+		}]
+	}, {
+		id: 25,
+		name: 'Wipes & Cotton',
+		slug: 'wipes_cotton',
+		category_id: 7,
+		type: []
+	}]
+}]);
+
+/***/ }),
+/* 139 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony default export */ __webpack_exports__["a"] = ([{
+   id: 1,
+   name: 'ผู้ชาย',
+   slug: 'men',
+   subcategory: [{
+      id: 1,
+      name: 'เสื้อผ้า',
+      slug: 'clothing',
+      category_id: 1,
+      type: [{
+         id: 2,
+         name: 'เสื้อเชิ้ต',
+         subcategory_id: 1
+      }, {
+         id: 3,
+         name: 'เสื้อยืด & เสื้อกล้าม',
+         subcategory_id: 1
+      }, {
+         id: 4,
+         name: 'แจ็คเก็ต',
+         subcategory_id: 1
+      }, {
+         id: 5,
+         name: 'เสื้อกันหนาว',
+         subcategory_id: 1
+      }, {
+         id: 6,
+         name: 'สูท',
+         subcategory_id: 1
+      }, {
+         id: 7,
+         name: 'ชุดออกกำลังกาย',
+         subcategory_id: 1
+      }, {
+         id: 8,
+         name: 'กางเกงขายาว',
+         subcategory_id: 1
+      }, {
+         id: 9,
+         name: 'กางเกงขาสั้น',
+         subcategory_id: 1
+      }, {
+         id: 10,
+         name: 'กางเกงยีนส์',
+         subcategory_id: 1
+      }, {
+         id: 11,
+         name: 'ชุดชั้นใน',
+         subcategory_id: 1
+      }, {
+         id: 12,
+         name: 'ถุงเท้า',
+         subcategory_id: 1
+      }, {
+         id: 13,
+         name: 'ชุดว่ายน้ำ',
+         subcategory_id: 1
+      }]
+   }, {
+      id: 2,
+      name: 'รองเท้า',
+      slug: 'shoes',
+      category_id: 1,
+      type: [{
+         id: 14,
+         name: 'รองเท้ากีฬา',
+         subcategory_id: 2
+      }, {
+         id: 15,
+         name: 'รองเท้าผ้าใบ',
+         subcategory_id: 2
+      }, {
+         id: 16,
+         name: 'รองเท้าบูท',
+         subcategory_id: 2
+      }, {
+         id: 17,
+         name: 'รองเท้าโลฟเฟอร์ & สลิปออน',
+         subcategory_id: 2
+      }, {
+         id: 18,
+         name: 'รองเท้าอ็อกซ์ฟอร์ด',
+         subcategory_id: 2
+      }, {
+         id: 19,
+         name: 'รองเท้าแตะ',
+         subcategory_id: 2
+      }]
+   }, {
+      id: 3,
+      name: 'เครื่องประดับ',
+      slug: 'accessories',
+      category_id: 1,
+      type: [{
+         id: 20,
+         name: 'แว่นกันแดด & แว่นตา',
+         subcategory_id: 3
+      }, {
+         id: 21,
+         name: 'หมวก',
+         subcategory_id: 3
+      }, {
+         id: 22,
+         name: 'เข็มขัด',
+         subcategory_id: 3
+      }, {
+         id: 23,
+         name: 'สร้อย แหวน ต่างหู',
+         subcategory_id: 3
+      }, {
+         id: 24,
+         name: 'นาฬิกา',
+         subcategory_id: 3
+      }, {
+         id: 25,
+         name: 'เนคไท & โบว์',
+         subcategory_id: 3
+      }, {
+         id: 26,
+         name: 'อื่นๆ',
+         subcategory_id: 3
+      }]
+   }]
+}, {
+   id: 2,
+   name: 'ผู้หญิง',
+   slug: 'women',
+   subcategory: [{
+      id: 4,
+      name: 'เสื้อผ้า',
+      slug: 'clothing',
+      category_id: 2,
+      type: [{
+         id: 27,
+         name: 'ชุดเดรส',
+         subcategory_id: 4
+      }, {
+         id: 28,
+         name: 'เสื้อ',
+         subcategory_id: 4
+      }, {
+         id: 29,
+         name: 'เสื้อกันหนาว',
+         subcategory_id: 4
+      }, {
+         id: 30,
+         name: 'สูท & แจ็คเก็ต',
+         subcategory_id: 4
+      }, {
+         id: 31,
+         name: 'ชุดออกกำลังกาย',
+         subcategory_id: 4
+      }, {
+         id: 32,
+         name: 'กางเกงขายาว',
+         subcategory_id: 4
+      }, {
+         id: 33,
+         name: 'กางเกงขาสั้น',
+         subcategory_id: 4
+      }, {
+         id: 34,
+         name: 'กางเกงยีนส์',
+         subcategory_id: 4
+      }, {
+         id: 35,
+         name: 'กระโปรง',
+         subcategory_id: 4
+      }, {
+         id: 36,
+         name: 'เลกกิ้ง',
+         subcategory_id: 4
+      }, {
+         id: 37,
+         name: 'ชุดชั้นใน',
+         subcategory_id: 4
+      }, {
+         id: 38,
+         name: 'ชุดว่ายน้ำ',
+         subcategory_id: 4
+      }, {
+         id: 39,
+         name: 'ถุงเท้า',
+         subcategory_id: 4
+      }]
+   }, {
+      id: 5,
+      name: 'รองเท้า',
+      slug: 'shoes',
+      category_id: 2,
+      type: [{
+         id: 40,
+         name: 'รองเท้ากีฬา',
+         subcategory_id: 5
+      }, {
+         id: 41,
+         name: 'รองเท้าผ้าใบ',
+         subcategory_id: 5
+      }, {
+         id: 42,
+         name: 'รองเท้าบูท',
+         subcategory_id: 5
+      }, {
+         id: 43,
+         name: 'รองเท้าส้นเตี้ย',
+         subcategory_id: 5
+      }, {
+         id: 44,
+         name: 'รองเท้าส้นสูง',
+         subcategory_id: 5
+      }, {
+         id: 45,
+         name: 'รองเท้าโลฟเฟอร์ & สลิปออน',
+         subcategory_id: 5
+      }, {
+         id: 46,
+         name: 'รองเท้าอ็อกซ์ฟอร์ด',
+         subcategory_id: 5
+      }, {
+         id: 47,
+         name: 'รองเท้าแตะ',
+         subcategory_id: 5
+      }]
+   }, {
+      id: 6,
+      name: 'เครื่องประดับ',
+      slug: 'accessories',
+      category_id: 2,
+      type: [{
+         id: 48,
+         name: 'แว่นกันแดด & แว่นตา',
+         subcategory_id: 6
+      }, {
+         id: 49,
+         name: 'หมวก',
+         subcategory_id: 6
+      }, {
+         id: 50,
+         name: 'เข็มขัด',
+         subcategory_id: 6
+      }, {
+         id: 51,
+         name: 'สร้อย แหวน ตุ้มหู',
+         subcategory_id: 6
+      }, {
+         id: 52,
+         name: 'นาฬิกา',
+         subcategory_id: 6
+      }, {
+         id: 53,
+         name: 'อื่นๆ',
+         subcategory_id: 6
+      }]
+   }]
+}, {
+   id: 3,
+   name: 'กระเป๋า',
+   slug: 'bags_luggage',
+   subcategory: [{
+      id: 7,
+      name: 'ผู้ชาย',
+      slug: 'men',
+      category_id: 3,
+      type: [{
+         id: 54,
+         name: 'กระเป๋าทั่วไป',
+         subcategory_id: 7
+      }, {
+         id: 55,
+         name: 'กระเป๋าสตางค์',
+         subcategory_id: 7
+      }]
+   }, {
+      id: 8,
+      name: 'ผู้หญิง',
+      slug: 'women',
+      category_id: 3,
+      type: [{
+         id: 56,
+         name: 'กระเป๋าถือ',
+         subcategory_id: 8
+      }, {
+         id: 57,
+         name: 'กระเป๋าสตางค์',
+         subcategory_id: 8
+      }, {
+         id: 58,
+         name: 'กระเป๋าอื่นๆ',
+         subcategory_id: 8
+      }]
+   }, {
+      id: 9,
+      name: 'กระเป๋าเดินทาง',
+      slug: 'luggage',
+      category_id: 3,
+      type: [{
+         id: 59,
+         name: 'กระเป๋าเดินทาง',
+         subcategory_id: 9
+      }, {
+         id: 60,
+         name: 'อุปกรณ์เดินทาง',
+         subcategory_id: 9
+      }]
+   }]
+}, {
+   id: 4,
+   name: 'เครื่องสำอาง',
+   slug: 'cosmetics',
+   subcategory: [{
+      id: 10,
+      name: 'เครื่องสำอางสำหรับใบหน้า',
+      slug: 'face',
+      category_id: 4,
+      type: [{
+         id: 61,
+         name: 'แป้ง',
+         subcategory_id: 10
+      }, {
+         id: 62,
+         name: 'บลัชออน',
+         subcategory_id: 10
+      }, {
+         id: 63,
+         name: 'บีบี & ซีซี ครีม',
+         subcategory_id: 10
+      }, {
+         id: 64,
+         name: 'รองพื้น',
+         subcategory_id: 10
+      }, {
+         id: 65,
+         name: 'ไพร์มเมอร์',
+         subcategory_id: 10
+      }, {
+         id: 66,
+         name: 'บรอนเซอร์ & ไฮไลท์',
+         subcategory_id: 10
+      }, {
+         id: 67,
+         name: 'คอนซีลเลอร์',
+         subcategory_id: 10
+      }]
+   }, {
+      id: 11,
+      name: 'เครื่องสำอางสำหรับดวงตา',
+      slug: 'eyes',
+      category_id: 4,
+      type: [{
+         id: 68,
+         name: 'มาสคาร่า',
+         subcategory_id: 11
+      }, {
+         id: 69,
+         name: 'อายไลเนอร์',
+         subcategory_id: 11
+      }, {
+         id: 70,
+         name: 'อายแชโดว์',
+         subcategory_id: 11
+      }, {
+         id: 71,
+         name: 'ผลิตภัณฑ์เกี่ยวกับขนตา',
+         subcategory_id: 11
+      }, {
+         id: 72,
+         name: 'ผลิตภัณฑ์เกี่ยวกับคิ้ว',
+         subcategory_id: 11
+      }]
+   }, {
+      id: 12,
+      name: 'เครื่องสำอางสำหรับปาก',
+      slug: 'lips',
+      category_id: 4,
+      type: [{
+         id: 73,
+         name: 'ลิปสติก',
+         subcategory_id: 12
+      }, {
+         id: 74,
+         name: 'ลิขวิดลิปสติก',
+         subcategory_id: 12
+      }, {
+         id: 75,
+         name: 'ลิปกลอส',
+         subcategory_id: 12
+      }, {
+         id: 76,
+         name: 'ดินสอเขียนริมฝีปาก',
+         subcategory_id: 12
+      }, {
+         id: 77,
+         name: 'ลิปทินท์',
+         subcategory_id: 12
+      }, {
+         id: 78,
+         name: 'ลิปพลัมพ์เพอร์',
+         subcategory_id: 12
+      }]
+   }, {
+      id: 13,
+      name: 'เครื่องสำอางสำหรับเล็บ',
+      slug: 'nails',
+      category_id: 4,
+      type: [{
+         id: 79,
+         name: 'ยาทาเล็บ',
+         subcategory_id: 13
+      }, {
+         id: 80,
+         name: 'น้ำยาล้างเล็บ',
+         subcategory_id: 13
+      }, {
+         id: 81,
+         name: 'ชุดแต่งเล็บ & อุปกรณ์เสริม',
+         subcategory_id: 13
+      }]
+   }, {
+      id: 14,
+      name: 'ชุดเซ็ทเครื่องสำอาง & พาเลตต์',
+      slug: 'sets',
+      category_id: 4,
+      type: []
+   }, {
+      id: 15,
+      name: 'ผลิตภัณฑ์ล้างเครื่องสำอาง',
+      slug: 'makeup_remover',
+      category_id: 4,
+      type: []
+   }, {
+      id: 16,
+      name: 'อุปกรณ์แต่งหน้า',
+      slug: 'tools',
+      category_id: 4,
+      type: [{
+         id: 82,
+         name: 'อุปกรณ์สำหรับใบหน้า',
+         subcategory_id: 16
+      }, {
+         id: 83,
+         name: 'อุปกรณ์สำหรับดวงตา',
+         subcategory_id: 16
+      }, {
+         id: 84,
+         name: 'อุปกรณ์สำหรับเล็บ',
+         subcategory_id: 16
+      }]
+   }]
+}, {
+   id: 5,
+   name: 'ดูแลผิว',
+   slug: 'skincare',
+   subcategory: [{
+      id: 17,
+      name: 'ผลิตภัณฑ์ดูแลผิวหน้า',
+      slug: 'face',
+      category_id: 5,
+      type: [{
+         id: 85,
+         name: 'ผลิตภัณฑ์ทำความสะอาดผิวหน้า',
+         subcategory_id: 17
+      }, {
+         id: 86,
+         name: 'มาส์กหน้า & ครีมพอกหน้า',
+         subcategory_id: 17
+      }, {
+         id: 87,
+         name: 'มอยเจอร์ไรเซอร์ & ครีมบำรุงผิวหน้า',
+         subcategory_id: 17
+      }, {
+         id: 88,
+         name: 'โทนเนอร์และมิสท์',
+         subcategory_id: 17
+      }, {
+         id: 89,
+         name: 'ผลิตภัณฑ์ขัดและลอกหน้า',
+         subcategory_id: 17
+      }]
+   }, {
+      id: 18,
+      name: 'ผลิตภัณฑ์ดูแลดวงตา',
+      slug: 'eyes',
+      category_id: 5,
+      type: []
+   }, {
+      id: 19,
+      name: 'ผลิตภัณฑ์ดูแลผิวกาย',
+      slug: 'body',
+      category_id: 5,
+      type: [{
+         id: 90,
+         name: 'ผลิตภัณฑ์ป้องกันแสงแดด',
+         subcategory_id: 19
+      }, {
+         id: 91,
+         name: 'ผลิตภัณฑ์บำรุงผิวกาย',
+         subcategory_id: 19
+      }]
+   }, {
+      id: 20,
+      name: 'น้ำหอม',
+      slug: 'fragrance',
+      category_id: 5,
+      type: [{
+         id: 92,
+         name: 'น้ำหอมผู้ชาย',
+         subcategory_id: 20
+      }, {
+         id: 93,
+         name: 'น้ำหอมผู้หญิง',
+         subcategory_id: 20
+      }]
+   }]
+}, {
+   id: 6,
+   name: 'ผลิตภัณฑ์เกี่ยวกับเส้นผม',
+   slug: 'hair',
+   subcategory: [{
+      id: 21,
+      name: 'จัดแต่งทรงผม',
+      slug: 'styling',
+      category_id: 6,
+      type: [{
+         id: 94,
+         name: 'ผลิตภัณฑ์เปลี่ยนสีผม',
+         subcategory_id: 21
+      }, {
+         id: 95,
+         name: 'สเปรย์',
+         subcategory_id: 21
+      }, {
+         id: 96,
+         name: 'แว็กซ์',
+         subcategory_id: 21
+      }, {
+         id: 97,
+         name: 'โพเมด',
+         subcategory_id: 21
+      }, {
+         id: 98,
+         name: 'มูส',
+         subcategory_id: 21
+      }, {
+         id: 99,
+         name: 'เจล',
+         subcategory_id: 21
+      }]
+   }, {
+      id: 22,
+      name: 'บำรุง & ดูแลเส้นผม',
+      slug: 'care',
+      category_id: 6,
+      type: [{
+         id: 100,
+         name: 'ทรีทเมนต์สำหรับผม',
+         subcategory_id: 22
+      }, {
+         id: 101,
+         name: 'แชมพู',
+         subcategory_id: 22
+      }, {
+         id: 102,
+         name: 'คอนดิชันเนอร์',
+         subcategory_id: 22
+      }]
+   }, {
+      id: 23,
+      name: 'อุปกรณ์ทำผม',
+      slug: 'tools',
+      category_id: 6,
+      type: [{
+         id: 103,
+         name: 'อุปกรณ์ดูแลเส้นผม',
+         subcategory_id: 23
+      }, {
+         id: 104,
+         name: 'วิก แฮร์พีซ คลิปต่อผม',
+         subcategory_id: 23
+      }, {
+         id: 105,
+         name: 'หวี แปรง',
+         subcategory_id: 23
+      }]
+   }]
+}, {
+   id: 7,
+   name: 'ของใช้ส่วนตัว',
+   slug: 'personal_care',
+   subcategory: [{
+      id: 24,
+      name: 'อาบน้ำ & ดูแลผิวกาย',
+      slug: 'baths_body',
+      category_id: 7,
+      type: [{
+         id: 106,
+         name: 'สบู่ก้อน & ครีมอาบน้ำ',
+         subcategory_id: 24
+      }, {
+         id: 107,
+         name: 'ผลิตภัณฑ์บำรุงผิวกาย',
+         subcategory_id: 24
+      }, {
+         id: 108,
+         name: 'ผลิตภัณฑ์ขัดผิวกาย',
+         subcategory_id: 24
+      }, {
+         id: 109,
+         name: 'ผลิตภัณฑ์ดับกลิ่นกาย',
+         subcategory_id: 24
+      }, {
+         id: 110,
+         name: 'ผลิตภัณฑ์กำจัดขน',
+         subcategory_id: 24
+      }]
+   }, {
+      id: 25,
+      name: 'กระดาษซับ สำลี & อื่นๆ',
+      slug: 'wipes_cotton',
+      category_id: 7,
+      type: []
+   }]
+}]);
+
+/***/ }),
+/* 140 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -13999,7 +14631,7 @@ var category = function category(_ref) {
 };
 
 /***/ }),
-/* 139 */
+/* 141 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -14158,7 +14790,7 @@ var category = function category(_ref) {
 });
 
 /***/ }),
-/* 140 */
+/* 142 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -14317,12 +14949,12 @@ var category = function category(_ref) {
 });
 
 /***/ }),
-/* 141 */
+/* 143 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__en__ = __webpack_require__(139);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__th__ = __webpack_require__(140);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__en__ = __webpack_require__(141);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__th__ = __webpack_require__(142);
 
 
 
@@ -14342,7 +14974,7 @@ var category = function category(_ref) {
 });
 
 /***/ }),
-/* 142 */
+/* 144 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -14357,7 +14989,7 @@ var category = function category(_ref) {
 });
 
 /***/ }),
-/* 143 */
+/* 145 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -14416,7 +15048,7 @@ var options = function options(_ref) {
 };
 
 /***/ }),
-/* 144 */
+/* 146 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -14428,7 +15060,7 @@ var options = function options(_ref) {
 
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_router__["default"]);
 
-var SearchFilter = __webpack_require__(202);
+var SearchFilter = __webpack_require__(204);
 
 var routes = [{
   path: '/search/result',
@@ -14447,7 +15079,7 @@ var router = new __WEBPACK_IMPORTED_MODULE_1_vue_router__["default"]({
 // });
 
 /***/ }),
-/* 145 */
+/* 147 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -14499,7 +15131,7 @@ var removeFromCart = function removeFromCart(_ref6) {
 };
 
 /***/ }),
-/* 146 */
+/* 148 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -14510,31 +15142,23 @@ var count = function count(state) {
 };
 
 /***/ }),
-/* 147 */
+/* 149 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setCount", function() { return setCount; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "checkout", function() { return checkout; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeCount", function() { return removeCount; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appendToCart", function() { return appendToCart; });
 var setCount = function setCount(state, items) {
   state.cart = items;
 };
-
-var checkout = function checkout(state, _ref) {
-  var shop = _ref.shop;
-
-  console.log('work');
-  state.checkout.push({ shop: shop });
-};
 var removeCount = function removeCount(state) {
   state.cart.splice(0, 1);
 };
-var appendToCart = function appendToCart(state, _ref2) {
-  var product = _ref2.product,
-      choice = _ref2.choice;
+var appendToCart = function appendToCart(state, _ref) {
+  var product = _ref.product,
+      choice = _ref.choice;
 
   var existing = state.cart.find(function (item) {
     return item.id === product.id && item.choice == choice;
@@ -14548,7 +15172,7 @@ var appendToCart = function appendToCart(state, _ref2) {
 };
 
 /***/ }),
-/* 148 */
+/* 150 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -14557,23 +15181,23 @@ var appendToCart = function appendToCart(state, _ref2) {
 });
 
 /***/ }),
-/* 149 */
+/* 151 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return store; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__state__ = __webpack_require__(148);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__state__ = __webpack_require__(150);
 
 
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex__["default"]);
 
 
-var mutations = __webpack_require__(147);
-var actions = __webpack_require__(145);
-var getters = __webpack_require__(146);
+var mutations = __webpack_require__(149);
+var actions = __webpack_require__(147);
+var getters = __webpack_require__(148);
 
 var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["default"].Store({
     state: __WEBPACK_IMPORTED_MODULE_2__state__["a" /* default */],
@@ -14584,14 +15208,14 @@ var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["default"].Store({
 });
 
 /***/ }),
-/* 150 */
+/* 152 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(151)();
+exports = module.exports = __webpack_require__(153)();
 exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 /***/ }),
-/* 151 */
+/* 153 */
 /***/ (function(module, exports) {
 
 /*
@@ -14647,7 +15271,7 @@ module.exports = function() {
 
 
 /***/ }),
-/* 152 */
+/* 154 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -14663,7 +15287,7 @@ exports.coerce = coerce;
 exports.disable = disable;
 exports.enable = enable;
 exports.enabled = enabled;
-exports.humanize = __webpack_require__(163);
+exports.humanize = __webpack_require__(165);
 
 /**
  * The currently active debug mode names, and names to skip.
@@ -14855,7 +15479,7 @@ function coerce(val) {
 
 
 /***/ }),
-/* 153 */
+/* 155 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process, global) {/*!
@@ -16041,7 +16665,7 @@ return Promise$1;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3), __webpack_require__(5)))
 
 /***/ }),
-/* 154 */
+/* 156 */
 /***/ (function(module, exports) {
 
 // Copyright Joyent, Inc. and other Node contributors.
@@ -16349,7 +16973,7 @@ function isUndefined(arg) {
 
 
 /***/ }),
-/* 155 */
+/* 157 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var win;
@@ -16369,17 +16993,17 @@ module.exports = win;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
 
 /***/ }),
-/* 156 */
+/* 158 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var types = [
-  __webpack_require__(159),
-  __webpack_require__(158),
-  __webpack_require__(157),
+  __webpack_require__(161),
   __webpack_require__(160),
-  __webpack_require__(161)
+  __webpack_require__(159),
+  __webpack_require__(162),
+  __webpack_require__(163)
 ];
 var draining;
 var currentQueue;
@@ -16472,7 +17096,7 @@ function immediate(task) {
 
 
 /***/ }),
-/* 157 */
+/* 159 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16497,7 +17121,7 @@ exports.install = function (func) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
 
 /***/ }),
-/* 158 */
+/* 160 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16526,7 +17150,7 @@ exports.install = function (handle) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
 
 /***/ }),
-/* 159 */
+/* 161 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16545,7 +17169,7 @@ exports.install = function (func) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
-/* 160 */
+/* 162 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16576,7 +17200,7 @@ exports.install = function (handle) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
 
 /***/ }),
-/* 161 */
+/* 163 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16592,7 +17216,7 @@ exports.install = function (t) {
 };
 
 /***/ }),
-/* 162 */
+/* 164 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, module) {var __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -33681,10 +34305,10 @@ exports.install = function (t) {
   }
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5), __webpack_require__(50)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5), __webpack_require__(51)(module)))
 
 /***/ }),
-/* 163 */
+/* 165 */
 /***/ (function(module, exports) {
 
 /**
@@ -33842,7 +34466,7 @@ function plural(ms, n, name) {
 
 
 /***/ }),
-/* 164 */
+/* 166 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33852,7 +34476,7 @@ function plural(ms, n, name) {
 var has = Object.prototype.hasOwnProperty;
 var toStr = Object.prototype.toString;
 var slice = Array.prototype.slice;
-var isArgs = __webpack_require__(165);
+var isArgs = __webpack_require__(167);
 var isEnumerable = Object.prototype.propertyIsEnumerable;
 var hasDontEnumBug = !isEnumerable.call({ toString: null }, 'toString');
 var hasProtoEnumBug = isEnumerable.call(function () {}, 'prototype');
@@ -33989,7 +34613,7 @@ module.exports = keysShim;
 
 
 /***/ }),
-/* 165 */
+/* 167 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -34013,7 +34637,7 @@ module.exports = function isArguments(value) {
 
 
 /***/ }),
-/* 166 */
+/* 168 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -34105,8 +34729,8 @@ var objectKeys = Object.keys || function (obj) {
 
 
 /***/ }),
-/* 167 */,
-/* 168 */
+/* 169 */,
+/* 170 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*
@@ -37126,22 +37750,22 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 
 /***/ }),
-/* 169 */,
-/* 170 */,
-/* 171 */
+/* 171 */,
+/* 172 */,
+/* 173 */
 /***/ (function(module, exports, __webpack_require__) {
 
 !function(n,e){ true?module.exports=e():"function"==typeof define&&define.amd?define(e):(n.__vee_validate_locale__th=n.__vee_validate_locale__th||{},n.__vee_validate_locale__th.js=e())}(this,function(){"use strict";var n={name:"th",messages:{_default:function(n){return"ข้อมูล "+n+" ไม่ถูกต้อง"},after:function(n,e){return n+" ต้องเป็นวันที่หลังจาก "+e[0]},alpha_dash:function(n){return n+" สามารถมีตัวอักษร ตัวเลข เครื่องหมายขีดกลาง (-) และเครื่องหมายขีดล่าง (_)"},alpha_num:function(n){return n+" ต้องเป็นตัวอักษร และตัวเลขเท่านั้น"},alpha_spaces:function(n){return n+" ต้องเป็นตัวอักษร และช่องว่างเท่านั้น"},alpha:function(n){return n+" ต้องเป็นตัวอักษรเท่านั้น"},before:function(n,e){return n+" ต้องเป็นวันที่ก่อน "+e[0]},between:function(n,e){return n+" ต้องเป็นค่าระหว่าง "+e[0]+" และ "+e[1]},confirmed:function(n){return"การยืนยันข้อมูลของ "+n+" ไม่ตรงกัน"},credit_card:function(n){return"ข้อมูล "+n+" ไม่ถูกต้อง"},date_between:function(n,e){return"วันที่ "+n+" ต้องอยู่ระหว่าง "+e[0]+" และ "+e[1]},date_format:function(n,e){return"วันที่ "+n+" ต้องอยู่ในรูปแบบ "+e[0]},decimal:function(n,e){void 0===e&&(e=[]);var t=e[0];return void 0===t&&(t="*"),n+" ต้องเป็นตัวเลข และสามารถมีจุดทศนิยม "+("*"===t?"":t+" จุด")},digits:function(n,e){return n+" ต้องเป็นตัวเลข "+e[0]+" หลักเท่านั้น"},dimensions:function(n,e){return n+" ต้องมีขนาด "+e[0]+" x "+e[1]+" px"},email:function(n){return n+" ต้องเป็นรูปแบบอีเมล"},ext:function(n){return n+" สกุลไฟล์ไม่ถูกต้อง"},image:function(n){return n+" ต้องเป็นรูปภาพเท่านั้น"},in:function(n){return n+" เป็นค่าทีไม่ถูกต้องตามเงื่อนไขที่กำหนด"},integer:function(n){return n+" ต้องเป็นเลขจำนวนเต็ม"},ip:function(n){return n+" ไม่ถูกต้องตามรูปแบบ ip address"},length:function(n,e){var t=e[0],r=e[1];return r?"ความยาว "+n+" อยู่ระหว่าง "+t+" และ "+r:n+" ต้องมีความยาว "+t},max:function(n,e){return n+" ต้องมีความยาวไม่เกิน "+e[0]+" ตัวอักษร"},max_value:function(n,e){return n+" ต้องมีค่าไม่เกิน "+e[0]},mimes:function(n){return n+" ประเภทไฟล์ไม่ถูกต้อง"},min:function(n,e){return n+" ต้องมีความยาวอย่างน้อย "+e[0]+" ตัวอักษร"},min_value:function(n,e){return n+" ต้องมีค่าตั้งแต่ "+e[0]+" ขึ้นไป"},not_in:function(n){return n+" เป็นค่าทีไม่ถูกต้องตามเงื่อนไขที่กำหนด"},numeric:function(n){return n+" ต้องเป็นตัวเลขเท่านั้น"},regex:function(n){return"รูปแบบ "+n+" ไม่ถูกต้อง"},required:function(n){return"กรุณากรอก "+n},size:function(n,e){return n+" ต้องมีขนาดไม่เกิน "+function(n){var e=0==(n=1024*Number(n))?0:Math.floor(Math.log(n)/Math.log(1024));return 1*(n/Math.pow(1024,e)).toFixed(2)+" "+["Byte","KB","MB","GB","TB","PB","EB","ZB","YB"][e]}(e[0])},url:function(n){return n+" ไม่ใช่รูปแบบของ URL ที่ถูกต้อง"}},attributes:{}};return"undefined"!=typeof VeeValidate&&VeeValidate.Validator.addLocale(n),n});
 
 /***/ }),
-/* 172 */
+/* 174 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(92),
   /* template */
-  __webpack_require__(245),
+  __webpack_require__(247),
   /* scopeId */
   null,
   /* cssModules */
@@ -37168,14 +37792,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 173 */
+/* 175 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(93),
   /* template */
-  __webpack_require__(223),
+  __webpack_require__(225),
   /* scopeId */
   null,
   /* cssModules */
@@ -37202,14 +37826,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 174 */
+/* 176 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(94),
   /* template */
-  __webpack_require__(253),
+  __webpack_require__(255),
   /* scopeId */
   null,
   /* cssModules */
@@ -37236,14 +37860,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 175 */
+/* 177 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(95),
   /* template */
-  __webpack_require__(233),
+  __webpack_require__(235),
   /* scopeId */
   null,
   /* cssModules */
@@ -37270,14 +37894,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 176 */
+/* 178 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(96),
   /* template */
-  __webpack_require__(218),
+  __webpack_require__(220),
   /* scopeId */
   null,
   /* cssModules */
@@ -37304,14 +37928,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 177 */
+/* 179 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(97),
   /* template */
-  __webpack_require__(239),
+  __webpack_require__(241),
   /* scopeId */
   null,
   /* cssModules */
@@ -37338,14 +37962,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 178 */
+/* 180 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(98),
   /* template */
-  __webpack_require__(255),
+  __webpack_require__(257),
   /* scopeId */
   null,
   /* cssModules */
@@ -37372,14 +37996,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 179 */
+/* 181 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(99),
   /* template */
-  __webpack_require__(214),
+  __webpack_require__(216),
   /* scopeId */
   null,
   /* cssModules */
@@ -37406,14 +38030,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 180 */
+/* 182 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(100),
   /* template */
-  __webpack_require__(231),
+  __webpack_require__(233),
   /* scopeId */
   null,
   /* cssModules */
@@ -37440,14 +38064,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 181 */
+/* 183 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(103),
   /* template */
-  __webpack_require__(235),
+  __webpack_require__(237),
   /* scopeId */
   null,
   /* cssModules */
@@ -37474,14 +38098,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 182 */
+/* 184 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(104),
   /* template */
-  __webpack_require__(228),
+  __webpack_require__(230),
   /* scopeId */
   null,
   /* cssModules */
@@ -37508,14 +38132,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 183 */
+/* 185 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(105),
   /* template */
-  __webpack_require__(242),
+  __webpack_require__(244),
   /* scopeId */
   null,
   /* cssModules */
@@ -37542,14 +38166,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 184 */
+/* 186 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(106),
   /* template */
-  __webpack_require__(213),
+  __webpack_require__(215),
   /* scopeId */
   null,
   /* cssModules */
@@ -37576,18 +38200,18 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 185 */
+/* 187 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
 /* styles */
-__webpack_require__(257)
+__webpack_require__(259)
 
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(107),
   /* template */
-  __webpack_require__(246),
+  __webpack_require__(248),
   /* scopeId */
   null,
   /* cssModules */
@@ -37614,14 +38238,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 186 */
+/* 188 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(108),
   /* template */
-  __webpack_require__(234),
+  __webpack_require__(236),
   /* scopeId */
   null,
   /* cssModules */
@@ -37648,14 +38272,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 187 */
+/* 189 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(109),
   /* template */
-  __webpack_require__(244),
+  __webpack_require__(246),
   /* scopeId */
   null,
   /* cssModules */
@@ -37682,14 +38306,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 188 */
+/* 190 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(110),
   /* template */
-  __webpack_require__(252),
+  __webpack_require__(254),
   /* scopeId */
   null,
   /* cssModules */
@@ -37716,14 +38340,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 189 */
+/* 191 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(111),
   /* template */
-  __webpack_require__(227),
+  __webpack_require__(229),
   /* scopeId */
   null,
   /* cssModules */
@@ -37750,14 +38374,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 190 */
+/* 192 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(112),
   /* template */
-  __webpack_require__(256),
+  __webpack_require__(258),
   /* scopeId */
   null,
   /* cssModules */
@@ -37784,14 +38408,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 191 */
+/* 193 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(113),
   /* template */
-  __webpack_require__(236),
+  __webpack_require__(238),
   /* scopeId */
   null,
   /* cssModules */
@@ -37818,14 +38442,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 192 */
+/* 194 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(114),
   /* template */
-  __webpack_require__(241),
+  __webpack_require__(243),
   /* scopeId */
   null,
   /* cssModules */
@@ -37852,14 +38476,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 193 */
+/* 195 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(115),
   /* template */
-  __webpack_require__(216),
+  __webpack_require__(218),
   /* scopeId */
   null,
   /* cssModules */
@@ -37886,14 +38510,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 194 */
+/* 196 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(116),
   /* template */
-  __webpack_require__(212),
+  __webpack_require__(214),
   /* scopeId */
   null,
   /* cssModules */
@@ -37920,14 +38544,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 195 */
+/* 197 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(117),
   /* template */
-  __webpack_require__(250),
+  __webpack_require__(252),
   /* scopeId */
   null,
   /* cssModules */
@@ -37954,14 +38578,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 196 */
+/* 198 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(118),
   /* template */
-  __webpack_require__(254),
+  __webpack_require__(256),
   /* scopeId */
   null,
   /* cssModules */
@@ -37988,14 +38612,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 197 */
+/* 199 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(119),
   /* template */
-  __webpack_require__(232),
+  __webpack_require__(234),
   /* scopeId */
   null,
   /* cssModules */
@@ -38022,14 +38646,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 198 */
+/* 200 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(120),
   /* template */
-  __webpack_require__(238),
+  __webpack_require__(240),
   /* scopeId */
   null,
   /* cssModules */
@@ -38056,14 +38680,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 199 */
+/* 201 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(121),
   /* template */
-  __webpack_require__(243),
+  __webpack_require__(245),
   /* scopeId */
   null,
   /* cssModules */
@@ -38090,14 +38714,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 200 */
+/* 202 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(122),
   /* template */
-  __webpack_require__(225),
+  __webpack_require__(227),
   /* scopeId */
   null,
   /* cssModules */
@@ -38124,14 +38748,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 201 */
+/* 203 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(123),
   /* template */
-  __webpack_require__(221),
+  __webpack_require__(223),
   /* scopeId */
   null,
   /* cssModules */
@@ -38158,14 +38782,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 202 */
+/* 204 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(124),
   /* template */
-  __webpack_require__(248),
+  __webpack_require__(250),
   /* scopeId */
   null,
   /* cssModules */
@@ -38192,14 +38816,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 203 */
+/* 205 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(125),
   /* template */
-  __webpack_require__(237),
+  __webpack_require__(239),
   /* scopeId */
   null,
   /* cssModules */
@@ -38226,14 +38850,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 204 */
+/* 206 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(126),
   /* template */
-  __webpack_require__(247),
+  __webpack_require__(249),
   /* scopeId */
   null,
   /* cssModules */
@@ -38260,14 +38884,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 205 */
+/* 207 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(127),
   /* template */
-  __webpack_require__(230),
+  __webpack_require__(232),
   /* scopeId */
   null,
   /* cssModules */
@@ -38294,14 +38918,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 206 */
+/* 208 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(129),
   /* template */
-  __webpack_require__(249),
+  __webpack_require__(251),
   /* scopeId */
   null,
   /* cssModules */
@@ -38328,14 +38952,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 207 */
+/* 209 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(130),
   /* template */
-  __webpack_require__(222),
+  __webpack_require__(224),
   /* scopeId */
   null,
   /* cssModules */
@@ -38362,14 +38986,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 208 */
+/* 210 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(133),
   /* template */
-  __webpack_require__(224),
+  __webpack_require__(226),
   /* scopeId */
   null,
   /* cssModules */
@@ -38396,14 +39020,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 209 */
+/* 211 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(134),
   /* template */
-  __webpack_require__(217),
+  __webpack_require__(219),
   /* scopeId */
   null,
   /* cssModules */
@@ -38430,14 +39054,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 210 */
+/* 212 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(135),
   /* template */
-  __webpack_require__(220),
+  __webpack_require__(222),
   /* scopeId */
   null,
   /* cssModules */
@@ -38464,14 +39088,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 211 */
+/* 213 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(136),
   /* template */
-  __webpack_require__(251),
+  __webpack_require__(253),
   /* scopeId */
   null,
   /* cssModules */
@@ -38498,7 +39122,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 212 */
+/* 214 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -38859,7 +39483,7 @@ if (false) {
 }
 
 /***/ }),
-/* 213 */
+/* 215 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -38978,7 +39602,7 @@ if (false) {
 }
 
 /***/ }),
-/* 214 */
+/* 216 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -39035,7 +39659,7 @@ if (false) {
 }
 
 /***/ }),
-/* 215 */
+/* 217 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -39085,7 +39709,7 @@ if (false) {
 }
 
 /***/ }),
-/* 216 */
+/* 218 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -39359,7 +39983,7 @@ if (false) {
 }
 
 /***/ }),
-/* 217 */
+/* 219 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -39535,7 +40159,7 @@ if (false) {
 }
 
 /***/ }),
-/* 218 */
+/* 220 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -39725,7 +40349,7 @@ if (false) {
 }
 
 /***/ }),
-/* 219 */
+/* 221 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -39762,7 +40386,7 @@ if (false) {
 }
 
 /***/ }),
-/* 220 */
+/* 222 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -39875,7 +40499,7 @@ if (false) {
 }
 
 /***/ }),
-/* 221 */
+/* 223 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -39927,7 +40551,7 @@ if (false) {
 }
 
 /***/ }),
-/* 222 */
+/* 224 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -39950,7 +40574,7 @@ if (false) {
 }
 
 /***/ }),
-/* 223 */
+/* 225 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -40167,7 +40791,7 @@ if (false) {
 }
 
 /***/ }),
-/* 224 */
+/* 226 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -40220,7 +40844,7 @@ if (false) {
 }
 
 /***/ }),
-/* 225 */
+/* 227 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -40373,7 +40997,7 @@ if (false) {
 }
 
 /***/ }),
-/* 226 */
+/* 228 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -40472,7 +41096,7 @@ if (false) {
 }
 
 /***/ }),
-/* 227 */
+/* 229 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -40577,7 +41201,7 @@ if (false) {
 }
 
 /***/ }),
-/* 228 */
+/* 230 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -40728,7 +41352,7 @@ if (false) {
 }
 
 /***/ }),
-/* 229 */
+/* 231 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -40827,7 +41451,7 @@ if (false) {
 }
 
 /***/ }),
-/* 230 */
+/* 232 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -41185,7 +41809,7 @@ if (false) {
 }
 
 /***/ }),
-/* 231 */
+/* 233 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -41218,7 +41842,7 @@ if (false) {
 }
 
 /***/ }),
-/* 232 */
+/* 234 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -41293,7 +41917,7 @@ if (false) {
 }
 
 /***/ }),
-/* 233 */
+/* 235 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -41419,7 +42043,7 @@ if (false) {
 }
 
 /***/ }),
-/* 234 */
+/* 236 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -41867,7 +42491,7 @@ if (false) {
 }
 
 /***/ }),
-/* 235 */
+/* 237 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -42024,7 +42648,7 @@ if (false) {
 }
 
 /***/ }),
-/* 236 */
+/* 238 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -42265,7 +42889,7 @@ if (false) {
 }
 
 /***/ }),
-/* 237 */
+/* 239 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -42513,7 +43137,7 @@ if (false) {
 }
 
 /***/ }),
-/* 238 */
+/* 240 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -42694,7 +43318,7 @@ if (false) {
 }
 
 /***/ }),
-/* 239 */
+/* 241 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -42846,7 +43470,7 @@ if (false) {
 }
 
 /***/ }),
-/* 240 */
+/* 242 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -42983,7 +43607,7 @@ if (false) {
 }
 
 /***/ }),
-/* 241 */
+/* 243 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -43101,7 +43725,7 @@ if (false) {
 }
 
 /***/ }),
-/* 242 */
+/* 244 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -43501,7 +44125,7 @@ if (false) {
 }
 
 /***/ }),
-/* 243 */
+/* 245 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -43714,7 +44338,7 @@ if (false) {
 }
 
 /***/ }),
-/* 244 */
+/* 246 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -43803,7 +44427,7 @@ if (false) {
 }
 
 /***/ }),
-/* 245 */
+/* 247 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -43818,7 +44442,7 @@ if (false) {
 }
 
 /***/ }),
-/* 246 */
+/* 248 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -43935,7 +44559,7 @@ if (false) {
 }
 
 /***/ }),
-/* 247 */
+/* 249 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -44158,7 +44782,7 @@ if (false) {
 }
 
 /***/ }),
-/* 248 */
+/* 250 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -44326,7 +44950,7 @@ if (false) {
 }
 
 /***/ }),
-/* 249 */
+/* 251 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -44512,7 +45136,7 @@ if (false) {
 }
 
 /***/ }),
-/* 250 */
+/* 252 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -44836,7 +45460,7 @@ if (false) {
 }
 
 /***/ }),
-/* 251 */
+/* 253 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -44914,7 +45538,7 @@ if (false) {
 }
 
 /***/ }),
-/* 252 */
+/* 254 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -45085,7 +45709,7 @@ if (false) {
 }
 
 /***/ }),
-/* 253 */
+/* 255 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -45110,7 +45734,7 @@ if (false) {
 }
 
 /***/ }),
-/* 254 */
+/* 256 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -45183,7 +45807,7 @@ if (false) {
 }
 
 /***/ }),
-/* 255 */
+/* 257 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -45251,7 +45875,7 @@ if (false) {
 }
 
 /***/ }),
-/* 256 */
+/* 258 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -45492,17 +46116,17 @@ if (false) {
 }
 
 /***/ }),
-/* 257 */
+/* 259 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(150);
+var content = __webpack_require__(152);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(258)("6a8a845b", content, false);
+var update = __webpack_require__(260)("6a8a845b", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -45518,7 +46142,7 @@ if(false) {
 }
 
 /***/ }),
-/* 258 */
+/* 260 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -45537,7 +46161,7 @@ if (typeof DEBUG !== 'undefined' && DEBUG) {
   ) }
 }
 
-var listToStyles = __webpack_require__(259)
+var listToStyles = __webpack_require__(261)
 
 /*
 type StyleObject = {
@@ -45739,7 +46363,7 @@ function applyToTag (styleElement, obj) {
 
 
 /***/ }),
-/* 259 */
+/* 261 */
 /***/ (function(module, exports) {
 
 /**
@@ -45772,662 +46396,12 @@ module.exports = function listToStyles (parentId, list) {
 
 
 /***/ }),
-/* 260 */,
-/* 261 */
+/* 262 */,
+/* 263 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(51);
+module.exports = __webpack_require__(52);
 
-
-/***/ }),
-/* 262 */,
-/* 263 */,
-/* 264 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony default export */ __webpack_exports__["a"] = ([{
-   id: 1,
-   name: 'ผู้ชาย',
-   slug: 'men',
-   subcategory: [{
-      id: 1,
-      name: 'เสื้อผ้า',
-      slug: 'clothing',
-      category_id: 1,
-      type: [{
-         id: 2,
-         name: 'เสื้อเชิ้ต',
-         subcategory_id: 1
-      }, {
-         id: 3,
-         name: 'เสื้อยืด & เสื้อกล้าม',
-         subcategory_id: 1
-      }, {
-         id: 4,
-         name: 'แจ็คเก็ต',
-         subcategory_id: 1
-      }, {
-         id: 5,
-         name: 'เสื้อกันหนาว',
-         subcategory_id: 1
-      }, {
-         id: 6,
-         name: 'สูท',
-         subcategory_id: 1
-      }, {
-         id: 7,
-         name: 'ชุดออกกำลังกาย',
-         subcategory_id: 1
-      }, {
-         id: 8,
-         name: 'กางเกงขายาว',
-         subcategory_id: 1
-      }, {
-         id: 9,
-         name: 'กางเกงขาสั้น',
-         subcategory_id: 1
-      }, {
-         id: 10,
-         name: 'กางเกงยีนส์',
-         subcategory_id: 1
-      }, {
-         id: 11,
-         name: 'ชุดชั้นใน',
-         subcategory_id: 1
-      }, {
-         id: 12,
-         name: 'ถุงเท้า',
-         subcategory_id: 1
-      }, {
-         id: 13,
-         name: 'ชุดว่ายน้ำ',
-         subcategory_id: 1
-      }]
-   }, {
-      id: 2,
-      name: 'รองเท้า',
-      slug: 'shoes',
-      category_id: 1,
-      type: [{
-         id: 14,
-         name: 'รองเท้ากีฬา',
-         subcategory_id: 2
-      }, {
-         id: 15,
-         name: 'รองเท้าผ้าใบ',
-         subcategory_id: 2
-      }, {
-         id: 16,
-         name: 'รองเท้าบูท',
-         subcategory_id: 2
-      }, {
-         id: 17,
-         name: 'รองเท้าโลฟเฟอร์ & สลิปออน',
-         subcategory_id: 2
-      }, {
-         id: 18,
-         name: 'รองเท้าอ็อกซ์ฟอร์ด',
-         subcategory_id: 2
-      }, {
-         id: 19,
-         name: 'รองเท้าแตะ',
-         subcategory_id: 2
-      }]
-   }, {
-      id: 3,
-      name: 'เครื่องประดับ',
-      slug: 'accessories',
-      category_id: 1,
-      type: [{
-         id: 20,
-         name: 'แว่นกันแดด & แว่นตา',
-         subcategory_id: 3
-      }, {
-         id: 21,
-         name: 'หมวก',
-         subcategory_id: 3
-      }, {
-         id: 22,
-         name: 'เข็มขัด',
-         subcategory_id: 3
-      }, {
-         id: 23,
-         name: 'สร้อย แหวน ต่างหู',
-         subcategory_id: 3
-      }, {
-         id: 24,
-         name: 'นาฬิกา',
-         subcategory_id: 3
-      }, {
-         id: 25,
-         name: 'เนคไท & โบว์',
-         subcategory_id: 3
-      }, {
-         id: 26,
-         name: 'อื่นๆ',
-         subcategory_id: 3
-      }]
-   }]
-}, {
-   id: 2,
-   name: 'ผู้หญิง',
-   slug: 'women',
-   subcategory: [{
-      id: 4,
-      name: 'เสื้อผ้า',
-      slug: 'clothing',
-      category_id: 2,
-      type: [{
-         id: 27,
-         name: 'ชุดเดรส',
-         subcategory_id: 4
-      }, {
-         id: 28,
-         name: 'เสื้อ',
-         subcategory_id: 4
-      }, {
-         id: 29,
-         name: 'เสื้อกันหนาว',
-         subcategory_id: 4
-      }, {
-         id: 30,
-         name: 'สูท & แจ็คเก็ต',
-         subcategory_id: 4
-      }, {
-         id: 31,
-         name: 'ชุดออกกำลังกาย',
-         subcategory_id: 4
-      }, {
-         id: 32,
-         name: 'กางเกงขายาว',
-         subcategory_id: 4
-      }, {
-         id: 33,
-         name: 'กางเกงขาสั้น',
-         subcategory_id: 4
-      }, {
-         id: 34,
-         name: 'กางเกงยีนส์',
-         subcategory_id: 4
-      }, {
-         id: 35,
-         name: 'กระโปรง',
-         subcategory_id: 4
-      }, {
-         id: 36,
-         name: 'เลกกิ้ง',
-         subcategory_id: 4
-      }, {
-         id: 37,
-         name: 'ชุดชั้นใน',
-         subcategory_id: 4
-      }, {
-         id: 38,
-         name: 'ชุดว่ายน้ำ',
-         subcategory_id: 4
-      }, {
-         id: 39,
-         name: 'ถุงเท้า',
-         subcategory_id: 4
-      }]
-   }, {
-      id: 5,
-      name: 'รองเท้า',
-      slug: 'shoes',
-      category_id: 2,
-      type: [{
-         id: 40,
-         name: 'รองเท้ากีฬา',
-         subcategory_id: 5
-      }, {
-         id: 41,
-         name: 'รองเท้าผ้าใบ',
-         subcategory_id: 5
-      }, {
-         id: 42,
-         name: 'รองเท้าบูท',
-         subcategory_id: 5
-      }, {
-         id: 43,
-         name: 'รองเท้าส้นเตี้ย',
-         subcategory_id: 5
-      }, {
-         id: 44,
-         name: 'รองเท้าส้นสูง',
-         subcategory_id: 5
-      }, {
-         id: 45,
-         name: 'รองเท้าโลฟเฟอร์ & สลิปออน',
-         subcategory_id: 5
-      }, {
-         id: 46,
-         name: 'รองเท้าอ็อกซ์ฟอร์ด',
-         subcategory_id: 5
-      }, {
-         id: 47,
-         name: 'รองเท้าแตะ',
-         subcategory_id: 5
-      }]
-   }, {
-      id: 6,
-      name: 'เครื่องประดับ',
-      slug: 'accessories',
-      category_id: 2,
-      type: [{
-         id: 48,
-         name: 'แว่นกันแดด & แว่นตา',
-         subcategory_id: 6
-      }, {
-         id: 49,
-         name: 'หมวก',
-         subcategory_id: 6
-      }, {
-         id: 50,
-         name: 'เข็มขัด',
-         subcategory_id: 6
-      }, {
-         id: 51,
-         name: 'สร้อย แหวน ตุ้มหู',
-         subcategory_id: 6
-      }, {
-         id: 52,
-         name: 'นาฬิกา',
-         subcategory_id: 6
-      }, {
-         id: 53,
-         name: 'อื่นๆ',
-         subcategory_id: 6
-      }]
-   }]
-}, {
-   id: 3,
-   name: 'กระเป๋า',
-   slug: 'bags_luggage',
-   subcategory: [{
-      id: 7,
-      name: 'ผู้ชาย',
-      slug: 'men',
-      category_id: 3,
-      type: [{
-         id: 54,
-         name: 'กระเป๋าทั่วไป',
-         subcategory_id: 7
-      }, {
-         id: 55,
-         name: 'กระเป๋าสตางค์',
-         subcategory_id: 7
-      }]
-   }, {
-      id: 8,
-      name: 'ผู้หญิง',
-      slug: 'women',
-      category_id: 3,
-      type: [{
-         id: 56,
-         name: 'กระเป๋าถือ',
-         subcategory_id: 8
-      }, {
-         id: 57,
-         name: 'กระเป๋าสตางค์',
-         subcategory_id: 8
-      }, {
-         id: 58,
-         name: 'กระเป๋าอื่นๆ',
-         subcategory_id: 8
-      }]
-   }, {
-      id: 9,
-      name: 'กระเป๋าเดินทาง',
-      slug: 'luggage',
-      category_id: 3,
-      type: [{
-         id: 59,
-         name: 'กระเป๋าเดินทาง',
-         subcategory_id: 9
-      }, {
-         id: 60,
-         name: 'อุปกรณ์เดินทาง',
-         subcategory_id: 9
-      }]
-   }]
-}, {
-   id: 4,
-   name: 'เครื่องสำอาง',
-   slug: 'cosmetics',
-   subcategory: [{
-      id: 10,
-      name: 'เครื่องสำอางสำหรับใบหน้า',
-      slug: 'face',
-      category_id: 4,
-      type: [{
-         id: 61,
-         name: 'แป้ง',
-         subcategory_id: 10
-      }, {
-         id: 62,
-         name: 'บลัชออน',
-         subcategory_id: 10
-      }, {
-         id: 63,
-         name: 'บีบี & ซีซี ครีม',
-         subcategory_id: 10
-      }, {
-         id: 64,
-         name: 'รองพื้น',
-         subcategory_id: 10
-      }, {
-         id: 65,
-         name: 'ไพร์มเมอร์',
-         subcategory_id: 10
-      }, {
-         id: 66,
-         name: 'บรอนเซอร์ & ไฮไลท์',
-         subcategory_id: 10
-      }, {
-         id: 67,
-         name: 'คอนซีลเลอร์',
-         subcategory_id: 10
-      }]
-   }, {
-      id: 11,
-      name: 'เครื่องสำอางสำหรับดวงตา',
-      slug: 'eyes',
-      category_id: 4,
-      type: [{
-         id: 68,
-         name: 'มาสคาร่า',
-         subcategory_id: 11
-      }, {
-         id: 69,
-         name: 'อายไลเนอร์',
-         subcategory_id: 11
-      }, {
-         id: 70,
-         name: 'อายแชโดว์',
-         subcategory_id: 11
-      }, {
-         id: 71,
-         name: 'ผลิตภัณฑ์เกี่ยวกับขนตา',
-         subcategory_id: 11
-      }, {
-         id: 72,
-         name: 'ผลิตภัณฑ์เกี่ยวกับคิ้ว',
-         subcategory_id: 11
-      }]
-   }, {
-      id: 12,
-      name: 'เครื่องสำอางสำหรับปาก',
-      slug: 'lips',
-      category_id: 4,
-      type: [{
-         id: 73,
-         name: 'ลิปสติก',
-         subcategory_id: 12
-      }, {
-         id: 74,
-         name: 'ลิขวิดลิปสติก',
-         subcategory_id: 12
-      }, {
-         id: 75,
-         name: 'ลิปกลอส',
-         subcategory_id: 12
-      }, {
-         id: 76,
-         name: 'ดินสอเขียนริมฝีปาก',
-         subcategory_id: 12
-      }, {
-         id: 77,
-         name: 'ลิปทินท์',
-         subcategory_id: 12
-      }, {
-         id: 78,
-         name: 'ลิปพลัมพ์เพอร์',
-         subcategory_id: 12
-      }]
-   }, {
-      id: 13,
-      name: 'เครื่องสำอางสำหรับเล็บ',
-      slug: 'nails',
-      category_id: 4,
-      type: [{
-         id: 79,
-         name: 'ยาทาเล็บ',
-         subcategory_id: 13
-      }, {
-         id: 80,
-         name: 'น้ำยาล้างเล็บ',
-         subcategory_id: 13
-      }, {
-         id: 81,
-         name: 'ชุดแต่งเล็บ & อุปกรณ์เสริม',
-         subcategory_id: 13
-      }]
-   }, {
-      id: 14,
-      name: 'ชุดเซ็ทเครื่องสำอาง & พาเลตต์',
-      slug: 'sets',
-      category_id: 4,
-      type: []
-   }, {
-      id: 15,
-      name: 'ผลิตภัณฑ์ล้างเครื่องสำอาง',
-      slug: 'makeup_remover',
-      category_id: 4,
-      type: []
-   }, {
-      id: 16,
-      name: 'อุปกรณ์แต่งหน้า',
-      slug: 'tools',
-      category_id: 4,
-      type: [{
-         id: 82,
-         name: 'อุปกรณ์สำหรับใบหน้า',
-         subcategory_id: 16
-      }, {
-         id: 83,
-         name: 'อุปกรณ์สำหรับดวงตา',
-         subcategory_id: 16
-      }, {
-         id: 84,
-         name: 'อุปกรณ์สำหรับเล็บ',
-         subcategory_id: 16
-      }]
-   }]
-}, {
-   id: 5,
-   name: 'ดูแลผิว',
-   slug: 'skincare',
-   subcategory: [{
-      id: 17,
-      name: 'ผลิตภัณฑ์ดูแลผิวหน้า',
-      slug: 'face',
-      category_id: 5,
-      type: [{
-         id: 85,
-         name: 'ผลิตภัณฑ์ทำความสะอาดผิวหน้า',
-         subcategory_id: 17
-      }, {
-         id: 86,
-         name: 'มาส์กหน้า & ครีมพอกหน้า',
-         subcategory_id: 17
-      }, {
-         id: 87,
-         name: 'มอยเจอร์ไรเซอร์ & ครีมบำรุงผิวหน้า',
-         subcategory_id: 17
-      }, {
-         id: 88,
-         name: 'โทนเนอร์และมิสท์',
-         subcategory_id: 17
-      }, {
-         id: 89,
-         name: 'ผลิตภัณฑ์ขัดและลอกหน้า',
-         subcategory_id: 17
-      }]
-   }, {
-      id: 18,
-      name: 'ผลิตภัณฑ์ดูแลดวงตา',
-      slug: 'eyes',
-      category_id: 5,
-      type: []
-   }, {
-      id: 19,
-      name: 'ผลิตภัณฑ์ดูแลผิวกาย',
-      slug: 'body',
-      category_id: 5,
-      type: [{
-         id: 90,
-         name: 'ผลิตภัณฑ์ป้องกันแสงแดด',
-         subcategory_id: 19
-      }, {
-         id: 91,
-         name: 'ผลิตภัณฑ์บำรุงผิวกาย',
-         subcategory_id: 19
-      }]
-   }, {
-      id: 20,
-      name: 'น้ำหอม',
-      slug: 'fragrance',
-      category_id: 5,
-      type: [{
-         id: 92,
-         name: 'น้ำหอมผู้ชาย',
-         subcategory_id: 20
-      }, {
-         id: 93,
-         name: 'น้ำหอมผู้หญิง',
-         subcategory_id: 20
-      }]
-   }]
-}, {
-   id: 6,
-   name: 'ผลิตภัณฑ์เกี่ยวกับเส้นผม',
-   slug: 'hair',
-   subcategory: [{
-      id: 21,
-      name: 'จัดแต่งทรงผม',
-      slug: 'styling',
-      category_id: 6,
-      type: [{
-         id: 94,
-         name: 'ผลิตภัณฑ์เปลี่ยนสีผม',
-         subcategory_id: 21
-      }, {
-         id: 95,
-         name: 'สเปรย์',
-         subcategory_id: 21
-      }, {
-         id: 96,
-         name: 'แว็กซ์',
-         subcategory_id: 21
-      }, {
-         id: 97,
-         name: 'โพเมด',
-         subcategory_id: 21
-      }, {
-         id: 98,
-         name: 'มูส',
-         subcategory_id: 21
-      }, {
-         id: 99,
-         name: 'เจล',
-         subcategory_id: 21
-      }]
-   }, {
-      id: 22,
-      name: 'บำรุง & ดูแลเส้นผม',
-      slug: 'care',
-      category_id: 6,
-      type: [{
-         id: 100,
-         name: 'ทรีทเมนต์สำหรับผม',
-         subcategory_id: 22
-      }, {
-         id: 101,
-         name: 'แชมพู',
-         subcategory_id: 22
-      }, {
-         id: 102,
-         name: 'คอนดิชันเนอร์',
-         subcategory_id: 22
-      }]
-   }, {
-      id: 23,
-      name: 'อุปกรณ์ทำผม',
-      slug: 'tools',
-      category_id: 6,
-      type: [{
-         id: 103,
-         name: 'อุปกรณ์ดูแลเส้นผม',
-         subcategory_id: 23
-      }, {
-         id: 104,
-         name: 'วิก แฮร์พีซ คลิปต่อผม',
-         subcategory_id: 23
-      }, {
-         id: 105,
-         name: 'หวี แปรง',
-         subcategory_id: 23
-      }]
-   }]
-}, {
-   id: 7,
-   name: 'ของใช้ส่วนตัว',
-   slug: 'personal_care',
-   subcategory: [{
-      id: 24,
-      name: 'อาบน้ำ & ดูแลผิวกาย',
-      slug: 'baths_body',
-      category_id: 7,
-      type: [{
-         id: 106,
-         name: 'สบู่ก้อน & ครีมอาบน้ำ',
-         subcategory_id: 24
-      }, {
-         id: 107,
-         name: 'ผลิตภัณฑ์บำรุงผิวกาย',
-         subcategory_id: 24
-      }, {
-         id: 108,
-         name: 'ผลิตภัณฑ์ขัดผิวกาย',
-         subcategory_id: 24
-      }, {
-         id: 109,
-         name: 'ผลิตภัณฑ์ดับกลิ่นกาย',
-         subcategory_id: 24
-      }, {
-         id: 110,
-         name: 'ผลิตภัณฑ์กำจัดขน',
-         subcategory_id: 24
-      }]
-   }, {
-      id: 25,
-      name: 'กระดาษซับ สำลี & อื่นๆ',
-      slug: 'wipes_cotton',
-      category_id: 7,
-      type: []
-   }]
-}]);
-
-/***/ }),
-/* 265 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return categories; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__en__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__th__ = __webpack_require__(264);
-
-
-var categories = function categories(_ref) {
-  var locale = _ref.locale;
-
-  if (locale == 'th') {
-    return __WEBPACK_IMPORTED_MODULE_1__th__["a" /* default */];
-  } else {
-    return __WEBPACK_IMPORTED_MODULE_0__en__["a" /* default */];
-  }
-};
 
 /***/ })
-],[261]);
+],[263]);

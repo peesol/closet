@@ -41,7 +41,6 @@ Vue.use(VueProgressBar, {
 
 import {store} from './store/store'
 import {router} from './route/router'
-import parse from './category/en'
 
 window.addEventListener('load', function () {
    const vue = new Vue({
@@ -54,7 +53,6 @@ window.addEventListener('load', function () {
      store,
      router
    })
-   console.log(parse);
 });
 
 Vue.http.interceptors.push((request, next) => {

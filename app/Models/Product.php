@@ -34,7 +34,12 @@ class Product extends Model
       'shipping_fee',
       'shipping_inter',
     ];
-
+    public $hidden = [
+      'created_at',
+      'updated_at',
+      'shipping_inter',
+      'discount_date',
+    ];
     public function shop()
     {
     	return $this->belongsTo(Shop::class);

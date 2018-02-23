@@ -1,11 +1,6 @@
 export const setCount = (state, items) => {
   state.cart = items
 }
-
-export const checkout = (state, {shop}) => {
-  console.log('work');
-  state.checkout.push({ shop })
-}
 export const removeCount = (state) => {
   state.cart.splice(0, 1)
 }
