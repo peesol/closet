@@ -12,6 +12,7 @@
 
     <!-- Styles -->
     <link href="{{asset('css/all.css')}}" rel="stylesheet">
+    {{-- <link href="{{asset('css/main.css')}}" rel="stylesheet"> --}}
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Athiti" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/balloon-css/0.5.0/balloon.min.css">

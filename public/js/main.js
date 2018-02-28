@@ -18074,6 +18074,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -18089,14 +18090,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   mounted: function mounted() {
     var index = __WEBPACK_IMPORTED_MODULE_1_algoliasearch___default()('40LVMO82Y8', 'b1bd2a6d3bfdb0f70c02b69e9eb00472').initIndex('products');
 
-    __WEBPACK_IMPORTED_MODULE_0_autocomplete_js___default()('#search-bar', {}, {
+    __WEBPACK_IMPORTED_MODULE_0_autocomplete_js___default()('.search-input', {}, {
       source: __WEBPACK_IMPORTED_MODULE_0_autocomplete_js___default.a.sources.hits(index, { hitsPerPage: 10 }),
       templates: {
         suggestion: function suggestion(_suggestion) {
-          console.log(_suggestion);
-          return '<span>' + _suggestion._highlightResult.name.value + '</span>';
+          return _suggestion._highlightResult.name.value;
         }
       }
+    }).on('autocomplete:selected', function (event, suggestion, dataset) {
+      console.log(suggestion);
+      document.location.href = '/search/result?p=' + suggestion.name;
     });
   }
 });
@@ -50599,9 +50602,8 @@ if (false) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
-    staticClass: "panel-body"
+    staticClass: "search-form"
   }, [_c('form', {
-    staticClass: "input-group",
     on: {
       "submit": function($event) {
         $event.preventDefault();
@@ -50615,7 +50617,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       value: (_vm.keyword),
       expression: "keyword"
     }],
-    staticClass: "input-addon-field",
+    staticClass: "search-input",
     attrs: {
       "type": "text",
       "id": "search-bar"
@@ -50630,12 +50632,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }
   }), _vm._v(" "), _c('button', {
-    staticClass: "input-addon",
+    staticClass: "search-btn icon-search",
     attrs: {
-      "type": "submit",
-      "name": "button"
+      "type": "submit"
     }
-  }, [_vm._v("Search")])])])
+  })])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
