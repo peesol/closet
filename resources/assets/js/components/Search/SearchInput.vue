@@ -23,7 +23,7 @@ export default {
     }
   },
   mounted() {
-    const index = algolia('40LVMO82Y8', '38f8129c58ab41b8f1a255267024a454').initIndex('products')
+    const index = algolia('40LVMO82Y8', 'b1bd2a6d3bfdb0f70c02b69e9eb00472').initIndex('products')
 
     autocomplete('#search-bar', {}, {
       source: autocomplete.sources.hits(index, { hitsPerPage:  10 }),

@@ -2,12 +2,12 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
-const SearchFilter = require('../components/SearchFilter.vue');
+const SearchResult = require('../components/Search/SearchResult.vue');
 
 const routes = [
   {
     path: '/search/result',
-    component: SearchFilter,
+    component: SearchResult,
   }
 ];
 

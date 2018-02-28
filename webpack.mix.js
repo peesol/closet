@@ -19,6 +19,7 @@ mix.js([
 	'axios',
 	'vuex',
 	'dropzone',
+	'algoliasearch',
 	'vue-resource',
 	'vee-validate',
 	'vue-clickaway',
