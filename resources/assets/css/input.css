@@ -1,0 +1,131 @@
+.form-group {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.form-label {
+  width: 150px !important;
+}
+
+.full-label {
+  width: 100% !important;
+  font-size: 1.2em;
+}
+
+.input-group {
+  display: flex;
+}
+
+button.input-addon:hover, button.input-addon:focus {
+  opacity: 0.8
+}
+
+.input-addon {
+  font-size: 1em;
+  position: relative;
+  width: auto;
+  height: 40px;
+  padding: 10px;
+  border: transparent;
+  border-bottom: 3px solid #b5b5b5;
+  background-color: #efefef;
+}
+
+label.input-addon {
+  display: inline-block;
+  width: 100px;
+  text-align: right;
+  border-bottom: none;
+  background-color: transparent;
+  color: #6c6c6c;
+  font-weight: 600;
+}
+
+.input-addon span {
+  color: #6c6c6c;
+}
+
+.input-addon-field {
+  flex: 1;
+  font-size: 1em;
+  position: relative;
+  width: 100%;
+  height: 40px;
+  padding-left: 10px;
+  border: transparent;
+  background-color: #f9f9f9;
+  border-bottom: 3px solid #b5b5b5;
+}
+
+.input-addon-field:focus {
+  background-color: #ffffff;
+  border-bottom: 3px solid #ff8000;
+  outline: none;
+  transition: all 0.30s;
+}
+
+.file-input {
+  font-size: 1em;
+  position: relative;
+  width: 100%;
+  height: 30px;
+  padding: 8px;
+}
+
+.description-input {
+  resize: none;
+  font-size: 1em;
+  position: relative;
+  width: 100%;
+  height: 250px;
+  padding: 8px;
+  border: 1px solid #b5b5b5;
+  background-color: #f9f9f9;
+  border-bottom: 3px solid #b5b5b5;
+}
+
+.description-input:focus {
+  outline: none;
+  background-color: #ffffff;
+  border-bottom: 3px solid #ff8000;
+  transition: all 0.30s;
+}
+
+.form-input {
+  margin-bottom: 8px;
+  font-size: 1em;
+  position: relative;
+  width: 100%;
+  height: 40px;
+  padding-left: 10px;
+  border: 1px solid transparent;
+  background-color: #f9f9f9;
+  border-bottom: 3px solid #b5b5b5;
+}
+
+.form-input:focus {
+  background-color: #ffffff;
+  border-bottom: 3px solid #ff8000;
+  outline: none;
+  transition: all 0.30s;
+}
+
+.select-input {
+  font-size: 1.2em;
+  position: relative;
+  width: 100%;
+  height: 40px;
+  padding-left: 10px;
+  border: 1px solid #b5b5b5;
+  outline: none;
+}
+
+.error-input {
+  border: 1px solid #ff3333;
+}
+
+.error-input:focus {
+  border-bottom: 3px solid #ff3333;
+  outline: none;
+  transition: all 0.30s;
+}

@@ -10,7 +10,7 @@
 @section('content')
 
 <div class="container">
-  <div class="listing-panel">
+  <div class="small-panel">
     <div class="tab-nav" style="border: none;">
       <ul class="tab-nav-ul" style="border-top: none; border-bottom: 1px solid #efefef;">
         <button class="tab-nav-btn static current" onclick='document.location.href="/sell/product"'>{{__('message.new')}}</button>

@@ -1,20 +1,15 @@
 <template>
-<div v-on-clickaway="hide">
-  <div class="side-menu-btn" :class="{ 'open' : toggled }" @click.prevent="toggled = !toggled">
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-  </div>
-  <div  class="left-side-menu" v-bind:class="{'toggled' : toggled}">
-      <div class="sub-left-menu">
+<div v-on-clickaway="hide" class="float-left">
+  <button class="menu-btn icon-menu-1" :class="{ 'btn-active' : toggled }" @click.prevent="toggled = !toggled"></button>
+  <div  class="menu-wrapper" v-bind:class="{'toggled' : toggled}">
+      <div class="menu">
         <div id="full-line">
           <a href="/"><i class="icon-home"></i>&nbsp;Home</a>
           <a href="#"><span class="icon-fire"></span>&nbsp;trending</a>
           <a href="#"><span class="icon-shop"></span>&nbsp;Shops</a>
         </div>
         <div id="full-line">
-          <label id="alt-cat">account</label>
+          <label id="menu-label-grey">account</label>
           <div v-show="!$root.authenticated">
             <a :href="$root.url + '/login'">login</a>
             <a :href="$root.url + '/register'">register</a>
@@ -28,11 +23,11 @@
           </div>
         </div>
         <div id="full-line">
-          <a id="cat" href="" >Categories</a>
+          <a id="menu-label" href="" >Categories</a>
           <a :href="$root.url + '/category/' + key" v-for="(category, key) in categories">{{ category }}</a>
         </div>
 
-          <label id="alt-cat">Language</label>
+          <label id="menu-label-grey">Language</label>
           <language-select></language-select>
 
       </div>

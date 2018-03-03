@@ -20,22 +20,23 @@ export default {
   },
   methods: {
     search(keyword) {
-      document.location.href='/search/result?p=' +keyword
+      document.location.href = '/search/result?p=' + keyword
     }
   },
   mounted() {
     const index = algolia('40LVMO82Y8', 'b1bd2a6d3bfdb0f70c02b69e9eb00472').initIndex('products')
 
     autocomplete('.search-input', {}, {
-      source: autocomplete.sources.hits(index, { hitsPerPage:  10 }),
+      source: autocomplete.sources.hits(index, {
+        hitsPerPage: 10
+      }),
       templates: {
         suggestion(suggestion) {
           return suggestion._highlightResult.name.value
         }
       }
     }).on('autocomplete:selected', function(event, suggestion, dataset) {
-      console.log(suggestion);
-      document.location.href='/search/result?p=' + suggestion.name
+      document.location.href = '/search/result?p=' + suggestion.name
     });
   },
 }

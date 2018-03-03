@@ -6,7 +6,7 @@
 
 <div class="container">
             @if($shop->count())
-            <div class="shop-panel">
+            <div class="medium-panel">
               @include('shop.partials._header',[
                   'shop' => $shop
               ])

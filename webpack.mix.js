@@ -44,4 +44,5 @@ mix.styles([
 	'resources/assets/css/filter.css',
 	'resources/assets/css/home.css',
 	'resources/assets/css/table.css',
+	'resources/assets/css/menu.css',
 	], 'public/css/all.css');

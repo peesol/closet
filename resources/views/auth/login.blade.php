@@ -9,7 +9,8 @@
 
     <title>{{__('message.login')}} - {{ config('app.name') }}</title>
     <!-- Styles -->
-    <link href="https://s3-ap-southeast-1.amazonaws.com/files.closet/css/all.css" rel="stylesheet">
+        <link href="{{asset('css/main.css')}}" rel="stylesheet">
+    {{-- <link href="https://s3-ap-southeast-1.amazonaws.com/files.closet/css/all.css" rel="stylesheet"> --}}
     <!-- Scripts -->
     <script src="https://s3-ap-southeast-1.amazonaws.com/files.closet/js/main.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.11.1/typeahead.bundle.min.js"></script>
@@ -34,7 +35,7 @@ window.Closet = {
 @include('layouts.partials._navigation')
 
 <div class="container">
-            <div class="login-panel">
+            <div class="small-panel">
                 <div class="panel-heading"><h3 class="no-margin"><span class="icon-lock" style="color:#6c6c6c;"></span>{{__('message.login')}}</h3></div>
                 <div class="panel-body">
                    <form role="form" method="POST" action="{{ route('login') }}">

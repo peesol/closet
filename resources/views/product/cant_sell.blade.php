@@ -7,7 +7,7 @@
 @section('content')
 
 <div class="container">
-  <div class="shop-panel" style="border-radius: 5px; margin-bottom: 20px;">
+  <div class="medium-panel" style="border-radius: 5px; margin-bottom: 20px;">
     <div class="panel-body">
       <h4 class="red-font">{{__('message.cant_sell')}}</h4>
       <p>{{__('message.cant_sell_warn')}}</p>
@@ -15,7 +15,7 @@
     </div>
   </div>
 
-  <div class="listing-panel">
+  <div class="small-panel">
     <div class="cant-sell" style="padding: 35px 35px;">
       <cant-sell shop-slug="{{$shop->slug}}"></cant-sell>
     </div>

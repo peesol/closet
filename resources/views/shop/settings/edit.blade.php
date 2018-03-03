@@ -4,7 +4,7 @@
 @endsection
 @section('content')
 <div class="container">
-  <div class="listing-panel">
+  <div class="small-panel">
 
         <div class="tab-nav">
             <div class="tab-nav-ul">
@@ -18,7 +18,7 @@
         <div class="tab-content current" id="tab-1">
           <shop-edit shop-name="{{$shop->name}}"
             shop-description="{{$shop->description}}"
-            shop-thumbnail="{{$shop->getThumbnail()}}"
+            profile-thumbnailnail="{{$shop->getThumbnail()}}"
             shop-cover="{{$shop->getCover()}}"
             shop-slug="{{$shop->slug}}"
             user-address="{{$shop->user->address}}"

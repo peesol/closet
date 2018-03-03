@@ -5,7 +5,7 @@
 @section('content')
 
 <div class="container">
-  <div class="shop-panel">
+  <div class="medium-panel">
     <div class="panel-heading"><h3 class="no-margin" style="font-weight: 600;">{{__('message.promotions_manage')}}</h3></div>
 
     <div class="panel-body">

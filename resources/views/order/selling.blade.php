@@ -7,7 +7,7 @@
 @section('content')
 
 <div class="container">
-  <div class="shop-panel">
+  <div class="medium-panel">
     <div class="tab-nav">
         <ul class="tab-nav-ul">
             <button class="tab-nav-btn current">{{ __('message.selling_order')}}</button>

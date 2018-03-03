@@ -1,0 +1,147 @@
+.font-grey {
+  color: #6c6c6c !important; }
+
+.font-link {
+  color: #1782cf !important; }
+
+.font-red {
+  color: #ff3535 !important; }
+
+.font-green {
+  color: #4aae2a !important; }
+
+.red-bg {
+  background-color: #fe4747 !important; }
+
+.green-bg {
+  background-color: #4aae2a !important; }
+
+.font-light {
+  font-weight: 200 !important; }
+
+.font-normal {
+  font-weight: 400 !important; }
+
+.font-bold {
+  font-weight: 600 !important; }
+
+.font-small {
+  font-size: small !important; }
+
+.font-medium {
+  font-size: medium !important; }
+
+.font-large {
+  font-size: large !important; }
+
+.menu-btn {
+  border: none;
+  width: 50px;
+  height: 50px;
+  background-color: #fff;
+  color: #6c6c6c;
+  font-size: 1em; }
+  .menu-btn:hover {
+    color: #ff8000; }
+
+.menu-wrapper {
+  position: fixed;
+  height: 100%;
+  width: 0;
+  left: 0;
+  background-color: white;
+  border-right: 1px solid #eee;
+  top: 50px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  z-index: 9999; }
+
+.toggled {
+  width: 100%; }
+
+@media (min-width: 768px) {
+  .menu-wrapper {
+    position: fixed;
+    height: 100%;
+    width: 0;
+    background-color: white;
+    border-right: 1px solid #eee;
+    top: 50px;
+    z-index: 9999;
+    transition: all 0.5s ease; }
+
+  .toggled {
+    width: 240px; } }
+.scroll-bar {
+  overflow-y: auto; }
+
+.menu {
+  position: relative;
+  width: 100%;
+  height: calc(100% - 50px);
+  padding: 18px;
+  display: block; }
+  .menu a {
+    overflow: hidden;
+    font-size: 1.2em;
+    color: #ff8000;
+    padding: 10px 0px 10px 12px;
+    text-decoration: none;
+    display: block;
+    text-overflow: ellipsis;
+    white-space: nowrap; }
+    .menu a:hover {
+      background-color: #f7f7f7; }
+
+#menu-label {
+  overflow: hidden;
+  font-size: 1.2em;
+  color: #6c6c6c;
+  margin: 5px 0px 5px 0px;
+  padding: 10px 0px 0px 12px;
+  display: block;
+  text-decoration: underline; }
+  #menu-label:hover {
+    text-decoration: underline;
+    background-color: transparent; }
+
+#menu-label-grey {
+  overflow: hidden;
+  font-size: 1.2em;
+  color: #6c6c6c;
+  font-weight: 600;
+  margin: 0;
+  padding: 10px 0 10px 12px;
+  text-decoration: none;
+  display: block; }
+
+.lang-input {
+  width: 100%;
+  font-size: medium;
+  height: 40px;
+  outline: none;
+  padding: 5px; }
+
+@media (min-width: 768px) {
+  .menu {
+    position: relative;
+    width: 192px;
+    margin: 10px 24px 0px 24px;
+    padding: 0; }
+    .menu a {
+      font-size: 1em; }
+
+  #menu-label {
+    font-size: 1em;
+    color: #ff8000;
+    text-decoration: none; }
+
+  #menu-label-grey {
+    font-size: 1em;
+    color: #6c6c6c;
+    text-decoration: none; }
+
+  .lang-input {
+    width: 100%; } }
+
+/*# sourceMappingURL=menu.css.map */

@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="container">
-  <div class="shop-panel">
+  <div class="medium-panel">
     <div class="panel-heading">
       <h3 class="no-margin">{{__('message.collection')}}</h3>
     </div>

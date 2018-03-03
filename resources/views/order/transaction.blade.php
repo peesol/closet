@@ -30,7 +30,7 @@ window.Closet = {
   <div style="margin:20px;">
         <div class="container">
           @if(!$order->trans)
-          <div class="listing-panel">
+          <div class="small-panel">
             <div class="panel-heading">
               <h3 class="no-margin">{{__('message.transaction')}}</h3>
             </div>
@@ -97,7 +97,7 @@ window.Closet = {
           </div>
           @else
           <div style="margin-top:50px;">
-            <div class="shop-panel">
+            <div class="medium-panel">
               <div class="panel-body">
                 <h3 class="green-font">{{__('message.already_transacted')}}</h3>
               </div>

@@ -1,11 +1,12 @@
 <template>
 <div v-on-clickaway="hide" v-show="$root.authenticated">
-  <button class="dropdown-btn" @click.prevent="toggle(1)">Sell</button>
+  <cart-icon></cart-icon>
+  <button class="dropdown-btn" :class="{ 'btn-active' : toggled === 1 }" @click.prevent="toggle(1)">Sell</button>
   <div v-show="toggled === 1" class="dropdown-content">
     <a :href="$root.url + '/sell/new'">new</a>
     <a :href="$root.url + '/sell/used'">used</a>
   </div>
-  <button class="dropdown-btn" @click.prevent="toggle(2)"><span class="icon-user"></span></button>
+  <button class="dropdown-btn" :class="{ 'btn-active' : toggled === 2 }" @click.prevent="toggle(2)"><span class="icon-user"></span></button>
   <div @click.stop v-show="toggled === 2" class="dropdown-content">
     <div class="dropdown-name">{{userName}}</div>
     <a :href="$root.url + '/' + userShop">My closet</a>
@@ -32,8 +33,12 @@
 <script>
 import { mixin as clickaway } from 'vue-clickaway'
 import language from '../Language/DropdownLanguage.vue'
+import Cart from './CartIcon.vue'
 export default {
   mixins: [ clickaway ],
+  components: {
+    'cart-icon': Cart
+  },
   data() {
     return {
       toggled: null,

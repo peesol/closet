@@ -32,7 +32,7 @@ window.Closet = {
 
 <div class="container">
   @if(!$order->confirmed)
-  <div class="listing-panel">
+  <div class="small-panel">
     <div class="panel-heading">
       <h3 class="no-margin">{{__('message.confirmation')}}</h3>
     </div>
@@ -59,7 +59,7 @@ window.Closet = {
     </div>
   </div>
   @else
-  <div class="shop-panel">
+  <div class="medium-panel">
     <div class="panel-body">
       <h3 class="green-font">{{__('message.already_confirmed')}}</h3>
     </div>

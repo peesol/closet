@@ -1,63 +1,61 @@
 <template>
 <div class="follow-btn-wrap" v-if="canFollow">
-	<button v-if="userFollowed === false" @click.prevent="handle" class="follow-btn">{{$trans.translation.follow}}&nbsp</button>
-	<button v-if="userFollowed === true" @click.prevent="handle" class="unfollow-btn">{{$trans.translation.unfollow}}&nbsp</button>
+  <button v-if="userFollowed === false" @click.prevent="handle" class="follow-btn orange-btn">{{$trans.translation.follow}}</button>
+  <button v-if="userFollowed === true" @click.prevent="handle" class="follow-btn default">{{$trans.translation.unfollow}}</button>
 </div>
-
 </template>
 
 <script>
-	export default {
-		data() {
-			return {
-				followers: null,
-				userFollowed: false,
-				canFollow:false,
-				url: window.Closet.url,
-			}
-		},
+export default {
+  data() {
+    return {
+      followers: null,
+      userFollowed: false,
+      canFollow: false,
+    }
+  },
 
-		props: {
-			shopSlug: null
-		},
-		methods: {
-			getFollowStatus() {
-				axios.get(this.$root.url + '/follow/' + this.shopSlug)
-  					.then((response) => {
-  					  	this.followers = response.data.data.count;
-  					  	this.userFollowed = response.data.data.user_followed;
-  					  	this.canFollow = response.data.data.can_follow;
-  					})
-  					.catch((error) => {
-  					  console.log(error);
-  					});
-			},
+  props: {
+    shopSlug: null
+  },
+  methods: {
+    getFollowStatus() {
+      axios.get(this.$root.url + '/follow/' + this.shopSlug)
+        .then((response) => {
+          this.followers = response.data.data.count;
+          this.userFollowed = response.data.data.user_followed;
+          this.canFollow = response.data.data.can_follow;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
 
-			handle() {
-				if (this.userFollowed) {
-					this.unfollow();
-				} else {
-					this.follow();
-				}
+    handle() {
+      if (this.userFollowed) {
+        this.unfollow();
+      } else {
+        this.follow();
+      }
 
-			},
-			follow() {
-				this.userFollowed = true;
-				this.followers++;
-				axios.post(this.$root.url + '/follow/' + this.shopSlug);
-			},
-			unfollow() {
-				if(!confirm('Are you sure you want to unfollow?')){
-					return;
-				}
-				this.userFollowed = false;
-				this.followers--;
-				axios.delete(this.$root.url + '/follow/' + this.shopSlug);
-			}
-		},
+    },
+    follow() {
+      this.userFollowed = true;
+      this.followers++;
+      axios.post(this.$root.url + '/follow/' + this.shopSlug);
+    },
+    unfollow() {
+      if (!confirm('Are you sure you want to unfollow?')) {
+        return;
+      }
+      this.userFollowed = false;
+      this.followers--;
+      axios.delete(this.$root.url + '/follow/' + this.shopSlug);
+    }
+  },
 
-		created() {
-			this.getFollowStatus();
-		}
-	}
+  created() {
+    this.getFollowStatus();
+  }
+}
 </script>

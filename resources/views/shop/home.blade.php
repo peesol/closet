@@ -15,10 +15,8 @@
 
 <div class="container">
           @if($shop->count())
-            <div class="shop-panel">
-              @include('shop.partials._header',[
-                  'shop' => $shop
-              ])
+            <div class="medium-panel">
+              @include('shop.partials._header', [ 'shop' => $shop ])
                     <div class="tab-nav">
                         <ul class="tab-nav-ul">
                             <button class="tab-nav-btn static current"><span class="icon-home"></span><font>{{__('message.home')}}</font></button>

@@ -12,7 +12,7 @@ class EmailVerification extends Mailable
     use Queueable, SerializesModels;
 
     protected $user;
-    protected $locale;
+    public $locale;
     /**
      * Create a new message instance.
      *

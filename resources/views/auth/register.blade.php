@@ -4,7 +4,7 @@
 @endsection
 @section('content')
 <div class="container">
-            <div class="login-panel">
+            <div class="small-panel">
                 <div class="panel-heading"><h3 class="no-margin">{{__('message.register')}}</h3></div>
                 <div class="panel-body">
                     <form role="form" method="POST" action="{{ route('register') }}">

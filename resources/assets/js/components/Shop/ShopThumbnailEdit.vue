@@ -3,7 +3,7 @@
   <label class="full-label">{{$trans.translation.thumbnail}}</label>
   <form v-on:submit.prevent="edit" method="post">
     <div class="flex">
-        <div class="shop-thumb-input margin-top-10px">
+        <div class="profile-thumbnail-input margin-top-10px">
           <span class="icon-images"></span>
           <img :src="thumbnail">
         </div>

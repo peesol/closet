@@ -1,7 +1,5 @@
 <template>
-<div class="dropdown-btn">
-    <a :href="cartUrl"><span class="icon-cart"></span></a>
-    <label class="font-bold grey-font">{{ count }}</label>
+    <button class="dropdown-btn" :href="cartUrl"><span class="icon-cart">&nbsp;{{ count }}</span></button>
 </div>
 </template>
 

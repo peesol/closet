@@ -7,7 +7,7 @@
 @section('content')
 
 <div class="container">
-  <div class="shop-panel">
+  <div class="medium-panel">
     <product-stock></product-stock>
   </div>
 </div>

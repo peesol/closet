@@ -1,0 +1,50 @@
+.tab-nav
+  display: inline-block
+  width: 100%
+  border-bottom: 1px solid #efefef
+
+.tab-nav-ul
+  padding: 0
+  margin: 0
+  display: grid
+  width: 100%
+  grid-gap: 10px
+  grid-template-columns: repeat(4, minmax(60px, 1fr))
+  justify-items: center
+  button
+    height: 50px
+    color: #6c6c6c
+    border: none
+    background-color: #ffffff
+    font-size: 1em
+    font
+      display: none
+    span
+      display: block
+      font-size: 2em
+
+.tab-nav-btn
+  &.current, &.static.current
+    color: #ff8000 !important
+    font-weight: 600
+  &:hover
+    color: #ff8000
+
+@media (min-width: 768px)
+  .tab-nav-ul
+    display: block
+    padding-left: 40px
+    margin: 0
+    button
+      font
+        display: block
+      span
+        display: none
+  .tab-nav-btn
+    &.static
+      min-width: 100px !important
+      margin-right: 40px !important
+    &.current, &.static.current
+      color: #ff8000 !important
+      border-bottom: 3px solid #ff8000
+      font-weight: 600

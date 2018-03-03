@@ -7,7 +7,7 @@
   </head>
   <body>
     <div style="margin-top:50px;">
-      <div class="shop-panel">
+      <div class="medium-panel">
         <div class="panel-body">
           <h3 class="green-font">{{__('message.already_confirmed')}}</h3>
         </div>

@@ -1,4 +1,4 @@
-<nav class="navbar fixed-nav-bar">
+<nav id="full-line">
   <div class="nav-container">
     <side-menu></side-menu>
     <div class="main-logo"><a href="/"></a></div>
@@ -9,12 +9,10 @@
           <li><a href="{{ route('register') }}">{{__('message.register')}}</a></li>
       @else
 
-      <cart-icon></cart-icon>
-
-      <user-dropdown
+      <user-nav
       user-name="{{ Auth::user()->name }}"
       logout-route="{{ route('logout') }}"
-      user-shop="{{ Auth::user()->shop->slug }}"></user-dropdown>
+      user-shop="{{ Auth::user()->shop->slug }}"></user-nav>
       @endif
     </div>
   </div>

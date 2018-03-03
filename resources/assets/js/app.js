@@ -60,7 +60,7 @@ Vue.http.interceptors.push((request, next) => {
     next();
 })
 
-Vue.component('user-dropdown', require('./components/Navigation/UserDropdown.vue'));
+Vue.component('user-nav', require('./components/Navigation/UserNav.vue'));
 Vue.component('side-menu', require('./components/Navigation/SideMenu.vue'));
 Vue.component('product-vote', require('./components/Product/ProductVote.vue'));
 Vue.component('product-comment', require('./components/Product/ProductComment.vue'));
@@ -74,13 +74,12 @@ Vue.component('product-stock', require('./components/Product/ProductStock.vue'))
 Vue.component('product-choice', require('./components/Product/ProductChoice.vue'));
 Vue.component('follow-button', require('./components/Follow.vue'));
 Vue.component('add-to-cart', require('./components/Product/AddToCart.vue'));
-Vue.component('cart-icon', require('./components/CartIcon.vue'));
 Vue.component('cart', require('./components/Cart/Cart.vue'));
 Vue.component('shop-stats', require('./components/Shop/ShopStats.vue'));
 Vue.component('shop-vote', require('./components/Shop/ShopVote.vue'));
 Vue.component('shop-edit', require('./components/Shop/ShopEdit.vue'));
 Vue.component('shop-cover-edit', require('./components/Shop/ShopCoverEdit.vue'));
-Vue.component('shop-thumbnail-edit', require('./components/Shop/ShopThumbnailEdit.vue'));
+Vue.component('profile-thumbnailnail-edit', require('./components/Shop/ShopThumbnailEdit.vue'));
 Vue.component('shop-collection', require('./components/Shop/ShopCollection.vue'));
 Vue.component('shop-contact-edit', require('./components/Shop/ShopContactEdit.vue'));
 Vue.component('shop-account-edit', require('./components/Shop/ShopAccountEdit.vue'));
