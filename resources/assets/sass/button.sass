@@ -1,13 +1,25 @@
 %font-size-15
   font-size: 15px
 
-button
-  .default
-    color: #6c6c6c
-    background: #efefef
-    padding: 10px
+%btn-shadow
+  box-shadow: 0 3px 3px 0 rgba(0,0,0,0.14), 0 1px 7px 0 rgba(0,0,0,0.12), 0 3px 1px -1px rgba(0,0,0,0.2)
+
+%btn-radius
+  border-radius: 3px
+
+button.normal-sq
+  padding: 8px 15px
+
+button.default
+  @extend %btn-shadow
+  @extend %btn-radius
+  color: #6c6c6c
+  background: #efefef
+  padding: 10px
 
 .orange-btn
+  @extend %btn-shadow
+  @extend %btn-radius
   color: #ffffff
   background-color: #ff8000
 
@@ -32,6 +44,14 @@ button
 
 .vote-btn
   color: #b3b3b3
+
+.flat-btn
+  color: #ff8000
+  background-color: transparent
+  font-size: 1.5em
+  &:hover
+    background-color: #ff8000
+    color: #fff
 
 span.contact-btn, small.contact-btn
   position: relative

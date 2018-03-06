@@ -13589,7 +13589,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   }
 
   if (true) {
-    var Sortable = __webpack_require__(468);
+    var Sortable = __webpack_require__(472);
     module.exports = buildDraggable(Sortable);
   } else if (typeof define == "function" && define.amd) {
     define(['sortablejs'], function (Sortable) {
@@ -13865,7 +13865,7 @@ IndexCore.prototype.browseFrom = function(cursor, callback) {
 */
 IndexCore.prototype.searchForFacetValues = function(params, callback) {
   var clone = __webpack_require__(16);
-  var omit = __webpack_require__(210);
+  var omit = __webpack_require__(214);
   var usage = 'Usage: index.searchForFacetValues({facetName, facetQuery, ...params}[, callback])';
 
   if (params.facetName === undefined || params.facetQuery === undefined) {
@@ -14123,12 +14123,12 @@ module.exports = function merge(destination/* , sources */) {
 /* WEBPACK VAR INJECTION */(function(process) {
 
 var utils = __webpack_require__(5);
-var settle = __webpack_require__(230);
-var buildURL = __webpack_require__(233);
-var parseHeaders = __webpack_require__(239);
-var isURLSameOrigin = __webpack_require__(237);
+var settle = __webpack_require__(234);
+var buildURL = __webpack_require__(237);
+var parseHeaders = __webpack_require__(243);
+var isURLSameOrigin = __webpack_require__(241);
 var createError = __webpack_require__(126);
-var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(232);
+var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(236);
 
 module.exports = function xhrAdapter(config) {
   return new Promise(function dispatchXhrRequest(resolve, reject) {
@@ -14224,7 +14224,7 @@ module.exports = function xhrAdapter(config) {
     // This is only done if running in a standard browser environment.
     // Specifically not if we're in a web worker, or react-native.
     if (utils.isStandardBrowserEnv()) {
-      var cookies = __webpack_require__(235);
+      var cookies = __webpack_require__(239);
 
       // Add xsrf header
       var xsrfValue = (config.withCredentials || isURLSameOrigin(config.url)) && config.xsrfCookieName ?
@@ -14348,7 +14348,7 @@ module.exports = function isCancel(value) {
 "use strict";
 
 
-var enhanceError = __webpack_require__(229);
+var enhanceError = __webpack_require__(233);
 
 /**
  * Create an Error with the specified message, config, error code, and response.
@@ -14396,15 +14396,15 @@ module.exports = function clone(obj) {
 
 /***/ }),
 
-/***/ 202:
+/***/ 206:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = AlgoliaSearch;
 
-var Index = __webpack_require__(204);
+var Index = __webpack_require__(208);
 var deprecate = __webpack_require__(71);
 var deprecatedMessage = __webpack_require__(72);
-var AlgoliaSearchCore = __webpack_require__(203);
+var AlgoliaSearchCore = __webpack_require__(207);
 var inherits = __webpack_require__(37);
 var errors = __webpack_require__(23);
 
@@ -15059,7 +15059,7 @@ function notImplemented() {
 
 /***/ }),
 
-/***/ 203:
+/***/ 207:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process) {module.exports = AlgoliaSearchCore;
@@ -15067,7 +15067,7 @@ function notImplemented() {
 var errors = __webpack_require__(23);
 var exitPromise = __webpack_require__(117);
 var IndexCore = __webpack_require__(115);
-var store = __webpack_require__(212);
+var store = __webpack_require__(216);
 
 // We will always put the API KEY in the JSON body in case of too long API KEY,
 // to avoid query string being too long and failing in various conditions (our server limit, browser limit,
@@ -15896,7 +15896,7 @@ function removeCredentials(headers) {
 
 /***/ }),
 
-/***/ 204:
+/***/ 208:
 /***/ (function(module, exports, __webpack_require__) {
 
 var inherits = __webpack_require__(37);
@@ -16329,7 +16329,7 @@ Index.prototype.browseAll = function(query, queryParameters) {
 
   var merge = __webpack_require__(118);
 
-  var IndexBrowser = __webpack_require__(205);
+  var IndexBrowser = __webpack_require__(209);
 
   var browser = new IndexBrowser();
   var client = this.as;
@@ -17133,7 +17133,7 @@ Index.prototype.updateApiKey = function(key, acls, params, callback) {
 
 /***/ }),
 
-/***/ 205:
+/***/ 209:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17176,412 +17176,6 @@ IndexBrowser.prototype._clean = function() {
   this.removeAllListeners('error');
   this.removeAllListeners('result');
 };
-
-
-/***/ }),
-
-/***/ 206:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {
-
-var global = __webpack_require__(307);
-var Promise = global.Promise || __webpack_require__(306).Promise;
-
-// This is the standalone browser build entry point
-// Browser implementation of the Algolia Search JavaScript client,
-// using XMLHttpRequest, XDomainRequest and JSONP as fallback
-module.exports = function createAlgoliasearch(AlgoliaSearch, uaSuffix) {
-  var inherits = __webpack_require__(37);
-  var errors = __webpack_require__(23);
-  var inlineHeaders = __webpack_require__(208);
-  var jsonpRequest = __webpack_require__(209);
-  var places = __webpack_require__(211);
-  uaSuffix = uaSuffix || '';
-
-  if (process.env.NODE_ENV === 'debug') {
-    __webpack_require__(36).enable('algoliasearch*');
-  }
-
-  function algoliasearch(applicationID, apiKey, opts) {
-    var cloneDeep = __webpack_require__(16);
-
-    var getDocumentProtocol = __webpack_require__(207);
-
-    opts = cloneDeep(opts || {});
-
-    if (opts.protocol === undefined) {
-      opts.protocol = getDocumentProtocol();
-    }
-
-    opts._ua = opts._ua || algoliasearch.ua;
-
-    return new AlgoliaSearchBrowser(applicationID, apiKey, opts);
-  }
-
-  algoliasearch.version = __webpack_require__(213);
-  algoliasearch.ua = 'Algolia for vanilla JavaScript ' + uaSuffix + algoliasearch.version;
-  algoliasearch.initPlaces = places(algoliasearch);
-
-  // we expose into window no matter how we are used, this will allow
-  // us to easily debug any website running algolia
-  global.__algolia = {
-    debug: __webpack_require__(36),
-    algoliasearch: algoliasearch
-  };
-
-  var support = {
-    hasXMLHttpRequest: 'XMLHttpRequest' in global,
-    hasXDomainRequest: 'XDomainRequest' in global
-  };
-
-  if (support.hasXMLHttpRequest) {
-    support.cors = 'withCredentials' in new XMLHttpRequest();
-  }
-
-  function AlgoliaSearchBrowser() {
-    // call AlgoliaSearch constructor
-    AlgoliaSearch.apply(this, arguments);
-  }
-
-  inherits(AlgoliaSearchBrowser, AlgoliaSearch);
-
-  AlgoliaSearchBrowser.prototype._request = function request(url, opts) {
-    return new Promise(function wrapRequest(resolve, reject) {
-      // no cors or XDomainRequest, no request
-      if (!support.cors && !support.hasXDomainRequest) {
-        // very old browser, not supported
-        reject(new errors.Network('CORS not supported'));
-        return;
-      }
-
-      url = inlineHeaders(url, opts.headers);
-
-      var body = opts.body;
-      var req = support.cors ? new XMLHttpRequest() : new XDomainRequest();
-      var reqTimeout;
-      var timedOut;
-      var connected = false;
-
-      reqTimeout = setTimeout(onTimeout, opts.timeouts.connect);
-      // we set an empty onprogress listener
-      // so that XDomainRequest on IE9 is not aborted
-      // refs:
-      //  - https://github.com/algolia/algoliasearch-client-js/issues/76
-      //  - https://social.msdn.microsoft.com/Forums/ie/en-US/30ef3add-767c-4436-b8a9-f1ca19b4812e/ie9-rtm-xdomainrequest-issued-requests-may-abort-if-all-event-handlers-not-specified?forum=iewebdevelopment
-      req.onprogress = onProgress;
-      if ('onreadystatechange' in req) req.onreadystatechange = onReadyStateChange;
-      req.onload = onLoad;
-      req.onerror = onError;
-
-      // do not rely on default XHR async flag, as some analytics code like hotjar
-      // breaks it and set it to false by default
-      if (req instanceof XMLHttpRequest) {
-        req.open(opts.method, url, true);
-      } else {
-        req.open(opts.method, url);
-      }
-
-      // headers are meant to be sent after open
-      if (support.cors) {
-        if (body) {
-          if (opts.method === 'POST') {
-            // https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS#Simple_requests
-            req.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
-          } else {
-            req.setRequestHeader('content-type', 'application/json');
-          }
-        }
-        req.setRequestHeader('accept', 'application/json');
-      }
-
-      req.send(body);
-
-      // event object not received in IE8, at least
-      // but we do not use it, still important to note
-      function onLoad(/* event */) {
-        // When browser does not supports req.timeout, we can
-        // have both a load and timeout event, since handled by a dumb setTimeout
-        if (timedOut) {
-          return;
-        }
-
-        clearTimeout(reqTimeout);
-
-        var out;
-
-        try {
-          out = {
-            body: JSON.parse(req.responseText),
-            responseText: req.responseText,
-            statusCode: req.status,
-            // XDomainRequest does not have any response headers
-            headers: req.getAllResponseHeaders && req.getAllResponseHeaders() || {}
-          };
-        } catch (e) {
-          out = new errors.UnparsableJSON({
-            more: req.responseText
-          });
-        }
-
-        if (out instanceof errors.UnparsableJSON) {
-          reject(out);
-        } else {
-          resolve(out);
-        }
-      }
-
-      function onError(event) {
-        if (timedOut) {
-          return;
-        }
-
-        clearTimeout(reqTimeout);
-
-        // error event is trigerred both with XDR/XHR on:
-        //   - DNS error
-        //   - unallowed cross domain request
-        reject(
-          new errors.Network({
-            more: event
-          })
-        );
-      }
-
-      function onTimeout() {
-        timedOut = true;
-        req.abort();
-
-        reject(new errors.RequestTimeout());
-      }
-
-      function onConnect() {
-        connected = true;
-        clearTimeout(reqTimeout);
-        reqTimeout = setTimeout(onTimeout, opts.timeouts.complete);
-      }
-
-      function onProgress() {
-        if (!connected) onConnect();
-      }
-
-      function onReadyStateChange() {
-        if (!connected && req.readyState > 1) onConnect();
-      }
-    });
-  };
-
-  AlgoliaSearchBrowser.prototype._request.fallback = function requestFallback(url, opts) {
-    url = inlineHeaders(url, opts.headers);
-
-    return new Promise(function wrapJsonpRequest(resolve, reject) {
-      jsonpRequest(url, opts, function jsonpRequestDone(err, content) {
-        if (err) {
-          reject(err);
-          return;
-        }
-
-        resolve(content);
-      });
-    });
-  };
-
-  AlgoliaSearchBrowser.prototype._promise = {
-    reject: function rejectPromise(val) {
-      return Promise.reject(val);
-    },
-    resolve: function resolvePromise(val) {
-      return Promise.resolve(val);
-    },
-    delay: function delayPromise(ms) {
-      return new Promise(function resolveOnTimeout(resolve/* , reject*/) {
-        setTimeout(resolve, ms);
-      });
-    }
-  };
-
-  return algoliasearch;
-};
-
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
-
-/***/ }),
-
-/***/ 207:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = getDocumentProtocol;
-
-function getDocumentProtocol() {
-  var protocol = window.document.location.protocol;
-
-  // when in `file:` mode (local html file), default to `http:`
-  if (protocol !== 'http:' && protocol !== 'https:') {
-    protocol = 'http:';
-  }
-
-  return protocol;
-}
-
-
-/***/ }),
-
-/***/ 208:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = inlineHeaders;
-
-var encode = __webpack_require__(465);
-
-function inlineHeaders(url, headers) {
-  if (/\?/.test(url)) {
-    url += '&';
-  } else {
-    url += '?';
-  }
-
-  return url + encode(headers);
-}
-
-
-/***/ }),
-
-/***/ 209:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = jsonpRequest;
-
-var errors = __webpack_require__(23);
-
-var JSONPCounter = 0;
-
-function jsonpRequest(url, opts, cb) {
-  if (opts.method !== 'GET') {
-    cb(new Error('Method ' + opts.method + ' ' + url + ' is not supported by JSONP.'));
-    return;
-  }
-
-  opts.debug('JSONP: start');
-
-  var cbCalled = false;
-  var timedOut = false;
-
-  JSONPCounter += 1;
-  var head = document.getElementsByTagName('head')[0];
-  var script = document.createElement('script');
-  var cbName = 'algoliaJSONP_' + JSONPCounter;
-  var done = false;
-
-  window[cbName] = function(data) {
-    removeGlobals();
-
-    if (timedOut) {
-      opts.debug('JSONP: Late answer, ignoring');
-      return;
-    }
-
-    cbCalled = true;
-
-    clean();
-
-    cb(null, {
-      body: data/* ,
-      // We do not send the statusCode, there's no statusCode in JSONP, it will be
-      // computed using data.status && data.message like with XDR
-      statusCode*/
-    });
-  };
-
-  // add callback by hand
-  url += '&callback=' + cbName;
-
-  // add body params manually
-  if (opts.jsonBody && opts.jsonBody.params) {
-    url += '&' + opts.jsonBody.params;
-  }
-
-  var ontimeout = setTimeout(timeout, opts.timeouts.complete);
-
-  // script onreadystatechange needed only for
-  // <= IE8
-  // https://github.com/angular/angular.js/issues/4523
-  script.onreadystatechange = readystatechange;
-  script.onload = success;
-  script.onerror = error;
-
-  script.async = true;
-  script.defer = true;
-  script.src = url;
-  head.appendChild(script);
-
-  function success() {
-    opts.debug('JSONP: success');
-
-    if (done || timedOut) {
-      return;
-    }
-
-    done = true;
-
-    // script loaded but did not call the fn => script loading error
-    if (!cbCalled) {
-      opts.debug('JSONP: Fail. Script loaded but did not call the callback');
-      clean();
-      cb(new errors.JSONPScriptFail());
-    }
-  }
-
-  function readystatechange() {
-    if (this.readyState === 'loaded' || this.readyState === 'complete') {
-      success();
-    }
-  }
-
-  function clean() {
-    clearTimeout(ontimeout);
-    script.onload = null;
-    script.onreadystatechange = null;
-    script.onerror = null;
-    head.removeChild(script);
-  }
-
-  function removeGlobals() {
-    try {
-      delete window[cbName];
-      delete window[cbName + '_loaded'];
-    } catch (e) {
-      window[cbName] = window[cbName + '_loaded'] = undefined;
-    }
-  }
-
-  function timeout() {
-    opts.debug('JSONP: Script timeout');
-    timedOut = true;
-    clean();
-    cb(new errors.RequestTimeout());
-  }
-
-  function error() {
-    opts.debug('JSONP: Script error');
-
-    if (done || timedOut) {
-      return;
-    }
-
-    clean();
-    cb(new errors.JSONPScriptError());
-  }
-}
 
 
 /***/ }),
@@ -27850,8 +27444,414 @@ return jQuery;
 /***/ 210:
 /***/ (function(module, exports, __webpack_require__) {
 
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {
+
+var global = __webpack_require__(311);
+var Promise = global.Promise || __webpack_require__(310).Promise;
+
+// This is the standalone browser build entry point
+// Browser implementation of the Algolia Search JavaScript client,
+// using XMLHttpRequest, XDomainRequest and JSONP as fallback
+module.exports = function createAlgoliasearch(AlgoliaSearch, uaSuffix) {
+  var inherits = __webpack_require__(37);
+  var errors = __webpack_require__(23);
+  var inlineHeaders = __webpack_require__(212);
+  var jsonpRequest = __webpack_require__(213);
+  var places = __webpack_require__(215);
+  uaSuffix = uaSuffix || '';
+
+  if (process.env.NODE_ENV === 'debug') {
+    __webpack_require__(36).enable('algoliasearch*');
+  }
+
+  function algoliasearch(applicationID, apiKey, opts) {
+    var cloneDeep = __webpack_require__(16);
+
+    var getDocumentProtocol = __webpack_require__(211);
+
+    opts = cloneDeep(opts || {});
+
+    if (opts.protocol === undefined) {
+      opts.protocol = getDocumentProtocol();
+    }
+
+    opts._ua = opts._ua || algoliasearch.ua;
+
+    return new AlgoliaSearchBrowser(applicationID, apiKey, opts);
+  }
+
+  algoliasearch.version = __webpack_require__(217);
+  algoliasearch.ua = 'Algolia for vanilla JavaScript ' + uaSuffix + algoliasearch.version;
+  algoliasearch.initPlaces = places(algoliasearch);
+
+  // we expose into window no matter how we are used, this will allow
+  // us to easily debug any website running algolia
+  global.__algolia = {
+    debug: __webpack_require__(36),
+    algoliasearch: algoliasearch
+  };
+
+  var support = {
+    hasXMLHttpRequest: 'XMLHttpRequest' in global,
+    hasXDomainRequest: 'XDomainRequest' in global
+  };
+
+  if (support.hasXMLHttpRequest) {
+    support.cors = 'withCredentials' in new XMLHttpRequest();
+  }
+
+  function AlgoliaSearchBrowser() {
+    // call AlgoliaSearch constructor
+    AlgoliaSearch.apply(this, arguments);
+  }
+
+  inherits(AlgoliaSearchBrowser, AlgoliaSearch);
+
+  AlgoliaSearchBrowser.prototype._request = function request(url, opts) {
+    return new Promise(function wrapRequest(resolve, reject) {
+      // no cors or XDomainRequest, no request
+      if (!support.cors && !support.hasXDomainRequest) {
+        // very old browser, not supported
+        reject(new errors.Network('CORS not supported'));
+        return;
+      }
+
+      url = inlineHeaders(url, opts.headers);
+
+      var body = opts.body;
+      var req = support.cors ? new XMLHttpRequest() : new XDomainRequest();
+      var reqTimeout;
+      var timedOut;
+      var connected = false;
+
+      reqTimeout = setTimeout(onTimeout, opts.timeouts.connect);
+      // we set an empty onprogress listener
+      // so that XDomainRequest on IE9 is not aborted
+      // refs:
+      //  - https://github.com/algolia/algoliasearch-client-js/issues/76
+      //  - https://social.msdn.microsoft.com/Forums/ie/en-US/30ef3add-767c-4436-b8a9-f1ca19b4812e/ie9-rtm-xdomainrequest-issued-requests-may-abort-if-all-event-handlers-not-specified?forum=iewebdevelopment
+      req.onprogress = onProgress;
+      if ('onreadystatechange' in req) req.onreadystatechange = onReadyStateChange;
+      req.onload = onLoad;
+      req.onerror = onError;
+
+      // do not rely on default XHR async flag, as some analytics code like hotjar
+      // breaks it and set it to false by default
+      if (req instanceof XMLHttpRequest) {
+        req.open(opts.method, url, true);
+      } else {
+        req.open(opts.method, url);
+      }
+
+      // headers are meant to be sent after open
+      if (support.cors) {
+        if (body) {
+          if (opts.method === 'POST') {
+            // https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS#Simple_requests
+            req.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
+          } else {
+            req.setRequestHeader('content-type', 'application/json');
+          }
+        }
+        req.setRequestHeader('accept', 'application/json');
+      }
+
+      req.send(body);
+
+      // event object not received in IE8, at least
+      // but we do not use it, still important to note
+      function onLoad(/* event */) {
+        // When browser does not supports req.timeout, we can
+        // have both a load and timeout event, since handled by a dumb setTimeout
+        if (timedOut) {
+          return;
+        }
+
+        clearTimeout(reqTimeout);
+
+        var out;
+
+        try {
+          out = {
+            body: JSON.parse(req.responseText),
+            responseText: req.responseText,
+            statusCode: req.status,
+            // XDomainRequest does not have any response headers
+            headers: req.getAllResponseHeaders && req.getAllResponseHeaders() || {}
+          };
+        } catch (e) {
+          out = new errors.UnparsableJSON({
+            more: req.responseText
+          });
+        }
+
+        if (out instanceof errors.UnparsableJSON) {
+          reject(out);
+        } else {
+          resolve(out);
+        }
+      }
+
+      function onError(event) {
+        if (timedOut) {
+          return;
+        }
+
+        clearTimeout(reqTimeout);
+
+        // error event is trigerred both with XDR/XHR on:
+        //   - DNS error
+        //   - unallowed cross domain request
+        reject(
+          new errors.Network({
+            more: event
+          })
+        );
+      }
+
+      function onTimeout() {
+        timedOut = true;
+        req.abort();
+
+        reject(new errors.RequestTimeout());
+      }
+
+      function onConnect() {
+        connected = true;
+        clearTimeout(reqTimeout);
+        reqTimeout = setTimeout(onTimeout, opts.timeouts.complete);
+      }
+
+      function onProgress() {
+        if (!connected) onConnect();
+      }
+
+      function onReadyStateChange() {
+        if (!connected && req.readyState > 1) onConnect();
+      }
+    });
+  };
+
+  AlgoliaSearchBrowser.prototype._request.fallback = function requestFallback(url, opts) {
+    url = inlineHeaders(url, opts.headers);
+
+    return new Promise(function wrapJsonpRequest(resolve, reject) {
+      jsonpRequest(url, opts, function jsonpRequestDone(err, content) {
+        if (err) {
+          reject(err);
+          return;
+        }
+
+        resolve(content);
+      });
+    });
+  };
+
+  AlgoliaSearchBrowser.prototype._promise = {
+    reject: function rejectPromise(val) {
+      return Promise.reject(val);
+    },
+    resolve: function resolvePromise(val) {
+      return Promise.resolve(val);
+    },
+    delay: function delayPromise(ms) {
+      return new Promise(function resolveOnTimeout(resolve/* , reject*/) {
+        setTimeout(resolve, ms);
+      });
+    }
+  };
+
+  return algoliasearch;
+};
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+
+/***/ }),
+
+/***/ 211:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = getDocumentProtocol;
+
+function getDocumentProtocol() {
+  var protocol = window.document.location.protocol;
+
+  // when in `file:` mode (local html file), default to `http:`
+  if (protocol !== 'http:' && protocol !== 'https:') {
+    protocol = 'http:';
+  }
+
+  return protocol;
+}
+
+
+/***/ }),
+
+/***/ 212:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = inlineHeaders;
+
+var encode = __webpack_require__(469);
+
+function inlineHeaders(url, headers) {
+  if (/\?/.test(url)) {
+    url += '&';
+  } else {
+    url += '?';
+  }
+
+  return url + encode(headers);
+}
+
+
+/***/ }),
+
+/***/ 213:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = jsonpRequest;
+
+var errors = __webpack_require__(23);
+
+var JSONPCounter = 0;
+
+function jsonpRequest(url, opts, cb) {
+  if (opts.method !== 'GET') {
+    cb(new Error('Method ' + opts.method + ' ' + url + ' is not supported by JSONP.'));
+    return;
+  }
+
+  opts.debug('JSONP: start');
+
+  var cbCalled = false;
+  var timedOut = false;
+
+  JSONPCounter += 1;
+  var head = document.getElementsByTagName('head')[0];
+  var script = document.createElement('script');
+  var cbName = 'algoliaJSONP_' + JSONPCounter;
+  var done = false;
+
+  window[cbName] = function(data) {
+    removeGlobals();
+
+    if (timedOut) {
+      opts.debug('JSONP: Late answer, ignoring');
+      return;
+    }
+
+    cbCalled = true;
+
+    clean();
+
+    cb(null, {
+      body: data/* ,
+      // We do not send the statusCode, there's no statusCode in JSONP, it will be
+      // computed using data.status && data.message like with XDR
+      statusCode*/
+    });
+  };
+
+  // add callback by hand
+  url += '&callback=' + cbName;
+
+  // add body params manually
+  if (opts.jsonBody && opts.jsonBody.params) {
+    url += '&' + opts.jsonBody.params;
+  }
+
+  var ontimeout = setTimeout(timeout, opts.timeouts.complete);
+
+  // script onreadystatechange needed only for
+  // <= IE8
+  // https://github.com/angular/angular.js/issues/4523
+  script.onreadystatechange = readystatechange;
+  script.onload = success;
+  script.onerror = error;
+
+  script.async = true;
+  script.defer = true;
+  script.src = url;
+  head.appendChild(script);
+
+  function success() {
+    opts.debug('JSONP: success');
+
+    if (done || timedOut) {
+      return;
+    }
+
+    done = true;
+
+    // script loaded but did not call the fn => script loading error
+    if (!cbCalled) {
+      opts.debug('JSONP: Fail. Script loaded but did not call the callback');
+      clean();
+      cb(new errors.JSONPScriptFail());
+    }
+  }
+
+  function readystatechange() {
+    if (this.readyState === 'loaded' || this.readyState === 'complete') {
+      success();
+    }
+  }
+
+  function clean() {
+    clearTimeout(ontimeout);
+    script.onload = null;
+    script.onreadystatechange = null;
+    script.onerror = null;
+    head.removeChild(script);
+  }
+
+  function removeGlobals() {
+    try {
+      delete window[cbName];
+      delete window[cbName + '_loaded'];
+    } catch (e) {
+      window[cbName] = window[cbName + '_loaded'] = undefined;
+    }
+  }
+
+  function timeout() {
+    opts.debug('JSONP: Script timeout');
+    timedOut = true;
+    clean();
+    cb(new errors.RequestTimeout());
+  }
+
+  function error() {
+    opts.debug('JSONP: Script error');
+
+    if (done || timedOut) {
+      return;
+    }
+
+    clean();
+    cb(new errors.JSONPScriptError());
+  }
+}
+
+
+/***/ }),
+
+/***/ 214:
+/***/ (function(module, exports, __webpack_require__) {
+
 module.exports = function omit(obj, test) {
-  var keys = __webpack_require__(460);
+  var keys = __webpack_require__(464);
   var foreach = __webpack_require__(24);
 
   var filtered = {};
@@ -27868,7 +27868,7 @@ module.exports = function omit(obj, test) {
 
 /***/ }),
 
-/***/ 211:
+/***/ 215:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = createPlacesClient;
@@ -27912,7 +27912,7 @@ function createPlacesClient(algoliasearch) {
 
 /***/ }),
 
-/***/ 212:
+/***/ 216:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var debug = __webpack_require__(36)('algoliasearch:src/hostIndexState.js');
@@ -28006,7 +28006,7 @@ function cleanup() {
 
 /***/ }),
 
-/***/ 213:
+/***/ 217:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -38833,11 +38833,11 @@ Vue$3.compile = compileToFunctions;
 
 module.exports = Vue$3;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3), __webpack_require__(7), __webpack_require__(469).setImmediate))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3), __webpack_require__(7), __webpack_require__(473).setImmediate))
 
 /***/ }),
 
-/***/ 224:
+/***/ 228:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -38845,7 +38845,7 @@ module.exports = Vue$3;
 
 var utils = __webpack_require__(5);
 var bind = __webpack_require__(127);
-var Axios = __webpack_require__(226);
+var Axios = __webpack_require__(230);
 var defaults = __webpack_require__(75);
 
 /**
@@ -38880,14 +38880,14 @@ axios.create = function create(instanceConfig) {
 
 // Expose Cancel & CancelToken
 axios.Cancel = __webpack_require__(124);
-axios.CancelToken = __webpack_require__(225);
+axios.CancelToken = __webpack_require__(229);
 axios.isCancel = __webpack_require__(125);
 
 // Expose all/spread
 axios.all = function all(promises) {
   return Promise.all(promises);
 };
-axios.spread = __webpack_require__(240);
+axios.spread = __webpack_require__(244);
 
 module.exports = axios;
 
@@ -38897,7 +38897,7 @@ module.exports.default = axios;
 
 /***/ }),
 
-/***/ 225:
+/***/ 229:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -38958,273 +38958,6 @@ CancelToken.source = function source() {
 };
 
 module.exports = CancelToken;
-
-
-/***/ }),
-
-/***/ 226:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var defaults = __webpack_require__(75);
-var utils = __webpack_require__(5);
-var InterceptorManager = __webpack_require__(227);
-var dispatchRequest = __webpack_require__(228);
-var isAbsoluteURL = __webpack_require__(236);
-var combineURLs = __webpack_require__(234);
-
-/**
- * Create a new instance of Axios
- *
- * @param {Object} instanceConfig The default config for the instance
- */
-function Axios(instanceConfig) {
-  this.defaults = instanceConfig;
-  this.interceptors = {
-    request: new InterceptorManager(),
-    response: new InterceptorManager()
-  };
-}
-
-/**
- * Dispatch a request
- *
- * @param {Object} config The config specific for this request (merged with this.defaults)
- */
-Axios.prototype.request = function request(config) {
-  /*eslint no-param-reassign:0*/
-  // Allow for axios('example/url'[, config]) a la fetch API
-  if (typeof config === 'string') {
-    config = utils.merge({
-      url: arguments[0]
-    }, arguments[1]);
-  }
-
-  config = utils.merge(defaults, this.defaults, { method: 'get' }, config);
-
-  // Support baseURL config
-  if (config.baseURL && !isAbsoluteURL(config.url)) {
-    config.url = combineURLs(config.baseURL, config.url);
-  }
-
-  // Hook up interceptors middleware
-  var chain = [dispatchRequest, undefined];
-  var promise = Promise.resolve(config);
-
-  this.interceptors.request.forEach(function unshiftRequestInterceptors(interceptor) {
-    chain.unshift(interceptor.fulfilled, interceptor.rejected);
-  });
-
-  this.interceptors.response.forEach(function pushResponseInterceptors(interceptor) {
-    chain.push(interceptor.fulfilled, interceptor.rejected);
-  });
-
-  while (chain.length) {
-    promise = promise.then(chain.shift(), chain.shift());
-  }
-
-  return promise;
-};
-
-// Provide aliases for supported request methods
-utils.forEach(['delete', 'get', 'head'], function forEachMethodNoData(method) {
-  /*eslint func-names:0*/
-  Axios.prototype[method] = function(url, config) {
-    return this.request(utils.merge(config || {}, {
-      method: method,
-      url: url
-    }));
-  };
-});
-
-utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
-  /*eslint func-names:0*/
-  Axios.prototype[method] = function(url, data, config) {
-    return this.request(utils.merge(config || {}, {
-      method: method,
-      url: url,
-      data: data
-    }));
-  };
-});
-
-module.exports = Axios;
-
-
-/***/ }),
-
-/***/ 227:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var utils = __webpack_require__(5);
-
-function InterceptorManager() {
-  this.handlers = [];
-}
-
-/**
- * Add a new interceptor to the stack
- *
- * @param {Function} fulfilled The function to handle `then` for a `Promise`
- * @param {Function} rejected The function to handle `reject` for a `Promise`
- *
- * @return {Number} An ID used to remove interceptor later
- */
-InterceptorManager.prototype.use = function use(fulfilled, rejected) {
-  this.handlers.push({
-    fulfilled: fulfilled,
-    rejected: rejected
-  });
-  return this.handlers.length - 1;
-};
-
-/**
- * Remove an interceptor from the stack
- *
- * @param {Number} id The ID that was returned by `use`
- */
-InterceptorManager.prototype.eject = function eject(id) {
-  if (this.handlers[id]) {
-    this.handlers[id] = null;
-  }
-};
-
-/**
- * Iterate over all the registered interceptors
- *
- * This method is particularly useful for skipping over any
- * interceptors that may have become `null` calling `eject`.
- *
- * @param {Function} fn The function to call for each interceptor
- */
-InterceptorManager.prototype.forEach = function forEach(fn) {
-  utils.forEach(this.handlers, function forEachHandler(h) {
-    if (h !== null) {
-      fn(h);
-    }
-  });
-};
-
-module.exports = InterceptorManager;
-
-
-/***/ }),
-
-/***/ 228:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var utils = __webpack_require__(5);
-var transformData = __webpack_require__(231);
-var isCancel = __webpack_require__(125);
-var defaults = __webpack_require__(75);
-
-/**
- * Throws a `Cancel` if cancellation has been requested.
- */
-function throwIfCancellationRequested(config) {
-  if (config.cancelToken) {
-    config.cancelToken.throwIfRequested();
-  }
-}
-
-/**
- * Dispatch a request to the server using the configured adapter.
- *
- * @param {object} config The config that is to be used for the request
- * @returns {Promise} The Promise to be fulfilled
- */
-module.exports = function dispatchRequest(config) {
-  throwIfCancellationRequested(config);
-
-  // Ensure headers exist
-  config.headers = config.headers || {};
-
-  // Transform request data
-  config.data = transformData(
-    config.data,
-    config.headers,
-    config.transformRequest
-  );
-
-  // Flatten headers
-  config.headers = utils.merge(
-    config.headers.common || {},
-    config.headers[config.method] || {},
-    config.headers || {}
-  );
-
-  utils.forEach(
-    ['delete', 'get', 'head', 'post', 'put', 'patch', 'common'],
-    function cleanHeaderConfig(method) {
-      delete config.headers[method];
-    }
-  );
-
-  var adapter = config.adapter || defaults.adapter;
-
-  return adapter(config).then(function onAdapterResolution(response) {
-    throwIfCancellationRequested(config);
-
-    // Transform response data
-    response.data = transformData(
-      response.data,
-      response.headers,
-      config.transformResponse
-    );
-
-    return response;
-  }, function onAdapterRejection(reason) {
-    if (!isCancel(reason)) {
-      throwIfCancellationRequested(config);
-
-      // Transform response data
-      if (reason && reason.response) {
-        reason.response.data = transformData(
-          reason.response.data,
-          reason.response.headers,
-          config.transformResponse
-        );
-      }
-    }
-
-    return Promise.reject(reason);
-  });
-};
-
-
-/***/ }),
-
-/***/ 229:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-/**
- * Update an Error with the specified config, error code, and response.
- *
- * @param {Error} error The error to update.
- * @param {Object} config The config.
- * @param {string} [code] The error code (for example, 'ECONNABORTED').
- @ @param {Object} [response] The response.
- * @returns {Error} The error.
- */
-module.exports = function enhanceError(error, config, code, response) {
-  error.config = config;
-  if (code) {
-    error.code = code;
-  }
-  error.response = response;
-  return error;
-};
 
 
 /***/ }),
@@ -39321,6 +39054,273 @@ module.exports = {
 "use strict";
 
 
+var defaults = __webpack_require__(75);
+var utils = __webpack_require__(5);
+var InterceptorManager = __webpack_require__(231);
+var dispatchRequest = __webpack_require__(232);
+var isAbsoluteURL = __webpack_require__(240);
+var combineURLs = __webpack_require__(238);
+
+/**
+ * Create a new instance of Axios
+ *
+ * @param {Object} instanceConfig The default config for the instance
+ */
+function Axios(instanceConfig) {
+  this.defaults = instanceConfig;
+  this.interceptors = {
+    request: new InterceptorManager(),
+    response: new InterceptorManager()
+  };
+}
+
+/**
+ * Dispatch a request
+ *
+ * @param {Object} config The config specific for this request (merged with this.defaults)
+ */
+Axios.prototype.request = function request(config) {
+  /*eslint no-param-reassign:0*/
+  // Allow for axios('example/url'[, config]) a la fetch API
+  if (typeof config === 'string') {
+    config = utils.merge({
+      url: arguments[0]
+    }, arguments[1]);
+  }
+
+  config = utils.merge(defaults, this.defaults, { method: 'get' }, config);
+
+  // Support baseURL config
+  if (config.baseURL && !isAbsoluteURL(config.url)) {
+    config.url = combineURLs(config.baseURL, config.url);
+  }
+
+  // Hook up interceptors middleware
+  var chain = [dispatchRequest, undefined];
+  var promise = Promise.resolve(config);
+
+  this.interceptors.request.forEach(function unshiftRequestInterceptors(interceptor) {
+    chain.unshift(interceptor.fulfilled, interceptor.rejected);
+  });
+
+  this.interceptors.response.forEach(function pushResponseInterceptors(interceptor) {
+    chain.push(interceptor.fulfilled, interceptor.rejected);
+  });
+
+  while (chain.length) {
+    promise = promise.then(chain.shift(), chain.shift());
+  }
+
+  return promise;
+};
+
+// Provide aliases for supported request methods
+utils.forEach(['delete', 'get', 'head'], function forEachMethodNoData(method) {
+  /*eslint func-names:0*/
+  Axios.prototype[method] = function(url, config) {
+    return this.request(utils.merge(config || {}, {
+      method: method,
+      url: url
+    }));
+  };
+});
+
+utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
+  /*eslint func-names:0*/
+  Axios.prototype[method] = function(url, data, config) {
+    return this.request(utils.merge(config || {}, {
+      method: method,
+      url: url,
+      data: data
+    }));
+  };
+});
+
+module.exports = Axios;
+
+
+/***/ }),
+
+/***/ 231:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var utils = __webpack_require__(5);
+
+function InterceptorManager() {
+  this.handlers = [];
+}
+
+/**
+ * Add a new interceptor to the stack
+ *
+ * @param {Function} fulfilled The function to handle `then` for a `Promise`
+ * @param {Function} rejected The function to handle `reject` for a `Promise`
+ *
+ * @return {Number} An ID used to remove interceptor later
+ */
+InterceptorManager.prototype.use = function use(fulfilled, rejected) {
+  this.handlers.push({
+    fulfilled: fulfilled,
+    rejected: rejected
+  });
+  return this.handlers.length - 1;
+};
+
+/**
+ * Remove an interceptor from the stack
+ *
+ * @param {Number} id The ID that was returned by `use`
+ */
+InterceptorManager.prototype.eject = function eject(id) {
+  if (this.handlers[id]) {
+    this.handlers[id] = null;
+  }
+};
+
+/**
+ * Iterate over all the registered interceptors
+ *
+ * This method is particularly useful for skipping over any
+ * interceptors that may have become `null` calling `eject`.
+ *
+ * @param {Function} fn The function to call for each interceptor
+ */
+InterceptorManager.prototype.forEach = function forEach(fn) {
+  utils.forEach(this.handlers, function forEachHandler(h) {
+    if (h !== null) {
+      fn(h);
+    }
+  });
+};
+
+module.exports = InterceptorManager;
+
+
+/***/ }),
+
+/***/ 232:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var utils = __webpack_require__(5);
+var transformData = __webpack_require__(235);
+var isCancel = __webpack_require__(125);
+var defaults = __webpack_require__(75);
+
+/**
+ * Throws a `Cancel` if cancellation has been requested.
+ */
+function throwIfCancellationRequested(config) {
+  if (config.cancelToken) {
+    config.cancelToken.throwIfRequested();
+  }
+}
+
+/**
+ * Dispatch a request to the server using the configured adapter.
+ *
+ * @param {object} config The config that is to be used for the request
+ * @returns {Promise} The Promise to be fulfilled
+ */
+module.exports = function dispatchRequest(config) {
+  throwIfCancellationRequested(config);
+
+  // Ensure headers exist
+  config.headers = config.headers || {};
+
+  // Transform request data
+  config.data = transformData(
+    config.data,
+    config.headers,
+    config.transformRequest
+  );
+
+  // Flatten headers
+  config.headers = utils.merge(
+    config.headers.common || {},
+    config.headers[config.method] || {},
+    config.headers || {}
+  );
+
+  utils.forEach(
+    ['delete', 'get', 'head', 'post', 'put', 'patch', 'common'],
+    function cleanHeaderConfig(method) {
+      delete config.headers[method];
+    }
+  );
+
+  var adapter = config.adapter || defaults.adapter;
+
+  return adapter(config).then(function onAdapterResolution(response) {
+    throwIfCancellationRequested(config);
+
+    // Transform response data
+    response.data = transformData(
+      response.data,
+      response.headers,
+      config.transformResponse
+    );
+
+    return response;
+  }, function onAdapterRejection(reason) {
+    if (!isCancel(reason)) {
+      throwIfCancellationRequested(config);
+
+      // Transform response data
+      if (reason && reason.response) {
+        reason.response.data = transformData(
+          reason.response.data,
+          reason.response.headers,
+          config.transformResponse
+        );
+      }
+    }
+
+    return Promise.reject(reason);
+  });
+};
+
+
+/***/ }),
+
+/***/ 233:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/**
+ * Update an Error with the specified config, error code, and response.
+ *
+ * @param {Error} error The error to update.
+ * @param {Object} config The config.
+ * @param {string} [code] The error code (for example, 'ECONNABORTED').
+ @ @param {Object} [response] The response.
+ * @returns {Error} The error.
+ */
+module.exports = function enhanceError(error, config, code, response) {
+  error.config = config;
+  if (code) {
+    error.code = code;
+  }
+  error.response = response;
+  return error;
+};
+
+
+/***/ }),
+
+/***/ 234:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
 var createError = __webpack_require__(126);
 
 /**
@@ -39348,7 +39348,7 @@ module.exports = function settle(resolve, reject, response) {
 
 /***/ }),
 
-/***/ 231:
+/***/ 235:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39376,7 +39376,7 @@ module.exports = function transformData(data, headers, fns) {
 
 /***/ }),
 
-/***/ 232:
+/***/ 236:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39420,7 +39420,7 @@ module.exports = btoa;
 
 /***/ }),
 
-/***/ 233:
+/***/ 237:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39496,7 +39496,7 @@ module.exports = function buildURL(url, params, paramsSerializer) {
 
 /***/ }),
 
-/***/ 234:
+/***/ 238:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39516,7 +39516,7 @@ module.exports = function combineURLs(baseURL, relativeURL) {
 
 /***/ }),
 
-/***/ 235:
+/***/ 239:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39577,7 +39577,36 @@ module.exports = (
 
 /***/ }),
 
-/***/ 236:
+/***/ 24:
+/***/ (function(module, exports) {
+
+
+var hasOwn = Object.prototype.hasOwnProperty;
+var toString = Object.prototype.toString;
+
+module.exports = function forEach (obj, fn, ctx) {
+    if (toString.call(fn) !== '[object Function]') {
+        throw new TypeError('iterator must be a function');
+    }
+    var l = obj.length;
+    if (l === +l) {
+        for (var i = 0; i < l; i++) {
+            fn.call(ctx, obj[i], i, obj);
+        }
+    } else {
+        for (var k in obj) {
+            if (hasOwn.call(obj, k)) {
+                fn.call(ctx, obj[k], k, obj);
+            }
+        }
+    }
+};
+
+
+
+/***/ }),
+
+/***/ 240:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39599,7 +39628,7 @@ module.exports = function isAbsoluteURL(url) {
 
 /***/ }),
 
-/***/ 237:
+/***/ 241:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39675,7 +39704,7 @@ module.exports = (
 
 /***/ }),
 
-/***/ 238:
+/***/ 242:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39695,7 +39724,7 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
 
 /***/ }),
 
-/***/ 239:
+/***/ 243:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39740,36 +39769,7 @@ module.exports = function parseHeaders(headers) {
 
 /***/ }),
 
-/***/ 24:
-/***/ (function(module, exports) {
-
-
-var hasOwn = Object.prototype.hasOwnProperty;
-var toString = Object.prototype.toString;
-
-module.exports = function forEach (obj, fn, ctx) {
-    if (toString.call(fn) !== '[object Function]') {
-        throw new TypeError('iterator must be a function');
-    }
-    var l = obj.length;
-    if (l === +l) {
-        for (var i = 0; i < l; i++) {
-            fn.call(ctx, obj[i], i, obj);
-        }
-    } else {
-        for (var k in obj) {
-            if (hasOwn.call(obj, k)) {
-                fn.call(ctx, obj[k], k, obj);
-            }
-        }
-    }
-};
-
-
-
-/***/ }),
-
-/***/ 240:
+/***/ 244:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39995,7 +39995,7 @@ process.umask = function() { return 0; };
 
 /***/ }),
 
-/***/ 305:
+/***/ 309:
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -40011,7 +40011,7 @@ exports.coerce = coerce;
 exports.disable = disable;
 exports.enable = enable;
 exports.enabled = enabled;
-exports.humanize = __webpack_require__(459);
+exports.humanize = __webpack_require__(463);
 
 /**
  * The currently active debug mode names, and names to skip.
@@ -40204,7 +40204,7 @@ function coerce(val) {
 
 /***/ }),
 
-/***/ 306:
+/***/ 310:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process, global) {/*!
@@ -41391,7 +41391,7 @@ return Promise$1;
 
 /***/ }),
 
-/***/ 307:
+/***/ 311:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var win;
@@ -45898,7 +45898,7 @@ module.exports = function map(arr, fn) {
  * Expose `debug()` as the module.
  */
 
-exports = module.exports = __webpack_require__(305);
+exports = module.exports = __webpack_require__(309);
 exports.log = log;
 exports.formatArgs = formatArgs;
 exports.save = save;
@@ -46124,7 +46124,7 @@ module.exports = Array.isArray || function (arr) {
 
 /***/ }),
 
-/***/ 459:
+/***/ 463:
 /***/ (function(module, exports) {
 
 /**
@@ -46283,7 +46283,7 @@ function plural(ms, n, name) {
 
 /***/ }),
 
-/***/ 460:
+/***/ 464:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -46293,7 +46293,7 @@ function plural(ms, n, name) {
 var has = Object.prototype.hasOwnProperty;
 var toStr = Object.prototype.toString;
 var slice = Array.prototype.slice;
-var isArgs = __webpack_require__(461);
+var isArgs = __webpack_require__(465);
 var isEnumerable = Object.prototype.propertyIsEnumerable;
 var hasDontEnumBug = !isEnumerable.call({ toString: null }, 'toString');
 var hasProtoEnumBug = isEnumerable.call(function () {}, 'prototype');
@@ -46431,7 +46431,7 @@ module.exports = keysShim;
 
 /***/ }),
 
-/***/ 461:
+/***/ 465:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -46456,7 +46456,7 @@ module.exports = function isArguments(value) {
 
 /***/ }),
 
-/***/ 465:
+/***/ 469:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -46549,7 +46549,7 @@ var objectKeys = Object.keys || function (obj) {
 
 /***/ }),
 
-/***/ 466:
+/***/ 470:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
@@ -46743,7 +46743,7 @@ var objectKeys = Object.keys || function (obj) {
 
 /***/ }),
 
-/***/ 468:
+/***/ 472:
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**!
@@ -48294,7 +48294,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**!
 
 /***/ }),
 
-/***/ 469:
+/***/ 473:
 /***/ (function(module, exports, __webpack_require__) {
 
 var apply = Function.prototype.apply;
@@ -48347,7 +48347,7 @@ exports._unrefActive = exports.active = function(item) {
 };
 
 // setimmediate attaches itself to the global object
-__webpack_require__(466);
+__webpack_require__(470);
 exports.setImmediate = setImmediate;
 exports.clearImmediate = clearImmediate;
 
@@ -48809,8 +48809,8 @@ module.exports = __webpack_require__(110);
 "use strict";
 
 
-var AlgoliaSearch = __webpack_require__(202);
-var createAlgoliasearch = __webpack_require__(206);
+var AlgoliaSearch = __webpack_require__(206);
+var createAlgoliasearch = __webpack_require__(210);
 
 module.exports = createAlgoliasearch(AlgoliaSearch);
 
@@ -48820,7 +48820,7 @@ module.exports = createAlgoliasearch(AlgoliaSearch);
 /***/ 69:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(224);
+module.exports = __webpack_require__(228);
 
 /***/ }),
 
@@ -48895,7 +48895,7 @@ module.exports = function deprecatedMessage(previousUsage, newUsage) {
 /* WEBPACK VAR INJECTION */(function(process) {
 
 var utils = __webpack_require__(5);
-var normalizeHeaderName = __webpack_require__(238);
+var normalizeHeaderName = __webpack_require__(242);
 
 var PROTECTION_PREFIX = /^\)\]\}',?\n/;
 var DEFAULT_CONTENT_TYPE = {

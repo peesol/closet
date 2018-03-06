@@ -50,23 +50,24 @@
                     @if ($showcases->count())
                         @foreach ($showcases as $showcase)
                           <div class="panel-body" id="full-line">
-                            <h3 class="">{{$showcase->name}}</h3>
+                            <label class="heading">{{$showcase->name}}</label>
                             <div class="shop-carousel">
                                 <vue-slick :products="{{$showcase->product()->get()}}" path="/product/thumbnail/" slick-for="shop"></vue-slick>
                             </div>
                           </div>
                         @endforeach
-
                     @else
                       @if($populars->count())
-                      <div class="panel-heading margin-bot-10px"><h3 class="no-margin">{{__('message.popular')}}</h3></div>
-                      <div class="panel-body">
+                      <div class="panel-heading-alt">
+                        <label class="heading">{{__('message.popular')}}</label>
+                      </div>
+                      <div class="panel-body-alt">
                         <div class="shop-carousel">
                           <vue-slick :products="{{$populars}}" path="/product/thumbnail/" slick-for="shop"></vue-slick>
                         </div>
                       </div>
                       @else
-                        <div class="panel-body">
+                        <div class="panel-body-alt">
                           <h3 style="text-align: center; margin:50px auto;">{{__('message.no_shop_product')}}</h3>
                         </div>
                       @endif

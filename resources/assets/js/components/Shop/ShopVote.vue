@@ -1,13 +1,13 @@
 <template>
 <div v-if="$root.authenticated">
-  <button class="s-vote" v-bind:class="{'s-vote-btn-voted': userVote == 'up'}" @click.prevent="vote('up')">{{ up > 1 ? $trans.translation.likes : $trans.translation.like }}&nbsp;{{ up }}
+  <button class="profile-vote-btn" v-bind:class="{'profile-voted-btn': userVote == 'up'}" @click.prevent="vote('up')">{{ up > 1 ? $trans.translation.likes : $trans.translation.like }}&nbsp;{{ up }}
 	</button>
-  <button class="s-vote" v-bind:class="{'s-vote-btn-voted': userVote == 'down'}" @click.prevent="vote('down')">{{ down > 1 ? $trans.translation.dislikes : $trans.translation.dislike }}&nbsp;{{ down }}
+  <button class="profile-vote-btn" v-bind:class="{'profile-voted-btn': userVote == 'down'}" @click.prevent="vote('down')">{{ down > 1 ? $trans.translation.dislikes : $trans.translation.dislike }}&nbsp;{{ down }}
 	</button>
 </div>
 <div v-else>
-  <button class="s-vote" @click.prevent="loginFirst">{{ up > 1 ? $trans.translation.likes : $trans.translation.like }}&nbsp;{{ up }}</button>
-  <button class="s-vote" @click.prevent="loginFirst">{{ down > 1 ? $trans.translation.dislikes : $trans.translation.dislike }}&nbsp;{{ down }}</button>
+  <button class="profile-vote-btn" @click.prevent="loginFirst">{{ up > 1 ? $trans.translation.likes : $trans.translation.like }}&nbsp;{{ up }}</button>
+  <button class="profile-vote-btn" @click.prevent="loginFirst">{{ down > 1 ? $trans.translation.dislikes : $trans.translation.dislike }}&nbsp;{{ down }}</button>
 </div>
 </template>
 

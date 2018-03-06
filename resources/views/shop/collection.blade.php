@@ -19,11 +19,13 @@
                           <button class="tab-nav-btn static" onclick='document.location.href="/{{$shop->slug}}/about"'><span class="icon-user"></span><font>{{__('message.about')}}</font></button>
                         </ul>
                     </div>
-            <div style="padding: 15px 45px;"><h3 class="no-margin">{{__('message.collection')}}</h3></div>
-
-        <div class="panel-body">
-            <shop-collection web-url="{{config('app.url')}}" shop-slug="{{ $shop->slug }}" shop-user="{{ $shop->user_id }}"></shop-collection>
+        <div class="panel-heading-alt">
+          <label class="full-label heading">{{__('message.collection')}}</label>
         </div>
+
+
+            <shop-collection web-url="{{config('app.url')}}" shop-slug="{{ $shop->slug }}" shop-user="{{ $shop->user_id }}"></shop-collection>
+
 
             </div>
 @endif

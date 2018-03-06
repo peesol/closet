@@ -2,10 +2,10 @@
   <div>
     <slick ref="slick" :options="slickOptions">
 
-      <div v-for="product in products" v-show="products.length" class="relative" style="margin-right:3px">
+      <div v-for="product in products" v-show="products.length" class="carousel-thumb-wrap">
         <a :href="$root.url + '/product/' + product.uid">
           <img class="products-img-thumb" :src="'https://s3-ap-southeast-1.amazonaws.com/images.closet.com' + path + product.thumbnail" :alt="product.thumbnail">
-          <h3 class="thumb-title"><a :href="$root.url + '/product/' + product.uid">{{ product.name }}</a></h3>
+          <div class="thumb-title"><a :href="$root.url + '/product/' + product.uid">{{ product.name }}</a></div>
 
           <span v-show="product.discount_price" class="thumb-price">
             <strike>{{ product.price }}&#3647;</strike>

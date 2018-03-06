@@ -12,16 +12,25 @@
   grid-template-columns: repeat(4, minmax(60px, 1fr))
   justify-items: center
   button
-    height: 50px
-    color: #6c6c6c
-    border: none
-    background-color: #ffffff
     font-size: 1em
     font
       display: none
     span
       display: block
       font-size: 2em
+  a
+    margin: 0px 5px
+    line-height: 50px
+    font-size: 1.2em
+    display: inline-block
+
+.tab-nav-ul
+  button,
+  a
+    height: 50px
+    border: none
+    background-color: transparent
+    color: #6c6c6c
 
 .tab-nav-btn
   &.current, &.static.current

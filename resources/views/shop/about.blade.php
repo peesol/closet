@@ -18,10 +18,13 @@
                           <button class="tab-nav-btn static current"><span class="icon-user"></span><font>{{__('message.about')}}</font></button>
                         </ul>
                     </div>
-            <div style="padding: 15px 45px;"><h3 class="no-margin">{{__('message.about')}}</h3></div>
-            <div style="padding: 15px 45px;">
+            <div class="panel-heading-alt">
+              <label class="heading">{{__('message.about')}}
+              </label>
+            </div>
+            <div class="panel-body-alt">
                 @if($shop->description !== null)
-                    <h4 class="no-margin">{{__('message.description')}}</h4>
+                    <label class="heading">{{__('message.description')}}</label>
                     <div class="about-description">
                     <p>{!! nl2br(e($shop->description)) !!}</p>
                     </div>

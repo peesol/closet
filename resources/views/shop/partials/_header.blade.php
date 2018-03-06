@@ -1,7 +1,7 @@
 <div class="cover-wrap">
 @if(Auth::check())
   @if(Auth::user()->id === $shop->user_id)
-    <a href="/{{$shop->slug}}/edit"><button class="align-top-right icon-cog"></button></a>
+    <a href="/{{$shop->slug}}/edit"><button class="align-top-right icon-cog round-btn"></button></a>
   @else
   @endif
 @endif

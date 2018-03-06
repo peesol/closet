@@ -76,13 +76,10 @@ export default {
       ],
 		}
 	},
-  props: {
-    shopSlug: null
-  },
     methods: {
             getAccounts() {
               this.$Progress.start()
-              this.$http.get(this.$root.url + '/' + this.shopSlug + '/edit/account').then((response) => {
+              this.$http.get(this.$root.url + '/' + this.$route.params.shop + '/edit/account').then((response) => {
                 this.accounts = response.body
                 this.$Progress.finish()
               });
@@ -92,7 +89,7 @@ export default {
                 toastr.options.timeOut = 2000;
                     this.$Progress.start()
                     toastr.info(this.$trans.translation.wait);
-                    this.$http.post(this.$root.url + '/' + this.shopSlug + '/edit/account', {
+                    this.$http.post(this.$root.url + '/' + this.$route.params.shop + '/edit/account', {
                     provider: this.provider,
                     number: this.number,
                     name: this.name,
@@ -112,11 +109,11 @@ export default {
               if(!confirm(this.$trans.translation.delete_confirm)){
                 return
               }
-              this.$http.delete(this.$root.url + '/' + this.shopSlug + '/edit/account/' + accountId + '/delete').then((response)=> {
+              this.$http.delete(this.$root.url + '/' + this.$route.params.shop + '/edit/account/' + accountId + '/delete').then((response)=> {
                   toastr.success(this.$trans.translation.success)
                   this.$delete(this.accounts, index)
                   if (!this.accounts.length) {
-                    this.$http.put(this.$root.url + '/' + this.shopSlug + '/edit/set_sell_status')
+                    this.$http.put(this.$root.url + '/' + this.$route.params.shop + '/edit/set_sell_status')
                   }
               }, (response) => {
                   toastr.error(this.$trans.translation.error)

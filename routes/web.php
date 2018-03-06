@@ -222,7 +222,7 @@ Route::namespace('Shop')->group(function () {
 */
 Route::group(['middleware' => ['auth']], function () {
 
-  Route::get('/{shop}/edit', 'Shop\Settings\ShopEditController@index');
+  Route::get('/{shop}/edit/general', 'Shop\Settings\ShopEditController@index');
   Route::put('/{shop}/edit/public_info', 'Shop\Settings\ShopEditController@updatePublicInfo');
   Route::put('/{shop}/edit/personal_info', 'Shop\Settings\ShopEditController@updatePrivateInfo');
   Route::put('/{shop}/edit/cover', 'Shop\Settings\ShopEditController@updateCover');
