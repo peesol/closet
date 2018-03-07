@@ -15,7 +15,7 @@
 		</div>
 	</div>
 	</transition>
-  <div class="margin-top-10px">
+  <div class="margin-10-top">
     <div v-show="showcases.length" class="alert-box info">
       <h3 class="no-margin"><span class="icon-notification"></span>&nbsp;{{$trans.translation.showcase_drag}}</h3>
     </div>

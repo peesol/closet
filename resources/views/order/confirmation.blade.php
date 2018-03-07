@@ -39,7 +39,7 @@ window.Closet = {
     <div class="inbox-wrap panel-body">
       <h4>{{__('message.from')}}&nbsp;:&nbsp;{{$order->sender}}</h4>
       {{__('message.ordering_body')}}
-      <table class="c-table margin-top-10px">
+      <table class="c-table margin-10-top">
         <tr>
           <th class="overflow-hidden">{{__('message.product_name')}}</th>
           <th>{{__('message.choice')}}</th>

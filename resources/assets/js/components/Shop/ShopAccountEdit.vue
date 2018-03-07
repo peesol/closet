@@ -35,7 +35,7 @@
                       </div>
                     </transition>
 
-                    <div v-for="(account, index) in accounts" class="round-div margin-top-10px" v-show="accounts.length">
+                    <div v-for="(account, index) in accounts" class="round-div margin-10-top" v-show="accounts.length">
                       <table class="c-table">
                         <tr>
                           <td id="icon" colspan="1"><span :class="'icon-'+account.provider"></span></td>
@@ -79,7 +79,7 @@ export default {
     methods: {
             getAccounts() {
               this.$Progress.start()
-              this.$http.get(this.$root.url + '/' + this.$route.params.shop + '/edit/account').then((response) => {
+              this.$http.get(this.$root.url + '/' + this.$route.params.shop + '/edit/account/get').then((response) => {
                 this.accounts = response.body
                 this.$Progress.finish()
               });

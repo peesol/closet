@@ -247,7 +247,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }
   }), _vm._v(" "), _c('button', {
-    staticClass: "btn margin-top-10px",
+    staticClass: "btn margin-10-top",
     staticStyle: {
       "margin-left": "auto",
       "display": "block"
@@ -324,7 +324,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         value: (_vm.replyFormVisible === comment.id),
         expression: "replyFormVisible === comment.id"
       }],
-      staticClass: "input-group margin-top-10px"
+      staticClass: "input-group margin-10-top"
     }, [_c('input', {
       directives: [{
         name: "model",

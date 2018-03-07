@@ -28,14 +28,14 @@
                 </div>
             </div>
             @if(Auth::guest())
-            <div class="large-panel margin-top-10px">
+            <div class="large-panel margin-10-top">
               <div class="panel-body">
                 <p class="no-margin">{{__('message.home_signup')}}&nbsp;<a href="route('register')" class="link-text">{{__('message.home_signup_link')}}</a></p>
               </div>
             </div>
             @endif
 
-            <div class="large-panel margin-top-10px">
+            <div class="large-panel margin-10-top">
 
                 <div class="panel-body">
                   <h4 class="no-margin">Flash sale</h4>

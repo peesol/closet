@@ -37,7 +37,7 @@
         </div>
         <div class="form-group" id="full-label" style="position:relative;">
             <label class="full-label" for="description">{{$trans.translation.description}}</label>
-            <textarea v-validate="'required'" class="description-input margin-bot-10px" type="text" v-model="description" name="description"></textarea>
+            <textarea v-validate="'required'" class="description-input margin-10-bottom" type="text" v-model="description" name="description"></textarea>
             <span v-show="errors.has('description')" class="span-error">{{ errors.first('description') }}</span>
             <button class="col-submit" type="submit" style="right:0;">{{$trans.translation.edit_submit}}</button>
         </div>

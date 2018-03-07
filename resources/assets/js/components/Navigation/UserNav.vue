@@ -17,7 +17,7 @@
         <a class="nested" :href="$root.url + '/profile/myproduct/used'">used</a>
       </div>
     </transition>
-    <a :href="$root.url + '/' + userShop + '/edit'">Closet Edit</a>
+    <a :href="$root.url + '/' + userShop + '/edit/general'">Closet Edit</a>
     <li v-bind:class="{'toggled-list' : toggledList === 2}" @click.prevent="toggleList(2)">Language&nbsp;<small class="icon-arrows-down"></small>
     </li>
     <transition name="slide-down-height">

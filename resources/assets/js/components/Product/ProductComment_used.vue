@@ -6,7 +6,7 @@
 	</div>
 	<div class="panel-body relative" v-if="$root.authenticated"  id="full-line">
 		<textarea :placeholder="$trans.translation.comment+ '...'" class="description-input" v-model="body" style="height:100px;"></textarea>
-		<button class="btn margin-top-10px" style="margin-left:auto;display:block;" type="submit" @click.prevent="createComment">{{$trans.translation.comment}}</button>
+		<button class="btn margin-10-top" style="margin-left:auto;display:block;" type="submit" @click.prevent="createComment">{{$trans.translation.comment}}</button>
 	</div>
 
 	<div v-for="comment in comments" class="panel-body">
@@ -23,7 +23,7 @@
 				<font class="link-text" @click.prevent="toggleReplyForm(comment.id)">{{ replyFormVisible === comment.id ? $trans.translation.cancle : $trans.translation.reply }}</font>
 			</div>
 			<transition name="slide-down-reply">
-			<div class="input-group margin-top-10px" v-show="replyFormVisible === comment.id">
+			<div class="input-group margin-10-top" v-show="replyFormVisible === comment.id">
 				<input type="text" class="input-addon-field" v-model="replyBody">
 				<button class="input-addon" @click.prevent="createReply(comment.id)"><span class="icon-next-arrow"></span></button>
 			</div>

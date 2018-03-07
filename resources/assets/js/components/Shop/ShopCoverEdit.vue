@@ -3,7 +3,7 @@
   <label class="full-label heading">{{$trans.translation.cover}}&nbsp;<span class="font-small">1100px * 315px</span></label>
   <form v-on:submit.prevent="edit" method="post">
 
-    <div class="cover-input margin-top-10px">
+    <div class="cover-input margin-10-top">
       <span class="icon-images"></span>
       <img :src="cover">
     </div>

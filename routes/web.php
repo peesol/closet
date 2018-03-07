@@ -223,13 +223,16 @@ Route::namespace('Shop')->group(function () {
 Route::group(['middleware' => ['auth']], function () {
 
   Route::get('/{shop}/edit/general', 'Shop\Settings\ShopEditController@index');
+  Route::get('/{shop}/edit/contact', 'Shop\Settings\ShopEditController@index');
+  Route::get('/{shop}/edit/account', 'Shop\Settings\ShopEditController@index');
+  Route::get('/{shop}/edit/showcase', 'Shop\Settings\ShopEditController@index');
   Route::put('/{shop}/edit/public_info', 'Shop\Settings\ShopEditController@updatePublicInfo');
   Route::put('/{shop}/edit/personal_info', 'Shop\Settings\ShopEditController@updatePrivateInfo');
   Route::put('/{shop}/edit/cover', 'Shop\Settings\ShopEditController@updateCover');
   Route::put('/{shop}/edit/thumbnail', 'Shop\Settings\ShopEditController@updateThumbnail');
 
 
-  Route::get('/{shop}/edit/contact', 'Shop\Settings\ContactController@get');
+  Route::get('/{shop}/edit/contact/get', 'Shop\Settings\ContactController@get');
   Route::post('/{shop}/edit/contact', 'Shop\Settings\ContactController@create');
   Route::put('/{shop}/edit/contact/{contact}', 'Shop\Settings\ContactController@update');
   Route::delete('/{shop}/edit/contact/{contact}/delete', 'Shop\Settings\ContactController@delete');
@@ -237,7 +240,7 @@ Route::group(['middleware' => ['auth']], function () {
   Route::put('/{shop}/edit/contact/{contact}/show_cover', 'Shop\Settings\ContactController@toggleShowCover');
 
 
-  Route::get('/{shop}/edit/account', 'Shop\Settings\AccountController@get');
+  Route::get('/{shop}/edit/account/get', 'Shop\Settings\AccountController@get');
   Route::post('/{shop}/edit/account', 'Shop\Settings\AccountController@create');
   Route::delete('/{shop}/edit/account/{account}/delete', 'Shop\Settings\AccountController@delete');
   Route::put('/{shop}/edit/set_sell_status', 'Shop\Settings\AccountController@setSellStatus');

@@ -37,7 +37,7 @@ window.Closet = {
             <div class="inbox-wrap panel-body">
               <h4>{{__('message.from')}}&nbsp;:&nbsp;{{$order->reciever}}</h4>
               {{__('message.ordering_body')}}
-              <table class="c-table margin-top-10px">
+              <table class="c-table margin-10-top">
                 <tr>
                   <th class="overflow-hidden">{{__('message.product_name')}}</th>
                   <th>{{__('message.choice')}}</th>
@@ -87,7 +87,7 @@ window.Closet = {
                   <label class="col-label" style="width:100%;">{{__('message.phone')}}</label>
                   <input required class="col-input" name="phone">
                 </div>
-              <div class="flex msg-btn margin-top-10px">
+              <div class="flex msg-btn margin-10-top">
                 <button type="submit">{{__('message.confirm')}}</button>
               </div>
               {{ csrf_field() }}

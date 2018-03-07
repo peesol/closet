@@ -14,7 +14,7 @@
       <label class="col-label" style="width:100%;">{{$trans.translation.delivery_phone}}</label>
       <input required class="col-input" v-model="phone">
     </div>
-  <div class="flex msg-btn margin-top-10px">
+  <div class="flex msg-btn margin-10-top">
     <button type="submit">{{$trans.translation.confirm}}</button>
   </div>
 

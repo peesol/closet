@@ -18589,7 +18589,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var _this = this;
 
       this.$Progress.start();
-      this.$http.get(this.$root.url + '/' + this.$route.params.shop + '/edit/account').then(function (response) {
+      this.$http.get(this.$root.url + '/' + this.$route.params.shop + '/edit/account/get').then(function (response) {
         _this.accounts = response.body;
         _this.$Progress.finish();
       });
@@ -18878,6 +18878,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -18895,7 +18896,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var _this = this;
 
       this.$Progress.start();
-      this.$http.get(this.$root.url + '/' + this.$route.params.shop + '/edit/contact').then(function (response) {
+      this.$http.get(this.$root.url + '/' + this.$route.params.shop + '/edit/contact/get').then(function (response) {
         _this.contacts = response.body;
         _this.$Progress.finish();
       });
@@ -49883,7 +49884,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       value: (_vm.description),
       expression: "description"
     }],
-    staticClass: "description-input margin-bot-10px",
+    staticClass: "description-input margin-10-bottom",
     attrs: {
       "type": "text",
       "name": "description"
@@ -49994,7 +49995,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "type": "submit"
     }
   }, [_vm._v(_vm._s(_vm.$trans.translation.create))])])])])]), _vm._v(" "), _c('div', {
-    staticClass: "margin-top-10px"
+    staticClass: "margin-10-top"
   }, [_c('div', {
     directives: [{
       name: "show",
@@ -51126,7 +51127,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "width": "180px"
     }
   }, [_c('label', {
-    staticClass: "file-input full-width shadow-1 margin-bot-10px"
+    staticClass: "file-input full-width shadow-1 margin-10-bottom"
   }, [_c('input', {
     attrs: {
       "type": "file",
@@ -51294,7 +51295,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }
   }, [_c('div', {
-    staticClass: "cover-input margin-top-10px"
+    staticClass: "cover-input margin-10-top"
   }, [_c('span', {
     staticClass: "icon-images"
   }), _vm._v(" "), _c('img', {
@@ -51347,15 +51348,19 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_c('vue-progress-bar'), _vm._v(" "), _c('button', {
-    staticClass: "add-col-btn",
+  return _c('div', {
+    staticClass: "panel-body"
+  }, [_c('vue-progress-bar'), _vm._v(" "), _c('div', {
+    staticClass: "padding-15-bottom"
+  }, [_c('button', {
+    staticClass: "orange-btn normal-sq width-120",
     on: {
       "click": function($event) {
         $event.preventDefault();
         _vm.formVisible = !_vm.formVisible
       }
     }
-  }, [_vm._v(_vm._s(_vm.$trans.translation.add))]), _vm._v(" "), _c('transition', {
+  }, [_vm._v(_vm._s(_vm.$trans.translation.add))])]), _vm._v(" "), _c('transition', {
     attrs: {
       "name": "slide-down-height"
     }
@@ -51365,11 +51370,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       rawName: "v-show",
       value: (_vm.formVisible),
       expression: "formVisible"
-    }],
-    staticStyle: {
-      "padding": "20px"
-    }
+    }]
   }, [_c('form', {
+    staticClass: "panel-body shadow-2",
     attrs: {
       "method": "post"
     },
@@ -51380,21 +51383,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }
   }, [_c('div', {
-    staticStyle: {
-      "padding": "0"
-    }
+    staticClass: "form-group margin-10-bottom"
   }, [_c('div', {
-    staticClass: "form-group"
-  }, [_c('div', {
-    staticClass: "input-group",
-    staticStyle: {
-      "margin-bottom": "8px"
-    }
-  }, [_c('span', {
-    staticClass: "input-addon",
-    staticStyle: {
-      "padding": "0"
-    }
+    staticClass: "input-group"
   }, [_c('select', {
     directives: [{
       name: "model",
@@ -51402,7 +51393,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       value: (_vm.type),
       expression: "type"
     }],
-    staticClass: "select-input",
+    staticClass: "input-addon transparent-bg auto-width",
     attrs: {
       "required": "",
       "name": "type"
@@ -51450,7 +51441,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "value": "location"
     }
-  }, [_vm._v(_vm._s(_vm.$trans.translation.location))])])]), _vm._v(" "), _c('input', {
+  }, [_vm._v(_vm._s(_vm.$trans.translation.location))])]), _vm._v(" "), _c('input', {
     directives: [{
       name: "validate",
       rawName: "v-validate",
@@ -51489,12 +51480,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._v(_vm._s(_vm.errors.first('body')))])]), _vm._v(" "), _c('div', {
     staticClass: "form-group"
   }, [_c('label', {
-    staticClass: "full-label"
+    staticClass: "full-label input-label"
   }, [_vm._v(_vm._s(_vm.$trans.translation.link) + " "), _c('small', [_vm._v("(" + _vm._s(_vm.$trans.translation.optional) + ")")])]), _vm._v(" "), _c('div', {
-    staticClass: "input-group",
-    staticStyle: {
-      "margin-bottom": "8px"
-    }
+    staticClass: "input-group"
   }, [_c('input', {
     directives: [{
       name: "model",
@@ -51519,19 +51507,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.link = $event.target.value
       }
     }
-  })])])]), _vm._v(" "), _c('div', {
-    staticStyle: {
-      "position": "relative",
-      "text-align": "right"
-    }
+  })])]), _vm._v(" "), _c('div', {
+    staticClass: "align-right padding-15-top"
   }, [_c('button', {
-    staticClass: "col-photo-submit",
-    staticStyle: {
-      "margin-top": "0"
-    },
-    attrs: {
-      "id": "submit-all"
-    }
+    staticClass: "orange-btn normal-sq"
   }, [_vm._v(_vm._s(_vm.$trans.translation.edit_submit))])])])])]), _vm._v(" "), _vm._l((_vm.contacts), function(contact, index) {
     return _c('div', {
       directives: [{
@@ -51540,22 +51519,16 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         value: (_vm.contacts.length),
         expression: "contacts.length"
       }],
-      staticClass: "round-div margin-top-10px"
-    }, [_c('table', {
-      staticClass: "c-table"
-    }, [_c('tr', [_c('td', {
-      staticClass: "s-cell",
-      attrs: {
-        "id": "icon"
-      }
+      staticClass: "shadow-2 margin-20-top"
+    }, [_c('div', {
+      staticClass: "color-heading",
+      class: contact.type
     }, [_c('span', {
-      staticClass: "grey-font",
       class: 'icon-' + contact.type
-    })]), _vm._v(" "), _c('td', {
-      staticClass: "m-cell",
-      attrs: {
-        "colspan": "2"
-      }
+    })]), _vm._v(" "), _c('div', {
+      staticClass: "panel-body"
+    }, [_c('div', {
+      staticClass: "form-group"
     }, [_c('div', {
       staticClass: "input-group"
     }, [_c('input', {
@@ -51565,6 +51538,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         value: (contact.body),
         expression: "contact.body"
       }],
+      staticClass: "form-input-alt",
       attrs: {
         "type": "text"
       },
@@ -51578,7 +51552,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         }
       }
     }), _vm._v(" "), _c('button', {
-      staticClass: "checkmark-btn",
+      staticClass: "icon-checkmark form-input-btn",
       attrs: {
         "type": "button"
       },
@@ -51588,13 +51562,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           _vm.updateBody(contact.id, contact.body)
         }
       }
-    }, [_c('small', {
-      staticClass: "icon-checkmark"
-    })])])])]), _vm._v(" "), _c('tr', [_c('td'), _vm._v(" "), _c('td', {
-      staticClass: "m-cell",
-      attrs: {
-        "colspan": "2"
-      }
+    })])]), _vm._v(" "), _c('div', {
+      staticClass: "form-group"
     }, [_c('div', {
       staticClass: "input-group"
     }, [_c('input', {
@@ -51604,6 +51573,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         value: (contact.link),
         expression: "contact.link"
       }],
+      staticClass: "form-input-alt",
       attrs: {
         "type": "text",
         "placeholder": "http://www.yourlink.com"
@@ -51618,7 +51588,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         }
       }
     }), _vm._v(" "), _c('button', {
-      staticClass: "checkmark-btn",
+      staticClass: "icon-checkmark form-input-btn",
       attrs: {
         "type": "button"
       },
@@ -51628,69 +51598,55 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           _vm.updateLink(contact.id, contact.link)
         }
       }
-    }, [_c('small', {
-      staticClass: "icon-checkmark"
-    })])])])]), _vm._v(" "), _c('tr', [_c('td'), _vm._v(" "), _c('td', {
-      staticClass: "m-cell",
-      attrs: {
-        "colspan": "1"
-      }
-    }, [_c('label', [_vm._v(_vm._s(_vm.$trans.translation.show_product))]), _vm._v(" "), _c('small', {
-      class: {
-        'icon-checkmark green-font': contact.show_product == true, 'icon-cross red-font': contact.show_product == false
-      }
-    }), _vm._v(" "), _c('button', {
-      staticClass: "round-sq-btn",
+    })])]), _vm._v(" "), _c('label', {
+      staticClass: "font-grey"
+    }, [_vm._v(_vm._s(_vm.$trans.translation.show_product))]), _vm._v(" "), _c('button', {
+      staticClass: "transparent-bg",
       on: {
         "click": function($event) {
           $event.preventDefault();
           _vm.toggleShowProduct(contact.id, index)
         }
       }
-    }, [_vm._v(_vm._s(contact.show_product ? _vm.$trans.translation.hide : _vm.$trans.translation.show))])])]), _vm._v(" "), _c('tr', [_c('td'), _vm._v(" "), _c('td', {
-      staticClass: "m-cell",
-      attrs: {
-        "colspan": "1"
-      }
-    }, [_c('label', [_vm._v(_vm._s(_vm.$trans.translation.show_cover))]), _vm._v(" "), _c('small', {
+    }, [_c('span', {
       class: {
-        'icon-checkmark green-font': contact.show_cover == true, 'icon-cross red-font': contact.show_cover == false
+        'icon-checked font-green': contact.show_product == true, 'icon-unchecked font-grey': contact.show_product == false
       }
-    }), _vm._v(" "), _c('button', {
-      staticClass: "round-sq-btn",
+    })]), _vm._v(" "), _c('label', {
+      staticClass: "font-grey"
+    }, [_vm._v(_vm._s(_vm.$trans.translation.show_cover))]), _vm._v(" "), _c('button', {
+      staticClass: "transparent-bg",
       on: {
         "click": function($event) {
           $event.preventDefault();
           _vm.toggleShowCover(contact.id, index)
         }
       }
-    }, [_vm._v(_vm._s(contact.show_cover ? _vm.$trans.translation.hide : _vm.$trans.translation.show))])]), _vm._v(" "), _c('td', {
-      staticClass: "s-cell"
+    }, [_c('span', {
+      class: {
+        'icon-checked font-green': contact.show_cover == true, 'icon-unchecked font-grey': contact.show_cover == false
+      }
+    })])]), _vm._v(" "), _c('div', {
+      staticClass: "align-right"
     }, [_c('button', {
-      staticClass: "delete-btn round-btn float-right",
-      attrs: {
-        "type": "button"
-      },
+      staticClass: "delete-btn icon-bin",
       on: {
         "click": function($event) {
           $event.preventDefault();
           _vm.remove(contact.id, index)
         }
       }
-    }, [_c('small', {
-      staticClass: "icon-bin"
-    })])])])])])
+    })])])
   }), _vm._v(" "), _c('div', {
     directives: [{
       name: "show",
       rawName: "v-show",
       value: (!_vm.contacts.length),
       expression: "!contacts.length"
-    }],
-    staticStyle: {
-      "padding-left": "15px"
-    }
-  }, [_c('h4', [_vm._v(_vm._s(_vm.$trans.translation.no_contact))])])], 2)
+    }]
+  }, [_c('label', {
+    staticClass: "full-label input-label"
+  }, [_vm._v(_vm._s(_vm.$trans.translation.no_contact))])])], 2)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -52692,7 +52648,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }
   }), _vm._v(" "), _c('button', {
-    staticClass: "btn margin-top-10px",
+    staticClass: "btn margin-10-top",
     staticStyle: {
       "margin-left": "auto",
       "display": "block"
@@ -52769,7 +52725,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         value: (_vm.replyFormVisible === comment.id),
         expression: "replyFormVisible === comment.id"
       }],
-      staticClass: "input-group margin-top-10px"
+      staticClass: "input-group margin-10-top"
     }, [_c('input', {
       directives: [{
         name: "model",
@@ -53082,7 +53038,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         value: (_vm.accounts.length),
         expression: "accounts.length"
       }],
-      staticClass: "round-div margin-top-10px"
+      staticClass: "round-div margin-10-top"
     }, [_c('table', {
       staticClass: "c-table"
     }, [_c('tr', [_c('td', {
@@ -53587,7 +53543,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_vm._v("used")])])]), _vm._v(" "), _c('a', {
     attrs: {
-      "href": _vm.$root.url + '/' + _vm.userShop + '/edit'
+      "href": _vm.$root.url + '/' + _vm.userShop + '/edit/general'
     }
   }, [_vm._v("Closet Edit")]), _vm._v(" "), _c('li', {
     class: {
@@ -54690,7 +54646,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }
   })]), _vm._v(" "), _c('div', {
-    staticClass: "flex msg-btn margin-top-10px"
+    staticClass: "flex msg-btn margin-10-top"
   }, [_c('button', {
     attrs: {
       "type": "submit"
@@ -54735,7 +54691,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   return _c('div', {
     staticClass: "panel-body-alt"
   }, [_c('vue-progress-bar'), _vm._v(" "), _c('div', {
-    staticClass: "margin-bot-10px"
+    staticClass: "margin-10-bottom"
   }, [_c('button', {
     directives: [{
       name: "show",
@@ -54761,7 +54717,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       value: (_vm.formVisible),
       expression: "formVisible"
     }],
-    staticClass: "sub-panel shadow-1 margin-top-10px"
+    staticClass: "sub-panel shadow-1 margin-10-top"
   }, [_c('form', {
     on: {
       "submit": function($event) {
@@ -55853,7 +55809,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }
   }), _vm._v(" "), _c('button', {
-    staticClass: "btn margin-top-10px",
+    staticClass: "btn margin-10-top",
     staticStyle: {
       "margin-left": "auto",
       "display": "block"
@@ -55930,7 +55886,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         value: (_vm.replyFormVisible === comment.id),
         expression: "replyFormVisible === comment.id"
       }],
-      staticClass: "input-group margin-top-10px"
+      staticClass: "input-group margin-10-top"
     }, [_c('input', {
       directives: [{
         name: "model",

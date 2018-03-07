@@ -18,7 +18,7 @@ window.addEventListener("load",function(){var t=document.querySelectorAll(".tab-
 <div class="container">
   @include('product.partials._login_warn')
             <div class="product-show-panel">
-                <div class="panel-heading margin-bot-10px"><p class="product-title">{{__('message.product_name')}} : {{ $product->name }}</p></div>
+                <div class="panel-heading margin-10-bottom"><p class="product-title">{{__('message.product_name')}} : {{ $product->name }}</p></div>
                 <div class="flex">
 
                     <div class="product-showcase">

@@ -8,7 +8,7 @@
 
 <div class="container">
   <div class="medium-panel">
-    <div class="panel-heading margin-bot-10px"><h3 class="no-margin">{{__('message.showcase_edit')}}</h3></div>
+    <div class="panel-heading margin-10-bottom"><h3 class="no-margin">{{__('message.showcase_edit')}}</h3></div>
       <showcase-edit showcase-name="{{$showcase->name}}"
       shop-slug="{{$shop->slug}}"
       showcase-id="{{$showcase->id}}">

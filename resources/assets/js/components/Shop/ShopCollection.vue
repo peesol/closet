@@ -1,12 +1,12 @@
 <template>
 <div class="panel-body-alt">
 <vue-progress-bar></vue-progress-bar>
-	<div class="margin-bot-10px">
+	<div class="margin-10-bottom">
 		<button class="orange-btn normal-sq" @click.prevent="formVisible = !formVisible" v-show="user_id == shopUser">{{$trans.translation.add_col}}</button>
 	</div>
 
 	<transition name="slide-down">
-	<div v-show="formVisible" class="sub-panel shadow-1 margin-top-10px">
+	<div v-show="formVisible" class="sub-panel shadow-1 margin-10-top">
 
 		<form v-on:submit.prevent="create">
 			<div class="form-group">

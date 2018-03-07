@@ -46,7 +46,7 @@
                 </div>
 
                     @if($products->count())
-                      <div class="thumbnail-grid margin-top-10px">
+                      <div class="thumbnail-grid margin-10-top">
                         @foreach($products as $product)
                         <div v-if="products.length" class="panel-body thumbnail-grid">
                             <div v-for="product in products" class="products-wrap">

@@ -13,7 +13,7 @@
       </div>
 
       <div class="flex-start padding-15-left" style="width:180px">
-        <label class="file-input full-width shadow-1 margin-bot-10px">
+        <label class="file-input full-width shadow-1 margin-10-bottom">
             <input @change="previewThumbnail" type="file" :name="thumbnail" accept="image/*"/>
             {{$trans.translation.choose_file}}&nbsp;+
           </label>
