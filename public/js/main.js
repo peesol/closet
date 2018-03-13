@@ -18580,7 +18580,28 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       number: null,
       name: null,
       formVisible: false,
-      options: [{ 'name': 'ธนาคารกรุงเทพ', 'code': 'BBL' }, { 'name': 'ธนาคารกสิกรไทย', 'code': 'KBANK' }, { 'name': 'ธนาคารกรุงไทย', 'code': 'KTB' }, { 'name': 'ธนาคารไทยพาณิชย์', 'code': 'SCB' }, { 'name': 'ธนาคารทหารไทย', 'code': 'TMB' }, { 'name': 'ธนาคารออมสิน', 'code': 'GSB' }, { 'name': 'ธนาคารกรุงศรีอยุธยา', 'code': 'BAY' }]
+      options: [{
+        'name': 'ธนาคารกรุงเทพ',
+        'code': 'BBL'
+      }, {
+        'name': 'ธนาคารกสิกรไทย',
+        'code': 'KBANK'
+      }, {
+        'name': 'ธนาคารกรุงไทย',
+        'code': 'KTB'
+      }, {
+        'name': 'ธนาคารไทยพาณิชย์',
+        'code': 'SCB'
+      }, {
+        'name': 'ธนาคารทหารไทย',
+        'code': 'TMB'
+      }, {
+        'name': 'ธนาคารออมสิน',
+        'code': 'GSB'
+      }, {
+        'name': 'ธนาคารกรุงศรีอยุธยา',
+        'code': 'BAY'
+      }]
     };
   },
 
@@ -18878,7 +18899,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -18927,36 +18947,35 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
       });
     },
-    toggleShowProduct: function toggleShowProduct(contactId, index) {
+
+    // toggleShowProduct(contactId, index) {
+    //   this.$http.put(this.$root.url + '/' + this.$route.params.shop + '/edit/contact/' + contactId + '/show_product').then((response) => {
+    //     if (this.contacts[index].show_product) {
+    //       this.$set(this.contacts[index], 'show_product', false)
+    //     } else {
+    //       this.$set(this.contacts[index], 'show_product', true)
+    //     }
+    //     toastr.success(this.$trans.translation.saved)
+    //   }, (response) => {
+    //     toastr.error(this.$trans.translation.error);
+    //   });
+    // },
+    toggleShowCover: function toggleShowCover(contactId, index) {
       var _this4 = this;
 
-      this.$http.put(this.$root.url + '/' + this.$route.params.shop + '/edit/contact/' + contactId + '/show_product').then(function (response) {
-        if (_this4.contacts[index].show_product) {
-          _this4.$set(_this4.contacts[index], 'show_product', false);
+      this.$http.put(this.$root.url + '/' + this.$route.params.shop + '/edit/contact/' + contactId + '/show_cover').then(function (response) {
+        if (_this4.contacts[index].show_cover) {
+          _this4.$set(_this4.contacts[index], 'show_cover', false);
         } else {
-          _this4.$set(_this4.contacts[index], 'show_product', true);
+          _this4.$set(_this4.contacts[index], 'show_cover', true);
         }
         toastr.success(_this4.$trans.translation.saved);
       }, function (response) {
         toastr.error(_this4.$trans.translation.error);
       });
     },
-    toggleShowCover: function toggleShowCover(contactId, index) {
-      var _this5 = this;
-
-      this.$http.put(this.$root.url + '/' + this.$route.params.shop + '/edit/contact/' + contactId + '/show_cover').then(function (response) {
-        if (_this5.contacts[index].show_cover) {
-          _this5.$set(_this5.contacts[index], 'show_cover', false);
-        } else {
-          _this5.$set(_this5.contacts[index], 'show_cover', true);
-        }
-        toastr.success(_this5.$trans.translation.saved);
-      }, function (response) {
-        toastr.error(_this5.$trans.translation.error);
-      });
-    },
     edit: function edit() {
-      var _this6 = this;
+      var _this5 = this;
 
       toastr.options.preventDuplicates = true;
       toastr.options.timeOut = 2000;
@@ -18967,29 +18986,29 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         body: this.body,
         link: this.link
       }).then(function (response) {
-        _this6.$Progress.finish();
-        toastr.success(_this6.$trans.translation.saved);
-        _this6.contacts.push(response.body);
+        _this5.$Progress.finish();
+        toastr.success(_this5.$trans.translation.saved);
+        _this5.contacts.push(response.body);
       }, function (response) {
         if (response.body.link) {
           toastr.error(response.body.link);
         } else {
-          toastr.error(_this6.$trans.translation.error);
+          toastr.error(_this5.$trans.translation.error);
         }
-        _this6.$Progress.fail();
+        _this5.$Progress.fail();
       });
     },
     remove: function remove(contactId, index) {
-      var _this7 = this;
+      var _this6 = this;
 
       if (!confirm(this.$trans.translation.delete_confirm)) {
         return;
       }
       this.$http.delete(this.$root.url + '/' + this.$route.params.shop + '/edit/contact/' + contactId + '/delete').then(function (response) {
-        toastr.success(_this7.$trans.translation.success);
-        _this7.contacts.splice(index, 1);
+        toastr.success(_this6.$trans.translation.success);
+        _this6.contacts.splice(index, 1);
       }, function (response) {
-        toastr.error(_this7.$trans.translation.error);
+        toastr.error(_this6.$trans.translation.error);
       });
     }
   },
@@ -19505,6 +19524,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -19557,7 +19591,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }
       this.$http.delete(this.$root.url + '/' + this.$route.params.shop + '/edit/showcase/' + showcaseId + '/delete').then(function () {
         _this3.showcases.splice(index, 1);
-        toastr.success(_this3.$trans.translation.success, toastr.options = { "preventDuplicates": true });
+        toastr.success(_this3.$trans.translation.success);
       });
     },
     edit: function edit(showcaseId) {
@@ -19578,16 +19612,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       });
     },
     order: function order() {
-      var _this5 = this;
-
       this.showcases.map(function (showcase, index) {
         showcase.order = index + 1;
       });
+    },
+    save: function save() {
+      var _this5 = this;
+
+      this.$Progress.start();
       this.$http.put(this.$root.url + '/' + this.$route.params.shop + '/edit/showcase/order/update', {
         showcases: this.showcases
       }).then(function (response) {
+        _this5.$Progress.finish();
         toastr.success(_this5.$trans.translation.saved);
       }, function (response) {
+        _this5.$Progress.fail();
         toastr.error(_this5.$trans.translation.error);
       });
     }
@@ -49929,17 +49968,19 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_c('vue-progress-bar'), _vm._v(" "), _c('button', {
-    staticClass: "add-col-btn",
+  return _c('div', {
+    staticClass: "panel-body"
+  }, [_c('vue-progress-bar'), _vm._v(" "), _c('button', {
+    staticClass: "orange-btn normal-sq width-120",
     on: {
       "click": function($event) {
         $event.preventDefault();
         _vm.formVisible = !_vm.formVisible
       }
     }
-  }, [_vm._v(_vm._s(_vm.$trans.translation.create_showcase))]), _vm._v(" "), _c('transition', {
+  }, [_vm._v(_vm._s(_vm.$trans.translation.add))]), _vm._v(" "), _c('transition', {
     attrs: {
-      "name": "slide-down-showcase"
+      "name": "slide-down-height"
     }
   }, [_c('div', {
     directives: [{
@@ -49948,11 +49989,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       value: (_vm.formVisible),
       expression: "formVisible"
     }],
-    staticStyle: {
-      "height": "175px"
-    }
+    staticClass: "padding-15-vertical"
   }, [_c('div', {
-    staticClass: "add-col-panel"
+    staticClass: "panel-body shadow-2"
   }, [_c('form', {
     on: {
       "submit": function($event) {
@@ -49961,9 +50000,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }
   }, [_c('div', {
-    staticClass: "form-group col-flex"
+    staticClass: "form-group"
   }, [_c('label', {
-    staticClass: "full-label",
+    staticClass: "full-label heading",
     attrs: {
       "for": "name"
     }
@@ -49974,7 +50013,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       value: (_vm.name),
       expression: "name"
     }],
-    staticClass: "col-input",
+    staticClass: "form-input",
     attrs: {
       "required": "",
       "type": "text",
@@ -49989,12 +50028,14 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.name = $event.target.value
       }
     }
-  })]), _vm._v(" "), _c('button', {
-    staticClass: "col-submit",
+  })]), _vm._v(" "), _c('div', {
+    staticClass: "align-right"
+  }, [_c('button', {
+    staticClass: "orange-btn normal-sq",
     attrs: {
       "type": "submit"
     }
-  }, [_vm._v(_vm._s(_vm.$trans.translation.create))])])])])]), _vm._v(" "), _c('div', {
+  }, [_vm._v(_vm._s(_vm.$trans.translation.create))])])])])])]), _vm._v(" "), _c('div', {
     staticClass: "margin-10-top"
   }, [_c('div', {
     directives: [{
@@ -50005,10 +50046,20 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }],
     staticClass: "alert-box info"
   }, [_c('h3', {
-    staticClass: "no-margin"
+    staticClass: "no-margin padding-15-vertical"
   }, [_c('span', {
     staticClass: "icon-notification"
-  }), _vm._v(" " + _vm._s(_vm.$trans.translation.showcase_drag))])]), _vm._v(" "), _c('draggable', {
+  }), _vm._v(" " + _vm._s(_vm.$trans.translation.showcase_drag) + "\n      ")])]), _vm._v(" "), _c('div', {
+    staticClass: "align-right padding-15-vertical"
+  }, [_c('button', {
+    staticClass: "orange-btn normal-sq width-120",
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.save()
+      }
+    }
+  }, [_vm._v(_vm._s(_vm.$trans.translation.edit_submit))])]), _vm._v(" "), _c('draggable', {
     attrs: {
       "list": _vm.showcases,
       "options": {
@@ -50027,22 +50078,35 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         value: (_vm.showcases.length),
         expression: "showcases.length"
       }],
-      staticClass: "round-div"
-    }, [_c('table', {
-      staticClass: "c-table"
-    }, [_c('tr', [_c('td', {
-      staticClass: "m-cell overflow-hidden",
-      staticStyle: {
-        "width": "100%"
+      staticClass: "shadow-2 margin-20-bottom"
+    }, [_c('div', {
+      staticClass: "color-heading grey-bg"
+    }, [_c('label', {
+      staticClass: "full-label input-label"
+    }, [_vm._v(_vm._s(showcase.name))])]), _vm._v(" "), _c('div', {
+      staticClass: "margin-10-top padding-15-bottom padding-15-horizontal"
+    }, [_c('div', {
+      staticClass: "form-group"
+    }, [_c('label', {
+      staticClass: "input-label"
+    }, [_vm._v(_vm._s(_vm.$trans.translation.show_cover))]), _vm._v(" "), _c('button', {
+      staticClass: "transparent-bg",
+      on: {
+        "click": function($event) {
+          $event.preventDefault();
+          _vm.showToggle(showcase.id, index)
+        }
       }
-    }, [_c('label', [_vm._v(_vm._s(showcase.name))])]), _vm._v(" "), _c('td', {
-      staticClass: "s-cell"
+    }, [_c('span', {
+      class: {
+        'icon-checked font-green': showcase.show == true, 'icon-unchecked font-link': showcase.show == false
+      }
+    })])]), _vm._v(" "), _c('div', {
+      staticClass: "align-right margin-10-top"
     }, [_c('button', {
-      staticClass: "edit-btn showcase-handle round-btn"
-    }, [_c('span', [_vm._v(_vm._s(showcase.order))])])]), _vm._v(" "), _c('td', {
-      staticClass: "s-cell"
-    }, [_c('button', {
-      staticClass: "edit-btn round-btn",
+      staticClass: "add-btn round-btn showcase-handle shadow-1"
+    }, [_c('span', [_vm._v(_vm._s(showcase.order))])]), _vm._v(" "), _c('button', {
+      staticClass: "edit-btn round-btn shadow-1",
       on: {
         "click": function($event) {
           $event.preventDefault();
@@ -50051,10 +50115,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }, [_c('small', {
       staticClass: "icon-cog"
-    })])]), _vm._v(" "), _c('td', {
-      staticClass: "s-cell"
-    }, [_c('button', {
-      staticClass: "delete-btn round-btn",
+    })]), _vm._v(" "), _c('button', {
+      staticClass: "delete-btn round-btn shadow-1",
       on: {
         "click": function($event) {
           $event.preventDefault();
@@ -50063,23 +50125,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }, [_c('small', {
       staticClass: "icon-bin"
-    })])])]), _vm._v(" "), _c('tr', [_c('td', {
-      attrs: {
-        "colspan": "4"
-      }
-    }, [_c('label', [_vm._v(_vm._s(_vm.$trans.translation.show_cover))]), _vm._v(" "), _c('small', {
-      class: {
-        'icon-checkmark green-font': showcase.show == true, 'icon-cross red-font': showcase.show == false
-      }
-    }), _vm._v(" "), _c('button', {
-      staticClass: "round-sq-btn",
-      on: {
-        "click": function($event) {
-          $event.preventDefault();
-          _vm.showToggle(showcase.id, index)
-        }
-      }
-    }, [_vm._v(_vm._s(showcase.show ? _vm.$trans.translation.hide : _vm.$trans.translation.show))])])])])])
+    })])])])])
   })), _vm._v(" "), _c('div', {
     directives: [{
       name: "show",
@@ -50087,9 +50133,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       value: (!_vm.showcases.length),
       expression: "!showcases.length"
     }],
-    staticStyle: {
-      "padding-left": "15px"
-    }
+    staticClass: "padding-15-left"
   }, [_c('h4', [_vm._v(_vm._s(_vm.$trans.translation.no_showcase))])])], 1)], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
@@ -51526,7 +51570,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }, [_c('span', {
       class: 'icon-' + contact.type
     })]), _vm._v(" "), _c('div', {
-      staticClass: "panel-body"
+      staticClass: "padding-15-horizontal padding-15-top"
     }, [_c('div', {
       staticClass: "form-group"
     }, [_c('div', {
@@ -51598,22 +51642,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           _vm.updateLink(contact.id, contact.link)
         }
       }
-    })])]), _vm._v(" "), _c('label', {
-      staticClass: "font-grey"
-    }, [_vm._v(_vm._s(_vm.$trans.translation.show_product))]), _vm._v(" "), _c('button', {
-      staticClass: "transparent-bg",
-      on: {
-        "click": function($event) {
-          $event.preventDefault();
-          _vm.toggleShowProduct(contact.id, index)
-        }
-      }
-    }, [_c('span', {
-      class: {
-        'icon-checked font-green': contact.show_product == true, 'icon-unchecked font-grey': contact.show_product == false
-      }
-    })]), _vm._v(" "), _c('label', {
-      staticClass: "font-grey"
+    })])]), _vm._v(" "), _c('div', {
+      staticClass: "form-group margin-10-top"
+    }, [_c('label', {
+      staticClass: "font-grey input-label"
     }, [_vm._v(_vm._s(_vm.$trans.translation.show_cover))]), _vm._v(" "), _c('button', {
       staticClass: "transparent-bg",
       on: {
@@ -51624,19 +51656,21 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }, [_c('span', {
       class: {
-        'icon-checked font-green': contact.show_cover == true, 'icon-unchecked font-grey': contact.show_cover == false
+        'icon-checked font-green': contact.show_cover == true, 'icon-unchecked font-link': contact.show_cover == false
       }
-    })])]), _vm._v(" "), _c('div', {
-      staticClass: "align-right"
+    })])])]), _vm._v(" "), _c('div', {
+      staticClass: "align-right panel-body"
     }, [_c('button', {
-      staticClass: "delete-btn icon-bin",
+      staticClass: "delete-btn round-btn",
       on: {
         "click": function($event) {
           $event.preventDefault();
           _vm.remove(contact.id, index)
         }
       }
-    })])])
+    }, [_c('i', {
+      staticClass: "icon-bin"
+    })])])])
   }), _vm._v(" "), _c('div', {
     directives: [{
       name: "show",
@@ -52856,15 +52890,19 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_c('vue-progress-bar'), _vm._v(" "), _c('button', {
-    staticClass: "add-col-btn",
+  return _c('div', {
+    staticClass: "panel-body"
+  }, [_c('vue-progress-bar'), _vm._v(" "), _c('div', {
+    staticClass: "padding-15-bottom"
+  }, [_c('button', {
+    staticClass: "orange-btn normal-sq width-120",
     on: {
       "click": function($event) {
         $event.preventDefault();
         _vm.formVisible = !_vm.formVisible
       }
     }
-  }, [_vm._v(_vm._s(_vm.$trans.translation.add))]), _vm._v(" "), _c('transition', {
+  }, [_vm._v(_vm._s(_vm.$trans.translation.add))])]), _vm._v(" "), _c('transition', {
     attrs: {
       "name": "slide-down-height"
     }
@@ -52874,11 +52912,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       rawName: "v-show",
       value: (_vm.formVisible),
       expression: "formVisible"
-    }],
-    staticStyle: {
-      "padding": "20px"
-    }
+    }]
   }, [_c('form', {
+    staticClass: "panel-body shadow-2",
     attrs: {
       "method": "post"
     },
@@ -52889,9 +52925,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }
   }, [_c('div', [_c('div', {
-    staticClass: "form-group"
+    staticClass: "form-group margin-10-bottom"
   }, [_c('label', {
-    staticClass: "full-label",
+    staticClass: "full-label input-label",
     staticStyle: {
       "padding": "0"
     }
@@ -52930,13 +52966,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }))]), _vm._v(" "), _c('div', {
     staticClass: "form-group"
   }, [_c('label', {
-    staticClass: "full-label"
-  }, [_vm._v(_vm._s(_vm.$trans.translation.account_number))]), _vm._v(" "), _c('div', {
-    staticClass: "input-group",
-    staticStyle: {
-      "margin-bottom": "8px"
-    }
-  }, [_c('input', {
+    staticClass: "full-label input-label"
+  }, [_vm._v(_vm._s(_vm.$trans.translation.account_number))]), _vm._v(" "), _c('input', {
     directives: [{
       name: "validate",
       rawName: "v-validate",
@@ -52948,8 +52979,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       value: (_vm.number),
       expression: "number"
     }],
+    staticClass: "form-input",
     class: {
-      'input-addon-field': true, 'is-error': _vm.errors.has('account_number')
+      'is-error': _vm.errors.has('account_number')
     },
     attrs: {
       "type": "text",
@@ -52964,7 +52996,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.number = $event.target.value
       }
     }
-  })]), _vm._v(" "), _c('span', {
+  }), _vm._v(" "), _c('span', {
     directives: [{
       name: "show",
       rawName: "v-show",
@@ -52975,13 +53007,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._v(_vm._s(_vm.errors.first('account_number')))])]), _vm._v(" "), _c('div', {
     staticClass: "form-group"
   }, [_c('label', {
-    staticClass: "full-label"
-  }, [_vm._v(_vm._s(_vm.$trans.translation.account_name))]), _vm._v(" "), _c('div', {
-    staticClass: "input-group",
-    staticStyle: {
-      "margin-bottom": "8px"
-    }
-  }, [_c('input', {
+    staticClass: "full-label input-label"
+  }, [_vm._v(_vm._s(_vm.$trans.translation.account_name))]), _vm._v(" "), _c('input', {
     directives: [{
       name: "validate",
       rawName: "v-validate",
@@ -52993,8 +53020,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       value: (_vm.name),
       expression: "name"
     }],
+    staticClass: "input-addon-field",
     class: {
-      'input-addon-field': true, 'is-error': _vm.errors.has('account_name')
+      'is-error': _vm.errors.has('account_name')
     },
     attrs: {
       "type": "text",
@@ -53009,7 +53037,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.name = $event.target.value
       }
     }
-  })]), _vm._v(" "), _c('span', {
+  }), _vm._v(" "), _c('span', {
     directives: [{
       name: "show",
       rawName: "v-show",
@@ -53018,18 +53046,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }],
     staticClass: "span-error"
   }, [_vm._v(_vm._s(_vm.errors.first('account_name')))])])]), _vm._v(" "), _c('div', {
-    staticStyle: {
-      "position": "relative",
-      "text-align": "right"
-    }
+    staticClass: "align-right padding-15-top"
   }, [_c('button', {
-    staticClass: "col-photo-submit",
-    staticStyle: {
-      "margin-top": "0"
-    },
-    attrs: {
-      "id": "submit-all"
-    }
+    staticClass: "orange-btn normal-sq"
   }, [_vm._v(_vm._s(_vm.$trans.translation.edit_submit))])])])])]), _vm._v(" "), _vm._l((_vm.accounts), function(account, index) {
     return _c('div', {
       directives: [{
@@ -53038,35 +53057,21 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         value: (_vm.accounts.length),
         expression: "accounts.length"
       }],
-      staticClass: "round-div margin-10-top"
-    }, [_c('table', {
-      staticClass: "c-table"
-    }, [_c('tr', [_c('td', {
-      attrs: {
-        "id": "icon",
-        "colspan": "1"
-      }
-    }, [_c('span', {
-      class: 'icon-' + account.provider
-    })]), _vm._v(" "), _c('td', {
-      staticClass: "overflow-hidden",
-      attrs: {
-        "colspan": "3"
-      }
-    }, [_c('h4', {
-      staticClass: "no-margin"
-    }, [_vm._v(_vm._s(account.provider_name))])])]), _vm._v(" "), _c('tr', [_c('td'), _vm._v(" "), _c('td', {
-      staticClass: "m-cell"
-    }, [_c('h4', {
-      staticClass: "no-margin"
-    }, [_vm._v(_vm._s(account.number))])]), _vm._v(" "), _c('td', {
-      staticClass: "m-cell overflow-hidden"
-    }, [_c('p', {
-      staticClass: "no-margin"
-    }, [_vm._v(_vm._s(account.name))])]), _vm._v(" "), _c('td', {
-      staticClass: "s-cell"
+      staticClass: "shadow-2 margin-20-top"
+    }, [_c('div', {
+      staticClass: "color-heading grey-bg"
+    }, [_c('label', {
+      staticClass: "full-label input-label"
+    }, [_vm._v(_vm._s(account.provider_name))])]), _vm._v(" "), _c('div', {
+      staticClass: "padding-15-top padding-15-horizontal"
+    }, [_c('label', {
+      staticClass: "full-label heading margin-10-bottom"
+    }, [_vm._v(_vm._s(account.name))]), _vm._v(" "), _c('label', {
+      staticClass: "full-label input-label font-green"
+    }, [_vm._v(_vm._s(account.number))])]), _vm._v(" "), _c('div', {
+      staticClass: "align-right panel-body"
     }, [_c('button', {
-      staticClass: "delete-btn round-btn float-right",
+      staticClass: "delete-btn round-btn",
       attrs: {
         "type": "button"
       },
@@ -53078,7 +53083,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }, [_c('small', {
       staticClass: "icon-bin"
-    })])])])])])
+    })])])])
   }), _vm._v(" "), _c('div', {
     directives: [{
       name: "show",
@@ -53086,9 +53091,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       value: (!_vm.accounts.length),
       expression: "!accounts.length"
     }],
-    staticStyle: {
-      "padding-left": "15px"
-    }
+    staticClass: "padding-15-left"
   }, [_c('h4', [_vm._v(_vm._s(_vm.$trans.translation.no_account))])])], 2)
 },staticRenderFns: []}
 module.exports.render._withStripped = true

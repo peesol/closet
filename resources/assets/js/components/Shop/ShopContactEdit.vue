@@ -46,7 +46,7 @@
     <div class="color-heading" :class="contact.type">
       <span :class="'icon-' + contact.type"></span>
     </div>
-    <div class="panel-body">
+    <div class="padding-15-horizontal padding-15-top">
       <div class="form-group">
         <div class="input-group">
           <input class="form-input-alt" type="text" v-model="contact.body">
@@ -60,20 +60,19 @@
         </div>
       </div>
 
-      <label class="font-grey">{{$trans.translation.show_product}}</label>
-      <button class="transparent-bg" @click.prevent="toggleShowProduct(contact.id, index)">
-        <span :class="{ 'icon-checked font-green': contact.show_product == true, 'icon-unchecked font-grey': contact.show_product == false}"></span>
-      </button>
+      <div class="form-group margin-10-top">
+        <label class="font-grey input-label">{{$trans.translation.show_cover}}</label>
+        <button class="transparent-bg" @click.prevent="toggleShowCover(contact.id, index)">
+          <span :class="{ 'icon-checked font-green': contact.show_cover == true, 'icon-unchecked font-link': contact.show_cover == false}"></span>
+        </button>
+      </div>
 
-
-      <label class="font-grey">{{$trans.translation.show_cover}}</label>
-      <button class="transparent-bg" @click.prevent="toggleShowCover(contact.id, index)">
-        <span :class="{ 'icon-checked font-green': contact.show_cover == true, 'icon-unchecked font-grey': contact.show_cover == false}"></span>
-      </button>
     </div>
 
-    <div class="align-right">
-      <button @click.prevent="remove(contact.id, index)" class="delete-btn icon-bin"></button>
+    <div class="align-right panel-body">
+      <button @click.prevent="remove(contact.id, index)" class="delete-btn round-btn">
+        <small class="icon-bin"></small>
+      </button>
     </div>
 
   </div>
@@ -126,18 +125,18 @@ export default {
         }
       });
     },
-    toggleShowProduct(contactId, index) {
-      this.$http.put(this.$root.url + '/' + this.$route.params.shop + '/edit/contact/' + contactId + '/show_product').then((response) => {
-        if (this.contacts[index].show_product) {
-          this.$set(this.contacts[index], 'show_product', false)
-        } else {
-          this.$set(this.contacts[index], 'show_product', true)
-        }
-        toastr.success(this.$trans.translation.saved)
-      }, (response) => {
-        toastr.error(this.$trans.translation.error);
-      });
-    },
+    // toggleShowProduct(contactId, index) {
+    //   this.$http.put(this.$root.url + '/' + this.$route.params.shop + '/edit/contact/' + contactId + '/show_product').then((response) => {
+    //     if (this.contacts[index].show_product) {
+    //       this.$set(this.contacts[index], 'show_product', false)
+    //     } else {
+    //       this.$set(this.contacts[index], 'show_product', true)
+    //     }
+    //     toastr.success(this.$trans.translation.saved)
+    //   }, (response) => {
+    //     toastr.error(this.$trans.translation.error);
+    //   });
+    // },
     toggleShowCover(contactId, index) {
       this.$http.put(this.$root.url + '/' + this.$route.params.shop + '/edit/contact/' + contactId + '/show_cover').then((response) => {
         if (this.contacts[index].show_cover) {

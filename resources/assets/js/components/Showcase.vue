@@ -1,133 +1,152 @@
 <template>
-<div>
+<div class="panel-body">
   <vue-progress-bar></vue-progress-bar>
-  <button class="add-col-btn" @click.prevent="formVisible = !formVisible">{{$trans.translation.create_showcase}}</button>
-	<transition name="slide-down-showcase">
-	<div v-show="formVisible" style="height: 175px;">
-		<div class="add-col-panel">
-		<form v-on:submit.prevent="create">
-			<div class="form-group col-flex">
-				<label class="full-label" for="name">{{$trans.translation.name}}</label>
-				<input required class="col-input" type="text" v-model="name" name="name">
-			</div>
-				<button class="col-submit" type="submit" >{{$trans.translation.create}}</button>
-		</form>
-		</div>
-	</div>
-	</transition>
-  <div class="margin-10-top">
-    <div v-show="showcases.length" class="alert-box info">
-      <h3 class="no-margin"><span class="icon-notification"></span>&nbsp;{{$trans.translation.showcase_drag}}</h3>
-    </div>
-      <draggable :list="showcases" :options="{animation: 200, handle: '.showcase-handle'}" @change="order">
-      <div class="round-div" v-for="(showcase, index) in showcases" v-show="showcases.length">
-        <table class="c-table">
-          <tr>
-            <td class="m-cell overflow-hidden" style="width:100%;"><label>{{showcase.name}}</label></td>
-            <td class="s-cell"><button class="edit-btn showcase-handle round-btn"><span>{{showcase.order}}</span></button></td>
-            <td class="s-cell"><button @click.prevent="edit(showcase.id)" class="edit-btn round-btn"><small class="icon-cog"></small></button></td>
-            <td class="s-cell"><button @click.prevent="remove(showcase.id, index)" class="delete-btn round-btn"><small class="icon-bin"></small></button></td>
-          </tr>
-          <tr>
-            <td colspan="4">
-              <label>{{$trans.translation.show_cover}}</label>&nbsp;<small v-bind:class="{ 'icon-checkmark green-font': showcase.show == true, 'icon-cross red-font': showcase.show == false}"></small>
-              <button class="round-sq-btn" @click.prevent="showToggle(showcase.id, index)">{{showcase.show ? $trans.translation.hide : $trans.translation.show}}</button>
-            </td>
-          </tr>
-        </table>
+  <button class="orange-btn normal-sq width-120" @click.prevent="formVisible = !formVisible">{{$trans.translation.add}}</button>
+  <transition name="slide-down-height">
+    <div v-show="formVisible" class="padding-15-vertical">
+      <div class="panel-body shadow-2">
+        <form v-on:submit.prevent="create">
+          <div class="form-group">
+            <label class="full-label heading" for="name">{{$trans.translation.name}}</label>
+            <input required class="form-input" type="text" v-model="name" name="name">
+          </div>
+          <div class="align-right">
+            <button class="orange-btn normal-sq" type="submit">{{$trans.translation.create}}</button>
+          </div>
+        </form>
       </div>
-      </draggable>
-      <div style="padding-left: 15px;" v-show="!showcases.length"><h4>{{$trans.translation.no_showcase}}</h4></div>
+    </div>
+  </transition>
+  <div class="margin-10-top">
+    <div class="alert-box info" v-show="showcases.length">
+      <h3 class="no-margin padding-15-vertical">
+        <span class="icon-notification"></span>&nbsp;{{$trans.translation.showcase_drag}}
+      </h3>
+    </div>
+    <div class="align-right padding-15-vertical">
+      <button class="orange-btn normal-sq width-120" @click.prevent="save()">{{$trans.translation.edit_submit}}</button>
+    </div>
+    <draggable :list="showcases" :options="{animation: 200, handle: '.showcase-handle'}" @change="order">
+
+      <div class="shadow-2 margin-20-bottom" v-for="(showcase, index) in showcases" v-show="showcases.length">
+        <div class="color-heading grey-bg">
+          <label class="full-label input-label">{{showcase.name}}</label>
+
+        </div>
+        <div class="margin-10-top padding-15-bottom padding-15-horizontal">
+          <div class="form-group">
+            <label class="input-label">{{$trans.translation.show_cover}}</label>
+            <button class="transparent-bg" @click.prevent="showToggle(showcase.id, index)">
+              <span :class="{ 'icon-checked font-green': showcase.show == true, 'icon-unchecked font-link': showcase.show == false}"></span>
+            </button>
+          </div>
+          <div class="align-right margin-10-top">
+            <button class="add-btn round-btn showcase-handle"><span>{{showcase.order}}</span></button>
+            <button @click.prevent="edit(showcase.id)" class="edit-btn round-btn"><small class="icon-cog"></small></button>
+            <button @click.prevent="remove(showcase.id, index)" class="delete-btn round-btn"><small class="icon-bin"></small></button>
+          </div>
+        </div>
+
+      </div>
+    </draggable>
+
+    <div class="padding-15-left" v-show="!showcases.length">
+      <h4>{{$trans.translation.no_showcase}}</h4>
+    </div>
 
   </div>
 </div>
 </template>
 
 <script>
-  import draggable from 'vuedraggable'
+import draggable from 'vuedraggable'
 
-	export default{
-		data() {
-			return {
-        name: null,
-        products: null,
-        showcases: [],
-        formVisible: false,
-			}
-		},
-    components: {
-      draggable,
+export default {
+  data() {
+    return {
+      name: null,
+      products: null,
+      showcases: [],
+      formVisible: false,
+    }
+  },
+  components: {
+    draggable,
+  },
+
+  methods: {
+    getShowcase() {
+      this.$Progress.start()
+      this.$http.get(this.$root.url + '/' + this.$route.params.shop + '/edit/showcase/get').then((response) => {
+        this.showcases = response.body;
+        this.$Progress.finish()
+      });
+    },
+    create(index) {
+      this.$Progress.start()
+      this.$http.post(this.$root.url + '/' + this.$route.params.shop + ' /edit/showcase/create', {
+        name: this.name,
+        order: this.showcases.length ? this.showcases.length + 1 : 1
+      }).then((response) => {
+        this.name = null;
+        this.showcases.push(response.body)
+        toastr.success(this.$trans.translation.showcase_created);
+        this.$Progress.finish()
+      }, (response) => {
+        this.$Progress.fail()
+        toastr.error(this.$trans.translation.error);
+      });
     },
 
-		methods: {
-      getShowcase() {
-          this.$Progress.start()
-          this.$http.get(this.$root.url + '/' + this.$route.params.shop + '/edit/showcase/get').then((response)=> {
-            this.showcases = response.body;
-            this.$Progress.finish()
-        });
-      },
-      create(index){
-        this.$Progress.start()
-				this.$http.post(this.$root.url + '/' +this.$route.params.shop + ' /edit/showcase/create' ,{
-					name: this.name,
-          order: this.showcases.length ? this.showcases.length + 1 : 1
-				}).then((response)=> {
-							this.name = null;
-  						this.showcases.push(response.body)
-  						toastr.success(this.$trans.translation.showcase_created);
-              this.$Progress.finish()
-				}, (response) => {
-          this.$Progress.fail()
-            toastr.error(this.$trans.translation.error);
-        });
-			},
-
-      remove(showcaseId, index) {
-      if(!confirm(this.$trans.translation.delete_confirm)){
+    remove(showcaseId, index) {
+      if (!confirm(this.$trans.translation.delete_confirm)) {
         return;
       }
-        this.$http.delete(this.$root.url + '/' +this.$route.params.shop + '/edit/showcase/' + showcaseId + '/delete').then(() => {
-          this.showcases.splice(index, 1)
-          toastr.success(this.$trans.translation.success, toastr.options = {"preventDuplicates": true,});
-        });
-      },
-
-      edit(showcaseId){
-        document.location.href= this.$root.url + '/' +this.$route.params.shop + '/edit/showcase/' + showcaseId + '/edit';
-      },
-
-      showToggle(showcaseId, index){
-        this.$http.put(this.$root.url + '/' +this.$route.params.shop + '/edit/showcase/' + showcaseId + '/toggle_show' ).then((response) => {
-            toastr.success(this.$trans.translation.saved);
-            if (this.showcases[index].show) {
-              this.$set(this.showcases[index], 'show', false)
-            } else {
-              this.$set(this.showcases[index], 'show', true)
-            }
-        }, (response) => {
-            toastr.error(this.$trans.translation.error);
-        });
-      },
-
-      order(){
-        this.showcases.map((showcase, index) => {
-          showcase.order = index + 1;
-        });
-        this.$http.put(this.$root.url + '/' +this.$route.params.shop + '/edit/showcase/order/update', {
-          showcases: this.showcases
-        }).then((response) => {
-            toastr.success(this.$trans.translation.saved);
-        }, (response) => {
-            toastr.error(this.$trans.translation.error);
-        });
-      }
-
+      this.$http.delete(this.$root.url + '/' + this.$route.params.shop + '/edit/showcase/' + showcaseId + '/delete').then(() => {
+        this.showcases.splice(index, 1)
+        toastr.success(this.$trans.translation.success)
+      });
     },
 
-    created() {
-      this.getShowcase();
-  	}
+    edit(showcaseId) {
+      document.location.href = this.$root.url + '/' + this.$route.params.shop + '/edit/showcase/' + showcaseId + '/edit';
+    },
 
-	}
+    showToggle(showcaseId, index) {
+      this.$http.put(this.$root.url + '/' + this.$route.params.shop + '/edit/showcase/' + showcaseId + '/toggle_show').then((response) => {
+        toastr.success(this.$trans.translation.saved);
+        if (this.showcases[index].show) {
+          this.$set(this.showcases[index], 'show', false)
+        } else {
+          this.$set(this.showcases[index], 'show', true)
+        }
+      }, (response) => {
+        toastr.error(this.$trans.translation.error);
+      });
+    },
+    order() {
+      this.showcases.map((showcase, index) => {
+        showcase.order = index + 1;
+      })
+    },
+    save() {
+      this.$Progress.start()
+      this.$http.put(this.$root.url + '/' + this.$route.params.shop + '/edit/showcase/order/update', {
+        showcases: this.showcases
+      }).then((response) => {
+        this.$Progress.finish()
+        toastr.success(this.$trans.translation.saved);
+      }, (response) => {
+        this.$Progress.fail()
+        toastr.error(this.$trans.translation.error);
+      });
+    }
+
+  },
+
+  created() {
+    this.getShowcase()
+  }
+
+}
 </script>

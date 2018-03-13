@@ -4,6 +4,9 @@
 %btn-shadow
   box-shadow: 0 3px 3px 0 rgba(0,0,0,0.14), 0 1px 7px 0 rgba(0,0,0,0.12), 0 3px 1px -1px rgba(0,0,0,0.2)
 
+%btn-shadow-2
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .6)
+
 %btn-radius
   border-radius: 3px
 
@@ -32,6 +35,12 @@ button.default
   color: #ffffff
   background: #ff514c
   padding: 10px
+  &:hover
+    filter: brightness(90%)
+
+.delete-btn
+  span,small,i
+    margin-left: 2px
 
 .add-btn
   color: #ffffff
@@ -90,6 +99,7 @@ span.contact-btn.line, small.contact-btn.line
   color: #4ecd00
 
 .round-btn
+  @extend %btn-shadow
   border-radius: 50%
   width: 40px
   height: 40px
