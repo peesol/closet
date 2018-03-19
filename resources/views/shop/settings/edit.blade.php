@@ -15,17 +15,14 @@
             </div>
         </div>
 
-        {{-- <div class="tab-content current" id="tab-1">
-          <shop-edit shop-name="{{$shop->name}}"
-            shop-description="{{$shop->description}}"
-            profile-thumbnailnail="{{$shop->getThumbnail()}}"
-            shop-cover="{{$shop->getCover()}}"
-            shop-slug="{{$shop->slug}}"
-            user-address="{{$shop->user->address}}"
-            user-phone="{{$shop->user->phone}}"></shop-edit>
-          </div> --}}
           <div class="panel-body">
-            <router-view></router-view>
+            <router-view shop-name="{{$shop->name}}"
+              shop-description="{{$shop->description}}"
+              shop-thumbnail="{{$shop->getThumbnail()}}"
+              shop-cover="{{$shop->getCover()}}"
+              shop-slug="{{$shop->slug}}"
+              user-address="{{$shop->user->address}}"
+              user-phone="{{$shop->user->phone}}"></router-view>
           </div>
 
   </div>

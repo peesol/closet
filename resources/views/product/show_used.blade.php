@@ -27,10 +27,10 @@ window.addEventListener("load",function(){var t=document.querySelectorAll(".tab-
 
                     <div class="product-details">
                         <div class="details-header">
-                            <div class="thumb">
+                            <div class="product-profile-wrap">
                             <a href="/{{ $product->shop->slug}}"><img src="{{ $product->shop->getThumbnail() }}" alt="{{ $product->shop->thumbnail }}" style="float: left; width: 50px;"></a>
-                                <div class="shop-name-wrap">
-                                <a class="shop-name" href="/{{ $product->shop->slug}}">{{ $product->shop->name }}</a>
+                                <div class="profile-name-wrap">
+                                <a class="profile-name" href="/{{ $product->shop->slug}}">{{ $product->shop->name }}</a>
                                 </div>
                             </div>
                             <div class="follow-btn-wrapper">

@@ -38,8 +38,7 @@
                             <h4 class="product-name"><a class="link-text" href="/product/used/{{ $product->uid}}">{{ $product->name }}</a></h4>
                             <div class="product-detail-wrap">
                             <p class="product-p">{{__('message.price')}} : {{ number_format($product->price) }}</p>
-                            <p class="product-p">{{ $product->category->showTranslate(App::getLocale())->name }}</p>
-                            <p class="product-p">{{ $product->subcategory->showTranslate(App::getLocale())->name }}</p>
+                            <p class="product-p">{{ $product->category->showTranslate(App::getLocale())->name }} / {{ $product->subcategory->showTranslate(App::getLocale())->name }}</p>
                                     @if($product->type->id !== 1)
                                     <p class="product-p">{{ $product->type->showTranslate(App::getLocale())->name}}</p>
                                     @else
@@ -49,7 +48,7 @@
 
                             <form action="/product/used/{{ $product->uid}}" method="post">
                             <button type="submit" class="delete-btn round-btn" style="margin:10px 0 0 0px; position:absolute; bottom:0;">
-                              <small class="icon-bin"></small>
+                              <small class="icon-bin no-margin"></small>
                             </button>
 
                             {{ csrf_field() }}

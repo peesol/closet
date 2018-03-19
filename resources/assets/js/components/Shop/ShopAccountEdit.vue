@@ -29,7 +29,6 @@
         <div class="align-right padding-15-top">
           <button class="orange-btn normal-sq">{{$trans.translation.edit_submit}}</button>
         </div>
-
       </form>
     </div>
   </transition>
@@ -49,8 +48,8 @@
     </div>
   </div>
 
-  <div v-show="!accounts.length" class="padding-15-left">
-    <label class="full-label heading">{{$trans.translation.no_account}}</label>
+  <div v-show="!accounts.length" class="padding-15-vertical">
+    <label class="full-label input-label">{{$trans.translation.no_account}}</label>
   </div>
 
 </div>

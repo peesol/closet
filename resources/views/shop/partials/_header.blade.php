@@ -14,10 +14,13 @@
       <img class="" src="{{ $shop->getThumbnail() }}" alt="{{ $shop->thumbnail }}">
     </div>
 
-    <div class="profile-header-row">
+    <div class="profile-header-row flex">
       <label class="profile-name">{{ $shop->name }}</label>
 
-      <follow-button shop-slug="{{ $shop->slug}}"></follow-button>
+      <div class="align-bottom-right">
+
+      </div>
+
     </div>
 
       <shop-stats shop-slug="{{ $shop->slug}}"></shop-stats>
@@ -25,6 +28,12 @@
   </div>
 
   <div class="profile-vote panel-body">
-       <shop-vote shop-slug="{{ $shop->slug}}"></shop-vote>
+    <div class="profile-header-row">
+      <follow-button shop-slug="{{ $shop->slug}}"></follow-button>
+    </div>
+    <div class="profile-header-row">
+      <shop-vote shop-slug="{{ $shop->slug}}"></shop-vote>
+    </div>
+
   </div>
 </div>

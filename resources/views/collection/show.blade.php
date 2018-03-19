@@ -9,62 +9,89 @@
     <link rel="stylesheet" href="https://s3-ap-southeast-1.amazonaws.com/files.closet/css/extra/slick.css"/>
 @endsection
 
-@section('scripts')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
-@endsection
-
 @section('content')
 <div class="container">
             <div class="large-panel">
-                <div class="panel-heading"><h3 class="no-margin">{{$collection->name}}</h3></div>
-                @if ($collection->images->count())
-                	<div style="padding: 30px 50px;">
-                		  <div class="col-carousel">
-                        <vue-slick :imgs="{{json_encode($collection->images)}}" path="/collection/photo/" slick-for="collection"></vue-slick>
-                	    </div>
-                	</div>
-                @else
-                	<div class="panel-body"><p>{{__('message.no_image')}}</p></div>
-                @endif
-        		<div id="full-line"></div>
                 <div class="panel-heading">
-                	<h3 class="no-margin">{{__('message.description')}}</h3>
-                </div>
-                @if ($collection->description != null)
-                	<div class="panel-body">
-                		<p class="no-margin">{{$collection->description}}</p>
-                	</div>
-                	<div id="full-line"></div>
-                @else
-                	<div class="panel-body">
-                		<p>{{__('message.no_description')}}</p>
-                	</div>
-                	<div id="full-line"></div>
-                @endif
-                <div class="panel-heading">
-                  <h3 class="no-margin">{{__('message.featured_product')}}</h3>
+                  <label class="heading full-label">{{$collection->name}}</label>
                 </div>
 
+                @if ($collection->images->count())
+                	<div class="collection-slide-wrap">
+                    <vue-slick :imgs="{{json_encode($collection->images)}}" path="/collection/photo/" slick-for="collection"></vue-slick>
+                	</div>
+                @else
+                	<div class="panel-body" id="full-line"><p>{{__('message.no_image')}}</p></div>
+                @endif
+
+                <div class="panel-body">
+                  <label class="heading full-label">{{__('message.description')}}</label>
+                </div>
+
+                @if ($collection->description != null)
+                	<div class="padding-15-bottom padding-30-horizontal" id="full-line">
+                		<p class="no-margin">{{$collection->description}}</p>
+                	</div>
+                @else
+
+                <div class="panel-body" id="full-line">
+                	<p>{{__('message.no_description')}}</p>
+                </div>
+
+                @endif
+
+                <div class="panel-body">
+                  <label class="heading full-label">{{__('message.featured_product')}}</label>
+                </div>
+
+
                     @if($products->count())
-                      <div class="thumbnail-grid margin-10-top">
+
+                        <div class="panel-body thumbnail-grid">
                         @foreach($products as $product)
-                        <div v-if="products.length" class="panel-body thumbnail-grid">
-                            <div v-for="product in products" class="products-wrap">
-                                <a  href="/product/{{ $product->uid}}">
-                                  <img class="products-img-thumb" src="{{config('closet.buckets.images') . '/product/thumbnail/' . $product->thumbnail}}"alt="{{$product->thumbnail}} image"></a>
-                                <div>
-                                <h4 class="no-margin"><a class="link-text" :href="url + '/product/'+ product.uid" style="font-size:1.2em;">{{$product->name}}</a></h4>
-                                <p class="no-margin">{{__('message.price')}}&nbsp:&nbsp{{$product->price}}</p>
-                                <p class="no-margin">{{__('message.category')}}&nbsp:&nbsp{{$product->subcategory->showTranslate(App::getLocale())->name}}</p>
-                                <p class="no-margin">{{__('message.by')}}&nbsp<a class="link-text" :href="url + '/'+ product.slug">{{$product->shop->name}}</a></p>
-                                </div>
+                          <div class="products-wrap">
+                            <div class="products-img">
+                                <a href="/product/{{ $product->uid}}">
+                                <img class="products-img-thumb" src="{{$product->getImage()}}" alt="{{$product->thumbnail}}">
+                                </a>
+                                @if($product->discount_price)
+                                <span class="discount">Sale</span>
+                                <span class="price">
+                                  <strike>{{ number_format($product->price) }}&#3647;</strike>
+                                  {{ number_format($product->discount_price) }}&#3647;
+                                </span>
+                                @else
+                                <span class="price">{{ number_format($product->price) }}&#3647;</span>
+                                @endif
                             </div>
-                        </div>
+
+                            <h4 class="product-name">
+                              <a class="link-text" href="/product/{{ $product->uid}}">{{ $product->name }}</a>
+                            </h4>
+
+                            <div class="product-detail-wrap">
+                              @if (!$product->discount_price)
+                              <p class="product-p">{{__('message.price')}} : {{ number_format($product->price) }}&#3647;</p>
+                              @else
+                              <p class="product-p">
+                                {{__('message.price')}}&nbsp;:&nbsp;<strike>{{ number_format($product->price) }}&#3647;</strike>
+                                <small class="icon-next-arrow grey-font"></small>
+                                <font class="green-font">{{ number_format($product->discount_price) }}&#3647;</font>
+                              </p>
+                              @endif
+                              @if($product->type->id !== 1)
+                                <p class="product-p">{{__('message.category')}} : {{ $product->type->showTranslate(App::getLocale())->name}}</p>
+                              @else
+                                <p class="product-p">{{__('message.category')}} : {{$product->subcategory->showTranslate(App::getLocale())->name}}</p>
+                              @endif
+                            </div>
+                          </div>
                         @endforeach
-                      </div>
+                        </div>
+
                     @else
                   <div class="panel-body">
-                      <p>{{__('message.no_shop_product')}}</p>
+                    <p>{{__('message.no_shop_product')}}</p>
                   </div>
                   @endif
 

@@ -37,7 +37,7 @@
 .icon-arrows-up:before {
   content: "\e900";
 }
-.icon-arrows-down:before {
+.icon-arrow-down:before {
   content: "\e901";
 }
 .icon-prev-arrow:before {

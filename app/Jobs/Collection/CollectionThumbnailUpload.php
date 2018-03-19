@@ -42,9 +42,9 @@ class CollectionThumbnailUpload implements ShouldQueue
 
       $decoded = base64_decode($exploded[1]);
 
-      $local_path = storage_path('uploads/collection/thumbnail/') . $this->fileName;
+      Storage::disk('uploads')->put('collection/thumbnail/' . $this->fileName, $decoded);
 
-      file_put_contents($local_path, $decoded);
+      $local_path = storage_path('uploads/collection/thumbnail/') . $this->fileName;
 
       $img = Image::make($local_path)->encode('jpg')->fit(200, 200, function ($c){
           $c->upsize();

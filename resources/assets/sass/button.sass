@@ -10,8 +10,12 @@
 %btn-radius
   border-radius: 3px
 
+%white-font
+  color: #fff
+
 button.normal-sq
-  padding: 8px 15px
+  height: 40px
+  padding: 0 15px
 
 button.default
   @extend %btn-shadow
@@ -23,16 +27,18 @@ button.default
 .orange-btn
   @extend %btn-shadow
   @extend %btn-radius
-  color: #ffffff
+  @extend %white-font
   background-color: #ff8000
+  &:hover
+    background: #f57d05
 
 .green-btn
-  color: #ffffff
+  @extend %white-font
   background: #4aae2a
   padding: 10px
 
 .delete-btn
-  color: #ffffff
+  @extend %white-font
   background: #ff514c
   padding: 10px
   &:hover
@@ -42,25 +48,33 @@ button.default
   span,small,i
     margin-left: 2px
 
+.help-btn
+  @extend %btn-shadow
+  @extend %btn-radius
+  @extend %white-font
+  background: #3fa9f5
+  &:hover
+    background-color: #1782cf
+
+.help-btn
+  span,small,i
+    margin-left: 2px
+
 .add-btn
-  color: #ffffff
+  @extend %white-font
   background: #4aae2a
 
 .edit-btn
-  color: #ffffff
+  @extend %white-font
   background: #b8b8b8
   padding: 10px
 
-.vote-btn
-  color: #b3b3b3
-
 .flat-btn
-  color: #ff8000
+  color: #6c6c6c
   background-color: transparent
-  font-size: 1.5em
+  font-size: 1.2em
   &:hover
-    background-color: #ff8000
-    color: #fff
+    color: #ff8000
 
 span.contact-btn, small.contact-btn
   position: relative
@@ -104,11 +118,15 @@ span.contact-btn.line, small.contact-btn.line
   width: 40px
   height: 40px
   span, small
-    color: #ffffff
+    @extend %white-font
 
 .contact-btn
   span, small
-    color: #ffffff
+    @extend %white-font
+
+.vote-btn
+  color: #b3b3b3
+  background: transparent
 
 .vote-btn:hover, .vote-btn-voted
   color: #e43727

@@ -1,7 +1,7 @@
 <template>
 <div class="follow-btn-wrap" v-if="canFollow">
-  <button v-if="userFollowed === false" @click.prevent="handle" class="follow-btn orange-btn">{{$trans.translation.follow}}</button>
-  <button v-if="userFollowed === true" @click.prevent="handle" class="follow-btn default">{{$trans.translation.unfollow}}</button>
+  <button v-if="userFollowed === false" @click.prevent="handle" class="follow-btn follow">{{$trans.translation.follow}}</button>
+  <button v-else @click.prevent="handle" class="follow-btn unfollow">{{$trans.translation.unfollow}}</button>
 </div>
 </template>
 
@@ -26,9 +26,6 @@ export default {
           this.userFollowed = response.data.data.user_followed;
           this.canFollow = response.data.data.can_follow;
         })
-        .catch((error) => {
-          console.log(error);
-        });
     },
 
     handle() {

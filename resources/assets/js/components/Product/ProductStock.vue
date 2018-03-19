@@ -1,27 +1,26 @@
 <template>
 <div>
-  <div class="panel-heading"><h3 class="no-margin">{{$trans.translation.stock_edit}}</h3></div>
-  <div class="panel-body">
-    <table class="c-table" v-if="products.length">
-      <tr>
-        <th>{{$trans.translation.product_name}}</th>
-        <th>{{$trans.translation.amount}}</th>
-        <th>{{$trans.translation.stock}}</th>
-      </tr>
-      <tr v-for="(product, index) in products">
-        <td class="m-cell overflow-hidden">{{product.name}}</td>
-        <td class="s-cell">
-          <div class="input-group">
-            <input min="0" type="number" v-model="product.amount" style="background-color:#f2f2f2;">
-            <button class="checkmark-btn" type="submit" @click.prevent="setAmount(product.uid, product.amount, index)">
-              <small class="icon-checkmark"></small>
-            </button>
-          </div>
-        </td>
-        <td class="s-cell"><span v-bind:class="{'icon-checkmark green-font': product.amount >= 1,'icon-cross red-font': product.amount == 0}"></span></td>
-      </tr>
-    </table>
-    <p v-else>{{$trans.translation.product_none}}</p>
+  <div class="panel-heading">
+    <label class="full-label heading">{{$trans.translation.stock_edit}}</label>
+  </div>
+  <div v-if="products.length">
+
+    <div class="row-list flex flex-start-res" v-for="(product, index) in products">
+      <div class="text-wrap padding-15-right">
+        <label class="input-label">{{product.name}}</label>
+      </div>
+      <div class="flex">
+        <div class="input-group padding-15-right width-120">
+          <input class="form-input-alt no-margin" min="0" type="number" v-model="product.amount">
+          <button class="form-input-btn icon-checkmark" type="submit" @click.prevent="setAmount(product.uid, product.amount, index)"></button>
+        </div>
+        <span class="padding-15-horizontal" :class="{ 'green-box' : product.amount >= 1, 'red-box' : product.amount == 0 }">{{product.amount >= 1 ? $trans.translation.instock : $trans.translation.outstock}}</span>
+      </div>
+    </div>
+  </div>
+
+  <div v-else class="panel-body">
+    <label class="input-label full-label">{{$trans.translation.product_none}}</label>
   </div>
 </div>
 </template>

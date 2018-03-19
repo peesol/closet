@@ -53,6 +53,7 @@
           <button class="icon-checkmark form-input-btn" type="button" @click.prevent="updateBody(contact.id,contact.body)"></button>
         </div>
       </div>
+
       <div class="form-group">
         <div class="input-group">
           <input class="form-input-alt" type="text" placeholder="http://www.yourlink.com" v-model="contact.link">
@@ -66,7 +67,6 @@
           <span :class="{ 'icon-checked font-green': contact.show_cover == true, 'icon-unchecked font-link': contact.show_cover == false}"></span>
         </button>
       </div>
-
     </div>
 
     <div class="align-right panel-body">
@@ -77,7 +77,7 @@
 
   </div>
 
-  <div v-show="!contacts.length">
+  <div v-show="!contacts.length" class="padding-15-vertical">
     <label class="full-label input-label">{{$trans.translation.no_contact}}</label>
   </div>
 
@@ -185,7 +185,7 @@ export default {
     }
   },
   created() {
-    this.getContact();
+    this.getContact()
   }
 }
 </script>

@@ -90,6 +90,12 @@ class ProductController extends Controller
       $request->product->increment('view_count');
       return response()->json(null, 200);
     }
+    public function reportPage(Product $product)
+    {
+      return view('report.product', [
+        'product' => $product
+      ]);
+    }
 
 
 }

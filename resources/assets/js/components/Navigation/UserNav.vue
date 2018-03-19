@@ -10,7 +10,7 @@
   <div @click.stop v-show="toggled === 2" class="dropdown-content shadow-1">
     <div class="dropdown-name">{{userName}}</div>
     <a :href="$root.url + '/' + userShop">My closet</a>
-    <li v-bind:class="{'toggled-list' : toggledList === 1}" @click.prevent="toggleList(1)">My Product&nbsp;<small class="icon-arrows-down"></small></li>
+    <li v-bind:class="{'toggled-list' : toggledList === 1}" @click.prevent="toggleList(1)">My Product&nbsp;<small class="icon-arrow-down"></small></li>
     <transition name="slide-down-height">
       <div v-show="toggledList === 1">
         <a class="nested" :href="$root.url + '/profile/myproduct/new'">news</a>
@@ -18,10 +18,10 @@
       </div>
     </transition>
     <a :href="$root.url + '/' + userShop + '/edit/general'">Closet Edit</a>
-    <li v-bind:class="{'toggled-list' : toggledList === 2}" @click.prevent="toggleList(2)">Language&nbsp;<small class="icon-arrows-down"></small>
+    <li v-bind:class="{'toggled-list' : toggledList === 2}" @click.prevent="toggleList(2)">Language&nbsp;<small class="icon-arrow-down"></small>
     </li>
     <transition name="slide-down-height">
-      <div class="shadow-1" v-show="toggledList === 2">
+      <div v-show="toggledList === 2">
         <dropdown-language :language="$root.locale"></dropdown-language>
       </div>
     </transition>

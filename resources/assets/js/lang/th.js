@@ -101,6 +101,8 @@ export default {
     max: 'สูงสุด',
     stock_edit: 'การจัดการสต๊อกสินค้า',
     stock: 'มีสินค้า',
+    instock: 'มีสินค้า',
+    outstock: 'สินค้าหมด',
     amount: 'จำนวน',
     shipping: 'การจัดส่ง',
     shipping_time: 'ส่งภายใน',

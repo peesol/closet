@@ -15,8 +15,8 @@
                 </div>
                 @if ($products->count())
                 <div class="panel-heading margin-10-top">
-                  <button class="btn" onclick='document.location.href="/profile/myproduct/stock"'>{{__('message.stock_edit')}}</button>
-                  <button class="btn" onclick='document.location.href="/profile/myproduct/shipping"' style="margin-left:20px;">{{__('message.shipping_edit')}}</button>
+                  <button class="orange-btn normal-sq" onclick='document.location.href="/profile/myproduct/stock"'>{{__('message.stock_edit')}}</button>
+                  <button class="orange-btn normal-sq" onclick='document.location.href="/profile/myproduct/shipping"' style="margin-left:20px;">{{__('message.shipping_edit')}}</button>
                 </div>
                 @endif
 
@@ -50,24 +50,25 @@
                                 </span>
                                 @endif
                             </div>
-                            <h4 class="product-name"><a class="link-text" href="/product/{{ $product->uid}}">{{ $product->name }}</a></h4>
-                            <div class="product-detail-wrap">
-                            @if (!$product->discount_price)
-                            <p class="product-p">{{__('message.price')}} : {{ number_format($product->price) }}&#3647;</p>
-                            @else
-                            <p class="product-p">
-                              {{__('message.price')}}&nbsp;:&nbsp;<strike>{{ number_format($product->price) }}&#3647;</strike>
-                              <small class="icon-next-arrow grey-font"></small>
-                              <font class="green-font">{{ number_format($product->discount_price) }}&#3647;</font>
-                            </p>
-                            @endif
-                            <p class="product-p">{{ $product->category->showTranslate(App::getLocale())->name }}</p>
-                            <p class="product-p">{{ $product->subcategory->showTranslate(App::getLocale())->name }}</p>
-                                    @if($product->type->id !== 1)
-                                    <p class="product-p">{{ $product->type->showTranslate(App::getLocale())->name}}</p>
-                                    @else
+                            <div class="padding-5">
+                              <h4 class="product-name"><a class="link-text" href="/product/{{ $product->uid}}">{{ $product->name }}</a></h4>
 
-                                    @endif
+                              @if (!$product->discount_price)
+                              <p class="product-p">{{__('message.price')}} : {{ number_format($product->price) }}&#3647;</p>
+                              @else
+                              <p class="product-p">
+                                {{__('message.price')}}&nbsp;:&nbsp;<strike>{{ number_format($product->price) }}&#3647;</strike>
+                                <small class="icon-next-arrow grey-font"></small>
+                                <font class="green-font">{{ number_format($product->discount_price) }}&#3647;</font>
+                              </p>
+                              @endif
+                              <p class="product-p">{{ $product->category->showTranslate(App::getLocale())->name }} / {{ $product->subcategory->showTranslate(App::getLocale())->name }}</p>
+                              <p class="product-p"></p>
+                              @if($product->type->id !== 1)
+                              <p class="product-p">{{ $product->type->showTranslate(App::getLocale())->name}}</p>
+                              @else
+
+                              @endif
                             </div>
 
                             <form action="/product/{{ $product->uid}}" method="post">
@@ -77,7 +78,7 @@
                             </button>
 
                             <button type="submit" class="delete-btn round-btn" >
-                              <small class="icon-bin"></small>
+                              <small class="icon-bin no-margin"></small>
                             </button>
 
                             {{ csrf_field() }}

@@ -24,7 +24,6 @@ export default {
     data() {
         return {
             products: [],
-            url: window.Closet.url,
         }
     },
     props: {

@@ -8,7 +8,6 @@
 @endsection
 
 @section('scripts')
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
 <script type="text/javascript">
 window.addEventListener("load",function(){var t=document.querySelectorAll(".tab-nav-btn");function e(e){for(var r=0;r<t.length;r++)t[r].classList.remove("current");e.currentTarget.classList.add("current"),e.preventDefault();var n=document.querySelectorAll(".tab-content");for(r=0;r<n.length;r++)n[r].classList.remove("current");var a=e.target.getAttribute("data-tab");document.querySelector(a).classList.add("current")}for(i=0;i<t.length;i++)t[i].addEventListener("click",e)});
 </script>
@@ -17,28 +16,34 @@ window.addEventListener("load",function(){var t=document.querySelectorAll(".tab-
 
 <div class="container">
   @include('product.partials._login_warn')
-            <div class="product-show-panel">
-                <div class="panel-heading margin-10-bottom"><p class="product-title">{{__('message.product_name')}} : {{ $product->name }}</p></div>
-                <div class="flex">
+            <div class="medium-panel">
+                <div class="panel-heading margin-10-bottom">
+                  <label class="heading full-label">{{__('message.product_name')}} : {{ $product->name }}</label>
+                </div>
 
-                  <div class="product-showcase">
+                <div class="flex flex-start-res">
+
+                  <div class="half-width-res padding-15-horizontal">
                     <vue-slick :imgs="{{json_encode($product->productimages)}}" path="/product/photo/" slick-for="product"></vue-slick>
                   </div>
 
-                    <div class="product-details relative">
-                        <div class="details-header">
-                            <div class="thumb">
+                    <div class="half-width-res relative padding-15-horizontal">
+
+                        <div class="details-header flex flex-start-res">
+                            <div class="product-profile-wrap">
                             <a href="/{{ $product->shop->slug}}">
                             <img src="{{ $product->shop->getThumbnail() }}" alt="{{ $product->shop->thumbnail }}">
                             </a>
-                                <div class="shop-name-wrap">
-                                <a class="shop-name" href="/{{ $product->shop->slug }}">{{ $product->shop->name }}</a>
-                                </div>
+                              <div class="profile-name-wrap">
+                                <a class="profile-name" href="/{{ $product->shop->slug }}">{{ $product->shop->name }}</a>
+                              </div>
                             </div>
-                            <div class="follow-btn-wrapper">
-                              <follow-button shop-slug="{{ $product->shop->slug }}"></follow-button>
-                            </div>
+
+                            <follow-button shop-slug="{{ $product->shop->slug }}"></follow-button>
+
                         </div>
+
+
                         <div class="details-header-sub">
                             <product-vote product-uid="{{ $product->uid }}" product-id="{{ $product->id }}"></product-vote>
                             @if($product->visibility == 'public')
@@ -54,10 +59,12 @@ window.addEventListener("load",function(){var t=document.querySelectorAll(".tab-
                           @endif
                         @endif
 
+
                     </div>
                 </div>
+
             </div>
-                <div class="product-show-panel" style="margin-top: 10px;">
+                <div class="medium-panel">
                     <div class="tab-nav">
                         <ul class="tab-nav-ul">
                             <button class="tab-nav-btn static current" data-tab="#tab-1">{{__('message.details')}}</button>
@@ -68,18 +75,18 @@ window.addEventListener("load",function(){var t=document.querySelectorAll(".tab-
                         <div class="tab-content flex current" id="tab-1">
                           @include('product.partials._contacts', [ 'contacts' => $contacts ])
                         </div>
+
                         <div class="comment-vue tab-content flex" id="tab-2">
                           @if(!Auth::check())
                           <div class="alert-box info">
-                            <h3 class="no-margin">
+                            <label class="input-label full-label">
                               <span class="icon-notification"></span>
                               {{__('auth.comment_notice')}}<a class="link-text font-bold" href="{{ route('login')}}">&nbsp;{{__('message.login')}}</a>
-                            </h3>
+                            </label>
                           </div>
                           @endif
                           <product-comment product-uid="{{ $product->uid }}"></product-comment>
                         </div>
-
                 </div>
 
 </div>

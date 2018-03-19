@@ -88,7 +88,6 @@ Vue.component('collection-edit', require('./components/Collection/CollectionEdit
 Vue.component('collection-dropzone', require('./components/Collection/CollectionDropzone.vue'));
 Vue.component('collection-product', require('./components/Collection/CollectionProduct.vue'));
 Vue.component('collection-product-edit', require('./components/Collection/CollectionProductEdit.vue'));
-Vue.component('collection-product-show', require('./components/Collection/CollectionProductShow.vue'));
 Vue.component('dropdown-language', require('./components/Language/DropdownLanguage.vue'));
 Vue.component('language-select', require('./components/Language/Language.vue'));
 Vue.component('showcase', require('./components/Showcase.vue'));

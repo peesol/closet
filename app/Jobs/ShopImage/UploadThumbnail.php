@@ -41,11 +41,11 @@ class UploadThumbnail implements ShouldQueue
 
       $decoded = base64_decode($exploded[1]);
 
-      $local_path = storage_path('uploads/profile/thumbnail/') . $this->fileName;
+      Storage::disk('uploads')->put('profile/thumbnail/' . $this->fileName, $decoded);
 
-      file_put_contents($local_path, $decoded);
+      $path = storage_path('uploads/profile/thumbnail/'. $this->fileName);
 
-      $img = Image::make($local_path)->encode('jpg')->fit(100, 100, function ($c){
+      $img = Image::make($path)->encode('jpg')->fit(100, 100, function ($c){
           $c->upsize();
       });
 
@@ -53,8 +53,7 @@ class UploadThumbnail implements ShouldQueue
 
       Storage::disk('s3images')->put('profile/thumbnail/' . $this->fileName . '.jpg', $img->__toString());
 
-      unlink($local_path);
-
+      unlink($path);
       $this->shop->thumbnail = $this->fileName . '.jpg';
       $this->shop->save();
     }

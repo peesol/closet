@@ -18,7 +18,7 @@
         </a>
 
         <div class="shop-wrap">
-          <a class="shop-name" href="/{{ $shop->slug }}">{{ $shop->name }}</a><br>
+          <a class="profile-name" href="/{{ $shop->slug }}">{{ $shop->name }}</a><br>
           <p class="shop-description">{{ $shop->description }}</p>
         </div>
 

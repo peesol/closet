@@ -1,9 +1,9 @@
 <template>
 <div class="panel-body">
   <vue-progress-bar></vue-progress-bar>
-  <button class="orange-btn normal-sq width-120" @click.prevent="formVisible = !formVisible">{{$trans.translation.add}}</button>
+  <button class="orange-btn normal-sq width-120" @click.prevent="toggled = !toggled">{{$trans.translation.add}}</button>
   <transition name="slide-down-height">
-    <div v-show="formVisible" class="padding-15-vertical">
+    <div v-show="toggled" class="padding-15-vertical">
       <div class="panel-body shadow-2">
         <form v-on:submit.prevent="create">
           <div class="form-group">
@@ -18,12 +18,12 @@
     </div>
   </transition>
   <div class="margin-10-top">
-    <div class="alert-box info" v-show="showcases.length">
-      <h3 class="no-margin padding-15-vertical">
-        <span class="icon-notification"></span>&nbsp;{{$trans.translation.showcase_drag}}
-      </h3>
+
+    <div class="alert-box info margin-20-top" v-show="showcases.length">
+      <span class="icon-notification"></span>&nbsp;{{$trans.translation.showcase_drag}}
     </div>
-    <div class="align-right padding-15-vertical">
+
+    <div class="align-right padding-15-vertical" v-show="showcases.length">
       <button class="orange-btn normal-sq width-120" @click.prevent="save()">{{$trans.translation.edit_submit}}</button>
     </div>
     <draggable :list="showcases" :options="{animation: 200, handle: '.showcase-handle'}" @change="order">
@@ -50,8 +50,8 @@
       </div>
     </draggable>
 
-    <div class="padding-15-left" v-show="!showcases.length">
-      <h4>{{$trans.translation.no_showcase}}</h4>
+    <div v-show="!showcases.length" class="padding-15-vertical">
+      <label class="full-label input-label">{{$trans.translation.no_showcase}}</label>
     </div>
 
   </div>
@@ -67,7 +67,7 @@ export default {
       name: null,
       products: null,
       showcases: [],
-      formVisible: false,
+      toggled: false,
     }
   },
   components: {

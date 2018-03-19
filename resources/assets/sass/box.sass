@@ -1,0 +1,91 @@
+.alert-box
+  color: #555
+  font-size: 1em
+  padding: 10px
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23)
+  span
+    font-size: 1.5em
+  &.warning
+    background-color: #fff8c4
+    border-left: 8px solid #f2c779
+  &.success
+    background-color: #e9ffd9
+    border-left: 8px solid #a6ca8a
+  &.error
+    background-color: #ffecec
+    border-left: 8px solid #f5aca6
+  &.info
+    background-color: #fff
+    border-left: 8px solid #ff8000
+
+.row-list
+  position: relative
+  width: 100%
+  text-align: left
+  padding: 10px 15px
+  border-bottom: 1px solid #eee
+
+.row-list
+  .thumbnail-wrap
+    width: 100px
+    height: 100px
+    img
+      width: 100%
+      height: 100%
+
+.row-list
+  .button-wrap
+    width: 40px
+    height: 40px
+    position: absolute
+    right: 15px
+
+.row-list
+  .middle-wrap
+    width: calc(100% - 180px)
+    height: 100%
+
+.row-list
+  .text-wrap
+    line-height: 35px
+    min-width: 100%
+    overflow: hidden
+    text-overflow: ellipsis
+    white-space: nowrap
+
+
+@media (min-width: 768px)
+  .row-list
+    .thumbnail-wrap
+      width: 120px
+      height: 120px
+      img
+        width: 100%
+        height: 100%
+
+  .row-list
+    .middle-wrap
+      width: calc(100% - 220px)
+      height: 100%
+
+  .row-list
+    .text-wrap
+      max-width: 0
+      min-width: 500px
+
+@media (min-width: 992px)
+  .row-list
+    .text-wrap
+      max-width: 0
+      min-width: 620px
+
+.green-box
+  background: #4aae2a
+
+.red-box
+  background: #ff3535
+
+.green-box,.red-box
+  border-radius: 5px
+  color: #fff
+  line-height: 35px

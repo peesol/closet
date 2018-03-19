@@ -24,22 +24,19 @@ button.input-addon
     opacity: 0.8
 
 .input-addon
+  border-bottom: 3px solid #b5b5b5
+  background-color: #efefef
+
+.input-addon-no-bg
+  border: none
+  background-color: transparent
+
+.input-addon,.input-addon-no-bg
   font-size: 1em
   position: relative
   width: auto
   height: 35px
   padding: 7px
-  border-bottom: 3px solid #b5b5b5
-  background-color: #efefef
-
-label.input-addon
-  display: inline-block
-  width: 100px
-  text-align: right
-  border-bottom: none
-  background-color: transparent
-  color: #6c6c6c
-  font-weight: 600
 
 .input-addon-field
   flex: 1
@@ -120,14 +117,24 @@ label.input-addon
 .profile-thumbnail-input
   width: 100px
   height: 100px
-  overflow: hidden
   img
     width: 100px
     height: 100px
+
+.image-file-input
+  width: 200px
+  height: 200px
+  img
+    width: 200px
+    height: 200px
+
+.profile-thumbnail-input,.image-file-input
+  overflow: hidden
+  img
     object-fit: cover
     position: absolute
 
-.profile-thumbnail-input,.cover-input
+.profile-thumbnail-input,.cover-input,.image-file-input
   position: relative
   background-color: #efefef
   span
@@ -141,6 +148,10 @@ label.input-addon
 .profile-thumbnail-input
   span
     line-height: 100px
+
+.image-file-input
+  span
+    line-height: 200px
 
 .cover-input
   width: 100%

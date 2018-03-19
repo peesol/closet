@@ -1,7 +1,7 @@
 <template>
 <div>
   <div class="filter-bar" id="full-line">
-    <button class="filter-btn" @click.prevent="formVisible = !formVisible">{{ $trans.translation.choice}}&nbsp;<small class="icon-arrows-down"></small></button>
+    <button class="filter-btn" @click.prevent="formVisible = !formVisible">{{ $trans.translation.choice}}&nbsp;<small class="icon-arrow-down"></small></button>
   </div>
     <ul class="breadcrumb">
       <p>{{ breadcrumb.category }}</p>

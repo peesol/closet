@@ -18,6 +18,18 @@ class ShopEditController extends Controller
     return view('shop.settings.edit' , [ 'shop' => $shop ]);
   }
 
+  public function getUserInfomation(Shop $shop)
+  {
+    $data = [
+      'id' => $shop->id,
+      'cover' => $shop->getCover(),
+      'thumbnail' => $shop->getThumbnail(),
+      'description' => $shop->description,
+      'name' => $shop->name,
+      'slug' => $shop->slug,
+    ];
+    return response()->json($data);
+  }
   public function updatePublicInfo(ShopUpdateRequest $request, Shop $shop)
   {
     $this->authorize('update', $shop);
@@ -45,11 +57,11 @@ class ShopEditController extends Controller
   public function updateThumbnail(Request $request, Shop $shop)
   {
     if (!empty($shop->thumbnail)) {
-      $path = 'profile/thumbnail/'.$shop->thumbnail;
+      $path = 'profile/thumbnail/' . $shop->thumbnail;
       $this->dispatch(new DeleteImage($path));
     }
     $thumbnail = $request->thumbnail;
-    $fileName = uniqid('profile_thumb_'.$request->user()->id);
+    $fileName = uniqid('profile_thumb_' . $request->user()->id);
 
     $this->dispatch(new UploadThumbnail($shop, $thumbnail, $fileName));
 

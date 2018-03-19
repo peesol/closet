@@ -31,7 +31,6 @@ class User extends Authenticatable
     {
       return $this->hasOne(Shop::class);
     }
-
     public function usertype()
     {
       return $this->hasOne(Usertype::class);
@@ -39,6 +38,10 @@ class User extends Authenticatable
     public function account()
     {
       return $this->hasManyThrough(Account::class, Shop::class);
+    }
+    public function note()
+    {
+      return $this->hasManyThrough(Note::class, Shop::class);
     }
     public function products()
     {

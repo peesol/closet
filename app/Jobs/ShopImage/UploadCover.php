@@ -41,20 +41,20 @@ class UploadCover implements ShouldQueue
 
       $decoded = base64_decode($exploded[1]);
 
-      $local_path = storage_path('uploads/profile/cover/') . $this->fileName;
+      Storage::disk('uploads')->put('profile/cover/' . $this->fileName, $decoded);
 
-      file_put_contents($local_path, $decoded);
+      $path = storage_path('uploads/profile/cover/') . $this->fileName;
 
       $background = Image::canvas(1100, 315, '#ffffff');
-      $img = Image::make($local_path)->encode('jpg')->resize(1100, 315, function ($c){
+      $img = Image::make($path)->encode('jpg')->resize(1100, 315, function ($c){
           $c->aspectRatio();
           $c->upsize();
       });
       $background->insert($img, 'center');
       $img = $background->stream();
       Storage::disk('s3images')->put('profile/cover/' . $this->fileName . '.jpg', $img->__toString());
-      unlink($local_path);
 
+      unlink($path);
       $this->shop->cover = $this->fileName . '.jpg';
       $this->shop->save();
     }

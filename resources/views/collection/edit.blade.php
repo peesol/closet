@@ -12,10 +12,12 @@
 @section('content')
 
 <div class="container">
-  <div class="product-show-panel">
-    <div class="panel-heading"><h3 class="no-margin">{{$collection->name}}</h3></div>
+  <div class="medium-panel">
+    <div class="panel-heading">
+      <label class="heading">{{$collection->name}}</label>
+    </div>
 
-      <collection-edit col-name="{{$collection->name}}" col-description="{{$collection->description}}" col-visibility="{{$collection->visibility}}" image-src="{{$collection->getImage()}}"></collection-edit>
+      <collection-edit col-slug="{{$collection->slug}}" col-name="{{$collection->name}}" col-description="{{$collection->description}}" col-visibility="{{$collection->visibility}}" image-src="{{$collection->getImage()}}"></collection-edit>
       <collection-dropzone col-id="{{$collection->id}}" col-slug="{{$collection->slug}}"></collection-dropzone>
       <collection-product-edit col-id="{{$collection->id}}"></collection-product-edit>
 

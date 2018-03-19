@@ -16,7 +16,8 @@ const routes = [
   {
     name: 'generalEdit',
     path: '/:shop/edit/general',
-    component: ShopEdit
+    component: ShopEdit,
+    props: true
   },
   {
     name: 'contactEdit',

@@ -25,6 +25,7 @@ Route::prefix('product')->group(function () {
   Route::get('/{product}/views', 'ProductController@viewCount');
   Route::put('/{product}/views', 'ProductController@logView');
   Route::get('/{product}/comments', 'ProductCommentController@index');
+  Route::get('/{product}/report', 'ProductController@reportPage');
 });
 
 
@@ -161,6 +162,13 @@ Route::put('/product/{product}/toggle_choice', 'Product\Choice\ChoiceController@
 Route::delete('/product/{product}/choice/delete/{id}', 'Product\Choice\ChoiceController@remove');
 /*
 |--------------------------------------------------------------------------
+| Note Routes
+|--------------------------------------------------------------------------
+*/
+Route::get('/profile/note', 'User\NoteController@index');
+
+/*
+|--------------------------------------------------------------------------
 | My Product Routes
 |--------------------------------------------------------------------------
 */
@@ -223,6 +231,7 @@ Route::namespace('Shop')->group(function () {
 Route::group(['middleware' => ['auth']], function () {
 
   Route::get('/{shop}/edit/general', 'Shop\Settings\ShopEditController@index');
+  Route::get('/{shop}/edit/general/get', 'Shop\Settings\ShopEditController@getUserInfomation');
   Route::get('/{shop}/edit/contact', 'Shop\Settings\ShopEditController@index');
   Route::get('/{shop}/edit/account', 'Shop\Settings\ShopEditController@index');
   Route::get('/{shop}/edit/showcase', 'Shop\Settings\ShopEditController@index');

@@ -1,3 +1,6 @@
+%box-shadow
+  box-shadow: 0 3px 3px 0 rgba(0,0,0,0.14), 0 1px 7px 0 rgba(0,0,0,0.12), 0 3px 1px -1px rgba(0,0,0,0.2)
+
 .shop-header
   width: 100%
   height: 170px
@@ -42,7 +45,7 @@
   .profile-name
     float: none
     line-height: 50px
-    font-size: 1.5em
+    font-size: 1.2em
     width: 100%
     text-overflow: ellipsis
     white-space: nowrap
@@ -51,10 +54,27 @@
 
 .profile-vote
   float: none
+  .follow-btn-wrap
+    width: 100%
+  .profile-header-row
+    div
+      line-height: 40px
+
+.follow-btn-wrap
+  width: 100%
 
 .follow-btn
   height: 40px
   width: 100%
+  border-radius: 5px
+
+.follow-btn.follow
+  background: #ff8000
+  color: #fff
+
+.follow-btn.unfollow
+  background: #f7f7f7
+  color: #6c6c6c
 
 @media (min-width: 768px)
   .profile-info-wrap
@@ -64,6 +84,7 @@
 
   .profile-header-row
     .profile-name
+      font-size: 1.5em
       width: auto
       float: left
       padding-right: 10px
@@ -84,9 +105,13 @@
     float: left
     width: 200px
 
-  .follow-btn
-    height: 30px
+  .follow-btn-wrap
     width: 100px
+
+  .follow-btn
+    height: 35px
+    width: 100%
+
 @media (min-width: 992px)
   .cover-wrap
     height: 264px
@@ -96,16 +121,15 @@
     height: 315px
 
 .profile-vote-btn
-  &:first-child
-    margin-top: 0
-    margin-bottom: 10px
-  width: 100%
+  width: 95%
   height: 40px
   background-color: #f2f2f2
   outline: none
   border: none
   color: #6c6c6c
+  border-radius: 5px
 
 .profile-voted-btn
-  background-color: #ff8300
+  background-color: #e43727
   color: #ffffff
+  border: 1px solid #e43727

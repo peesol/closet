@@ -1,88 +1,113 @@
 <template>
-<div>
-	<div id="col-add" v-show="user_id !== null">
-		<button v-on-clickaway="hide" class="add-to-col" @click.prevent="formVisible = !formVisible" v-bind:class="{'add-to-col-active': formVisible === true}">{{$trans.translation.add_to_col}}</button>
-        <transition name="opacity">
-            <div @click.stop class="col-add" id="col-add-id" v-show="formVisible">
-                <ul id="col-add-id">
-                    <li v-show="collections.length == 0"><p style="margin-left: 8px;">&nbsp;{{$trans.translation.col_null}}</p></li>
-                    <li id="col-add-id" v-for="(collection, index) in collections"><a @click.prevent="addToCollection(productId,collection.id, index)"
-                    v-bind:class="{'added': collection.added === true}"
-                    >{{ collection.name }}</a></li>
-                </ul>
-                    <li><button @click.prevent="create = !create" class="create-col">{{$trans.translation.add_col}}</button></li>
-                    <transition name="slide-down-col">
-                    <li class="input-group" style="padding:5px;" v-show="create">
-											<input style="height:30px;" class="form-input" type="text" v-model="col_name">
-											<button style="height:30px;border:none;" class="" @click.prevent="createCol"><small class="icon-checkmark grey-font"></small></button>
-										</li>
-                    </transition>
-            </div>
-        </transition>
-	</div>
+<div v-on-clickaway="hide" class="align-right full-height" v-show="$root.authenticated">
+  <button  class="dropdown-btn icon-plus" @click.prevent="toggle(1)" v-bind:class="{'btn-active': formVisible === 1}"></button>
+
+    <div @click.stop class="col-add shadow-1" v-show="formVisible === 1">
+      <ul id="full-line">
+        <li v-show="collections.length === 0">
+          <p class="align-center">{{$trans.translation.col_null}}</p>
+        </li>
+        <li v-for="(collection, index) in collections">
+          <a class="text-nowrap" @click.prevent="addToCollection(productId,collection.id, index)">
+            <span class="added" :class="{'icon-checked font-green' : collection.added, 'icon-unchecked font-grey' : !collection.added}"></span>
+            &nbsp;{{ collection.name }}
+          </a>
+        </li>
+      </ul>
+      <li>
+        <button @click.prevent="create = !create" class="flat-btn full-width padding-15-vertical">
+          <font class="font-medium">{{$trans.translation.add_col}}</font>
+        </button>
+      </li>
+
+        <li class="input-group padding-10" v-show="create">
+          <input class="form-input" type="text" v-model="col_name">
+          <button class="checkmark-btn form-input-btn" @click.prevent="createCol">
+            <small class="icon-checkmark"></small>
+          </button>
+        </li>
+    </div>
+    <button class="dropdown-btn icon-sub-menu" @click.prevent="toggle(2)" v-bind:class="{'btn-active': formVisible === 2}"></button>
+    <div @click.stop class="col-add shadow-1" v-show="formVisible === 2">
+      <ul id="full-line">
+        <li>
+          <a href="#" @click.prevent="report()">Report</a>
+        </li>
+      </ul>
+    </div>
 
 </div>
 </template>
 
 <script>
-import { mixin as clickaway } from 'vue-clickaway';
-    export default {
-        mixins: [ clickaway ],
-    	data() {
-    		return {
-          col_name: null,
-    			collections:[],
-          added: null,
-          formVisible: false,
-    			create: false,
-          user_id: window.Closet.user.user,
-    		}
-    	},
+import {
+  mixin as clickaway
+} from 'vue-clickaway';
+export default {
+  mixins: [clickaway],
+  data() {
+    return {
+      col_name: null,
+      collections: [],
+      added: null,
+      formVisible: null,
+      create: false,
+    }
+  },
 
-    	methods: {
-        getCollection() {
-          this.$http.get(this.$root.url + '/collection_ajax/'+ this.shopSlug +'/add/' + this.productId).then((response)=> {
-              this.collections = response.body.data;
-            });
-        },
-    		addToCollection(productId, collectionId, index) {
-					this.$http.post(this.$root.url + '/collection/' + collectionId + '/add/' + productId).then((response)=> {
-						if (this.collections[index].added) {
-							this.$set(this.collections[index], 'added', false)
-							toastr.success(this.$trans.translation.delete_from_col)
-						} else {
-							this.$set(this.collections[index], 'added', true)
-							toastr.success(this.$trans.translation.added_to_col)
-						}
-
-    				}, (response) => {
-    					toastr.error(this.$trans.translation.error);
-      				});
-    		},
-        hide () {
-          this.formVisible = false;
-        },
-        createCol () {
-          this.$http.post(this.$root.url + '/collection_ajax/' + this.shopSlug ,{
-              name: this.col_name,
-          }).then((response)=> {
-						this.col_name = null,
-						this.collections.push(response.body)
-            toastr.success(this.$trans.translation.col_created);
-          });
+  methods: {
+    toggle(number) {
+      if (this.formVisible === number) {
+        this.formVisible = null
+      }
+      this.formVisible = number
+    },
+    getCollection() {
+      this.$http.get(this.$root.url + '/collection_ajax/' + this.shopSlug + '/add/' + this.productId).then((response) => {
+        this.collections = response.body.data;
+      });
+    },
+    addToCollection(productId, collectionId, index) {
+      this.$http.post(this.$root.url + '/collection/' + collectionId + '/add/' + productId).then((response) => {
+        if (this.collections[index].added) {
+          this.$set(this.collections[index], 'added', false)
+          toastr.success(this.$trans.translation.delete_from_col)
+        } else {
+          this.$set(this.collections[index], 'added', true)
+          toastr.success(this.$trans.translation.added_to_col)
         }
 
-    	},
-
-        props: {
-        	productId: null,
-        	shopSlug: null,
-        },
-
-      created() {
-				if (this.$root.authenticated) {
-					this.getCollection()
-				}
-  		},
+      }, (response) => {
+        toastr.error(this.$trans.translation.error);
+      });
+    },
+    hide() {
+      this.formVisible = false;
+    },
+    createCol() {
+      this.$http.post(this.$root.url + '/collection_ajax/' + this.shopSlug, {
+        name: this.col_name,
+      }).then((response) => {
+        this.col_name = null,
+          this.collections.push(response.body)
+        toastr.success(this.$trans.translation.col_created);
+      });
+    },
+    report() {
+      document.location.href = this.$root.url + '/product/' + this.productId + '/report'
     }
+
+  },
+
+  props: {
+    productId: null,
+    shopSlug: null,
+  },
+
+  created() {
+    if (this.$root.authenticated) {
+      this.getCollection()
+    }
+  },
+}
 </script>

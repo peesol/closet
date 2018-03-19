@@ -13,7 +13,7 @@
     </div>
     <div class="panel-body">
       <div class="alert-box info">
-        <h3 class="no-margin"><span class="icon-notification"></span>&nbsp;{{__('message.shipping_edit_notice')}}</h3>
+        <label class="full-label input-label"><span class="icon-notification"></span>&nbsp;{{__('message.shipping_edit_notice')}}</label>
       </div>
       <shipping-edit shop-slug="{{$shop->slug}}"></shipping-edit>
     </div>

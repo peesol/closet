@@ -12,7 +12,7 @@
 		</div>
 		<div id="full-line"></div>
 	<div class="panel-heading">
-		<label class="full-label no-margin"  style="cursor:pointer" @click.prevent="formVisible = !formVisible">{{$trans.translation.upload_photo}}&nbsp;&nbsp;<small class="icon-arrows-down"></small></label>
+		<label class="full-label no-margin"  style="cursor:pointer" @click.prevent="formVisible = !formVisible">{{$trans.translation.upload_photo}}&nbsp;&nbsp;<small class="icon-arrow-down"></small></label>
 	</div>
 	<transition name="slide-down">
 		<div v-show="formVisible" class="panel-body">

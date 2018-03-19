@@ -9,7 +9,7 @@
     </div>
     <div class="flex flex-between padding-15-top">
       <label class="file-input shadow-1">
-        <input @change="previewCover" type="file" :name="cover" accept="image/*"/>
+        <input @change="previewCover" id="cover-input" type="file" :name="cover" accept="image/*"/>
         {{$trans.translation.choose_file}}&nbsp;+
       </label>
       <button class="file-input shadow-1" v-if="cover !== null" @click.prevent="removeCover">{{$trans.translation.remove}}</button>
@@ -31,9 +31,6 @@ export default {
   },
   methods: {
     edit() {
-      toastr.options.preventDuplicates = true;
-      toastr.options.timeOut = 2000;
-
       if (document.getElementById("cover-input").files.length == 0) {
         toastr.info(this.$trans.translation.dropzone_null);
       }

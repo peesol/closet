@@ -11,6 +11,13 @@
 .half-width
   width: 50% !important
 
+.half-width-res
+  width: 100% !important
+
+@media (min-width: 768px)
+  .half-width-res
+    width: 50% !important
+
 .auto-width
   width: auto !important
 
@@ -28,6 +35,18 @@
 
 .relative
   position: relative !important
+
+.no-margin
+  margin: 0 !important
+
+.margin-10
+  margin: 10px !important
+
+.margin-15
+  margin: 15px !important
+
+.margin-20
+  margin: 20px !important
 
 .margin-10-bottom
   margin-bottom: 10px !important
@@ -89,8 +108,11 @@
 .padding-15-right
   padding-right: 15px
 
-.no-margin
-  margin: 0 !important
+.padding-5
+  padding: 5px
+
+.padding-10
+  padding: 10px
 
 .float-left
   float: left !important
@@ -127,12 +149,15 @@
   left: 5px
 
 .align-right
-  position: relative
   text-align: right
 
 .align-left
   position: relative
   text-align: left
+
+.align-center
+  position: relative
+  text-align: center
 
 .flex
   display: -webkit-box
@@ -145,6 +170,15 @@
 
 .flex-start
   justify-content: flex-start
+
+.flex-start-res
+  justify-content: center
+  flex-flow: column
+
+@media (min-width: 768px)
+  .flex-start-res
+    justify-content: flex-start
+    flex-flow: row
 
 .red-bg
   background-color: #fe4747 !important
@@ -160,3 +194,26 @@
 
 .transparent-bg
   background-color: transparent !important
+
+.shadow-1
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24) !important
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1)
+  &:hover
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22) !important
+
+.shadow-2
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23) !important
+
+.shadow-3
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23) !important
+
+.shadow-4
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22) !important
+
+.shadow-5
+  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22) !important
+
+.text-nowrap
+  overflow: hidden
+  text-overflow: ellipsis
+  white-space: nowrap

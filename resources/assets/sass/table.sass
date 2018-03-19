@@ -1,0 +1,121 @@
+table
+  font-family: arial, sans-serif
+  border-collapse: collapse
+  width: 100%
+
+td, th
+  border: 1px solid #dddddd
+  text-align: left
+  padding: 8px
+  overflow: hidden
+  text-overflow: ellipsis
+  white-space: nowrap
+  cursor: default
+
+td.center, th.center
+    text-align: center
+
+.c-table
+  table-layout: auto
+  border-collapse: collapse
+  margin-bottom: 10px
+  th
+    background-color: #f2f2f2
+    color: #6c6c6c
+    border: none
+  td
+    border: none
+    border-bottom: 1px solid #efefef
+  .overflow-hidden
+    max-width: 0
+    min-width: 150px
+    overflow: hidden
+    text-overflow: ellipsis
+    white-space: nowrap
+  input
+    &[type="text"], &[type="number"]
+      height: 30px
+      border: none
+      background-color: #f2f2f2
+      padding-left: 10px
+      border-left: 3px solid #6c6c6c
+    &[type="text"]:focus, &[type="number"]:focus
+      border-left: 3px solid #ff8000
+      transition: all 0.5s ease
+
+.checkmark-btn
+  border: none
+  color: #6c6c6c
+  &:hover
+    background-color: #4aae2a
+    color: #fff
+
+.c-table
+  .s-cell
+    width: 40px
+  .m-cell
+    width: 150px
+  td#icon
+    width: 20px
+    font-size: 30px
+    span
+      width: 20px
+      font-size: 30px
+
+.remove-p-cart
+  color: #ff514c
+  cursor: pointer
+
+@media (min-width: 1200px)
+  .add-cart
+    padding: 0
+
+.add-cart-btn
+  color: #ffffff
+  background-color: #ff8300
+  width: 100%
+  height: 40px
+  border: none
+  font-weight: 600
+  font-size: 1em
+  &:hover::after
+    content: '  +'
+
+.add-cart-disabled
+  color: #6c6c6c
+  background-color: #efefef
+  width: 100%
+  height: 40px
+  border: none
+  font-weight: 600
+  font-size: 1em
+
+.msg-btn
+  width: 100%
+  height: 50px
+  button
+    float: left
+    width: 33.33%
+    height: 100%
+    border: none
+    background-color: #f7f7f7
+    color: #6c6c6c
+    &:hover
+      background-color: #ffffff
+
+.msg-btn-full
+  width: 100% !important
+  border: none !important
+
+.msg-btn button:nth-child(1n+2)
+  border-left: 1px solid #b5b5b5
+
+.no-border
+  border: none !important
+
+.shipping-table td
+  &:first-child
+    width: 150px
+  &:nth-child(2)
+    width: 120px
+  border: none
