@@ -6,7 +6,7 @@
   </div>
   <div class="panel-body thumbnail-grid" v-if="images.length">
     <div v-for="(image, index) in images" class="products-img">
-      <img class="full-img" :alt="image.filename" :src="image.filename">
+      <img class="object-contain black-bg" :alt="image.filename" :src="image.filename">
       <button v-show="image.id && images.length > 0" @click.prevent="remove(image.id, index)" class="caution round-btn red-bg"><span class="icon-bin"></span></button>
     </div>
   </div>
@@ -54,7 +54,7 @@ export default {
   },
   methods: {
     getPhoto() {
-      this.$http.get(this.$root.url + '/collection_ajax/img/' + this.colSlug)
+      this.$http.get(this.$root.url + '/collection_api/img/' + this.colSlug)
         .then((response) => {
           return response.json()
             .then((json) => {

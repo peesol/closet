@@ -29,29 +29,9 @@ window.addEventListener("load",function(){var t=document.querySelectorAll(".tab-
 
                     <div class="half-width-res relative padding-15-horizontal">
 
-                        <div class="details-header flex flex-start-res">
-                            <div class="product-profile-wrap">
-                            <a href="/{{ $product->shop->slug}}">
-                            <img src="{{ $product->shop->getThumbnail() }}" alt="{{ $product->shop->thumbnail }}">
-                            </a>
-                              <div class="profile-name-wrap">
-                                <a class="profile-name" href="/{{ $product->shop->slug }}">{{ $product->shop->name }}</a>
-                              </div>
-                            </div>
+                      @include('product.partials._heading')
 
-                            <follow-button shop-slug="{{ $product->shop->slug }}"></follow-button>
-
-                        </div>
-
-
-                        <div class="details-header-sub">
-                            <product-vote product-uid="{{ $product->uid }}" product-id="{{ $product->id }}"></product-vote>
-                            @if($product->visibility == 'public')
-                            <collection-product product-id="{{ $product->id }}" shop-slug="{{Auth::check() ? Auth::user()->shop->slug : null}}"></collection-product>
-                            @endif
-                        </div>
-
-                        @include('product.partials._details', [ 'product' => $product ])
+                      @include('product.partials._details', [ 'product' => $product ])
 
                         @if(Auth::check())
                           @if(Auth::user()->id !== $product->shop_id)
@@ -59,35 +39,11 @@ window.addEventListener("load",function(){var t=document.querySelectorAll(".tab-
                           @endif
                         @endif
 
-
                     </div>
                 </div>
 
             </div>
-                <div class="medium-panel">
-                    <div class="tab-nav">
-                        <ul class="tab-nav-ul">
-                            <button class="tab-nav-btn static current" data-tab="#tab-1">{{__('message.details')}}</button>
-                            <button class="tab-nav-btn static" data-tab="#tab-2">{{__('message.comment')}}</button>
-                        </ul>
-                    </div>
-
-                        <div class="tab-content flex current" id="tab-1">
-                          @include('product.partials._contacts', [ 'contacts' => $contacts ])
-                        </div>
-
-                        <div class="comment-vue tab-content flex" id="tab-2">
-                          @if(!Auth::check())
-                          <div class="alert-box info">
-                            <label class="input-label full-label">
-                              <span class="icon-notification"></span>
-                              {{__('auth.comment_notice')}}<a class="link-text font-bold" href="{{ route('login')}}">&nbsp;{{__('message.login')}}</a>
-                            </label>
-                          </div>
-                          @endif
-                          <product-comment product-uid="{{ $product->uid }}"></product-comment>
-                        </div>
-                </div>
+            @include('product.partials._tab')
 
 </div>
 @endsection

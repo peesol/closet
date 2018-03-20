@@ -25,6 +25,7 @@ Route::prefix('product')->group(function () {
   Route::get('/{product}/views', 'ProductController@viewCount');
   Route::put('/{product}/views', 'ProductController@logView');
   Route::get('/{product}/comments', 'ProductCommentController@index');
+
   Route::get('/{product}/report', 'ProductController@reportPage');
 });
 
@@ -40,10 +41,38 @@ Route::get('/category/{category}', 'CategoryController@category');
 
 Route::get('/follow/{shop}', 'ShopFollowController@show');
 
-Route::get('/collection_ajax/{shop}', 'CollectionController@collectionAjax');
-Route::get('/collection_ajax/img/{collection}', 'CollectionController@getPhoto');
-Route::get('/collection_ajax/products/{collectionId}', 'CollectionController@getProduct');
-Route::get('/collection/{collection}', 'CollectionController@index');
+
+
+/*
+|--------------------------------------------------------------------------
+| Collection Routes
+|--------------------------------------------------------------------------
+*/
+
+//Collection Page
+Route::get('/collection_api/{shop}', 'Collection\CollectionController@get');
+Route::get('/collection_api/img/{collection}', 'Collection\CollectionController@getPhoto');
+Route::get('/collection_api/products/{collectionId}', 'Collection\CollectionController@getProduct');
+Route::get('/collection/{collection}', 'Collection\CollectionController@show');
+
+Route::group(['middleware' => ['auth']], function () {
+  Route::post('/collection_api/{shop}', 'Collection\CollectionController@create');
+  Route::delete('/collection/{collection}', 'Collection\CollectionController@delete');
+
+  //Collection Edit Routes
+  Route::get('/collection/{collection}/edit', 'Collection\CollectionEditController@edit');
+  Route::put('/collection/{collection}/edit', 'Collection\CollectionEditController@update');
+
+  Route::post('/collection/{collection}/upload/{id}', 'Collection\CollectionEditController@uploadPhoto');
+  Route::delete('/collection/image/{id}', 'Collection\CollectionEditController@deletePhoto');
+  Route::get('/collection/image/{id}', 'Collection\CollectionEditController@photo');
+  Route::delete('/collection/{collectionId}/delete/{productId}', 'Collection\CollectionEditController@deleteProduct');
+
+  // Add to collection api
+  Route::get('/collection_api/{shop}/add/{productId}', 'Collection\Api\AddController@getAddedProduct');
+  Route::post('/collection/{collectionId}/add/{productId}', 'Collection\Api\AddController@create');
+
+});
 
 /*
 |--------------------------------------------------------------------------
@@ -116,10 +145,7 @@ Route::group(['middleware' => ['auth']], function () {
       Route::put('/promotions/manage/discount/{product}/add', 'PromotionController@applyDiscount');
       Route::put('/promotions/manage/discount/{product}/delete', 'PromotionController@removeDiscount');
 
-      // Route::get('/promotions/manage/getanother', 'PromotionController@dealsPage')->name('promotionSale');
     });
-
-
 
 /*
 |--------------------------------------------------------------------------
@@ -127,85 +153,73 @@ Route::group(['middleware' => ['auth']], function () {
 |--------------------------------------------------------------------------
 */
 //Product Sell
-Route::namespace('Product\Sell')->group(function () {
-  Route::get('/sell/new', 'NewProductController@index');
-  Route::post('/sell/new', 'NewProductController@create');
-  Route::get('/sell/used', 'UsedProductController@index');
-  Route::post('/sell/used', 'UsedProductController@create');
-});
+  Route::namespace('Product\Sell')->group(function () {
+    Route::get('/sell/new', 'NewProductController@index');
+    Route::post('/sell/new', 'NewProductController@create');
+    Route::get('/sell/used', 'UsedProductController@index');
+    Route::post('/sell/used', 'UsedProductController@create');
+  });
 //Product Delete
-Route::delete('/product/used/{product}', 'Product\DeleteController@deleteUsedProduct');
-Route::delete('/product/{product}', 'Product\DeleteController@deleteNewProduct');
-//Comments
-Route::post('/product/{product}/comments', 'ProductCommentController@create');
-Route::delete('/product/{product}/comments/{comment}', 'ProductCommentController@delete');
-//Votes
-Route::post('/product/{product}/votes', 'ProductVoteController@create');
-Route::delete('/product/{product}/votes', 'ProductVoteController@delete');
+  Route::delete('/product/used/{product}', 'Product\DeleteController@deleteUsedProduct');
+  Route::delete('/product/{product}', 'Product\DeleteController@deleteNewProduct');
+  //Comments
+  Route::post('/product/{product}/comments', 'ProductCommentController@create');
+  Route::delete('/product/{product}/comments/{comment}', 'ProductCommentController@delete');
+  //Votes
+  Route::post('/product/{product}/votes', 'ProductVoteController@create');
+  Route::delete('/product/{product}/votes', 'ProductVoteController@delete');
 /*
 |--------------------------------------------------------------------------
 | Product Edit Routes
 |--------------------------------------------------------------------------
 */
-Route::get('/product/{product}/edit', 'Product\Edit\UpdateController@index');
-Route::put('/product/{product}/edit', 'Product\Edit\UpdateController@update');
-//Shipping
-Route::put('/product/{product}/edit/shipping', 'Product\Shipping\ShippingController@updateByProduct');
-//Photo Upload & Delete
-Route::get('/product/{product}/get_photo', 'Product\Photo\PhotoController@get');
-Route::post('/product/{product}/upload_photo', 'Product\Photo\PhotoController@upload');
-Route::delete('/product/delete_photo/{photo_id}', 'Product\Photo\PhotoController@delete');
-//Choices
-Route::get('/product/{product}/get_choice', 'Product\Choice\ChoiceController@get');
-Route::post('/product/{product}/create', 'Product\Choice\ChoiceController@create');
-Route::put('/product/{product}/toggle_choice', 'Product\Choice\ChoiceController@toggle');
-Route::delete('/product/{product}/choice/delete/{id}', 'Product\Choice\ChoiceController@remove');
+  Route::get('/product/{product}/edit', 'Product\Edit\UpdateController@index');
+  Route::put('/product/{product}/edit', 'Product\Edit\UpdateController@update');
+  //Shipping
+  Route::put('/product/{product}/edit/shipping', 'Product\Shipping\ShippingController@updateByProduct');
+  //Photo Upload & Delete
+  Route::get('/product/{product}/get_photo', 'Product\Photo\PhotoController@get');
+  Route::post('/product/{product}/upload_photo', 'Product\Photo\PhotoController@upload');
+  Route::delete('/product/delete_photo/{photo_id}', 'Product\Photo\PhotoController@delete');
+  //Choices
+  Route::get('/product/{product}/get_choice', 'Product\Choice\ChoiceController@get');
+  Route::post('/product/{product}/create', 'Product\Choice\ChoiceController@create');
+  Route::put('/product/{product}/toggle_choice', 'Product\Choice\ChoiceController@toggle');
+  Route::delete('/product/{product}/choice/delete/{id}', 'Product\Choice\ChoiceController@remove');
 /*
 |--------------------------------------------------------------------------
 | Note Routes
 |--------------------------------------------------------------------------
 */
-Route::get('/profile/note', 'User\NoteController@index');
+  Route::get('/profile/note', 'User\NoteController@index');
+  Route::post('/profile/note/add', 'User\NoteController@create');
 
 /*
 |--------------------------------------------------------------------------
 | My Product Routes
 |--------------------------------------------------------------------------
 */
-Route::get('/profile/myproduct/new', 'ProductController@userProduct');
-Route::get('/profile/myproduct/used', 'UsedController@userProduct');
-// get my product
-Route::get('/profile/myproduct/get', 'Product\User\MyProductController@getProduct');
-//Stock
-Route::get('/profile/myproduct/stock', 'Product\Stock\StockController@index');
-Route::put('/profile/myproduct/stock/set_amount/{product}', 'Product\Stock\StockController@update');
-//Shipping edit for all products
-Route::get('/profile/myproduct/shipping', 'Product\Shipping\ShippingController@index');
-Route::put('/profile/myproduct/shipping/update', 'Product\Shipping\ShippingController@updateAll');
+  Route::get('/profile/myproduct/new', 'ProductController@userProduct');
+  Route::get('/profile/myproduct/used', 'UsedController@userProduct');
+  // get my product
+  Route::get('/profile/myproduct/get', 'Product\User\MyProductController@getProduct');
+  //Stock
+  Route::get('/profile/myproduct/stock', 'Product\Stock\StockController@index');
+  Route::put('/profile/myproduct/stock/set_amount/{product}', 'Product\Stock\StockController@update');
+  //Shipping edit for all products
+  Route::get('/profile/myproduct/shipping', 'Product\Shipping\ShippingController@index');
+  Route::put('/profile/myproduct/shipping/update', 'Product\Shipping\ShippingController@updateAll');
 
 
-    Route::post('/product/used/{product}/comments', 'UsedCommentController@create');
-    Route::delete('/product/used/{product}/comments/{comment}', 'UsedCommentController@delete');
+  Route::post('/product/used/{product}/comments', 'UsedCommentController@create');
+  Route::delete('/product/used/{product}/comments/{comment}', 'UsedCommentController@delete');
 
-    Route::post('/follow/{shop}', 'ShopFollowController@create');
-    Route::delete('/follow/{shop}', 'ShopFollowController@delete');
-
-    Route::post('/collection_ajax/{shop}', 'CollectionController@store');
-    Route::delete('/collection/{collection}', 'CollectionController@delete');
-    Route::get('/collection/{collection}/edit', 'CollectionController@edit');
-    Route::put('/collection/{collection}/edit', 'CollectionController@updateInfo');
-
-    Route::post('/collection/{collection}/upload/{id}', 'CollectionController@uploadPhoto');
-    Route::delete('/collection/image/{id}', 'CollectionController@deletePhoto');
-    Route::get('/collection/image/{id}', 'CollectionController@photo');
-
-    Route::post('/collection/{collectionId}/add/{productId}', 'CollectionController@storeProduct');
-    Route::delete('/collection/{collectionId}/delete/{productId}', 'CollectionController@deleteProduct');
-    Route::get('/collection_ajax/{shop}/add/{productId}', 'CollectionController@getAddCollection');
+  Route::post('/follow/{shop}', 'ShopFollowController@create');
+  Route::delete('/follow/{shop}', 'ShopFollowController@delete');
 
     // Route::get('/test/upload', 'Test\Test@index');
     // Route::post('/test/upload/test', 'Test\Test@upload');
-});
+}); //End auth middleware
 /*
 |--------------------------------------------------------------------------
 | Shop Routes

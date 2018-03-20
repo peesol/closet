@@ -70,7 +70,7 @@ class Product extends Model
     }
     public function contactsProduct()
     {
-      return $this->shop->contact()->where('show_product', true)->get();
+      return $this->shop->contact();
     }
     public function views()
     {
@@ -80,12 +80,10 @@ class Product extends Model
     {
       return $this->belongsToMany(Showcase::class, 'showcase_products');
     }
-
     public function addedToShowcase($showcaseId, $productId)
     {
       return (bool) $this->showcase()->where(['showcase_id' => $showcaseId], ['product_id' => $productId])->count();
     }
-
     public function viewCount()
     {
       return $this->views->count();

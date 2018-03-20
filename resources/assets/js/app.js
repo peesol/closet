@@ -49,6 +49,7 @@ window.addEventListener('load', function () {
        url: window.Closet.url,
        authenticated: window.Closet.user.authenticated,
        locale: window.Closet.locale,
+       user: window.Closet.user.user,
      },
      store,
      router

@@ -39,10 +39,6 @@ class User extends Authenticatable
     {
       return $this->hasManyThrough(Account::class, Shop::class);
     }
-    public function note()
-    {
-      return $this->hasManyThrough(Note::class, Shop::class);
-    }
     public function products()
     {
       return $this->hasManyThrough(Product::class, Shop::class);
@@ -51,10 +47,17 @@ class User extends Authenticatable
     {
       return $this->hasManyThrough(Collection::class, Shop::class);
     }
-
     public function showcase()
     {
       return $this->hasManyThrough(Showcase::class, Shop::class)->orderBy('order', 'asc');
+    }
+    public function note()
+    {
+      return $this->hasManyThrough(Note::class, Shop::class);
+    }
+    public function notedProduct()
+    {
+      return $this->belongsToMany(Product::class, 'notes', 'shop_id', 'product_id');
     }
     public function used()
     {

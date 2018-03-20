@@ -2,13 +2,18 @@
 @section('title')
 {{$product->name.' - '}}
 @endsection
-@section('css')
-<link href="https://s3-ap-southeast-1.amazonaws.com/files.closet/css/extra/slick-theme.css" rel="stylesheet">
-<link href="https://s3-ap-southeast-1.amazonaws.com/files.closet/css/extra/slick.css" rel="stylesheet">
-@endsection
 
+@section('content')
 <div class="container">
   <div class="medium-panel">
-    Report
+    <div class="panel-heading">
+      <label class="full-label heading">Report</label>
+    </div>
+    <div class="panel-body">
+      <label class="full-label input-label">{{ $product->shop->name }}</label>
+      <label class="full-label input-label">{{ $product->name }}</label>
+    </div>
+
   </div>
 </div>
+@endsection

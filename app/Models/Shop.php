@@ -30,10 +30,6 @@ class Shop extends Model
     {
       return $this->hasMany(Account::class);
     }
-    public function note()
-    {
-      return $this->hasMany(Note::class);
-    }
     public function product()
     {
       return $this->hasMany(Product::class);

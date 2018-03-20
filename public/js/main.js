@@ -8993,7 +8993,8 @@ window.addEventListener('load', function () {
     data: {
       url: window.Closet.url,
       authenticated: window.Closet.user.authenticated,
-      locale: window.Closet.locale
+      locale: window.Closet.locale,
+      user: window.Closet.user.user
     },
     store: __WEBPACK_IMPORTED_MODULE_6__store_store__["a" /* store */],
     router: __WEBPACK_IMPORTED_MODULE_7__route_router__["a" /* router */]
@@ -15071,7 +15072,7 @@ __WEBPACK_IMPORTED_MODULE_0_dropzone___default.a.autoDiscover = false;
     getPhoto: function getPhoto() {
       var _this = this;
 
-      this.$http.get(this.$root.url + '/collection_ajax/img/' + this.colSlug).then(function (response) {
+      this.$http.get(this.$root.url + '/collection_api/img/' + this.colSlug).then(function (response) {
         return response.json().then(function (json) {
           _this.images = json.data;
         });
@@ -15312,6 +15313,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -15320,13 +15327,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     return {
       col_name: null,
       collections: [],
-      added: null,
+      addedToNote: this.noted,
       formVisible: null,
       create: false
     };
   },
 
-
+  props: {
+    productId: null,
+    productSlug: null,
+    shopSlug: null,
+    noted: null
+  },
   methods: {
     toggle: function toggle(number) {
       if (this.formVisible === number) {
@@ -15337,7 +15349,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     getCollection: function getCollection() {
       var _this = this;
 
-      this.$http.get(this.$root.url + '/collection_ajax/' + this.shopSlug + '/add/' + this.productId).then(function (response) {
+      this.$http.get(this.$root.url + '/collection_api/' + this.shopSlug + '/add/' + this.productId).then(function (response) {
         _this.collections = response.body.data;
       });
     },
@@ -15356,27 +15368,41 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         toastr.error(_this2.$trans.translation.error);
       });
     },
-    hide: function hide() {
-      this.formVisible = false;
-    },
-    createCol: function createCol() {
+    addToNote: function addToNote() {
       var _this3 = this;
 
-      this.$http.post(this.$root.url + '/collection_ajax/' + this.shopSlug, {
+      this.$http.post(this.$root.url + '/profile/note/add', {
+        shop_id: this.$root.user,
+        product_id: this.productId
+      }).then(function (response) {
+        if (_this3.addedToNote) {
+          _this3.addedToNote = false;
+          toastr.success(_this3.$trans.translation.success);
+        } else {
+          _this3.addedToNote = true;
+          toastr.success(_this3.$trans.translation.success);
+        }
+      }, function (response) {
+        toastr.error(_this3.$trans.translation.error);
+      });
+    },
+    hide: function hide() {
+      this.formVisible = null;
+    },
+    createCol: function createCol() {
+      var _this4 = this;
+
+      this.$http.post(this.$root.url + '/collection_api/' + this.shopSlug, {
         name: this.col_name
       }).then(function (response) {
-        _this3.col_name = null, _this3.collections.push(response.body);
-        toastr.success(_this3.$trans.translation.col_created);
+        _this4.col_name = null;
+        _this4.collections.push(response.body);
+        toastr.success(_this4.$trans.translation.col_created);
       });
     },
     report: function report() {
-      document.location.href = this.$root.url + '/product/' + this.productId + '/report';
+      document.location.href = this.$root.url + '/report/product/' + this.productSlug;
     }
-  },
-
-  props: {
-    productId: null,
-    shopSlug: null
   },
 
   created: function created() {
@@ -15440,7 +15466,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     getProduct: function getProduct() {
       var _this = this;
 
-      this.$http.get(this.$root.url + '/collection_ajax/products/' + this.colId).then(function (response) {
+      this.$http.get(this.$root.url + '/collection_api/products/' + this.colId).then(function (response) {
         _this.products = response.body.data;
       });
     },
@@ -15671,6 +15697,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Language_Language_vue__ = __webpack_require__(188);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Language_Language_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__Language_Language_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__lang_category_js__ = __webpack_require__(294);
+//
 //
 //
 //
@@ -18744,7 +18771,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			var _this = this;
 
 			this.$Progress.start();
-			this.$http.get(this.$root.url + '/collection_ajax/' + this.shopSlug).then(function (response) {
+			this.$http.get(this.$root.url + '/collection_api/' + this.shopSlug).then(function (response) {
 				_this.collections = response.body.data;
 				_this.$Progress.finish();
 			});
@@ -18753,7 +18780,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			var _this2 = this;
 
 			this.$Progress.start();
-			this.$http.post(this.$root.url + '/collection_ajax/' + this.shopSlug, {
+			this.$http.post(this.$root.url + '/collection_api/' + this.shopSlug, {
 				name: this.name,
 				description: this.description,
 				visibility: this.visibility
@@ -51861,7 +51888,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     return _c('div', {
       staticClass: "products-img"
     }, [_c('img', {
-      staticClass: "full-img",
+      staticClass: "object-contain",
       attrs: {
         "alt": image.filename,
         "src": image.filename
@@ -52456,7 +52483,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       value: (_vm.$root.authenticated),
       expression: "$root.authenticated"
     }]
-  }, [_vm._m(1), _vm._v(" "), _vm._m(2), _vm._v(" "), _vm._m(3), _vm._v(" "), _vm._m(4), _vm._v(" "), _c('a', {
+  }, [_vm._m(1), _vm._v(" "), _vm._m(2), _vm._v(" "), _vm._m(3), _vm._v(" "), _vm._m(4), _vm._v(" "), _vm._m(5), _vm._v(" "), _c('a', {
     attrs: {
       "href": "#"
     },
@@ -52523,10 +52550,18 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('a', {
     attrs: {
-      "href": "#"
+      "href": "/profile/note"
     }
   }, [_c('span', {
     staticClass: "icon-bookmarks"
+  }), _vm._v(" Note")])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('a', {
+    attrs: {
+      "href": "/profile/collection"
+    }
+  }, [_c('span', {
+    staticClass: "icon-map"
   }), _vm._v(" Collection")])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('a', {
@@ -53231,7 +53266,18 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }]
   }, [_c('p', {
     staticClass: "align-center"
-  }, [_vm._v(_vm._s(_vm.$trans.translation.col_null))])]), _vm._v(" "), _vm._l((_vm.collections), function(collection, index) {
+  }, [_vm._v(_vm._s(_vm.$trans.translation.col_null))])]), _vm._v(" "), _c('li', [_c('a', {
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.addToNote()
+      }
+    }
+  }, [_c('span', {
+    class: {
+      'icon-bookmarks font-green': _vm.addedToNote, 'icon-bookmarks font-grey': !_vm.addedToNote
+    }
+  }), _vm._v("\n             My Note\n          ")])]), _vm._v(" "), _vm._l((_vm.collections), function(collection, index) {
     return _c('li', [_c('a', {
       staticClass: "text-nowrap",
       on: {
@@ -53241,7 +53287,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         }
       }
     }, [_c('span', {
-      staticClass: "added",
       class: {
         'icon-checked font-green': collection.added, 'icon-unchecked font-grey': !collection.added
       }

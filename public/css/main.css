@@ -789,6 +789,16 @@ span.shop {
     background-color: #ff514c; }
   span.price, span.shop {
     display: none; } }
+.object-contain {
+  object-fit: contain;
+  width: 100%;
+  height: 100%; }
+
+.object-cover {
+  object-fit: cover;
+  width: 100%;
+  height: 100%; }
+
 .shop-header {
   width: 100%;
   height: 170px;
@@ -1640,6 +1650,9 @@ span.shop {
 
 .grey-bg {
   background-color: #eee !important; }
+
+.grey-bg {
+  background-color: #000 !important; }
 
 .transparent-bg {
   background-color: transparent !important; }

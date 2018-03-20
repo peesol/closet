@@ -13,7 +13,7 @@ use Illuminate\Http\Response;
 use Closet\Jobs\Product\{ProductUpload, UploadProductPhoto, ProductUpdate};
 use Closet\Jobs\Images\DeleteImage;
 use Closet\Http\Requests\ProductListingRequest;
-use Closet\Models\{Product,ProductImage,ProductChoice,Category,Subcategory,CategoryType,Translation, Shop};
+use Closet\Models\{Product,ProductImage,ProductChoice,Category,Subcategory,CategoryType,Translation, Shop, Note};
 
 
 class ProductController extends Controller
@@ -21,9 +21,12 @@ class ProductController extends Controller
     public function show(Product $product)
     {
       $contacts = $product->contactsProduct();
+      $noted = Note::where(['product_id' => $product->id, 'shop_id' => Auth::user()->id])->count();
+
         return view('product.show', [
           'product' => $product,
           'contacts' => $contacts,
+          'noted' => $noted,
         ]);
     }
     public function productAjax(Product $product)

@@ -88,14 +88,14 @@
 		methods: {
 			getCollection() {
 					this.$Progress.start();
-  					this.$http.get(this.$root.url + '/collection_ajax/' + this.shopSlug).then((response)=> {
+  					this.$http.get(this.$root.url + '/collection_api/' + this.shopSlug).then((response)=> {
 							this.collections = response.body.data
 							this.$Progress.finish()
 						});
   			},
 			create(){
 				this.$Progress.start();
-				this.$http.post(this.$root.url + '/collection_ajax/' + this.shopSlug ,{
+				this.$http.post(this.$root.url + '/collection_api/' + this.shopSlug ,{
 					name: this.name,
 					description: this.description,
 					visibility: this.visibility,

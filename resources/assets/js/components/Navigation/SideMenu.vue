@@ -16,7 +16,8 @@
           </div>
           <div v-show="$root.authenticated">
             <a href="#"><span class="icon-user"></span>&nbsp;Mycloset</a>
-            <a href="#"><span class="icon-bookmarks"></span>&nbsp;Collection</a>
+            <a href="/profile/note"><span class="icon-bookmarks"></span>&nbsp;Note</a>
+            <a href="/profile/collection"><span class="icon-map"></span>&nbsp;Collection</a>
             <a href="/profile/following"><span class="icon-star-full"></span>&nbsp;following</a>
             <a href="/profile/order/selling"><span class="icon-price-tag"></span>&nbsp;Orders</a>
             <a href="#" @click.prevent="logout()"><span class="icon-exit"></span>&nbsp;Logout</a>

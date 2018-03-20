@@ -1,5 +1,5 @@
 @foreach($showcase->product()->get() as $product)
-<div class="products-wrap p-carousel-margin">
+<div class="products-wrap">
     <div class="relative">
       <a href="/product/{{ $product->uid}}">
         <img class="products-img-thumb" src="{{$product->getImage()}}" alt="{{$product->thumbnail}}">
