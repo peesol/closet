@@ -1,5 +1,5 @@
 <template>
-    <button class="dropdown-btn" onclick="">
+    <button class="dropdown-btn" @click="go">
       <span class="icon-cart">&nbsp;{{ count }}</span>
     </button>
 </div>
@@ -19,7 +19,7 @@ export default {
       'getCartCount'
     ]),
     go() {
-      document.location.href = this.root.url + '/cart/mycart'
+      document.location.href = this.$root.url + '/cart/mycart'
     }
   },
   mounted() {

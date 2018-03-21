@@ -60,7 +60,7 @@ window.Closet = {
                     @if($order->shipping_fee !== null)
                     <span class="font-bold">{{number_format($order->shipping_fee).' '.__('message.baht')}}</span>
                     @else
-                    <span class="font-bold green-font">{{__('message.free_shipping')}}</span>
+                    <span class="font-bold font-green">{{__('message.free_shipping')}}</span>
                     @endif
                   </td>
                 </tr>
@@ -68,7 +68,7 @@ window.Closet = {
                   <td colspan="4"><h4 class="no-margin">{{__('message.total_price')}}&nbsp;:&nbsp;<span style="color:#4aae2a; font-weight:600;">{{number_format($order->total + $order->shipping_fee)}}</span>&nbsp;{{__('message.baht')}}</h4></td>
                 </tr>
               </table>
-              <h4 class="red-font">*{{__('message.transaction_notice')}}</h4>
+              <h4 class="font-red">*{{__('message.transaction_notice')}}</h4>
               <form method="post" action="/order/{{$order->uid}}/transaction_email">
                 <div class="form-group" style="height:80px;">
                   <label class="col-label" style="width:100%;">{{__('message.transaction_time')}}</label>
@@ -99,7 +99,7 @@ window.Closet = {
           <div style="margin-top:50px;">
             <div class="medium-panel">
               <div class="panel-body">
-                <h3 class="green-font">{{__('message.already_transacted')}}</h3>
+                <h3 class="font-green">{{__('message.already_transacted')}}</h3>
               </div>
             </div>
           </div>

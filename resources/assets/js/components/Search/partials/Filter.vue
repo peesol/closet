@@ -1,13 +1,13 @@
 <template>
 <div>
-  <div class="filter-bar" id="full-line">
-    <button class="filter-btn" @click.prevent="formVisible = !formVisible">{{ $trans.translation.choice}}&nbsp;<small class="icon-arrow-down"></small></button>
+  <div class="padding-10" id="full-line">
+    <button class="orange-btn normal-sq width-120" @click.prevent="formVisible = !formVisible">{{ $trans.translation.choice}}&nbsp;<small class="icon-arrow-down"></small></button>
   </div>
     <ul class="breadcrumb">
-      <p>{{ breadcrumb.category }}</p>
-      <p>{{ breadcrumb.subcategory }}</p>
-      <p>{{ breadcrumb.type }}</p>
-      <p>{{ selected.min }} - {{ selected.max }}</p>
+      <li>{{ breadcrumb.category }}</li>
+      <li>{{ breadcrumb.subcategory }}</li>
+      <li>{{ breadcrumb.type }}</li>
+      <li>{{ selected.min }} - {{ selected.max }}</li>
     </ul>
   <div v-show="formVisible" class="filter-option">
       <ul class="">

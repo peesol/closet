@@ -3,7 +3,7 @@
 <vue-progress-bar></vue-progress-bar>
 
                 <div style="padding: 0px 20px 30px;">
-                <li class="red-font font-bold" style="margin: 15px 0px;">{{$trans.translation.fill_every}}</li>
+                <li class="font-red font-bold" style="margin: 15px 0px;">{{$trans.translation.fill_every}}</li>
                 <li style="margin: 15px 0px;">{{$trans.translation.product_photo_limit}}</li>
                 <li style="margin: 15px 0px;">{{$trans.translation.product_photo_notice}}</li>
                     <form v-on:submit.prevent="submit" method="post">

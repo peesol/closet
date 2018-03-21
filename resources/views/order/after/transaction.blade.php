@@ -9,7 +9,7 @@
     <div style="margin-top:50px;">
       <div class="medium-panel">
         <div class="panel-body">
-          <h3 class="green-font">{{__('message.already_transacted')}}</h3>
+          <h3 class="font-green">{{__('message.already_transacted')}}</h3>
         </div>
       </div>
     </div>

@@ -15665,18 +15665,18 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
+//
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  data: function data() {
-    return {
-      cartUrl: this.$root.url + '/cart/mycart'
-    };
-  },
-
   computed: _extends({}, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_vuex__["mapGetters"])(['count'])),
-  methods: _extends({}, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_vuex__["mapActions"])(['getCartCount'])),
+  methods: _extends({}, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_vuex__["mapActions"])(['getCartCount']), {
+    go: function go() {
+      document.location.href = this.$root.url + '/cart/mycart';
+    }
+  }),
   mounted: function mounted() {
     this.getCartCount();
   }
@@ -15693,6 +15693,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Language_Language_vue__ = __webpack_require__(188);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Language_Language_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__Language_Language_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__lang_category_js__ = __webpack_require__(294);
+//
 //
 //
 //
@@ -18034,11 +18035,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -18157,7 +18153,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       discount_products: [],
       products: [],
       discount: null,
-      formVisible: null
+      formVisible: null,
+      remaining_points: this.points
     };
   },
 
@@ -18187,11 +18184,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return;
       } else {
         this.$http.put(this.$root.url + '/profile/promotions/manage/discount/' + uid + '/add', { discount: this.discount }).then(function (response) {
-          if (_this2.promotions.discount === 0) {
+          if (_this2.remaining_points === 0) {
             alert(_this2.$trans.translation.not_enough_points);
           } else {
             _this2.products.splice(index, 1);
-            _this2.promotions.discount--;
+            _this2.remaining_points--;
             _this2.discount_products.push(response.body);
             _this2.discount = null;
           }
@@ -18283,6 +18280,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_algoliasearch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_algoliasearch__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_algoliasearch_helper__ = __webpack_require__(197);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_algoliasearch_helper___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_algoliasearch_helper__);
+//
+//
 //
 //
 //
@@ -21184,13 +21183,13 @@ var category = function category(_ref) {
     delete_confirm: 'Are you sure you want to delete this?',
     upload_submit: 'Upload',
     name: 'Name',
-    shop_name: 'Closet Name',
+    shop_name: 'Profile name',
     shop_url: 'Unique URL',
     email: 'E-mail',
     phone: 'Phone',
     link: 'Link',
-    user_info: 'Personal info',
-    col_name: 'Name',
+    private_info: 'Personal info',
+    public_info: 'Public info',
     visibility: 'Visibility',
     public: 'Public',
     private: 'Private',
@@ -21343,13 +21342,13 @@ var category = function category(_ref) {
     delete_confirm: 'คุณแน่ใจหรือไม่ว่าจะลบ?',
     upload_submit: 'อัพโหลด',
     name: 'ชื่อ',
-    shop_name: 'ชื่อร้าน',
+    shop_name: 'ชื่อโปรไฟล์',
     shop_url: 'URL ของร้าน',
     email: 'อีเมล',
     phone: 'โทรศัพท์',
     link: 'ลิงค์',
-    user_info: 'ข้อมูลส่วนตัว',
-    col_name: 'ชื่อคอลเล็คชั่น',
+    private_info: 'ข้อมูลส่วนตัว',
+    public_info: 'ข้อมูลสาธารณะ',
     visibility: 'ใครดูได้',
     public: 'สาธาณะ',
     private: 'ส่วนตัว',
@@ -49122,7 +49121,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "padding": "0px 20px 30px"
     }
   }, [_c('li', {
-    staticClass: "red-font font-bold",
+    staticClass: "font-red font-bold",
     staticStyle: {
       "margin": "15px 0px"
     }
@@ -50080,12 +50079,12 @@ if (false) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', [_c('div', {
-    staticClass: "filter-bar",
+    staticClass: "padding-10",
     attrs: {
       "id": "full-line"
     }
   }, [_c('button', {
-    staticClass: "filter-btn",
+    staticClass: "orange-btn normal-sq width-120",
     on: {
       "click": function($event) {
         $event.preventDefault();
@@ -50096,7 +50095,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "icon-arrow-down"
   })])]), _vm._v(" "), _c('ul', {
     staticClass: "breadcrumb"
-  }, [_c('p', [_vm._v(_vm._s(_vm.breadcrumb.category))]), _vm._v(" "), _c('p', [_vm._v(_vm._s(_vm.breadcrumb.subcategory))]), _vm._v(" "), _c('p', [_vm._v(_vm._s(_vm.breadcrumb.type))]), _vm._v(" "), _c('p', [_vm._v(_vm._s(_vm.selected.min) + " - " + _vm._s(_vm.selected.max))])]), _vm._v(" "), _c('div', {
+  }, [_c('li', [_vm._v(_vm._s(_vm.breadcrumb.category))]), _vm._v(" "), _c('li', [_vm._v(_vm._s(_vm.breadcrumb.subcategory))]), _vm._v(" "), _c('li', [_vm._v(_vm._s(_vm.breadcrumb.type))]), _vm._v(" "), _c('li', [_vm._v(_vm._s(_vm.selected.min) + " - " + _vm._s(_vm.selected.max))])]), _vm._v(" "), _c('div', {
     directives: [{
       name: "show",
       rawName: "v-show",
@@ -50297,7 +50296,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "for": "name"
     }
-  }, [_vm._v(_vm._s(_vm.$trans.translation.col_name))]), _vm._v(" "), _c('input', {
+  }, [_vm._v(_vm._s(_vm.$trans.translation.name))]), _vm._v(" "), _c('input', {
     directives: [{
       name: "validate",
       rawName: "v-validate",
@@ -50442,7 +50441,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         value: (key == _vm.$root.locale),
         expression: "key == $root.locale"
       }],
-      staticClass: "icon-checkmark green-font"
+      staticClass: "icon-checkmark font-green"
     })])
   }))
 },staticRenderFns: []}
@@ -50649,12 +50648,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }],
       staticClass: "c-table"
     }, [_c('tr', [_c('td', {
-      staticClass: "cart-shop",
       attrs: {
         "colspan": "4"
       }
     }, [_c('span', {
-      staticClass: "font-bold grey-font"
+      staticClass: "font-bold font-grey"
     }, [_vm._v(_vm._s(key))])])]), _vm._v(" "), _c('tr', [_c('th', [_vm._v(_vm._s(_vm.$trans.translation.product_name))]), _vm._v(" "), _c('th', [_vm._v(_vm._s(_vm.$trans.translation.choice))]), _vm._v(" "), _c('th', [_vm._v(_vm._s(_vm.$trans.translation.price))]), _vm._v(" "), _c('th', [_vm._v(_vm._s(_vm.$trans.translation.amount))])]), _vm._v(" "), _vm._l((shop), function(item, index) {
       return _c('tr', [_c('td', {
         staticClass: "overflow-hidden"
@@ -50673,7 +50671,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           }
         }
       }), _vm._v(" " + _vm._s(item.name))]), _vm._v(" "), _c('td', {
-        staticClass: "m-cell"
+        staticClass: "m-cell overflow-hidden"
       }, [_vm._v(_vm._s(item.options.choice ? item.options.choice : '---'))]), _vm._v(" "), _c('td', {
         staticClass: "s-cell"
       }, [_vm._v(_vm._s(_vm.$number.currency(item.price)))]), _vm._v(" "), _c('td', {
@@ -50722,7 +50720,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "colspan": "2"
       }
     }, [_c('button', {
-      staticClass: "btn float-right",
+      staticClass: "default float-right width-120",
       on: {
         "click": function($event) {
           $event.preventDefault();
@@ -50764,13 +50762,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         value: (_vm.confirmed.discount),
         expression: "confirmed.discount"
       }],
-      staticClass: "green-font bold-font"
+      staticClass: "font-green bold-font"
     }, [_vm._v(_vm._s(_vm.$trans.translation.discount) + " " + _vm._s(_vm.confirmed.discount))])]), _vm._v(" "), _c('td', {
       attrs: {
         "colspan": "2"
       }
     }, [_c('button', {
-      staticClass: "green-btn float-right",
+      staticClass: "green-btn float-right border-radius-5 width-120",
       on: {
         "click": function($event) {
           $event.preventDefault();
@@ -50797,10 +50795,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         value: (_vm.code[key]),
         expression: "code[key]"
       }],
-      staticStyle: {
-        "width": "150px",
-        "background": "#f9f9f9"
-      },
       attrs: {
         "required": "",
         "type": "text",
@@ -50816,12 +50810,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         }
       }
     }), _vm._v(" "), _c('button', {
-      staticClass: "input-addon",
-      staticStyle: {
-        "height": "30px",
-        "padding": "7px",
-        "border": "none"
-      },
+      staticClass: "form-input-btn checkmark-btn",
       attrs: {
         "type": "button"
       },
@@ -50943,9 +50932,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_c('h2', {
     class: {
-      'red-font': _vm.points === 0, 'green-font': _vm.points !== 0
+      'font-red': _vm.points === 0, 'font-green': _vm.points !== 0
     }
-  }, [_vm._v(_vm._s(_vm.$trans.translation.points) + " : " + _vm._s(_vm.points))]), _vm._v(" "), _c('table', {
+  }, [_vm._v(_vm._s(_vm.$trans.translation.points) + " : " + _vm._s(_vm.remaining_points))]), _vm._v(" "), _c('table', {
     directives: [{
       name: "show",
       rawName: "v-show",
@@ -50968,7 +50957,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }, [_c('strike', [_vm._v(_vm._s(_vm.$number.currency(item.price)) + " ฿")]), _vm._v(" "), _c('small', {
       staticClass: "icon-next-arrow"
     }), _vm._v(" "), _c('font', {
-      staticClass: "green-font"
+      staticClass: "font-green"
     }, [_vm._v(_vm._s(_vm.$number.currency(item.discount_price)) + " ฿")])], 1), _vm._v(" "), _c('td', {
       staticClass: "m-cell"
     }, [_vm._v(_vm._s(item.discount_date))]), _vm._v(" "), _c('td', {
@@ -51691,21 +51680,28 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "products-wrap"
     }, [_c('div', {
       staticClass: "products-img"
+    }, [_c('a', {
+      attrs: {
+        "href": _vm.$root.url + '/product/' + product.uid
+      }
     }, [_c('img', {
       staticClass: "products-img-thumb",
       attrs: {
         "src": _vm.src + product.thumbnail,
         "alt": "image"
       }
-    })]), _vm._v(" "), _c('h4', {
-      staticClass: "product-name"
+    })])]), _vm._v(" "), _c('a', {
+      staticClass: "product-name",
+      attrs: {
+        "href": _vm.$root.url + '/product/' + product.uid
+      }
     }, [_vm._v(_vm._s(product.name))]), _vm._v(" "), _c('div', {
       staticClass: "product-detail-wrap"
     }, [_c('p', {
       staticClass: "product-p"
-    }, [_vm._v(_vm._s(_vm.$trans.translate.price) + " : " + _vm._s(_vm.$number.currency(product.price)))]), _vm._v(" "), _c('p', {
+    }, [_vm._v(_vm._s(_vm.$trans.translate.price) + " " + _vm._s(_vm.$number.currency(product.price)))]), _vm._v(" "), _c('p', {
       staticClass: "product-p"
-    }, [_vm._v(_vm._s(_vm.$trans.translate.category) + " : " + _vm._s(product.category_id) + "//" + _vm._s(product.subcategory_id) + "//" + _vm._s(product.type_id))])])])
+    }, [_vm._v(_vm._s(product.category_id) + "/" + _vm._s(product.subcategory_id) + "/" + _vm._s(product.type_id))])])])
   })), _vm._v(" "), _c('pagination', {
     attrs: {
       "meta": _vm.meta
@@ -52131,7 +52127,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "colspan": "4"
     }
   }, [_c('h4', {
-    staticClass: "no-margin red-font"
+    staticClass: "no-margin font-red"
   }, [_vm._v(_vm._s(_vm.$trans.translation.wait_transaction))])])]), _vm._v(" "), _c('tr', {
     directives: [{
       name: "show",
@@ -52144,7 +52140,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "colspan": "4"
     }
   }, [_c('h4', {
-    staticClass: "no-margin green-font"
+    staticClass: "no-margin font-green"
   }, [_vm._v(_vm._s(_vm.$trans.translation.completed_transaction))])])]), _vm._v(" "), _c('tr', {
     directives: [{
       name: "show",
@@ -52157,7 +52153,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "colspan": "4"
     }
   }, [_c('h4', {
-    staticClass: "no-margin green-font"
+    staticClass: "no-margin font-green"
   }, [_vm._v(_vm._s(_vm.$trans.translation.delivered))])])])], 2)]), _vm._v(" "), _c('form', {
     directives: [{
       name: "show",
@@ -52468,7 +52464,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       value: (_vm.$root.authenticated),
       expression: "$root.authenticated"
     }]
-  }, [_vm._m(1), _vm._v(" "), _vm._m(2), _vm._v(" "), _vm._m(3), _vm._v(" "), _vm._m(4), _vm._v(" "), _vm._m(5), _vm._v(" "), _c('a', {
+  }, [_vm._m(1), _vm._v(" "), _vm._m(2), _vm._v(" "), _vm._m(3), _vm._v(" "), _vm._m(4), _vm._v(" "), _vm._m(5), _vm._v(" "), _vm._m(6), _vm._v(" "), _c('a', {
     attrs: {
       "href": "#"
     },
@@ -52562,8 +52558,16 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "href": "/profile/order/selling"
     }
   }, [_c('span', {
-    staticClass: "icon-price-tag"
+    staticClass: "icon-order"
   }), _vm._v(" Orders")])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('a', {
+    attrs: {
+      "href": "/profile/promotions/manage"
+    }
+  }, [_c('span', {
+    staticClass: "icon-price-tag"
+  }), _vm._v(" Promotions")])
 }]}
 module.exports.render._withStripped = true
 if (false) {
@@ -53551,7 +53555,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_c('label', {
     staticClass: "full-label heading"
-  }, [_vm._v(_vm._s(_vm.$trans.translation.user_info))]), _vm._v(" "), _c('div', {
+  }, [_vm._v(_vm._s(_vm.$trans.translation.private_info))]), _vm._v(" "), _c('div', {
     staticClass: "form-group"
   }, [_c('label', {
     staticClass: "full-label input-label"
@@ -53919,7 +53923,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "colspan": "4"
     }
   }, [_c('h4', {
-    staticClass: "no-margin red-font"
+    staticClass: "no-margin font-red"
   }, [_vm._v(_vm._s(_vm.$trans.translation.wait_transaction))])])]), _vm._v(" "), _c('tr', {
     directives: [{
       name: "show",
@@ -53932,7 +53936,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "colspan": "4"
     }
   }, [_c('h4', {
-    staticClass: "no-margin green-font"
+    staticClass: "no-margin font-green"
   }, [_vm._v(_vm._s(_vm.$trans.translation.wait_delivery))])])]), _vm._v(" "), _c('tr', {
     directives: [{
       name: "show",
@@ -53945,7 +53949,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "colspan": "4"
     }
   }, [_c('h4', {
-    staticClass: "no-margin green-font"
+    staticClass: "no-margin font-green"
   }, [_vm._v(_vm._s(_vm.$trans.translation.delivered))])])])], 2)]), _vm._v(" "), (!_vm.data.trans && _vm.data.confirmed) ? _c('form', {
     attrs: {
       "method": "post"
@@ -54153,10 +54157,7 @@ if (false) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', [_c('button', {
-    staticClass: "add-col-btn",
-    staticStyle: {
-      "margin-bottom": "20px"
-    },
+    staticClass: "orange-btn normal-sq width-120 margin-20-bottom",
     on: {
       "click": function($event) {
         $event.preventDefault();
@@ -54174,10 +54175,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       value: (_vm.formVisible),
       expression: "formVisible"
     }],
-    staticClass: "add-col-panel",
-    staticStyle: {
-      "margin-top": "0"
-    }
+    staticClass: "sub-panel shadow-1"
   }, [_c('form', {
     on: {
       "submit": function($event) {
@@ -54188,7 +54186,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('div', {
     staticClass: "form-group"
   }, [_c('label', {
-    staticClass: "full-label"
+    staticClass: "full-label input-label"
   }, [_vm._v("Code")]), _vm._v(" "), _c('input', {
     directives: [{
       name: "validate",
@@ -54225,11 +54223,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }],
     staticClass: "span-error"
   }, [_vm._v(_vm._s(_vm.errors.first('code')))])]), _vm._v(" "), _c('div', {
-    staticClass: "form-group"
-  }, [_c('div', {
-    staticClass: "input-group"
+    staticClass: "form-group flex padding-15-vertical"
   }, [_c('label', {
-    staticClass: "input-addon"
+    staticClass: "input-label padding-15-right"
   }, [_vm._v(_vm._s(_vm.$trans.translation.discount))]), _vm._v(" "), _c('input', {
     directives: [{
       name: "model",
@@ -54237,7 +54233,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       value: (_vm.discount),
       expression: "discount"
     }],
-    staticClass: "input-addon-field",
+    staticClass: "input-addon-field width-120",
     attrs: {
       "required": "",
       "type": "number",
@@ -54260,9 +54256,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       expression: "type"
     }],
     staticClass: "select-input",
-    staticStyle: {
-      "width": "100px"
-    },
     attrs: {
       "required": ""
     },
@@ -54285,12 +54278,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "value": "baht"
     }
-  }, [_vm._v(_vm._s(_vm.$trans.translation.baht))])])])]), _vm._v(" "), _c('div', {
-    staticClass: "form-group"
-  }, [_c('div', {
-    staticClass: "input-group"
+  }, [_vm._v(_vm._s(_vm.$trans.translation.baht))])])]), _vm._v(" "), _c('div', {
+    staticClass: "form-group flex"
   }, [_c('label', {
-    staticClass: "input-addon"
+    staticClass: "input-label padding-15-right"
   }, [_vm._v(_vm._s(_vm.$trans.translation.amount))]), _vm._v(" "), _c('input', {
     directives: [{
       name: "model",
@@ -54315,30 +54306,36 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.amount = $event.target.value
       }
     }
-  })])]), _vm._v(" "), _c('div', {
-    staticClass: "form-group"
-  }, [_c('table', [_c('tr', [_c('td', {
-    staticClass: "no-border"
+  })]), _vm._v(" "), _c('div', {
+    staticClass: "align-right full-width padding-15-top"
   }, [_c('button', {
-    staticClass: "col-submit float-right",
-    staticStyle: {
-      "position": "relative",
-      "right": "0"
-    },
+    staticClass: "orange-btn normal-sq",
     attrs: {
       "type": "submit"
     }
-  }, [_vm._v(_vm._s(_vm.$trans.translation.edit_submit))])])])])])])])]), _vm._v(" "), _c('table', {
+  }, [_vm._v(_vm._s(_vm.$trans.translation.edit_submit))])])])])]), _vm._v(" "), _c('div', {
+    staticClass: "padding-15-vertical"
+  }, [_c('table', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.codes.length),
+      expression: "codes.length"
+    }],
     staticClass: "c-table"
-  }, [_c('tr', [_c('th', [_vm._v("Code")]), _vm._v(" "), _c('th', [_vm._v(_vm._s(_vm.$trans.translation.discount))]), _vm._v(" "), _c('th', [_vm._v(_vm._s(_vm.$trans.translation.amount))]), _vm._v(" "), _c('th', [_vm._v(_vm._s(_vm.$trans.translation.delete))])]), _vm._v(" "), _vm._l((_vm.codes), function(code, index) {
+  }, [_c('tr', [_c('th', [_vm._v("Code")]), _vm._v(" "), _c('th', [_vm._v(_vm._s(_vm.$trans.translation.discount))]), _vm._v(" "), _c('th', {
+    staticClass: "center"
+  }, [_vm._v(_vm._s(_vm.$trans.translation.amount))]), _vm._v(" "), _c('th', {
+    staticClass: "center"
+  }, [_vm._v(_vm._s(_vm.$trans.translation.delete))])]), _vm._v(" "), _vm._l((_vm.codes), function(code, index) {
     return _c('tr', [_c('td', {
       staticClass: "m-cell overflow-hidden"
     }, [_vm._v(_vm._s(code.code))]), _vm._v(" "), _c('td', {
       staticClass: "s-cell"
     }, [_vm._v(_vm._s(code.discount) + _vm._s(code.type == 'percent' ? '%' : ' ' + _vm.$trans.translation.baht))]), _vm._v(" "), _c('td', {
-      staticClass: "s-cell"
+      staticClass: "s-cell center"
     }, [_vm._v(_vm._s(code.amount))]), _vm._v(" "), _c('td', {
-      staticClass: "s-cell"
+      staticClass: "s-cell center"
     }, [_c('button', {
       staticClass: "delete-btn round-btn",
       on: {
@@ -54350,7 +54347,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }, [_c('small', {
       staticClass: "icon-bin"
     })])])])
-  })], 2)], 1)
+  })], 2)])], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -54588,8 +54585,8 @@ if (false) {
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('button', {
     staticClass: "dropdown-btn",
-    attrs: {
-      "href": _vm.cartUrl
+    on: {
+      "click": _vm.go
     }
   }, [_c('span', {
     staticClass: "icon-cart"
@@ -54990,7 +54987,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "padding": "0px 20px 30px"
     }
   }, [_c('li', {
-    staticClass: "red-font font-bold",
+    staticClass: "font-red font-bold",
     staticStyle: {
       "margin": "15px 0px"
     }

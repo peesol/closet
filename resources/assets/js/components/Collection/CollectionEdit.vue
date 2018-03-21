@@ -23,7 +23,7 @@
 
     <div class="half-width-res padding-15-top">
       <div class="form-group">
-        <label class="full-label input-label" for="name">{{$trans.translation.col_name}}</label>
+        <label class="full-label input-label" for="name">{{$trans.translation.name}}</label>
         <input v-validate="'required|min:3|max:50'" class="form-input" :class="{'is-error': errors.has('name')}" type="text" v-model="name" name="name">
         <span v-show="errors.has('name')" class="span-error">{{ errors.first('name') }}</span>
       </div>

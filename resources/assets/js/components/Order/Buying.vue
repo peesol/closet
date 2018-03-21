@@ -63,13 +63,13 @@
           <td colspan="4"><h4 class="no-margin">{{$trans.translation.total_price}}&nbsp;:&nbsp;<span style="color:red;">{{data.total}}</span>&nbsp;{{$trans.translation.baht}}</h4></td>
         </tr>
         <tr v-show="data.confirmed && !data.trans">
-          <td colspan="4"><h4 class="no-margin red-font">{{$trans.translation.wait_transaction}}</h4></td>
+          <td colspan="4"><h4 class="no-margin font-red">{{$trans.translation.wait_transaction}}</h4></td>
         </tr>
         <tr v-show="data.trans && !data.shipped">
-          <td colspan="4"><h4 class="no-margin green-font">{{$trans.translation.wait_delivery}}</h4></td>
+          <td colspan="4"><h4 class="no-margin font-green">{{$trans.translation.wait_delivery}}</h4></td>
         </tr>
         <tr v-show="data.shipped">
-          <td colspan="4"><h4 class="no-margin green-font">{{$trans.translation.delivered}}</h4></td>
+          <td colspan="4"><h4 class="no-margin font-green">{{$trans.translation.delivered}}</h4></td>
         </tr>
       </table>
     </div>

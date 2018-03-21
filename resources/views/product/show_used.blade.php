@@ -39,7 +39,7 @@ window.addEventListener("load",function(){var t=document.querySelectorAll(".tab-
 
                         </div>
                         <div class="panel-body">
-                          <h3 class="no-margin red-font">{{__('message.used')}}</h3>
+                          <h3 class="no-margin font-red">{{__('message.used')}}</h3>
                           <p class="no-margin"><span class="font-bold grey-font">{{__('message.price')}}</span> : <span class="font-bold font-large">{{ number_format($product->price) }}</span> {{__('message.baht')}}</p>
                         </div>
 

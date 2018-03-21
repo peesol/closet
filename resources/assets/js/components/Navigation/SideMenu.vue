@@ -19,7 +19,8 @@
             <a href="/profile/note"><span class="icon-bookmarks"></span>&nbsp;Note</a>
             <a href="/profile/mycollection"><span class="icon-map"></span>&nbsp;Collection</a>
             <a href="/profile/following"><span class="icon-star-full"></span>&nbsp;following</a>
-            <a href="/profile/order/selling"><span class="icon-price-tag"></span>&nbsp;Orders</a>
+            <a href="/profile/order/selling"><span class="icon-order"></span>&nbsp;Orders</a>
+            <a href="/profile/promotions/manage"><span class="icon-price-tag"></span>&nbsp;Promotions</a>
             <a href="#" @click.prevent="logout()"><span class="icon-exit"></span>&nbsp;Logout</a>
           </div>
         </div>

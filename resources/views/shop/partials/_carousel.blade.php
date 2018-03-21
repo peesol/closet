@@ -20,8 +20,8 @@
           @else
           <p class="product-p">
             {{__('message.price')}}&nbsp;:&nbsp;
-            <small class="icon-price-tag green-font"></small>
-            <font class="green-font">{{ number_format($product->discount_price) }}&#3647;</font>
+            <small class="icon-price-tag font-green"></small>
+            <font class="font-green">{{ number_format($product->discount_price) }}&#3647;</font>
           </p>
           @endif
           @if($product->type->id !== 1)

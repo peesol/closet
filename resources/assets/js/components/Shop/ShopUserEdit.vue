@@ -1,7 +1,7 @@
 <template>
 <div class="padding-15-vertical" id="full-line">
   <form v-on:submit.prevent="edit" method="post">
-    <label class="full-label heading">{{$trans.translation.user_info}}</label>
+    <label class="full-label heading">{{$trans.translation.private_info}}</label>
     <div class="form-group">
       <label class="full-label input-label">{{$trans.translation.phone}}</label>
       <input v-validate="'required|max:20|numeric'" type="text" :class="{'form-input': true,'is-error': errors.has('phone')}" name="phone" v-model="phone">

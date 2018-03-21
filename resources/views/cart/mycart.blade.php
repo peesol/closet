@@ -9,7 +9,7 @@
 <div class="container">
   <div class="medium-panel">
     <div class="panel-heading">
-      <h3 class="no-margin">{{__('message.cart')}}</h3>
+      <label class="full-label heading">{{__('message.cart')}}</label>
     </div>
     <div class="cart-wrap panel-body">
       <cart user-id="{{ Auth::check() ? Auth::user()->id : 'null' }}" user-name="{{ Auth::check() ? Auth::user()->name : 'null' }}"></cart>

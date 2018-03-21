@@ -6,7 +6,9 @@
 
 <div class="container">
   <div class="medium-panel">
-    <div class="panel-heading"><h3 class="no-margin" style="font-weight: 600;">{{__('message.promotions_manage')}}</h3></div>
+    <div class="panel-heading">
+      <label class="full-label heading">{{__('message.promotions_manage')}}</label>
+    </div>
     <div class="tab-nav">
         <ul class="tab-nav-ul">
             <button class="tab-nav-btn current">{{__('message.discount_code')}}</button>

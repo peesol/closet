@@ -6,12 +6,14 @@
   <div class="panel-body thumbnail-grid">
     <div v-for="product in products[0]" class="products-wrap">
     <div class="products-img">
-      <img class="products-img-thumb" :src="src + product.thumbnail"alt="image">
+      <a :href="$root.url + '/product/' + product.uid">
+        <img class="products-img-thumb" :src="src + product.thumbnail"alt="image">
+      </a>
     </div>
-      <h4 class="product-name">{{product.name}}</h4>
+      <a class="product-name" :href="$root.url + '/product/' + product.uid">{{product.name}}</a>
       <div class="product-detail-wrap">
-        <p class="product-p">{{ $trans.translate.price }} : {{ $number.currency(product.price) }}</p>
-        <p class="product-p">{{ $trans.translate.category }} : {{ product.category_id }}//{{ product.subcategory_id }}//{{ product.type_id }}</p>
+        <p class="product-p">{{ $trans.translate.price }}&nbsp;{{ $number.currency(product.price) }}</p>
+        <p class="product-p">{{ product.category_id }}/{{ product.subcategory_id }}/{{ product.type_id }}</p>
       </div>
     </div>
   </div>

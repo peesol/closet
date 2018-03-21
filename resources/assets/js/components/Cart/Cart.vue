@@ -3,7 +3,7 @@
 		<vue-progress-bar></vue-progress-bar>
 		<table v-show="!products.length" class="c-table" v-for="shop, key in products">
 			<tr>
-				<td colspan="4" class="cart-shop"><span class="font-bold grey-font">{{key}}</span></td>
+				<td colspan="4"><span class="font-bold font-grey">{{key}}</span></td>
 			</tr>
 			<tr>
 				<th>{{$trans.translation.product_name}}</th>
@@ -13,27 +13,27 @@
 			</tr>
 			<tr v-for="(item, index) in shop">
 				<td class="overflow-hidden"><span v-show="confirmed.shop !== key" class="icon-cross remove-p-cart" @click.prevent="removeProduct(item.rowId, index, item.options.shop_name)"></span>&nbsp;{{item.name}}</td>
-				<td class="m-cell">{{item.options.choice ? item.options.choice : '---'}}</td>
+				<td class="m-cell overflow-hidden">{{item.options.choice ? item.options.choice : '---'}}</td>
 				<td class="s-cell">{{$number.currency(item.price)}}</td>
 				<td class="s-cell"><input v-bind:disabled="confirmed.shop == key" type="number" min="1" max="99" @change.prevent="qtyChange(item)" v-model="item.qty"></td>
 			</tr>
 			<tr v-show="confirmed.shop !== key">
 				<td colspan="2" class="total-price">{{$trans.translation.total_price}}&nbsp;:&nbsp;{{total(shop)}}&#3647;</td>
-				<td colspan="2"><button class="btn float-right" @click.prevent="proceed(key, total(shop))">{{$trans.translation.confirm_order}}</button></td>
+				<td colspan="2"><button class="default float-right width-120" @click.prevent="proceed(key, total(shop))">{{$trans.translation.confirm_order}}</button></td>
 			</tr>
 			<tr v-show="confirmed.shop == key">
 				<td colspan="2">
 					{{$trans.translation.total_price}}&nbsp;:&nbsp;{{confirmed.totalPrice}}&#3647;
 					<a href="#" class="link-text" @click.prevent="toggleForm(key)" v-show="confirmed.discount_applied === false">{{$trans.translation.apply_discount}}</a>
-					<span class="green-font bold-font" v-show="confirmed.discount">{{$trans.translation.discount}}&nbsp;{{confirmed.discount}}</span>
+					<span class="font-green bold-font" v-show="confirmed.discount">{{$trans.translation.discount}}&nbsp;{{confirmed.discount}}</span>
 				</td>
-				<td colspan="2"><button class="green-btn float-right" @click.prevent="confirmOrder(shop, key)">{{$trans.translation.place_order}}</button></td>
+				<td colspan="2"><button class="green-btn float-right border-radius-5 width-120" @click.prevent="confirmOrder(shop, key)">{{$trans.translation.place_order}}</button></td>
 			</tr>
 			<tr v-show="formVisible == key && confirmed.discount_applied === false">
 				<td colspan="4">
 					<div class="input-group">
-						<input v-model="code[key]" required type="text" min="1" style="width:150px; background:#f9f9f9;">
-						<button @click.prevent="applyDiscount(shop[0].options.shop_id, key)" type="button" class="input-addon" style="height:30px; padding:7px; border:none;"><small class="icon-checkmark"></small></button>
+						<input v-model="code[key]" required type="text" min="1">
+						<button @click.prevent="applyDiscount(shop[0].options.shop_id, key)" type="button" class="form-input-btn checkmark-btn"><small class="icon-checkmark"></small></button>
 					</div>
 				</td>
 			</tr>

@@ -273,7 +273,7 @@ nav {
   padding: 15px 45px; }
 
 .color-heading {
-  background-color: #eee;
+  background-color: #ff8000;
   width: 100%;
   height: 50px;
   line-height: 50px;
@@ -288,7 +288,7 @@ nav {
 
 @media (min-width: 500px) {
   .sub-panel {
-    width: 250px; } }
+    width: 350px; } }
 div.instagram {
   background: #d6249f;
   background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); }
@@ -545,7 +545,7 @@ td.center, th.center {
     text-overflow: ellipsis;
     white-space: nowrap; }
   .c-table input[type="text"], .c-table input[type="number"] {
-    height: 30px;
+    height: 35px;
     border: none;
     background-color: #f2f2f2;
     padding-left: 10px;
@@ -1323,6 +1323,11 @@ span.shop {
       font-weight: bold;
       font-style: normal; }
 
+.breadcrumb {
+  display: inline-block; }
+  .breadcrumb li {
+    text-decoration: none; }
+
 .font-grey {
   color: #6c6c6c !important; }
 
@@ -1727,7 +1732,7 @@ span.shop {
 .border-radius-5 {
   border-radius: 5px; }
 
-button.default, .orange-btn, .help-btn, .round-btn {
+button.default, .orange-btn, .green-btn, .help-btn, .round-btn {
   box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 7px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -1px rgba(0, 0, 0, 0.2); }
 
 button.default, .orange-btn, .help-btn {

@@ -14,7 +14,7 @@
                           <label for="email" class="form-label">{{__('message.email')}}</label>
                           <input id="email" type="email" class="form-input" name="email" required>
                           @if(!empty($message))
-                          <span class="red-font"><strong>{{ $message }}</strong></span>
+                          <span class="font-red"><strong>{{ $message }}</strong></span>
                           @endif
                         </div>
 

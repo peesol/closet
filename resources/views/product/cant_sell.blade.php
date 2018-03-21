@@ -9,7 +9,7 @@
 <div class="container">
   <div class="medium-panel" style="border-radius: 5px; margin-bottom: 20px;">
     <div class="panel-body">
-      <h4 class="red-font">{{__('message.cant_sell')}}</h4>
+      <h4 class="font-red">{{__('message.cant_sell')}}</h4>
       <p>{{__('message.cant_sell_warn')}}</p>
       <p>{{__('message.cant_sell_guide')}}</p>
     </div>

@@ -61,7 +61,7 @@ window.Closet = {
   @else
   <div class="medium-panel">
     <div class="panel-body">
-      <h3 class="green-font">{{__('message.already_confirmed')}}</h3>
+      <h3 class="font-green">{{__('message.already_confirmed')}}</h3>
     </div>
   </div>
   @endif

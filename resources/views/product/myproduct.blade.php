@@ -59,7 +59,7 @@
                               <p class="product-p">
                                 {{__('message.price')}}&nbsp;:&nbsp;<strike>{{ number_format($product->price) }}&#3647;</strike>
                                 <small class="icon-next-arrow grey-font"></small>
-                                <font class="green-font">{{ number_format($product->discount_price) }}&#3647;</font>
+                                <font class="font-green">{{ number_format($product->discount_price) }}&#3647;</font>
                               </p>
                               @endif
                               <p class="product-p">{{ $product->category->showTranslate(App::getLocale())->name }} / {{ $product->subcategory->showTranslate(App::getLocale())->name }}</p>
