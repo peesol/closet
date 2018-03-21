@@ -173,7 +173,7 @@
     padding: 1px 15px;
     border-bottom: 1px solid #efefef;
 }
-.product-show-panel {
+.medium-panel {
     width: 100%;
     margin: 0 auto;
     height: auto;
@@ -196,7 +196,7 @@ margin-right: 10px;
 /* Small devices (tablets, 768px and up) */
 
 @media (min-width: 768px) {
-    .product-show-panel { width: 768px;}
+    .medium-panel { width: 768px;}
     .product-showcase {
         width: 380px;
         margin:0;
@@ -208,7 +208,7 @@ margin-right: 10px;
 /* Medium devices (desktops, 992px and up) */
 
 @media (min-width: 992px) {
-    .product-show-panel {
+    .medium-panel {
     width: 900px;
 }
     .product-showcase {
@@ -223,7 +223,7 @@ margin-right: 10px;
 /* Large devices (large desktops, 1200px and up) */
 
 @media (min-width: 1200px) {
-    .product-show-panel {
+    .medium-panel {
     width: 1024px;
 }
     .product-showcase {

@@ -1,28 +1,23 @@
 <template>
-<div>
-  <label class="heading padding-15-horizontal padding-15-top">{{$trans.translation.photos}}</label>
-  <div class="alert-box info margin-15">
-    <span class="icon-notification"></span>&nbsp;{{$trans.translation.col_photo_limit}}
-  </div>
-  <div class="panel-body thumbnail-grid" v-if="images.length">
+<div class="padding-30-bot-15" id="full-line">
+  <div class="thumbnail-grid" v-if="images.length">
     <div v-for="(image, index) in images" class="products-img">
       <img class="object-contain black-bg" :alt="image.filename" :src="image.filename">
       <button v-show="image.id && images.length > 0" @click.prevent="remove(image.id, index)" class="caution round-btn red-bg"><span class="icon-bin"></span></button>
     </div>
   </div>
-  <div v-else class="panel-body" id="full-line">
+  <div v-else class="padding-15-vertical">
     <label class="full-label input-label">{{$trans.translation.col_photo_none}}</label>
   </div>
 
-  <div class="panel-heading">
 		<div class="padding-15-vertical">
 			<button class="orange-btn normal-sq" @click.prevent="formVisible = !formVisible">
 					{{$trans.translation.upload_photo}}&nbsp;&nbsp;+
 			</button>
 		</div>
 
-    <transition name="slide-down">
-      <div v-show="formVisible" class="panel-body">
+    <transition name="slide-down-height">
+      <div v-show="formVisible" class="panel-body border-radius-5 grey-bg">
         <div class="dropzone" id="image">
           <div class="dz-message" data-dz-message>
             <span>{{$trans.translation.upload_photo_guide}}</span>
@@ -33,7 +28,7 @@
         </div>
       </div>
     </transition>
-  </div>
+
 </div>
 </template>
 

@@ -128,10 +128,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/order/sending', 'OrderController@store');
 
     Route::prefix('profile')->group(function () {
-      Route::get('/mycollection', 'CollectionController@myCollection')->name('myCollection');
+      Route::get('/mycollection', 'Collection\CollectionController@index')->name('myCollection');
       Route::get('/following', 'FollowingController@index')->name('following');
-
-      //AJAX
 
       Route::get('/promotions/manage', 'PromotionController@index')->name('promotionEdit');
       Route::get('/promotions/manage/code', 'PromotionController@codePage')->name('promotionCode');
@@ -145,7 +143,7 @@ Route::group(['middleware' => ['auth']], function () {
       Route::put('/promotions/manage/discount/{product}/add', 'PromotionController@applyDiscount');
       Route::put('/promotions/manage/discount/{product}/delete', 'PromotionController@removeDiscount');
 
-    });
+    }); //End profile prefix
 
 /*
 |--------------------------------------------------------------------------

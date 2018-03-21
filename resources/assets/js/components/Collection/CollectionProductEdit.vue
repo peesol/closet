@@ -1,7 +1,5 @@
 <template>
 <div>
-  <label class="heading padding-15-horizontal padding-15-top">{{$trans.translation.products}}</label>
-
   <div v-if="products.length">
 
     <div v-for="(product, index) in products" class="row-list flex flex-start">
@@ -26,7 +24,7 @@
 
   </div>
   <div v-else class="panel-body">
-    <p class="no-margin">{{$trans.translation.col_product_none}}</p>
+    <label class="full-label input-label">{{$trans.translation.col_product_none}}</label>
   </div>
 </div>
 </template>

@@ -203,7 +203,8 @@ nav {
 .container {
   width: 100%;
   min-height: 100%;
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  padding-bottom: 30px; }
 
 .small-panel {
   width: 100%;
@@ -316,8 +317,15 @@ div.line {
 .form-group {
   width: 100%; }
 
+.form-group label {
+  margin-bottom: 5px;
+  font-size: 1.3em !important; }
+
 .form-label {
   width: 150px !important; }
+
+.panel-heading label.heading {
+  font-weight: 600; }
 
 label.heading {
   font-size: 1.5em;
@@ -1499,6 +1507,9 @@ span.shop {
 .no-margin {
   margin: 0 !important; }
 
+.margin-center {
+  margin: 0 auto !important; }
+
 .margin-10 {
   margin: 10px !important; }
 
@@ -1507,6 +1518,27 @@ span.shop {
 
 .margin-20 {
   margin: 20px !important; }
+
+.margin-30 {
+  margin: 30px !important; }
+
+.margin-30-vertical {
+  margin: 30px 0 !important; }
+
+.margin-30-horizontal {
+  margin: 0 30px !important; }
+
+.margin-30-top {
+  margin-top: 30px !important; }
+
+.margin-30-bottom {
+  margin-bottom: 30px !important; }
+
+.margin-10-horizontal {
+  margin-bottom: 0 10px !important; }
+
+.margin-10-vertical {
+  margin-bottom: 10px 0 !important; }
 
 .margin-10-bottom {
   margin-bottom: 10px !important; }
@@ -1520,6 +1552,12 @@ span.shop {
 .margin-10-right {
   margin-right: 10px !important; }
 
+.margin-15-horizontal {
+  margin-bottom: 0 15px !important; }
+
+.margin-15-vertical {
+  margin-bottom: 15px 0 !important; }
+
 .margin-20-bottom {
   margin-bottom: 20px !important; }
 
@@ -1531,6 +1569,12 @@ span.shop {
 
 .margin-20-right {
   margin-right: 20px !important; }
+
+.padding-30 {
+  padding: 30px; }
+
+.padding-30-bot-15 {
+  padding: 30px 30px 15px; }
 
 .padding-30-horizontal {
   padding: 0 30px; }
@@ -1651,7 +1695,7 @@ span.shop {
 .grey-bg {
   background-color: #eee !important; }
 
-.grey-bg {
+.black-bg {
   background-color: #000 !important; }
 
 .transparent-bg {
@@ -1679,6 +1723,9 @@ span.shop {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap; }
+
+.border-radius-5 {
+  border-radius: 5px; }
 
 button.default, .orange-btn, .help-btn, .round-btn {
   box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 7px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -1px rgba(0, 0, 0, 0.2); }

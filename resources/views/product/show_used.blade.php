@@ -17,7 +17,7 @@ window.addEventListener("load",function(){var t=document.querySelectorAll(".tab-
 
 <div class="container">
   @include('product.partials._login_warn')
-            <div class="product-show-panel">
+            <div class="medium-panel">
                 <div class="panel-heading margin-10-bottom"><p class="product-title">{{__('message.product_name')}} : {{ $product->name }}</p></div>
                 <div class="flex">
 
@@ -50,7 +50,7 @@ window.addEventListener("load",function(){var t=document.querySelectorAll(".tab-
                     </div>
                 </div>
             </div>
-  <div class="product-show-panel" style="margin-top: 10px;">
+  <div class="medium-panel" style="margin-top: 10px;">
     <div class="tab-nav">
       <ul class="tab-nav-ul">
         <button class="tab-nav-btn static current" data-tab="#tab-1">{{__('message.details')}}</button>

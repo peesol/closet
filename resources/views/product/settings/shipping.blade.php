@@ -9,7 +9,7 @@
 <div class="container">
   <div class="large-panel">
     <div class="panel-heading">
-      <h3 class="no-margin">{{__('message.shipping_edit')}}</h3>
+      <label class="full-label heading">{{__('message.shipping_edit')}}</label>
     </div>
     <div class="panel-body">
       <div class="alert-box info">

@@ -1,5 +1,5 @@
 @if(!Auth::check())
-<div class="product-show-panel">
+<div class="medium-panel">
   <div class="panel-body" id="full-line">
     <div class="alert-box info">
       <h3 class="no-margin">

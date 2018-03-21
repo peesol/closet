@@ -15047,11 +15047,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
 
 
 __WEBPACK_IMPORTED_MODULE_0_dropzone___default.a.autoDiscover = false;
@@ -15153,6 +15148,9 @@ __WEBPACK_IMPORTED_MODULE_0_dropzone___default.a.autoDiscover = false;
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
 //
 //
 //
@@ -15418,8 +15416,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
 //
 //
 //
@@ -16719,7 +16715,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }
       this.$http.delete(this.$root.url + '/product/' + this.productSlug + '/choice/delete/' + choiceId).then(function () {
         _this4.choices.splice(index, 1);
-        toastr.success(_this4.$trans.translation.success, toastr.options = { "preventDuplicates": true });
+        toastr.success(_this4.$trans.translation.success, toastr.options = {
+          "preventDuplicates": true
+        });
       });
     }
   },
@@ -17113,101 +17111,110 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 __WEBPACK_IMPORTED_MODULE_0_dropzone___default.a.autoDiscover = false;
 /* harmony default export */ __webpack_exports__["default"] = ({
-	data: function data() {
-		return {
-			images: [],
-			formVisible: false,
-			dropzoneUrl: this.$root.url + '/product/' + this.productSlug + '/upload_photo'
-		};
-	},
+  data: function data() {
+    return {
+      images: [],
+      formVisible: false,
+      dropzoneUrl: this.$root.url + '/product/' + this.productSlug + '/upload_photo'
+    };
+  },
 
-	props: {
-		productSlug: null,
-		productId: null
-	},
+  props: {
+    productSlug: null,
+    productId: null
+  },
 
-	methods: {
-		getPhoto: function getPhoto() {
-			var _this = this;
+  methods: {
+    getPhoto: function getPhoto() {
+      var _this = this;
 
-			this.$http.get(this.$root.url + '/product/' + this.productSlug + '/get_photo').then(function (response) {
-				return response.json().then(function (json) {
-					_this.images = json.data;
-				});
-			});
-		},
-		remove: function remove(imageId, index) {
-			var _this2 = this;
+      this.$http.get(this.$root.url + '/product/' + this.productSlug + '/get_photo').then(function (response) {
+        return response.json().then(function (json) {
+          _this.images = json.data;
+        });
+      });
+    },
+    remove: function remove(imageId, index) {
+      var _this2 = this;
 
-			if (!confirm(this.$trans.translation.photo_delete_confirm)) {
-				return;
-			}
-			this.$Progress.start();
-			this.$http.delete(this.$root.url + '/product/delete_photo/' + imageId).then(function () {
-				_this2.images.splice(index, 1);
-				_this2.$Progress.finish();
-				toastr.success(_this2.$trans.translation.success);
-			});
-		},
+      if (!confirm(this.$trans.translation.photo_delete_confirm)) {
+        return;
+      }
+      this.$Progress.start();
+      this.$http.delete(this.$root.url + '/product/delete_photo/' + imageId).then(function () {
+        _this2.images.splice(index, 1);
+        _this2.$Progress.finish();
+        toastr.success(_this2.$trans.translation.success);
+      });
+    },
 
 
-		initDropzone: function initDropzone() {
-			self = this;
-			self.$nextTick(function () {
-				self.image = new __WEBPACK_IMPORTED_MODULE_0_dropzone___default.a("#image", {
-					method: 'post',
-					url: self.dropzoneUrl,
-					autoProcessQueue: false,
-					uploadMultiple: true,
-					parallelUploads: 7,
-					maxFiles: 7,
-					maxFilesize: 2,
-					acceptedFiles: '.jpg',
-					addRemoveLinks: true,
-					paramName: "image",
-					dictRemoveFile: "&times;",
-					dictCancelUpload: "&times;",
-					headers: { 'x-csrf-token': document.querySelectorAll('meta[name=csrf-token]')[0].getAttributeNode('content').value },
-					init: function init() {
-						this.on('addedfile', function (file) {
-							if (this.files.length + self.images.length > 7 || this.files.length > 7) {
-								this.removeFile(this.files[0]);
-							}
-						});
-					},
-					processing: function processing() {
-						self.$Progress.start();
-					},
-					success: function success(file, response) {
-						self.images.push({
-							id: null,
-							filename: file.dataURL
-						});
-						toastr.success(self.$trans.translation.success, toastr.options = { "preventDuplicates": true });
-						this.removeFile(this.files[0]);
-						self.$Progress.finish();
-					},
-					error: function error() {
-						self.$Progress.fail();
-						toastr.error(self.$trans.translation.error, toastr.options = { "preventDuplicates": true });
-						this.removeFile(this.files[0]);
-					}
+    initDropzone: function initDropzone() {
+      self = this;
+      self.$nextTick(function () {
+        self.image = new __WEBPACK_IMPORTED_MODULE_0_dropzone___default.a("#image", {
+          method: 'post',
+          url: self.dropzoneUrl,
+          autoProcessQueue: false,
+          uploadMultiple: true,
+          parallelUploads: 7,
+          maxFiles: 7,
+          maxFilesize: 2,
+          acceptedFiles: '.jpg',
+          addRemoveLinks: true,
+          paramName: "image",
+          dictRemoveFile: "&times;",
+          dictCancelUpload: "&times;",
+          headers: {
+            'x-csrf-token': document.querySelectorAll('meta[name=csrf-token]')[0].getAttributeNode('content').value
+          },
+          init: function init() {
+            this.on('addedfile', function (file) {
+              if (this.files.length + self.images.length > 7 || this.files.length > 7) {
+                this.removeFile(this.files[0]);
+              }
+            });
+          },
+          processing: function processing() {
+            self.$Progress.start();
+          },
+          success: function success(file, response) {
+            self.images.push({
+              id: null,
+              filename: file.dataURL
+            });
+            toastr.success(self.$trans.translation.success, toastr.options = {
+              "preventDuplicates": true
+            });
+            this.removeFile(this.files[0]);
+            self.$Progress.finish();
+          },
+          error: function error() {
+            self.$Progress.fail();
+            toastr.error(self.$trans.translation.error, toastr.options = {
+              "preventDuplicates": true
+            });
+            this.removeFile(this.files[0]);
+          }
 
-				});
-			});
-		},
-		submit: function submit() {
-			self.image.processQueue();
-		}
-	},
-	created: function created() {
-		this.getPhoto();
-		this.initDropzone();
-	}
+        });
+      });
+    },
+    submit: function submit() {
+      self.image.processQueue();
+    }
+  },
+  created: function created() {
+    this.getPhoto();
+    this.initDropzone();
+  }
 });
 
 /***/ }),
@@ -17264,83 +17271,94 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        return {
-            image_filename: this.imageSrc,
-            name: this.productName,
-            price: this.productPrice,
-            description: this.productDescription,
-            visibility: this.productVisibility,
-            formVisible: false
+  data: function data() {
+    return {
+      image_filename: this.imageSrc,
+      name: this.productName,
+      price: this.productPrice,
+      description: this.productDescription,
+      visibility: this.productVisibility,
+      formVisible: false
+    };
+  },
+
+  props: {
+    productSlug: null,
+    productName: null,
+    productPrice: null,
+    productDescription: null,
+    productVisibility: null,
+    imageSrc: null
+  },
+
+  methods: {
+    previewThumbnail: function previewThumbnail(event) {
+      var input = event.target;
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        var vm = this;
+        reader.onload = function (e) {
+          vm.image_filename = e.target.result;
         };
+        reader.readAsDataURL(input.files[0]);
+      }
     },
-
-    props: {
-        productSlug: null,
-        productName: null,
-        productPrice: null,
-        productDescription: null,
-        productVisibility: null,
-        imageSrc: null
+    removeFile: function removeFile() {
+      this.image_filename = null;
     },
+    edit: function edit() {
+      var _this = this;
 
-    methods: {
-        previewThumbnail: function previewThumbnail(event) {
-            var input = event.target;
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-                var vm = this;
-                reader.onload = function (e) {
-                    vm.image_filename = e.target.result;
-                };
-                reader.readAsDataURL(input.files[0]);
-            }
-        },
-        removeFile: function removeFile() {
-            this.image_filename = null;
-        },
-        edit: function edit() {
-            var _this = this;
-
-            toastr.options.preventDuplicates = true;
-            toastr.options.timeOut = 2000;
-            if (document.getElementById("image-input").files.length == 0) {
-                this.$Progress.start();
-                toastr.info(this.$trans.translation.wait);
-                this.$http.put(this.$root.url + '/product/' + this.productSlug + '/edit', {
-                    name: this.name,
-                    description: this.description,
-                    price: this.price,
-                    visibility: this.visibility
-                }).then(function (response) {
-                    _this.$Progress.finish();
-                    toastr.success(_this.$trans.translation.success);
-                }, function (response) {
-                    toastr.error(_this.$trans.translation.error);
-                    _this.$Progress.fail();
-                });
-            } else if (document.getElementById("image-input").files.length > 0) {
-                this.$Progress.start();
-                toastr.info(this.$trans.translation.wait);
-                this.$http.put(this.$root.url + '/product/' + this.productSlug + '/edit', {
-                    name: this.name,
-                    description: this.description,
-                    price: this.price,
-                    thumbnail: this.image_filename,
-                    visibility: this.visibility
-                }).then(function (response) {
-                    _this.$Progress.finish();
-                    toastr.success(_this.$trans.translation.success);
-                }, function (response) {
-                    toastr.error(_this.$trans.translation.error);
-                    _this.$Progress.fail();
-                });
-            }
-        }
+      toastr.options.preventDuplicates = true;
+      toastr.options.timeOut = 2000;
+      if (document.getElementById("image-input").files.length == 0) {
+        this.$Progress.start();
+        toastr.info(this.$trans.translation.wait);
+        this.$http.put(this.$root.url + '/product/' + this.productSlug + '/edit', {
+          name: this.name,
+          description: this.description,
+          price: this.price,
+          visibility: this.visibility
+        }).then(function (response) {
+          _this.$Progress.finish();
+          toastr.success(_this.$trans.translation.success);
+        }, function (response) {
+          toastr.error(_this.$trans.translation.error);
+          _this.$Progress.fail();
+        });
+      } else if (document.getElementById("image-input").files.length > 0) {
+        this.$Progress.start();
+        toastr.info(this.$trans.translation.wait);
+        this.$http.put(this.$root.url + '/product/' + this.productSlug + '/edit', {
+          name: this.name,
+          description: this.description,
+          price: this.price,
+          thumbnail: this.image_filename,
+          visibility: this.visibility
+        }).then(function (response) {
+          _this.$Progress.finish();
+          toastr.success(_this.$trans.translation.success);
+        }, function (response) {
+          toastr.error(_this.$trans.translation.error);
+          _this.$Progress.fail();
+        });
+      }
     }
+  }
 });
 
 /***/ }),
@@ -49630,11 +49648,12 @@ if (false) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
-    staticStyle: {
-      "padding": "0 30px 45px 30px"
+    staticClass: "padding-30-bot-15",
+    attrs: {
+      "id": "full-line"
     }
   }, [_c('vue-progress-bar'), _vm._v(" "), _c('form', {
-    staticClass: "flex",
+    staticClass: " full-width",
     attrs: {
       "method": "post",
       "enctype": "multipart/form-data"
@@ -49646,36 +49665,24 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }
   }, [_c('div', {
-    staticClass: "add-col-panel flex",
-    staticStyle: {
-      "padding": "40px 15px"
-    }
-  }, [_c('label', {
-    staticClass: "full-label no-margin",
-    staticStyle: {
-      "position": "absolute",
-      "top": "10px",
-      "left": "0"
-    }
-  }, [_vm._v(_vm._s(_vm.$trans.translation.thumbnail))]), _vm._v(" "), _c('div', {
-    staticClass: "image-input"
+    staticClass: "flex flex-start-res"
+  }, [_c('div', {
+    staticClass: "half-width-res flex flex-start-res"
+  }, [_c('div', {
+    staticClass: "margin-20-bottom"
+  }, [_c('div', {
+    staticClass: "image-file-input margin-center"
   }, [_c('span', {
     staticClass: "icon-images"
   }), _vm._v(" "), _c('img', {
-    staticClass: "image-input-img",
     attrs: {
       "src": _vm.image_filename
     }
-  })]), _vm._v(" "), _c('ul', {
-    staticStyle: {
-      "list-style-type": "none",
-      "padding": "0",
-      "margin": "0"
-    }
-  }, [_c('li', [_c('div', {
-    staticClass: "image-file-input"
+  })])]), _vm._v(" "), _c('div', {
+    staticClass: "padding-30-horizontal half-width-res"
+  }, [_c('label', {
+    staticClass: "file-input full-width shadow-1 margin-20-bottom"
   }, [_c('input', {
-    staticClass: "image-input-input",
     attrs: {
       "id": "image-input",
       "type": "file",
@@ -49685,28 +49692,20 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "change": _vm.previewThumbnail
     }
-  }), _vm._v(" "), _c('p', {
-    staticStyle: {
-      "padding": "12px",
-      "text-align": "center"
-    }
-  }, [_vm._v(_vm._s(_vm.$trans.translation.choose_file))])])]), _vm._v(" "), _c('li', [(_vm.image_filename !== null) ? _c('button', {
-    staticClass: "image-file-input",
+  }), _vm._v("\n            " + _vm._s(_vm.$trans.translation.choose_file) + " +\n          ")]), _vm._v(" "), (_vm.image_filename !== null) ? _c('button', {
+    staticClass: "file-input full-width shadow-1",
     on: {
       "click": function($event) {
         $event.preventDefault();
         _vm.removeFile($event)
       }
     }
-  }, [_vm._v(_vm._s(_vm.$trans.translation.remove))]) : _vm._e()])])]), _vm._v(" "), _c('div', {
-    staticClass: "col-edit-panel"
+  }, [_vm._v(_vm._s(_vm.$trans.translation.remove))]) : _vm._e()])]), _vm._v(" "), _c('div', {
+    staticClass: "half-width-res padding-15-top"
   }, [_c('div', {
-    staticClass: "form-group ",
-    attrs: {
-      "id": "full-label"
-    }
+    staticClass: "form-group"
   }, [_c('label', {
-    staticClass: "full-label",
+    staticClass: "full-label input-label",
     attrs: {
       "for": "name"
     }
@@ -49722,8 +49721,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       value: (_vm.name),
       expression: "name"
     }],
+    staticClass: "form-input",
     class: {
-      'col-edit-input': true, 'is-error': _vm.errors.has('product_name')
+      'is-error': _vm.errors.has('product_name')
     },
     attrs: {
       "type": "text",
@@ -49747,12 +49747,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }],
     staticClass: "span-error"
   }, [_vm._v(_vm._s(_vm.errors.first('product_name')))])]), _vm._v(" "), _c('div', {
-    staticClass: "form-group ",
-    attrs: {
-      "id": "full-label"
-    }
+    staticClass: "form-group"
   }, [_c('label', {
-    staticClass: "full-label",
+    staticClass: "full-label input-label",
     attrs: {
       "for": "price"
     }
@@ -49768,7 +49765,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       value: (_vm.price),
       expression: "price"
     }],
-    staticClass: "col-edit-input",
+    staticClass: "form-input",
     attrs: {
       "type": "text",
       "name": "price"
@@ -49791,12 +49788,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }],
     staticClass: "span-error"
   }, [_vm._v(_vm._s(_vm.errors.first('price')))])]), _vm._v(" "), _c('div', {
-    staticClass: "form-group ",
-    attrs: {
-      "id": "full-label"
-    }
+    staticClass: "form-group"
   }, [_c('label', {
-    staticClass: "full-label",
+    staticClass: "full-label input-label",
     attrs: {
       "for": "visibility"
     }
@@ -49833,16 +49827,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "value": "unlisted"
     }
-  }, [_vm._v(_vm._s(_vm.$trans.translation.unlisted))])])])]), _vm._v(" "), _c('div', {
-    staticClass: "form-group",
-    staticStyle: {
-      "position": "relative"
-    },
-    attrs: {
-      "id": "full-label"
-    }
+  }, [_vm._v(_vm._s(_vm.$trans.translation.unlisted))])])])])]), _vm._v(" "), _c('div', {
+    staticClass: "full-width padding-15-top"
+  }, [_c('div', {
+    staticClass: "form-group"
   }, [_c('label', {
-    staticClass: "full-label",
+    staticClass: "full-label input-label",
     attrs: {
       "for": "description"
     }
@@ -49858,7 +49848,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       value: (_vm.description),
       expression: "description"
     }],
-    staticClass: "description-input margin-10-bottom",
+    staticClass: "description-input",
     attrs: {
       "type": "text",
       "name": "description"
@@ -49880,15 +49870,14 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       expression: "errors.has('description')"
     }],
     staticClass: "span-error"
-  }, [_vm._v(_vm._s(_vm.errors.first('description')))]), _vm._v(" "), _c('button', {
-    staticClass: "col-submit",
-    staticStyle: {
-      "right": "0"
-    },
+  }, [_vm._v(_vm._s(_vm.errors.first('description')))])]), _vm._v(" "), _c('div', {
+    staticClass: "align-right full-width padding-15-top"
+  }, [_c('button', {
+    staticClass: "orange-btn normal-sq width-120",
     attrs: {
       "type": "submit"
     }
-  }, [_vm._v(_vm._s(_vm.$trans.translation.edit_submit))])])])], 1)
+  }, [_vm._v(_vm._s(_vm.$trans.translation.edit_submit))])])])])], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -50249,7 +50238,7 @@ if (false) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
-    staticClass: "panel-body",
+    staticClass: "padding-30-bot-15",
     attrs: {
       "id": "full-line"
     }
@@ -50266,19 +50255,21 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }
   }, [_c('div', {
-    staticClass: "half-width-res flex"
+    staticClass: "half-width-res flex flex-start-res"
   }, [_c('div', {
-    staticClass: "image-file-input"
+    staticClass: "margin-20-bottom"
+  }, [_c('div', {
+    staticClass: "image-file-input margin-center"
   }, [_c('span', {
     staticClass: "icon-images"
   }), _vm._v(" "), _c('img', {
     attrs: {
       "src": _vm.image_filename
     }
-  })]), _vm._v(" "), _c('div', {
-    staticClass: "padding-15-left half-width"
+  })])]), _vm._v(" "), _c('div', {
+    staticClass: "padding-30-horizontal half-width-res"
   }, [_c('label', {
-    staticClass: "file-input full-width shadow-1 margin-10-bottom"
+    staticClass: "file-input full-width shadow-1 margin-20-bottom"
   }, [_c('input', {
     attrs: {
       "id": "image-input",
@@ -50289,7 +50280,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "change": _vm.previewThumbnail
     }
-  }), _vm._v("\n\t\t\t\t\t" + _vm._s(_vm.$trans.translation.choose_file) + " +\n\t\t\t\t")]), _vm._v(" "), (_vm.image_filename !== null) ? _c('button', {
+  }), _vm._v("\n          " + _vm._s(_vm.$trans.translation.choose_file) + " +\n        ")]), _vm._v(" "), (_vm.image_filename !== null) ? _c('button', {
     staticClass: "file-input full-width shadow-1",
     on: {
       "click": function($event) {
@@ -50298,7 +50289,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }
   }, [_vm._v(_vm._s(_vm.$trans.translation.remove))]) : _vm._e()])]), _vm._v(" "), _c('div', {
-    staticClass: "half-width-res padding-15-horizontal padding-15-top"
+    staticClass: "half-width-res padding-15-top"
   }, [_c('div', {
     staticClass: "form-group"
   }, [_c('label', {
@@ -51177,18 +51168,19 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_c('div', {
-    staticStyle: {
-      "padding": "0px 15px 10px 15px"
+  return _c('div', {
+    staticClass: "padding-15-top padding-30",
+    attrs: {
+      "id": "full-line"
     }
   }, [_c('div', {
-    staticClass: "add-col-panel"
+    staticClass: "half-width-res"
   }, [_c('form', [_c('label', {
-    staticClass: "full-label",
+    staticClass: "full-label input-label",
     attrs: {
       "for": "name"
     }
-  }, [_vm._v(_vm._s(_vm.$trans.translation.choice_add) + " "), _c('span', {
+  }, [_vm._v(_vm._s(_vm.$trans.translation.choice_add) + " \n        "), _c('span', {
     staticClass: "font-light"
   }, [_vm._v(_vm._s(_vm.$trans.translation.choice_name_ex))])]), _vm._v(" "), _c('div', {
     staticClass: "input-group"
@@ -51214,10 +51206,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }
   }), _vm._v(" "), _c('button', {
-    staticClass: "input-addon",
-    staticStyle: {
-      "border": "none"
-    },
+    staticClass: "input-addon checkmark-btn icon-checkmark",
     attrs: {
       "type": "submit"
     },
@@ -51227,15 +51216,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.add($event)
       }
     }
-  }, [_c('span', {
-    staticClass: "icon-checkmark"
-  })])])])]), _vm._v(" "), (_vm.choices.length) ? _c('div', {
-    staticClass: "panel-body"
-  }, [_c('label', {
-    staticClass: "full-label"
+  })])])]), _vm._v(" "), (_vm.choices.length) ? _c('div', {}, [_c('label', {
+    staticClass: "full-label input-label padding-15-vertical"
   }, [_vm._v(_vm._s(_vm.$trans.translation.current_choices))]), _vm._v(" "), _c('table', {
     staticClass: "c-table"
-  }, [_c('tr', [_c('th', [_vm._v(_vm._s(_vm.$trans.translation.choice))]), _vm._v(" "), _c('th', [_vm._v(_vm._s(_vm.$trans.translation.show))]), _vm._v(" "), _c('th', [_vm._v(_vm._s(_vm.$trans.translation.delete))])]), _vm._v(" "), _vm._l((_vm.choices), function(choice, index) {
+  }, [_c('tr', [_c('th', [_vm._v(_vm._s(_vm.$trans.translation.choice))]), _vm._v(" "), _c('th', [_vm._v(_vm._s(_vm.$trans.translation.show))]), _vm._v(" "), _c('th', {
+    staticClass: "center"
+  }, [_vm._v(_vm._s(_vm.$trans.translation.delete))])]), _vm._v(" "), _vm._l((_vm.choices), function(choice, index) {
     return _c('tr', [_c('td', {
       staticClass: "m-cell overflow-hidden",
       staticStyle: {
@@ -51244,14 +51231,21 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }, [_vm._v(_vm._s(choice.name))]), _vm._v(" "), _c('td', {
       staticClass: "s-cell"
     }, [_c('button', {
-      staticClass: "round-btn",
+      staticClass: "round-btn font-white",
+      class: {
+        'green-bg': choice.stock, 'red-bg': !choice.stock
+      },
       on: {
         "click": function($event) {
           $event.preventDefault();
           _vm.toggleChoice(choice.id, index)
         }
       }
-    }, [_vm._v("\n              " + _vm._s(choice.stock ? _vm.$trans.translation.hide : _vm.$trans.translation.show) + "\n            ")])]), _vm._v(" "), _c('td', {
+    }, [_c('small', {
+      class: {
+        'icon-checkmark': choice.stock, 'icon-cross': !choice.stock
+      }
+    })])]), _vm._v(" "), _c('td', {
       staticClass: "s-cell"
     }, [_c('button', {
       staticClass: "delete-btn round-btn",
@@ -51262,12 +51256,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         }
       }
     }, [_c('small', {
-      staticClass: "icon-bin",
-      staticStyle: {
-        "margin-left": "3px"
-      }
+      staticClass: "icon-bin"
     })])])])
-  })], 2)]) : _c('div')])])
+  })], 2)]) : _c('div')])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -51876,19 +51867,18 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_c('label', {
-    staticClass: "heading padding-15-horizontal padding-15-top"
-  }, [_vm._v(_vm._s(_vm.$trans.translation.photos))]), _vm._v(" "), _c('div', {
-    staticClass: "alert-box info margin-15"
-  }, [_c('span', {
-    staticClass: "icon-notification"
-  }), _vm._v(" " + _vm._s(_vm.$trans.translation.col_photo_limit) + "\n  ")]), _vm._v(" "), (_vm.images.length) ? _c('div', {
-    staticClass: "panel-body thumbnail-grid"
+  return _c('div', {
+    staticClass: "padding-30-bot-15",
+    attrs: {
+      "id": "full-line"
+    }
+  }, [(_vm.images.length) ? _c('div', {
+    staticClass: "thumbnail-grid"
   }, _vm._l((_vm.images), function(image, index) {
     return _c('div', {
       staticClass: "products-img"
     }, [_c('img', {
-      staticClass: "object-contain",
+      staticClass: "object-contain black-bg",
       attrs: {
         "alt": image.filename,
         "src": image.filename
@@ -51911,15 +51901,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "icon-bin"
     })])])
   })) : _c('div', {
-    staticClass: "panel-body",
-    attrs: {
-      "id": "full-line"
-    }
+    staticClass: "padding-15-vertical"
   }, [_c('label', {
     staticClass: "full-label input-label"
   }, [_vm._v(_vm._s(_vm.$trans.translation.col_photo_none))])]), _vm._v(" "), _c('div', {
-    staticClass: "panel-heading"
-  }, [_c('div', {
     staticClass: "padding-15-vertical"
   }, [_c('button', {
     staticClass: "orange-btn normal-sq",
@@ -51931,7 +51916,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_vm._v("\n\t\t\t\t\t" + _vm._s(_vm.$trans.translation.upload_photo) + "  +\n\t\t\t")])]), _vm._v(" "), _c('transition', {
     attrs: {
-      "name": "slide-down"
+      "name": "slide-down-height"
     }
   }, [_c('div', {
     directives: [{
@@ -51940,7 +51925,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       value: (_vm.formVisible),
       expression: "formVisible"
     }],
-    staticClass: "panel-body"
+    staticClass: "panel-body border-radius-5 grey-bg"
   }, [_c('div', {
     staticClass: "dropzone",
     attrs: {
@@ -51964,7 +51949,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.submit($event)
       }
     }
-  }, [_vm._v(_vm._s(_vm.$trans.translation.upload_submit))])])])])], 1)])
+  }, [_vm._v(_vm._s(_vm.$trans.translation.upload_submit))])])])])], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -52558,7 +52543,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('a', {
     attrs: {
-      "href": "/profile/collection"
+      "href": "/profile/mycollection"
     }
   }, [_c('span', {
     staticClass: "icon-map"
@@ -53668,27 +53653,19 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_c('div', {
-    staticClass: "panel-heading",
-    staticStyle: {
-      "border-top": "1px solid #efefef"
+  return _c('div', {
+    staticClass: "padding-30-bot-15",
+    attrs: {
+      "id": "full-line"
     }
-  }, [_c('label', {
-    staticClass: "full-label no-margin"
-  }, [_vm._v(_vm._s(_vm.$trans.translation.photos))])]), _vm._v(" "), _c('div', {
-    staticClass: "alert-box info"
-  }, [_c('h3', {
-    staticClass: "no-margin"
-  }, [_c('span', {
-    staticClass: "icon-notification"
-  }), _vm._v(" " + _vm._s(_vm.$trans.translation.product_photo_limit))])]), _vm._v(" "), _c('div', {
+  }, [_c('div', {
     directives: [{
       name: "show",
       rawName: "v-show",
       value: (_vm.images.length),
       expression: "images.length"
     }],
-    staticClass: "panel-body thumbnail-grid"
+    staticClass: "padding-15-vertical thumbnail-grid"
   }, _vm._l((_vm.images), function(image, index) {
     return _c('div', {
       staticClass: "products-img"
@@ -53716,27 +53693,18 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "icon-bin"
     })])])
   })), _vm._v(" "), _c('div', {
-    attrs: {
-      "id": "full-line"
-    }
-  }), _vm._v(" "), _c('div', {
-    staticClass: "panel-heading"
-  }, [_c('label', {
-    staticClass: "full-label no-margin",
-    staticStyle: {
-      "cursor": "pointer"
-    },
+    staticClass: "padding-15-vertical"
+  }, [_c('button', {
+    staticClass: "orange-btn normal-sq",
     on: {
       "click": function($event) {
         $event.preventDefault();
         _vm.formVisible = !_vm.formVisible
       }
     }
-  }, [_vm._v(_vm._s(_vm.$trans.translation.upload_photo) + "  "), _c('small', {
-    staticClass: "icon-arrow-down"
-  })])]), _vm._v(" "), _c('transition', {
+  }, [_vm._v("\n\t\t\t\t\t" + _vm._s(_vm.$trans.translation.upload_photo) + "  +\n\t\t\t")])]), _vm._v(" "), _c('transition', {
     attrs: {
-      "name": "slide-down"
+      "name": "slide-down-height"
     }
   }, [_c('div', {
     directives: [{
@@ -53745,8 +53713,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       value: (_vm.formVisible),
       expression: "formVisible"
     }],
-    staticClass: "panel-body"
-  }, [_c('p', [_vm._v(_vm._s(_vm.$trans.translation.upload_photo_size))]), _vm._v(" "), _c('div', {
+    staticClass: "panel-body border-radius-5 grey-bg"
+  }, [_c('div', {
     staticClass: "dropzone",
     attrs: {
       "id": "image"
@@ -53757,11 +53725,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "data-dz-message": ""
     }
   }, [_c('span', [_vm._v(_vm._s(_vm.$trans.translation.upload_photo_guide))])])]), _vm._v(" "), _c('div', {
-    staticStyle: {
-      "text-align": "right"
-    }
+    staticClass: "align-right padding-15-top"
   }, [_c('button', {
-    staticClass: "col-photo-submit",
+    staticClass: "orange-btn normal-sq",
     attrs: {
       "id": "photo-submit"
     },
@@ -55661,9 +55627,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_c('label', {
-    staticClass: "heading padding-15-horizontal padding-15-top"
-  }, [_vm._v(_vm._s(_vm.$trans.translation.products))]), _vm._v(" "), (_vm.products.length) ? _c('div', _vm._l((_vm.products), function(product, index) {
+  return _c('div', [(_vm.products.length) ? _c('div', _vm._l((_vm.products), function(product, index) {
     return _c('div', {
       staticClass: "row-list flex flex-start"
     }, [_c('div', {
@@ -55708,8 +55672,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     })])])])
   })) : _c('div', {
     staticClass: "panel-body"
-  }, [_c('p', {
-    staticClass: "no-margin"
+  }, [_c('label', {
+    staticClass: "full-label input-label"
   }, [_vm._v(_vm._s(_vm.$trans.translation.col_product_none))])])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true

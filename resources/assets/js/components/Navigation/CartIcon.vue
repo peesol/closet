@@ -1,5 +1,7 @@
 <template>
-    <button class="dropdown-btn" :href="cartUrl"><span class="icon-cart">&nbsp;{{ count }}</span></button>
+    <button class="dropdown-btn" onclick="">
+      <span class="icon-cart">&nbsp;{{ count }}</span>
+    </button>
 </div>
 </template>
 
@@ -7,11 +9,6 @@
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
-  data() {
-    return {
-      cartUrl: this.$root.url + '/cart/mycart',
-    }
-  },
   computed: {
     ...mapGetters([
       'count',
@@ -21,6 +18,9 @@ export default {
     ...mapActions([
       'getCartCount'
     ]),
+    go() {
+      document.location.href = this.root.url + '/cart/mycart'
+    }
   },
   mounted() {
     this.getCartCount()
