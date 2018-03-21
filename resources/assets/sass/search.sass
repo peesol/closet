@@ -1,3 +1,8 @@
+%container
+  border-radius: 5px
+  box-shadow: 0 3px 3px 0 rgba(0,0,0,0.14), 0 1px 7px 0 rgba(0,0,0,0.12), 0 3px 1px -1px rgba(0,0,0,0.2)
+  background: #efefef
+
 .search-form
   display: none
 
@@ -50,7 +55,88 @@
         font-weight: bold
         font-style: normal
 
-.breadcrumb
-  li
+.filter
+  ul
+    @extend %container
+    overflow: auto
+    white-space: nowrap
+    padding: 15px
+    margin: 10px 0
+  ul li
     text-decoration: none
     display: inline-block
+    padding: 5px
+    background: #fff
+    margin-right: 10px
+    border-radius: 5px
+  ul li
+    font
+      cursor: pointer
+      color: #1782cf
+    font:hover,font:focus
+      color: #3fa9f5
+  .price
+    @extend %container
+    margin-top: 10px
+    padding: 10px
+    input
+      border: none
+      line-height: 30px
+      padding-left: 8px
+      font-size: 1em
+  .breadcrumb
+    @extend %container
+    padding: 10px
+    background: transparent
+    text-decoration: none
+
+@media (min-width: 768px)
+  .filter
+    ul, ul li, .price
+      border-radius: 0
+      box-shadow: none
+    ul, ul li
+      background: transparent
+      border-radius: 0
+    .breadcrumb
+      border-radius: 0
+  .filter
+    display: flex
+    flex-direction: row
+    flex-wrap: wrap
+    margin: 0
+    .categories
+      width: 100%
+      background: #f9f9f9
+    ul
+      width: 33.33%
+      overflow: auto
+      white-space: nowrap
+      padding: 15px
+      margin: 1%
+      font-size: 1.2em
+    ul li
+      text-decoration: none
+      display: block
+      padding: 5px
+      margin-right: 0
+    ul li
+      font
+        cursor: pointer
+        color: #1782cf
+      font:hover,font:focus
+        color: #3fa9f5
+    .price
+      margin-top: 20px
+      width: 100%
+      margin: 0
+      padding: 10px
+      input
+        border: none
+        line-height: 30px
+        padding-left: 8px
+        font-size: 1em
+    .breadcrumb
+      width: 100%
+      padding: 10px
+      text-decoration: none

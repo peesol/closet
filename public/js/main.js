@@ -18428,6 +18428,23 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -21308,7 +21325,10 @@ var category = function category(_ref) {
     apply_discount: 'Discount code',
     discount_not_valid: 'This discount code is not valid or expired.',
     points: 'Points',
-    not_enough_points: 'You don\'t have enough points.'
+    not_enough_points: 'You don\'t have enough points.',
+    search: 'Search',
+    search_query: 'Search for',
+    in: 'in'
 });
 
 /***/ }),
@@ -21469,7 +21489,10 @@ var category = function category(_ref) {
     apply_discount: 'ใช้โค๊ดส่วนลด',
     discount_not_valid: 'ไม่สามารถใช้ส่วนลดได้ อาจกรอกข้อมูลผิดหรือส่วนลดได้ถูกใช้หมดแล้ว',
     points: 'คะแนน',
-    not_enough_points: 'คะแนนของคุณมีไม่เพียงพอที่จะใช้สิทธิ์ได้'
+    not_enough_points: 'คะแนนของคุณมีไม่เพียงพอที่จะใช้สิทธิ์ได้',
+    search: 'ค้นหา',
+    search_query: 'คุณต้องการค้นหา',
+    in: 'ใน'
 });
 
 /***/ }),
@@ -50078,11 +50101,10 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_c('div', {
-    staticClass: "padding-10",
-    attrs: {
-      "id": "full-line"
-    }
+  return _c('div', {
+    staticClass: "panel-body"
+  }, [_c('div', {
+    staticClass: "padding-10"
   }, [_c('button', {
     staticClass: "orange-btn normal-sq width-120",
     on: {
@@ -50093,18 +50115,18 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_vm._v(_vm._s(_vm.$trans.translation.choice) + " "), _c('small', {
     staticClass: "icon-arrow-down"
-  })])]), _vm._v(" "), _c('ul', {
-    staticClass: "breadcrumb"
-  }, [_c('li', [_vm._v(_vm._s(_vm.breadcrumb.category))]), _vm._v(" "), _c('li', [_vm._v(_vm._s(_vm.breadcrumb.subcategory))]), _vm._v(" "), _c('li', [_vm._v(_vm._s(_vm.breadcrumb.type))]), _vm._v(" "), _c('li', [_vm._v(_vm._s(_vm.selected.min) + " - " + _vm._s(_vm.selected.max))])]), _vm._v(" "), _c('div', {
+  })])]), _vm._v(" "), _c('div', {
     directives: [{
       name: "show",
       rawName: "v-show",
       value: (_vm.formVisible),
       expression: "formVisible"
     }],
-    staticClass: "filter-option"
-  }, [_c('ul', {}, _vm._l((_vm.categories), function(category) {
-    return _c('li', [_c('a', {
+    staticClass: "filter"
+  }, [_c('div', {
+    staticClass: "categories flex flex-start-res"
+  }, [_c('ul', _vm._l((_vm.categories), function(category) {
+    return _c('li', [_c('font', {
       class: {
         'filter-active': category.id == _vm.selected.c
       },
@@ -50114,7 +50136,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           _vm.selectCategory(category)
         }
       }
-    }, [_vm._v(_vm._s(category.name))])])
+    }, [_vm._v(_vm._s(category.name))])], 1)
   })), _vm._v(" "), _c('ul', {
     directives: [{
       name: "show",
@@ -50123,7 +50145,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       expression: "selected.c"
     }]
   }, _vm._l((_vm.subcategories), function(subcategory) {
-    return _c('li', [_c('a', {
+    return _c('li', [_c('font', {
       class: {
         'filter-active': subcategory.id == _vm.selected.sub
       },
@@ -50133,16 +50155,16 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           _vm.selectSubcategory(subcategory)
         }
       }
-    }, [_vm._v(_vm._s(subcategory.name))])])
+    }, [_vm._v(_vm._s(subcategory.name))])], 1)
   })), _vm._v(" "), _c('ul', {
     directives: [{
       name: "show",
       rawName: "v-show",
-      value: (_vm.selected.sub),
-      expression: "selected.sub"
+      value: (_vm.selected.sub && _vm.types.length),
+      expression: "selected.sub && types.length"
     }]
   }, _vm._l((_vm.types), function(type) {
-    return _c('li', [_c('a', {
+    return _c('li', [_c('font', {
       class: {
         'filter-active': type.id == _vm.selected.type
       },
@@ -50152,11 +50174,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           _vm.selectType(type)
         }
       }
-    }, [_vm._v(_vm._s(type.name))])])
-  })), _vm._v("\n      " + _vm._s(_vm.categories.subcategory) + "\n      "), _c('div', {
-    staticClass: "price-filter"
+    }, [_vm._v(_vm._s(type.name))])], 1)
+  }))]), _vm._v("\n\n      " + _vm._s(_vm.categories.subcategory) + "\n      "), _c('div', {
+    staticClass: "price"
   }, [_c('label', {
-    staticClass: "col-label"
+    staticClass: "padding-15-right input-label"
   }, [_vm._v(_vm._s(_vm.$trans.translation.price))]), _vm._v(" "), _c('input', {
     directives: [{
       name: "model",
@@ -50169,7 +50191,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "min": "0",
       "max": "9999999",
       "autocomplete": "off",
-      "placeholder": ""
+      "placeholder": _vm.$trans.translation.min
     },
     domProps: {
       "value": (_vm.min)
@@ -50192,7 +50214,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "min": "0",
       "max": "9999999",
       "autocomplete": "off",
-      "placeholder": ""
+      "placeholder": _vm.$trans.translation.max
     },
     domProps: {
       "value": (_vm.max)
@@ -50203,15 +50225,44 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.max = $event.target.value
       }
     }
-  }), _vm._v(" "), _c('button', {
-    on: {
-      "click": function($event) {
-        $event.preventDefault();
-      }
-    }
-  }, [_c('small', {
-    staticClass: "icon-next-arrow"
-  })])]), _vm._v(" "), _c('button', {
+  })]), _vm._v(" "), _c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.selected.c || _vm.min || _vm.max),
+      expression: "selected.c || min || max"
+    }],
+    staticClass: "breadcrumb margin-20-top"
+  }, [_c('p', {
+    staticClass: "font-bold no-margin"
+  }, [_vm._v(_vm._s(_vm.$trans.translation.search_query) + " \n          "), _c('font', {
+    staticClass: "font-green"
+  }, [_vm._v(_vm._s(_vm.$route.query.p))]), _vm._v("\n           " + _vm._s(_vm.$trans.translation.in))], 1), _vm._v(" "), _c('i', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.selected.c),
+      expression: "selected.c"
+    }],
+    staticClass: "font-bold"
+  }, [_vm._v(_vm._s(_vm.$trans.translation.category))]), _vm._v(" "), _c('span', [_vm._v(_vm._s(_vm.breadcrumb.category))]), _vm._v(" "), _c('span', [_vm._v(_vm._s(_vm.breadcrumb.subcategory))]), _vm._v(" "), _c('span', [_vm._v(_vm._s(_vm.breadcrumb.type))]), _c('br'), _vm._v(" "), _c('span', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.min),
+      expression: "min"
+    }]
+  }, [_vm._v(_vm._s(_vm.$trans.translation.price) + _vm._s(_vm.$trans.translation.min) + " " + _vm._s(_vm.min))]), _vm._v(" "), _c('span', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.max),
+      expression: "max"
+    }]
+  }, [_vm._v(_vm._s(_vm.$trans.translation.price) + _vm._s(_vm.$trans.translation.max) + " " + _vm._s(_vm.max))]), _vm._v(" "), _c('div', {
+    staticClass: "full-width align-right padding-15-top"
+  }, [_c('button', {
+    staticClass: "normal-sq orange-btn width-120",
     attrs: {
       "type": "button"
     },
@@ -50221,7 +50272,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.applyFilter($event)
       }
     }
-  }, [_vm._v("SEARCH")])])])
+  }, [_vm._v(_vm._s(_vm.$trans.translation.search))])])])])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {

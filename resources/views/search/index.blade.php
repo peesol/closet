@@ -7,7 +7,7 @@
 <div class="container">
             <div class="large-panel">
                 <div class="panel-heading">
-                  <p class="no-margin font-bold">{{__('message.search_result')}} {{$keyword}}</p>
+                  <label class="full-label heading">{{__('message.search_result')}} {{$keyword}}</label>
                 </div>
                 <router-view>
                 </router-view>
