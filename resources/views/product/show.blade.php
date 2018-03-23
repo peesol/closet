@@ -18,7 +18,7 @@ window.addEventListener("load",function(){var t=document.querySelectorAll(".tab-
   @include('product.partials._login_warn')
             <div class="medium-panel">
                 <div class="panel-heading margin-10-bottom">
-                  <label class="heading full-label">{{__('message.product_name')}} : {{ $product->name }}</label>
+                  <label class="heading full-label">{{ $product->name }}</label>
                 </div>
 
                 <div class="flex flex-start-res">

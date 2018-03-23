@@ -1,3 +1,10 @@
+%wrapper
+  border: 1px solid #eee
+  box-shadow: 1px 1px 3px 0 #f2f2f2 !important
+  display: inline-block
+  position: relative
+  width: 160px
+
 .thumbnail-grid
   display: grid
   width: 100%
@@ -6,24 +13,21 @@
   justify-items: center
 
 .my-products-wrap
-  width: 160px
+  @extend %wrapper
   height: 210px
-  display: inline-block
-  position: relative
-  border: none
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23) !important
 
 .products-wrap
-  width: 160px
+  @extend %wrapper
   height: 160px
-  display: inline-block
-  border: 1px solid transparent
 
 .my-products-wrap form, .products-wrap form
   position: absolute
   bottom: 0
   width: 100%
   padding: 5px
+
+.my-products-wrap .details, .products-wrap .details, .my-products-wrap .status-bar, .products-wrap .status-bar
+  display: none
 
 .carousel-thumb-wrap
   position: relative
@@ -33,13 +37,10 @@
 .products-img-thumb
   width: 100%
 
-.product-name, .product-p
-  display: none
-
 .products-img
   position: relative
-  width: 160px
-  height: 160px
+  width: 100%
+  height: auto
   overflow: hidden
   text-overflow: ellipsis
   white-space: nowrap
@@ -66,25 +67,34 @@
     grid-gap: 10px
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr))
     justify-items: center
+
   .my-products-wrap
     width: 200px
     height: 360px
-    display: inline-block
-    position: relative
-    border: none
+
   .products-wrap
     width: 200px
     height: 300px
-    display: inline-block
-    border: 1px solid transparent
+
+  .my-products-wrap .details, .products-wrap .details, .my-products-wrap .status-bar, .products-wrap .status-bar
+    display: block
+    padding: 0 5px
+
+  .my-products-wrap .status-bar, .products-wrap .status-bar
+    height: 25px
+    min-width: 100%
+    span
+      line-height: 25px
+
   .product-name
     display: block
-    width: 180px
-    height: 41px
-    line-height: 20px
-    margin: 5px 0 2px 0
-    word-wrap: break-word
+    margin: 0 0 4px 0
+    max-height: 3.2rem
     overflow: hidden
+    font-size: 1rem
+    line-height: 1.6rem
+    word-wrap: break-word
+
   .product-p
     display: block
     font-size: .9em
@@ -93,77 +103,48 @@
     text-overflow: ellipsis
     overflow: hidden
     white-space: nowrap
+    span
+      font-family: 'Roboto'
+
   .products-img
-    position: relative
-    width: 200px
     height: 200px
 
 span
-  &.price, &.thumb-price
-    font-family: 'Roboto'
-    background-color: rgba(0, 0, 0, 0.5)
+  &.top-right, &.top-left, &.bottom-left, &.bottom-right
     position: absolute
-    color: #fff
-    padding: 5px
-    bottom: 10px
-    left: 0
-  &.discount
-    position: absolute
-    top: 0
-    right: 0
-    padding: 5px
-    background: #4aae2a
-    color: white
-    opacity: 0.8
-  &.discount-price
-    position: absolute
-    bottom: 0
-    left: 0
-    padding: 5px
-    background: #4aae2a
-    color: white
-    opacity: 0.8
-  &.caution
-    position: absolute
+  &.top-right
     top: 5px
     right: 5px
-    padding: 5px
-    background: #fdc930
-
-button.caution
-  position: absolute
-  top: 5px
-  right: 5px
-  padding: 5px
-  background: #fdc930
-
-span
-  &.private
-    position: absolute
-    padding: 4px
+  &.top-left
     top: 5px
     left: 5px
-    color: #6c6c6c
-    background-color: transparent
-  &.shop
-    font-family: 'Roboto'
-    background-color: rgba(0, 0, 0, 0.05)
-    position: absolute
-    padding: 4px
-    top: 89px
-    left: 0
-    color: #167ac6
+  &.bottom-left
+    bottom: 7px
+    left: 5px
+  &.bottom-right
+    bottom: 7px
+    right: 5px
+
+span
+  &.sale, &.price, &.thumb-price
+    padding: 5px
+  &.sale
+    background: #4aae2a
+    color: #fff
+    border-radius: 4px
+  &.caution
+    background: #ffca00
+    padding: 10px
+    border-radius: 100%
+    color: #fff
+  &.price, &.thumb-price
+    background: rgba(0, 0, 0, 0.5)
+    color: #fff
+    border-radius: 4px
 
 @media (min-width: 768px)
   span
-    &.private
-      padding: 4px
-      top: inherit
-      color: #fff
-      bottom: 4px
-      left: 0
-      background-color: #ff514c
-    &.price, &.shop
+    &.price
       display: none
 
 .object-contain

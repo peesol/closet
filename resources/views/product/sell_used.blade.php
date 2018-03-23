@@ -13,14 +13,14 @@
 <div class="container">
   <div class="small-panel">
 
-    <div class="tab-nav" style="border: none;">
-      <ul class="tab-nav-ul" style="border-top: none; border-bottom: 1px solid #efefef;">
+    <div class="tab-nav">
+      <ul class="tab-nav-ul">
         <button class="tab-nav-btn static" onclick='document.location.href="/sell/product"'>{{__('message.new')}}</button>
         <button class="tab-nav-btn static current">{{__('message.used')}}</button>
       </ul>
     </div>
 
-    <div class="tab-content current">
+    <div class="padding-30-horizontal">
       <used-sell></used-sell>
     </div>
 

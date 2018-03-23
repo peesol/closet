@@ -4,13 +4,13 @@
         <img class="products-img-thumb" src="{{$product->getImage()}}" alt="{{$product->thumbnail}}">
       </a>
       @if($product->discount_price)
-      <span class="discount">Sale</span>
-      <span class="price">
+      <span class="sale top-right">Sale</span>
+      <span class="price bottom-left">
         <strike>{{ number_format($product->price) }}&#3647;</strike>
         {{ number_format($product->discount_price) }}&#3647;
       </span>
       @else
-      <span class="price">{{ number_format($product->price) }}&#3647;</span>
+      <span class="price bottom-left">{{ number_format($product->price) }}&#3647;</span>
       @endif
     </div>
       <h3 class="s-product-name"><a class="link-text" href="/product/{{ $product->uid}}">{{ $product->name }}</a></h3>

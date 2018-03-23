@@ -31,7 +31,7 @@
           <input type="number" min="0" max="9999999" v-model="min" autocomplete="off" :placeholder="$trans.translation.min">&nbsp;-&nbsp;
           <input type="number" min="0" max="9999999" v-model="max" autocomplete="off" :placeholder="$trans.translation.max">
       </div>
-      <div class="breadcrumb margin-20-top" v-show="selected.c || min || max">
+      <div class="breadcrumb margin-20-top half-width-res" v-show="selected.c || min || max">
         <p class="font-bold no-margin">{{ $trans.translation.search_query}}&nbsp;
           <font class="font-green">{{ $route.query.p }}</font>
           &nbsp;{{ $trans.translation.in}}</p>

@@ -26,7 +26,7 @@
                           @include('thumbnail._products',[ 'product' => $product ])
                         @endforeach
                     @else
-                    <h3 style="text-align: center; margin:50px auto;">{{__('message.no_shop_product')}}</h3>
+                    <label>{{__('message.no_shop_product')}}</label>
                     @endif
                     </div>
                 </div>
