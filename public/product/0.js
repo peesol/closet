@@ -372,7 +372,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         }
       }
     }, [_vm._v(_vm._s(comment.replies.data.length > 1 ? _vm.$trans.translation.show_reply : _vm.$trans.translation.hide_reply) + " "), _c('span', {
-      staticClass: "icon-arrows-up",
+      staticClass: "icon-arrow-up",
       staticStyle: {
         "font-size": "10px"
       }

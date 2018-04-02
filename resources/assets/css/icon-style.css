@@ -34,7 +34,7 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-arrows-up:before {
+.icon-arrow-up:before {
   content: "\e900";
 }
 .icon-arrow-down:before {

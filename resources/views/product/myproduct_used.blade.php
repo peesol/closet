@@ -6,7 +6,9 @@
 
 <div class="container">
             <div class="large-panel">
-                <div class="panel-heading"><h3 class="no-margin">{{__('message.my_product')}}</h3></div>
+                <div class="panel-heading">
+                  <label class="full-label heading">{{__('message.my_product')}}</label>
+                </div>
                 <div class="tab-nav">
                     <ul class="tab-nav-ul">
                       <button class="tab-nav-btn static" onclick='document.location.href="/profile/myproduct/new"'>{{__('message.new')}}</button>

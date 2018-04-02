@@ -685,7 +685,7 @@ span.contact-btn.line, small.contact-btn.line {
   font-size: large !important;
 }
 
-.grey-font {
+.font-grey {
   color: #6c6c6c !important;
 }
 
@@ -1280,7 +1280,7 @@ nav {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-arrows-up:before {
+.icon-arrow-up:before {
   content: "\e900";
 }
 .icon-arrow-down:before {

@@ -29,7 +29,7 @@
       <td class="m-cell">{{$number.currency(item.price)}}&nbsp;&#3647;</td>
       <td class="s-cell">
         <button @click.prevent="toggleForm(item.id)" class="round-btn">
-          <small class="icon-plus grey-font"></small>
+          <small class="icon-plus font-grey"></small>
         </button>
       </td>
     </tr>

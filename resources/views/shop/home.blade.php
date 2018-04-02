@@ -39,7 +39,7 @@
                               <span class="contact-btn {{$contact->type}} icon-{{$contact->type}}"></span>&nbsp;
                               <a class="link-text" href="{{$contact->link}}">{{$contact->body}}</a>
                             @else
-                              <span class="contact-btn {{$contact->type}} icon-{{$contact->type}}"></span>&nbsp;<label class="grey-font font-light">{{$contact->body}}</label>
+                              <span class="contact-btn {{$contact->type}} icon-{{$contact->type}}"></span>&nbsp;<label class="font-grey font-light">{{$contact->body}}</label>
                             @endif
                           </div>
                         @endforeach

@@ -1,9 +1,9 @@
 <template>
 <div>
 <form name="myform" @submit.prevent="add" method="post">
-  <div style="padding: 0px 15px; height:200px">
+  <div class="choice-wrapper">
+    <label class="full-label input-label margin-10-bottom">{{$trans.translation.choice}}</label>
     <select v-show="choices.length" v-bind:required="choices.length >= 1" class="select-input" v-model="selected">
-      <option value="" disabled selected>---{{$trans.translation.choice}}---</option>
       <option v-for="choice in choices" :value="choice.name">{{choice.name}}</option>
     </select>
   </div>

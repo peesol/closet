@@ -28,9 +28,11 @@
   </div>
 
   <div class="profile-vote panel-body">
-    <div class="profile-header-row">
-      <follow-button shop-slug="{{ $shop->slug}}"></follow-button>
-    </div>
+    @if (Auth::id() !== $shop->id)
+      <div class="profile-header-row">
+        <follow-button shop-slug="{{ $shop->slug}}"></follow-button>
+      </div>
+    @endif
     <div class="profile-header-row">
       <shop-vote shop-slug="{{ $shop->slug}}"></shop-vote>
     </div>

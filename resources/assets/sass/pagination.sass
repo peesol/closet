@@ -1,0 +1,91 @@
+%box
+  box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 7px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -1px rgba(0, 0, 0, 0.2)
+  width: 40px
+  height: 40px
+  line-height: 40px
+  font-size: 1.3rem
+
+.pagination
+  display: inline-block
+  width: 100%
+  padding: 0 25px
+  .pages
+    @extend %box
+    display: flex
+    width: 100%
+    border-radius: 5px
+    background: #f7f7f7
+    div
+      cursor: pointer
+      width: 33.3%
+      float: left
+      a
+        display: block
+        width: 100%
+        height: 100%
+        color: #6c6c6c
+      &.page
+        width: 100%
+        height: 100%
+        color: #6c6c6c
+        display: none
+        &.active
+          display: block !important
+          a
+            color: #ff8000
+
+  .first
+    margin-bottom: 30px
+  .last
+    margin-top: 30px
+  .first, .last
+    @extend %box
+    background: #f7f7f7
+    width: 100%
+    border-radius: 5px
+    a
+      color: #6c6c6c
+
+@media (min-width: 768px)
+  .pagination
+    display: flex
+    justify-content: space-between
+    padding: 25px
+    .pages
+      justify-content: center
+      background: transparent
+      display: inherit
+      box-shadow: none
+      div
+        &.page, &.arrow
+          display: block
+          width: 40px
+          background: #fff
+          border: 1px solid #ddd
+        &.page
+          &:nth-child(n+1)
+            border-right: none
+          &.active
+            border: 1px solid #ff8000
+            background: #ff8000
+            span
+              color: #fff
+        &.arrow
+          &:first-child
+            border-right: none
+            border-top-left-radius: 5px
+            border-bottom-left-radius: 5px
+          &:last-child
+            border-top-right-radius: 5px
+            border-bottom-right-radius: 5px
+    .first, .last
+      box-shadow: none
+      background: transparent
+      width: 33.3%
+      margin: 0
+      border-radius: 0
+      a
+        cursor: pointer
+        color: #6c6c6c
+        &:hover
+          color: #ff8000

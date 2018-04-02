@@ -6,11 +6,11 @@
         </ul>
     </div>
 
-        <div class="tab-content flex current" id="tab-1">
+        <div class="tab-content current" id="tab-1">
           @include('product.partials._contacts', [ 'contacts' => $contacts ])
         </div>
 
-        <div class="comment-vue tab-content flex" id="tab-2">
+        <div class="tab-content" id="tab-2">
           @if(!Auth::check())
           <div class="alert-box info">
             <label class="input-label full-label">

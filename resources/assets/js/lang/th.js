@@ -155,4 +155,6 @@ export default {
     search: 'ค้นหา',
     search_query: 'คุณต้องการค้นหา',
     in: 'ใน',
+    first_page: 'หน้าแรก',
+    last_page: 'หน้าสุดท้าย',
 }

@@ -9,23 +9,23 @@
 
 @section('scripts')
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
-<script type="text/javascript">
-window.addEventListener("load",function(){var t=document.querySelectorAll(".tab-nav-btn");function e(e){for(var r=0;r<t.length;r++)t[r].classList.remove("current");e.currentTarget.classList.add("current"),e.preventDefault();var n=document.querySelectorAll(".tab-content");for(r=0;r<n.length;r++)n[r].classList.remove("current");var a=e.target.getAttribute("data-tab");document.querySelector(a).classList.add("current")}for(i=0;i<t.length;i++)t[i].addEventListener("click",e)});
-</script>
 @endsection
 @section('content')
 
 <div class="container">
   @include('product.partials._login_warn')
             <div class="medium-panel">
-                <div class="panel-heading margin-10-bottom"><p class="product-title">{{__('message.product_name')}} : {{ $product->name }}</p></div>
-                <div class="flex">
+              <div class="panel-heading margin-10-bottom">
+                <label class="heading full-label">{{ $product->name }}</label>
+              </div>
+                <div class="product-show-wrap">
 
-                    <div class="product-showcase">
+                    <div class="half-width-res padding-15-horizontal">
                       <vue-slick :imgs="{{json_encode($product->productimages)}}" path="/used/photo/"></vue-slick>
                     </div>
 
-                    <div class="product-details">
+                    <div class="half-width-res relative padding-15-horizontal">
+
                         <div class="details-header">
                             <div class="product-profile-wrap">
                             <a href="/{{ $product->shop->slug}}"><img src="{{ $product->shop->getThumbnail() }}" alt="{{ $product->shop->thumbnail }}" style="float: left; width: 50px;"></a>
@@ -38,42 +38,44 @@ window.addEventListener("load",function(){var t=document.querySelectorAll(".tab-
                             </div>
 
                         </div>
-                        <div class="panel-body">
-                          <h3 class="no-margin font-red">{{__('message.used')}}</h3>
-                          <p class="no-margin"><span class="font-bold grey-font">{{__('message.price')}}</span> : <span class="font-bold font-large">{{ number_format($product->price) }}</span> {{__('message.baht')}}</p>
+                        <div class="details-header">
+                          <label class="input-label font-red">{{__('message.used')}}</label>
+                          <p class="no-margin">
+                            <span class="font-bold font-grey">{{__('message.price')}}</span> : <span class="font-bold font-large">{{ number_format($product->price) }}</span>&nbsp;{{__('message.baht')}}
+                          </p>
                         </div>
 
+                        @if ($contacts->count())
                         <div class="panel-body">
-                        <p class="comment">{!! nl2br(e($product->description)) !!}</p>
+                          @foreach($contacts as $contact)
+                            <div class="full-label" style="height:40px">
+                              @if($contact->link)
+                                <span class="contact-btn {{$contact->type}} icon-{{$contact->type}}"></span>&nbsp;
+                                <a class="link-text" href="{{$contact->link}}">{{$contact->body}}<sup>*</sup></a>
+                              @else
+                                <span class="contact-btn {{$contact->type}} icon-{{$contact->type}}"></span>&nbsp;<label class="font-grey font-light">{{$contact->body}}</label>
+                              @endif
+                            </div>
+                          @endforeach
                         </div>
+                        @endif
 
                     </div>
                 </div>
             </div>
-  <div class="medium-panel" style="margin-top: 10px;">
-    <div class="tab-nav">
-      <ul class="tab-nav-ul">
-        <button class="tab-nav-btn static current" data-tab="#tab-1">{{__('message.details')}}</button>
-        <button class="tab-nav-btn static" data-tab="#tab-2">{{__('message.comment')}}</button>
-      </ul>
-    </div>
 
-    <div class="tab-content flex current" id="tab-1">
-      @include('product.partials._contacts', [ 'contacts' => $contacts ])
-    </div>
+    <div class="medium-panel">
 
-    <div class="tab-content flex" id="tab-2">
-      @if(!Auth::check())
-      <div class="alert-box info">
-        <h3 class="no-margin">
-          <span class="icon-notification"></span>
-          {{__('auth.comment_notice')}}<a class="link-text font-bold" href="{{ route('login')}}">&nbsp;{{__('message.login')}}</a>
-        </h3>
+      <div class="panel-heading">
+        <label class="heading">{{__('message.details')}}</label>
       </div>
-      @endif
-        <used-comment product-uid="{{ $product->uid }}"></used-comment>
+
+      <div class="panel-body-alt">
+        <p>{!! nl2br(e($product->description)) !!}</p>
+      </div>
+
     </div>
-  </div>
+
 
 </div>
 @endsection

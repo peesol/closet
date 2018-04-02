@@ -153,4 +153,6 @@ export default {
     search: 'Search',
     search_query: 'Search for',
     in: 'in',
+    first_page: 'first page',
+    last_page: 'last page',
   }

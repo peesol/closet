@@ -5,7 +5,7 @@
   <form v-on:submit.prevent="confirm(uid)">
   <table class="shipping-table">
     <tr>
-      <td><h4 class="no-margin grey-font">{{$trans.translation.shipping_free}}</h4></td>
+      <td><h4 class="no-margin font-grey">{{$trans.translation.shipping_free}}</h4></td>
       <td>
           <select required class="select-input" v-model="shipping">
             <option :value="true" selected>{{$trans.translation.yes}}</option>
@@ -16,7 +16,7 @@
       <td></td>
     </tr>
     <tr v-show="shipping !== null && !shipping">
-      <td colspan="1"><h4 class="no-margin grey-font">{{$trans.translation.shipping_fee}}</h4></td>
+      <td colspan="1"><h4 class="no-margin font-grey">{{$trans.translation.shipping_fee}}</h4></td>
       <td colspan="1"><input v-bind:required="!shipping" class="form-input shipping-fee" type="text" v-model="shipping_fee"></td>
     </tr>
   </table>

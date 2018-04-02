@@ -30,7 +30,7 @@
           @else
           <p class="product-p">
             {{__('message.price')}}&nbsp;:&nbsp;<strike>{{ number_format($product->price) }}&#3647;</strike>
-            <small class="icon-next-arrow grey-font"></small>
+            <small class="icon-next-arrow font-grey"></small>
             <font class="font-green">{{ number_format($product->discount_price) }}&#3647;</font>
           </p>
           @endif

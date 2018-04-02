@@ -78,7 +78,7 @@
         <div style="padding: 0px 15px 15px">
           <table class="shipping-table">
             <tr>
-              <td colspan="2"><h4 class="no-margin grey-font">{{$trans.translation.shipping_free}}</h4></td>
+              <td colspan="2"><h4 class="no-margin font-grey">{{$trans.translation.shipping_free}}</h4></td>
               <td colspan="2">
                   <select required class="select-input" v-model="shipping">
                     <option :value="true" selected>{{$trans.translation.yes}}</option>
@@ -87,7 +87,7 @@
               </td>
             </tr>
             <tr v-show="shipping !== null && !shipping">
-              <td colspan="1"><h4 class="no-margin grey-font">{{$trans.translation.shipping_fee}}</h4></td>
+              <td colspan="1"><h4 class="no-margin font-grey">{{$trans.translation.shipping_fee}}</h4></td>
               <td colspan="1"><input v-bind:required="!shipping" class="form-input" type="number" v-model="shipping_fee"></td>
             </tr>
           </table>
@@ -108,11 +108,11 @@
         <div style="padding: 0px 15px 15px">
           <table class="shipping-table">
             <tr>
-              <td colspan="1"><h4 class="no-margin grey-font">{{$trans.translation.track_info}}</h4></td>
+              <td colspan="1"><h4 class="no-margin font-grey">{{$trans.translation.track_info}}</h4></td>
               <td colspan="2"><input class="form-input" type="text" v-model="track_info"></td>
             </tr>
             <tr>
-              <td colspan="1"><h4 class="no-margin grey-font">{{$trans.translation.track_number}}</h4></td>
+              <td colspan="1"><h4 class="no-margin font-grey">{{$trans.translation.track_number}}</h4></td>
               <td colspan="2"><input class="form-input" type="text" v-model="tracking_number"></td>
             </tr>
           </table>

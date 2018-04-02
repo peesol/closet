@@ -21,7 +21,7 @@ window.addEventListener("load",function(){var t=document.querySelectorAll(".tab-
                   <label class="heading full-label">{{ $product->name }}</label>
                 </div>
 
-                <div class="flex flex-start-res">
+                <div class="product-show-wrap">
 
                   <div class="half-width-res padding-15-horizontal">
                     <vue-slick :imgs="{{json_encode($product->productimages)}}" path="/product/photo/" slick-for="product"></vue-slick>
@@ -40,6 +40,7 @@ window.addEventListener("load",function(){var t=document.querySelectorAll(".tab-
                         @endif
 
                     </div>
+
                 </div>
 
             </div>

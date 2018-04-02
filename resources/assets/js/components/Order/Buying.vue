@@ -78,19 +78,19 @@
       <div style="padding: 0px 15px 15px">
         <table class="shipping-table">
           <tr>
-            <td><h4 class="no-margin grey-font">{{$trans.translation.payment_date}}</h4></td>
+            <td><h4 class="no-margin font-grey">{{$trans.translation.payment_date}}</h4></td>
             <td><input required pattern=".{10}" @keyup="cleave" class="form-input date" id="date" type="text" v-model="date" style="width:140px;" :placeholder="$trans.translation.date_placeholder"></td>
             <td><input required @keyup="cleave" class="form-input" id="time" type="text" v-model="time" style="width:140px;" placeholder="00 : 00 : 00"></td>
           </tr>
-          <tr><td colspan="3"><h4 class="no-margin grey-font">{{$trans.translation.name}}</h4></td></tr>
+          <tr><td colspan="3"><h4 class="no-margin font-grey">{{$trans.translation.name}}</h4></td></tr>
           <tr>
             <td colspan="2"><input class="form-input" type="text" v-model="name"></td>
           </tr>
-          <tr><td colspan="3"><h4 class="no-margin grey-font">{{$trans.translation.phone}}</h4></td></tr>
+          <tr><td colspan="3"><h4 class="no-margin font-grey">{{$trans.translation.phone}}</h4></td></tr>
           <tr>
             <td colspan="2"><input class="form-input" type="text" v-model="phone"></td>
           </tr>
-          <tr><td colspan="3"><h4 class="no-margin grey-font">{{$trans.translation.address}}</h4></td></tr>
+          <tr><td colspan="3"><h4 class="no-margin font-grey">{{$trans.translation.address}}</h4></td></tr>
           <tr>
             <td colspan="3"><textarea rows="4" class="description-input" v-model="address" style="height:100px;"></textarea></td>
           </tr>

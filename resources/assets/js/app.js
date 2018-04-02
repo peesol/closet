@@ -70,7 +70,6 @@ Vue.component('product-dropzone', require('./components/Product/ProductDropzone.
 Vue.component('shipping-edit', require('./components/Product/ShippingEdit.vue'));
 Vue.component('product-sell', require('./components/Product/ProductSell.vue'));
 Vue.component('used-sell', require('./components/Product/ProductSell_used.vue'));
-Vue.component('used-comment', require('./components/Product/ProductComment_used.vue'));
 Vue.component('product-stock', require('./components/Product/ProductStock.vue'));
 Vue.component('product-choice', require('./components/Product/ProductChoice.vue'));
 Vue.component('follow-button', require('./components/Follow.vue'));

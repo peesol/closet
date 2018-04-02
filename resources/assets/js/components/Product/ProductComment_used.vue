@@ -29,7 +29,7 @@
 			</div>
 			</transition>
 			<div class="full-label" v-if="comment.replies.data.length">
-				<font class="link-text" v-show="showReply === comment.id" @click.prevent="toggleReply(comment.id)">{{ comment.replies.data.length > 1 ? $trans.translation.show_reply : $trans.translation.hide_reply }}&nbsp;<span style="font-size: 10px;" class="icon-arrows-up"></span></font>
+				<font class="link-text" v-show="showReply === comment.id" @click.prevent="toggleReply(comment.id)">{{ comment.replies.data.length > 1 ? $trans.translation.show_reply : $trans.translation.hide_reply }}&nbsp;<span style="font-size: 10px;" class="icon-arrow-up"></span></font>
 				<font class="link-text" v-show="showReply !== comment.id" @click.prevent="toggleReply(comment.id)">{{ comment.replies.data.length > 1 ? $trans.translation.hide_reply : $trans.translation.show_reply }}&nbsp;<span style="font-size: 10px;" class="icon-arrow-down"></span></font>
 			</div>
 			<div v-if="showReply === comment.id" v-for="reply in comment.replies.data">
