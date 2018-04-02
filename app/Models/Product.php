@@ -68,9 +68,9 @@ class Product extends Model
     {
       return $this->hasMany(ProductChoice::class);
     }
-    public function contactsProduct()
+    public function contacts()
     {
-      return $this->shop->contact();
+      return $this->shop->contact()->get();
     }
     public function views()
     {

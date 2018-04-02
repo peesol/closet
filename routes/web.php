@@ -257,8 +257,7 @@ Route::group(['middleware' => ['auth']], function () {
   Route::post('/{shop}/edit/contact', 'Shop\Settings\ContactController@create');
   Route::put('/{shop}/edit/contact/{contact}', 'Shop\Settings\ContactController@update');
   Route::delete('/{shop}/edit/contact/{contact}/delete', 'Shop\Settings\ContactController@delete');
-  Route::put('/{shop}/edit/contact/{contact}/show_product', 'Shop\Settings\ContactController@toggleShowProduct');
-  Route::put('/{shop}/edit/contact/{contact}/show_cover', 'Shop\Settings\ContactController@toggleShowCover');
+  Route::put('/{shop}/edit/contact/{contact}/show', 'Shop\Settings\ContactController@toggleShow');
 
 
   Route::get('/{shop}/edit/account/get', 'Shop\Settings\AccountController@get');

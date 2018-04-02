@@ -19,8 +19,7 @@ class CreateContactsTable extends Migration
             $table->string('type', 50);
             $table->string('body');
             $table->string('link')->nullable();
-            $table->boolean('show_product')->default(false);
-            $table->boolean('show_cover')->default(false);
+            $table->boolean('show')->default(true);
 
             $table->timestamps();
 

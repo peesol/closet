@@ -20,14 +20,14 @@ class ProductController extends Controller
 {
     public function show(Product $product)
     {
-      $contacts = $product->contactsProduct();
+      $contacts = $product->contacts();
       $noted = Note::where(['product_id' => $product->id, 'shop_id' => Auth::user()->id])->count();
 
-        return view('product.show', [
-          'product' => $product,
-          'contacts' => $contacts,
-          'noted' => $noted,
-        ]);
+      return view('product.show', [
+        'product' => $product,
+        'contacts' => $contacts,
+        'noted' => $noted,
+      ]);
     }
     public function productAjax(Product $product)
     {

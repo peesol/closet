@@ -48,7 +48,7 @@
                         @if ($contacts->count())
                         <div class="panel-body">
                           @foreach($contacts as $contact)
-                            <div class="full-label" style="height:40px">
+                            <div class="full-label padding-15-horizontal" style="height:40px">
                               @if($contact->link)
                                 <span class="contact-btn {{$contact->type}} icon-{{$contact->type}}"></span>&nbsp;
                                 <a class="link-text" href="{{$contact->link}}">{{$contact->body}}<sup>*</sup></a>

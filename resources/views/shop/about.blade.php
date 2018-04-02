@@ -33,7 +33,7 @@
                 @endif
 
                 @if($shop->contact->count())
-                <h3>{{__('message.contact')}}</h3>
+                <label class="heading">{{__('message.contact')}}</label>
                 <div class="">
                   @foreach($shop->contact as $contact)
                     <div class="full-label" style="height:40px">

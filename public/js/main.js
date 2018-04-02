@@ -18870,27 +18870,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
       });
     },
-
-    // toggleShowProduct(contactId, index) {
-    //   this.$http.put(this.$root.url + '/' + this.$route.params.shop + '/edit/contact/' + contactId + '/show_product').then((response) => {
-    //     if (this.contacts[index].show_product) {
-    //       this.$set(this.contacts[index], 'show_product', false)
-    //     } else {
-    //       this.$set(this.contacts[index], 'show_product', true)
-    //     }
-    //     toastr.success(this.$trans.translation.saved)
-    //   }, (response) => {
-    //     toastr.error(this.$trans.translation.error);
-    //   });
-    // },
-    toggleShowCover: function toggleShowCover(contactId, index) {
+    toggle: function toggle(contactId, index) {
       var _this4 = this;
 
-      this.$http.put(this.$root.url + '/' + this.$route.params.shop + '/edit/contact/' + contactId + '/show_cover').then(function (response) {
-        if (_this4.contacts[index].show_cover) {
-          _this4.$set(_this4.contacts[index], 'show_cover', false);
+      this.$http.put(this.$root.url + '/' + this.$route.params.shop + '/edit/contact/' + contactId + '/show').then(function (response) {
+        if (_this4.contacts[index].show) {
+          _this4.$set(_this4.contacts[index], 'show', false);
         } else {
-          _this4.$set(_this4.contacts[index], 'show_cover', true);
+          _this4.$set(_this4.contacts[index], 'show', true);
         }
         toastr.success(_this4.$trans.translation.saved);
       }, function (response) {
@@ -51470,17 +51457,17 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "form-group margin-10-top"
     }, [_c('label', {
       staticClass: "font-grey input-label"
-    }, [_vm._v(_vm._s(_vm.$trans.translation.show_cover))]), _vm._v(" "), _c('button', {
+    }, [_vm._v(_vm._s(_vm.$trans.translation.show))]), _vm._v(" "), _c('button', {
       staticClass: "transparent-bg",
       on: {
         "click": function($event) {
           $event.preventDefault();
-          _vm.toggleShowCover(contact.id, index)
+          _vm.toggle(contact.id, index)
         }
       }
     }, [_c('span', {
       class: {
-        'icon-checked font-green': contact.show_cover == true, 'icon-unchecked font-link': contact.show_cover == false
+        'icon-checked font-green': contact.show_cover == true, 'icon-unchecked font-link': contact.show == false
       }
     })])])]), _vm._v(" "), _c('div', {
       staticClass: "align-right panel-body"

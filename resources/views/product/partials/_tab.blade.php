@@ -7,7 +7,7 @@
     </div>
 
         <div class="tab-content current" id="tab-1">
-          @include('product.partials._contacts', [ 'contacts' => $contacts ])
+          @include('product.partials._description', [ 'contacts' => $contacts ])
         </div>
 
         <div class="tab-content" id="tab-2">

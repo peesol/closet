@@ -47,23 +47,13 @@ class ContactController extends Controller
     return response()->json(null, 200);
   }
 
-  public function toggleShowProduct(Request $request, Shop $shop, Contact $contact)
+  public function toggleShow(Request $request, Shop $shop, Contact $contact)
   {
-    if($contact->show_product == true) {
-      $update = $contact->update([ 'show_product' => false ]);
+    if($contact->show == true) {
+      $update = $contact->update([ 'show' => false ]);
     } else {
-      $update = $contact->update([ 'show_product' => true ]);
+      $update = $contact->update([ 'show' => true ]);
     }
     return response()->json($update);
-  }
-
-  public function toggleShowCover(Request $request, Shop $shop, Contact $contact)
-  {
-    if($contact->show_cover == true) {
-        $contact->update(['show_cover' => false]);
-    } else {
-        $contact->update(['show_cover' => true]);
-    }
-    return ;
   }
 }
