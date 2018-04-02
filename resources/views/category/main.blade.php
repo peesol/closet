@@ -12,7 +12,7 @@
 window.addEventListener('load', function () {
   document.querySelector('.category-nav-btn').addEventListener('click', function () {
      this.classList.toggle('clicked');
-     document.querySelector('.category-nav').classList.toggle('category-opened');
+     document.querySelector('.filter').classList.toggle('display');
   });
 })
 </script>
@@ -22,22 +22,31 @@ window.addEventListener('load', function () {
 
 <div class="container">
   <div class="large-panel">
-                <div id="full-line">
-                  <button class="category-nav-btn">{{__('message.category')}}&nbsp;<small>▼</small></button>
-                </div>
-                <div class="category-nav">
-                  @foreach ($categories as $category)
-                    <a href="/category/{{$category->slug}}">{{$category->showTranslate(App::getLocale())->name}}</a>
-                  @endforeach
-                </div>
+    <div class="panel-body">
+      <button class="orange-btn normal-sq category-nav-btn">{{__('message.category')}}&nbsp;<small class="icon-arrow-down"></small></button>
+
+      <div class="filter margin-20-top" style="display:none">
+        <div class="categories">
+          <ul>
+            @foreach ($categories as $category)
+              <li><a href="/category/{{$category->slug}}">{{$category->showTranslate(App::getLocale())->name}}</a></li>
+            @endforeach
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
                 @foreach ($categories as $category)
                 @if($category->product->count())
-                <div class="panel-heading">
-                  <h3 class="no-margin">{{$category->showTranslate(App::getLocale())->name}}</h3>
-                </div>
-                <div class="category-carousel">
-                  <vue-slick :products="{{ $category->product()->popular()->take(10)->get() }}" path="/product/thumbnail/" slick-for="category"></vue-slick>
-                </div>
+                  <div class="panel-body">
+                    <div class="padding-15-bottom">
+                      <a href="/category/{{$category->slug}}" class="font-15em flat-btn">{{$category->showTranslate(App::getLocale())->name}}&nbsp;</a>
+                    </div>
+                    <div class="category-carousel">
+                      <vue-slick :products="{{ $category->product()->popular()->take(10)->get() }}" path="/product/thumbnail/" slick-for="category"></vue-slick>
+                    </div>
+                  </div>
                 @endif
                 @endforeach
   </div>

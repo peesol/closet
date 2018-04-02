@@ -23,7 +23,7 @@
   height: auto
 
 .profile-info-wrap
-  height: 125px
+  height: 100px
   float: none
 
 .profile-thumbnail
@@ -32,8 +32,8 @@
 
 .profile-thumbnail
   img
-    width: 100px
-    height: 100px
+    width: 80px
+    height: 80px
     border-radius: 100%
 
 .profile-header-row
@@ -71,16 +71,25 @@
 .follow-btn.follow
   background: #ff8000
   color: #fff
+  &:hover
+    background: #f57d05
 
 .follow-btn.unfollow
-  background: #f7f7f7
+  background: #eee
   color: #6c6c6c
+  &:hover
+    background: #ddd
 
 @media (min-width: 768px)
   .profile-info-wrap
     height: auto
     float: left
     width: calc(100% - 200px)
+
+  .profile-thumbnail
+    img
+      width: 100px
+      height: 100px
 
   .profile-header-row
     .profile-name

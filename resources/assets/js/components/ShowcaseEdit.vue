@@ -1,34 +1,35 @@
 <template>
 <div>
-    <div class="add-col-panel">
+    <div class="half-width-res panel-body">
 		<form>
-        <div class="input-group">
-				<input class="input-addon-field" type="text" v-model="name" name="name">
-        <button class="input-addon" @click.prevent="edit" style="border: none;"><span class="icon-checkmark"></span></button>
+      <label class="heading full-label">{{$trans.translation.name}}</label>
+        <div class="input-group half-width-res">
+				   <input class="input-addon-field" type="text" v-model="name" name="name">
+          <button class="checkmark-btn" @click.prevent="edit"><span class="icon-checkmark"></span></button>
         </div>
 		</form>
 		</div>
-    <div  id="full-line"></div>
+    <div id="full-line"></div>
     <div class="panel-heading">
-      <label class="full-label no-margin">{{$trans.translation.showcase_products}}</label>
+      <label class="full-label heading">{{$trans.translation.showcase_products}}</label>
     </div>
-    <div v-if="products.length" class="panel-body thumbnail-grid" id="full-line">
+
+    <div class="panel-body thumbnail-grid" id="full-line">
         <img v-for="product in products" :src="product.thumbnail" v-show="product.added" class="products-img-thumb">
     </div>
-    <div v-else class="panel-body" id="full-line"><h4>{{$trans.translation.showcase_empty}}</h4></div>
 
     <div class="panel-heading">
-      <label class="full-label no-margin">{{$trans.translation.shop_products}}</label>
+      <label class="full-label heading">{{$trans.translation.shop_products}}</label>
     </div>
     <div class="panel-body">
       <table class="c-table">
         <tr>
           <th>{{$trans.translation.product_name}}</th>
-          <th>{{$trans.translation.showcase_add}}</th>
+          <th class="center">{{$trans.translation.showcase_add}}</th>
         </tr>
         <tr v-for="(product, index) in products">
           <td class="m-cell">{{product.name}}</td>
-          <td class="s-cell">
+          <td class="s-cell center">
             <button @click.prevent="add(product.id, index)" class="round-btn" v-bind:class="{ 'red-bg': product.added === true, 'green-bg': product.added === false}">
               <small v-bind:class="{ 'icon-cross': product.added === true, 'icon-checkmark': product.added === false}"></small>
             </button>

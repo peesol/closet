@@ -38,7 +38,7 @@
 
 	<div class="thumbnail-grid padding-30-vertical" v-if="collections.length">
 
-			<div class="" v-for="(collection, index) in collections">
+			<div class="collection-wrap" v-for="(collection, index) in collections">
 				<div class="products-img">
 					<div class="thumb-title">
 						<a v-bind:href="'/collection/' + collection.slug" class="link-text">{{ collection.name }}</a>
@@ -48,7 +48,7 @@
 					</a>
 					<span class="private icon-private" v-show="collection.visibility === 'private'"></span>
 				</div>
-				<div v-show="user_id == shopUser" style="padding: 10px 5px;" id="full-line">
+				<div v-show="user_id == shopUser" class="align-right padding-5">
 					<button class="round-btn edit-btn"  @click.prevent="edit(collection.slug)">
 						<small class="icon-cog"></small>
 					</button>

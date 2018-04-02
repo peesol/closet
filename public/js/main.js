@@ -19606,6 +19606,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -50326,9 +50327,11 @@ if (false) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', [_c('div', {
-    staticClass: "add-col-panel"
-  }, [_c('form', [_c('div', {
-    staticClass: "input-group"
+    staticClass: "half-width-res panel-body"
+  }, [_c('form', [_c('label', {
+    staticClass: "input-label full-label"
+  }, [_vm._v(_vm._s(_vm.$trans.translation.name))]), _vm._v(" "), _c('div', {
+    staticClass: "input-group half-width-res"
   }, [_c('input', {
     directives: [{
       name: "model",
@@ -50351,10 +50354,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }
   }), _vm._v(" "), _c('button', {
-    staticClass: "input-addon",
-    staticStyle: {
-      "border": "none"
-    },
+    staticClass: "checkmark-btn",
     on: {
       "click": function($event) {
         $event.preventDefault();
@@ -50370,8 +50370,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }), _vm._v(" "), _c('div', {
     staticClass: "panel-heading"
   }, [_c('label', {
-    staticClass: "full-label no-margin"
-  }, [_vm._v(_vm._s(_vm.$trans.translation.showcase_products))])]), _vm._v(" "), (_vm.products.length) ? _c('div', {
+    staticClass: "full-label heading"
+  }, [_vm._v(_vm._s(_vm.$trans.translation.showcase_products))])]), _vm._v(" "), _c('div', {
     staticClass: "panel-body thumbnail-grid",
     attrs: {
       "id": "full-line"
@@ -50389,24 +50389,21 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "src": product.thumbnail
       }
     })
-  })) : _c('div', {
-    staticClass: "panel-body",
-    attrs: {
-      "id": "full-line"
-    }
-  }, [_c('h4', [_vm._v(_vm._s(_vm.$trans.translation.showcase_empty))])]), _vm._v(" "), _c('div', {
+  })), _vm._v(" "), _c('div', {
     staticClass: "panel-heading"
   }, [_c('label', {
-    staticClass: "full-label no-margin"
+    staticClass: "full-label heading"
   }, [_vm._v(_vm._s(_vm.$trans.translation.shop_products))])]), _vm._v(" "), _c('div', {
     staticClass: "panel-body"
   }, [_c('table', {
     staticClass: "c-table"
-  }, [_c('tr', [_c('th', [_vm._v(_vm._s(_vm.$trans.translation.product_name))]), _vm._v(" "), _c('th', [_vm._v(_vm._s(_vm.$trans.translation.showcase_add))])]), _vm._v(" "), _vm._l((_vm.products), function(product, index) {
+  }, [_c('tr', [_c('th', [_vm._v(_vm._s(_vm.$trans.translation.product_name))]), _vm._v(" "), _c('th', {
+    staticClass: "center"
+  }, [_vm._v(_vm._s(_vm.$trans.translation.showcase_add))])]), _vm._v(" "), _vm._l((_vm.products), function(product, index) {
     return _c('tr', [_c('td', {
       staticClass: "m-cell"
     }, [_vm._v(_vm._s(product.name))]), _vm._v(" "), _c('td', {
-      staticClass: "s-cell"
+      staticClass: "s-cell center"
     }, [_c('button', {
       staticClass: "round-btn",
       class: {
@@ -51467,7 +51464,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }, [_c('span', {
       class: {
-        'icon-checked font-green': contact.show_cover == true, 'icon-unchecked font-link': contact.show == false
+        'icon-checked font-green': contact.show == true, 'icon-unchecked font-link': contact.show == false
       }
     })])])]), _vm._v(" "), _c('div', {
       staticClass: "align-right panel-body"
@@ -54409,7 +54406,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._v(_vm._s(_vm.$trans.translation.create))])])])])]), _vm._v(" "), (_vm.collections.length) ? _c('div', {
     staticClass: "thumbnail-grid padding-30-vertical"
   }, _vm._l((_vm.collections), function(collection, index) {
-    return _c('div', {}, [_c('div', {
+    return _c('div', {
+      staticClass: "collection-wrap"
+    }, [_c('div', {
       staticClass: "products-img"
     }, [_c('div', {
       staticClass: "thumb-title"
@@ -54442,12 +54441,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         value: (_vm.user_id == _vm.shopUser),
         expression: "user_id == shopUser"
       }],
-      staticStyle: {
-        "padding": "10px 5px"
-      },
-      attrs: {
-        "id": "full-line"
-      }
+      staticClass: "align-right padding-5"
     }, [_c('button', {
       staticClass: "round-btn edit-btn",
       on: {

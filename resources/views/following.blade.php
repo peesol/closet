@@ -8,23 +8,26 @@
 
 <div class="container">
   <div class="large-panel">
-    <div class="panel-heading" style="border-bottom: 1px solid #f2f2f2;"><p class="font-bold no-margin">{{__('message.following')}}</p></div>
+    <div class="panel-heading">
+      <label class="heading">{{__('message.following')}}</label>
+    </div>
 
       @foreach($followingShop as $shop)
 
-      <div class="panel-heading">
+      <div class="panel-body">
         <a href="/{{ $shop->slug}}">
-          <img src="{{ $shop->getThumbnail() }}" alt="{{ $shop->thumbnail }}" style="float: left; width: 100px; border-radius: 50%;">
+          <img src="{{ $shop->getThumbnail() }}" alt="{{ $shop->thumbnail }}" class="float-left margin-20-right user-thumbnail">
         </a>
 
-        <div class="shop-wrap">
-          <a class="profile-name" href="/{{ $shop->slug }}">{{ $shop->name }}</a><br>
-          <p class="shop-description">{{ $shop->description }}</p>
+        <div class="flex-column flex">
+          <a class="font-15em text-nowrap" href="/{{ $shop->slug }}">{{ $shop->name }}</a>
+          <p class="text-nowrap">{{ $shop->description }}</p>
+          <div class="flex flex-end">
+            <follow-button shop-slug="{{ $shop->slug }}"></follow-button>
+          </div>
+
         </div>
 
-        <div class="following-btn-wrap">
-            <follow-button shop-slug="{{ $shop->slug }}"></follow-button>
-        </div>
       </div>
 
       @endforeach

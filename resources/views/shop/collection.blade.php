@@ -23,9 +23,7 @@
           <label class="full-label heading">{{__('message.collection')}}</label>
         </div>
 
-
             <shop-collection web-url="{{config('app.url')}}" shop-slug="{{ $shop->slug }}" shop-user="{{ $shop->user_id }}"></shop-collection>
-
 
             </div>
 @endif

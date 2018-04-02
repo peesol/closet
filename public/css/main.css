@@ -36,7 +36,8 @@ a {
 
 a {
   color: #1782cf;
-  text-decoration: none; }
+  text-decoration: none;
+  cursor: pointer; }
 
 a:hover {
   color: #3fa9f5; }
@@ -609,7 +610,7 @@ td.center, th.center {
   .shipping-table td:nth-child(2) {
     width: 120px; }
 
-.my-products-wrap, .products-wrap {
+.collection-wrap, .my-products-wrap, .products-wrap {
   border: 1px solid #eee;
   box-shadow: 1px 1px 3px 0 #f2f2f2 !important;
   display: inline-block;
@@ -622,6 +623,9 @@ td.center, th.center {
   grid-gap: 10px;
   grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
   justify-items: center; }
+
+.collection-wrap {
+  height: auto; }
 
 .my-products-wrap {
   height: 210px; }
@@ -677,9 +681,13 @@ td.center, th.center {
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     justify-items: center; }
 
+  .collection-wrap {
+    width: 200px;
+    height: auto; }
+
   .my-products-wrap {
     width: 200px;
-    height: 360px; }
+    height: 320px; }
 
   .products-wrap {
     width: 200px;
@@ -733,6 +741,7 @@ span.bottom-right {
   right: 5px; }
 
 span.sale, span.price, span.thumb-price {
+  font-family: "Roboto" !important;
   padding: 5px; }
 span.sale {
   background: #4aae2a;
@@ -761,6 +770,15 @@ span.price, span.thumb-price {
   width: 100%;
   height: 100%; }
 
+.user-thumbnail {
+  width: 60px;
+  height: 60px;
+  border-radius: 100%; }
+
+@media (min-width: 768px) {
+  .user-thumbnail {
+    width: 100px;
+    height: 100px; } }
 .shop-header {
   width: 100%;
   height: 170px;
@@ -782,7 +800,7 @@ span.price, span.thumb-price {
   height: auto; }
 
 .profile-info-wrap {
-  height: 125px;
+  height: 100px;
   float: none; }
 
 .profile-thumbnail {
@@ -790,8 +808,8 @@ span.price, span.thumb-price {
   margin-right: 20px; }
 
 .profile-thumbnail img {
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
   border-radius: 100%; }
 
 .profile-header-row {
@@ -827,16 +845,24 @@ span.price, span.thumb-price {
 .follow-btn.follow {
   background: #ff8000;
   color: #fff; }
+  .follow-btn.follow:hover {
+    background: #f57d05; }
 
 .follow-btn.unfollow {
-  background: #f7f7f7;
+  background: #eee;
   color: #6c6c6c; }
+  .follow-btn.unfollow:hover {
+    background: #ddd; }
 
 @media (min-width: 768px) {
   .profile-info-wrap {
     height: auto;
     float: left;
     width: calc(100% - 200px); }
+
+  .profile-thumbnail img {
+    width: 100px;
+    height: 100px; }
 
   .profile-header-row .profile-name {
     font-size: 1.5em;
@@ -960,7 +986,6 @@ span.price, span.thumb-price {
     list-style-type: none;
     text-align: left; }
   .col-add ul li a {
-    cursor: pointer;
     color: #6c6c6c;
     padding: 12px 16px;
     text-decoration: none;
@@ -1870,7 +1895,14 @@ span.price, span.thumb-price {
 .flex-start {
   justify-content: flex-start; }
 
+.flex-end {
+  justify-content: flex-end; }
+
 .flex-start-res {
+  justify-content: center;
+  flex-flow: column; }
+
+.flex-column {
   justify-content: center;
   flex-flow: column; }
 
@@ -1936,6 +1968,12 @@ span.price, span.thumb-price {
 .not-display {
   display: none; }
 
+.display {
+  display: block !important; }
+
+.round {
+  border-radius: 100%; }
+
 button.default, .orange-btn, .green-btn, .help-btn, .round-btn {
   box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 7px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -1px rgba(0, 0, 0, 0.2); }
 
@@ -1969,7 +2007,7 @@ button.default {
   .delete-btn:hover {
     filter: brightness(90%); }
 
-.delete-btn span, .delete-btn small, .delete-btn i {
+.delete-btn span, .delete-btn small, .delete-btn i, .help-btn span, .help-btn small, .help-btn i {
   margin-left: 2px; }
 
 .help-btn {
@@ -1977,15 +2015,14 @@ button.default {
   .help-btn:hover {
     background-color: #1782cf; }
 
-.help-btn span, .help-btn small, .help-btn i {
-  margin-left: 2px; }
-
 .add-btn {
   background: #4aae2a; }
 
 .edit-btn {
   background: #b8b8b8;
   padding: 10px; }
+  .edit-btn:hover {
+    background: #9e9e9e; }
 
 .flat-btn {
   color: #6c6c6c;

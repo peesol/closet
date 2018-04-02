@@ -5,11 +5,11 @@
 <div class="container">
   <div class="medium-panel">
     <div class="panel-heading">
-      <h3 class="no-margin">{{__('message.collection')}}</h3>
+      <label class="heading">{{__('message.collection')}}</label>
     </div>
-    <div class="panel-body">
-      <shop-collection shop-slug="{{Auth::user()->shop->slug}}" shop-user="{{Auth::id()}}"></shop-collection>
-    </div>
+
+    <shop-collection shop-slug="{{Auth::user()->shop->slug}}" shop-user="{{Auth::id()}}"></shop-collection>
+
   </div>
 </div>
 
