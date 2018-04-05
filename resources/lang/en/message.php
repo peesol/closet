@@ -23,6 +23,7 @@ return [
     'gender' => 'Gender',
     'men' => 'Men',
     'women' => 'Women',
+    'proceed' => 'Proceed',
     //tooltip
     'shop_name_tip' => 'This will be your profile and shop name',
     'shop_name_placeholder' => 'Only letters or numbers between 6 and 50 characters',
@@ -71,6 +72,9 @@ return [
     'new' => 'New',
     'used' => 'Used',
     'qty' => 'Qty',
+    //Settings
+    'photo_upload' => 'Upload Photo',
+    'photo_limit' => 'You can only have :amount photos.',
     //search
     'search' => 'Search...',
     'search_result' => 'Search result for',

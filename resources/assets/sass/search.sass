@@ -5,25 +5,29 @@
 
 .search-form
   display: none
-
-@media (min-width: 768px)
-  .search-form
-    display: block
-    position: absolute
-    float: left
-    margin-left: 200px
+  z-index: 1
+  height: 2000px
+  background: rgba(0, 0, 0, 0.5)
+  padding: 30px 20px
 
 .search-input
+  border-radius: 5px
+  font-size: 1.2em
   line-height: 27px
   border: 1px solid #b5b5b5
-  width: 350px
+  height: 35px
+  width: 100%
   outline: none
   padding-left: 10px
-  margin-top: 3px
+  margin-top: 1px
   &:focus
-    border: 1px solid #1c62b9
+    border-color: rgba(255, 128, 0, 0.8)
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(82, 168, 236, 0.6)
+    outline: 0 none
+    transition: 0.5s all ease
 
 .search-btn
+  display: none
   position: relative
   top: 9px
   width: 64px
@@ -39,6 +43,7 @@
     border-left: none
 
 .algolia-autocomplete
+  width: 100%
   .aa-hint
     color: #999
   .aa-dropdown-menu
@@ -47,13 +52,41 @@
     border: 1px solid #999
     border-top: none
     .aa-suggestion
+      overflow: hidden
+      text-overflow: ellipsis
+      white-space: nowrap
+      font-size: 1.2em
       cursor: pointer
-      padding: 5px 4px
+      padding: 12px 4px
       &.aa-cursor
         background-color: #B2D7FF
       em
         font-weight: bold
         font-style: normal
+
+@media (min-width: 768px)
+  .search-form
+    display: block
+    position: absolute
+    margin-left: 200px
+    height: auto
+    background: transparent
+    padding: 0
+  .search-btn
+    display: inline-block
+  .search-input
+    border-radius: 0
+    font-size: 1em
+    height: 31px
+    width: 350px
+    &:focus
+      border: 1px solid #1c62b9
+  .algolia-autocomplete
+    width: 350px
+    .aa-dropdown-menu
+      .aa-suggestion
+        font-size: 1em
+        padding: 5px 4px
 
 .filter
   ul
@@ -140,3 +173,6 @@
       width: 100%
       padding: 10px
       text-decoration: none
+
+.clicked
+  color: #ff8000

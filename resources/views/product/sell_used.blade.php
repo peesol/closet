@@ -15,7 +15,7 @@
 
     <div class="tab-nav">
       <ul class="tab-nav-ul">
-        <button class="tab-nav-btn static" onclick='document.location.href="/sell/product"'>{{__('message.new')}}</button>
+        <button class="tab-nav-btn static" onclick='document.location.href="/sell/new"'>{{__('message.new')}}</button>
         <button class="tab-nav-btn static current">{{__('message.used')}}</button>
       </ul>
     </div>

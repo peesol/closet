@@ -58,7 +58,7 @@ export default {
         });
     },
     remove(imageId, index) {
-      if (!confirm(this.$trans.translation.delete_photo_confirm)) {
+      if (!confirm(this.$trans.translation.delete_confirm)) {
         return;
       }
       this.$http.delete(this.$root.url + '/collection/image/' + imageId).then(() => {

@@ -1,8 +1,9 @@
 <nav id="full-line">
   <div class="nav-container">
-    <side-menu></side-menu>
+    <side-menu user-shop="{{ Auth::user()->shop->slug }}"></side-menu>
     <div class="main-logo"><a href="/"></a></div>
     <search-input></search-input>
+    <button class="icon-search res-search-btn"></button>
     <div class="login-box">
       @if (Auth::guest())
           <li><a href="{{ route('login') }}">{{__('message.login')}}</a></li>
@@ -19,9 +20,21 @@
 </nav>
 <div class="second-nav">
     <div class="second-nav-cont">
-        <div id="second-nav-link"><a href="{{ route('home') }}">{{__('message.home')}}</a></div>
-        <div id="second-nav-link"><a href="{{ route('categoryMain') }}">{{__('message.category')}}</a></div>
-        <div id="second-nav-link"><a href="{{ route('trending') }}">{{__('message.trending')}}</a></div>
-        <div id="second-nav-link"><a href="{{ route('shops') }}">{{__('message.shops')}}</a></div>
+      <a href="{{ route('home') }}">
+        <span class="icon-home"></span>
+        <font>{{ __('message.home') }}</font>
+      </a>
+      <a href="{{ route('categoryMain') }}">
+        <span class="icon-category"></span>
+        <font>{{ __('message.category') }}</font>
+      </a>
+      <a href="{{ route('trending') }}">
+        <span class="icon-fire"></span>
+        <font>{{ __('message.trending') }}</font>
+      </a>
+      <a href="{{ route('shops') }}">
+        <span class="icon-refresh"></span>
+        <font>{{ __('message.shops') }}</font>
+      </a>
     </div>
 </div>

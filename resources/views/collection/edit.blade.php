@@ -19,10 +19,10 @@
 
       <collection-edit col-slug="{{$collection->slug}}" col-name="{{$collection->name}}" col-description="{{$collection->description}}" col-visibility="{{$collection->visibility}}" image-src="{{$collection->getImage()}}"></collection-edit>
       <div class="panel-heading">
-        <label class="full-label heading">{{__('message.product_edit')}}</label>
+        <label class="full-label heading">{{__('message.photo_upload')}}</label>
       </div>
       <div class="alert-box info margin-30-horizontal margin-20-top">
-        <span class="icon-notification"></span>&nbsp; photolimit
+        <label><span class="icon-notification"></span>&nbsp;{{ __('message.photo_limit', ['amount' => '10']) }}</label>
       </div>
       <collection-dropzone col-id="{{$collection->id}}" col-slug="{{$collection->slug}}"></collection-dropzone>
       <div class="panel-heading">

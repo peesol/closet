@@ -34,7 +34,16 @@ window.Closet = {
         }
     };
     </script>
-
+    <script>
+      window.addEventListener('load', function () {
+        document.querySelector('.res-search-btn').addEventListener('click', function () {
+           this.classList.toggle('clicked');
+           document.querySelector('.search-form').classList.toggle('display');
+           document.querySelector('.res-search-btn').classList.toggle('icon-search');
+           document.querySelector('.res-search-btn').classList.toggle('icon-cross');
+        });
+      })
+    </script>
     @yield('scripts')
 </head>
 <body>

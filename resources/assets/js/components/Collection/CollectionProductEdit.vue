@@ -11,7 +11,7 @@
         <div class="full-width text-nowrap">
 					<a class="link-text" :href="$root.url + '/product/'+ product.uid" style="font-size:1.2em;">{{product.name}}</a>
         </div>
-        <p class="no-margin">{{$trans.translation.price}}&nbsp;:&nbsp;{{product.price}}</p>
+        <p class="no-margin">{{$trans.translation.price}}&nbsp;:&nbsp;{{ $number.currency(product.price) }}</p>
         <p class="no-margin">{{$trans.translation.by}}&nbsp;<a class="link-text" :href="$root.url + '/'+ product.slug">{{product.shop}}</a></p>
       </div>
 

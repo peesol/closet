@@ -124,7 +124,7 @@ export default {
     },
 
     deleteComment(commentId) {
-      if (!confirm(this.$trans.translation.comment_delete_confirm)) {
+      if (!confirm(this.$trans.translation.delete_confirm)) {
         return;
       }
 

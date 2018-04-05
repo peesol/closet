@@ -9,8 +9,8 @@
       </li>
       <li>
         <a @click.prevent="addToNote()">
-            <span :class="{'icon-bookmarks font-green' : addedToNote, 'icon-bookmarks font-grey' : !addedToNote}"></span>
-            &nbsp;My Note
+            <span :class="{'icon-book font-green' : addedToNote, 'icon-bookmarks font-grey' : !addedToNote}"></span>
+            &nbsp;{{$trans.translation.note}}
           </a>
       </li>
       <li v-for="(collection, index) in collections">

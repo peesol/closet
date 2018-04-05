@@ -60,7 +60,7 @@
                             </select>
     </div>
 
-    <div class="align-right full-width padding-15-vertical">
+    <div class="align-right full-width padding-15-vertical margin-10-top">
       <button type="submit" id="submit-all" class="orange-btn normal-sq width-120">{{$trans.translation.sell_submit}}</button>
     </div>
   </form>

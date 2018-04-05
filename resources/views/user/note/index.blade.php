@@ -7,7 +7,7 @@
 <div class="container">
   <div class="medium-panel">
     <div class="panel-heading">
-      <label class="full-label heading">My note</label>
+      <label class="full-label heading">{{ __('user.note')}}</label>
     </div>
     <div class="panel-body thumbnail-grid">
       @foreach ($products as $product)
