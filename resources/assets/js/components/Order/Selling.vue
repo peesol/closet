@@ -6,7 +6,7 @@
       <th colspan="2">{{$trans.translation.pending_order}}</th>
     </tr>
     <tr v-for="(order, index) in orders" v-show="!order.confirmed">
-      <td><a class="link-text overflow-hidden" style="cursor: pointer;" @click.prevent="open(order, index)">{{order.title}}</a></td>
+      <td><a class="link-text overflow-hidden" @click.prevent="open(order, index)">{{order.title}}</a></td>
       <td><span class="float-right">{{order.created_at}}</span></td>
     </tr>
   </table>
@@ -16,7 +16,7 @@
       <th colspan="2">{{$trans.translation.wait_transaction}}</th>
     </tr>
     <tr v-for="(item, index) in orders" v-show="item.confirmed && !item.trans">
-      <td><a class="link-text" style="cursor: pointer;" @click.prevent="open(item, index)">{{item.title}}</a></td>
+      <td><a class="link-text" @click.prevent="open(item, index)">{{item.title}}</a></td>
       <td><span class="float-right">{{item.created_at}}</span></td>
     </tr>
   </table>
@@ -26,7 +26,7 @@
       <th colspan="2">{{$trans.translation.transacted}}</th>
     </tr>
     <tr v-for="(item, index) in orders" v-show="item.trans && !item.shipped">
-      <td><a class="link-text" style="cursor: pointer;" @click.prevent="open(item, index)">{{item.title}}</a></td>
+      <td><a class="link-text" @click.prevent="open(item, index)">{{item.title}}</a></td>
       <td><span class="float-right">{{item.created_at}}</span></td>
     </tr>
   </table>
@@ -36,7 +36,7 @@
       <th colspan="2">{{$trans.translation.shipped}}</th>
     </tr>
     <tr v-for="(item, index) in orders" v-show="item.shipped">
-      <td><a class="link-text" style="cursor: pointer;" @click.prevent="open(item, index)">{{item.title}}</a></td>
+      <td><a class="link-text"  @click.prevent="open(item, index)">{{item.title}}</a></td>
       <td><span class="float-right">{{item.created_at}}</span></td>
     </tr>
   </table>
@@ -66,16 +66,28 @@
           <td colspan="4"><h4 class="no-margin font-red">{{$trans.translation.wait_transaction}}</h4></td>
         </tr>
         <tr v-show="data.trans && !data.shipped">
-          <td colspan="4"><h4 class="no-margin font-green">{{$trans.translation.completed_transaction}}</h4></td>
+          <td colspan="4">
+            <h4 class="no-margin font-green">{{$trans.translation.completed_transaction}}</h4>
+            <h4>{{$trans.translation.payment_date}}&nbsp;{{ data.date_paid }}</h4>
+            <label class="input-label">{{$trans.translation.address}}</label>
+            <p>{{ data.address }}</p>
+          </td>
         </tr>
         <tr v-show="data.shipped">
-          <td colspan="4"><h4 class="no-margin font-green">{{$trans.translation.delivered}}</h4></td>
+          <td colspan="4">
+            <h4 class="no-margin font-green">{{$trans.translation.delivered}}</h4>
+            <p>{{$trans.translation.payment_date}}&nbsp;{{ data.date_paid }}</p>
+            <p>{{$trans.translation.track_info}}&nbsp;{{data.carrier}}</p>
+            <p>{{$trans.translation.track_number}}&nbsp;{{data.tracking_number}}</p>
+            <label class="input-label">{{$trans.translation.address}}</label>
+            <p>{{ data.address }}</p>
+          </td>
         </tr>
       </table>
     </div>
     <!-- Confirm form -->
       <form v-on:submit.prevent="confirm(data.uid, index)" method="post" v-show="!data.confirmed">
-        <div style="padding: 0px 15px 15px">
+        <div class="padding-15-horizontal padding-15-bottom">
           <table class="shipping-table">
             <tr>
               <td colspan="2"><h4 class="no-margin font-grey">{{$trans.translation.shipping_free}}</h4></td>
@@ -105,7 +117,7 @@
     </div>
     <!-- Shipped form -->
       <form v-on:submit.prevent="confirmShipping(data.uid, index)" method="post" v-show="data.trans && !data.shipped">
-        <div style="padding: 0px 15px 15px">
+        <div class="padding-15-horizontal padding-15-bottom">
           <table class="shipping-table">
             <tr>
               <td colspan="1"><h4 class="no-margin font-grey">{{$trans.translation.track_info}}</h4></td>
@@ -165,7 +177,7 @@ export default {
     },
     confirm(uid, index) {
       this.$Progress.start();
-      this.$http.put(this.$root.url + '/order/' + uid + '/confirm', {
+      this.$http.put(this.$root.url + '/profile/order/' + uid + '/confirm', {
         shipping: this.shipping,
         shipping_fee: this.shipping_fee,
       }).then((response) => {
@@ -182,7 +194,7 @@ export default {
         return
       } else {
       this.$Progress.start();
-      this.$http.delete(this.$root.url + '/order/' + uid + '/deny').then((response) => {
+      this.$http.delete(this.$root.url + '/profile/order/' + uid + '/deny').then((response) => {
         this.$modal.hide('open-msg');
         this.$delete(this.orders, index);
         toastr.success(this.$trans.translation.success);
@@ -192,7 +204,7 @@ export default {
     },
     confirmShipping(uid, index){
       this.$Progress.start();
-      this.$http.put(this.$root.url + '/order/' + uid + '/confirm_shipping', {
+      this.$http.put(this.$root.url + '/profile/order/' + uid + '/confirm_shipping', {
         carrier: this.track_info,
         tracking_number: this.tracking_number,
       }).then((response) => {

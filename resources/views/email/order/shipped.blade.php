@@ -3,8 +3,8 @@
 #{{trans('message.from')}} : {{ $order->reciever }}
 
 {{__('message.shipped_body')}}<br>
-{{__('message.shipped_carrier').' '.$data['carrier'] }}<br>
-{{__('message.shipped_track')}} {{$data['tracking_number'] ? $data['tracking_number'] : __('message.not_defined')}}<br>
+{{__('message.shipped_carrier').' '. $order->carrier }}<br>
+{{__('message.shipped_track')}} {{ $order->tracking_number ? $order->tracking_number : __('message.not_defined')}}<br>
 
 @component('mail::table')
 | {{__('message.product_name')}}| {{__('message.choice')}} | {{__('message.price')}}  | {{__('message.qty')}}  |

@@ -23,9 +23,12 @@ class CreateOrdersTable extends Migration
           $table->string('title');
           $table->text('body');
           $table->integer('total');
-          $table->string('discount');
-          $table->boolean('free_shipping')->nullable();
+          $table->string('discount')->nullable();
           $table->integer('shipping_fee')->nullable();
+          $table->string('carrier', 30)->nullable();
+          $table->string('tracking_number', 40)->nullable();
+          $table->text('address')->nullable();
+          $table->string('date_paid', 30)->nullable();
           $table->boolean('confirmed')->default(false);
           $table->boolean('trans')->default(false);
           $table->boolean('shipped')->default(false);

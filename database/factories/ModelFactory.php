@@ -39,6 +39,22 @@ $factory->define(Closet\Models\Shop::class, function (Faker\Generator $faker) {
 
 });
 
+$factory->define(Closet\Models\Order::class, function (Faker\Generator $faker) {
+
+    return [
+        'sender_id' => 2,
+        'reciever_id' => 1,
+        'sender' => 'Test User',
+        'reciever' => 'Closet',
+        'uid' => uniqid('order_'),
+        'title' => $faker->dateTimeBetween($startDate = '-2 years', $endDate = 'now', $timezone = null),
+        'body' => 'products',
+        'total' => $faker->numberBetween($min = 300, $max = 5000),
+        'discount' => $faker->numberBetween($min = 300, $max = 900),
+    ];
+
+});
+
 $factory->define(Closet\Models\Product::class, function (Faker\Generator $faker) {
 
     return [

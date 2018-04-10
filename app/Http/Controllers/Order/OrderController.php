@@ -30,13 +30,13 @@ class OrderController extends Controller
   */
   public function getSellingInbox()
   {
-    $id = Auth::user()->id;
+    $id = Auth::id();
     $order = Order::where('reciever_id', $id)->latest()->get();
     return Fractal::collection($order, new OrderTransformer);
   }
   public function getBuyingInbox()
   {
-    $id = Auth::user()->id;
+    $id = Auth::id();
     $order = Order::where('sender_id', $id)->latest()->get();
     return Fractal::collection($order, new OrderTransformer);
   }
@@ -63,79 +63,69 @@ class OrderController extends Controller
       'total' => (int)str_replace(',', '', $request->total_price),
       'discount' => $request->discount,
     ]);
+
     foreach ($request->products as $product) {
       $rowId = array_get($product, 'rowId');
       Cart::remove($rowId);
     }
+
     $reciever = User::find($order->reciever_id);
-    if ($reciever->country == 'ไทย') {
-      $locale = 'th';
-    } else {
-      $locale = 'en';
-    }
+    $locale = $reciever->country;
 
     Mail::to($reciever->email)->queue(new Ordering($order, $locale));
 
     return response()->json($locale);
   }
+
   public function confirm(Order $order, Request $request)
   {
     $order->update([
       'confirmed' => true,
-      'free_shipping' => $request->shipping,
-      'shipping_fee' => $request->shipping_fee ? $request->shipping_fee : null,
+      'shipping_fee' => $request->shipping_fee,
     ]);
-    $accounts = Account::where('shop_id', $order->reciever_id)->get();
+
     $sender = User::find($order->sender_id);
-    if ($sender->country == 'ไทย') {
-      $locale = 'th';
-    } else {
-      $locale = 'en';
-    }
+    $accounts = Account::where('shop_id', $order->reciever_id)->get();
+    $locale = $sender->country;
 
     Mail::to($sender->email)->queue(new OrderConfirmed($order, $accounts, $locale));
 
     return response()->json(null, 200);
   }
+
   public function deny(Order $order)
   {
     $order->delete();
     return;
   }
+
   public function transactionConfirm(Order $order, Request $request)
   {
-    $order->update(['trans' => true]);
-    $data = [
-      'date' => $request->date,
-      'time' => $request->time,
-      'name' => $request->name,
-      'address' => $request->address,
-      'phone' => $request->phone,
-    ];
-    $reciever = User::find($order->$reciever_id);
-    if ($reciever->country == 'ไทย') {
-      $locale = 'th';
-    } else {
-      $locale = 'en';
-    }
-    Mail::to($reciever->email)->queue(new TransactionConfirmed($order, $data, $locale));
-    return view('order.after.transaction');
+    $order->update([
+      'trans' => true,
+      'address' => $request->name . ' ' . $request->address . ' ' . __('message.phone') . ' ' . $request->phone,
+      'date_paid' => $request->date . ' ' . $request->time,
+    ]);
+
+    $reciever = User::find($order->reciever_id);
+    $locale = $reciever->country;
+
+    Mail::to($reciever->email)->queue(new TransactionConfirmed($order, $locale));
+    return response()->json($order);
   }
 
   public function confirmShipping(Order $order, Request $request)
   {
-    $order->update(['shipped' => true]);
-    $data = [
+    $order->update([
+      'shipped' => true,
       'carrier' => $request->carrier,
       'tracking_number' => $request->tracking_number,
-    ];
-    $sender = User::find($order->$sender_id);
-    if ($sender->country == 'ไทย') {
-      $locale = 'th';
-    } else {
-      $locale = 'en';
-    }
-    Mail::to($sender->email)->send(new OrderShipped($order, $data, $locale));
-    return;
+    ]);
+
+    $sender = User::find($order->sender_id);
+    $locale = $sender->country;
+
+    Mail::to($sender->email)->queue(new OrderShipped($order, $locale));
+    return response()->json($order);
   }
 }

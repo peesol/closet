@@ -23,11 +23,9 @@
 
 @endcomponent
 
-##{{__('message.date_recieved').' '.$data['date']}} {{__('message.time_recieved').' '.$data['time']}}
-{{__('message.name').' '.$data['name']}}<br>
+##{{__('message.date_recieved').' '. $order->date_paid}}
 {{__('message.address')}}<br>
-{{$data['address']}}<br>
-{{__('message.phone').' '.$data['phone']}}
+{{ $order->address }}<br>
 
 ##{{__('message.confirm_deliver')}}
 @component('mail::button', ['url' => url('/order/'. $order->uid . '/shipped_email')])

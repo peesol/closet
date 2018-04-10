@@ -115,8 +115,10 @@ Route::group(['middleware' => ['auth']], function () {
   Route::get('/profile/order/selling/get', 'Order\OrderController@getSellingInbox');
   Route::get('/profile/order/buying/get', 'Order\OrderController@getBuyingInbox');
 
+  Route::post('/order/sending', 'Order\OrderController@store');
   Route::get('/profile/order/selling', 'Order\OrderController@sellingPage')->name('sellingOrder');
   Route::get('/profile/order/buying', 'Order\OrderController@buyingPage')->name('buyingOrder');
+  Route::put('/profile/order/{order}/confirm', 'Order\OrderController@confirm');
   Route::delete('/profile/order/{order}/deny', 'Order\OrderController@deny');
   Route::put('/profile/order/{order}/transaction', 'Order\OrderController@transactionConfirm');
   Route::put('/profile/order/{order}/confirm_shipping', 'Order\OrderController@confirmShipping');
@@ -125,7 +127,6 @@ Route::group(['middleware' => ['auth']], function () {
 
 Route::group(['middleware' => ['auth']], function () {
 
-    Route::post('/order/sending', 'OrderController@store');
 
     Route::prefix('profile')->group(function () {
       Route::get('/mycollection', 'Collection\CollectionController@index')->name('myCollection');

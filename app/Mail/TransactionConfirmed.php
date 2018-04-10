@@ -12,17 +12,15 @@ class TransactionConfirmed extends Mailable
     use Queueable, SerializesModels;
 
     public $order;
-    public $data;
     public $locale;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($order, $data, $locale)
+    public function __construct($order, $locale)
     {
       $this->order = $order;
-      $this->data = $data;
       $this->locale = $locale;
     }
 

@@ -164,7 +164,6 @@ return [
     'transaction_subject' => 'Payment recieved from',
     'transaction_head' => 'Payment recieved from this order',
     'date_recieved' => 'Transaction date',
-    'time_recieved' => 'At',
     'confirm_deliver' => 'After you have shipped your products you must inform the buyer',
     'alt_confirm_deliver' => 'Or you can inform the buyer via Closet website by going to menu > Orders > Selling and look for the "Paid" section',
     //can't sell notice

@@ -78,7 +78,7 @@ class RegisterController extends Controller
             'email_token' => base64_encode($data['email']),
             'address' => $data['address'],
             'phone' => $data['phone'],
-            'country' => 'ไทย',
+            'country' => 'th',
             'gender' => $data['gender'],
         ]);
 

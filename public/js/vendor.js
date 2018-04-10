@@ -10113,7 +10113,7 @@ function xhrClient (request) {
 
 function nodeClient (request) {
 
-    var client = __webpack_require__(560);
+    var client = __webpack_require__(559);
 
     return new PromiseObj(function (resolve) {
 
@@ -13589,7 +13589,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   }
 
   if (true) {
-    var Sortable = __webpack_require__(471);
+    var Sortable = __webpack_require__(470);
     module.exports = buildDraggable(Sortable);
   } else if (typeof define == "function" && define.amd) {
     define(['sortablejs'], function (Sortable) {
@@ -13865,7 +13865,7 @@ IndexCore.prototype.browseFrom = function(cursor, callback) {
 */
 IndexCore.prototype.searchForFacetValues = function(params, callback) {
   var clone = __webpack_require__(16);
-  var omit = __webpack_require__(215);
+  var omit = __webpack_require__(214);
   var usage = 'Usage: index.searchForFacetValues({facetName, facetQuery, ...params}[, callback])';
 
   if (params.facetName === undefined || params.facetQuery === undefined) {
@@ -14123,12 +14123,12 @@ module.exports = function merge(destination/* , sources */) {
 /* WEBPACK VAR INJECTION */(function(process) {
 
 var utils = __webpack_require__(5);
-var settle = __webpack_require__(235);
-var buildURL = __webpack_require__(238);
-var parseHeaders = __webpack_require__(244);
-var isURLSameOrigin = __webpack_require__(242);
+var settle = __webpack_require__(234);
+var buildURL = __webpack_require__(237);
+var parseHeaders = __webpack_require__(243);
+var isURLSameOrigin = __webpack_require__(241);
 var createError = __webpack_require__(126);
-var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(237);
+var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(236);
 
 module.exports = function xhrAdapter(config) {
   return new Promise(function dispatchXhrRequest(resolve, reject) {
@@ -14224,7 +14224,7 @@ module.exports = function xhrAdapter(config) {
     // This is only done if running in a standard browser environment.
     // Specifically not if we're in a web worker, or react-native.
     if (utils.isStandardBrowserEnv()) {
-      var cookies = __webpack_require__(240);
+      var cookies = __webpack_require__(239);
 
       // Add xsrf header
       var xsrfValue = (config.withCredentials || isURLSameOrigin(config.url)) && config.xsrfCookieName ?
@@ -14348,7 +14348,7 @@ module.exports = function isCancel(value) {
 "use strict";
 
 
-var enhanceError = __webpack_require__(234);
+var enhanceError = __webpack_require__(233);
 
 /**
  * Create an Error with the specified message, config, error code, and response.
@@ -14396,15 +14396,15 @@ module.exports = function clone(obj) {
 
 /***/ }),
 
-/***/ 207:
+/***/ 206:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = AlgoliaSearch;
 
-var Index = __webpack_require__(209);
+var Index = __webpack_require__(208);
 var deprecate = __webpack_require__(71);
 var deprecatedMessage = __webpack_require__(72);
-var AlgoliaSearchCore = __webpack_require__(208);
+var AlgoliaSearchCore = __webpack_require__(207);
 var inherits = __webpack_require__(37);
 var errors = __webpack_require__(23);
 
@@ -15059,7 +15059,7 @@ function notImplemented() {
 
 /***/ }),
 
-/***/ 208:
+/***/ 207:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process) {module.exports = AlgoliaSearchCore;
@@ -15067,7 +15067,7 @@ function notImplemented() {
 var errors = __webpack_require__(23);
 var exitPromise = __webpack_require__(117);
 var IndexCore = __webpack_require__(115);
-var store = __webpack_require__(217);
+var store = __webpack_require__(216);
 
 // We will always put the API KEY in the JSON body in case of too long API KEY,
 // to avoid query string being too long and failing in various conditions (our server limit, browser limit,
@@ -15896,7 +15896,7 @@ function removeCredentials(headers) {
 
 /***/ }),
 
-/***/ 209:
+/***/ 208:
 /***/ (function(module, exports, __webpack_require__) {
 
 var inherits = __webpack_require__(37);
@@ -16329,7 +16329,7 @@ Index.prototype.browseAll = function(query, queryParameters) {
 
   var merge = __webpack_require__(118);
 
-  var IndexBrowser = __webpack_require__(210);
+  var IndexBrowser = __webpack_require__(209);
 
   var browser = new IndexBrowser();
   var client = this.as;
@@ -17128,6 +17128,53 @@ Index.prototype.updateApiKey = function(key, acls, params, callback) {
     hostType: 'write',
     callback: callback
   });
+};
+
+
+/***/ }),
+
+/***/ 209:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+// This is the object returned by the `index.browseAll()` method
+
+module.exports = IndexBrowser;
+
+var inherits = __webpack_require__(37);
+var EventEmitter = __webpack_require__(77).EventEmitter;
+
+function IndexBrowser() {
+}
+
+inherits(IndexBrowser, EventEmitter);
+
+IndexBrowser.prototype.stop = function() {
+  this._stopped = true;
+  this._clean();
+};
+
+IndexBrowser.prototype._end = function() {
+  this.emit('end');
+  this._clean();
+};
+
+IndexBrowser.prototype._error = function(err) {
+  this.emit('error', err);
+  this._clean();
+};
+
+IndexBrowser.prototype._result = function(content) {
+  this.emit('result', content);
+};
+
+IndexBrowser.prototype._clean = function() {
+  this.removeAllListeners('stop');
+  this.removeAllListeners('end');
+  this.removeAllListeners('error');
+  this.removeAllListeners('result');
 };
 
 
@@ -27398,57 +27445,10 @@ return jQuery;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
-
-// This is the object returned by the `index.browseAll()` method
-
-module.exports = IndexBrowser;
-
-var inherits = __webpack_require__(37);
-var EventEmitter = __webpack_require__(77).EventEmitter;
-
-function IndexBrowser() {
-}
-
-inherits(IndexBrowser, EventEmitter);
-
-IndexBrowser.prototype.stop = function() {
-  this._stopped = true;
-  this._clean();
-};
-
-IndexBrowser.prototype._end = function() {
-  this.emit('end');
-  this._clean();
-};
-
-IndexBrowser.prototype._error = function(err) {
-  this.emit('error', err);
-  this._clean();
-};
-
-IndexBrowser.prototype._result = function(content) {
-  this.emit('result', content);
-};
-
-IndexBrowser.prototype._clean = function() {
-  this.removeAllListeners('stop');
-  this.removeAllListeners('end');
-  this.removeAllListeners('error');
-  this.removeAllListeners('result');
-};
-
-
-/***/ }),
-
-/***/ 211:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
 /* WEBPACK VAR INJECTION */(function(process) {
 
-var global = __webpack_require__(310);
-var Promise = global.Promise || __webpack_require__(309).Promise;
+var global = __webpack_require__(309);
+var Promise = global.Promise || __webpack_require__(308).Promise;
 
 // This is the standalone browser build entry point
 // Browser implementation of the Algolia Search JavaScript client,
@@ -27456,9 +27456,9 @@ var Promise = global.Promise || __webpack_require__(309).Promise;
 module.exports = function createAlgoliasearch(AlgoliaSearch, uaSuffix) {
   var inherits = __webpack_require__(37);
   var errors = __webpack_require__(23);
-  var inlineHeaders = __webpack_require__(213);
-  var jsonpRequest = __webpack_require__(214);
-  var places = __webpack_require__(216);
+  var inlineHeaders = __webpack_require__(212);
+  var jsonpRequest = __webpack_require__(213);
+  var places = __webpack_require__(215);
   uaSuffix = uaSuffix || '';
 
   if (process.env.NODE_ENV === 'debug') {
@@ -27468,7 +27468,7 @@ module.exports = function createAlgoliasearch(AlgoliaSearch, uaSuffix) {
   function algoliasearch(applicationID, apiKey, opts) {
     var cloneDeep = __webpack_require__(16);
 
-    var getDocumentProtocol = __webpack_require__(212);
+    var getDocumentProtocol = __webpack_require__(211);
 
     opts = cloneDeep(opts || {});
 
@@ -27481,7 +27481,7 @@ module.exports = function createAlgoliasearch(AlgoliaSearch, uaSuffix) {
     return new AlgoliaSearchBrowser(applicationID, apiKey, opts);
   }
 
-  algoliasearch.version = __webpack_require__(218);
+  algoliasearch.version = __webpack_require__(217);
   algoliasearch.ua = 'Algolia for vanilla JavaScript ' + uaSuffix + algoliasearch.version;
   algoliasearch.initPlaces = places(algoliasearch);
 
@@ -27669,7 +27669,7 @@ module.exports = function createAlgoliasearch(AlgoliaSearch, uaSuffix) {
 
 /***/ }),
 
-/***/ 212:
+/***/ 211:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27691,7 +27691,7 @@ function getDocumentProtocol() {
 
 /***/ }),
 
-/***/ 213:
+/***/ 212:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27699,7 +27699,7 @@ function getDocumentProtocol() {
 
 module.exports = inlineHeaders;
 
-var encode = __webpack_require__(468);
+var encode = __webpack_require__(467);
 
 function inlineHeaders(url, headers) {
   if (/\?/.test(url)) {
@@ -27714,7 +27714,7 @@ function inlineHeaders(url, headers) {
 
 /***/ }),
 
-/***/ 214:
+/***/ 213:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27847,11 +27847,11 @@ function jsonpRequest(url, opts, cb) {
 
 /***/ }),
 
-/***/ 215:
+/***/ 214:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = function omit(obj, test) {
-  var keys = __webpack_require__(463);
+  var keys = __webpack_require__(462);
   var foreach = __webpack_require__(24);
 
   var filtered = {};
@@ -27868,7 +27868,7 @@ module.exports = function omit(obj, test) {
 
 /***/ }),
 
-/***/ 216:
+/***/ 215:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = createPlacesClient;
@@ -27912,7 +27912,7 @@ function createPlacesClient(algoliasearch) {
 
 /***/ }),
 
-/***/ 217:
+/***/ 216:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var debug = __webpack_require__(36)('algoliasearch:src/hostIndexState.js');
@@ -28006,7 +28006,7 @@ function cleanup() {
 
 /***/ }),
 
-/***/ 218:
+/***/ 217:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -38833,11 +38833,11 @@ Vue$3.compile = compileToFunctions;
 
 module.exports = Vue$3;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3), __webpack_require__(7), __webpack_require__(472).setImmediate))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3), __webpack_require__(7), __webpack_require__(471).setImmediate))
 
 /***/ }),
 
-/***/ 229:
+/***/ 228:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -38845,7 +38845,7 @@ module.exports = Vue$3;
 
 var utils = __webpack_require__(5);
 var bind = __webpack_require__(127);
-var Axios = __webpack_require__(231);
+var Axios = __webpack_require__(230);
 var defaults = __webpack_require__(75);
 
 /**
@@ -38880,19 +38880,84 @@ axios.create = function create(instanceConfig) {
 
 // Expose Cancel & CancelToken
 axios.Cancel = __webpack_require__(124);
-axios.CancelToken = __webpack_require__(230);
+axios.CancelToken = __webpack_require__(229);
 axios.isCancel = __webpack_require__(125);
 
 // Expose all/spread
 axios.all = function all(promises) {
   return Promise.all(promises);
 };
-axios.spread = __webpack_require__(245);
+axios.spread = __webpack_require__(244);
 
 module.exports = axios;
 
 // Allow use of default import syntax in TypeScript
 module.exports.default = axios;
+
+
+/***/ }),
+
+/***/ 229:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var Cancel = __webpack_require__(124);
+
+/**
+ * A `CancelToken` is an object that can be used to request cancellation of an operation.
+ *
+ * @class
+ * @param {Function} executor The executor function.
+ */
+function CancelToken(executor) {
+  if (typeof executor !== 'function') {
+    throw new TypeError('executor must be a function.');
+  }
+
+  var resolvePromise;
+  this.promise = new Promise(function promiseExecutor(resolve) {
+    resolvePromise = resolve;
+  });
+
+  var token = this;
+  executor(function cancel(message) {
+    if (token.reason) {
+      // Cancellation has already been requested
+      return;
+    }
+
+    token.reason = new Cancel(message);
+    resolvePromise(token.reason);
+  });
+}
+
+/**
+ * Throws a `Cancel` if cancellation has been requested.
+ */
+CancelToken.prototype.throwIfRequested = function throwIfRequested() {
+  if (this.reason) {
+    throw this.reason;
+  }
+};
+
+/**
+ * Returns an object that contains a new `CancelToken` and a function that, when called,
+ * cancels the `CancelToken`.
+ */
+CancelToken.source = function source() {
+  var cancel;
+  var token = new CancelToken(function executor(c) {
+    cancel = c;
+  });
+  return {
+    token: token,
+    cancel: cancel
+  };
+};
+
+module.exports = CancelToken;
 
 
 /***/ }),
@@ -38989,77 +39054,12 @@ module.exports = {
 "use strict";
 
 
-var Cancel = __webpack_require__(124);
-
-/**
- * A `CancelToken` is an object that can be used to request cancellation of an operation.
- *
- * @class
- * @param {Function} executor The executor function.
- */
-function CancelToken(executor) {
-  if (typeof executor !== 'function') {
-    throw new TypeError('executor must be a function.');
-  }
-
-  var resolvePromise;
-  this.promise = new Promise(function promiseExecutor(resolve) {
-    resolvePromise = resolve;
-  });
-
-  var token = this;
-  executor(function cancel(message) {
-    if (token.reason) {
-      // Cancellation has already been requested
-      return;
-    }
-
-    token.reason = new Cancel(message);
-    resolvePromise(token.reason);
-  });
-}
-
-/**
- * Throws a `Cancel` if cancellation has been requested.
- */
-CancelToken.prototype.throwIfRequested = function throwIfRequested() {
-  if (this.reason) {
-    throw this.reason;
-  }
-};
-
-/**
- * Returns an object that contains a new `CancelToken` and a function that, when called,
- * cancels the `CancelToken`.
- */
-CancelToken.source = function source() {
-  var cancel;
-  var token = new CancelToken(function executor(c) {
-    cancel = c;
-  });
-  return {
-    token: token,
-    cancel: cancel
-  };
-};
-
-module.exports = CancelToken;
-
-
-/***/ }),
-
-/***/ 231:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
 var defaults = __webpack_require__(75);
 var utils = __webpack_require__(5);
-var InterceptorManager = __webpack_require__(232);
-var dispatchRequest = __webpack_require__(233);
-var isAbsoluteURL = __webpack_require__(241);
-var combineURLs = __webpack_require__(239);
+var InterceptorManager = __webpack_require__(231);
+var dispatchRequest = __webpack_require__(232);
+var isAbsoluteURL = __webpack_require__(240);
+var combineURLs = __webpack_require__(238);
 
 /**
  * Create a new instance of Axios
@@ -39141,7 +39141,7 @@ module.exports = Axios;
 
 /***/ }),
 
-/***/ 232:
+/***/ 231:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39201,14 +39201,14 @@ module.exports = InterceptorManager;
 
 /***/ }),
 
-/***/ 233:
+/***/ 232:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var utils = __webpack_require__(5);
-var transformData = __webpack_require__(236);
+var transformData = __webpack_require__(235);
 var isCancel = __webpack_require__(125);
 var defaults = __webpack_require__(75);
 
@@ -39288,7 +39288,7 @@ module.exports = function dispatchRequest(config) {
 
 /***/ }),
 
-/***/ 234:
+/***/ 233:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39315,7 +39315,7 @@ module.exports = function enhanceError(error, config, code, response) {
 
 /***/ }),
 
-/***/ 235:
+/***/ 234:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39348,7 +39348,7 @@ module.exports = function settle(resolve, reject, response) {
 
 /***/ }),
 
-/***/ 236:
+/***/ 235:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39376,7 +39376,7 @@ module.exports = function transformData(data, headers, fns) {
 
 /***/ }),
 
-/***/ 237:
+/***/ 236:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39420,7 +39420,7 @@ module.exports = btoa;
 
 /***/ }),
 
-/***/ 238:
+/***/ 237:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39496,7 +39496,7 @@ module.exports = function buildURL(url, params, paramsSerializer) {
 
 /***/ }),
 
-/***/ 239:
+/***/ 238:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39516,36 +39516,7 @@ module.exports = function combineURLs(baseURL, relativeURL) {
 
 /***/ }),
 
-/***/ 24:
-/***/ (function(module, exports) {
-
-
-var hasOwn = Object.prototype.hasOwnProperty;
-var toString = Object.prototype.toString;
-
-module.exports = function forEach (obj, fn, ctx) {
-    if (toString.call(fn) !== '[object Function]') {
-        throw new TypeError('iterator must be a function');
-    }
-    var l = obj.length;
-    if (l === +l) {
-        for (var i = 0; i < l; i++) {
-            fn.call(ctx, obj[i], i, obj);
-        }
-    } else {
-        for (var k in obj) {
-            if (hasOwn.call(obj, k)) {
-                fn.call(ctx, obj[k], k, obj);
-            }
-        }
-    }
-};
-
-
-
-/***/ }),
-
-/***/ 240:
+/***/ 239:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39606,7 +39577,36 @@ module.exports = (
 
 /***/ }),
 
-/***/ 241:
+/***/ 24:
+/***/ (function(module, exports) {
+
+
+var hasOwn = Object.prototype.hasOwnProperty;
+var toString = Object.prototype.toString;
+
+module.exports = function forEach (obj, fn, ctx) {
+    if (toString.call(fn) !== '[object Function]') {
+        throw new TypeError('iterator must be a function');
+    }
+    var l = obj.length;
+    if (l === +l) {
+        for (var i = 0; i < l; i++) {
+            fn.call(ctx, obj[i], i, obj);
+        }
+    } else {
+        for (var k in obj) {
+            if (hasOwn.call(obj, k)) {
+                fn.call(ctx, obj[k], k, obj);
+            }
+        }
+    }
+};
+
+
+
+/***/ }),
+
+/***/ 240:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39628,7 +39628,7 @@ module.exports = function isAbsoluteURL(url) {
 
 /***/ }),
 
-/***/ 242:
+/***/ 241:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39704,7 +39704,7 @@ module.exports = (
 
 /***/ }),
 
-/***/ 243:
+/***/ 242:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39724,7 +39724,7 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
 
 /***/ }),
 
-/***/ 244:
+/***/ 243:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39769,7 +39769,7 @@ module.exports = function parseHeaders(headers) {
 
 /***/ }),
 
-/***/ 245:
+/***/ 244:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39995,7 +39995,7 @@ process.umask = function() { return 0; };
 
 /***/ }),
 
-/***/ 308:
+/***/ 307:
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -40011,7 +40011,7 @@ exports.coerce = coerce;
 exports.disable = disable;
 exports.enable = enable;
 exports.enabled = enabled;
-exports.humanize = __webpack_require__(462);
+exports.humanize = __webpack_require__(461);
 
 /**
  * The currently active debug mode names, and names to skip.
@@ -40204,7 +40204,7 @@ function coerce(val) {
 
 /***/ }),
 
-/***/ 309:
+/***/ 308:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process, global) {/*!
@@ -41391,7 +41391,7 @@ return Promise$1;
 
 /***/ }),
 
-/***/ 310:
+/***/ 309:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var win;
@@ -45898,7 +45898,7 @@ module.exports = function map(arr, fn) {
  * Expose `debug()` as the module.
  */
 
-exports = module.exports = __webpack_require__(308);
+exports = module.exports = __webpack_require__(307);
 exports.log = log;
 exports.formatArgs = formatArgs;
 exports.save = save;
@@ -46124,7 +46124,7 @@ module.exports = Array.isArray || function (arr) {
 
 /***/ }),
 
-/***/ 462:
+/***/ 461:
 /***/ (function(module, exports) {
 
 /**
@@ -46283,7 +46283,7 @@ function plural(ms, n, name) {
 
 /***/ }),
 
-/***/ 463:
+/***/ 462:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -46293,7 +46293,7 @@ function plural(ms, n, name) {
 var has = Object.prototype.hasOwnProperty;
 var toStr = Object.prototype.toString;
 var slice = Array.prototype.slice;
-var isArgs = __webpack_require__(464);
+var isArgs = __webpack_require__(463);
 var isEnumerable = Object.prototype.propertyIsEnumerable;
 var hasDontEnumBug = !isEnumerable.call({ toString: null }, 'toString');
 var hasProtoEnumBug = isEnumerable.call(function () {}, 'prototype');
@@ -46431,7 +46431,7 @@ module.exports = keysShim;
 
 /***/ }),
 
-/***/ 464:
+/***/ 463:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -46456,7 +46456,7 @@ module.exports = function isArguments(value) {
 
 /***/ }),
 
-/***/ 468:
+/***/ 467:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -46549,7 +46549,7 @@ var objectKeys = Object.keys || function (obj) {
 
 /***/ }),
 
-/***/ 469:
+/***/ 468:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
@@ -46743,7 +46743,7 @@ var objectKeys = Object.keys || function (obj) {
 
 /***/ }),
 
-/***/ 471:
+/***/ 470:
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**!
@@ -48294,7 +48294,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**!
 
 /***/ }),
 
-/***/ 472:
+/***/ 471:
 /***/ (function(module, exports, __webpack_require__) {
 
 var apply = Function.prototype.apply;
@@ -48347,7 +48347,7 @@ exports._unrefActive = exports.active = function(item) {
 };
 
 // setimmediate attaches itself to the global object
-__webpack_require__(469);
+__webpack_require__(468);
 exports.setImmediate = setImmediate;
 exports.clearImmediate = clearImmediate;
 
@@ -48775,14 +48775,14 @@ exports.mixin = mixin;
 
 /***/ }),
 
-/***/ 560:
+/***/ 559:
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
 /***/ }),
 
-/***/ 562:
+/***/ 561:
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(22);
@@ -48809,8 +48809,8 @@ module.exports = __webpack_require__(110);
 "use strict";
 
 
-var AlgoliaSearch = __webpack_require__(207);
-var createAlgoliasearch = __webpack_require__(211);
+var AlgoliaSearch = __webpack_require__(206);
+var createAlgoliasearch = __webpack_require__(210);
 
 module.exports = createAlgoliasearch(AlgoliaSearch);
 
@@ -48820,7 +48820,7 @@ module.exports = createAlgoliasearch(AlgoliaSearch);
 /***/ 69:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(229);
+module.exports = __webpack_require__(228);
 
 /***/ }),
 
@@ -48895,7 +48895,7 @@ module.exports = function deprecatedMessage(previousUsage, newUsage) {
 /* WEBPACK VAR INJECTION */(function(process) {
 
 var utils = __webpack_require__(5);
-var normalizeHeaderName = __webpack_require__(243);
+var normalizeHeaderName = __webpack_require__(242);
 
 var PROTECTION_PREFIX = /^\)\]\}',?\n/;
 var DEFAULT_CONTENT_TYPE = {
@@ -49299,4 +49299,4 @@ function isUndefined(arg) {
 
 /***/ })
 
-},[562]);
+},[561]);

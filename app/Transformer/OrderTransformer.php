@@ -26,6 +26,10 @@ class OrderTransformer extends TransformerAbstract
 		'confirmed' => $order->confirmed,
 		'trans' => $order->trans,
 		'shipped' => $order->shipped,
+		'carrier' => $order->carrier,
+		'tracking_number' => $order->tracking_number,
+		'address' => $order->address,
+		'date_paid' => $order->date_paid,
     'created_at' => Date::parse($order->created_at)->diffForHumans(),
 		];
 	}
