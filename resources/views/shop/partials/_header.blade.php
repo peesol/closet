@@ -19,11 +19,6 @@
 
     <div class="profile-header-row flex">
       <label class="profile-name">{{ $shop->name }}</label>
-
-      <div class="align-bottom-right">
-
-      </div>
-
     </div>
 
       <shop-stats shop-slug="{{ $shop->slug}}"></shop-stats>
@@ -37,7 +32,7 @@
       </div>
     @endif
     <div class="profile-header-row">
-      <shop-vote shop-slug="{{ $shop->slug}}"></shop-vote>
+      <shop-rating shop-slug="{{ $shop->slug }}"></shop-rating>
     </div>
 
   </div>

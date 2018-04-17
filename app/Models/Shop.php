@@ -42,6 +42,10 @@ class Shop extends Model
     {
       return $this->hasMany(Contact::class);
     }
+    public function feedback()
+    {
+      return $this->hasMany(Feedback::class);
+    }
     public function getRouteKeyName()
     {
       return 'slug';
@@ -99,10 +103,6 @@ class Shop extends Model
       return $this->votes->where('type','down');
     }
     public function voteFromUser(User $user)
-    {
-      return $this->votes->where('user_id', $user->id);
-    }
-    public function voteFromUserAlt(User $user)
     {
       return $this->votes->where('user_id', $user->id);
     }

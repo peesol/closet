@@ -229,12 +229,18 @@ Route::namespace('Shop')->group(function () {
   Route::get('/{shop}/products', 'ShopController@product');
   Route::get('/{shop}/collection', 'ShopController@collection');
   Route::get('/{shop}/about', 'ShopController@about');
+  Route::get('/{shop}/reviews', 'ShopController@review');
   Route::get('/{shop}/status', 'ShopController@getStatus');
   Route::put('/{shop}/views', 'ShopController@logView');
   // Shop Votes
   Route::get('/{shop}/votes', 'VoteController@get');
   Route::post('/{shop}/votes', 'VoteController@create');
   Route::delete('/{shop}/votes', 'VoteController@delete');
+  //shop Reviews
+  Route::get('/{shop}/reviews/get', 'ReviewController@get');
+  Route::get('/{shop}/reviews/total', 'ReviewController@getTotalReview');
+  Route::post('/{shop}/reviews', 'ReviewController@create');
+  Route::delete('/{shop}/reviews/delete/{feedback}', 'ReviewController@delete');
 });
 /*
 |--------------------------------------------------------------------------

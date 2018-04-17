@@ -30,9 +30,7 @@ export default {
       data: [],
       address: null,
       phone: null,
-      name: null,
-      
-      url: window.Closet.url,
+      name: null
     }
   },
   props: {

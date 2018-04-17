@@ -42,15 +42,15 @@ class ShopController extends Controller
   }
   public function collection(Shop $shop)
   {
-      return view('shop.collection', [
-          'shop' => $shop
-          ]);
+      return view('shop.collection', [ 'shop' => $shop ]);
   }
   public function about(Shop $shop)
   {
-      return view('shop.about', [
-          'shop' => $shop
-          ]);
+      return view('shop.about', [ 'shop' => $shop ]);
+  }
+  public function review(Shop $shop)
+  {
+      return view('shop.review', [ 'shop' => $shop ]);
   }
   public function logView(Shop $shop)
   {

@@ -48,7 +48,7 @@ window.Closet = {
 </head>
 <body>
   <div class="overlay"></div>
-    <div id="app">
+    <div id="app" v-cloak>
 
         @include('layouts.partials._navigation')
 

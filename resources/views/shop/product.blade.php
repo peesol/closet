@@ -17,6 +17,7 @@
                           <button class="tab-nav-btn static current"><span class="icon-silhouette"></span><font>{{__('message.product')}}</font></button>
                           <button class="tab-nav-btn static" onclick='document.location.href="/{{$shop->slug}}/collection"'><span class="icon-map"></span><font>{{__('message.collection')}}</font></button>
                           <button class="tab-nav-btn static" onclick='document.location.href="/{{$shop->slug}}/about"'><span class="icon-user"></span><font>{{__('message.about')}}</font></button>
+                          <button class="tab-nav-btn static" onclick='document.location.href="/{{$shop->slug}}/reviews"'><span class="icon-star-full"></span><font>{{__('message.review')}}</font></button>
                         </ul>
                     </div>
         <div style="padding: 15px 45px;"><h3 class="no-margin">{{__('message.products')}}&nbsp;({{$products->count()}})</h3></div>

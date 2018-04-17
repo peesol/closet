@@ -26,7 +26,7 @@ class VoteController extends Controller
 		return response()->json(null, 200);
 	}
 
-	public function delete(Request $request,Shop $shop)
+	public function delete(Request $request, Shop $shop)
 	{
 		$userVotes = $shop->voteFromUser($request->user())->count();
 
@@ -51,7 +51,7 @@ class VoteController extends Controller
     	$response['down'] = $shop->downVotes()->count();
 
     	if ($request->user()) {
-    		$voteFromUser = $shop->voteFromUserAlt($request->user())->first();
+    		$voteFromUser = $shop->voteFromUser($request->user())->first();
     		$response['user_vote'] = $voteFromUser ? $voteFromUser->type : null;
     	}
 

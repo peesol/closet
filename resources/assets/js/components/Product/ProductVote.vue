@@ -1,5 +1,5 @@
 <template>
-<div v-if="user !== null">
+<div v-if="$root.authenticated">
   <div class="vote">
     <button class="vote-btn" v-bind:class="{'vote-btn-voted': userVote == 'up'}" @click.prevent="vote('up')">
 			<span class="icon-heart"></span>&nbsp;{{ up }}
@@ -32,9 +32,7 @@ export default {
     return {
       up: null,
       down: null,
-      userVote: null,
-      url: window.Closet.url,
-      user: window.Closet.user.user,
+      userVote: null
     }
   },
 
@@ -100,7 +98,6 @@ export default {
 
   created() {
     this.getVotes();
-
   },
 
   mounted() {

@@ -39,12 +39,11 @@ export default {
       shipping: null,
       shipping_fee: null,
       index: null,
-      translate: this.$trans,
-      url: window.Closet.url,
+      translate: this.$trans
     }
   },
   props: {
-    uid: null, 
+    uid: null,
   },
   methods: {
     confirm(uid) {

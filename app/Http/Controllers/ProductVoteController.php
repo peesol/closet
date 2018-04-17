@@ -55,7 +55,7 @@ class ProductVoteController extends Controller
     	// $response['percentage'] = $calculated . '%';
 
     	if ($request->user()) {
-    		$voteFromUser = $product->voteFromUserAlt($request->user())->first();
+    		$voteFromUser = $product->voteFromUser($request->user())->first();
     		$response['user_vote'] = $voteFromUser ? $voteFromUser->type : null;
     	}
 

@@ -84,7 +84,7 @@ return [
     'product' => 'Product',
     'products' => 'Products',
     'collection' => 'Collection',
-    'about' => 'About',
+    'review' => 'Reviews',
     'description' => 'Description',
     'no_description' => 'No description.',
     'popular' => 'Popular',

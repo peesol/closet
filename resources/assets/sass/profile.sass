@@ -142,3 +142,87 @@
   background-color: #e43727
   color: #ffffff
   border: 1px solid #e43727
+
+.rating
+  &:not(old)
+    display: flex
+    flex-direction: row-reverse
+    justify-content: space-around
+    height: 40px
+    >
+      input
+        display: none
+      label
+        cursor: pointer
+        line-height: 40px
+        text-align: center
+        font-size: 1.8em
+        display: block
+        float: right
+        position: relative
+        &:before
+          font-family: 'icomoon' !important
+          content: '\e9d9'
+          display: block
+          width: 40px
+          height: 40px
+          color: #ddd
+          transition: color 0.2s linear
+        &:hover
+          &:before, ~ label:before
+            color: #ff8000
+  &:not(:hover) > :checked ~ label:before
+    color: #ff8000
+
+.review-wrapper
+  display: inline-block
+  position: relative
+  width: 100%
+  padding: 8px
+  border-radius: 5px
+  margin-bottom: 15px
+  border: 1px solid #f2f2f2
+  box-shadow: 0 3px 3px 0 rgba(0,0,0,0.14), 0 1px 7px 0 rgba(0,0,0,0.12), 0 3px 1px -1px rgba(0,0,0,0.2)
+  label i
+    color: #ff8000
+  a, p
+  min-width: 100%
+  a
+    display: block
+    font-size: 1rem
+  p
+    word-wrap: break-word
+    margin: 7px 0
+  &.user
+    width: 100%
+    margin-bottom: 30px
+
+.total-rating
+  margin-bottom: 20px
+  width: 120px
+  text-align: center
+  background: #ff8000
+  padding: 10px
+  border-radius: 5px
+  color: #fff
+  h2
+    margin: 0
+
+.profile-rating
+  width: 100%
+  height: 100%
+  text-align: center
+  background: #ff8000
+  border-radius: 5px
+  color: #fff
+  label
+    font-size: 1.5em
+
+@media (min-width:768px)
+  .review-wrapper
+    display: flex
+    flex-flow: column
+
+@media (min-width:992px)
+  .review-wrapper
+    width: 50%

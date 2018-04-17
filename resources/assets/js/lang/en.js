@@ -172,4 +172,7 @@ export default {
     logout: 'Logout',
     login: 'Login',
     register: 'Register',
+    //review
+    user_review: 'Your review',
+    write_review: 'Leave review',
   }

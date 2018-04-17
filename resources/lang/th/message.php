@@ -85,6 +85,7 @@ return [
     'products' => 'สินค้า',
     'collection' => 'คอลเล็คชั่น',
     'about' => 'เกี่ยวกับ',
+    'review' => 'รีวิว',
     'description' => 'รายละเอียด',
     'no_description' => 'ไม่มีรายละเอียด',
     'popular' => 'ยอดนิยม',

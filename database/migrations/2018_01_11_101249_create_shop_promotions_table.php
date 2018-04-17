@@ -16,9 +16,9 @@ class CreateShopPromotionsTable extends Migration
       Schema::create('shop_promotions', function (Blueprint $table) {
           $table->increments('id');
           $table->integer('shop_id')->unsigned();
-          $table->integer('discount');
-          $table->integer('get_another');
-          $table->integer('flash_sale');
+          $table->tinyInteger('discount');
+          $table->tinyInteger('get_another');
+          $table->tinyInteger('flash_sale');
 
           $table->foreign('shop_id')->references('id')->on('shops')->onDelete('cascade');
           $table->timestamps();

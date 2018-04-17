@@ -174,4 +174,7 @@ export default {
     logout: 'ล็อกเอาท์',
     login: 'ล็อกอิน',
     register: 'สมัครสมาชิก',
+    //review
+    user_review: 'รีวิวของคุณ',
+    write_review: 'เขียนรีวิว',
 }
