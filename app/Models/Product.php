@@ -116,6 +116,10 @@ class Product extends Model
     {
       return $this->morphMany(Comment::class, 'commentable')->whereNull('reply_id');
     }
+    public function reports()
+    {
+      return $this->morphMany(Report::class, 'reportable');
+    }
     public function getImage()
     {
       return config('closet.buckets.images') . '/product/thumbnail/' . $this->thumbnail;

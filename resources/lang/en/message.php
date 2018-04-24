@@ -62,6 +62,7 @@ return [
     'category' => 'Category',
     'subcategory' => 'Subcategory',
     'by' => 'By',
+    'seller' => 'Seller',
     'product_edit' => 'Product Edit',
     'product_name' => 'Product Name',
     'choice' => 'Choice',
@@ -197,4 +198,12 @@ return [
     'product_discount_info3' => 'Sale tag will show on your product thumbnail.',
     'product_discount_info4' => 'All products that have discount will be reset to it\'s normal price at the end of the month.',
     'product_discount_warn' => 'You can not refund spent points by any means. Use it wisely.',
+    //Reports
+    'report_product' => 'Report Product',
+    'report_seller' => 'Report Seller',
+    'report_title' => 'Title',
+    'report_body' => 'Tell us your problems',
+    'report_submit' => 'Send',
+    'report_success' => 'Your message has been sent to us.',
+    'report_success_notice' => 'It may take up to 48 hours until we investigate your case and answer back to your email.',
 ];

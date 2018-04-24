@@ -25,10 +25,7 @@ Route::prefix('product')->group(function () {
   Route::get('/{product}/views', 'ProductController@viewCount');
   Route::put('/{product}/views', 'ProductController@logView');
   Route::get('/{product}/comments', 'ProductCommentController@index');
-
-  Route::get('/{product}/report', 'ProductController@reportPage');
 });
-
 
 Route::get('/product/used/{product}', 'UsedController@show');
 Route::get('/product/used/{product}/comments', 'UsedCommentController@index');
@@ -41,6 +38,17 @@ Route::get('/category/{category}', 'CategoryController@category');
 
 Route::get('/follow/{shop}', 'ShopFollowController@show');
 
+/*
+|--------------------------------------------------------------------------
+| Report Routes
+|--------------------------------------------------------------------------
+*/
+
+Route::get('/report/product/{product}', 'Report\ReportController@productView');
+Route::get('/report/shop/{shop}', 'Report\ReportController@shopView');
+Route::post('/report/product/{product}/sending', 'Report\ReportController@productCreate')->name('productReport');
+Route::post('/report/shop/{shop}/sending', 'Report\ReportController@shopCreate')->name('shopReport');
+Route::get('/report/success', 'Report\ReportController@success')->name('reportSuccess');
 
 
 /*

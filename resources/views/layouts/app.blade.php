@@ -11,7 +11,6 @@
     <title>@yield('title'){{config('app.name') }}</title>
 
     <!-- Styles -->
-    {{-- <link href="{{asset('css/all.css')}}" rel="stylesheet"> --}}
     <link href="{{asset('css/main.css')}}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Athiti" rel="stylesheet">

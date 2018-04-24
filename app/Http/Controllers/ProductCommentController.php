@@ -24,7 +24,7 @@ class ProductCommentController extends Controller
     		);
     }
 
-    public function create(CreateProductCommentRequest $request,Product $product)
+    public function create(CreateProductCommentRequest $request, Product $product)
     {
     	$comment = $product->comments()->create([
     		'body' => $request->body,

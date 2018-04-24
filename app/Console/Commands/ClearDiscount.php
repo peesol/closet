@@ -3,7 +3,8 @@
 namespace Closet\Console\Commands;
 
 use DB;
-use DateTime;
+use Carbon\Carbon;
+use Closet\Models\Product;
 use Illuminate\Console\Command;
 
 class ClearDiscount extends Command
@@ -39,7 +40,9 @@ class ClearDiscount extends Command
      */
     public function handle()
     {
-        DB::table('products')->update(['discount_price' => null, 'discount_date' => null]);
+        $time = Carbon::now('Asia/Bangkok')->subDays(30)->toDateTimeString();
+        $data = Product::where('discount_date', '<=', $time);
+        $data->update(['discount_price' => 159352]);
         $this->info('All discounts are cleared!!!');
     }
 }

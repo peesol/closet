@@ -1,6 +1,8 @@
 <?php
 
 namespace Closet\Http\Controllers;
+
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Closet\Models\{Discount, Shop, Product};
 
@@ -11,21 +13,25 @@ class PromotionController extends Controller
       $promotions = $request->user()->shop->availablePromotions;
       return view('promotion.index', ['points' => $promotions]);
     }
+
     public function getShopPromotion(Request $request)
     {
       $promotions = $request->user()->shop->availablePromotions;
       return response()->json($promotions);
     }
+
     //Discount Codes
     public function codePage(Request $request)
     {
       return view('promotion.code');
     }
+
     public function getCodes(Request $request)
     {
       $codes = $request->user()->shop->code;
       return response()->json($codes);
     }
+
     public function createCode(Request $request)
     {
       $code = $request->user()->shop->code()->create([
@@ -36,11 +42,13 @@ class PromotionController extends Controller
       ]);
       return response()->json($code);
     }
+
     public function removeCode(Request $request, Discount $discount)
     {
       $discount->delete();
       return response()->json();
     }
+
     public function validateCode(Request $request, Discount $discount)
     {
       $match = Discount::where(['code' => $request->code, 'shop_id' => $request->shop_id])->first();
@@ -54,6 +62,7 @@ class PromotionController extends Controller
         return response()->json(false, 200);
       }
     }
+    
     //Product Discount
     public function discountPage(Request $request)
     {
@@ -78,13 +87,19 @@ class PromotionController extends Controller
         return response()->json(false, 200);
       } else {
         $request->user()->shop->availablePromotions->decrement('discount', 1);
-        $target = $product->update(['discount_price' => $product->price - $request->discount]);
+        $target = $product->update([
+          'discount_price' => $product->price - $request->discount,
+          'discount_date' => Carbon::now()
+        ]);
         return response()->json($product);
       }
     }
     public function removeDiscount(Product $product)
     {
-      $product->update(['discount_price' => null]);
+      $product->update([
+        'discount_price' => null,
+        'discount_date' => null
+      ]);
       return response()->json(null, 200);
     }
 }

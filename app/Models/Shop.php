@@ -114,4 +114,8 @@ class Shop extends Model
     {
       return $this->hasOne(ShopPromotion::class);
     }
+    public function reports()
+    {
+      return $this->morphMany(Report::class, 'reportable');
+    }
 }
