@@ -1,36 +1,54 @@
 @if ($paginator->hasPages())
-    <ul class="pagination">
-        {{-- Previous Page Link --}}
+    <div class="pagination">
+
+      {{-- First Page Elements --}}
+      @if ($paginator->onFirstPage())
+        <div class="first">
+          <a>&laquo;&nbsp;{{__('message.first_page')}}</a>
+        </div>
+      @endif
+
+      <div class="pages">
+        {{-- Previous Page divnk --}}
         @if ($paginator->onFirstPage())
-            <li class="disabled"><span>&laquo;</span></li>
+            <div class="arrow disabled"><span>&laquo;</span></div>
         @else
-            <li><a href="{{ $paginator->previousPageUrl() }}" rel="prev">&laquo;</a></li>
+            <div class="arrow"><a href="{{ $paginator->previousPageUrl() }}" rel="prev">&laquo;</a></div>
         @endif
 
         {{-- Pagination Elements --}}
         @foreach ($elements as $element)
             {{-- "Three Dots" Separator --}}
             @if (is_string($element))
-                <li class="disabled"><span>{{ $element }}</span></li>
+                <div class="disabled"><span>{{ $element }}</span></div>
             @endif
 
-            {{-- Array Of Links --}}
+            {{-- Array Of divnks --}}
             @if (is_array($element))
                 @foreach ($element as $page => $url)
                     @if ($page == $paginator->currentPage())
-                        <li class="active"><span>{{ $page }}</span></li>
+                        <div class="page active"><span>{{ $page }}</span></div>
                     @else
-                        <li><a href="{{ $url }}">{{ $page }}</a></li>
+                        <div class="page"><a href="{{ $url }}">{{ $page }}</a></div>
                     @endif
                 @endforeach
             @endif
+
         @endforeach
 
-        {{-- Next Page Link --}}
+        {{-- Next Page divnk --}}
         @if ($paginator->hasMorePages())
-            <li><a href="{{ $paginator->nextPageUrl() }}" rel="next">&raquo;</a></li>
+            <div class="arrow"><a href="{{ $paginator->nextPageUrl() }}" rel="next">&raquo;</a></div>
         @else
-            <li class="disabled"><span>&raquo;</span></li>
+            <div class="arrow disabled"><span>&raquo;</span></div>
         @endif
-    </ul>
+      </div>
+      {{-- Last Page Elements --}}
+      @if ($paginator->hasMorePages())
+        <div class="last">
+          <a>{{__('message.last_page')}}&nbsp;&raquo;</a>
+        </div>
+      @endif
+
+    </div>
 @endif

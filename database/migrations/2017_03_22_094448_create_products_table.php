@@ -19,6 +19,7 @@ class CreateProductsTable extends Migration
             $table->integer('category_id')->unsigned();
             $table->integer('subcategory_id')->unsigned();
             $table->integer('type_id')->unsigned();
+            $table->tinyInteger('shop_type');
             $table->string('uid');
             $table->string('name');
             $table->integer('price');

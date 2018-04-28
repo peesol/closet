@@ -4,31 +4,23 @@
 
     <div v-for="product in products" v-show="products.length" class="carousel-thumb-wrap">
       <a :href="$root.url + '/product/' + product.uid">
-          <img class="products-img-thumb" :src="'https://s3-ap-southeast-1.amazonaws.com/images.closet.com' + path + product.thumbnail" :alt="product.thumbnail">
-          <div class="thumb-title">
-            <a :href="$root.url + '/product/' + product.uid">{{ product.name }}</a>
+        <img class="products-img-thumb" :src="img_source + path + product.thumbnail" :alt="product.thumbnail">
+    <span v-show="product.discount_price" class="sale top-right">Sale</span>
+    <span v-if="product.discount_price" class="thumb-price-discount bottom-left">{{ $number.currency(product.discount_price) }}&#3647;</span>
+
+    <span v-else class="thumb-price bottom-left">{{ $number.currency(product.price) }}&#3647;</span>
+    </a>
     </div>
 
-    <span v-show="product.discount_price" class="thumb-price bottom-left">
-            <strike>{{ product.price }}&#3647;</strike>
-            {{ product.discount_price }}&#3647;
-    </span>
-
-    <span v-show="!product.discount_price" class="thumb-price bottom-left">{{ $number.currency(product.price) }}&#3647;</span>
-
-    </a>
-</div>
-
-<img v-show="imgs.length" v-for="img in imgs" :src="'https://s3-ap-southeast-1.amazonaws.com/images.closet.com' + path + img.filename" :alt="img.filename">
-</slick>
+    <img v-show="imgs.length" v-for="img in imgs" :src="img_source + path + img.filename" :alt="img.filename">
+    <img v-show="banners !== null" v-for="img in banners" :src="img_source + '/banner/banner' + img + '.jpg'" alt="banner">
+  </slick>
 </div>
 </template>
 
 <script>
 import Slick from 'vue-slick'
-import {
-  options
-} from '../misc/slick-options'
+import { options } from '../misc/slick-options'
 
 export default {
   components: {
@@ -36,6 +28,7 @@ export default {
   },
   data() {
     return {
+      img_source: 'https://s3-ap-southeast-1.amazonaws.com/images.closet.com',
       slickOptions: options({
         view: this.slickFor
       }),
@@ -44,6 +37,7 @@ export default {
   props: {
     products: [],
     imgs: [],
+    banners: null,
     path: null,
     slickFor: null,
   },

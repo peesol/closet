@@ -21,6 +21,7 @@ class Product extends Model
       'category_id',
       'subcategory_id',
       'type_id',
+      'shop_type',
       'thumbnail',
       'price',
       'discount_price',
@@ -34,12 +35,13 @@ class Product extends Model
       'shipping_fee',
       'shipping_inter',
     ];
+
     public $hidden = [
       'created_at',
       'updated_at',
-      'shipping_inter',
-      'discount_date',
+      'shipping_inter'
     ];
+
     public function shop()
     {
     	return $this->belongsTo(Shop::class);

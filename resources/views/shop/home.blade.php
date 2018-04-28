@@ -2,10 +2,7 @@
 @section('title')
 {{$shop->name.' - '}}
 @endsection
-@section('css')
-<link href="https://s3-ap-southeast-1.amazonaws.com/files.closet/css/extra/slick-theme.css" rel="stylesheet">
-<link href="https://s3-ap-southeast-1.amazonaws.com/files.closet/css/extra/slick.css" rel="stylesheet">
-@endsection
+
 @section('scripts')
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
 
@@ -62,10 +59,8 @@
                       <div class="panel-heading-alt">
                         <label class="heading">{{__('message.popular')}}</label>
                       </div>
-                      <div class="panel-body-alt">
-                        <div class="shop-carousel">
-                          <vue-slick :products="{{$populars}}" path="/product/thumbnail/" slick-for="shop"></vue-slick>
-                        </div>
+                      <div class="products-carousel">
+                        <vue-slick :products="{{$populars}}" path="/product/thumbnail/" slick-for="shop"></vue-slick>
                       </div>
                       @else
                         <div class="panel-body-alt">

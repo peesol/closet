@@ -41,6 +41,11 @@ return [
     //Home
     'home_signup' => 'ช็อป หรือ ขาย?',
     'home_signup_link' => 'สมัครสมาชิกเลย',
+    'featured_product' => 'สินค้าแนะนำ',
+    'featured_shops' => 'ร้านค้าแนะนำ',
+    'trending_product' => 'สินค้ามาแรง',
+    'trending_shops' => 'ร้านค้ามาแรง',
+    'read_more' => 'ดูเพิ่ม..',
     //Navigation
     'sell' => 'ขาย',
     'my_closet' => 'ตู้ของฉัน',
@@ -207,4 +212,7 @@ return [
     'report_submit' => 'แจ้งปัญหา',
     'report_success' => 'แจ้งปัญหาเรียบร้อยแล้ว',
     'report_success_notice' => 'ในการตรวจสอบปัญหาที่แจ้งเข้ามา ทางเราจะทำการแจ้งผลกลับถึงคุณภายในเวลา 48 ชั่วโมง (นับเฉพาะวันทำการเท่านั้น)',
+    //pagination
+    'first_page' => 'หน้าแรก',
+    'last_page' => 'หน้าสุดท้าย',
 ];

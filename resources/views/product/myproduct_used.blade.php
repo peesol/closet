@@ -16,26 +16,14 @@
                     </ul>
                 </div>
 
-                @if(count($products) > 10)
-                <div class="pagination-wrap">{{ $products->links() }}</div>
-                @endif
+                {{ $products->links() }}
 
                 <div class="panel-body thumbnail-grid">
                   @include('thumbnail.myproducts._used')
                 </div>
 
-                @if(count($products) > 10)
-                <div class="pagination-wrap">{{ $products->links() }}</div>
-                @endif
+                {{ $products->links() }}
 
             </div>
 </div>
-<script>
-    $(".delete-btn").click(function() {
-            if(confirm('Are you sure you want to delete this?')){
-                return true;
-            }
-            return false;
-        });
-</script>
 @endsection

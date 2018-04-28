@@ -6,10 +6,7 @@
       </a>
       @if($product->discount_price)
       <span class="sale top-right">Sale</span>
-      <span class="price bottom-left">
-        <strike>{{ number_format($product->price) }}&#3647;</strike>
-        {{ number_format($product->discount_price) }}&#3647;
-      </span>
+      <span class="thumb-price-discount bottom-left">{{ number_format($product->discount_price) }}&#3647;</span>
       @else
       <span class="price bottom-left">{{ number_format($product->price) }}&#3647;</span>
       @endif

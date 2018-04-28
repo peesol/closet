@@ -41,7 +41,7 @@ export const options = ({view}) => {
       slidesToScroll: 5,
       responsive: [
         {
-          breakpoint: 1024,
+          breakpoint: 992,
           settings: { slidesToShow: 4, slidesToScroll: 4, infinite: false}
         },
         {
@@ -50,9 +50,18 @@ export const options = ({view}) => {
         },
         {
           breakpoint: 480,
-          settings: { slidesToShow: 1, slidesToScroll: 1 }
+          settings: { slidesToShow: 3, slidesToScroll: 3, mobileFirst: true }
         }
       ]
+    }
+  }
+  if (view == 'full-banner') {
+    return {
+      slidesToShow: 1,
+      dots: false,
+      infinite: true,
+      autoplay: true,
+      autoplaySpeed: 2000
     }
   }
 }

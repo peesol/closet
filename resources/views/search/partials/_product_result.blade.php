@@ -6,7 +6,7 @@
   @if (!$product->discount_price)
   <span class="price">{{ number_format($product->price) }}&#3647;</span>
   @else
-  <span class="discount">Sale</span>
+  <span class="sale">Sale</span>
   <span class="price">
     <strike>{{ number_format($product->price) }}&#3647;</strike>
     <small class="icon-next-arrow"></small>

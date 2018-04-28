@@ -5,10 +5,12 @@
   line-height: 40px
   font-size: 1.3rem
 
+/* Vue Custom pagination */
 .pagination
+  text-align: center
   display: inline-block
   width: 100%
-  padding: 0 25px
+  padding: 25px
   .pages
     @extend %box
     display: flex
@@ -24,6 +26,11 @@
         width: 100%
         height: 100%
         color: #6c6c6c
+      &.arrow.disabled
+        color: #ddd
+        background: #f2f2f2
+      &.page a:not(.active):hover, &.arrow a:not(disabled):hover
+        color: #ff8000
       &.page
         width: 100%
         height: 100%
@@ -33,7 +40,6 @@
           display: block !important
           a
             color: #ff8000
-
   .first
     margin-bottom: 30px
   .last
@@ -89,3 +95,29 @@
         color: #6c6c6c
         &:hover
           color: #ff8000
+
+/* Laravel pagination */
+ul.pagination
+  display: block
+  padding: 25px
+  text-align: center
+  li
+    display: inline-block
+    text-align: center
+    width: 40px
+    height: 40px
+    line-height: 40px
+    border: 1px solid #ddd
+    background: #fff
+    color: #6c6c6c
+    border-radius: 5px
+    font-size: 1.2rem
+    &.active
+      color: #ff8000
+    a
+      display: block
+      width: 100%
+      height: 100%
+      color: #6c6c6c
+      &:hover
+        color: #ff8000

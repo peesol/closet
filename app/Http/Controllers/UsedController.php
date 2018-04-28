@@ -22,7 +22,7 @@ class UsedController extends Controller
 
     public function userProduct(Request $request)
     {
-      $products = $request->user()->used()->latestFirst()->paginate(10);
+      $products = $request->user()->used()->latestFirst()->paginate(20);
 
       return view('product.myproduct_used', ['products' => $products]);
     }

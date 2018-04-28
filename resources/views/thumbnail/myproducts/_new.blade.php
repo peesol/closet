@@ -49,7 +49,7 @@
           <small class="icon-cog"></small>
         </button>
 
-        <button type="submit" class="delete-btn round-btn">
+        <button type="submit" class="delete-btn round-btn" onclick="if(!confirm('ลบสินค้านี้?')) { return false; }">
           <small class="icon-bin"></small>
         </button>
 

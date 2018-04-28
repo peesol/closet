@@ -20,7 +20,7 @@
         </div>
 
         <form action="/product/used/{{ $product->uid}}" method="post" class="align-right">
-        <button type="submit" class="delete-btn round-btn">
+        <button type="submit" onclick="if(!confirm('ลบสินค้านี้?')) { return false; }" class="delete-btn round-btn">
           <small class="icon-bin"></small>
         </button>
 

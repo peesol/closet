@@ -151,6 +151,7 @@ export default {
     not_enough_points: 'คะแนนของคุณมีไม่เพียงพอที่จะใช้สิทธิ์ได้',
     search: 'ค้นหา',
     search_query: 'คุณต้องการค้นหา',
+    search_not_found: 'ไม่พบสิ่งที่คุณต้องการค้นหา',
     in: 'ใน',
     first_page: 'หน้าแรก',
     last_page: 'หน้าสุดท้าย',

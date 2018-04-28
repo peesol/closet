@@ -41,6 +41,11 @@ return [
     //Home
     'home_signup' => 'Shopping or Selling?',
     'home_signup_link' => 'Register',
+    'featured_product' => 'Featured product',
+    'featured_shops' => 'Featured shops',
+    'trending_product' => 'Trending product',
+    'trending_shops' => 'Trending shops',
+    'read_more' => 'more..',
     //Navigation
     'sell' => 'Sell',
     'my_closet' => 'My Closet',
@@ -206,4 +211,7 @@ return [
     'report_submit' => 'Send',
     'report_success' => 'Your message has been sent to us.',
     'report_success_notice' => 'It may take up to 48 hours until we investigate your case and answer back to your email.',
+    //pagination
+    'first_page' => 'first page',
+    'last_page' => 'last page',
 ];

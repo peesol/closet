@@ -41,7 +41,7 @@ class ProductController extends Controller
     }
     public function userProduct(Request $request)
     {
-      $products = $request->user()->products()->latestFirst()->paginate(10);
+      $products = $request->user()->products()->latestFirst()->paginate(20);
 
       return view('product.myproduct', ['products' => $products]);
     }

@@ -2,7 +2,7 @@
 <div>
   <vue-progress-bar></vue-progress-bar>
   <search-filter></search-filter>
-  <div v-if="products.length">
+  <div v-if="products[0].length">
     <div class="panel-body thumbnail-grid">
       <div class="products-wrap" v-for="product in products[0]">
         <div class="products-img">
@@ -14,27 +14,31 @@
           </div>
 
           <div v-else>
-            <span class="discount top-right">Sale</span>
-            <span class="price bottom-left">
-          <strike>{{ product.price }}&#3647;</strike>
-          <small class="icon-next-arrow"></small>
-          <font>{{ $number.currency(product.discount_price) }}&nbsp;&#3647;</font>
-        </span>
+            <span class="sale top-right">Sale</span>
+            <span class="thumb-price-discount bottom-left display-mobile">
+              <font>{{ $number.currency(product.discount_price) }}&nbsp;&#3647;</font>
+            </span>
           </div>
 
         </div>
         <div class="details">
           <a class="product-name" :href="$root.url + '/product/' + product.uid">{{product.name}}</a>
-          <p class="product-p">
+          <p v-if="!product.discount_price" class="product-p">
             {{ $trans.translation.price }}&nbsp;<span>{{ $number.currency(product.price) }}&nbsp;&#3647;</span>
+          </p>
+          <p v-else class="product-p">
+            {{ $trans.translation.price }}&nbsp;
+            <strike>{{ $number.currency(product.price) }}&#3647;</strike>
+            <small class="icon-next-arrow"></small>
+            <font class="font-green">{{ $number.currency(product.discount_price) }}&nbsp;&#3647;</font>
           </p>
         </div>
       </div>
     </div>
     <pagination :meta="meta"></pagination>
   </div>
-  <div v-else>
-    no results
+  <div v-else class="panel-body align-center">
+    <h3>{{ $trans.translation.search_not_found }}</h3>
   </div>
 </div>
 </template>

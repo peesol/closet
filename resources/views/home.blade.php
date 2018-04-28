@@ -6,42 +6,38 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
 @endsection
 
-@section('css')
-<link href="https://s3-ap-southeast-1.amazonaws.com/files.closet/css/extra/banner-slick-theme.css" rel="stylesheet">
-<link href="https://s3-ap-southeast-1.amazonaws.com/files.closet/css/extra/slick.css" rel="stylesheet">
-@endsection
 <div class="container">
-            <div class="large-panel">
-                <div class="top-grid">
-                  <div class="top-banner">
-                    <img src="https://s3-ap-southeast-1.amazonaws.com/images.closet.com/banner/banner1.jpg" alt="banner">
-                    <img src="https://s3-ap-southeast-1.amazonaws.com/images.closet.com/banner/banner2.jpg" alt="banner">
-                  </div>
-                  <div class="banner-side-nav">
-                    <ul >
-                      <li><h4 class="no-margin">{{__('message.category')}}</h4></li>
-                      @foreach($categories as $category)
-                      <li><a href="#" class="link-text">{{$category->showTranslate(App::getLocale())->name}}</a></li>
-                      @endforeach
-                    </ul>
-                  </div>
-                </div>
+            <div class="medium-panel">
+              <div class="full-width full-banner">
+                <vue-slick slick-for="full-banner" path="banner" :banners="2"></vue-slick>
+              </div>
             </div>
             @if(Auth::guest())
-            <div class="large-panel margin-10-top">
+            <div class="medium-panel margin-10-top">
               <div class="panel-body">
                 <p class="no-margin">{{__('message.home_signup')}}&nbsp;<a href="route('register')" class="link-text">{{__('message.home_signup_link')}}</a></p>
               </div>
             </div>
             @endif
 
-            <div class="large-panel margin-10-top">
-
-                <div class="panel-body">
-                  <h4 class="no-margin">Flash sale</h4>
+            <div class="medium-panel margin-10-top">
+              <div class="panel-heading-alt">
+                <label class="heading">{{__('message.trending_product')}}</label>
+                <a href="/trending">{{__('message.read_more')}}</a>
+              </div>
+                <div class="products-carousel">
+                  <vue-slick :products="{{ $products }}" path="/product/thumbnail/" slick-for="shop"></vue-slick>
                 </div>
-                <div class="content-grid">
-
+                <div class="panel-heading-alt">
+                  <label class="heading">{{__('message.trending_shops')}}</label>
+                </div>
+                <div class="shops-list">
+                  @foreach ($shops as $shop)
+                    <div>
+                      <img src="{{ $shop->getThumbnail() }}">
+                      <a class="text-nowrap" href="/{{ $shop->slug }}">{{ $shop->name }}</a>
+                    </div>
+                  @endforeach
                 </div>
             </div>
 

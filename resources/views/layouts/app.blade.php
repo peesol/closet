@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/balloon-css/0.5.0/balloon.min.css">
     @yield('css')
     <!-- Scripts -->
+    @yield('scripts')
     <script src="{{asset('js/manifest.js')}}"></script>
     <script src="{{asset('js/vendor.js')}}"></script>
     <script src="{{asset('js/main.js')}}"></script>

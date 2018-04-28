@@ -149,6 +149,7 @@ export default {
     not_enough_points: 'You don\'t have enough points.',
     search: 'Search',
     search_query: 'Search for',
+    search_not_found: 'Not found what you\'re looking for',
     in: 'in',
     first_page: 'first page',
     last_page: 'last page',

@@ -2,10 +2,6 @@
 @section('title')
 {{$product->name.' - '}}
 @endsection
-@section('css')
-<link href="https://s3-ap-southeast-1.amazonaws.com/files.closet/css/extra/slick-theme.css" rel="stylesheet">
-<link href="https://s3-ap-southeast-1.amazonaws.com/files.closet/css/extra/slick.css" rel="stylesheet">
-@endsection
 
 @section('scripts')
 <script type="text/javascript">
@@ -35,7 +31,7 @@ window.addEventListener("load",function(){var t=document.querySelectorAll(".tab-
 
                         @if(Auth::check())
                           @if(Auth::user()->id !== $product->shop_id)
-                          <add-to-cart product-id="{{ $product->id }}" product-slug="{{ $product->uid }}"></add-to-cart>
+                            <add-to-cart product-id="{{ $product->id }}" product-slug="{{ $product->uid }}"></add-to-cart>
                           @endif
                         @endif
 

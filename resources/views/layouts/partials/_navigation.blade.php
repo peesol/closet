@@ -34,7 +34,7 @@
       </a>
       <a href="{{ route('shops') }}">
         <span class="icon-refresh"></span>
-        <font>{{ __('message.shops') }}</font>
+        <font>{{ __('message.used') }}</font>
       </a>
     </div>
 </div>

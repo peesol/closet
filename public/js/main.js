@@ -15812,6 +15812,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 
@@ -15823,7 +15825,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
   data: function data() {
     return {
-      toggled: null,
+      toggled: false,
       toggledList: null
     };
   },
@@ -15840,15 +15842,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.$http.post(this.logoutRoute).then(function (response) {
         window.location.replace(_this.$root.url);
       });
-    },
-    toggle: function toggle(id) {
-      if (this.toggled === id) {
-        this.toggled = null;
-        this.toggledList = null;
-        return;
-      }
-      this.toggled = id;
-      this.toggledList = null;
     },
     toggleList: function toggleList(id) {
       if (this.toggledList === id) {
@@ -18207,6 +18200,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -18413,7 +18410,6 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
 //
 //
 //
@@ -19796,12 +19792,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 
 
@@ -19812,6 +19802,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
   data: function data() {
     return {
+      img_source: 'https://s3-ap-southeast-1.amazonaws.com/images.closet.com',
       slickOptions: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__misc_slick_options__["a" /* options */])({
         view: this.slickFor
       })
@@ -19821,6 +19812,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   props: {
     products: [],
     imgs: [],
+    banners: null,
     path: null,
     slickFor: null
   }
@@ -21305,6 +21297,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     not_enough_points: 'You don\'t have enough points.',
     search: 'Search',
     search_query: 'Search for',
+    search_not_found: 'Not found what you\'re looking for',
     in: 'in',
     first_page: 'first page',
     last_page: 'last page',
@@ -21490,6 +21483,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     not_enough_points: 'คะแนนของคุณมีไม่เพียงพอที่จะใช้สิทธิ์ได้',
     search: 'ค้นหา',
     search_query: 'คุณต้องการค้นหา',
+    search_not_found: 'ไม่พบสิ่งที่คุณต้องการค้นหา',
     in: 'ใน',
     first_page: 'หน้าแรก',
     last_page: 'หน้าสุดท้าย',
@@ -21599,15 +21593,24 @@ var options = function options(_ref) {
       slidesToShow: 5,
       slidesToScroll: 5,
       responsive: [{
-        breakpoint: 1024,
+        breakpoint: 992,
         settings: { slidesToShow: 4, slidesToScroll: 4, infinite: false }
       }, {
         breakpoint: 600,
         settings: { slidesToShow: 3, slidesToScroll: 3 }
       }, {
         breakpoint: 480,
-        settings: { slidesToShow: 1, slidesToScroll: 1 }
+        settings: { slidesToShow: 3, slidesToScroll: 3, mobileFirst: true }
       }]
+    };
+  }
+  if (view == 'full-banner') {
+    return {
+      slidesToShow: 1,
+      dots: false,
+      infinite: true,
+      autoplay: true,
+      autoplaySpeed: 2000
     };
   }
 };
@@ -51634,7 +51637,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_c('vue-progress-bar'), _vm._v(" "), _c('search-filter'), _vm._v(" "), (_vm.products.length) ? _c('div', [_c('div', {
+  return _c('div', [_c('vue-progress-bar'), _vm._v(" "), _c('search-filter'), _vm._v(" "), (_vm.products[0].length) ? _c('div', [_c('div', {
     staticClass: "panel-body thumbnail-grid"
   }, _vm._l((_vm.products[0]), function(product) {
     return _c('div', {
@@ -51654,26 +51657,32 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     })]), _vm._v(" "), (!product.discount_price) ? _c('div', [_c('span', {
       staticClass: "price bottom-left"
     }, [_vm._v(_vm._s(_vm.$number.currency(product.price)) + " ฿")])]) : _c('div', [_c('span', {
-      staticClass: "discount top-right"
+      staticClass: "sale top-right"
     }, [_vm._v("Sale")]), _vm._v(" "), _c('span', {
-      staticClass: "price bottom-left"
-    }, [_c('strike', [_vm._v(_vm._s(product.price) + "฿")]), _vm._v(" "), _c('small', {
-      staticClass: "icon-next-arrow"
-    }), _vm._v(" "), _c('font', [_vm._v(_vm._s(_vm.$number.currency(product.discount_price)) + " ฿")])], 1)])]), _vm._v(" "), _c('div', {
+      staticClass: "thumb-price-discount bottom-left display-mobile"
+    }, [_c('font', [_vm._v(_vm._s(_vm.$number.currency(product.discount_price)) + " ฿")])], 1)])]), _vm._v(" "), _c('div', {
       staticClass: "details"
     }, [_c('a', {
       staticClass: "product-name",
       attrs: {
         "href": _vm.$root.url + '/product/' + product.uid
       }
-    }, [_vm._v(_vm._s(product.name))]), _vm._v(" "), _c('p', {
+    }, [_vm._v(_vm._s(product.name))]), _vm._v(" "), (!product.discount_price) ? _c('p', {
       staticClass: "product-p"
-    }, [_vm._v("\r\n            " + _vm._s(_vm.$trans.translation.price) + " "), _c('span', [_vm._v(_vm._s(_vm.$number.currency(product.price)) + " ฿")])])])])
+    }, [_vm._v("\r\n            " + _vm._s(_vm.$trans.translation.price) + " "), _c('span', [_vm._v(_vm._s(_vm.$number.currency(product.price)) + " ฿")])]) : _c('p', {
+      staticClass: "product-p"
+    }, [_vm._v("\r\n            " + _vm._s(_vm.$trans.translation.price) + " \r\n            "), _c('strike', [_vm._v(_vm._s(_vm.$number.currency(product.price)) + "฿")]), _vm._v(" "), _c('small', {
+      staticClass: "icon-next-arrow"
+    }), _vm._v(" "), _c('font', {
+      staticClass: "font-green"
+    }, [_vm._v(_vm._s(_vm.$number.currency(product.discount_price)) + " ฿")])], 1)])])
   })), _vm._v(" "), _c('pagination', {
     attrs: {
       "meta": _vm.meta
     }
-  })], 1) : _c('div', [_vm._v("\r\n    no results\r\n  ")])], 1)
+  })], 1) : _c('div', {
+    staticClass: "panel-body align-center"
+  }, [_c('h3', [_vm._v(_vm._s(_vm.$trans.translation.search_not_found))])])], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -51758,16 +51767,14 @@ if (false) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
+    staticClass: "pagination"
+  }, [_c('div', {
     directives: [{
       name: "show",
       rawName: "v-show",
       value: (_vm.meta[0].total_pages > 1),
       expression: "meta[0].total_pages > 1"
     }],
-    staticClass: "align-center padding-30-vertical"
-  }, [_c('div', {
-    staticClass: "pagination"
-  }, [_c('div', {
     staticClass: "first",
     class: {
       'transparent-el': _vm.meta[0].current_page < 1
@@ -51785,7 +51792,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.switched(0)
       }
     }
-  }, [_vm._v("\r\n        « " + _vm._s(_vm.$trans.translation.first_page) + "\r\n      ")])]), _vm._v(" "), _c('div', {
+  }, [_vm._v("\n      « " + _vm._s(_vm.$trans.translation.first_page) + "\n    ")])]), _vm._v(" "), _c('div', {
     staticClass: "pages"
   }, [_c('div', {
     staticClass: "arrow",
@@ -51805,7 +51812,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.switched(_vm.meta[0].current_page - 1)
       }
     }
-  }, [_vm._v("\r\n            «\r\n        ")])]), _vm._v(" "), _vm._l((_vm.meta[0].total_pages), function(page) {
+  }, [_vm._v("\n          «\n      ")])]), _vm._v(" "), _vm._l((_vm.meta[0].total_pages), function(page) {
     return _c('div', {
       directives: [{
         name: "show",
@@ -51843,7 +51850,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.switched(_vm.meta[0].current_page + 1)
       }
     }
-  }, [_vm._v("\r\n          »\r\n        ")])])], 2), _vm._v(" "), _c('div', {
+  }, [_vm._v("\n        »\n      ")])])], 2), _vm._v(" "), _c('div', {
     staticClass: "last",
     class: {
       'transparent-el': _vm.meta[0].current_page === _vm.meta[0].total_pages - 1
@@ -51861,7 +51868,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.switched(_vm.meta[0].total_pages - 1)
       }
     }
-  }, [_vm._v("\r\n        " + _vm._s(_vm.$trans.translation.last_page) + " »\r\n      ")])])])])
+  }, [_vm._v("\n      " + _vm._s(_vm.$trans.translation.last_page) + " »\n    ")])])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -53459,39 +53466,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('cart-icon'), _vm._v(" "), _c('button', {
     staticClass: "dropdown-btn",
     class: {
-      'btn-active': _vm.toggled === 1
+      'btn-active': _vm.toggled
     },
     on: {
       "click": function($event) {
         $event.preventDefault();
-        _vm.toggle(1)
-      }
-    }
-  }, [_vm._v(_vm._s(_vm.$trans.translation.sell))]), _vm._v(" "), _c('div', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.toggled === 1),
-      expression: "toggled === 1"
-    }],
-    staticClass: "dropdown-content shadow-1"
-  }, [_c('a', {
-    attrs: {
-      "href": _vm.$root.url + '/sell/new'
-    }
-  }, [_vm._v(_vm._s(_vm.$trans.translation.new))]), _vm._v(" "), _c('a', {
-    attrs: {
-      "href": _vm.$root.url + '/sell/used'
-    }
-  }, [_vm._v(_vm._s(_vm.$trans.translation.used))])]), _vm._v(" "), _c('button', {
-    staticClass: "dropdown-btn",
-    class: {
-      'btn-active': _vm.toggled === 2
-    },
-    on: {
-      "click": function($event) {
-        $event.preventDefault();
-        _vm.toggle(2)
+        _vm.toggled = !_vm.toggled
       }
     }
   }, [_c('span', {
@@ -53500,8 +53480,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "show",
       rawName: "v-show",
-      value: (_vm.toggled === 2),
-      expression: "toggled === 2"
+      value: (_vm.toggled),
+      expression: "toggled"
     }],
     staticClass: "dropdown-content shadow-1",
     on: {
@@ -53548,11 +53528,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "href": _vm.$root.url + '/profile/myproduct/used'
     }
-  }, [_vm._v(_vm._s(_vm.$trans.translation.used))])])]), _vm._v(" "), _c('a', {
-    attrs: {
-      "href": _vm.$root.url + '/' + _vm.userShop + '/edit/general'
-    }
-  }, [_vm._v(_vm._s(_vm.$trans.translation.setting))]), _vm._v(" "), _c('li', {
+  }, [_vm._v(_vm._s(_vm.$trans.translation.used))])])]), _vm._v(" "), _c('li', {
     class: {
       'toggled-list': _vm.toggledList === 2
     },
@@ -53560,6 +53536,43 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "click": function($event) {
         $event.preventDefault();
         _vm.toggleList(2)
+      }
+    }
+  }, [_vm._v(_vm._s(_vm.$trans.translation.sell) + " "), _c('small', {
+    staticClass: "icon-arrow-down"
+  })]), _vm._v(" "), _c('transition', {
+    attrs: {
+      "name": "slide-down-height"
+    }
+  }, [_c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.toggledList === 2),
+      expression: "toggledList === 2"
+    }]
+  }, [_c('a', {
+    staticClass: "nested",
+    attrs: {
+      "href": _vm.$root.url + '/sell/new'
+    }
+  }, [_vm._v(_vm._s(_vm.$trans.translation.new))]), _vm._v(" "), _c('a', {
+    staticClass: "nested",
+    attrs: {
+      "href": _vm.$root.url + '/sell/used'
+    }
+  }, [_vm._v(_vm._s(_vm.$trans.translation.used))])])]), _vm._v(" "), _c('a', {
+    attrs: {
+      "href": _vm.$root.url + '/' + _vm.userShop + '/edit/general'
+    }
+  }, [_vm._v(_vm._s(_vm.$trans.translation.setting))]), _vm._v(" "), _c('li', {
+    class: {
+      'toggled-list': _vm.toggledList === 3
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.toggleList(3)
       }
     }
   }, [_vm._v(_vm._s(_vm.$trans.translation.language) + " "), _c('small', {
@@ -53572,8 +53585,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "show",
       rawName: "v-show",
-      value: (_vm.toggledList === 2),
-      expression: "toggledList === 2"
+      value: (_vm.toggledList === 3),
+      expression: "toggledList === 3"
     }]
   }, [_c('dropdown-language', {
     attrs: {
@@ -55332,30 +55345,20 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }, [_c('img', {
       staticClass: "products-img-thumb",
       attrs: {
-        "src": 'https://s3-ap-southeast-1.amazonaws.com/images.closet.com' + _vm.path + product.thumbnail,
+        "src": _vm.img_source + _vm.path + product.thumbnail,
         "alt": product.thumbnail
       }
-    }), _vm._v(" "), _c('div', {
-      staticClass: "thumb-title"
-    }, [_c('a', {
-      attrs: {
-        "href": _vm.$root.url + '/product/' + product.uid
-      }
-    }, [_vm._v(_vm._s(product.name))])]), _vm._v(" "), _c('span', {
+    }), _vm._v(" "), _c('span', {
       directives: [{
         name: "show",
         rawName: "v-show",
         value: (product.discount_price),
         expression: "product.discount_price"
       }],
-      staticClass: "thumb-price bottom-left"
-    }, [_c('strike', [_vm._v(_vm._s(product.price) + "฿")]), _vm._v("\n            " + _vm._s(product.discount_price) + "฿\n    ")], 1), _vm._v(" "), _c('span', {
-      directives: [{
-        name: "show",
-        rawName: "v-show",
-        value: (!product.discount_price),
-        expression: "!product.discount_price"
-      }],
+      staticClass: "sale top-right"
+    }, [_vm._v("Sale")]), _vm._v(" "), (product.discount_price) ? _c('span', {
+      staticClass: "thumb-price-discount bottom-left"
+    }, [_vm._v(_vm._s(_vm.$number.currency(product.discount_price)) + "฿")]) : _c('span', {
       staticClass: "thumb-price bottom-left"
     }, [_vm._v(_vm._s(_vm.$number.currency(product.price)) + "฿")])])])
   }), _vm._v(" "), _vm._l((_vm.imgs), function(img) {
@@ -55367,8 +55370,21 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         expression: "imgs.length"
       }],
       attrs: {
-        "src": 'https://s3-ap-southeast-1.amazonaws.com/images.closet.com' + _vm.path + img.filename,
+        "src": _vm.img_source + _vm.path + img.filename,
         "alt": img.filename
+      }
+    })
+  }), _vm._v(" "), _vm._l((_vm.banners), function(img) {
+    return _c('img', {
+      directives: [{
+        name: "show",
+        rawName: "v-show",
+        value: (_vm.banners !== null),
+        expression: "banners !== null"
+      }],
+      attrs: {
+        "src": _vm.img_source + '/banner/banner' + img + '.jpg',
+        "alt": "banner"
       }
     })
   })], 2)], 1)

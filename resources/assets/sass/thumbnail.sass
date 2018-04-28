@@ -5,12 +5,18 @@
   position: relative
   width: 160px
 
-.thumbnail-grid
+.thumbnail-grid, .thumbnail-grid-100 , .thumbnail-grid-160
   display: grid
   width: 100%
+  justify-items: center
+
+.thumbnail-grid, .thumbnail-grid-160
   grid-gap: 10px
   grid-template-columns: repeat(auto-fill, minmax(160px, 1fr))
-  justify-items: center
+
+.thumbnail-grid-100
+  grid-gap: 10px
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr))
 
 .collection-wrap
   @extend %wrapper
@@ -78,7 +84,7 @@
 
   .my-products-wrap
     width: 200px
-    height: 320px
+    height: 350px
 
   .products-wrap
     width: 200px
@@ -134,22 +140,23 @@ span
     right: 5px
 
 span
-  &.sale, &.price, &.thumb-price
+  &.sale, &.price, &.thumb-price, &.thumb-price-discount
     font-family: 'Roboto' !important
     padding: 5px
-  &.sale
-    background: #4aae2a
     color: #fff
     border-radius: 4px
+  &.sale
+    background: #4aae2a
+  &.price, &.thumb-price
+    background: rgba(0, 0, 0, 0.5)
+  &.thumb-price-discount
+    background: #4aae2a
   &.caution
+    color: #fff
     background: #ffca00
     padding: 10px
     border-radius: 100%
-    color: #fff
-  &.price, &.thumb-price
-    background: rgba(0, 0, 0, 0.5)
-    color: #fff
-    border-radius: 4px
+
 
 @media (min-width: 768px)
   span

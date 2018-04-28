@@ -1,0 +1,164 @@
+@charset "UTF-8"
+
+.slick-dots li
+  cursor: pointer
+  height: 20px
+  width: 20px
+  button
+    cursor: pointer
+    height: 20px
+    width: 20px
+    &:focus:before, &:hover:before
+      opacity: 1
+
+.slick-next
+  &:focus:before, &:hover:before
+    opacity: 1
+
+.slick-prev
+  &:focus:before, &:hover:before
+    opacity: 1
+
+.slick-dots li button:before, .slick-next:before, .slick-prev:before
+  -webkit-font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscale
+
+.slick-loading .slick-list
+  background: url(ajax-loader.gif) center center no-repeat #fff
+
+@font-face
+  font-family: icomoon
+  src: url(fonts/icomoon.eot?76p8pg)
+  src: url(fonts/icomoon.eot?76p8pg#iefix) format("embedded-opentype"), url(fonts/icomoon.ttf?76p8pg) format("truetype"), url(fonts/icomoon.woff?76p8pg) format("woff"), url(fonts/icomoon.svg?76p8pg#icomoon) format("svg")
+  font-weight: 400
+  font-style: normal
+
+.slick-next, .slick-prev
+  font-size: 0
+  line-height: 0
+  position: absolute
+  top: 50%
+  z-index: 1000
+  width: 30px
+  height: 100%
+  padding: 0
+  border-radius: 100%
+  -webkit-transform: translate(0, -50%)
+  -ms-transform: translate(0, -50%)
+  transform: translate(0, -50%)
+  cursor: pointer
+  color: transparent
+  border: none
+  outline: 0
+  background: transparent
+  &:before
+    font-family: icomoon
+    font-size: 20px
+    line-height: 1
+    opacity: 1
+    color: #fff
+  &:focus, &:hover
+    color: #fff
+    outline: 0
+
+.slick-prev
+  left: 0
+  display: none
+
+[dir=rtl] .slick-prev
+  right: -25px
+  left: auto
+
+.slick-next
+  right: 0
+  display: none
+
+[dir=rtl] .slick-next
+  right: auto
+  left: -25px
+
+@media (min-width: 922px)
+  .slick-next, .slick-prev
+    width: 50px
+    height: 50px
+    background: #fff
+    -webkit-box-shadow: #6c6c6c 0 2px 7px 0
+    -moz-box-shadow: #6c6c6c 0 2px 7px 0
+    box-shadow: #6c6c6c 0 2px 7px 0
+    &:before
+      color: #6c6c6c
+
+  .slick-next
+    right: 5px
+    &:before
+      margin-left: 3px
+
+  .slick-prev
+    left: 5px
+    &:before
+      margin-right: 3px
+
+
+.slick-next.slick-disabled:before, .slick-prev.slick-disabled:before
+  display: none
+
+.slick-next.slick-disabled, .slick-prev.slick-disabled
+  display: none !important
+
+.slick-prev:before, [dir=rtl] .slick-prev:before
+  content: "\e902"
+
+.slick-next:before, [dir=rtl] .slick-next:before
+  content: "\e903"
+
+@media (min-width: 768px)
+  .slick-next, .slick-prev
+    display: block
+
+.slick-dotted.slick-slider
+  margin-bottom: 50px
+
+.slick-dots
+  position: absolute
+  bottom: -25px
+  display: block
+  width: 100%
+  padding: 0
+  margin: 0
+  list-style: none
+  text-align: center
+  li
+    position: relative
+    display: inline-block
+    margin: 0 5px
+    padding: 0
+    button
+      font-size: 0
+      line-height: 0
+      display: block
+      padding: 5px
+      color: transparent
+      border: 0
+      outline: 0
+      background: 0 0
+      &:focus, &:hover
+        outline: 0
+      &:before
+        font-family: 'Arial'
+        font-size: 30px
+        line-height: 40px
+        position: absolute
+        top: 0
+        left: 0
+        width: 20px
+        height: 20px
+        content: '\2022'
+        text-align: center
+        opacity: .25
+        color: #000
+    &.slick-active button:before
+      opacity: .75
+      color: #ea7800
+
+.slick-track img:focus
+  outline: 0

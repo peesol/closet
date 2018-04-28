@@ -4,11 +4,6 @@
 {{$collection->name.' - '}}
 @endsection
 
-@section('css')
-    <link rel="stylesheet" href="https://s3-ap-southeast-1.amazonaws.com/files.closet/css/extra/slick-theme.css"/>
-    <link rel="stylesheet" href="https://s3-ap-southeast-1.amazonaws.com/files.closet/css/extra/slick.css"/>
-@endsection
-
 @section('content')
 <div class="container">
             <div class="large-panel">
