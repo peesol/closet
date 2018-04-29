@@ -1,12 +1,11 @@
 <div class="cover-wrap">
-@if(Auth::check())
-  @if(Auth::user()->id === $shop->user_id)
-    <a href="/{{$shop->slug}}/edit">
-      <button class="align-top-right icon-cog edit-btn round-btn"></button>
-    </a>
-  @else
-  @endif
+
+@if(Auth::check() && Auth::user()->id === $shop->user_id)
+  <a href="/{{$shop->slug}}/edit">
+    <button class="align-top-right icon-cog edit-btn round-btn"></button>
+  </a>
 @endif
+
   <img src="{{ $shop->getCover() }}">
 </div>
 

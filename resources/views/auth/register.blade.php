@@ -5,7 +5,7 @@
 @section('content')
 <div class="container">
             <div class="small-panel">
-                <div class="panel-heading"><h3 class="no-margin">{{__('message.register')}}</h3></div>
+                <div class="panel-heading"><label class="heading">{{__('message.register')}}</label></div>
                 <div class="panel-body">
                     <form role="form" method="POST" action="{{ route('register') }}">
                         {{ csrf_field() }}
@@ -22,6 +22,14 @@
                           <label for="gender">{{__('message.gender')}}</label>
                           <input required type="radio" name="gender" value="men"><font>&nbsp;{{__('message.men')}}</font>
                           <input required type="radio" name="gender" value="women"><font>&nbsp;{{__('message.women')}}</font>
+                          <input required type="radio" name="gender" value="etc"><font>&nbsp;{{__('message.etc')}}</font>
+                        </div>
+
+                        <div class="form-group padding-15-vertical">
+                          <label for="profile_type">{{__('message.profile_type')}}</label>
+                          <select class="select-input" name="profile_type">
+                            <option value="1">{{__('message.shop')}}</option>
+                          </select>
                         </div>
 
                         <div class="form-group{{ $errors->has('shop_name') ? ' has-error' : '' }}">
@@ -63,7 +71,7 @@
                             <label for="address" class="full-label">{{__('message.address')}}
                               <span class="link-text" data-balloon="{{__('message.address_tip')}}" data-balloon-pos="right"><span class="icon-info"></span></span>
                             </label>
-                            <textarea id="address" class="description-input {{ $errors->has('address') ? ' error-input' : '' }}" style="height:150px;" name="address" rows="4" cols="80" required></textarea>
+                            <textarea id="address" class="comment-input {{ $errors->has('address') ? ' error-input' : '' }}" name="address" rows="4" cols="80" required></textarea>
                         </div>
 
                         <div class="form-group">
@@ -73,7 +81,9 @@
                             <input id="phone" type="text" class="form-input {{ $errors->has('phone') ? ' error-input' : '' }}" name="phone" required>
                         </div>
 
-                        <button type="submit" class="login-btn">{{__('message.register')}}</button>
+                        <div class="padding-15-top align-right">
+                          <button type="submit" class="orange-btn normal-sq">{{__('message.register')}}</button>
+                        </div>
 
                     </form>
                 </div>

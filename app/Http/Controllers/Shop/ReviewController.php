@@ -35,7 +35,11 @@ class ReviewController extends Controller
     }
     $max = array_sum($max);
 
-    $percent = ($total / $max) * 100;
+    if ($max !== 0) {
+      $percent = ($total / $max) * 100;
+    } else {
+      $percent = $max;
+    }
 
     return response()->json([
       'reviews' => $reviews,
@@ -81,8 +85,11 @@ class ReviewController extends Controller
       $max[] = $value * 5;
     }
     $max = array_sum($max);
-
-    $percent = ($total / $max) * 100;
+    if ($max !== 0) {
+      $percent = ($total / $max) * 100;
+    } else {
+      $percent = $max;
+    }
 
     return response()->json(number_format($percent, 0));
 

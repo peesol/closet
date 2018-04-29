@@ -46,9 +46,9 @@
     <a class="text-nowrap">{{ review.shop.data.name }}</a>
     <p>{{ review.comment }}</p>
   </div>
-
-
-
+  <div v-show="!reviews.length" class="align-center">
+    <h3 class="font-grey">{{$trans.translation.no_reviews}}</h3>
+  </div>
 </div>
 </template>
 

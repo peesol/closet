@@ -1,6 +1,6 @@
 <nav id="full-line">
   <div class="nav-container">
-    <side-menu user-shop="{{ Auth::user()->shop->slug }}"></side-menu>
+    <side-menu user-shop="{{ Auth::user() ? Auth::user()->shop->slug : null }}"></side-menu>
     <div class="main-logo"><a href="/"></a></div>
     <search-input></search-input>
     <button class="icon-search res-search-btn"></button>
@@ -9,7 +9,6 @@
           <li><a href="{{ route('login') }}">{{__('message.login')}}</a></li>
           <li><a href="{{ route('register') }}">{{__('message.register')}}</a></li>
       @else
-
       <user-nav
       user-name="{{ Auth::user()->name }}"
       logout-route="{{ route('logout') }}"
@@ -32,7 +31,7 @@
         <span class="icon-fire"></span>
         <font>{{ __('message.trending') }}</font>
       </a>
-      <a href="{{ route('shops') }}">
+      <a href="{{ route('secondhand') }}">
         <span class="icon-refresh"></span>
         <font>{{ __('message.used') }}</font>
       </a>

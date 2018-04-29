@@ -31,7 +31,7 @@ class NewProductController extends Controller
       'category_id' => $request->category_id,
       'subcategory_id' => $request->subcategory_id,
       'type_id' => $type_id,
-      'shop_type' => $shop->usertype_id,
+      'shop_type' => $shop->usertype,
       'price' => $request->price,
       'description' => $request->description,
       'visibility' => $request->visibility,

@@ -18204,6 +18204,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 
@@ -19792,6 +19794,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -21319,7 +21322,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     language: 'Language',
     sell: 'Sell',
     logout: 'Logout'
-}, _defineProperty(_product_name$product, 'login', 'Login'), _defineProperty(_product_name$product, 'register', 'Register'), _defineProperty(_product_name$product, 'user_review', 'Your review'), _defineProperty(_product_name$product, 'write_review', 'Leave review'), _product_name$product);
+}, _defineProperty(_product_name$product, 'login', 'Login'), _defineProperty(_product_name$product, 'register', 'Register'), _defineProperty(_product_name$product, 'user_review', 'Your review'), _defineProperty(_product_name$product, 'write_review', 'Leave review'), _defineProperty(_product_name$product, 'no_reviews', 'No reviews'), _product_name$product);
 
 /***/ }),
 /* 296 */
@@ -21505,7 +21508,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     language: 'ภาษา',
     sell: 'ขาย',
     logout: 'ล็อกเอาท์'
-}, _defineProperty(_product_name$product, 'login', 'ล็อกอิน'), _defineProperty(_product_name$product, 'register', 'สมัครสมาชิก'), _defineProperty(_product_name$product, 'user_review', 'รีวิวของคุณ'), _defineProperty(_product_name$product, 'write_review', 'เขียนรีวิว'), _product_name$product);
+}, _defineProperty(_product_name$product, 'login', 'ล็อกอิน'), _defineProperty(_product_name$product, 'register', 'สมัครสมาชิก'), _defineProperty(_product_name$product, 'user_review', 'รีวิวของคุณ'), _defineProperty(_product_name$product, 'write_review', 'เขียนรีวิว'), _defineProperty(_product_name$product, 'no_reviews', 'ไม่มีรีวิว'), _product_name$product);
 
 /***/ }),
 /* 297 */
@@ -51654,7 +51657,15 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "src": _vm.src + product.thumbnail,
         "alt": "image"
       }
-    })]), _vm._v(" "), (!product.discount_price) ? _c('div', [_c('span', {
+    })]), _vm._v(" "), _c('i', {
+      directives: [{
+        name: "show",
+        rawName: "v-show",
+        value: (product.shop_type === 2),
+        expression: "product.shop_type === 2"
+      }],
+      staticClass: "icon-checkmark verified-profile top-left"
+    }), _vm._v(" "), (!product.discount_price) ? _c('div', [_c('span', {
       staticClass: "price bottom-left"
     }, [_vm._v(_vm._s(_vm.$number.currency(product.price)) + " ฿")])]) : _c('div', [_c('span', {
       staticClass: "sale top-right"
@@ -52479,13 +52490,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "icon-home"
   }), _vm._v(_vm._s(_vm.$trans.translation.home))]), _vm._v(" "), _c('a', {
     attrs: {
-      "href": "#"
+      "href": "/trending"
     }
   }, [_c('i', {
     staticClass: "icon-fire"
   }), _vm._v(_vm._s(_vm.$trans.translation.trending))]), _vm._v(" "), _c('a', {
     attrs: {
-      "href": "#"
+      "href": "/secondhand"
     }
   }, [_c('i', {
     staticClass: "icon-refresh"
@@ -52527,7 +52538,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }]
   }, [_c('a', {
     attrs: {
-      "href": "#"
+      "href": '/' + _vm.userShop
     }
   }, [_c('i', {
     staticClass: "icon-user"
@@ -52568,6 +52579,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('i', {
     staticClass: "icon-exit"
   }), _vm._v(_vm._s(_vm.$trans.translation.logout))])])]), _vm._v(" "), _c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.$root.authenticated),
+      expression: "$root.authenticated"
+    }],
     attrs: {
       "id": "full-line"
     }
@@ -53436,7 +53453,17 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     })), _vm._v(" "), _c('a', {
       staticClass: "text-nowrap"
     }, [_vm._v(_vm._s(review.shop.data.name))]), _vm._v(" "), _c('p', [_vm._v(_vm._s(review.comment))])])
-  })], 2)
+  }), _vm._v(" "), _c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (!_vm.reviews.length),
+      expression: "!reviews.length"
+    }],
+    staticClass: "align-center"
+  }, [_c('h3', {
+    staticClass: "font-grey"
+  }, [_vm._v(_vm._s(_vm.$trans.translation.no_reviews))])])], 2)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -55348,7 +55375,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "src": _vm.img_source + _vm.path + product.thumbnail,
         "alt": product.thumbnail
       }
-    }), _vm._v(" "), _c('span', {
+    })]), _vm._v(" "), _c('span', {
       directives: [{
         name: "show",
         rawName: "v-show",
@@ -55356,11 +55383,19 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         expression: "product.discount_price"
       }],
       staticClass: "sale top-right"
-    }, [_vm._v("Sale")]), _vm._v(" "), (product.discount_price) ? _c('span', {
+    }, [_vm._v("Sale")]), _vm._v(" "), _c('i', {
+      directives: [{
+        name: "show",
+        rawName: "v-show",
+        value: (product.shop_type === 2),
+        expression: "product.shop_type === 2"
+      }],
+      staticClass: "icon-checkmark verified-profile top-left"
+    }), _vm._v(" "), (product.discount_price) ? _c('span', {
       staticClass: "thumb-price-discount bottom-left"
     }, [_vm._v(_vm._s(_vm.$number.currency(product.discount_price)) + "฿")]) : _c('span', {
       staticClass: "thumb-price bottom-left"
-    }, [_vm._v(_vm._s(_vm.$number.currency(product.price)) + "฿")])])])
+    }, [_vm._v(_vm._s(_vm.$number.currency(product.price)) + "฿")])])
   }), _vm._v(" "), _vm._l((_vm.imgs), function(img) {
     return _c('img', {
       directives: [{

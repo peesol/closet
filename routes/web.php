@@ -9,6 +9,7 @@ Route::post('register/email/resend', 'Auth\RegisterController@resendEmail')->nam
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/shops', 'HomeController@shops')->name('shops');
 Route::get('/trending', 'HomeController@trending')->name('trending');
+Route::get('/secondhand', 'HomeController@secondhand')->name('secondhand');
 
 Route::get('/locale_ajax', 'Language\LanguageController@getLanguage');
 Route::put('/locale_ajax/{lang}', 'Language\LanguageController@languageChange');

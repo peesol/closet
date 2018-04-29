@@ -178,4 +178,5 @@ export default {
     //review
     user_review: 'รีวิวของคุณ',
     write_review: 'เขียนรีวิว',
+    no_reviews: 'ไม่มีรีวิว',
 }

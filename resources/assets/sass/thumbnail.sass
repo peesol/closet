@@ -123,7 +123,7 @@
   .products-img
     height: 200px
 
-span
+span, i
   &.top-right, &.top-left, &.bottom-left, &.bottom-right
     position: absolute
   &.top-right
@@ -139,7 +139,7 @@ span
     bottom: 7px
     right: 5px
 
-span
+span, i
   &.sale, &.price, &.thumb-price, &.thumb-price-discount
     font-family: 'Roboto' !important
     padding: 5px
@@ -151,12 +151,15 @@ span
     background: rgba(0, 0, 0, 0.5)
   &.thumb-price-discount
     background: #4aae2a
-  &.caution
+  &.caution, &.verified-profile
     color: #fff
+    border-radius: 100%
+  &.caution
     background: #ffca00
     padding: 10px
-    border-radius: 100%
-
+  &.verified-profile
+    background: #ff8000
+    padding: 7px
 
 @media (min-width: 768px)
   span

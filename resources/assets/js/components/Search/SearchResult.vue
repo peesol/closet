@@ -7,8 +7,10 @@
       <div class="products-wrap" v-for="product in products[0]">
         <div class="products-img">
           <a :href="$root.url + '/product/' + product.uid">
-        <img class="products-img-thumb" :src="src + product.thumbnail"alt="image">
-      </a>
+            <img class="products-img-thumb" :src="src + product.thumbnail"alt="image">
+          </a>
+          <i v-show="product.shop_type === 2" class="icon-checkmark verified-profile top-left"></i>
+
           <div v-if="!product.discount_price">
             <span class="price bottom-left">{{ $number.currency(product.price) }}&nbsp;&#3647;</span>
           </div>

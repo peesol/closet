@@ -75,6 +75,8 @@ nav {
     display: inline-block;
     list-style: none; }
     .login-box li a {
+      line-height: 50px;
+      padding: 0 10px;
       color: #1782cf; }
       .login-box li a:hover {
         color: #3fa9f5; }
@@ -748,37 +750,41 @@ td.center, th.center {
 
   .products-img {
     height: 200px; } }
-span.top-right, span.top-left, span.bottom-left, span.bottom-right {
+span.top-right, span.top-left, span.bottom-left, span.bottom-right, i.top-right, i.top-left, i.bottom-left, i.bottom-right {
   position: absolute; }
-span.top-right {
+span.top-right, i.top-right {
   top: 5px;
   right: 5px; }
-span.top-left {
+span.top-left, i.top-left {
   top: 5px;
   left: 5px; }
-span.bottom-left {
+span.bottom-left, i.bottom-left {
   bottom: 7px;
   left: 5px; }
-span.bottom-right {
+span.bottom-right, i.bottom-right {
   bottom: 7px;
   right: 5px; }
 
-span.sale, span.price, span.thumb-price, span.thumb-price-discount {
+span.sale, span.price, span.thumb-price, span.thumb-price-discount, i.sale, i.price, i.thumb-price, i.thumb-price-discount {
   font-family: "Roboto" !important;
   padding: 5px;
   color: #fff;
   border-radius: 4px; }
-span.sale {
+span.sale, i.sale {
   background: #4aae2a; }
-span.price, span.thumb-price {
+span.price, span.thumb-price, i.price, i.thumb-price {
   background: rgba(0, 0, 0, 0.5); }
-span.thumb-price-discount {
+span.thumb-price-discount, i.thumb-price-discount {
   background: #4aae2a; }
-span.caution {
+span.caution, span.verified-profile, i.caution, i.verified-profile {
   color: #fff;
-  background: #ffca00;
-  padding: 10px;
   border-radius: 100%; }
+span.caution, i.caution {
+  background: #ffca00;
+  padding: 10px; }
+span.verified-profile, i.verified-profile {
+  background: #ff8000;
+  padding: 7px; }
 
 @media (min-width: 768px) {
   span.price {
@@ -1699,32 +1705,6 @@ span.caution {
         color: #6c6c6c; }
         .pagination .first a:hover, .pagination .last a:hover {
           color: #ff8000; } }
-/* Laravel pagination */
-ul.pagination {
-  display: block;
-  padding: 25px;
-  text-align: center; }
-  ul.pagination li {
-    display: inline-block;
-    text-align: center;
-    width: 40px;
-    height: 40px;
-    line-height: 40px;
-    border: 1px solid #ddd;
-    background: #fff;
-    color: #6c6c6c;
-    border-radius: 5px;
-    font-size: 1.2rem; }
-    ul.pagination li.active {
-      color: #ff8000; }
-    ul.pagination li a {
-      display: block;
-      width: 100%;
-      height: 100%;
-      color: #6c6c6c; }
-      ul.pagination li a:hover {
-        color: #ff8000; }
-
 .font-grey {
   color: #6c6c6c !important; }
 

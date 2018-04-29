@@ -176,4 +176,5 @@ export default {
     //review
     user_review: 'Your review',
     write_review: 'Leave review',
+    no_reviews: 'No reviews',
   }

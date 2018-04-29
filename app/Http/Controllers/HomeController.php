@@ -5,7 +5,7 @@ namespace Closet\Http\Controllers;
 use Cache;
 use Auth;
 use App;
-use Closet\Models\{Category, Translation, Product, Shop};
+use Closet\Models\{Category, Translation, Product, Shop, UsedProduct};
 use Illuminate\Http\Request;
 use Closet\Repositories\UserRepository;
 
@@ -16,7 +16,7 @@ class HomeController extends Controller
       $categories = Cache::get('categories');
       $products = Product::popular()->take(10)->get();
       $shops = Shop::orderBy('view_count', 'desc')->take(10)->get();
-      return view('home', [
+      return view('main.home', [
         'categories' => $categories,
         'products' => $products,
         'shops' => $shops,
@@ -33,6 +33,12 @@ class HomeController extends Controller
     }
     public function trending()
     {
-      return view('shops');
+      $products = Product::popular()->take(100)->paginate(30);
+      return view('main.trending', [ 'products' => $products ]);
+    }
+    public function secondhand()
+    {
+      $products = UsedProduct::paginate(30);
+      return view('main.used_market', [ 'products' => $products ]);
     }
 }

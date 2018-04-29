@@ -4,12 +4,17 @@
         <img class="products-img-thumb" src="{{$product->getImage()}}" alt="{{$product->thumbnail}}">
       </a>
 
+      @if ($product->shop_type === 2)
+        <i class="icon-checkmark verified-profile top-left"></i>
+      @endif
+
       @if($product->discount_price)
         <span class="sale top-right">Sale</span>
         <span class="thumb-price-discount bottom-left">{{ number_format($product->discount_price) }}&#3647;</span>
       @else
         <span class="price bottom-left">{{ number_format($product->price) }}&#3647;</span>
       @endif
+      
   </div>
 
   <div class="details">

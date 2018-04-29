@@ -5,8 +5,8 @@
       <div class="menu">
         <div id="full-line">
           <a href="/"><i class="icon-home"></i>{{ $trans.translation.home }}</a>
-          <a href="#"><i class="icon-fire"></i>{{ $trans.translation.trending }}</a>
-          <a href="#"><i class="icon-refresh"></i>{{ $trans.translation.used_market }}</a>
+          <a href="/trending"><i class="icon-fire"></i>{{ $trans.translation.trending }}</a>
+          <a href="/secondhand"><i class="icon-refresh"></i>{{ $trans.translation.used_market }}</a>
           <a href="/category/main" ><i class="icon-category"></i>{{ $trans.translation.categories }}</a>
         </div>
         <div id="full-line">
@@ -16,7 +16,7 @@
             <a :href="$root.url + '/register'">{{ $trans.translation.register }}</a>
           </div>
           <div v-show="$root.authenticated">
-            <a href="#"><i class="icon-user"></i>{{ $trans.translation.my_profile }}</a>
+            <a :href="'/' + userShop"><i class="icon-user"></i>{{ $trans.translation.my_profile }}</a>
             <a href="/profile/note"><i class="icon-note"></i>{{ $trans.translation.my_note }}</a>
             <a href="/profile/mycollection"><i class="icon-map"></i>{{ $trans.translation.my_collection }}</a>
             <a href="/profile/following"><i class="icon-star-full"></i>{{ $trans.translation.following }}</a>
@@ -24,7 +24,7 @@
             <a href="#" @click.prevent="logout()"><i class="icon-exit"></i>{{ $trans.translation.logout }}</a>
           </div>
         </div>
-        <div id="full-line">
+        <div id="full-line" v-show="$root.authenticated">
           <label id="menu-label-grey">{{ $trans.translation.management }}</label>
           <a :class="{'transparent-bg toggled-list' : listToggled}" @click.prevent="listToggled = !listToggled"><i class="icon-plus"></i>{{ $trans.translation.sell }}</a>
           <div v-show="listToggled" id="full-line">

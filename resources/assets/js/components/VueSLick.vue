@@ -3,13 +3,14 @@
   <slick ref="slick" :options="slickOptions">
 
     <div v-for="product in products" v-show="products.length" class="carousel-thumb-wrap">
-      <a :href="$root.url + '/product/' + product.uid">
-        <img class="products-img-thumb" :src="img_source + path + product.thumbnail" :alt="product.thumbnail">
-    <span v-show="product.discount_price" class="sale top-right">Sale</span>
-    <span v-if="product.discount_price" class="thumb-price-discount bottom-left">{{ $number.currency(product.discount_price) }}&#3647;</span>
-
-    <span v-else class="thumb-price bottom-left">{{ $number.currency(product.price) }}&#3647;</span>
+    <a :href="$root.url + '/product/' + product.uid">
+      <img class="products-img-thumb" :src="img_source + path + product.thumbnail" :alt="product.thumbnail">
     </a>
+    <span v-show="product.discount_price" class="sale top-right">Sale</span>
+    <i v-show="product.shop_type === 2" class="icon-checkmark verified-profile top-left"></i>
+    <span v-if="product.discount_price" class="thumb-price-discount bottom-left">{{ $number.currency(product.discount_price) }}&#3647;</span>
+    <span v-else class="thumb-price bottom-left">{{ $number.currency(product.price) }}&#3647;</span>
+
     </div>
 
     <img v-show="imgs.length" v-for="img in imgs" :src="img_source + path + img.filename" :alt="img.filename">

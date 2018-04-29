@@ -9,6 +9,7 @@ class Shop extends Model
     protected $fillable = [
       'name',
       'slug',
+      'profile_type',
       'description',
       'thumbnail',
       'cover',
@@ -45,6 +46,10 @@ class Shop extends Model
     public function feedback()
     {
       return $this->hasMany(Feedback::class);
+    }
+    public function post()
+    {
+      return $this->hasMany(Post::class);
     }
     public function getRouteKeyName()
     {

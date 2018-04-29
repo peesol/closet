@@ -2,10 +2,6 @@
 
 @section('content')
 
-@section('scripts')
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
-@endsection
-
 <div class="container">
             <div class="medium-panel">
               <div class="full-width full-banner">
@@ -31,14 +27,18 @@
                 <div class="panel-heading-alt">
                   <label class="heading">{{__('message.trending_shops')}}</label>
                 </div>
-                <div class="shops-list">
-                  @foreach ($shops as $shop)
-                    <div>
-                      <img src="{{ $shop->getThumbnail() }}">
-                      <a class="text-nowrap" href="/{{ $shop->slug }}">{{ $shop->name }}</a>
-                    </div>
-                  @endforeach
-                </div>
+
+
+                  <div class="shops-list">
+                    @foreach ($shops as $shop)
+                      <div>
+                        <img src="{{ $shop->getThumbnail() }}">
+                        <a class="text-nowrap" href="/{{ $shop->slug }}">{{ $shop->name }}</a>
+                      </div>
+                    @endforeach
+                  </div>
+
+
             </div>
 
 </div>

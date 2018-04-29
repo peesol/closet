@@ -85,6 +85,7 @@ class RegisterController extends Controller
         $shop = $user->shop()->create([
           'name' => $data['shop_name'],
           'slug' => uniqid('shop_'),
+          'profile_type' => $data['profile_type'],
         ]);
 
         $shop->availablePromotions()->create([
