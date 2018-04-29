@@ -40,9 +40,14 @@ class ClearDiscount extends Command
      */
     public function handle()
     {
-        $time = Carbon::now('Asia/Bangkok')->subDays(30)->toDateTimeString();
+        $time = Carbon::now('Asia/Bangkok')->subMonths(1)->toDateTimeString();
         $data = Product::where('discount_date', '<=', $time);
-        $data->update(['discount_price' => 159352]);
+        
+        $data->update([
+          'discount_price' => null,
+          'discount_date' => null,
+        ]);
+
         $this->info('All discounts are cleared!!!');
     }
 }

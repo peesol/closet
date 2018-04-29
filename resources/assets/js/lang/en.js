@@ -146,6 +146,7 @@ export default {
     apply_discount: 'Discount code',
     discount_not_valid: 'This discount code is not valid or expired.',
     points: 'Points',
+    expired: 'Exp',
     not_enough_points: 'You don\'t have enough points.',
     search: 'Search',
     search_query: 'Search for',

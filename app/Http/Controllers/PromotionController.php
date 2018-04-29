@@ -2,9 +2,12 @@
 
 namespace Closet\Http\Controllers;
 
+use Date;
+use Fractal;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Closet\Models\{Discount, Shop, Product};
+use Closet\Transformer\DiscountProductTransformer;
 
 class PromotionController extends Controller
 {
@@ -62,7 +65,7 @@ class PromotionController extends Controller
         return response()->json(false, 200);
       }
     }
-    
+
     //Product Discount
     public function discountPage(Request $request)
     {
@@ -75,10 +78,13 @@ class PromotionController extends Controller
     {
       $products = $request->user()->shop->product->where('discount_price', null);
       $discount = $request->user()->shop->product->where('discount_price','!==', null);
+      $discount = Fractal::collection($discount, new DiscountProductTransformer());
+
       return response()->json([
         'products' => $products,
         'discount_products' => $discount
       ]);
+
     }
     public function applyDiscount(Product $product, Request $request)
     {
@@ -89,9 +95,15 @@ class PromotionController extends Controller
         $request->user()->shop->availablePromotions->decrement('discount', 1);
         $target = $product->update([
           'discount_price' => $product->price - $request->discount,
-          'discount_date' => Carbon::now()
+          'discount_date' => Carbon::now('Asia/Bangkok')->addMonths(-1)
         ]);
-        return response()->json($product);
+
+        return response()->json([
+          'name' => $product->name,
+          'price' => $product->price,
+          'discount_price' => $product->discount_price,
+          'discount_date' => $product->discount_date->format('d-m-Y')
+        ]);
       }
     }
     public function removeDiscount(Product $product)

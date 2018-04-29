@@ -1,50 +1,43 @@
 <template>
-<div style="padding:15px;">
+<div class="padding-15-horizontal">
   <h2 v-bind:class="{ 'font-red' : points === 0 ,'font-green' : points !== 0}">{{$trans.translation.points}}&nbsp;:&nbsp;{{remaining_points}}</h2>
-  <table class="c-table" v-show="discount_products.length">
-    <tr>
-      <th colspan="5">{{$trans.translation.discount}}</th>
-    </tr>
-    <tr v-for="(item, index) in discount_products">
-      <td class="m-cell overflow-hidden" style="width:100%;">{{item.name}}</td>
-      <td class="m-cell"><strike>{{$number.currency(item.price)}}&nbsp;&#3647;</strike>&nbsp;<small class="icon-next-arrow"></small>
+  <div class="padding-30-bottom" v-show="discount_products.length">
+    <label class="full-label grey-bg heading padding-10">{{$trans.translation.discount}}</label>
+    <div class="col-4-flex-res full-width panel-heading" v-for="(item, index) in discount_products">
+      <div class="text-nowrap text-row">{{item.name}}</div>
+      <div class="text-row">
+        <strike>{{$number.currency(item.price)}}&nbsp;&#3647;</strike>&nbsp;<small class="icon-next-arrow"></small>
         <font class="font-green">{{$number.currency(item.discount_price)}}&nbsp;&#3647;</font>
-      </td>
-      <td class="m-cell">{{item.discount_date}}</td>
-      <td class="s-cell">
-        <button @click.prevent="remove(item.uid, index)" class="round-btn delete-btn">
-          <small class="icon-cross"></small>
-        </button>
-      </td>
-    </tr>
-  </table>
-  <table class="c-table">
-    <tr>
-      <th colspan="3">{{$trans.translation.shop_products}}</th>
-    </tr>
-  </table>
-  <table class="c-table" v-for="(item, index) in products">
-    <tr>
-      <td class="m-cell overflow-hidden" style="width:100%;">{{item.name}}</td>
-      <td class="m-cell">{{$number.currency(item.price)}}&nbsp;&#3647;</td>
-      <td class="s-cell">
-        <button @click.prevent="toggleForm(item.id)" class="round-btn">
-          <small class="icon-plus font-grey"></small>
-        </button>
-      </td>
-    </tr>
-    <tr v-show="formVisible === item.id">
-      <td colspan="3" style="background-color:#efefef;">
+      </div>
+      <div class="text-row">
+        <font class="font-red">{{$trans.translation.expired}}&nbsp;{{item.discount_date}}</font>
+      </div>
+      <div class="align-right">
+        <button @click.prevent="remove(item.uid, index)" class="round-btn delete-btn"><small class="icon-cross"></small></button>
+      </div>
+    </div>
+  </div>
+
+  <label class="full-label grey-bg heading padding-10">{{$trans.translation.shop_products}}</label>
+
+  <div class="full-width" v-for="(item, index) in products">
+    <div class="col-3-flex-res panel-heading">
+      <div class="text-nowrap text-row">{{item.name}}</div>
+      <div class="text-row">{{$trans.translation.price}}&nbsp;{{$number.currency(item.price)}}&nbsp;&#3647;</div>
+      <div class="align-right">
+        <button @click.prevent="toggleForm(item.id)" class="round-btn"><small class="icon-plus font-grey"></small></button>
+      </div>
+    </div>
+    <div class="full-width grey-bg padding-10" v-show="formVisible === item.id">
         <div class="input-group">
           <form v-on:submit.prevent="apply(item.uid, index)">
-            <input style="height:40px;" type="number" v-model="discount" :placeholder="$trans.translation.discount" min="1" :max="item.price - 1">
+            <input required class="form-input-alt auto-width" type="number" v-model="discount" :placeholder="$trans.translation.discount" min="1" :max="item.price - 1">
             <span class="input-addon" style="border:none;">{{$trans.translation.baht}}</span>
             <button type="submit" class="round-btn add-btn"><small class="icon-checkmark"></small></button>
           </form>
         </div>
-      </td>
-    </tr>
-  </table>
+    </div>
+  </div>
 </div>
 </template>
 
@@ -72,8 +65,8 @@ export default {
     },
     getProduct() {
       this.$http.get(this.$root.url + '/profile/promotions/manage/discount/product').then((response) => {
-        this.products = response.data.products;
-        this.discount_products = response.data.discount_products;
+        this.products = response.body.products;
+        this.discount_products = response.body.discount_products.data;
       });
     },
     apply(uid, index) {
@@ -84,7 +77,7 @@ export default {
           if (this.remaining_points === 0) {
             alert(this.$trans.translation.not_enough_points)
           } else {
-            this.products.splice(index, 1);
+            this.$delete(this.products, index);
             this.remaining_points--
             this.discount_products.push(response.body);
             this.discount = null;

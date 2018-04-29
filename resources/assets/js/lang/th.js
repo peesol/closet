@@ -148,6 +148,7 @@ export default {
     apply_discount: 'ใช้โค๊ดส่วนลด',
     discount_not_valid: 'ไม่สามารถใช้ส่วนลดได้ อาจกรอกข้อมูลผิดหรือส่วนลดได้ถูกใช้หมดแล้ว',
     points: 'คะแนน',
+    expired: 'หมดอายุ',
     not_enough_points: 'คะแนนของคุณมีไม่เพียงพอที่จะใช้สิทธิ์ได้',
     search: 'ค้นหา',
     search_query: 'คุณต้องการค้นหา',

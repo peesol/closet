@@ -18018,13 +18018,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -18052,8 +18045,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var _this = this;
 
       this.$http.get(this.$root.url + '/profile/promotions/manage/discount/product').then(function (response) {
-        _this.products = response.data.products;
-        _this.discount_products = response.data.discount_products;
+        _this.products = response.body.products;
+        _this.discount_products = response.body.discount_products.data;
       });
     },
     apply: function apply(uid, index) {
@@ -18066,7 +18059,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           if (_this2.remaining_points === 0) {
             alert(_this2.$trans.translation.not_enough_points);
           } else {
-            _this2.products.splice(index, 1);
+            _this2.$delete(_this2.products, index);
             _this2.remaining_points--;
             _this2.discount_products.push(response.body);
             _this2.discount = null;
@@ -21297,6 +21290,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     apply_discount: 'Discount code',
     discount_not_valid: 'This discount code is not valid or expired.',
     points: 'Points',
+    expired: 'Exp',
     not_enough_points: 'You don\'t have enough points.',
     search: 'Search',
     search_query: 'Search for',
@@ -21483,6 +21477,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     apply_discount: 'ใช้โค๊ดส่วนลด',
     discount_not_valid: 'ไม่สามารถใช้ส่วนลดได้ อาจกรอกข้อมูลผิดหรือส่วนลดได้ถูกใช้หมดแล้ว',
     points: 'คะแนน',
+    expired: 'หมดอายุ',
     not_enough_points: 'คะแนนของคุณมีไม่เพียงพอที่จะใช้สิทธิ์ได้',
     search: 'ค้นหา',
     search_query: 'คุณต้องการค้นหา',
@@ -50894,41 +50889,38 @@ if (false) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
-    staticStyle: {
-      "padding": "15px"
-    }
+    staticClass: "padding-15-horizontal"
   }, [_c('h2', {
     class: {
       'font-red': _vm.points === 0, 'font-green': _vm.points !== 0
     }
-  }, [_vm._v(_vm._s(_vm.$trans.translation.points) + " : " + _vm._s(_vm.remaining_points))]), _vm._v(" "), _c('table', {
+  }, [_vm._v(_vm._s(_vm.$trans.translation.points) + " : " + _vm._s(_vm.remaining_points))]), _vm._v(" "), _c('div', {
     directives: [{
       name: "show",
       rawName: "v-show",
       value: (_vm.discount_products.length),
       expression: "discount_products.length"
     }],
-    staticClass: "c-table"
-  }, [_c('tr', [_c('th', {
-    attrs: {
-      "colspan": "5"
-    }
-  }, [_vm._v(_vm._s(_vm.$trans.translation.discount))])]), _vm._v(" "), _vm._l((_vm.discount_products), function(item, index) {
-    return _c('tr', [_c('td', {
-      staticClass: "m-cell overflow-hidden",
-      staticStyle: {
-        "width": "100%"
-      }
-    }, [_vm._v(_vm._s(item.name))]), _vm._v(" "), _c('td', {
-      staticClass: "m-cell"
+    staticClass: "padding-30-bottom"
+  }, [_c('label', {
+    staticClass: "full-label grey-bg heading padding-10"
+  }, [_vm._v(_vm._s(_vm.$trans.translation.discount))]), _vm._v(" "), _vm._l((_vm.discount_products), function(item, index) {
+    return _c('div', {
+      staticClass: "col-4-flex-res full-width panel-heading"
+    }, [_c('div', {
+      staticClass: "text-nowrap text-row"
+    }, [_vm._v(_vm._s(item.name))]), _vm._v(" "), _c('div', {
+      staticClass: "text-row"
     }, [_c('strike', [_vm._v(_vm._s(_vm.$number.currency(item.price)) + " ฿")]), _vm._v(" "), _c('small', {
       staticClass: "icon-next-arrow"
     }), _vm._v(" "), _c('font', {
       staticClass: "font-green"
-    }, [_vm._v(_vm._s(_vm.$number.currency(item.discount_price)) + " ฿")])], 1), _vm._v(" "), _c('td', {
-      staticClass: "m-cell"
-    }, [_vm._v(_vm._s(item.discount_date))]), _vm._v(" "), _c('td', {
-      staticClass: "s-cell"
+    }, [_vm._v(_vm._s(_vm.$number.currency(item.discount_price)) + " ฿")])], 1), _vm._v(" "), _c('div', {
+      staticClass: "text-row"
+    }, [_c('font', {
+      staticClass: "font-red"
+    }, [_vm._v(_vm._s(_vm.$trans.translation.expired) + " " + _vm._s(item.discount_date))])], 1), _vm._v(" "), _c('div', {
+      staticClass: "align-right"
     }, [_c('button', {
       staticClass: "round-btn delete-btn",
       on: {
@@ -50940,24 +50932,19 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }, [_c('small', {
       staticClass: "icon-cross"
     })])])])
-  })], 2), _vm._v(" "), _c('table', {
-    staticClass: "c-table"
-  }, [_c('tr', [_c('th', {
-    attrs: {
-      "colspan": "3"
-    }
-  }, [_vm._v(_vm._s(_vm.$trans.translation.shop_products))])])]), _vm._v(" "), _vm._l((_vm.products), function(item, index) {
-    return _c('table', {
-      staticClass: "c-table"
-    }, [_c('tr', [_c('td', {
-      staticClass: "m-cell overflow-hidden",
-      staticStyle: {
-        "width": "100%"
-      }
-    }, [_vm._v(_vm._s(item.name))]), _vm._v(" "), _c('td', {
-      staticClass: "m-cell"
-    }, [_vm._v(_vm._s(_vm.$number.currency(item.price)) + " ฿")]), _vm._v(" "), _c('td', {
-      staticClass: "s-cell"
+  })], 2), _vm._v(" "), _c('label', {
+    staticClass: "full-label grey-bg heading padding-10"
+  }, [_vm._v(_vm._s(_vm.$trans.translation.shop_products))]), _vm._v(" "), _vm._l((_vm.products), function(item, index) {
+    return _c('div', {
+      staticClass: "full-width"
+    }, [_c('div', {
+      staticClass: "col-3-flex-res panel-heading"
+    }, [_c('div', {
+      staticClass: "text-nowrap text-row"
+    }, [_vm._v(_vm._s(item.name))]), _vm._v(" "), _c('div', {
+      staticClass: "text-row"
+    }, [_vm._v(_vm._s(_vm.$trans.translation.price) + " " + _vm._s(_vm.$number.currency(item.price)) + " ฿")]), _vm._v(" "), _c('div', {
+      staticClass: "align-right"
     }, [_c('button', {
       staticClass: "round-btn",
       on: {
@@ -50968,20 +50955,14 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }, [_c('small', {
       staticClass: "icon-plus font-grey"
-    })])])]), _vm._v(" "), _c('tr', {
+    })])])]), _vm._v(" "), _c('div', {
       directives: [{
         name: "show",
         rawName: "v-show",
         value: (_vm.formVisible === item.id),
         expression: "formVisible === item.id"
-      }]
-    }, [_c('td', {
-      staticStyle: {
-        "background-color": "#efefef"
-      },
-      attrs: {
-        "colspan": "3"
-      }
+      }],
+      staticClass: "full-width grey-bg padding-10"
     }, [_c('div', {
       staticClass: "input-group"
     }, [_c('form', {
@@ -50998,10 +50979,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         value: (_vm.discount),
         expression: "discount"
       }],
-      staticStyle: {
-        "height": "40px"
-      },
+      staticClass: "form-input-alt auto-width",
       attrs: {
+        "required": "",
         "type": "number",
         "placeholder": _vm.$trans.translation.discount,
         "min": "1",
@@ -51021,7 +51001,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticStyle: {
         "border": "none"
       }
-    }, [_vm._v(_vm._s(_vm.$trans.translation.baht))]), _vm._v(" "), _vm._m(0, true)])])])])])
+    }, [_vm._v(_vm._s(_vm.$trans.translation.baht))]), _vm._v(" "), _vm._m(0, true)])])])])
   })], 2)
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('button', {

@@ -2329,8 +2329,8 @@ span.contact-btn.line, small.contact-btn.line {
   .alert-box span {
     font-size: 1.5em; }
   .alert-box.warning {
-    background-color: #fff8c4;
-    border-left: 8px solid #f2c779; }
+    background-color: #fff;
+    border-left: 8px solid #ffb226; }
   .alert-box.success {
     background-color: #e9ffd9;
     border-left: 8px solid #a6ca8a; }
@@ -2347,30 +2347,26 @@ span.contact-btn.line, small.contact-btn.line {
   text-align: left;
   padding: 10px 15px;
   border-bottom: 1px solid #eee; }
-
-.row-list .thumbnail-wrap {
-  width: 100px;
-  height: 100px; }
-  .row-list .thumbnail-wrap img {
-    width: 100%;
+  .row-list.thumbnail-wrap {
+    width: 100px;
+    height: 100px; }
+    .row-list.thumbnail-wrap img {
+      width: 100%;
+      height: 100%; }
+  .row-list.button-wrap {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    right: 15px; }
+  .row-list.middle-wrap {
+    width: calc(100% - 180px);
     height: 100%; }
-
-.row-list .button-wrap {
-  width: 40px;
-  height: 40px;
-  position: absolute;
-  right: 15px; }
-
-.row-list .middle-wrap {
-  width: calc(100% - 180px);
-  height: 100%; }
-
-.row-list .text-wrap {
-  line-height: 35px;
-  min-width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap; }
+  .row-list.text-wrap {
+    line-height: 35px;
+    min-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; }
 
 @media (min-width: 768px) {
   .row-list .thumbnail-wrap {
@@ -2408,9 +2404,30 @@ span.contact-btn.line, small.contact-btn.line {
   grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
   justify-items: center; }
 
+.col-4-flex-res, .col-3-flex-res {
+  display: flex;
+  justify-content: flex-start;
+  flex-flow: column; }
+  .col-4-flex-res div, .col-3-flex-res div {
+    min-width: 100%; }
+    .col-4-flex-res div.text-row, .col-3-flex-res div.text-row {
+      line-height: 30px; }
+
 @media (min-width: 992px) {
   .col-3-grid-res {
-    grid-template-columns: repeat(auto-fill, minmax(30%, 1fr)); } }
+    grid-template-columns: repeat(auto-fill, minmax(30%, 1fr)); }
+
+  .col-4-flex-res, .col-3-flex-res {
+    justify-content: flex-start;
+    flex-flow: row; }
+    .col-4-flex-res div.text-row, .col-3-flex-res div.text-row {
+      line-height: 40px; }
+
+  .col-4-flex-res div {
+    min-width: 25%; }
+
+  .col-3-flex-res div {
+    min-width: 33.33%; } }
 .toast-title {
   font-weight: bold; }
 
