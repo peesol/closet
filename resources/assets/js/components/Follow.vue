@@ -20,7 +20,7 @@ export default {
   },
   methods: {
     getFollowStatus() {
-      axios.get(this.$root.url + '/follow/' + this.shopSlug)
+      this.$http.get(this.$root.url + '/follow/' + this.shopSlug)
         .then((response) => {
           this.followers = response.data.data.count;
           this.userFollowed = response.data.data.user_followed;
@@ -39,7 +39,7 @@ export default {
     follow() {
       this.userFollowed = true;
       this.followers++;
-      axios.post(this.$root.url + '/follow/' + this.shopSlug);
+      this.$http.post(this.$root.url + '/follow/' + this.shopSlug);
     },
     unfollow() {
       if (!confirm('Are you sure you want to unfollow?')) {
@@ -47,7 +47,7 @@ export default {
       }
       this.userFollowed = false;
       this.followers--;
-      axios.delete(this.$root.url + '/follow/' + this.shopSlug);
+      this.$http.delete(this.$root.url + '/follow/' + this.shopSlug);
     }
   },
 

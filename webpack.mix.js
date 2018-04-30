@@ -16,7 +16,6 @@ mix.js([
 	'vue',
 	'jquery',
 	'cleave.js',
-	'axios',
 	'vuex',
 	'dropzone',
 	'algoliasearch',
@@ -29,20 +28,4 @@ mix.js([
 	'vuedraggable',
 ], 'public/js/vendor.js');
 
-// mix.sass('resources/assets/sass/app.sass', 'public/css/main.css');
-mix.styles([
-	'resources/assets/css/general.css',
-	'resources/assets/css/misc.css',
-	'resources/assets/css/navigation.css',
-	'resources/assets/css/second-navigation.css',
-	'resources/assets/css/icon-style.css',
-	'resources/assets/css/product-show.css',
-	'resources/assets/css/shop.css',
-	'resources/assets/css/collection.css',
-	'resources/assets/css/toastr.css',
-	'resources/assets/css/category.css',
-	'resources/assets/css/filter.css',
-	'resources/assets/css/home.css',
-	'resources/assets/css/table.css',
-	'resources/assets/css/menu.css',
-	], 'public/css/all.css');
+mix.sass('resources/assets/sass/app.sass', 'public/css/main.css');
