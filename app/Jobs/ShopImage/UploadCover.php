@@ -16,17 +16,15 @@ class UploadCover implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     public $shop;
-    public $cover;
     public $fileName;
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct(Shop $shop, $cover, $fileName)
+    public function __construct(Shop $shop, $fileName)
     {
       $this->shop = $shop;
-      $this->cover = $cover;
       $this->fileName = $fileName;
     }
 
@@ -37,11 +35,7 @@ class UploadCover implements ShouldQueue
      */
     public function handle()
     {
-      $exploded = explode(',', $this->cover);
 
-      $decoded = base64_decode($exploded[1]);
-
-      Storage::disk('uploads')->put('profile/cover/' . $this->fileName, $decoded);
 
       $path = storage_path('uploads/profile/cover/') . $this->fileName;
 

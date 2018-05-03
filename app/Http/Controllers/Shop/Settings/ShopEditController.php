@@ -2,6 +2,7 @@
 
 namespace Closet\Http\Controllers\Shop\Settings;
 
+use Storage;
 use Closet\Models\Shop;
 use Illuminate\Http\Request;
 use Closet\Jobs\Images\DeleteImage;
@@ -61,9 +62,16 @@ class ShopEditController extends Controller
       $this->dispatch(new DeleteImage($path));
     }
     $thumbnail = $request->thumbnail;
+
     $fileName = uniqid('profile_thumb_' . $request->user()->id);
 
-    $this->dispatch(new UploadThumbnail($shop, $thumbnail, $fileName));
+    $exploded = explode(',', $thumbnail);
+
+    $decoded = base64_decode($exploded[1]);
+
+    Storage::disk('uploads')->put('profile/thumbnail/' . $fileName, $decoded);
+
+    $this->dispatch(new UploadThumbnail($shop, $fileName));
 
     return response()->json(null, 200);
   }
@@ -76,9 +84,16 @@ class ShopEditController extends Controller
     }
 
     $cover = $request->cover;
-    $fileName = uniqid('cov_'.$request->user()->id);
 
-    $this->dispatch(new UploadCover($shop, $cover, $fileName));
+    $fileName = uniqid('cov_'. $request->user()->id);
+
+    $exploded = explode(',', $cover);
+
+    $decoded = base64_decode($exploded[1]);
+
+    Storage::disk('uploads')->put('profile/cover/' . $fileName, $decoded);
+
+    $this->dispatch(new UploadCover($shop, $fileName));
 
     return response()->json(null, 200);
   }

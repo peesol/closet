@@ -60,7 +60,7 @@ class CollectionController extends Controller
       'visibility' => $visibility,
       'description' => $request->description,
       ]);
-    return response()->json($collection);
+    return response()->json(Fractal::item($collection, new CollectionTransformer));
   }
 
   public function delete(Collection $collection)

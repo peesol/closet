@@ -42,7 +42,14 @@ class CollectionEditController extends Controller
         }
         $thumbnail = $request->thumbnail;
         $fileName = uniqid('col_thumb');
-        $this->dispatch(new CollectionThumbnailUpload($collection, $thumbnail, $fileName));
+
+        $exploded = explode(',', $thumbnail);
+
+        $decoded = base64_decode($exploded[1]);
+
+        Storage::disk('uploads')->put('collection/thumbnail/' . $fileName, $decoded);
+
+        $this->dispatch(new CollectionThumbnailUpload($collection, $fileName));
     }
 
     return response()->json($update);

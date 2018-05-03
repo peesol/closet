@@ -34,7 +34,7 @@ window.Closet = {
   @if(!$order->confirmed)
   <div class="small-panel">
     <div class="panel-heading">
-      <h3 class="no-margin">{{__('message.confirmation')}}</h3>
+      <label class="heading">{{__('message.confirmation')}}</label>
     </div>
     <div class="inbox-wrap panel-body">
       <h4>{{__('message.from')}}&nbsp;:&nbsp;{{$order->sender}}</h4>

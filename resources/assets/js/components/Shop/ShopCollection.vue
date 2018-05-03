@@ -104,7 +104,7 @@
 					this.description = null;
 					this.visibility = null;
 					this.$Progress.finish()
-					this.collections.push(response.body)
+					this.collections.push(response.body.data)
 					toastr.success(this.$trans.translation.col_created, {timeOut: 1000});
 				}, (response) => {
 	          toastr.error(this.$trans.translation.error);

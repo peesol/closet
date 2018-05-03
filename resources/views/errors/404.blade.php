@@ -3,10 +3,11 @@
 @section('content')
 
 <div class="container">
+<div class="medium-panel padding-30-vertical">
+  <h2 class="align-center font-grey">{{ __('error.404_title') }}</h2>
+  <h3 class="align-center font-grey">{{ __('error.404_message') }}</h3>
+  <h3 class="align-center"><a href="{{route('home')}}" class="link-text">{{ __('error.404_home_route') }}</a></h3>
+</div>
 
-<h2 style="text-align: center; margin:50px auto;">Sorry, this page isn't available.</h2>
-<h3 style="text-align: center; margin:50px auto;">The link you followed may be broken, or the page may have been removed.</h3>
-<h3 style="text-align: center;" ><a href="/" class="link-text">Go back to home page</a></h3>
 </div>
 @endsection
-

@@ -54,6 +54,7 @@ class ProductUpload implements ShouldQueue
         unlink($file);
       }
       $photos = array_flatten($this->photos);
+      
       foreach($photos as $photo) {
           $file = storage_path() . '/uploads/product/photo/' . $photo;
           $background = Image::canvas(500, 500, '#ffffff');

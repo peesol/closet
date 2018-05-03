@@ -20,16 +20,20 @@
                           <button class="tab-nav-btn static" onclick='document.location.href="/{{$shop->slug}}/reviews"'><span class="icon-star-full"></span><font>{{__('message.review')}}</font></button>
                         </ul>
                     </div>
-        <div style="padding: 15px 45px;"><h3 class="no-margin">{{__('message.products')}}&nbsp;({{$products->count()}})</h3></div>
-            <div class="panel-body thumbnail-grid">
+                    <div class="panel-heading-alt">
+                      <h3 class="no-margin font-grey">{{__('message.products')}}&nbsp;({{$products->count()}})</h3>
+                    </div>
                     @if ($products->count())
+                      <div class="panel-body thumbnail-grid">
                         @foreach ($products as $product)
                           @include('thumbnail._products',[ 'product' => $product ])
                         @endforeach
+                      </div>
                     @else
-                    <label>{{__('message.no_shop_product')}}</label>
+                      <div class="align-center padding-30-bottom">
+                        <h3 class="font-grey">{{__('message.no_shop_product')}}</h3>
+                      </div>
                     @endif
-                    </div>
                 </div>
 
             </div>

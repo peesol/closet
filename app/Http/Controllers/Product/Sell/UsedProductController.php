@@ -38,6 +38,7 @@ class UsedProductController extends Controller
       $thumbnail = uniqid('p_thumb_2_').$request->user()->id;
       Storage::disk('uploads')->putFileAs('used/thumbnail/', $images[0], $thumbnail);
     }
+    $photos = [];
     foreach ($images as $image) {
       $photo = uniqid('p_img_2_').$request->user()->id;
       Storage::disk('uploads')->putFileAs('used/photo/', $image, $photo);

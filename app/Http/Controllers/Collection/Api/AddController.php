@@ -5,7 +5,7 @@ namespace Closet\Http\Controllers\Collection\Api;
 use Fractal;
 use Illuminate\Http\Request;
 use Closet\Http\Controllers\Controller;
-use Closet\Models\{shop, CollectionProduct};
+use Closet\Models\{Shop, CollectionProduct};
 use Closet\Transformer\AddProductTransformer;
 
 class AddController extends Controller

@@ -43,6 +43,7 @@ class NewProductController extends Controller
       $thumbnail = uniqid('p_thumb_').$request->user()->id;
       Storage::disk('uploads')->putFileAs('product/thumbnail/', $images[0], $thumbnail);
     }
+    $photos = [];
     foreach ($images as $image) {
       $photo = uniqid('p_img_').$request->user()->id;
       Storage::disk('uploads')->putFileAs('product/photo/', $image, $photo);

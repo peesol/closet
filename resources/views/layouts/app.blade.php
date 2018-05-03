@@ -18,9 +18,12 @@
     @yield('css')
     <!-- Scripts -->
     @yield('scripts')
-    <script src="https://s3-ap-southeast-1.amazonaws.com/files.closet/js/manifest.js"></script>
+    {{-- <script src="https://s3-ap-southeast-1.amazonaws.com/files.closet/js/manifest.js"></script>
     <script src="https://s3-ap-southeast-1.amazonaws.com/files.closet/js/vendor.js"></script>
-    <script src="https://s3-ap-southeast-1.amazonaws.com/files.closet/js/main.js"></script>
+    <script src="https://s3-ap-southeast-1.amazonaws.com/files.closet/js/main.js"></script> --}}
+    <script src="{{asset('js/manifest.js')}}"></script>
+    <script src="{{asset('js/vendor.js')}}"></script>
+    <script src="{{asset('js/main.js/')}}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
     <script>
 window.Laravel = {!! json_encode(['csrfToken' => csrf_token()]) !!};

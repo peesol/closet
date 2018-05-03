@@ -28,7 +28,7 @@ window.Closet = {
           @if(!$order->shipped)
           <div class="small-panel">
             <div class="panel-heading">
-              <h3 class="no-margin">{{__('message.shipped_confirm')}}</h3>
+              <label class="heading">{{__('message.shipped_confirm')}}</label>
             </div>
             <div class="inbox-wrap panel-body">
               <h4>{{__('message.to')}}&nbsp;:&nbsp;{{$order->sender}}</h4>
@@ -85,7 +85,7 @@ window.Closet = {
           @else
           <div style="margin-top:50px;">
             <div class="medium-panel">
-              <div class="panel-body">
+              <div class="panel-body align-center">
                 <h3 class="font-green">{{__('message.already_confirmed')}}</h3>
               </div>
             </div>

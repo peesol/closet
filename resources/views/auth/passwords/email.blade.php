@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="small-panel">
-                <div class="panel-heading"><h3 class="no-margin">{{__('message.reset_password')}}</h3></div>
+                <div class="panel-heading"><label class="heading">{{__('message.reset_password')}}</label></div>
                 <div class="panel-body">
                     @if (session('status'))
                         <div class="alert alert-success">

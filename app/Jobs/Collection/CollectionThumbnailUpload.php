@@ -16,7 +16,6 @@ class CollectionThumbnailUpload implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     public $collection;
-    public $thumbnail;
     public $fileName;
 
     /**
@@ -24,10 +23,9 @@ class CollectionThumbnailUpload implements ShouldQueue
      *
      * @return void
      */
-    public function __construct(Collection $collection, $thumbnail, $fileName)
+    public function __construct(Collection $collection, $fileName)
     {
       $this->collection = $collection;
-      $this->thumbnail = $thumbnail;
       $this->fileName = $fileName;
     }
 
@@ -38,12 +36,6 @@ class CollectionThumbnailUpload implements ShouldQueue
      */
     public function handle()
     {
-      $exploded = explode(',', $this->thumbnail);
-
-      $decoded = base64_decode($exploded[1]);
-
-      Storage::disk('uploads')->put('collection/thumbnail/' . $this->fileName, $decoded);
-
       $local_path = storage_path('uploads/collection/thumbnail/') . $this->fileName;
 
       $img = Image::make($local_path)->encode('jpg')->fit(200, 200, function ($c){

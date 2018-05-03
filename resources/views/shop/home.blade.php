@@ -63,8 +63,8 @@
                         <vue-slick :products="{{$populars}}" path="/product/thumbnail/" slick-for="shop"></vue-slick>
                       </div>
                       @else
-                        <div class="panel-body-alt">
-                          <h3 style="text-align: center; margin:50px auto;">{{__('message.no_shop_product')}}</h3>
+                        <div class="panel-body-alt align-center">
+                          <h3 class="font-grey">{{__('message.no_shop_product')}}</h3>
                         </div>
                       @endif
                     @endif
