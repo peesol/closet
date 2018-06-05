@@ -178,4 +178,6 @@ export default {
     user_review: 'Your review',
     write_review: 'Leave review',
     no_reviews: 'No reviews',
+    //report
+    report: 'Report',
   }

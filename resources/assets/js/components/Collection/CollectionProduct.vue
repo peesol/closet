@@ -10,7 +10,7 @@
       <li>
         <a @click.prevent="addToNote()">
             <span :class="{'icon-book font-green' : addedToNote, 'icon-bookmarks font-grey' : !addedToNote}"></span>
-            &nbsp;{{$trans.translation.note}}
+            &nbsp;{{$trans.translation.my_note}}
           </a>
       </li>
       <li v-for="(collection, index) in collections">
@@ -37,7 +37,7 @@
   <div @click.stop class="col-add shadow-1" v-show="formVisible === 2">
     <ul id="full-line">
       <li>
-        <a href="#" @click.prevent="report()">Report</a>
+        <a href="#" @click.prevent="report()">{{$trans.translation.report}}</a>
       </li>
     </ul>
   </div>

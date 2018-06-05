@@ -122,14 +122,14 @@ class RegisterController extends Controller
     * @return \Illuminate\Http\Response
     */
     public function verify($token)
-        {
-            $user = User::where('email_token',$token)->first();
-            $user->verified = 1;
+    {
+      $user = User::where('email_token', $token)->first();
+      $user->verified = 1;
 
-            if($user->save()){
-                return view('email.success',['user'=>$user]);
-            }
-        }
+      if($user->save()){
+        return view('email.success');
+      }
+    }
     public function resendEmailPage()
     {
       return view('auth.email.resend');

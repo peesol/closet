@@ -17,18 +17,22 @@ return [
     'reset_password' => 'Reset Password',
     'email_password_reset' => 'Send password reset link',
     'remember' => 'Remember Me',
+    //register
     'register' => 'Register',
     'register_name' => 'Name',
-    'register_shop' => 'Closet Name',
+    'register_shop' => 'Profile name',
     'gender' => 'Gender',
     'men' => 'Men',
     'women' => 'Women',
+    'etc' => 'etc',
     'proceed' => 'Proceed',
+    'profile_type' => 'Profile type',
+    'shop' => 'Shop',
     //tooltip
     'shop_name_tip' => 'This will be your profile and shop name',
     'shop_name_placeholder' => 'Only letters or numbers between 6 and 50 characters',
     'password_placeholder' => 'Only letters or numbers between 8 and 20 characters',
-    'address_tip' => 'This information will be used for delivery',
+    'address_tip' => 'This information below will be used for delivery and only you can see it.',
     //Verification Email
     'success' => 'Success',
     'email_verification_subject' => 'Email Verification',
@@ -175,7 +179,7 @@ return [
     //can't sell notice
     'cant_sell' => 'You must add a bank account information before you can list any products.',
     'cant_sell_warn' => 'Please provide a valid bank accounts. The information you provided will be used by buyers to complete the transaction.',
-    'cant_sell_guide' => 'Or you can add your accounts by going to settings > bank accounts',
+    'cant_sell_guide' => 'Or you can add your accounts by going to Settings > bank accounts',
     //Shipping confirmed
     'shipped_confirm' => 'Shipping Confirmation',
     'shipped_subject' => 'Your order from :name has been delivered',

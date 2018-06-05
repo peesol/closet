@@ -67,10 +67,10 @@
   margin-bottom: 30px !important
 
 .margin-10-horizontal
-  margin-bottom: 0 10px !important
+  margin: 0 10px !important
 
 .margin-10-vertical
-  margin-bottom: 10px 0 !important
+  margin: 10px 0 !important
 
 .margin-10-bottom
   margin-bottom: 10px !important
@@ -85,10 +85,10 @@
   margin-right: 10px !important
 
 .margin-15-horizontal
-  margin-bottom: 0 15px !important
+  margin: 0 15px !important
 
 .margin-15-vertical
-  margin-bottom: 15px 0 !important
+  margin: 15px 0 !important
 
 .margin-20-bottom
   margin-bottom: 20px !important
@@ -210,6 +210,9 @@
 .flex-end
   justify-content: flex-end
 
+.flex-end-res
+  justify-content: flex-start
+
 .flex-start-res
   justify-content: center
   flex-flow: column
@@ -222,6 +225,8 @@
   .flex-start-res
     justify-content: flex-start
     flex-flow: row
+  .flex-end-res
+    justify-content: flex-end
 
 .red-bg
   background-color: #fe4747 !important
@@ -281,6 +286,9 @@
 .not-display
   display: none
 
+.display-hidden
+  display: none
+
 .display-mobile
   display: block
 
@@ -301,14 +309,22 @@
 span
   &.span-error
     color: #ff3333
+    display: block
+    margin-top: 8px
+    font-family: 'Arial'
+    &::before
+      content: '*'
 
 .error-input
   border: 1px solid #ff3333
+  border-bottom: 3px solid #ff3333 !important
   &:focus
-    border-bottom: 3px solid #ff3333
     outline: none
     transition: all 0.30s
 
 .error-heading
   padding: 10px 15px 10px 15px
   background-color: transparent
+
+.lh-35
+  line-height: 35px

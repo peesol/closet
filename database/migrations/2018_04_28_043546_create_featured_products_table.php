@@ -15,6 +15,7 @@ class CreateFeaturedProductsTable extends Migration
     {
         Schema::create('featured_products', function (Blueprint $table) {
           $table->increments('id');
+          $table->integer('shop_id')->unsigned();
           $table->integer('category_id')->unsigned();
           $table->integer('subcategory_id')->unsigned();
           $table->integer('type_id')->unsigned();
@@ -34,6 +35,7 @@ class CreateFeaturedProductsTable extends Migration
           $table->enum('shipping_inter', ['yes','no','contact'])->default('no');
           $table->timestamps();
 
+          $table->foreign('shop_id')->references('id')->on('shops')->onDelete('cascade');
           $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
           $table->foreign('subcategory_id')->references('id')->on('subcategories')->onDelete('cascade');
           $table->foreign('type_id')->references('id')->on('category_types')->onDelete('cascade');

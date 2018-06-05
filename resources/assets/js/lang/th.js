@@ -180,4 +180,6 @@ export default {
     user_review: 'รีวิวของคุณ',
     write_review: 'เขียนรีวิว',
     no_reviews: 'ไม่มีรีวิว',
+    //report
+    report: 'แจ้งปัญหา',
 }

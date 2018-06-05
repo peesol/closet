@@ -4,19 +4,20 @@
     <label class="full-label heading">{{$trans.translation.stock_edit}}</label>
   </div>
   <div v-if="products.length">
-
-    <div class="row-list flex flex-start-res" v-for="(product, index) in products">
-      <div class="text-wrap padding-15-right">
-        <label class="input-label">{{product.name}}</label>
+    <div class="padding-10 flex flex-start-res" v-for="(product, index) in products">
+      <div class="padding-15-right text-nowrap half-width-res">
+        <label class="input-label lh-35">{{product.name}}</label>
       </div>
-      <div class="flex">
-        <div class="input-group padding-15-right width-120">
-          <input class="form-input-alt no-margin" min="0" type="number" v-model="product.amount">
-          <button class="form-input-btn icon-checkmark" type="submit" @click.prevent="setAmount(product.uid, product.amount, index)"></button>
+      <div class="half-width-res flex">
+        <div class="input-group half-width">
+          <input class="form-input-alt no-margin width-120" min="0" type="number" v-model="product.amount">
+          <button class="checkmark-btn icon-checkmark" type="submit" @click.prevent="setAmount(product.uid, product.amount, index)"></button>
         </div>
-        <span class="padding-15-horizontal" :class="{ 'green-box' : product.amount >= 1, 'red-box' : product.amount == 0 }">{{product.amount >= 1 ? $trans.translation.instock : $trans.translation.outstock}}</span>
+        <div class="half-width align-right">
+          <span class="padding-10" :class="{ 'green-box' : product.amount >= 1, 'red-box' : product.amount == 0 }">{{product.amount >= 1 ? $trans.translation.instock : $trans.translation.outstock}}</span>
+        </div>
       </div>
-    </div>
+  </div>
   </div>
 
   <div v-else class="panel-body">

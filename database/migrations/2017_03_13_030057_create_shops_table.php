@@ -17,7 +17,7 @@ class CreateShopsTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->tinyInteger('usertype')->default('1');
-            $table->tinyInteger('profile_type');
+            $table->tinyInteger('profile_type')->default('1');
             $table->string('name');
             $table->string('slug')->unique();
             $table->text('description')->nullable();
