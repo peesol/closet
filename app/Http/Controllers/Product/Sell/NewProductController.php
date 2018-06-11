@@ -2,6 +2,7 @@
 
 namespace Closet\Http\Controllers\Product\Sell;
 
+use Auth;
 use Storage;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -11,12 +12,12 @@ use Closet\Models\{Product,ProductImage};
 
 class NewProductController extends Controller
 {
-  public function index(Request $request)
+  public function index()
   {
-    if ($request->user()->canSell()) {
-      return view('product.sell');
+    if(!Auth::user()->account->count() || !Auth::user()->shop->shipping) {
+      return view('product.error.cant_sell', ['shop' => Auth::user()->shop]);
     } else {
-      return view('product.cant_sell', ['shop' => $request->user()->shop]);
+      return view('product.sell');
     }
   }
 

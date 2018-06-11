@@ -14,7 +14,7 @@
 
 <div class="details-header-sub">
     <product-vote product-uid="{{ $product->uid }}" product-id="{{ $product->id }}"></product-vote>
-    @if($product->visibility == 'public')
+    @if($product->visibility == 'public' && Auth::check())
     <collection-product product-id="{{ $product->id }}"
       product-slug="{{ $product->uid }}"
       shop-slug="{{Auth::check() ? Auth::user()->shop->slug : null}}"

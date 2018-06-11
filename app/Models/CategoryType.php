@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class CategoryType extends Model
 {
 
+  public $timestamps = false;
+  
     public function subcategory()
     {
     	return $this->belongsTo(Subcategory::class);

@@ -82,6 +82,7 @@ return [
     'new' => 'New',
     'used' => 'Used',
     'qty' => 'Qty',
+    'discount_until' => 'offer ends in',
     //Settings
     'photo_upload' => 'Upload Photo',
     'photo_limit' => 'You can only have :amount photos.',
@@ -177,9 +178,11 @@ return [
     'confirm_deliver' => 'After you have shipped your products you must inform the buyer',
     'alt_confirm_deliver' => 'Or you can inform the buyer via Closet website by going to menu > Orders > Selling and look for the "Paid" section',
     //can't sell notice
-    'cant_sell' => 'You must add a bank account information before you can list any products.',
-    'cant_sell_warn' => 'Please provide a valid bank accounts. The information you provided will be used by buyers to complete the transaction.',
-    'cant_sell_guide' => 'Or you can add your accounts by going to Settings > bank accounts',
+    'cant_sell_account' => 'You must add a bank account information before you can list any products.',
+    'cant_sell_warn' => 'Please provide a valid information. The information you provided will be used by buyers to complete the transaction.',
+    'cant_sell_account_guide' => 'Or you can add your accounts by going to Settings > bank accounts',
+    'cant_sell_shipping' => 'You must add shipping information before you can list any products.',
+    'cant_sell_shipping_guide' => 'Or you can add your accounts by going to My Products > Shipping settings',
     //Shipping confirmed
     'shipped_confirm' => 'Shipping Confirmation',
     'shipped_subject' => 'Your order from :name has been delivered',

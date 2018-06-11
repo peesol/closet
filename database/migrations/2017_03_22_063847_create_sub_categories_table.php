@@ -18,7 +18,6 @@ class CreateSubCategoriesTable extends Migration
             $table->string('name');
             $table->string('slug');
             $table->integer('category_id')->unsigned();
-            $table->timestamps();
 
             $table->foreign('category_id')->references('id')->on('categories');
         });

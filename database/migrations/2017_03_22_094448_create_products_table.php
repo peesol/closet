@@ -13,7 +13,7 @@ class CreateProductsTable extends Migration
      */
     public function up()
     {
-        Schema::create('official_products', function (Blueprint $table) {
+        Schema::create('products', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('shop_id')->unsigned();
             $table->integer('category_id')->unsigned();
@@ -31,11 +31,6 @@ class CreateProductsTable extends Migration
             $table->enum('visibility', ['public','unlisted']);
             $table->boolean('stock')->default(true);
             $table->integer('amount')->default(1);
-            $table->string('shipping')->nullable();
-            $table->integer('shipping_time')->nullable();
-            $table->boolean('shipping_free')->default(true);
-            $table->integer('shipping_fee')->nullable();
-            $table->enum('shipping_inter', ['yes','no','contact'])->default('no');
             $table->timestamps();
 
             $table->foreign('shop_id')->references('id')->on('shops')->onDelete('cascade');
@@ -52,6 +47,6 @@ class CreateProductsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('official_products');
+        Schema::dropIfExists('products');
     }
 }

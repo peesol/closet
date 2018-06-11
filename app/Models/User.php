@@ -80,11 +80,11 @@ class User extends Authenticatable
     }
     public function ownsShop(Shop $shop)
     {
-        return (bool) $this->shop()->where('id', $shop->id)->first();
+      return (bool) $this->shop()->where('id', $shop->id)->first();
     }
 
     public function canSell()
     {
-        return (bool) $this->can_sell == true;
+      return $this->can_sell;
     }
 }

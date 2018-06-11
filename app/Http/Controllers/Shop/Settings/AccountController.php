@@ -16,18 +16,16 @@ class AccountController extends Controller
 
   public function create(Request $request, Shop $shop)
   {
-      $data = $request->number;
-      $number = substr($data, 0, 3) .' - '. substr($data, 3, 1) .' - '. substr($data, 4, 5).' - '. substr($data, 9);
-      if(!$request->user()->can_sell) {
-        $request->user()->can_sell = true;
-        $request->user()->save();
-      }
+    $data = $request->number;
+    $number = substr($data, 0, 3) .' - '. substr($data, 3, 1) .' - '. substr($data, 4, 5).' - '. substr($data, 9);
+
     $create = $shop->account()->create([
       'provider_name' => $request->provider['name'],
       'provider' => $request->provider['code'],
       'name' => $request->name,
       'number' => $number,
     ]);
+
     return response()->json($create);
   }
 
@@ -37,11 +35,4 @@ class AccountController extends Controller
     return;
   }
 
-  public function setSellStatus(Shop $shop)
-  {
-    $shop->user()->update([
-      'can_sell' => false
-    ]);
-    return;
-  }
 }

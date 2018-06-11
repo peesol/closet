@@ -16882,7 +16882,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         name: this.col_name
       }).then(function (response) {
         _this4.col_name = null;
-        _this4.collections.push(response.body);
+        _this4.collections.push(response.body.data);
         toastr.success(_this4.$trans.translation.col_created);
       });
     },
@@ -17228,6 +17228,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -17237,7 +17241,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   data: function data() {
     return {
       toggled: false,
-      listToggled: null
+      toggledList: null
     };
   },
 
@@ -17249,6 +17253,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.$http.post(this.$root.url + '/logout').then(function (response) {
         window.location.replace(_this.$root.url);
       });
+    },
+    toggleList: function toggleList(id) {
+      if (this.toggledList === id) {
+        this.toggledList = null;
+        return;
+      }
+      this.toggledList = id;
     },
     hide: function hide() {
       this.toggled = false;
@@ -18103,7 +18114,28 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       provider: null,
       number: null,
       name: null,
-      options: [{ 'name': 'ธนาคารกรุงเทพ', 'code': 'BBL' }, { 'name': 'ธนาคารกสิกรไทย', 'code': 'KBANK' }, { 'name': 'ธนาคารกรุงไทย', 'code': 'KTB' }, { 'name': 'ธนาคารไทยพาณิชย์', 'code': 'SCB' }, { 'name': 'ธนาคารทหารไทย', 'code': 'TMB' }, { 'name': 'ธนาคารออมสิน', 'code': 'GSB' }, { 'name': 'ธนาคารกรุงศรีอยุธยา', 'code': 'BAY' }]
+      options: [{
+        'name': 'ธนาคารกรุงเทพ',
+        'code': 'BBL'
+      }, {
+        'name': 'ธนาคารกสิกรไทย',
+        'code': 'KBANK'
+      }, {
+        'name': 'ธนาคารกรุงไทย',
+        'code': 'KTB'
+      }, {
+        'name': 'ธนาคารไทยพาณิชย์',
+        'code': 'SCB'
+      }, {
+        'name': 'ธนาคารทหารไทย',
+        'code': 'TMB'
+      }, {
+        'name': 'ธนาคารออมสิน',
+        'code': 'GSB'
+      }, {
+        'name': 'ธนาคารกรุงศรีอยุธยา',
+        'code': 'BAY'
+      }]
     };
   },
 
@@ -19290,53 +19322,53 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      shipping: this.shippingInfo,
-      shipping_fee: this.shippingFee,
-      shipping_free: this.shippingFree,
-      shipping_time: this.shippingTime,
-      shipping_inter: this.shippingInter
+      shippings: this.shopShipping,
+      form: {
+        method: null,
+        fee: null,
+        time: null,
+        free: null
+      },
+      saved: true
     };
   },
 
   props: {
-    shippingInfo: null,
-    shippingFree: null,
-    shippingFee: null,
-    shippingTime: null,
-    shippingInter: null,
-    productSlug: null
-  },
-  computed: {
-    url: function url() {
-      if (this.productSlug) {
-        return this.$root.url + '/product/' + this.productSlug + '/edit/shipping';
-      } else {
-        return this.$root.url + '/profile/myproduct/shipping/update';
-      }
-    }
+    shopShipping: null
   },
   methods: {
-    edit: function edit() {
+    add: function add() {
+      this.shippings.push(this.form);
+      this.form = {};
+      this.saved = false;
+    },
+    remove: function remove(index) {
+      this.shippings.splice(index, 1);
+      this.saved = false;
+    },
+    save: function save() {
       var _this = this;
 
       this.$Progress.start();
-      this.$http.put(this.url, {
-        shipping: this.shipping,
-        shipping_fee: this.shipping_fee,
-        shipping_free: this.shipping_free,
-        shipping_time: this.shipping_time,
-        shipping_inter: 'no'
+      this.$http.put(this.$root.url + '/profile/myproduct/shipping/update', {
+        shipping: this.shippings
       }).then(function (response) {
         toastr.success(_this.$trans.translation.saved);
         _this.$Progress.finish();
+        if (_this.$route.path == '/sell/new') {
+          document.location.href = _this.$root.url + '/sell/new';
+        }
       }, function (response) {
         toastr.error(_this.$trans.translation.error);
         _this.$Progress.fail();
       });
+      this.saved = true;
     }
   }
 });
@@ -54056,12 +54088,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_vm._v(_vm._s(_vm.$trans.translation.management))]), _vm._v(" "), _c('a', {
     class: {
-      'transparent-bg toggled-list': _vm.listToggled
+      'transparent-bg toggled-list': _vm.toggledList === 1
     },
     on: {
       "click": function($event) {
         $event.preventDefault();
-        _vm.listToggled = !_vm.listToggled
+        _vm.toggleList(1)
       }
     }
   }, [_c('i', {
@@ -54070,8 +54102,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "show",
       rawName: "v-show",
-      value: (_vm.listToggled),
-      expression: "listToggled"
+      value: (_vm.toggledList === 1),
+      expression: "toggledList === 1"
     }],
     attrs: {
       "id": "full-line"
@@ -54085,12 +54117,36 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "href": "/sell/used"
     }
   }, [_vm._v(_vm._s(_vm.$trans.translation.used))])]), _vm._v(" "), _c('a', {
-    attrs: {
-      "href": "/profile/order/selling"
+    class: {
+      'transparent-bg toggled-list': _vm.toggledList === 2
+    },
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.toggleList(2)
+      }
     }
   }, [_c('i', {
     staticClass: "icon-box"
-  }), _vm._v(_vm._s(_vm.$trans.translation.my_products))]), _vm._v(" "), _c('a', {
+  }), _vm._v(_vm._s(_vm.$trans.translation.my_products))]), _vm._v(" "), _c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.toggledList === 2),
+      expression: "toggledList === 2"
+    }],
+    attrs: {
+      "id": "full-line"
+    }
+  }, [_c('a', {
+    attrs: {
+      "href": "/profile/myproduct/new"
+    }
+  }, [_vm._v(_vm._s(_vm.$trans.translation.new))]), _vm._v(" "), _c('a', {
+    attrs: {
+      "href": "/profile/myproduct/used"
+    }
+  }, [_vm._v(_vm._s(_vm.$trans.translation.used))])]), _vm._v(" "), _c('a', {
     attrs: {
       "href": "/profile/promotions/manage"
     }
@@ -54347,25 +54403,28 @@ if (false) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
-    staticClass: "padding-15-horizontal padding-15-top half-width-res"
+    staticClass: "padding-30"
   }, [_c('vue-progress-bar'), _vm._v(" "), _c('form', {
-    attrs: {
-      "method": "post",
-      "enctype": "multipart/form-data"
-    },
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.shippings.length < 5),
+      expression: "shippings.length < 5"
+    }],
     on: {
       "submit": function($event) {
         $event.preventDefault();
-        _vm.edit($event)
+        _vm.add($event)
       }
     }
   }, [_c('div', {
     staticClass: "form-group"
   }, [_c('label', {
-    staticClass: "full-label input-label margin-10-bottom"
-  }, [_vm._v(_vm._s(_vm.$trans.translation.shipping) + " \n          "), _c('span', {
-    staticClass: "font-normal"
-  }, [_vm._v(_vm._s(_vm.$trans.translation.shipping_ex))])]), _vm._v(" "), _c('input', {
+    staticClass: "input-label",
+    attrs: {
+      "for": "shipping"
+    }
+  }, [_vm._v(_vm._s(_vm.$trans.translation.shipping))]), _vm._v(" "), _c('input', {
     directives: [{
       name: "validate",
       rawName: "v-validate",
@@ -54374,48 +54433,55 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }, {
       name: "model",
       rawName: "v-model",
-      value: (_vm.shipping),
-      expression: "shipping"
+      value: (_vm.form.method),
+      expression: "form.method"
     }],
     class: {
       'form-input': true, 'is-error': _vm.errors.has('shipping')
     },
     attrs: {
-      "type": "text",
-      "name": "shipping"
+      "required": "",
+      "id": "method",
+      "placeholder": _vm.$trans.translation.shipping_ex,
+      "type": "text"
     },
     domProps: {
-      "value": (_vm.shipping)
+      "value": (_vm.form.method)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.shipping = $event.target.value
+        _vm.$set(_vm.form, "method", $event.target.value)
       }
     }
   })]), _vm._v(" "), _c('div', {
     staticClass: "input-group flex padding-15-vertical"
   }, [_c('label', {
-    staticClass: "input-label padding-15-right"
+    staticClass: "input-label padding-15-right",
+    attrs: {
+      "for": "time"
+    }
   }, [_vm._v(_vm._s(_vm.$trans.translation.shipping_time))]), _vm._v(" "), _c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.shipping_time),
-      expression: "shipping_time"
+      value: (_vm.form.time),
+      expression: "form.time"
     }],
     staticClass: "width-60 form-input no-margin",
     attrs: {
+      "required": "",
+      "min": "1",
       "type": "number",
-      "name": "shipping_time"
+      "id": "time"
     },
     domProps: {
-      "value": (_vm.shipping_time)
+      "value": (_vm.form.time)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.shipping_time = $event.target.value
+        _vm.$set(_vm.form, "time", $event.target.value)
       }
     }
   }), _vm._v(" "), _c('label', {
@@ -54424,77 +54490,151 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "padding-15-vertical"
   }, [_c('label', {
     staticClass: "input-label padding-15-right"
-  }, [_vm._v(_vm._s(_vm.$trans.translation.shipping_free))]), _vm._v(" "), _c('select', {
+  }, [_vm._v(_vm._s(_vm.$trans.translation.shipping_free))]), _vm._v(" "), _c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.shipping_free),
-      expression: "shipping_free"
+      value: (_vm.form.free),
+      expression: "form.free"
     }],
-    staticClass: "select-input width-60",
     attrs: {
+      "id": "yes",
+      "type": "radio",
       "name": "shipping_free"
+    },
+    domProps: {
+      "value": 1,
+      "checked": _vm._q(_vm.form.free, 1)
     },
     on: {
       "change": function($event) {
-        var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
-          return o.selected
-        }).map(function(o) {
-          var val = "_value" in o ? o._value : o.value;
-          return val
-        });
-        _vm.shipping_free = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+        _vm.$set(_vm.form, "free", 1)
       }
     }
-  }, [_c('option', {
+  }), _vm._v(" "), _c('label', {
+    staticClass: "input-label",
     attrs: {
-      "value": "1"
+      "for": "yes"
     }
-  }, [_vm._v(_vm._s(_vm.$trans.translation.yes))]), _vm._v(" "), _c('option', {
+  }, [_vm._v(_vm._s(_vm.$trans.translation.yes))]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.form.free),
+      expression: "form.free"
+    }],
     attrs: {
-      "value": "0"
+      "id": "no",
+      "type": "radio",
+      "name": "shipping_free"
+    },
+    domProps: {
+      "value": 0,
+      "checked": _vm._q(_vm.form.free, 0)
+    },
+    on: {
+      "change": function($event) {
+        _vm.$set(_vm.form, "free", 0)
+      }
     }
-  }, [_vm._v(_vm._s(_vm.$trans.translation.no))])])]), _vm._v(" "), _c('div', {
+  }), _vm._v(" "), _c('label', {
+    staticClass: "input-label",
+    attrs: {
+      "for": "no"
+    }
+  }, [_vm._v(_vm._s(_vm.$trans.translation.no))])]), _vm._v(" "), _c('div', {
     directives: [{
       name: "show",
       rawName: "v-show",
-      value: (_vm.shipping_free == false),
-      expression: "shipping_free == false"
+      value: (_vm.form.free === 0),
+      expression: "form.free === 0"
     }],
     staticClass: "padding-15-vertical"
   }, [_c('label', {
-    staticClass: "input-label padding-15-right"
+    staticClass: "input-label padding-15-right",
+    attrs: {
+      "for": "fee"
+    }
   }, [_vm._v(_vm._s(_vm.$trans.translation.shipping_fee))]), _vm._v(" "), _c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.shipping_fee),
-      expression: "shipping_fee"
+      value: (_vm.form.fee),
+      expression: "form.fee"
     }],
     staticClass: "form-input width-60 no-margin",
     attrs: {
+      "required": _vm.form.free === 0,
+      "min": "1",
       "type": "number",
-      "name": "shipping_fee"
+      "name": "fee"
     },
     domProps: {
-      "value": (_vm.shipping_fee)
+      "value": (_vm.form.fee)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.shipping_fee = $event.target.value
+        _vm.$set(_vm.form, "fee", $event.target.value)
       }
     }
   }), _vm._v(" "), _c('label', {
     staticClass: "input-label padding-15-left"
   }, [_vm._v(_vm._s(_vm.$trans.translation.baht))])]), _vm._v(" "), _c('div', {
-    staticClass: "align-right full-label"
+    staticClass: "align-right full-width"
   }, [_c('button', {
     staticClass: "orange-btn normal-sq",
     attrs: {
       "type": "submit"
     }
-  }, [_vm._v(_vm._s(_vm.$trans.translation.edit_submit))])])])], 1)
+  }, [_vm._v(_vm._s(_vm.$trans.translation.add))])])]), _vm._v(" "), _c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.shippings.length),
+      expression: "shippings.length"
+    }],
+    staticClass: "margin-20-top"
+  }, [_c('label', {
+    staticClass: "heading"
+  }, [_vm._v(_vm._s(_vm.$trans.translation.shipping))]), _vm._v(" "), _vm._l((_vm.shippings), function(item, index) {
+    return _c('div', {
+      staticClass: "padding-10",
+      attrs: {
+        "id": "full-line"
+      }
+    }, [_c('button', {
+      directives: [{
+        name: "show",
+        rawName: "v-show",
+        value: (_vm.shippings.length > 1),
+        expression: "shippings.length > 1"
+      }],
+      staticClass: "flat-btn icon-bin",
+      on: {
+        "click": function($event) {
+          $event.preventDefault();
+          _vm.remove(index)
+        }
+      }
+    }), _vm._v("\n      " + _vm._s(item.method) + " / " + _vm._s(item.time) + " " + _vm._s(_vm.$trans.translation.days) + " / " + _vm._s(item.free ? 'free' : item.fee + '฿') + "\n    ")])
+  }), _vm._v(" "), _c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (!_vm.saved),
+      expression: "!saved"
+    }],
+    staticClass: "align-right full-width padding-15-top"
+  }, [_c('button', {
+    staticClass: "orange-btn normal-sq",
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.save($event)
+      }
+    }
+  }, [_vm._v(_vm._s(_vm.$trans.translation.edit_submit))])])], 2)], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -56900,9 +57040,7 @@ if (false) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', [_c('vue-progress-bar'), _vm._v(" "), _c('div', {
-    staticStyle: {
-      "padding": "20px"
-    }
+    staticClass: "padding-30"
   }, [_c('form', {
     attrs: {
       "method": "post"

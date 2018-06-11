@@ -19,12 +19,12 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->tinyInteger('verified')->default(0);
-            $table->boolean('can_sell')->default(false);
             $table->string('email_token')->nullable();
             $table->text('address');
             $table->string('phone')->nullable();
             $table->string('country');
             $table->enum('gender', ['men', 'women', 'etc']);
+            $table->boolean('can_sell');
             $table->rememberToken();
             $table->timestamps();
         });

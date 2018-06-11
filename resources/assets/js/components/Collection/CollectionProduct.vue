@@ -115,7 +115,7 @@ export default {
         name: this.col_name,
       }).then((response) => {
         this.col_name = null
-        this.collections.push(response.body)
+        this.collections.push(response.body.data)
         toastr.success(this.$trans.translation.col_created);
       });
     },

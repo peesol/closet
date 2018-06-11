@@ -97,5 +97,12 @@ class ShopEditController extends Controller
 
     return response()->json(null, 200);
   }
-
+  
+  public function setSellStatus(Shop $shop)
+  {
+    $shop->user()->update([
+      'can_sell' => false
+    ]);
+    return;
+  }
 }

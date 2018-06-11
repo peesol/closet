@@ -21,7 +21,11 @@ class ProductController extends Controller
     public function show(Product $product)
     {
       $contacts = $product->contacts();
-      $noted = Note::where(['product_id' => $product->id, 'shop_id' => Auth::user()->id])->count();
+      if (Auth::check()) {
+        $noted = Note::where(['product_id' => $product->id, 'shop_id' => Auth::user()->id])->count();
+      } else {
+        $noted = null;
+      }
 
       return view('product.show', [
         'product' => $product,

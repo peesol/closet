@@ -13,14 +13,7 @@ class Shop extends Model
       'description',
       'thumbnail',
       'cover',
-      'facebook',
-      'instagram',
-      'line',
-      'twitter',
-      'youtube',
-      'phone',
-      'email',
-      'link',
+      'shipping'
     ];
 
     public function user()

@@ -10,6 +10,8 @@ class Category extends Model
 
 	protected $fillable = ['name'];
 
+	public $timestamps = false;
+
 		public function getRouteKeyName()
  		{
 	 		return 'slug';

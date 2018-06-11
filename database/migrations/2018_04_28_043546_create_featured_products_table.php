@@ -28,11 +28,6 @@ class CreateFeaturedProductsTable extends Migration
           $table->integer('view_count')->default(0);
           $table->boolean('stock')->default(true);
           $table->integer('amount')->default(1);
-          $table->string('shipping')->nullable();
-          $table->integer('shipping_time')->nullable();
-          $table->boolean('shipping_free')->default(true);
-          $table->integer('shipping_fee')->nullable();
-          $table->enum('shipping_inter', ['yes','no','contact'])->default('no');
           $table->timestamps();
 
           $table->foreign('shop_id')->references('id')->on('shops')->onDelete('cascade');

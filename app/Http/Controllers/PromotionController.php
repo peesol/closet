@@ -95,7 +95,7 @@ class PromotionController extends Controller
         $request->user()->shop->availablePromotions->decrement('discount', 1);
         $target = $product->update([
           'discount_price' => $product->price - $request->discount,
-          'discount_date' => Carbon::now('Asia/Bangkok')->addMonths(-1)
+          'discount_date' => Carbon::now('Asia/Bangkok')->addMonths(+1)
         ]);
 
         return response()->json([

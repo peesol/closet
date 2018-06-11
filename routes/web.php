@@ -183,8 +183,6 @@ Route::group(['middleware' => ['auth']], function () {
 */
   Route::get('/product/{product}/edit', 'Product\Edit\UpdateController@index');
   Route::put('/product/{product}/edit', 'Product\Edit\UpdateController@update');
-  //Shipping
-  Route::put('/product/{product}/edit/shipping', 'Product\Shipping\ShippingController@updateByProduct');
   //Photo Upload & Delete
   Route::get('/product/{product}/get_photo', 'Product\Photo\PhotoController@get');
   Route::post('/product/{product}/upload_photo', 'Product\Photo\PhotoController@upload');
@@ -215,9 +213,8 @@ Route::group(['middleware' => ['auth']], function () {
   Route::get('/profile/myproduct/stock', 'Product\Stock\StockController@index');
   Route::put('/profile/myproduct/stock/set_amount/{product}', 'Product\Stock\StockController@update');
   //Shipping edit for all products
-  Route::get('/profile/myproduct/shipping', 'Product\Shipping\ShippingController@index');
-  Route::put('/profile/myproduct/shipping/update', 'Product\Shipping\ShippingController@updateAll');
-
+  Route::get('/profile/myproduct/shipping', 'Shop\Settings\ShippingController@index');
+  Route::put('/profile/myproduct/shipping/update', 'Shop\Settings\ShippingController@update');
 
   Route::post('/product/used/{product}/comments', 'UsedCommentController@create');
   Route::delete('/product/used/{product}/comments/{comment}', 'UsedCommentController@delete');
@@ -250,6 +247,8 @@ Route::namespace('Shop')->group(function () {
   Route::get('/{shop}/reviews/total', 'ReviewController@getTotalReview');
   Route::post('/{shop}/reviews', 'ReviewController@create');
   Route::delete('/{shop}/reviews/delete/{feedback}', 'ReviewController@delete');
+
+
 });
 /*
 |--------------------------------------------------------------------------
@@ -267,6 +266,7 @@ Route::group(['middleware' => ['auth']], function () {
   Route::put('/{shop}/edit/personal_info', 'Shop\Settings\ShopEditController@updatePrivateInfo');
   Route::put('/{shop}/edit/cover', 'Shop\Settings\ShopEditController@updateCover');
   Route::put('/{shop}/edit/thumbnail', 'Shop\Settings\ShopEditController@updateThumbnail');
+  Route::put('/{shop}/edit/set_sell_status', 'Shop\Settings\ShopEditController@setSellStatus');
 
 
   Route::get('/{shop}/edit/contact/get', 'Shop\Settings\ContactController@get');
@@ -279,7 +279,7 @@ Route::group(['middleware' => ['auth']], function () {
   Route::get('/{shop}/edit/account/get', 'Shop\Settings\AccountController@get');
   Route::post('/{shop}/edit/account', 'Shop\Settings\AccountController@create');
   Route::delete('/{shop}/edit/account/{account}/delete', 'Shop\Settings\AccountController@delete');
-  Route::put('/{shop}/edit/set_sell_status', 'Shop\Settings\AccountController@setSellStatus');
+
   /*
   |--------------------------------------------------------------------------
   | Showcases Routes

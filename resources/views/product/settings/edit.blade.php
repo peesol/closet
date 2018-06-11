@@ -36,19 +36,6 @@
         </div>
         <product-choice product-slug="{{$product->uid}}"></product-choice>
 
-        <div class="panel-heading">
-          <label class="full-label heading">{{__('message.shipping')}}</label>
-        </div>
-        <div class="panel-body">
-          <shipping-edit shipping-info="{{$product->shipping}}"
-            shipping-fee="{{$product->shipping_fee}}"
-            shipping-time="{{$product->shipping_time}}"
-            shipping-free="{{$product->shipping_free}}"
-            shipping-inter="{{$product->shipping_inter}}"
-            product-slug="{{$product->uid}}"
-            ></shipping-edit>
-        </div>
-
         </div>
     </div>
 

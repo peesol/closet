@@ -2075,6 +2075,9 @@ span.verified-profile, i.verified-profile {
 .flex-end {
   justify-content: flex-end; }
 
+.flex-end-res {
+  justify-content: flex-start; }
+
 .flex-start-res {
   justify-content: center;
   flex-flow: column; }
@@ -2086,7 +2089,10 @@ span.verified-profile, i.verified-profile {
 @media (min-width: 768px) {
   .flex-start-res {
     justify-content: flex-start;
-    flex-flow: row; } }
+    flex-flow: row; }
+
+  .flex-end-res {
+    justify-content: flex-end; } }
 .red-bg {
   background-color: #fe4747 !important; }
 
@@ -2185,6 +2191,9 @@ span.span-error {
 
 .lh-35 {
   line-height: 35px; }
+
+.list-no-style {
+  list-style-type: none; }
 
 button.default, .orange-btn, .green-btn, .help-btn, .round-btn {
   box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 7px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -1px rgba(0, 0, 0, 0.2); }
