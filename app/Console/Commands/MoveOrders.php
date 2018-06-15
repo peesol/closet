@@ -2,6 +2,9 @@
 
 namespace Closet\Console\Commands;
 
+use DB;
+use Carbon\Carbon;
+use Closet\Models\Order;
 use Illuminate\Console\Command;
 
 class MoveOrders extends Command
@@ -11,14 +14,14 @@ class MoveOrders extends Command
      *
      * @var string
      */
-    protected $signature = 'command:name';
+    protected $signature = 'orders:clear';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Soft delete all outdated orders';
 
     /**
      * Create a new command instance.
@@ -37,6 +40,18 @@ class MoveOrders extends Command
      */
     public function handle()
     {
-        //
+      $shipped = Carbon::now('Asia/Bangkok')->subDays(7)->toDateTimeString();
+      $ignored = Carbon::now('Asia/Bangkok')->subDays(15)->toDateTimeString();
+
+      Order::where([
+        ['updated_at', '<=', $shipped],
+        ['shipped', '=', true],
+      ])->delete();
+
+      Order::where([
+        ['updated_at', '<=', $ignored],
+      ])->delete();
+
+      $this->info('Orders deleted!!!');
     }
 }

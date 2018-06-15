@@ -19,6 +19,7 @@ class Kernel extends ConsoleKernel
         \Closet\Console\Commands\CacheCategory::class,
         \Closet\Console\Commands\RemoveUsed::class,
         \Closet\Console\Commands\IndexProduct::class,
+        \Closet\Console\Commands\MoveOrders::class,
     ];
 
     /**

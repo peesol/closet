@@ -34,6 +34,7 @@ class CreateOrdersTable extends Migration
           $table->boolean('feedback')->default(false);
 
           $table->timestamps();
+          $table->softDeletes();
 
           $table->foreign('sender_id')->references('id')->on('users')->onDelete('cascade');
           $table->foreign('reciever_id')->references('id')->on('users')->onDelete('cascade');

@@ -41,6 +41,18 @@ class OrderController extends Controller
     $order = Order::where('sender_id', $id)->latest()->get();
     return Fractal::collection($order, new OrderTransformer);
   }
+  public function getSellingHistory()
+  {
+    $id = Auth::id();
+    $order = Order::onlyTrashed()->where('reciever_id', $id)->latest()->get();
+    return Fractal::collection($order, new OrderTransformer);
+  }
+  public function getBuyingHistory()
+  {
+    $id = Auth::id();
+    $order = Order::onlyTrashed()->where('sender_id', $id)->latest()->get();
+    return Fractal::collection($order, new OrderTransformer);
+  }
   /*
   |--------------------------------------------------------------------------
   | Actions
