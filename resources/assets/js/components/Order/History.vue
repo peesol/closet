@@ -1,5 +1,5 @@
 <template>
-<div>
+<div v-show="orders.length">
   <vue-progress-bar></vue-progress-bar>
   <pagination v-on:switched="meta[0].current_page = $event" :meta="meta"></pagination>
   <table class="c-table">
