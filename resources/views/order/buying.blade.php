@@ -18,7 +18,10 @@
             <button class="tab-nav-btn current">{{ __('message.buying_order')}}</button>
         </ul>
     </div>
-    <div class="msg-container panel-body">
+    <div class="panel-body">
+      <div class="padding-15-vertical">
+        <a href="/profile/order/buying/history" class="font-15em">{{ __('message.selling_history') }}>></a>
+      </div>
       <order-buying user-name="{{Auth::user()->name}}" user-address="{{Auth::user()->address}}" user-phone="{{Auth::user()->phone}}"></order-buying>
     </div>
   </div>

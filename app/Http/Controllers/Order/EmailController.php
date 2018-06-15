@@ -19,21 +19,21 @@ class EmailController extends Controller
   | Page that open from email.
   |--------------------------------------------------------------------------
   */
-  public function confirmPage(Order $order)
-  {
-    return view('order.confirmation', ['order' => $order]);
-  }
+  // public function confirmPage(Order $order)
+  // {
+  //   return view('order.email.confirmation', ['order' => $order]);
+  // }
   public function confirmedPage()
   {
     return view('order.after.confirmed');
   }
   public function transactionPage(Order $order)
   {
-    return view('order.transaction', ['order' => $order]);
+    return view('order.email.transaction', ['order' => $order]);
   }
   public function shippedPage(Order $order)
   {
-    return view('order.shipped', ['order' => $order]);
+    return view('order.email.shipped', ['order' => $order]);
   }
   /*
   |--------------------------------------------------------------------------

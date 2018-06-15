@@ -20,9 +20,17 @@ class OrderController extends Controller
   {
     return view('order.selling');
   }
+  public function sellingHistoryPage()
+  {
+    return view('order.history.selling');
+  }
   public function buyingPage()
   {
     return view('order.buying');
+  }
+  public function buyingHistoryPage()
+  {
+    return view('order.history.buying');
   }
   /*
   |--------------------------------------------------------------------------
@@ -44,14 +52,14 @@ class OrderController extends Controller
   public function getSellingHistory()
   {
     $id = Auth::id();
-    $order = Order::onlyTrashed()->where('reciever_id', $id)->latest()->get();
-    return Fractal::collection($order, new OrderTransformer);
+    $order = Order::onlyTrashed()->where('reciever_id', $id)->latest()->paginate(40);
+    return response($order);
   }
   public function getBuyingHistory()
   {
     $id = Auth::id();
-    $order = Order::onlyTrashed()->where('sender_id', $id)->latest()->get();
-    return Fractal::collection($order, new OrderTransformer);
+    $order = Order::onlyTrashed()->where('sender_id', $id)->latest()->paginate(40);
+    return response($order);
   }
   /*
   |--------------------------------------------------------------------------

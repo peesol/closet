@@ -40,16 +40,18 @@ class MoveOrders extends Command
      */
     public function handle()
     {
-      $shipped = Carbon::now('Asia/Bangkok')->subDays(7)->toDateTimeString();
-      $ignored = Carbon::now('Asia/Bangkok')->subDays(15)->toDateTimeString();
+      $shipped = Carbon::now('Asia/Bangkok')->subDays(5)->toDateTimeString();
+      $ignored = Carbon::now('Asia/Bangkok')->subDays(7)->toDateTimeString();
 
       Order::where([
         ['updated_at', '<=', $shipped],
         ['shipped', '=', true],
       ])->delete();
 
-      Order::where([
+      DB::table('orders')->where([
         ['updated_at', '<=', $ignored],
+        ['trans', '=', false],
+        ['shipped', '=', false],
       ])->delete();
 
       $this->info('Orders deleted!!!');

@@ -132,6 +132,8 @@ return [
     'orders' => 'My Orders',
     'selling_order' => 'Selling',
     'buying_order' => 'Buying',
+    'selling_history' => 'Selling history',
+    'buying_history' => 'Buying history',
     //order mail
     'ordering_subject' => 'Order from',
     'ordering_body' => 'This order includes the following products',

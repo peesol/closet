@@ -133,6 +133,8 @@ return [
     'orders' => 'รายการสั่งซื้อ',
     'selling_order' => 'รายการขาย',
     'buying_order' => 'รายการสั่งซื้อ',
+    'selling_history' => 'ประวัติการขายที่ผ่านมา',
+    'buying_history' => 'ประวัติการสั่งซื้อที่ผ่านมา',
     //order mail
     'ordering_subject' => 'การสั่งซื้อสินค้าจาก',
     'ordering_body' => 'มีการสั่งซื้อสินค้าโดยมีรายการดังนี้',

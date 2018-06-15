@@ -124,7 +124,10 @@ Route::put('/order/{order}/transaction_email', 'Order\EmailController@transactio
 Route::group(['middleware' => ['auth']], function () {
   Route::get('/profile/order/selling/get', 'Order\OrderController@getSellingInbox');
   Route::get('/profile/order/buying/get', 'Order\OrderController@getBuyingInbox');
-  Route::get('/profile/order/buying/history/get', 'Order\OrderController@getSellingHistory');
+
+  Route::get('/profile/order/selling/history', 'Order\OrderController@sellingHistoryPage');
+  Route::get('/profile/order/buying/history', 'Order\OrderController@buyingHistoryPage');
+  Route::get('/profile/order/selling/history/get', 'Order\OrderController@getSellingHistory');
   Route::get('/profile/order/buying/history/get', 'Order\OrderController@getBuyingHistory');
 
   Route::post('/order/sending', 'Order\OrderController@store');

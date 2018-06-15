@@ -5,7 +5,7 @@
     <label class="full-label input-label">{{$trans.translation.user_review}}</label>
     <label class="full-label"><i class="icon-star-full" v-for="star in data.points"></i>&nbsp;</label>
     <p>{{ data.comment }}</p>
-    <div class="align-right full-width">
+    <div class="not-display align-right full-width">
       <button class="delete-btn round-btn" @click.prevent="remove(data.id)">
         <small class="icon-bin"></small>
       </button>

@@ -15,6 +15,9 @@
         </ul>
     </div>
     <div class="msg-container panel-body">
+      <div class="padding-15-vertical">
+        <a href="/profile/order/buying/history" class="font-15em">{{ __('message.selling_history') }}>></a>
+      </div>
       <order-selling></order-selling>
     </div>
   </div>
