@@ -7,7 +7,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class OrderConfirmed extends Mailable
+class OrderingBuyer extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -34,7 +34,7 @@ class OrderConfirmed extends Mailable
     public function build()
     {
       app()->setLocale($this->locale);
-      return $this->markdown('email.order.confirmed')
+      return $this->markdown('email.order.ordering_buyer')
       ->subject(__('message.confirmed_order_subject', ['name' => $this->order->reciever]). ' ['. $this->order->updated_at->format('d-m-Y') .']');
     }
 }

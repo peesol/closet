@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateOrdersTable extends Migration
+class CreateOrderHistoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateOrdersTable extends Migration
      */
     public function up()
     {
-        Schema::create('orders', function (Blueprint $table) {
+        Schema::create('order_histories', function (Blueprint $table) {
           $table->increments('id');
           $table->integer('sender_id')->unsigned();
           $table->integer('reciever_id')->unsigned();
@@ -29,8 +29,6 @@ class CreateOrdersTable extends Migration
           $table->string('tracking_number', 40)->nullable();
           $table->text('address')->nullable();
           $table->string('date_paid', 30)->nullable();
-          $table->boolean('trans')->default(false);
-          $table->boolean('shipped')->default(false);
           $table->boolean('feedback')->default(false);
 
           $table->timestamps();
@@ -47,6 +45,6 @@ class CreateOrdersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('orders');
+        Schema::dropIfExists('order_histories');
     }
 }

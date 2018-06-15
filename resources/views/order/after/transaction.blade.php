@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>{{__('message.transaction')}}</title>
-    <link href="https://s3-ap-southeast-1.amazonaws.com/files.closet/css/all.css" rel="stylesheet">
+    <link href="https://s3-ap-southeast-1.amazonaws.com/files.closet/css/main.css" rel="stylesheet">
   </head>
   <body>
     <div style="margin-top:50px;">

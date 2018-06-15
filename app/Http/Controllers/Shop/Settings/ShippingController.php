@@ -10,7 +10,7 @@ class ShippingController extends Controller
 {
   public function index()
   {
-    $shipping = Auth::user()->shop->shipping ? Auth::user()->shop->shipping : null;
+    $shipping = Auth::user()->shop->shipping ? Auth::user()->shop->shipping : 'undefined';
 
     return view('shop.settings.shipping', ['shipping' => $shipping]);
   }

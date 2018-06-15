@@ -16,7 +16,7 @@
         <label class="full-label input-label"><span class="icon-notification"></span>&nbsp;{{__('message.shipping_edit_notice')}}</label>
       </div>
       <div class="padding-10 small-panel margin-10-top">
-        <shipping-edit :shop-shipping="[{{ $shipping }}]"></shipping-edit>
+        <shipping-edit :shop-shipping="{{ $shipping }}"></shipping-edit>
       </div>
     </div>
   </div>

@@ -2,14 +2,14 @@
 <div>
 <form name="myform" @submit.prevent="add" method="post">
   <div class="choice-wrapper">
-    <label class="full-label input-label margin-10-bottom">{{$trans.translation.choice}}</label>
+    <label v-show="choices.length" class="full-label input-label margin-10-bottom">{{$trans.translation.choice}}</label>
     <select v-show="choices.length" v-bind:required="choices.length >= 1" class="select-input" v-model="selected">
       <option v-for="choice in choices" :value="choice.name">{{choice.name}}</option>
     </select>
   </div>
 
   <div v-if="$root.authenticated" class="add-cart">
-    <button type="submit" class="add-cart-btn">{{$trans.translation.add_to_cart}}</button>
+    <button v-show="loaded" type="submit" class="add-cart-btn">{{$trans.translation.add_to_cart}}</button>
   </div>
   <div v-else class="add-cart">
     <button type="button" class="add-cart-disabled">{{$trans.translation.add_to_cart}}</button>
@@ -30,19 +30,20 @@ export default {
       product: [],
       choices: [],
       selected: null,
+      loaded: false,
     }
   },
 
-  props: {
-    productId: null,
-    productSlug: null,
-  },
+  props: [
+    'productSlug',
+    'shippings'
+  ],
   methods: {
     ...mapActions([
       'addToCart',
     ]),
     add(){
-      this.addToCart({ product: this.product, choice: this.selected });
+      this.addToCart({ product: this.product, choice: this.selected , shipping: this.shippings});
       toastr.success(this.$trans.translation.added_to_cart);
     },
     getProduct() {
@@ -53,6 +54,7 @@ export default {
     getChoice() {
         this.$http.get(this.$root.url + '/product/' + this.productSlug + '/get_choice').then((response)=> {
             this.choices = response.body;
+            this.loaded = true
         });
     }
   },

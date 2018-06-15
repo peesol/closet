@@ -23,6 +23,7 @@ class CartController extends Controller
           'shop_name' => $request->input('product.shop_name'),
           'shop_id' => $request->input('product.shop_id'),
           'choice' => $request->input('choice'),
+          'shipping' => $request->input('shipping'),
         ]
     ]);
 

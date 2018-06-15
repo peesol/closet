@@ -23,7 +23,7 @@ class OrderTransformer extends TransformerAbstract
 		'title' => $order->title,
     'body' => json_decode($order->body),
     'total' => number_format($order->total),
-		'confirmed' => $order->confirmed,
+		'shipping' => json_decode($order->shipping),
 		'trans' => $order->trans,
 		'shipped' => $order->shipped,
 		'carrier' => $order->carrier,

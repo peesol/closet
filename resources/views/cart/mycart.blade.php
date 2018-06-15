@@ -12,7 +12,7 @@
       <label class="full-label heading">{{__('message.cart')}}</label>
     </div>
     <div class="cart-wrap panel-body">
-      <cart user-id="{{ Auth::check() ? Auth::user()->id : 'null' }}" user-name="{{ Auth::check() ? Auth::user()->name : 'null' }}"></cart>
+      <cart :user="{{ Auth::check() ? Auth::user() : 'null' }}"></cart>
     </div>
   </div>
 </div>

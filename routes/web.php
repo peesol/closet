@@ -104,14 +104,8 @@ Route::namespace('Cart')->group(function () {
 | Order via Email
 |--------------------------------------------------------------------------
 */
-Route::get('/order/{order}/confirm', 'Order\EmailController@confirmPage');
-Route::put('/order/{order}/confirm', 'Order\EmailController@confirm');
-
 Route::get('/order/{order}/shipped_email', 'Order\EmailController@shippedPage');
 Route::put('/order/{order}/shipped_email', 'Order\EmailController@confirmShipping');
-
-Route::get('/order/confirmed_page', 'Order\EmailController@confirmedPage');
-Route::delete('/order/{order}/deny_email', 'Order\EmailController@deny');
 
 Route::get('/order/{order}/transaction_email', 'Order\EmailController@transactionPage');
 Route::put('/order/{order}/transaction_email', 'Order\EmailController@transactionConfirm');
@@ -127,8 +121,6 @@ Route::group(['middleware' => ['auth']], function () {
   Route::post('/order/sending', 'Order\OrderController@store');
   Route::get('/profile/order/selling', 'Order\OrderController@sellingPage')->name('sellingOrder');
   Route::get('/profile/order/buying', 'Order\OrderController@buyingPage')->name('buyingOrder');
-  Route::put('/profile/order/{order}/confirm', 'Order\OrderController@confirm');
-  Route::delete('/profile/order/{order}/deny', 'Order\OrderController@deny');
   Route::put('/profile/order/{order}/transaction', 'Order\OrderController@transactionConfirm');
   Route::put('/profile/order/{order}/confirm_shipping', 'Order\OrderController@confirmShipping');
 });

@@ -29,11 +29,7 @@ window.addEventListener("load",function(){var t=document.querySelectorAll(".tab-
 
                       @include('product.partials._details', [ 'product' => $product ])
 
-                        @if(Auth::check())
-                          @if(Auth::user()->id !== $product->shop_id && $product->stock)
-                            <add-to-cart product-id="{{ $product->id }}" product-slug="{{ $product->uid }}"></add-to-cart>
-                          @endif
-                        @endif
+                            <add-to-cart product-id="{{ $product->id }}" :shippings="{{ $product->shop->shipping }}" product-slug="{{ $product->uid }}"></add-to-cart>
 
                     </div>
 

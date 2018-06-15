@@ -7,11 +7,12 @@ use Cart;
 use Auth;
 use Fractal;
 use Mail;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Closet\Http\Controllers\Controller;
 use Closet\Models\{Order, User, Account};
 use Closet\Transformer\OrderTransformer;
-use Closet\Mail\{Ordering, OrderConfirmed, TransactionConfirmed, OrderShipped};
+use Closet\Mail\{OrderingSeller, OrderingBuyer, TransactionConfirmed, OrderShipped};
 
 class OrderController extends Controller
 {
@@ -57,11 +58,13 @@ class OrderController extends Controller
       'sender' => $request->sender_name,
       'reciever_id' => $id,
       'reciever' => $request->reciever_name,
-      'uid' => uniqid(true). $request->user()->id . date("dmY_His", time()),
+      'uid' => '0' . $request->sender_id . '-0' . $id . '-' . Carbon::now('Asia/Bangkok')->format('dmY-His'),
       'title' => 'Order' . ' - ' . $request->sender_name . ' [' . date("d-m-Y", time()) . ']',
       'body' => json_encode($data),
-      'total' => (int)str_replace(',', '', $request->total_price),
+      'total' => (int)str_replace(',', '', $request->total_price) + $request->input('shipping.fee'),
       'discount' => $request->discount,
+      'shipping' => json_encode([$request->shipping]),
+      'address' => $request->address
     ]);
 
     foreach ($request->products as $product) {
@@ -70,40 +73,46 @@ class OrderController extends Controller
     }
 
     $reciever = User::find($order->reciever_id);
-    $locale = $reciever->country;
-
-    Mail::to($reciever->email)->queue(new Ordering($order, $locale));
-
-    return response()->json($locale);
-  }
-
-  public function confirm(Order $order, Request $request)
-  {
-    $order->update([
-      'confirmed' => true,
-      'shipping_fee' => $request->shipping_fee,
-    ]);
-
     $sender = User::find($order->sender_id);
     $accounts = Account::where('shop_id', $order->reciever_id)->get();
-    $locale = $sender->country;
+    $locale = $reciever->country;
 
-    Mail::to($sender->email)->queue(new OrderConfirmed($order, $accounts, $locale));
+    Mail::to($reciever->email)->queue(new OrderingSeller($order, $locale, $sender));
+    Mail::to($sender->email)->queue(new OrderingBuyer($order, $accounts, $locale));
 
-    return response()->json(null, 200);
+    return response($request->input('shipping.fee'));
   }
-
-  public function deny(Order $order)
-  {
-    $order->delete();
-    return;
-  }
+  /*
+  |--------------------------------------------------------------------------
+  | Cut out because there is no need to confirm orders
+  |--------------------------------------------------------------------------
+  */
+  // public function confirm(Order $order, Request $request)
+  // {
+  //   $order->update([
+  //     'confirmed' => true,
+  //     'shipping_fee' => $request->shipping_fee,
+  //   ]);
+  //
+  //   $sender = User::find($order->sender_id);
+  //   $accounts = Account::where('shop_id', $order->reciever_id)->get();
+  //   $locale = $sender->country;
+  //
+  //   Mail::to($sender->email)->queue(new OrderConfirmed($order, $accounts, $locale));
+  //
+  //   return response()->json(null, 200);
+  // }
+  //
+  // public function deny(Order $order)
+  // {
+  //   $order->delete();
+  //   return;
+  // }
 
   public function transactionConfirm(Order $order, Request $request)
   {
     $order->update([
       'trans' => true,
-      'address' => $request->name . ' ' . $request->address . ' ' . __('message.phone') . ' ' . $request->phone,
       'date_paid' => $request->date . ' ' . $request->time,
     ]);
 

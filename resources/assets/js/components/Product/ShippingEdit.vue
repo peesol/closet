@@ -8,7 +8,7 @@
     </div>
     <div class="input-group flex padding-15-vertical">
       <label for="time" class="input-label padding-15-right">{{$trans.translation.shipping_time}}</label>
-      <input required class="width-60 form-input no-margin" min="1" type="number" v-model="form.time" id="time">
+      <input required class="width-60 form-input no-margin" min="1" type="number" v-model.number="form.time" id="time">
       <label class="input-label padding-15-left">{{$trans.translation.days}}</label>
     </div>
     <div class="padding-15-vertical">
@@ -21,7 +21,7 @@
 
     <div class="padding-15-vertical" v-show="form.free === 0">
       <label for="fee" class="input-label padding-15-right">{{$trans.translation.shipping_fee}}</label>
-      <input :required="form.free === 0" class="form-input width-60 no-margin" min="1" type="number" v-model="form.fee" name="fee">
+      <input :required="form.free === 0" class="form-input width-60 no-margin" min="1" type="number" v-model.number="form.fee" name="fee">
       <label class="input-label padding-15-left">{{$trans.translation.baht}}</label>
     </div>
 
@@ -58,9 +58,7 @@ export default {
       saved: true
     }
   },
-  props: {
-    shopShipping: null
-  },
+  props: [ 'shopShipping' ],
   methods: {
     add() {
       this.shippings.push(this.form)
@@ -88,5 +86,10 @@ export default {
       this.saved = true
     },
   },
+  created() {
+    if (!this.shopShipping) {
+      this.shippings = []
+    }
+  }
 }
 </script>

@@ -17,8 +17,14 @@
 @if($order->discount)
 *{{__('message.discount')}} {{$order->discount}}*
 @endif
-### {{__('message.shipping_fee')}} : {{ $order->shipping_fee ? number_format($order->shipping_fee).' '.__('message.baht') : __('message.free_shipping') }}
-#{{__('message.total_price')}} {{number_format($order->total + $order->shipping_fee)}} {{__('message.baht')}}
+@foreach (json_decode($order->shipping) as $shipping)
+### {{__('message.shipping_fee')}} : {{ $shipping->free ? __('message.free_shipping') : number_format($shipping->fee).' '.__('message.baht') }}
+### {{__('message.shipping')}} {{ $shipping->method }} {{ __('message.shipping_time') . ' ' . $shipping->time . ' ' . __('message.days')}}
+#{{__('message.total_price')}} {{number_format($order->total)}} {{__('message.baht')}}
+@endforeach
+
+{{__('message.address')}}<br>
+{{ $order->address }}<br>
 
 @endcomponent
 
