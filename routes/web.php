@@ -41,6 +41,13 @@ Route::get('/follow/{shop}', 'ShopFollowController@show');
 
 /*
 |--------------------------------------------------------------------------
+| Utillity Api
+|--------------------------------------------------------------------------
+*/
+Route::get('/api/getter/shop/{id}', 'Api\Getter@getShop');
+
+/*
+|--------------------------------------------------------------------------
 | Report Routes
 |--------------------------------------------------------------------------
 */
@@ -238,7 +245,7 @@ Route::namespace('Shop')->group(function () {
   Route::get('/{shop}/reviews/get', 'ReviewController@get');
   Route::get('/{shop}/reviews/total', 'ReviewController@getTotalReview');
   Route::post('/{shop}/reviews', 'ReviewController@create');
-  Route::delete('/{shop}/reviews/delete/{feedback}', 'ReviewController@delete');
+  //Route::delete('/{shop}/reviews/delete/{feedback}', 'ReviewController@delete');
 
 
 });

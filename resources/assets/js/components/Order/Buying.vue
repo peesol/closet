@@ -86,6 +86,11 @@
             <p>{{$trans.translation.track_number}}&nbsp;{{data.tracking_number}}</p>
           </td>
         </tr>
+        <tr v-show="data.shipped && !data.feedback">
+          <td colspan="4">
+            <feedback v-on:submit="data.feedback = true" :shop-id="data.reciever" :order-id="data.id"></feedback>
+          </td>
+        </tr>
       </table>
     </div>
     <!-- Transaction Confirm Form -->
@@ -116,6 +121,7 @@
 
 <script>
 import Cleave from 'cleave.js'
+import feedback from './Feedback.vue'
 
 export default {
   data() {
@@ -129,6 +135,9 @@ export default {
       phone: this.userPhone,
       index: null,
     }
+  },
+  components: {
+    feedback
   },
   props: {
     userName: null,

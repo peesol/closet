@@ -16,6 +16,7 @@ class Order extends Model
       'confirmed',
       'shipped',
       'trans',
+      'feedback',
       'total',
       'shipping',
       'discount',

@@ -26,6 +26,7 @@ class OrderTransformer extends TransformerAbstract
 		'shipping' => json_decode($order->shipping),
 		'trans' => $order->trans,
 		'shipped' => $order->shipped,
+		'feedback' => $order->feedback,
 		'carrier' => $order->carrier,
 		'tracking_number' => $order->tracking_number,
 		'address' => $order->address,

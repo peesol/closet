@@ -1,6 +1,6 @@
 <?php
 
-namespace Closet;
+namespace Closet\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
