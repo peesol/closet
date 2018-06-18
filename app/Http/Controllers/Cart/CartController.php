@@ -24,10 +24,11 @@ class CartController extends Controller
           'shop_id' => $request->input('product.shop_id'),
           'choice' => $request->input('choice'),
           'shipping' => $request->input('shipping'),
+          'stock' => $request->input('stock'),
         ]
     ]);
 
-    return response()->json($price);
+    return ;
   }
   public function getProduct(Product $product)
   {

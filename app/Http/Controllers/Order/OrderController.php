@@ -13,6 +13,7 @@ use Closet\Http\Controllers\Controller;
 use Closet\Models\{Order, User, Account};
 use Closet\Transformer\OrderTransformer;
 use Closet\Mail\{OrderingSeller, OrderingBuyer, TransactionConfirmed, OrderShipped};
+use Closet\Jobs\Product\DecreaseProduct;
 
 class OrderController extends Controller
 {
@@ -97,8 +98,9 @@ class OrderController extends Controller
     $accounts = Account::where('shop_id', $order->reciever_id)->get();
     $locale = $reciever->country;
 
-    Mail::to($reciever->email)->queue(new OrderingSeller($order, $locale, $sender));
-    Mail::to($sender->email)->queue(new OrderingBuyer($order, $accounts, $locale));
+    Mail::to($reciever->email)->queue((new OrderingSeller($order, $locale, $sender))->onQueue('email'));
+    Mail::to($sender->email)->queue((new OrderingBuyer($order, $accounts, $locale))->onQueue('email'));
+    DecreaseProduct::dispatch($data)->onQueue('low');
 
     return response($request->input('shipping.fee'));
   }
@@ -139,7 +141,7 @@ class OrderController extends Controller
     $reciever = User::find($order->reciever_id);
     $locale = $reciever->country;
 
-    Mail::to($reciever->email)->queue(new TransactionConfirmed($order, $locale));
+    Mail::to($reciever->email)->queue((new TransactionConfirmed($order, $locale))->onQueue('email'));
     return response()->json($order);
   }
 
@@ -154,7 +156,7 @@ class OrderController extends Controller
     $sender = User::find($order->sender_id);
     $locale = $sender->country;
 
-    Mail::to($sender->email)->queue(new OrderShipped($order, $locale));
+    Mail::to($sender->email)->queue((new OrderShipped($order, $locale))->onQueue('email'));
     return response()->json($order);
   }
 }

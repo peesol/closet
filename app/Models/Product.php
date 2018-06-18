@@ -30,16 +30,11 @@ class Product extends Model
       'visibility',
       'amount',
       'stock',
-      'shipping',
-      'shipping_time',
-      'shipping_fee',
-      'shipping_inter',
     ];
 
     public $hidden = [
       'created_at',
       'updated_at',
-      'shipping_inter'
     ];
 
     public function shop()

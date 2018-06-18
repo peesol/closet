@@ -17,7 +17,7 @@
 				</td>
 				<td class="m-cell overflow-hidden">{{item.options.choice ? item.options.choice : '---'}}</td>
 				<td class="s-cell">{{$number.currency(item.price)}}</td>
-				<td class="s-cell"><input v-bind:disabled="confirmed.shop == key" type="number" min="1" max="99" @change.prevent="qtyChange(item)" v-model="item.qty"></td>
+				<td class="s-cell"><input v-bind:disabled="confirmed.shop == key" type="number" min="1" :max="item.options.stock" @change.prevent="qtyChange(item)" v-model="item.qty"></td>
 			</tr>
 			<tr v-show="confirmed.shop !== key">
 				<td colspan="2" class="total-price">

@@ -1,11 +1,11 @@
 import axios from 'axios'
 
-export const addToCart = ({ commit }, { product, choice, shipping }) => {
+export const addToCart = ({ commit }, { product, choice, shipping, stock }) => {
 
-  commit('appendToCart', { product, choice, shipping } )
+  commit('appendToCart', { product, choice, shipping, stock } )
 
   return axios.post('http://closet.local:8000/cart/add/' + product.name, {
-    product, choice, shipping
+    product, choice, shipping, stock
   })
 
 }

@@ -71,7 +71,7 @@ class EmailController extends Controller
     $reciever = User::find($order->reciever_id);
     $locale = $reciever->country;
 
-    Mail::to($reciever->email)->queue(new TransactionConfirmed($order, $locale));
+    Mail::to($reciever->email)->queue((new TransactionConfirmed($order, $locale))->onQueue('email'));
     return view('order.after.transaction');
   }
 
@@ -86,7 +86,7 @@ class EmailController extends Controller
     $sender = User::find($order->sender_id);
     $locale = $sender->country;
 
-    Mail::to($sender->email)->queue(new OrderShipped($order, $locale));
+    Mail::to($sender->email)->queue((new OrderShipped($order, $locale))->onQueue('email'));
     return view('order.after.confirmed');
   }
 }

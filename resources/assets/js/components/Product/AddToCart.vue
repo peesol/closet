@@ -36,14 +36,20 @@ export default {
 
   props: [
     'productSlug',
-    'shippings'
+    'shippings',
+    'productStock'
   ],
   methods: {
     ...mapActions([
       'addToCart',
     ]),
     add(){
-      this.addToCart({ product: this.product, choice: this.selected , shipping: this.shippings});
+      this.addToCart({
+        product: this.product,
+        choice: this.selected ,
+        shipping: this.shippings,
+        stock: this.productStock
+      });
       toastr.success(this.$trans.translation.added_to_cart);
     },
     getProduct() {
