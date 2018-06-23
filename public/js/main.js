@@ -19182,7 +19182,7 @@ __WEBPACK_IMPORTED_MODULE_0_dropzone___default.a.autoDiscover = false;
             });
             this.removeFile(this.files[0]);
             self.$Progress.finish();
-            document.location.href = self.$root.url + '/sell/new';
+            document.location.href = self.$root.url + '/sell/new/after';
           },
           error: function error() {
             self.$Progress.fail();

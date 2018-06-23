@@ -55,5 +55,9 @@ class NewProductController extends Controller
 
     return response()->json();
   }
+  public function after()
+  {
+    return view('product.after_sell');
+  }
 
 }

@@ -168,6 +168,7 @@ Route::group(['middleware' => ['auth']], function () {
   Route::namespace('Product\Sell')->group(function () {
     Route::get('/sell/new', 'NewProductController@index');
     Route::post('/sell/new', 'NewProductController@create');
+    Route::get('/sell/new/after', 'NewProductController@after');
     Route::get('/sell/used', 'UsedProductController@index');
     Route::post('/sell/used', 'UsedProductController@create');
   });

@@ -147,7 +147,7 @@ export default {
             });
             this.removeFile(this.files[0]);
             self.$Progress.finish();
-            document.location.href = self.$root.url + '/sell/new';
+            document.location.href = self.$root.url + '/sell/new/after';
           },
           error: function() {
             self.$Progress.fail();

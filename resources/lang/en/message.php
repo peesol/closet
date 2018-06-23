@@ -66,6 +66,15 @@ return [
     'edit' => 'Edit',
     'delete' => 'Delete',
     'language' => 'Language',
+    'back_home' => 'Back to home',
+    //After sell
+    'pls_read' => 'Please read',
+    'after_sell_heading' => 'What to do after this?',
+    'after_sell_notice' => 'You must update your product stock so that the buyers will know if your product is available or not.',
+    'after_sell_notice_2' => 'Your product amounts will decrease when someone buys it. You must update that to avoid future problems with the buyers.',
+    'after_sell_notice_3' => 'You can go to stock management by menu > my products(new) and go to stock management.',
+    'after_sell_link' => 'Click here to update your stock',
+    'after_sell_back' => 'Sell other product',
     //Products
     'price' => 'Price',
     'category' => 'Category',
