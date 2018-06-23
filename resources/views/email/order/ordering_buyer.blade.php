@@ -49,6 +49,14 @@
 
 ###{{__("message.transacted_alt")}}
 
+#{{__('message.cancleable_order')}}
+@component('mail::button', ['url' => url('/order/'. $order->uid . '/cancle_email')])
+
+    Click
+
+@endcomponent
+###{{__('message.cancleable_order_alt')}}
+
 @component('mail::subcopy')
 
 - {{__('message.confirm_transaction_notice')}}

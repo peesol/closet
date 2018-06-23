@@ -128,7 +128,7 @@ class OrderController extends Controller
   public function deny(Order $order, Request $request)
   {
     $order->update([
-      'deleted_type' => $request->type,
+      'deleted_type' => $request->type
     ]);
     $order->delete();
 

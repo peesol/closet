@@ -30,4 +30,12 @@
 
 @endcomponent
 
+#{{__('message.deniable_order')}}
+@component('mail::button', ['url' => url('/order/'. $order->uid . '/deny_email')])
+
+    Click
+
+@endcomponent
+###{{__('message.deniable_order_alt')}}
+
 @endcomponent

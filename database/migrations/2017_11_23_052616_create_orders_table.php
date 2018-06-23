@@ -32,6 +32,7 @@ class CreateOrdersTable extends Migration
           $table->boolean('trans')->default(false);
           $table->boolean('shipped')->default(false);
           $table->boolean('feedback')->default(false);
+          $table->tinyInteger('deleted_type')->nullable();
 
           $table->timestamps();
           $table->softDeletes();
