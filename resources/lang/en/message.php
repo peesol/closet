@@ -163,6 +163,12 @@ return [
     'account_number' => 'Number',
     'account_name' => 'Name',
     'already_confirmed' => 'This order has already been confirmed.',
+    //Denied order
+    'cancled_subject' => 'Your selling order has been cancled',
+    'denied_subject' => 'Your order has been denied',
+    'denied_reason' => 'Your order has been denied because',
+    'cancled_subcopy' => 'If you have any issues about this order please contact the buyer directly.',
+    'denied_subcopy' => 'If you have any issues about this order please contact the seller directly.',
     //transaction
     'transaction' => 'Payment Confirmation',
     'transaction_time' => 'Date and time as in reciept',

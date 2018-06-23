@@ -81,6 +81,15 @@
             <p>{{$trans.translation.track_number}}&nbsp;{{data.tracking_number}}</p>
           </td>
         </tr>
+        <tr v-show="!data.shipped">
+          <td colspan="4">
+            <a class="flat-btn" @click.prevent="deny_form = !deny_form">{{$trans.translation.deny}}</a>
+            <form class="align-right" v-show="deny_form" @submit.prevent="deny(data.uid, index)">
+              <input required type="text" class="margin-10-vertical full-width" :placeholder="$trans.translation.deny_reason" v-model="deny_reason">
+              <button type="submit" class="flat-btn">{{$trans.translation.confirm}}</button>
+            </form>
+          </td>
+        </tr>
       </table>
     </div>
 
@@ -122,6 +131,8 @@ export default {
       tracking_number: null,
       track_info: null,
       index: null,
+      deny_form: false,
+      deny_reason: null,
       translate: this.$trans
     }
   },
@@ -142,19 +153,8 @@ export default {
       this.$modal.hide('open-msg');
       this.track_info = null;
       this.track_number = null;
-    },
-    deny(uid, index) {
-      if (!confirm(this.$trans.translation.deny_confirm)) {
-        return
-      } else {
-      this.$Progress.start();
-      this.$http.delete(this.$root.url + '/profile/order/' + uid + '/deny').then((response) => {
-        this.$modal.hide('open-msg');
-        this.$delete(this.orders, index);
-        toastr.success(this.$trans.translation.success);
-        this.$Progress.finish()
-      });
-      }
+      this.deny_reason = null;
+      this.deny_form = false;
     },
     confirmShipping(uid, index){
       this.$Progress.start();
@@ -169,8 +169,24 @@ export default {
         toastr.success(this.$trans.translation.success);
         this.$Progress.finish();
       });
+    },
+    deny(uid, index) {
+      if (!confirm(this.$trans.translation.deny + '?')) {
+        return
+      } else {
+        this.$http.put(this.$root.url + '/order/' + uid + '/deny', {
+          reason: this.deny_reason,
+          type: 1
+        }).then((response) => {
+          this.deny_reason = null;
+          this.deny_form = false;
+          this.$modal.hide('open-msg');
+          this.$delete(this.orders, index);
+          toastr.success(this.$trans.translation.success);
+          this.$Progress.finish();
+        });
+      }
     }
-
   },
 
   created() {

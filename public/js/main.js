@@ -17517,6 +17517,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -17600,6 +17605,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         delimiter: ' : ',
         blocks: [2, 2, 2]
       });
+    },
+    deny: function deny(uid, index) {
+      var _this3 = this;
+
+      if (!confirm(this.$trans.translation.deny + '?')) {
+        return;
+      } else {
+        this.$http.put(this.$root.url + '/order/' + uid + '/deny', {
+          type: 2
+        }).then(function (response) {
+          _this3.$modal.hide('open-msg');
+          _this3.$delete(_this3.orders, index);
+          toastr.success(_this3.$trans.translation.success);
+          _this3.$Progress.finish();
+        });
+      }
     }
   },
   created: function created() {
@@ -18128,6 +18149,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -18137,6 +18167,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       tracking_number: null,
       track_info: null,
       index: null,
+      deny_form: false,
+      deny_reason: null,
       translate: this.$trans
     };
   },
@@ -18160,37 +18192,43 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.$modal.hide('open-msg');
       this.track_info = null;
       this.track_number = null;
-    },
-    deny: function deny(uid, index) {
-      var _this2 = this;
-
-      if (!confirm(this.$trans.translation.deny_confirm)) {
-        return;
-      } else {
-        this.$Progress.start();
-        this.$http.delete(this.$root.url + '/profile/order/' + uid + '/deny').then(function (response) {
-          _this2.$modal.hide('open-msg');
-          _this2.$delete(_this2.orders, index);
-          toastr.success(_this2.$trans.translation.success);
-          _this2.$Progress.finish();
-        });
-      }
+      this.deny_reason = null;
+      this.deny_form = false;
     },
     confirmShipping: function confirmShipping(uid, index) {
-      var _this3 = this;
+      var _this2 = this;
 
       this.$Progress.start();
       this.$http.put(this.$root.url + '/profile/order/' + uid + '/confirm_shipping', {
         carrier: this.track_info,
         tracking_number: this.tracking_number
       }).then(function (response) {
-        _this3.track_info = null;
-        _this3.track_number = null;
-        _this3.$modal.hide('open-msg');
-        _this3.$set(_this3.orders[index], 'shipped', true);
-        toastr.success(_this3.$trans.translation.success);
-        _this3.$Progress.finish();
+        _this2.track_info = null;
+        _this2.track_number = null;
+        _this2.$modal.hide('open-msg');
+        _this2.$set(_this2.orders[index], 'shipped', true);
+        toastr.success(_this2.$trans.translation.success);
+        _this2.$Progress.finish();
       });
+    },
+    deny: function deny(uid, index) {
+      var _this3 = this;
+
+      if (!confirm(this.$trans.translation.deny + '?')) {
+        return;
+      } else {
+        this.$http.put(this.$root.url + '/order/' + uid + '/deny', {
+          reason: this.deny_reason,
+          type: 1
+        }).then(function (response) {
+          _this3.deny_reason = null;
+          _this3.deny_form = false;
+          _this3.$modal.hide('open-msg');
+          _this3.$delete(_this3.orders, index);
+          toastr.success(_this3.$trans.translation.success);
+          _this3.$Progress.finish();
+        });
+      }
     }
   },
 
@@ -23008,8 +23046,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     place_order: 'Place Order',
     close: 'Close',
     confirm: 'Confirm',
-    deny: 'Deny',
-    deny_confirm: 'Deny this order?',
+    deny: 'Deny this order',
+    deny_reason: 'reason for denying',
+    cancle_order: 'Cancle this order',
     account_number: 'Account number',
     account_name: 'Account name',
     account_provider: 'Provider',
@@ -23195,8 +23234,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     place_order: 'สั่งซื้อ',
     close: 'ปิด',
     confirm: 'ยืนยัน',
-    deny: 'ปฏิเสธ',
-    deny_confirm: 'ปฏิเสธรายการนี้?',
+    deny: 'ปฏิเสธรายการนี้',
+    deny_reason: 'เหตุผลในการปฏิเสธ',
+    cancle_order: 'ยกเลิกรายการสั่งซื้อนี้',
     account_number: 'เลขที่บัญชี',
     account_name: 'ชื่อบัญชี',
     account_provider: 'ธนาคาร',
@@ -54459,7 +54499,67 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_c('h4', {
     staticClass: "no-margin font-green"
-  }, [_vm._v(_vm._s(_vm.$trans.translation.delivered))]), _vm._v(" "), _c('p', [_vm._v(_vm._s(_vm.$trans.translation.payment_date) + " " + _vm._s(_vm.data.date_paid))]), _vm._v(" "), _c('p', [_vm._v(_vm._s(_vm.$trans.translation.track_info) + " " + _vm._s(_vm.data.carrier))]), _vm._v(" "), _c('p', [_vm._v(_vm._s(_vm.$trans.translation.track_number) + " " + _vm._s(_vm.data.tracking_number))])])])], 2)]), _vm._v(" "), _c('div', {
+  }, [_vm._v(_vm._s(_vm.$trans.translation.delivered))]), _vm._v(" "), _c('p', [_vm._v(_vm._s(_vm.$trans.translation.payment_date) + " " + _vm._s(_vm.data.date_paid))]), _vm._v(" "), _c('p', [_vm._v(_vm._s(_vm.$trans.translation.track_info) + " " + _vm._s(_vm.data.carrier))]), _vm._v(" "), _c('p', [_vm._v(_vm._s(_vm.$trans.translation.track_number) + " " + _vm._s(_vm.data.tracking_number))])])]), _vm._v(" "), _c('tr', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (!_vm.data.shipped),
+      expression: "!data.shipped"
+    }]
+  }, [_c('td', {
+    attrs: {
+      "colspan": "4"
+    }
+  }, [_c('a', {
+    staticClass: "flat-btn",
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.deny_form = !_vm.deny_form
+      }
+    }
+  }, [_vm._v(_vm._s(_vm.$trans.translation.deny))]), _vm._v(" "), _c('form', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.deny_form),
+      expression: "deny_form"
+    }],
+    staticClass: "align-right",
+    on: {
+      "submit": function($event) {
+        $event.preventDefault();
+        _vm.deny(_vm.data.uid, _vm.index)
+      }
+    }
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.deny_reason),
+      expression: "deny_reason"
+    }],
+    staticClass: "margin-10-vertical full-width",
+    attrs: {
+      "required": "",
+      "type": "text",
+      "placeholder": _vm.$trans.translation.deny_reason
+    },
+    domProps: {
+      "value": (_vm.deny_reason)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.deny_reason = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('button', {
+    staticClass: "flat-btn",
+    attrs: {
+      "type": "submit"
+    }
+  }, [_vm._v(_vm._s(_vm.$trans.translation.confirm))])])])])], 2)]), _vm._v(" "), _c('div', {
     directives: [{
       name: "show",
       rawName: "v-show",
@@ -56259,7 +56359,26 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.data.feedback = true
       }
     }
-  })], 1)])], 2)]), _vm._v(" "), (!_vm.data.trans) ? _c('form', {
+  })], 1)]), _vm._v(" "), _c('tr', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (!_vm.data.trans && !_vm.data.shipped),
+      expression: "!data.trans && !data.shipped"
+    }]
+  }, [_c('td', {
+    attrs: {
+      "colspan": "4"
+    }
+  }, [_c('button', {
+    staticClass: "red-box normal-sq delete-btn",
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.deny(_vm.data.uid, _vm.index)
+      }
+    }
+  }, [_vm._v(_vm._s(_vm.$trans.translation.cancle_order))])])])], 2)]), _vm._v(" "), (!_vm.data.trans) ? _c('form', {
     attrs: {
       "method": "post"
     },

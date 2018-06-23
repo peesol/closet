@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 use Closet\Http\Controllers\Controller;
 use Closet\Models\{Order, User, Account};
 use Closet\Transformer\OrderTransformer;
-use Closet\Mail\{OrderingSeller, OrderingBuyer, TransactionConfirmed, OrderShipped};
+use Closet\Mail\{OrderingSeller, OrderingBuyer, TransactionConfirmed, OrderShipped, OrderDeny, OrderCancle};
 use Closet\Jobs\Product\DecreaseProduct;
 
 class OrderController extends Controller
@@ -98,8 +98,8 @@ class OrderController extends Controller
     $accounts = Account::where('shop_id', $order->reciever_id)->get();
     $locale = $reciever->country;
 
-    Mail::to($reciever->email)->queue((new OrderingSeller($order, $locale, $sender))->onQueue('email'));
-    Mail::to($sender->email)->queue((new OrderingBuyer($order, $accounts, $locale))->onQueue('email'));
+    Mail::to($reciever->email)->queue((new OrderingSeller($order, $locale, $sender))->onQueue('email_medium'));
+    Mail::to($sender->email)->queue((new OrderingBuyer($order, $accounts, $locale))->onQueue('email_medium'));
     DecreaseProduct::dispatch($data)->onQueue('low');
 
     return response($request->input('shipping.fee'));
@@ -125,11 +125,26 @@ class OrderController extends Controller
   //   return response()->json(null, 200);
   // }
   //
-  // public function deny(Order $order)
-  // {
-  //   $order->delete();
-  //   return;
-  // }
+  public function deny(Order $order, Request $request)
+  {
+    $order->update([
+      'deleted_type' => $request->type,
+    ]);
+    $order->delete();
+
+    if ($request->type === 1) {
+      $sender = User::find($order->sender_id);
+      $locale = $sender->country;
+      Mail::to($sender->email)->queue((new OrderDeny($order, $locale, $request->reason))->onQueue('email_low'));
+    } else {
+      $reciever = User::find($order->reciever_id);
+      $locale = $reciever->country;
+      $contact = $reciever->email . ' / ' . $reciever->phone;
+      Mail::to($reciever->email)->queue((new OrderCancle($order, $locale, $contact))->onQueue('email_low'));
+    }
+
+    return response()->json();
+  }
 
   public function transactionConfirm(Order $order, Request $request)
   {
@@ -141,7 +156,7 @@ class OrderController extends Controller
     $reciever = User::find($order->reciever_id);
     $locale = $reciever->country;
 
-    Mail::to($reciever->email)->queue((new TransactionConfirmed($order, $locale))->onQueue('email'));
+    Mail::to($reciever->email)->queue((new TransactionConfirmed($order, $locale))->onQueue('email_medium'));
     return response()->json($order);
   }
 
@@ -156,7 +171,7 @@ class OrderController extends Controller
     $sender = User::find($order->sender_id);
     $locale = $sender->country;
 
-    Mail::to($sender->email)->queue((new OrderShipped($order, $locale))->onQueue('email'));
+    Mail::to($sender->email)->queue((new OrderShipped($order, $locale))->onQueue('email_medium'));
     return response()->json($order);
   }
 }

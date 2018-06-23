@@ -116,6 +116,8 @@ Route::put('/order/{order}/shipped_email', 'Order\EmailController@confirmShippin
 
 Route::get('/order/{order}/transaction_email', 'Order\EmailController@transactionPage');
 Route::put('/order/{order}/transaction_email', 'Order\EmailController@transactionConfirm');
+Route::get('/order/{order}/deny_email', 'Order\EmailController@denyPage');
+Route::delete('/order/{order}/deny_email', 'Order\EmailController@deny');
 /*
 |--------------------------------------------------------------------------
 | Order via Site with auth middleware
@@ -135,6 +137,8 @@ Route::group(['middleware' => ['auth']], function () {
   Route::get('/profile/order/buying', 'Order\OrderController@buyingPage')->name('buyingOrder');
   Route::put('/profile/order/{order}/transaction', 'Order\OrderController@transactionConfirm');
   Route::put('/profile/order/{order}/confirm_shipping', 'Order\OrderController@confirmShipping');
+
+  Route::put('/order/{order}/deny', 'Order\OrderController@deny');
 });
 
 

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Order extends Model
 {
     use SoftDeletes;
-    
+
     protected $dates = ['deleted_at'];
 
     protected $fillable = [
@@ -28,7 +28,8 @@ class Order extends Model
       'carrier',
       'tracking_number',
       'date_paid',
-      'address'
+      'address',
+      'deleted_type'
     ];
 
     public function getRouteKeyname()

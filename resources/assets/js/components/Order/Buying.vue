@@ -91,6 +91,11 @@
             <feedback v-on:submit="data.feedback = true" :shop-id="data.reciever" :order-id="data.id"></feedback>
           </td>
         </tr>
+        <tr v-show="!data.trans && !data.shipped">
+          <td colspan="4">
+            <button class="red-box normal-sq delete-btn" @click.prevent="deny(data.uid, index)">{{$trans.translation.cancle_order}}</button>
+          </td>
+        </tr>
       </table>
     </div>
     <!-- Transaction Confirm Form -->
@@ -198,6 +203,20 @@ export default {
         blocks: [2, 2, 2],
       })
     },
+    deny(uid, index) {
+      if (!confirm(this.$trans.translation.deny + '?')) {
+        return
+      } else {
+        this.$http.put(this.$root.url + '/order/' + uid + '/deny', {
+          type: 2
+        }).then((response) => {
+          this.$modal.hide('open-msg');
+          this.$delete(this.orders, index);
+          toastr.success(this.$trans.translation.success);
+          this.$Progress.finish();
+        });
+      }
+    }
   },
   created() {
     this.getMessages();
