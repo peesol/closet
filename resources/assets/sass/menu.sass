@@ -1,4 +1,6 @@
 @import "font"
+.menu-btn-wrap
+  position: absolute
 .menu-btn
   border: none
   width: 50px
@@ -25,9 +27,12 @@
   width: 100%
 
 @media (min-width: 768px)
+  .menu-btn-wrap
+    position: relative
+    float: left
   .menu-btn
     font-size: 1.2em
-    
+
   .menu-wrapper
     position: fixed
     height: 100%

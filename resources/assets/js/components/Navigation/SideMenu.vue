@@ -1,5 +1,5 @@
 <template>
-<div v-on-clickaway="hide" class="float-left">
+<div v-on-clickaway="hide" class="menu-btn-wrap">
   <button class="menu-btn icon-menu" :class="{ 'btn-active' : toggled }" @click.prevent="toggled = !toggled"></button>
   <div  class="menu-wrapper" v-bind:class="{'toggled' : toggled}">
       <div class="menu">

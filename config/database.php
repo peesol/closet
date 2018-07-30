@@ -55,7 +55,7 @@ return [
 
         'rdsmysql' => [
             'driver' => 'mysql',
-            'host' => 'closet.cch4uznfytyw.ap-southeast-1.rds.amazonaws.com',
+            'host' => '',
             'port' => '3306',
             'database' => 'closet',
             'username' => 'closet',

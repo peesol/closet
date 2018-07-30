@@ -28,4 +28,4 @@ mix.js([
 	'vuedraggable',
 ], 'public/js/vendor.js');
 
-//mix.sass('resources/assets/sass/app.sass', 'public/css/main.css');
+// mix.sass('resources/assets/sass/app.sass', 'public/css/main.css');
