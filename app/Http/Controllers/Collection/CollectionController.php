@@ -68,7 +68,7 @@ class CollectionController extends Controller
     $this->authorize('delete', $collection);
 
     $path = 'collection/thumbnail/'.$collection->image_filename;
-    $this->dispatch(new DeleteImage($path));
+    $this->dispatch((new DeleteImage($path))->onQueue('delete_img'));
 
     $photos = $collection->images->pluck('filename');
     foreach($photos as $photo){

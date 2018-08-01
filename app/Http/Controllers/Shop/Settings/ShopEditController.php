@@ -59,7 +59,7 @@ class ShopEditController extends Controller
   {
     if (!empty($shop->thumbnail)) {
       $path = 'profile/thumbnail/' . $shop->thumbnail;
-      $this->dispatch(new DeleteImage($path));
+      $this->dispatch((new DeleteImage($path))->onQueue('delete_img'));
     }
     $thumbnail = $request->thumbnail;
 
@@ -71,7 +71,7 @@ class ShopEditController extends Controller
 
     Storage::disk('uploads')->put('profile/thumbnail/' . $fileName, $decoded);
 
-    $this->dispatch(new UploadThumbnail($shop, $fileName));
+    $this->dispatch((new UploadThumbnail($shop, $fileName))->onQueue('upload_medium'));
 
     return response()->json(null, 200);
   }
@@ -80,7 +80,7 @@ class ShopEditController extends Controller
   {
     if (!empty($shop->cover)) {
       $path = 'profile/cover/'.$shop->cover;
-      $this->dispatch(new DeleteImage($path));
+      $this->dispatch((new DeleteImage($path))->onQueue('delete_img'));
     }
 
     $cover = $request->cover;
@@ -93,11 +93,11 @@ class ShopEditController extends Controller
 
     Storage::disk('uploads')->put('profile/cover/' . $fileName, $decoded);
 
-    $this->dispatch(new UploadCover($shop, $fileName));
+    $this->dispatch((new UploadCover($shop, $fileName))->onQueue('upload_medium'));
 
     return response()->json(null, 200);
   }
-  
+
   public function setSellStatus(Shop $shop)
   {
     $shop->user()->update([

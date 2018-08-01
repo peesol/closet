@@ -35,7 +35,7 @@ class PhotoController extends Controller
           ]);
           $response[] = $created;
         }
-        $this->dispatch(new UploadProductPhoto($photos));
+        $this->dispatch((new UploadProductPhoto($photos))->onQueue('upload_medium'));
         return response()->json($response);
 
       } else {
@@ -47,7 +47,7 @@ class PhotoController extends Controller
   {
       $photo = ProductImage::find($id);
       $path = 'product/photo/' . $photo->filename;
-      $this->dispatch(new DeleteImage($path));
+      $this->dispatch((new DeleteImage($path))->onQueue('delete_img'));
       $photo->delete();
 
       return response()->json(null, 200);

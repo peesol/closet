@@ -32,11 +32,11 @@ class UpdateController extends Controller
 
         if (!empty($product->thumbnail)) {
           $path = 'product/thumbnail/' . $product->thumbnail;
-          $this->dispatch(new DeleteImage($path));
+          $this->dispatch((new DeleteImage($path))->onQueue('delete_img'));
         }
         $thumbnail = $request->thumbnail;
         $fileName = uniqid('p_thumb');
-        $this->dispatch(new ProductUpdate($product, $thumbnail, $fileName));
+        $this->dispatch((new ProductUpdate($product, $thumbnail, $fileName))->onQueue('upload_medium'));
     }
     return response()->json(null, 200);
   }

@@ -111,7 +111,7 @@ class RegisterController extends Controller
             } else {
               $locale = 'en';
             }
-            Mail::to($user->email)->queue(new EmailVerification($user, $locale));
+            Mail::to($user->email)->queue((new EmailVerification($user, $locale))->onQueue('email_high'));
 
             return view('email.verification');
         }
@@ -145,7 +145,7 @@ class RegisterController extends Controller
           } else {
             $locale = 'en';
           }
-          Mail::to($user->email)->queue(new EmailVerification($user, $locale));
+          Mail::to($user->email)->queue((new EmailVerification($user, $locale))->onQueue('email_high'));
           return view('email.verification');
 
         } else {

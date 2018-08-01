@@ -12,10 +12,10 @@ class DeleteController extends Controller
   public function deleteUsedProduct(UsedProduct $product)
   {
       $path = 'used/thumbnail/' . $product->thumbnail;
-      $this->dispatch(new DeleteImage($path));
+      $this->dispatch((new DeleteImage($path))->onQueue('delete_img'));
     foreach ($product->productimages as $image) {
       $path = 'used/photo/' . $image->filename;
-      $this->dispatch(new DeleteImage($path));
+      $this->dispatch((new DeleteImage($path))->onQueue('delete_img'));
     }
     $product->delete();
 
@@ -26,10 +26,10 @@ class DeleteController extends Controller
   {
     $this->authorize('delete', $product);
       $path = 'product/thumbnail/' . $product->thumbnail;
-      $this->dispatch(new DeleteImage($path));
+      $this->dispatch((new DeleteImage($path))->onQueue('delete_img'));
     foreach ($product->productimages as $image) {
       $path = 'product/photo/' . $image->filename;
-      $this->dispatch(new DeleteImage($path));
+      $this->dispatch((new DeleteImage($path))->onQueue('delete_img'));
     }
     $product->delete();
 

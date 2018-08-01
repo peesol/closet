@@ -38,7 +38,7 @@ class CollectionEditController extends Controller
 
         if (!empty($collection->thumbnail)) {
         $path = 'collection/thumbnail/' . $collection->thumbnail;
-        $this->dispatch(new DeleteImage($path));
+        $this->dispatch((new DeleteImage($path))->onQueue('delete_img'));
         }
         $thumbnail = $request->thumbnail;
         $fileName = uniqid('col_thumb');
@@ -49,7 +49,7 @@ class CollectionEditController extends Controller
 
         Storage::disk('uploads')->put('collection/thumbnail/' . $fileName, $decoded);
 
-        $this->dispatch(new CollectionThumbnailUpload($collection, $fileName));
+        $this->dispatch((new CollectionThumbnailUpload($collection, $fileName))->onQueue('upload_medium'));
     }
 
     return response()->json($update);
@@ -73,7 +73,7 @@ class CollectionEditController extends Controller
         ]);
       }
 
-      $this->dispatch(new CollectionPhotoUpload($images, $id));
+      $this->dispatch((new CollectionPhotoUpload($images, $id))->onQueue('upload_medium'));
 
     } else {
       return false;
@@ -86,7 +86,7 @@ class CollectionEditController extends Controller
       $file = $photo->filename;
 
       $path = 'collection/photo/' . $file;
-      $this->dispatch(new DeleteImage($path));
+      $this->dispatch((new DeleteImage($path))->onQueue('delete_img'));
 
       $photo->delete();
 

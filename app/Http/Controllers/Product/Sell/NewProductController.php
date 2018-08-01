@@ -51,7 +51,7 @@ class NewProductController extends Controller
       $photos[] = $photo;
     }
 
-    $this->dispatch(new ProductUpload($product, $thumbnail, $photos));
+    $this->dispatch((new ProductUpload($product, $thumbnail, $photos))->onQueue('upload_high'));
 
     return response()->json();
   }

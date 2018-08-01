@@ -30,8 +30,9 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('cleardiscount')
-                 ->Monthly();
+        $schedule->command('discount:clear')->daily()->timezone('Asia/Bangkok');
+        $schedule->command('used:clear')->daily()->timezone('Asia/Bangkok');
+        $schedule->command('orders:clear')->daily()->timezone('Asia/Bangkok');
     }
 
     /**
