@@ -24,7 +24,6 @@ class CreateUsersTable extends Migration
             $table->string('phone')->nullable();
             $table->string('country');
             $table->enum('gender', ['men', 'women', 'etc']);
-            $table->boolean('can_sell');
             $table->rememberToken();
             $table->timestamps();
         });

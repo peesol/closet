@@ -131,9 +131,6 @@ export default {
       this.$http.delete(this.$root.url + '/' + this.$route.params.shop + '/edit/account/' + accountId + '/delete').then((response) => {
         toastr.success(this.$trans.translation.success)
         this.$delete(this.accounts, index)
-        if (!this.accounts.length) {
-          this.$http.put(this.$root.url + '/' + this.$route.params.shop + '/edit/set_sell_status')
-        }
       }, (response) => {
         toastr.error(this.$trans.translation.error)
       });

@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','email_token','can_sell','address','phone','country','gender'
+        'name', 'email', 'password','email_token','address','phone','country','gender'
     ];
 
     /**
@@ -81,10 +81,5 @@ class User extends Authenticatable
     public function ownsShop(Shop $shop)
     {
       return (bool) $this->shop()->where('id', $shop->id)->first();
-    }
-
-    public function canSell()
-    {
-      return $this->can_sell;
     }
 }
