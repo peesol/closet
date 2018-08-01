@@ -5,6 +5,7 @@ namespace Closet\Http\Controllers;
 use Cache;
 use Auth;
 use App;
+use DB;
 use Closet\Models\{Category, Translation, Product, Shop, UsedProduct};
 use Illuminate\Http\Request;
 use Closet\Repositories\UserRepository;
@@ -16,10 +17,12 @@ class HomeController extends Controller
       $categories = Cache::get('categories');
       $products = Product::popular()->take(10)->get();
       $shops = Shop::orderBy('view_count', 'desc')->take(10)->get();
+      $banners =  DB::table('banners')->where('type', 'home')->get();
       return view('main.home', [
         'categories' => $categories,
         'products' => $products,
         'shops' => $shops,
+        'banners' => $banners,
       ]);
     }
 

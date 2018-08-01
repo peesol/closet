@@ -14,7 +14,11 @@
     </div>
 
     <img v-show="imgs.length" v-for="img in imgs" :src="img_source + path + img.filename" :alt="img.filename">
-    <img v-show="banners !== null" v-for="img in banners" :src="img_source + '/banner/banner' + img + '.jpg'" alt="banner">
+
+    <a v-for="banner in banners" :href="banner.link" v-show="banners.length">
+      <img :src="img_source + '/banner/' + banner.filename" alt="banner">
+    </a>
+
   </slick>
 </div>
 </template>
@@ -38,7 +42,7 @@ export default {
   props: {
     products: [],
     imgs: [],
-    banners: null,
+    banners: [],
     path: null,
     slickFor: null,
   },

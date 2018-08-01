@@ -5,7 +5,7 @@
 <div class="container">
             <div class="medium-panel">
               <div class="full-width full-banner">
-                <vue-slick slick-for="full-banner" path="banner" :banners="2"></vue-slick>
+                <vue-slick slick-for="full-banner" path="banner" :banners="{{ $banners }}"></vue-slick>
               </div>
             </div>
             @if(Auth::guest())
