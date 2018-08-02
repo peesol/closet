@@ -12,7 +12,7 @@ trait Orderable
 
     public function scopePopular($query)
     {
-      return $query->orderBy('view_count', 'desc');
+      return $query->where('visibility', 'public')->orderBy('view_count', 'desc');
     }
-    
+
 }

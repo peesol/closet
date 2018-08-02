@@ -26,7 +26,7 @@
     <div class="align-right padding-15-vertical" v-show="showcases.length">
       <button class="orange-btn normal-sq width-120" @click.prevent="save()">{{$trans.translation.edit_submit}}</button>
     </div>
-    <draggable :list="showcases" :options="{animation: 200, handle: '.showcase-handle'}" @change="order">
+    <draggable :list="showcases" :options="{animation: 200, handle: '.showcase-handle', forceFallback: true }" @change="order">
 
       <div class="shadow-2 margin-20-bottom" v-for="(showcase, index) in showcases" v-show="showcases.length">
         <div class="color-heading grey-bg">

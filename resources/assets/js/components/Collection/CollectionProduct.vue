@@ -9,7 +9,7 @@
       </li>
       <li>
         <a @click.prevent="addToNote()">
-            <span :class="{'icon-book font-green' : addedToNote, 'icon-bookmarks font-grey' : !addedToNote}"></span>
+            <span :class="{'icon-note font-green' : addedToNote, 'icon-note font-grey' : !addedToNote}"></span>
             &nbsp;{{$trans.translation.my_note}}
           </a>
       </li>

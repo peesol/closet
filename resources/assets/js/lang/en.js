@@ -114,7 +114,7 @@ export default {
     optional: 'Optional',
     add: 'Add +',
     show_product: 'Show on product page',
-    show_cover: 'Show on cover',
+    show_cover: 'Show on profile home',
     field: 'this field',
     added_to_cart: 'Added to cart',
     add_to_cart: 'Add to cart',

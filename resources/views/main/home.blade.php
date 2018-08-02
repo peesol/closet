@@ -11,7 +11,7 @@
             @if(Auth::guest())
             <div class="medium-panel margin-10-top">
               <div class="panel-body">
-                <p class="no-margin">{{__('message.home_signup')}}&nbsp;<a href="route('register')" class="link-text">{{__('message.home_signup_link')}}</a></p>
+                <p class="no-margin">{{__('message.home_signup')}}&nbsp;<a href="{{ route('register') }}" class="link-text">{{__('message.home_signup_link')}}</a></p>
               </div>
             </div>
             @endif

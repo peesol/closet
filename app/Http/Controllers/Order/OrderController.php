@@ -100,7 +100,7 @@ class OrderController extends Controller
 
     Mail::to($reciever->email)->queue((new OrderingSeller($order, $locale, $sender))->onQueue('email_medium'));
     Mail::to($sender->email)->queue((new OrderingBuyer($order, $accounts, $locale))->onQueue('email_medium'));
-    DecreaseProduct::dispatch($data)->onQueue('low');
+    DecreaseProduct::dispatch($data)->onQueue('email_low');
 
     return response($request->input('shipping.fee'));
   }

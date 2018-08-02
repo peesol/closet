@@ -4,7 +4,7 @@
   <div v-show="images.length" class="padding-15-vertical thumbnail-grid">
     <div v-for="(image, index) in images" class="products-img">
       <img class="products-img-thumb" alt="currently uploading..." :src="image.filename">
-      <button v-show="image.id && images.length > 1" @click.prevent="remove(image.id, index)" class="caution round-btn red-bg"><span class="icon-bin"></span></button>
+      <button v-show="image.id && images.length > 1" @click.prevent="remove(image.id, index)" class="align-top-right round-btn red-bg"><span class="icon-bin"></span></button>
     </div>
   </div>
 

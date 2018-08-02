@@ -74,7 +74,7 @@ export default {
       }).then((response) => {
         this.$Progress.finish()
         toastr.success(this.$trans.translation.success)
-        document.location.href = this.$root.url + '/' + this.slug + '/edit'
+        document.location.href = this.$root.url + '/' + this.slug + '/edit/general'
       }, (response) => {
         toastr.error(this.$trans.translation.error)
         this.$Progress.fail()
