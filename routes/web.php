@@ -111,15 +111,18 @@ Route::namespace('Cart')->group(function () {
 | Order via Email
 |--------------------------------------------------------------------------
 */
-Route::get('/order/{order}/shipped_email', 'Order\EmailController@shippedPage');
-Route::put('/order/{order}/shipped_email', 'Order\EmailController@confirmShipping');
-
+/**BUYER**/
 Route::get('/order/{order}/transaction_email', 'Order\EmailController@transactionPage');
 Route::put('/order/{order}/transaction_email', 'Order\EmailController@transactionConfirm');
-Route::get('/order/{order}/deny_email', 'Order\EmailController@denyPage');
-Route::put('/order/{order}/deny_email', 'Order\EmailController@deny');
 Route::get('/order/{order}/cancle_email', 'Order\EmailController@canclePage');
 Route::put('/order/{order}/cancle_email', 'Order\EmailController@cancle');
+
+/**SELLER**/
+Route::get('/order/{order}/shipped_email', 'Order\EmailController@shippedPage');
+Route::put('/order/{order}/shipped_email', 'Order\EmailController@confirmShipping');
+Route::get('/order/{order}/deny_email', 'Order\EmailController@denyPage');
+Route::put('/order/{order}/deny_email', 'Order\EmailController@deny');
+
 /*
 |--------------------------------------------------------------------------
 | Order via Site with auth middleware

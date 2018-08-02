@@ -1,7 +1,7 @@
 <template>
 <div v-show="orders.length">
   <vue-progress-bar></vue-progress-bar>
-  <pagination v-on:switched="meta[0].current_page = $event" :meta="meta"></pagination>
+  <pagination v-show="orders.length > 40" v-on:switched="meta[0].current_page = $event" :meta="meta"></pagination>
   <table class="c-table">
     <tr v-for="(item, index) in orders">
       <td><a class="link-text"  @click.prevent="open(item, index)">{{item.title}}</a></td>
@@ -63,7 +63,7 @@
     </div>
 
   </modal>
-  <pagination v-on:switched="meta[0].current_page = $event" :meta="meta"></pagination>
+  <pagination v-show="orders.length > 40" v-on:switched="meta[0].current_page = $event" :meta="meta"></pagination>
 </div>
 </template>
 
