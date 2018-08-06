@@ -41,6 +41,22 @@ Route::get('/follow/{shop}', 'ShopFollowController@show');
 
 /*
 |--------------------------------------------------------------------------
+| Admin route
+|--------------------------------------------------------------------------
+*/
+Route::group(['middleware' => ['admin']], function () {
+  Route::get('/secret/admin/home', 'Admin\AdminController@homePage')->name('adminHome');
+  Route::get('/secret/admin/banner', 'Admin\Banner\BannerController@index')->name('bannerAdmin');
+  Route::post('/secret/admin/banner/add', 'Admin\Banner\BannerController@create');
+  Route::get('/secret/admin/banner/edit/{banner}', 'Admin\Banner\BannerController@edit');
+  Route::put('/secret/admin/banner/edit/{banner}', 'Admin\Banner\BannerController@update')->name('bannerUpdate');
+  Route::delete('/secret/admin/banner/edit/{banner}/delete', 'Admin\Banner\BannerController@delete');
+
+  Route::get('/secret/admin/products', 'Admin\Product\CompanyProductController@index')->name('productAdmin');
+});
+
+/*
+|--------------------------------------------------------------------------
 | Utillity Api
 |--------------------------------------------------------------------------
 */
@@ -195,12 +211,12 @@ Route::group(['middleware' => ['auth']], function () {
 | Product Edit Routes
 |--------------------------------------------------------------------------
 */
-  Route::get('/product/{product}/edit', 'Product\Edit\UpdateController@index');
+  Route::get('/product/{product}/edit', 'Product\Edit\UpdateController@index')->name('productEdit');
   Route::put('/product/{product}/edit', 'Product\Edit\UpdateController@update');
   //Photo Upload & Delete
   Route::get('/product/{product}/get_photo', 'Product\Photo\PhotoController@get');
   Route::post('/product/{product}/upload_photo', 'Product\Photo\PhotoController@upload');
-  Route::delete('/product/delete_photo/{photo_id}', 'Product\Photo\PhotoController@delete');
+  Route::delete('/product/delete_photo/{photo_id}', 'Product\Photo\PhotoController@delete')->name('productDelete');
   //Choices
   Route::get('/product/{product}/get_choice', 'Product\Choice\ChoiceController@get');
   Route::post('/product/{product}/create', 'Product\Choice\ChoiceController@create');
