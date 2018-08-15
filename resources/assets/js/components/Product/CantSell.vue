@@ -13,7 +13,7 @@
         <div class="form-group">
           <label class="full-label">{{$trans.translation.account_number}}</label>
           <div class="input-group">
-            <input type="text" v-validate="'required|numeric|min:10|max:12'" :class="{'input-addon-field': true,'is-error': errors.has('account_number')}" v-model="number" name="account_number">
+            <input :placeholder="$trans.translation.numeric_only" type="text" v-validate="'required|numeric|min:10|max:12'" :class="{'input-addon-field': true,'is-error': errors.has('account_number')}" v-model="number" name="account_number">
           </div>
           <span v-show="errors.has('account_number')" class="span-error">{{ errors.first('account_number') }}</span>
         </div>

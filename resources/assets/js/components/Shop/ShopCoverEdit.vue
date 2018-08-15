@@ -52,6 +52,10 @@ export default {
     previewCover(event) {
       var input = event.target;
       if (input.files && input.files[0]) {
+        if (input.files[0].size > 1048576) {
+          alert("File is too big!");
+          this.removefile()
+        }
         var reader = new FileReader();
         var vm = this;
         reader.onload = function(e) {

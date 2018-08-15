@@ -4,7 +4,7 @@ export const addToCart = ({ commit }, { product, choice, shipping, stock }) => {
 
   commit('appendToCart', { product, choice, shipping, stock } )
 
-  return axios.post('https://closet.plus/cart/add/' + product.name, {
+  return axios.post(window.Closet.url + '/cart/add/' + product.name, {
     product, choice, shipping, stock
   })
 
@@ -12,7 +12,7 @@ export const addToCart = ({ commit }, { product, choice, shipping, stock }) => {
 
 export const getCartCount = ({ commit }) => {
 
-  return axios.get('https://closet.plus/cart/get').then((response) => {
+  return axios.get(window.Closet.url + '/cart/get').then((response) => {
 
     commit('setCount', response.data)
 

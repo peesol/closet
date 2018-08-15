@@ -37,7 +37,7 @@
   <div @click.stop class="col-add shadow-1" v-show="formVisible === 2">
     <ul id="full-line">
       <li>
-        <a href="#" @click.prevent="report()">{{$trans.translation.report}}</a>
+        <a href="#" @click.prevent="report()">{{$trans.translation.report_product}}</a>
       </li>
     </ul>
   </div>

@@ -1,6 +1,6 @@
 <template>
     <button class="dropdown-btn" @click="go">
-      <span class="icon-cart">&nbsp;{{ count }}</span>
+      <span class="icon-cart">&nbsp;<font class="show-screen">{{ count }}</font></span>
     </button>
 </div>
 </template>

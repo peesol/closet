@@ -6,13 +6,13 @@
       <form v-on:submit.prevent="create">
         <div class="form-group">
           <label class="full-label input-label">Code</label>
-          <input v-validate="'required|max:10|alpha_num'" class="input-addon-field" type="text" v-model="code" name="code" placeholder="ABC">
+          <input required v-validate="'required|max:10|alpha_num'" class="input-addon-field" type="text" v-model="code" name="code" placeholder="ABC">
           <span v-show="errors.has('code')" class="span-error">{{ errors.first('code') }}</span>
         </div>
         <div class="form-group flex padding-15-vertical">
 
           <label class="input-label padding-15-right">{{$trans.translation.discount}}</label>
-          <input required v-model="discount" type="number" min="1" class="input-addon-field width-120">
+          <input required v-model="discount" type="number" min="1" :max="type == 'percent' ? 99 : null" class="input-addon-field width-120">
           <select required v-model="type" class="select-input">
                 <option value="percent">%</option>
                 <option value="baht">{{$trans.translation.baht}}</option>

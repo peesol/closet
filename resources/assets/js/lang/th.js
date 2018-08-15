@@ -183,4 +183,7 @@ export default {
     no_reviews: 'ไม่มีรีวิว',
     //report
     report: 'แจ้งปัญหา',
+    report_product: 'แจ้งปัญหาสินค้า',
+    //place holder
+    numeric_only: 'กรอกตัวเลขเท่านั้น',
 }

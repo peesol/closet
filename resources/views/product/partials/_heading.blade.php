@@ -4,7 +4,11 @@
     <img src="{{ $product->shop->getThumbnail() }}" alt="{{ $product->shop->thumbnail }}">
     </a>
       <div class="profile-name-wrap">
-        <a class="profile-name" href="/{{ $product->shop->slug }}">{{ $product->shop->name }}</a>
+        <a class="profile-name" href="/{{ $product->shop->slug }}">{{ $product->shop->name }}&nbsp;
+          @if ($product->shop_type === 2)
+            <i class="icon-checkmark verified-profile"></i>
+          @endif
+        </a>
       </div>
     </div>
 

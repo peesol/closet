@@ -1,6 +1,6 @@
 <template>
 <div v-on-clickaway="hide" v-show="$root.authenticated">
-  <cart-icon></cart-icon>
+  <cart-nav></cart-nav>
   <button class="dropdown-btn" :class="{ 'btn-active' : toggled }" @click.prevent="toggled = !toggled"><span class="icon-user"></span></button>
   <div @click.stop v-show="toggled" class="dropdown-content shadow-1">
     <div class="dropdown-name">{{userName}}</div>
@@ -39,7 +39,7 @@ import Cart from './CartIcon.vue'
 export default {
   mixins: [ clickaway ],
   components: {
-    'cart-icon': Cart
+    'cart-nav': Cart
   },
   data() {
     return {

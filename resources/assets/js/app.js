@@ -75,6 +75,7 @@ Vue.component('product-choice', require('./components/Product/ProductChoice.vue'
 Vue.component('follow-button', require('./components/Follow.vue'));
 Vue.component('add-to-cart', require('./components/Product/AddToCart.vue'));
 Vue.component('cart', require('./components/Cart/Cart.vue'));
+Vue.component('cart-icon', require('./components/Navigation/CartIcon.vue'));
 Vue.component('shop-stats', require('./components/Shop/ShopStats.vue'));
 Vue.component('shop-review', require('./components/Shop/ShopReview.vue'));
 Vue.component('shop-rating', require('./components/Shop/ShopRating.vue'));

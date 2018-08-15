@@ -183,4 +183,7 @@ export default {
     no_reviews: 'No reviews',
     //report
     report: 'Report',
+    report_product: 'Report this product',
+    //place holder
+    numeric_only: 'Number only without any spacial symbols',
   }

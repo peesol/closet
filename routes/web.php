@@ -41,6 +41,18 @@ Route::get('/follow/{shop}', 'ShopFollowController@show');
 
 /*
 |--------------------------------------------------------------------------
+| Help center route
+|--------------------------------------------------------------------------
+*/
+Route::get('/help/home', 'Help\TutorialController@homePage')->name('helpHome');
+Route::get('/help/ask', 'Help\TutorialController@askPage')->name('askPage');
+Route::post('/help/ask', 'Help\TutorialController@askPost')->name('askPost');
+//seller
+Route::get('/help/seller/home', 'Help\Seller\SellerGuideController@index')->name('sellerGuide');
+//buyer
+Route::get('/help/buyer/home', 'Help\Buyer\BuyerGuideController@index')->name('buyerGuide');
+/*
+|--------------------------------------------------------------------------
 | Admin route
 |--------------------------------------------------------------------------
 */
@@ -69,7 +81,7 @@ Route::get('/api/getter/shop/{id}', 'Api\Getter@getShop');
 */
 
 Route::get('/report/product/{product}', 'Report\ReportController@productView');
-Route::get('/report/shop/{shop}', 'Report\ReportController@shopView');
+Route::get('/report/shop/{shop}', 'Report\ReportController@shopView')->name('shopReportView');
 Route::post('/report/product/{product}/sending', 'Report\ReportController@productCreate')->name('productReport');
 Route::post('/report/shop/{shop}/sending', 'Report\ReportController@shopCreate')->name('shopReport');
 Route::get('/report/success', 'Report\ReportController@success')->name('reportSuccess');

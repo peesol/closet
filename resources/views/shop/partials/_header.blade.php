@@ -5,8 +5,10 @@
     <button class="align-top-right icon-cog edit-btn round-btn"></button>
   </a>
 @endif
-
   <img src="{{ $shop->getCover() }}">
+@if(Auth::check() && Auth::user()->id !== $shop->user_id)
+  <button class="align-top-right orange-btn" onclick='document.location.href="{{ route('shopReportView', ['shop' => $shop->slug]) }}"'>{{ __('message.report_seller') }}</button>
+@endif
 </div>
 
 <div class="profile-header-wrap" id="full-line">
@@ -17,7 +19,11 @@
     </div>
 
     <div class="profile-header-row flex">
-      <label class="profile-name">{{ $shop->name }}</label>
+      <label class="profile-name">{{ $shop->name }}&nbsp;
+        @if ( $shop->usertype === 2)
+          <i class="icon-checkmark verified-profile"></i>
+        @endif
+      </label>
     </div>
 
       <shop-stats shop-slug="{{ $shop->slug}}"></shop-stats>

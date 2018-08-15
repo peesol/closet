@@ -231,6 +231,7 @@ return [
     'product_discount_info4' => 'All discounts will be reset to normal price after 30 days.',
     'product_discount_warn' => 'You can not refund spent points by any means. Use it wisely.',
     //Reports
+    'report' => 'Report',
     'report_product' => 'Report Product',
     'report_seller' => 'Report Seller',
     'report_title' => 'Title',
