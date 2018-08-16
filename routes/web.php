@@ -65,6 +65,8 @@ Route::group(['middleware' => ['admin']], function () {
   Route::delete('/secret/admin/banner/edit/{banner}/delete', 'Admin\Banner\BannerController@delete');
 
   Route::get('/secret/admin/products', 'Admin\Product\CompanyProductController@index')->name('productAdmin');
+  Route::get('/secret/admin/reports', 'Admin\Report\ReportController@index')->name('reportsAdmin');
+  Route::delete('/secret/admin/reports/delete', 'Admin\Report\ReportController@delete')->name('reportDelete');
 });
 
 /*
@@ -79,13 +81,13 @@ Route::get('/api/getter/shop/{id}', 'Api\Getter@getShop');
 | Report Routes
 |--------------------------------------------------------------------------
 */
-
-Route::get('/report/product/{product}', 'Report\ReportController@productView');
-Route::get('/report/shop/{shop}', 'Report\ReportController@shopView')->name('shopReportView');
-Route::post('/report/product/{product}/sending', 'Report\ReportController@productCreate')->name('productReport');
-Route::post('/report/shop/{shop}/sending', 'Report\ReportController@shopCreate')->name('shopReport');
-Route::get('/report/success', 'Report\ReportController@success')->name('reportSuccess');
-
+Route::group(['middleware' => ['auth']], function () {
+  Route::get('/report/product/{product}', 'Report\ReportController@productView');
+  Route::get('/report/shop/{shop}', 'Report\ReportController@shopView')->name('shopReportView');
+  Route::post('/report/product/{product}/sending', 'Report\ReportController@productCreate')->name('productReport');
+  Route::post('/report/shop/{shop}/sending', 'Report\ReportController@shopCreate')->name('shopReport');
+  Route::get('/report/success', 'Report\ReportController@success')->name('reportSuccess');
+});
 
 /*
 |--------------------------------------------------------------------------

@@ -12,12 +12,10 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <!-- Styles -->
     <link href="https://s3-ap-southeast-1.amazonaws.com/files.closet/css/main.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     @yield('css')
     <!-- Scripts -->
-    @yield('scripts')
-    <script src="https://s3-ap-southeast-1.amazonaws.com/files.closet/js/manifest.js"></script>
-    <script src="https://s3-ap-southeast-1.amazonaws.com/files.closet/js/vendor.js"></script>
-    <script src="https://s3-ap-southeast-1.amazonaws.com/files.closet/js/main.js"></script>
+    @yield('script')
     <script>
 window.Laravel = {!! json_encode(['csrfToken' => csrf_token()]) !!};
 
