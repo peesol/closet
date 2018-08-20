@@ -8,6 +8,7 @@
           <a href="/trending"><i class="icon-fire"></i>{{ $trans.translation.trending }}</a>
           <a href="/secondhand"><i class="icon-refresh"></i>{{ $trans.translation.used_market }}</a>
           <a href="/category/main" ><i class="icon-category"></i>{{ $trans.translation.categories }}</a>
+          <a href="/help/home" ><i class="icon-info"></i>{{ $trans.translation.help }}</a>
         </div>
         <div id="full-line">
           <label id="menu-label-grey">{{ $trans.translation.profile }}</label>

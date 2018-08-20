@@ -177,6 +177,7 @@ export default {
     logout: 'ล็อกเอาท์',
     login: 'ล็อกอิน',
     register: 'สมัครสมาชิก',
+    help: 'ช่วยเหลือ',
     //review
     user_review: 'รีวิวของคุณ',
     write_review: 'เขียนรีวิว',

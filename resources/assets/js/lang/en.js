@@ -177,6 +177,7 @@ export default {
     logout: 'Logout',
     login: 'Login',
     register: 'Register',
+    help: 'Help',
     //review
     user_review: 'Your review',
     write_review: 'Leave review',
