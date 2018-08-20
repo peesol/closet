@@ -54,6 +54,12 @@ class TranslationTableSeeder extends Seeder
                 	'name' => 'ของใช้ส่วนตัว',
                   'slug' => 'personal_care'
                 ],
+                [
+                	'category_id' => '8',
+                	'language' => 'th',
+                	'name' => 'อาหารเสริม',
+                  'slug' => 'personal_care'
+                ],
 
         ]);
     }

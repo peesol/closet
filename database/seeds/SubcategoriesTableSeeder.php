@@ -144,6 +144,22 @@ class SubcategoriesTableSeeder extends Seeder
                     'slug' => 'wipes_cotton',
                     'category_id' => '7',
                 ],
+                //Supplements
+                [
+                    'name' => 'Vitamins & Dietary Supplements',
+                    'slug' => 'vitamins',
+                    'category_id' => '8',
+                ],
+                [
+                    'name' => 'Weight Loss',
+                    'slug' => 'weight_loss',
+                    'category_id' => '8',
+                ],
+                [
+                    'name' => 'Skin Nourishment',
+                    'slug' => 'skin',
+                    'category_id' => '8',
+                ],
             ]);
     }
 }

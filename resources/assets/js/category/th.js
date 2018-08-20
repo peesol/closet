@@ -760,4 +760,27 @@ export default [
       category_id: 7,
       type: []
    }]
+}, {
+	id: 8,
+	name: 'อาหารเสริม',
+	slug: 'supplements',
+	subcategory: [{
+		id: 26,
+		name: 'วิตามิน & อาหารเสริม',
+		slug: 'vitamins',
+		category_id: 8,
+		type: []
+	}, {
+		id: 27,
+		name: 'ลดน้ำหนัก',
+		slug: 'weight_loss',
+		category_id: 8,
+		type: []
+	}, {
+		id: 28,
+		name: 'บำรุงผิว',
+		slug: 'skin',
+		category_id: 8,
+		type: []
+	}]
 }]

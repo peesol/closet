@@ -619,4 +619,27 @@ export default [{
 		category_id: 7,
 		type: []
 	}]
+}, {
+	id: 8,
+	name: 'Supplements',
+	slug: 'supplements',
+	subcategory: [{
+		id: 26,
+		name: 'Vitamins & Dietary Supplements',
+		slug: 'vitamins',
+		category_id: 8,
+		type: []
+	}, {
+		id: 27,
+		name: 'Weight Loss',
+		slug: 'weight_loss',
+		category_id: 8,
+		type: []
+	}, {
+		id: 28,
+		name: 'Skin Nourishment',
+		slug: 'skin',
+		category_id: 8,
+		type: []
+	}]
 }]

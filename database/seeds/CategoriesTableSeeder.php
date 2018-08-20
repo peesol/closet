@@ -20,6 +20,7 @@ class CategoriesTableSeeder extends Seeder
                 ['name' => 'Skincare','slug' => 'skincare'],
                 ['name' => 'Hair Products','slug' => 'hair'],
                 ['name' => 'Personal Care','slug' => 'personal_care'],
+                ['name' => 'Supplements','slug' => 'supplements'],
 
                 ]);
     }

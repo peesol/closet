@@ -137,6 +137,21 @@ class SubcategoriesTranslationTableSeeder extends Seeder
         'language' => 'th',
         'name' => 'กระดาษซับ สำลี & อื่นๆ'
       ],
+      [
+        'subcategory_id' => '26',
+        'language' => 'th',
+        'name' => 'วิตามิน & อาหารเสริม'
+      ],
+      [
+        'subcategory_id' => '27',
+        'language' => 'th',
+        'name' => 'ลดน้ำหนัก'
+      ],
+      [
+        'subcategory_id' => '28',
+        'language' => 'th',
+        'name' => 'บำรุงผิว'
+      ],
     ]);
     }
 }

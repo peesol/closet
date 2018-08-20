@@ -8,6 +8,7 @@ export const category = ({locale}) => {
       skincare : 'ดูแลผิว',
       hair : 'ผลิตภัณฑ์เกี่ยวกับเส้นผม',
       personal_care : 'ของใช้ส่วนตัว',
+      supplements : 'อาหารเสริม',
     }
   } else{
     return {
@@ -18,6 +19,7 @@ export const category = ({locale}) => {
       skincare : 'Skincare',
       hair : 'Hair Products',
       personal_care : 'Personal Care',
+      supplements : 'Supplements',
     }
   }
 }
