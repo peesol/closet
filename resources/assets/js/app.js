@@ -103,4 +103,5 @@ Vue.component('cant-sell', require('./components/Product/CantSell.vue'));
 Vue.component('discount-code', require('./components/Promotion/CodeGenerator.vue'));
 Vue.component('product-discount', require('./components/Promotion/Discount.vue'));
 Vue.component('vue-slick', require('./components/VueSlick.vue'));
+Vue.component('banner-slick', require('./components/BannerSlick.vue'));
 Vue.component('search-input', require('./components/Search/SearchInput.vue'));

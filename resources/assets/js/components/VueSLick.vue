@@ -45,6 +45,6 @@ export default {
     banners: [],
     path: null,
     slickFor: null,
-  },
+  }
 }
 </script>
