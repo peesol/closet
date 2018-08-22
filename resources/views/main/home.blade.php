@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="container">
-            <div class="medium-panel">
+            <div class="medium-panel transparent-bg">
               <div class="full-width full-banner">
                 <banner-slick :banners="{{ $banners }}"></banner-slick>
               </div>
