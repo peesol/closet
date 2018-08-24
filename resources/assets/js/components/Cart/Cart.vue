@@ -123,7 +123,7 @@ export default {
 		},
 		qtyChange(item, index, shop) {
 			if (item.qty > item.options.stock) {
-				alert('Stock has only' + item.options.stock)
+				alert(this.$trans.translation.stock_remain + ' ' + item.options.stock)
 				item.qty = item.options.stock
 			} else {
 				this.$http.put(this.$root.url + '/cart/update/qty', {rowId: item.rowId, qty: item.qty}).then((response)=>{

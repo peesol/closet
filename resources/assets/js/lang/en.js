@@ -101,6 +101,7 @@ export default {
     instock: 'Instock',
     amount: 'Amount',
     outstock: 'Out of stock',
+    stock_remain: 'Products left in stock:',
     shipping: 'Shipping',
     shipping_time: 'Shipping within',
     shipping_free: 'Shipping for free?',

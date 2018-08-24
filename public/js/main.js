@@ -16605,7 +16605,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 			var _this2 = this;
 
 			if (item.qty > item.options.stock) {
-				alert('Stock has only' + item.options.stock);
+				alert(this.$trans.translation.stock_remain + ' ' + item.options.stock);
 				item.qty = item.options.stock;
 			} else {
 				this.$http.put(this.$root.url + '/cart/update/qty', { rowId: item.rowId, qty: item.qty }).then(function (response) {
@@ -23267,6 +23267,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     instock: 'Instock',
     amount: 'Amount',
     outstock: 'Out of stock',
+    stock_remain: 'Products left in stock:',
     shipping: 'Shipping',
     shipping_time: 'Shipping within',
     shipping_free: 'Shipping for free?',
@@ -23454,6 +23455,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     stock: 'มีสินค้า',
     instock: 'มีสินค้า',
     outstock: 'สินค้าหมด',
+    stock_remain: 'จำนวนสินค้าในสต๊อกเหลือเพียง:',
     amount: 'จำนวน',
     shipping: 'การจัดส่ง',
     shipping_time: 'ส่งภายใน',

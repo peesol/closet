@@ -100,6 +100,7 @@ export default {
     stock: 'มีสินค้า',
     instock: 'มีสินค้า',
     outstock: 'สินค้าหมด',
+    stock_remain: 'จำนวนสินค้าในสต๊อกเหลือเพียง:',
     amount: 'จำนวน',
     shipping: 'การจัดส่ง',
     shipping_time: 'ส่งภายใน',
