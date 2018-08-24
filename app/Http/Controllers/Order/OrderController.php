@@ -100,7 +100,6 @@ class OrderController extends Controller
 
     Mail::to($reciever->email)->queue((new OrderingSeller($order, $locale, $sender))->onQueue('email_medium'));
     Mail::to($sender->email)->queue((new OrderingBuyer($order, $accounts, $locale))->onQueue('email_medium'));
-    DecreaseProduct::dispatch($data)->onQueue('email_low');
 
     return response($request->input('shipping.fee'));
   }
@@ -168,10 +167,14 @@ class OrderController extends Controller
       'tracking_number' => $request->tracking_number,
     ]);
 
+    //Decrease stock
+    $data = json_decode($order->body);
+    DecreaseProduct::dispatch($data)->onQueue('email_low');
+
     $sender = User::find($order->sender_id);
     $locale = $sender->country;
 
     Mail::to($sender->email)->queue((new OrderShipped($order, $locale))->onQueue('email_medium'));
-    return response()->json($order);
+    return response()->json($data);
   }
 }

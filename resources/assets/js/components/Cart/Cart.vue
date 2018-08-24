@@ -17,7 +17,7 @@
 				</td>
 				<td class="m-cell overflow-hidden">{{item.options.choice ? item.options.choice : '---'}}</td>
 				<td class="s-cell">{{$number.currency(item.price)}}</td>
-				<td class="s-cell"><input v-bind:disabled="confirmed.shop == key" type="number" min="1" :max="item.options.stock" @change.prevent="qtyChange(item)" v-model="item.qty"></td>
+				<td class="s-cell"><input v-bind:disabled="confirmed.shop == key" type="number" min="1" :max="item.options.stock" @change.prevent="qtyChange(item, index, shop)" v-model="item.qty"></td>
 			</tr>
 			<tr v-show="confirmed.shop !== key">
 				<td colspan="2" class="total-price">
@@ -121,10 +121,15 @@ export default {
 				this.products = response.data
 			});
 		},
-		qtyChange(item) {
+		qtyChange(item, index, shop) {
+			if (item.qty > item.options.stock) {
+				alert('Stock has only' + item.options.stock)
+				item.qty = item.options.stock
+			} else {
 				this.$http.put(this.$root.url + '/cart/update/qty', {rowId: item.rowId, qty: item.qty}).then((response)=>{
 					this.products[item.options.shop_name]
 				});
+			}
 		},
 		removeProduct(id, index, shop) {
 			this.removeFromCart()
