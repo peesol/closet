@@ -10,7 +10,10 @@
 
   <form v-on:submit.prevent="submit" method="post">
     <div class="dropzone margin-20-bottom" id="used">
-      <div class="dz-message" data-dz-message><span>{{$trans.translation.upload_photo_guide}}</span></div>
+      <div class="dz-message" data-dz-message>
+        <span>{{$trans.translation.upload_photo_guide}}</span><br>
+        <span>{{$trans.translation.upload_photo_size_limit}} 2 MB</span>
+      </div>
     </div>
 
     <div>
@@ -124,6 +127,10 @@ export default {
             this.on('addedfile', function(file) {
               if (this.files.length > 7) {
                 this.removeFile(this.files[0]);
+              }
+              if (file.size > 2097152) {
+                alert(self.$trans.translation.file_size_limit + ' 2 MB');
+                this.removeFile(file)
               }
             });
           },

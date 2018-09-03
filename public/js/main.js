@@ -16750,6 +16750,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 __WEBPACK_IMPORTED_MODULE_0_dropzone___default.a.autoDiscover = false;
@@ -16812,6 +16813,10 @@ __WEBPACK_IMPORTED_MODULE_0_dropzone___default.a.autoDiscover = false;
             this.on('addedfile', function (file) {
               if (this.files.length + self.images.length > 10 || this.files.length > 10) {
                 this.removeFile(this.files[0]);
+              }
+              if (file.size > 2097152) {
+                alert(self.$trans.translation.file_size_limit + ' 2 MB');
+                this.removeFile(file);
               }
             });
           },
@@ -16952,7 +16957,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var input = event.target;
       if (input.files && input.files[0]) {
         if (input.files[0].size > 1048576) {
-          alert("File is too big!");
+          alert(this.$trans.translation.file_size_limit + ' 1 MB');
           this.removefile();
         }
         var reader = new FileReader();
@@ -19004,6 +19009,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 __WEBPACK_IMPORTED_MODULE_0_dropzone___default.a.autoDiscover = false;
@@ -19069,6 +19075,10 @@ __WEBPACK_IMPORTED_MODULE_0_dropzone___default.a.autoDiscover = false;
             this.on('addedfile', function (file) {
               if (this.files.length + self.images.length > 7 || this.files.length > 7) {
                 this.removeFile(this.files[0]);
+              }
+              if (file.size > 2097152) {
+                alert(self.$trans.translation.file_size_limit + ' 2 MB');
+                this.removeFile(file);
               }
             });
           },
@@ -19200,7 +19210,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var input = event.target;
       if (input.files && input.files[0]) {
         if (input.files[0].size > 1048576) {
-          alert("File is too big!");
+          alert(this.$trans.translation.file_size_limit + ' 1 MB');
           this.removefile();
         }
         var reader = new FileReader();
@@ -19335,6 +19345,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 
@@ -19380,7 +19393,7 @@ __WEBPACK_IMPORTED_MODULE_0_dropzone___default.a.autoDiscover = false;
           parallelUploads: 7,
           maxFiles: 7,
           maxFilesize: 2,
-          acceptedFiles: 'image/*',
+          acceptedFiles: '.jpg',
           addRemoveLinks: true,
           paramName: 'image',
           dictRemoveFile: '×',
@@ -19392,6 +19405,10 @@ __WEBPACK_IMPORTED_MODULE_0_dropzone___default.a.autoDiscover = false;
             this.on('addedfile', function (file) {
               if (this.files.length > 7) {
                 this.removeFile(this.files[0]);
+              }
+              if (file.size > 2097152) {
+                alert(self.$trans.translation.file_size_limit + ' 2 MB');
+                this.removeFile(file);
               }
             });
           },
@@ -19443,6 +19460,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_dropzone__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_dropzone___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_dropzone__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__category_getter__ = __webpack_require__(75);
+//
+//
+//
 //
 //
 //
@@ -19569,6 +19589,10 @@ __WEBPACK_IMPORTED_MODULE_0_dropzone___default.a.autoDiscover = false;
             this.on('addedfile', function (file) {
               if (this.files.length > 7) {
                 this.removeFile(this.files[0]);
+              }
+              if (file.size > 2097152) {
+                alert(self.$trans.translation.file_size_limit + ' 2 MB');
+                this.removeFile(file);
               }
             });
           },
@@ -21390,8 +21414,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     previewThumbnail: function previewThumbnail(event) {
       var input = event.target;
       if (input.files && input.files[0]) {
-        if (input.files[0].size > 1048576) {
-          alert("File is too big!");
+        if (input.files[0].size > 524288) {
+          alert(this.$trans.translation.file_size_limit + ' 500 KB');
           this.removefile();
         }
         var reader = new FileReader();
@@ -23180,12 +23204,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     thumbnail: 'Thumbnail',
     cover: 'Cover',
     choose_file: 'Choose File',
+    file_size_limit: 'File size is too large',
     remove: 'Remove',
     edit_submit: 'Save',
     photos: 'Photos',
     upload_photo: 'Upload Photo',
     upload_photo_guide: 'Click here to select files',
     upload_photo_size: 'Uploaded Photo will be resized to 500px * 500px',
+    upload_photo_size_limit: 'Photos file size must not be larger than',
     delete_confirm: 'Are you sure you want to delete this?',
     upload_submit: 'Upload',
     name: 'Name',
@@ -23369,12 +23395,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     thumbnail: 'รูปขนาดย่อ',
     cover: 'รูปภาพหน้าปก',
     choose_file: 'เลือกรูป',
+    file_size_limit: 'รูปภาพมีขนาดเกินกำหนด',
     remove: 'ลบ',
     edit_submit: 'บันทึก',
     photos: 'รูปภาพ',
     upload_photo: 'อัพโหลดรูปภาพ',
     upload_photo_guide: 'คลิกเพื่อเลือกไฟล์รูปภาพ',
     upload_photo_size: 'รูปภาพที่อัพโหลดจะถูกเปลี่ยนขนาดเป็น 500px * 500px',
+    upload_photo_size_limit: 'ขนาดของไฟล์รูปภาพไม่เกินรูปละ',
     delete_confirm: 'คุณแน่ใจหรือไม่ว่าจะลบ?',
     upload_submit: 'อัพโหลด',
     name: 'ชื่อ',
@@ -51212,7 +51240,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "data-dz-message": ""
     }
-  }, [_c('span', [_vm._v(_vm._s(_vm.$trans.translation.upload_photo_guide))])])]), _vm._v(" "), _c('div'), _vm._v(" "), _c('div', [_c('div', {
+  }, [_c('span', [_vm._v(_vm._s(_vm.$trans.translation.upload_photo_guide))]), _c('br'), _vm._v(" "), _c('span', [_vm._v(_vm._s(_vm.$trans.translation.upload_photo_size_limit) + " 2 MB")])])]), _vm._v(" "), _c('div'), _vm._v(" "), _c('div', [_c('div', {
     staticClass: "form-group"
   }, [_c('label', {
     staticClass: "full-label input-label",
@@ -52199,7 +52227,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "align-right margin-10-top"
     }, [_c('button', {
       staticClass: "add-btn round-btn showcase-handle"
-    }, [_c('span', [_vm._v(_vm._s(showcase.order))])]), _vm._v(" "), _c('button', {
+    }, [_vm._v(_vm._s(showcase.order))]), _vm._v(" "), _c('button', {
       staticClass: "edit-btn round-btn",
       on: {
         "click": function($event) {
@@ -52207,7 +52235,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           _vm.edit(showcase.id)
         }
       }
-    }, [_c('small', {
+    }, [_c('i', {
       staticClass: "icon-cog"
     })]), _vm._v(" "), _c('button', {
       staticClass: "delete-btn round-btn",
@@ -52217,7 +52245,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           _vm.remove(showcase.id, index)
         }
       }
-    }, [_c('small', {
+    }, [_c('i', {
       staticClass: "icon-bin"
     })])])])])
   })), _vm._v(" "), _c('div', {
@@ -53324,7 +53352,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "full-label heading padding-15-bottom"
   }, [_vm._v("\n    " + _vm._s(_vm.$trans.translation.thumbnail) + "\n    "), _c('span', {
     staticClass: "font-small"
-  }, [_vm._v("100px*100px")])]), _vm._v(" "), _c('form', {
+  }, [_vm._v("100px*100px (500KB)")])]), _vm._v(" "), _c('form', {
     attrs: {
       "method": "post"
     },
@@ -54497,7 +54525,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "data-dz-message": ""
     }
-  }, [_c('span', [_vm._v(_vm._s(_vm.$trans.translation.upload_photo_guide))])])]), _vm._v(" "), _c('div', {
+  }, [_c('span', [_vm._v(_vm._s(_vm.$trans.translation.upload_photo_guide))]), _c('br'), _vm._v(" "), _c('span', [_vm._v(_vm._s(_vm.$trans.translation.upload_photo_size_limit) + " 2 MB")])])]), _vm._v(" "), _c('div', {
     staticClass: "align-right padding-15-top"
   }, [_c('button', {
     staticClass: "orange-btn normal-sq",
@@ -56358,7 +56386,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "data-dz-message": ""
     }
-  }, [_c('span', [_vm._v(_vm._s(_vm.$trans.translation.upload_photo_guide))])])]), _vm._v(" "), _c('div', {
+  }, [_c('span', [_vm._v(_vm._s(_vm.$trans.translation.upload_photo_guide))]), _c('br'), _vm._v(" "), _c('span', [_vm._v(_vm._s(_vm.$trans.translation.upload_photo_size_limit) + " 2 MB")])])]), _vm._v(" "), _c('div', {
     staticClass: "align-right padding-15-top"
   }, [_c('button', {
     staticClass: "orange-btn normal-sq",
@@ -57553,7 +57581,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "data-dz-message": ""
     }
-  }, [_c('span', [_vm._v(_vm._s(_vm.$trans.translation.upload_photo_guide))])])]), _vm._v(" "), _c('div', [_c('div', {
+  }, [_c('span', [_vm._v(_vm._s(_vm.$trans.translation.upload_photo_guide))]), _c('br'), _vm._v(" "), _c('span', [_vm._v(_vm._s(_vm.$trans.translation.upload_photo_size_limit) + " 2 MB")])])]), _vm._v(" "), _c('div', [_c('div', {
     staticClass: "form-group"
   }, [_c('label', {
     staticClass: "full-label input-label",

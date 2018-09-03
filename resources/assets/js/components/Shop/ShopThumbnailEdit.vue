@@ -2,7 +2,7 @@
 <div id="full-line">
   <label class="full-label heading padding-15-bottom">
     {{$trans.translation.thumbnail}}
-    <span class="font-small">100px*100px</span>
+    <span class="font-small">100px*100px (500KB)</span>
   </label>
 
   <form v-on:submit.prevent="edit" method="post">
@@ -62,8 +62,8 @@ export default {
     previewThumbnail(event) {
       var input = event.target;
       if (input.files && input.files[0]) {
-        if (input.files[0].size > 1048576) {
-          alert("File is too big!");
+        if (input.files[0].size > 524288) {
+          alert(this.$trans.translation.file_size_limit + ' 500 KB');
           this.removefile()
         }
         var reader = new FileReader();

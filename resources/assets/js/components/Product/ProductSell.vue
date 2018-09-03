@@ -9,7 +9,10 @@
 
   <form v-on:submit.prevent="submit" method="post">
     <div class="dropzone margin-20-bottom" id="image">
-      <div class="dz-message" data-dz-message><span>{{$trans.translation.upload_photo_guide}}</span></div>
+      <div class="dz-message" data-dz-message>
+        <span>{{$trans.translation.upload_photo_guide}}</span><br>
+        <span>{{$trans.translation.upload_photo_size_limit}} 2 MB</span>
+      </div>
     </div>
     <div></div>
     <div>
@@ -114,7 +117,7 @@ export default {
           parallelUploads: 7,
           maxFiles: 7,
           maxFilesize: 2,
-          acceptedFiles: 'image/*',
+          acceptedFiles: '.jpg',
           addRemoveLinks: true,
           paramName: 'image',
           dictRemoveFile: '×',
@@ -126,6 +129,10 @@ export default {
             this.on('addedfile', function(file) {
               if (this.files.length > 7) {
                 this.removeFile(this.files[0]);
+              }
+              if (file.size > 2097152) {
+                alert(self.$trans.translation.file_size_limit + ' 2 MB');
+                this.removeFile(file)
               }
             });
           },

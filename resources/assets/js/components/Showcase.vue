@@ -41,9 +41,9 @@
             </button>
           </div>
           <div class="align-right margin-10-top">
-            <button class="add-btn round-btn showcase-handle"><span>{{showcase.order}}</span></button>
-            <button @click.prevent="edit(showcase.id)" class="edit-btn round-btn"><small class="icon-cog"></small></button>
-            <button @click.prevent="remove(showcase.id, index)" class="delete-btn round-btn"><small class="icon-bin"></small></button>
+            <button class="add-btn round-btn showcase-handle">{{showcase.order}}</button>
+            <button @click.prevent="edit(showcase.id)" class="edit-btn round-btn"><i class="icon-cog"></i></button>
+            <button @click.prevent="remove(showcase.id, index)" class="delete-btn round-btn"><i class="icon-bin"></i></button>
           </div>
         </div>
 

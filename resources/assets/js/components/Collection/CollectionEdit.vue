@@ -102,7 +102,7 @@ export default {
       var input = event.target;
       if (input.files && input.files[0]) {
         if (input.files[0].size > 1048576) {
-          alert("File is too big!");
+          alert(this.$trans.translation.file_size_limit + ' 1 MB');
           this.removefile()
         }
         var reader = new FileReader();

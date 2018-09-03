@@ -52,7 +52,6 @@ window.Closet = {
         });
       })
     </script>
-    @yield('scripts')
 </head>
 <body>
   <div class="overlay"></div>

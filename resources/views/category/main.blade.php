@@ -3,10 +3,10 @@
 {{__('message.category').' - '}}
 @endsection
 @section('scripts')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
 <script>
 window.addEventListener('load', function () {
   document.querySelector('.category-nav-btn').addEventListener('click', function () {
+    console.log('CLICKED');
      this.classList.toggle('clicked');
      document.querySelector('.filter').classList.toggle('display');
   });
@@ -21,7 +21,7 @@ window.addEventListener('load', function () {
     <div class="panel-body">
       <button class="orange-btn normal-sq category-nav-btn">{{__('message.category')}}&nbsp;<small class="icon-arrow-down"></small></button>
 
-      <div class="filter margin-20-top" style="display:none">
+      <div class="filter margin-20-top not-display">
         <div class="categories">
           <ul>
             @foreach ($categories as $category)
