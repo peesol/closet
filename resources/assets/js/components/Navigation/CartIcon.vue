@@ -14,6 +14,9 @@ export default {
       'count',
     ])
   },
+  props: [
+    'element'
+  ],
   methods: {
     ...mapActions([
       'getCartCount'
@@ -23,7 +26,9 @@ export default {
     }
   },
   mounted() {
-    this.getCartCount()
+    if (this.element == 'nav') {
+      this.getCartCount()
+    }
   }
 }
 </script>

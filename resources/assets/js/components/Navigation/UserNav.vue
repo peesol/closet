@@ -1,6 +1,6 @@
 <template>
 <div v-on-clickaway="hide" v-show="$root.authenticated">
-  <cart-nav></cart-nav>
+  <cart-nav element="nav"></cart-nav>
   <button class="dropdown-btn" :class="{ 'btn-active' : toggled }" @click.prevent="toggled = !toggled"><span class="icon-user"></span></button>
   <div @click.stop v-show="toggled" class="dropdown-content shadow-1">
     <div class="dropdown-name">{{userName}}</div>
