@@ -13,4 +13,16 @@ class MyProductController extends Controller
 
     return response()->json($products);
   }
+  public function myproductPage(Request $request)
+  {
+    $products = $request->user()->products()->latestFirst()->paginate(20);
+
+    return view('product.myproduct', ['products' => $products]);
+  }
+  public function myUsedProductPage(Request $request)
+  {
+    $products = $request->user()->used()->latestFirst()->paginate(20);
+
+    return view('product.myproduct_used', ['products' => $products]);
+  }
 }

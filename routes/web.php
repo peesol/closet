@@ -19,21 +19,19 @@ Route::get('/search/result', 'Search\SearchController@index')->name('result');
 Route::get('/search/result/products', 'Search\SearchController@productResult');
 
 Route::prefix('product')->group(function () {
-  Route::get('/{product}', 'ProductController@show');
-  Route::get('/{product}/get', 'ProductController@productAjax');
-  Route::get('/{product}/get_choice', 'ProductController@choiceAjax');
+  Route::get('/{product}', 'Product\Show\NewProductShowController@show');
+  Route::get('/{product}/get', 'Product\Show\NewProductShowController@productAjax');
+  Route::get('/{product}/get_choice', 'Product\Show\NewProductShowController@choiceAjax');
   Route::get('/{product}/votes', 'Product\Vote\VoteController@show');
-  Route::get('/{product}/views', 'ProductController@viewCount');
-  Route::put('/{product}/views', 'ProductController@logView');
-  Route::get('/{product}/comments', 'Product\Comment\CommentController@index');
+  //UPDATE LATER IF NEEDED
+  //Route::get('/{product}/views', 'Product\Show\NewProductShowController@viewCount');
+  Route::put('/{product}/views', 'Product\Show\NewProductShowController@logView');
+  Route::get('/{product}/comments', 'Product\Comment\NewProductCommentController@index');
 });
 
-Route::get('/product/used/{product}', 'UsedController@show');
-Route::get('/product/used/{product}/comments', 'UsedCommentController@index');
+Route::get('/product/used/{product}', 'Product\Show\UsedProductShowController@show');
+Route::get('/product/used/{product}/comments', 'Product\Comment\UsedProductCommentController@index');
 
-Route::get('/category_ajax/get_category', 'ProductController@getCategory');
-Route::get('/category_ajax/get_subcategory/{categoryId}', 'ProductController@getSubcategory');
-Route::get('/category_ajax/get_type/{subcategoryId}', 'ProductController@getType');
 Route::get('/category/main', 'Category\CategoryController@main')->name('categoryMain');
 Route::get('/category/{category}', 'Category\CategoryController@category');
 
@@ -185,17 +183,17 @@ Route::group(['middleware' => ['auth']], function () {
       Route::get('/following', 'User\FollowingController@index')->name('following');
       Route::delete('/following/unfollow', 'User\FollowingController@unfollow')->name('unfollow');
 
-      Route::get('/promotions/manage', 'PromotionController@index')->name('promotionEdit');
-      Route::get('/promotions/manage/code', 'PromotionController@codePage')->name('promotionCode');
-      Route::get('/promotions/manage/code_get', 'PromotionController@getCodes');
-      Route::post('/promotions/manage/code', 'PromotionController@createCode');
-      Route::delete('/promotions/manage/code/{discount}', 'PromotionController@removeCode');
-      Route::post('/promotions/code/validate', 'PromotionController@validateCode');
+      Route::get('/promotions/manage', 'Management\PromotionController@index')->name('promotionEdit');
+      Route::get('/promotions/manage/code', 'Management\PromotionController@codePage')->name('promotionCode');
+      Route::get('/promotions/manage/code_get', 'Management\PromotionController@getCodes');
+      Route::post('/promotions/manage/code', 'Management\PromotionController@createCode');
+      Route::delete('/promotions/manage/code/{discount}', 'Management\PromotionController@removeCode');
+      Route::post('/promotions/code/validate', 'Management\PromotionController@validateCode');
 
-      Route::get('/promotions/manage/discount', 'PromotionController@discountPage')->name('promotionDiscount');
-      Route::get('/promotions/manage/discount/product', 'PromotionController@getProduct');
-      Route::put('/promotions/manage/discount/{product}/add', 'PromotionController@applyDiscount');
-      Route::put('/promotions/manage/discount/{product}/delete', 'PromotionController@removeDiscount');
+      Route::get('/promotions/manage/discount', 'Management\PromotionController@discountPage')->name('promotionDiscount');
+      Route::get('/promotions/manage/discount/product', 'Management\PromotionController@getProduct');
+      Route::put('/promotions/manage/discount/{product}/add', 'Management\PromotionController@applyDiscount');
+      Route::put('/promotions/manage/discount/{product}/delete', 'Management\PromotionController@removeDiscount');
 
     }); //End profile prefix
 
@@ -216,8 +214,8 @@ Route::group(['middleware' => ['auth']], function () {
   Route::delete('/product/used/{product}', 'Product\DeleteController@deleteUsedProduct');
   Route::delete('/product/{product}', 'Product\DeleteController@deleteNewProduct');
   //Comments
-  Route::post('/product/{product}/comments', 'Product\Comment\CommentController@create');
-  Route::delete('/product/{product}/comments/{comment}', 'Product\Comment\CommentController@delete');
+  Route::post('/product/{product}/comments', 'Product\Comment\NewProductCommentController@create');
+  Route::delete('/product/{product}/comments/{comment}', 'Product\Comment\NewProductCommentController@delete');
   //Votes
   Route::post('/product/{product}/votes', 'Product\Vote\VoteController@create');
   Route::delete('/product/{product}/votes', 'Product\Vote\VoteController@delete');
@@ -250,8 +248,8 @@ Route::group(['middleware' => ['auth']], function () {
 | My Product Routes
 |--------------------------------------------------------------------------
 */
-  Route::get('/profile/myproduct/new', 'ProductController@userProduct');
-  Route::get('/profile/myproduct/used', 'UsedController@userProduct');
+  Route::get('/profile/myproduct/new', 'Product\User\MyProductController@myproductPage');
+  Route::get('/profile/myproduct/used', 'Product\User\MyProductController@myUsedProductPage');
   // get my product
   Route::get('/profile/myproduct/get', 'Product\User\MyProductController@getProduct');
   //Stock
@@ -261,8 +259,8 @@ Route::group(['middleware' => ['auth']], function () {
   Route::get('/profile/myproduct/shipping', 'Shop\Settings\ShippingController@index');
   Route::put('/profile/myproduct/shipping/update', 'Shop\Settings\ShippingController@update');
 
-  Route::post('/product/used/{product}/comments', 'UsedCommentController@create');
-  Route::delete('/product/used/{product}/comments/{comment}', 'UsedCommentController@delete');
+  Route::post('/product/used/{product}/comments', 'Product\Comment\UsedProductCommentController@create');
+  Route::delete('/product/used/{product}/comments/{comment}', 'Product\Comment\UsedProductCommentController@delete');
 
   Route::post('/follow/{shop}', 'Shop\FollowController@create');
   Route::delete('/follow/{shop}', 'Shop\FollowController@delete');

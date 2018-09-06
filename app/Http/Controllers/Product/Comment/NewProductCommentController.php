@@ -1,18 +1,17 @@
 <?php
 
-namespace Closet\Http\Controllers;
+namespace Closet\Http\Controllers\Product\Comment;
 
-
-use Closet\Models\UsedProduct;
-use Closet\Models\Comment;
+use Fractal;
 use Illuminate\Http\Request;
+use Closet\Models\{Comment, Product};
+use Closet\Http\Controllers\Controller;
 use Closet\Transformer\CommentTransformer;
 use Closet\Http\Requests\CreateProductCommentRequest;
-use Fractal;
 
-class UsedCommentController extends Controller
+class NewProductCommentController extends Controller
 {
-    public function index(UsedProduct $product)
+    public function index(Product $product)
     {
     	return response()->json(
 
@@ -24,7 +23,7 @@ class UsedCommentController extends Controller
     		);
     }
 
-    public function create(CreateProductCommentRequest $request,UsedProduct $product)
+    public function create(CreateProductCommentRequest $request, Product $product)
     {
     	$comment = $product->comments()->create([
     		'body' => $request->body,
@@ -41,7 +40,7 @@ class UsedCommentController extends Controller
     	);
     }
 
-    public function delete(UsedProduct $product, Comment $comment)
+    public function delete(Product $product, Comment $comment)
     {
         $this->authorize('delete', $comment);
 
