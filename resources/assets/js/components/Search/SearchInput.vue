@@ -4,7 +4,6 @@
     <input type="text" class="search-input" id="search-bar" v-model="keyword">
     <button class="search-btn icon-search" type="submit"></button>
   </form>
-
 </div>
 </template>
 
