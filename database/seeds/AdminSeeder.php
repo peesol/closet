@@ -17,7 +17,6 @@ class AdminSeeder extends Seeder
         'email' => 'admin@closet.plus',
         'password' => bcrypt('ThisIsCloset2018'),
         'verified' => true,
-        'can_sell' => false,
         'email_token' => 'Master_Key',
         'address' => 'not specified',
         'phone' => 'not specified',
