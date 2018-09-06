@@ -242,4 +242,9 @@ return [
     //pagination
     'first_page' => 'first page',
     'last_page' => 'last page',
+    //Follow
+    'follow' => 'Follow',
+    'unfollow' => 'Unfollow',
+    //action prompt
+    'form_confirm' => 'Are you sure?',
 ];

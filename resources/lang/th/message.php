@@ -244,4 +244,9 @@ return [
     //pagination
     'first_page' => 'หน้าแรก',
     'last_page' => 'หน้าสุดท้าย',
+    //Follow
+    'follow' => 'ติดตาม',
+    'unfollow' => 'เลิกติดตาม',
+    //action prompt
+    'form_confirm' => 'คุณแน่ใจหรือไม่?',
 ];

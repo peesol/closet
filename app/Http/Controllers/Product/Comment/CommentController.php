@@ -1,16 +1,15 @@
 <?php
 
-namespace Closet\Http\Controllers;
+namespace Closet\Http\Controllers\Product\Comment;
 
-
-use Closet\Models\Product;
-use Closet\Models\Comment;
+use Fractal;
 use Illuminate\Http\Request;
+use Closet\Models\{Comment, Product};
+use Closet\Http\Controllers\Controller;
 use Closet\Transformer\CommentTransformer;
 use Closet\Http\Requests\CreateProductCommentRequest;
-use Fractal;
 
-class ProductCommentController extends Controller
+class CommentController extends Controller
 {
     public function index(Product $product)
     {

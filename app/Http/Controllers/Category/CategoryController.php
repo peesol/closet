@@ -1,11 +1,12 @@
 <?php
 
-namespace Closet\Http\Controllers;
+namespace Closet\Http\Controllers\Category;
 
 use App;
 use Cache;
 use Illuminate\Http\Request;
 use Closet\Models\Category;
+use Closet\Http\Controllers\Controller;
 
 class CategoryController extends Controller
 {

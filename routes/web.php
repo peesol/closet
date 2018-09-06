@@ -22,10 +22,10 @@ Route::prefix('product')->group(function () {
   Route::get('/{product}', 'ProductController@show');
   Route::get('/{product}/get', 'ProductController@productAjax');
   Route::get('/{product}/get_choice', 'ProductController@choiceAjax');
-  Route::get('/{product}/votes', 'ProductVoteController@show');
+  Route::get('/{product}/votes', 'Product\Vote\VoteController@show');
   Route::get('/{product}/views', 'ProductController@viewCount');
   Route::put('/{product}/views', 'ProductController@logView');
-  Route::get('/{product}/comments', 'ProductCommentController@index');
+  Route::get('/{product}/comments', 'Product\Comment\CommentController@index');
 });
 
 Route::get('/product/used/{product}', 'UsedController@show');
@@ -34,10 +34,10 @@ Route::get('/product/used/{product}/comments', 'UsedCommentController@index');
 Route::get('/category_ajax/get_category', 'ProductController@getCategory');
 Route::get('/category_ajax/get_subcategory/{categoryId}', 'ProductController@getSubcategory');
 Route::get('/category_ajax/get_type/{subcategoryId}', 'ProductController@getType');
-Route::get('/category/main', 'CategoryController@main')->name('categoryMain');
-Route::get('/category/{category}', 'CategoryController@category');
+Route::get('/category/main', 'Category\CategoryController@main')->name('categoryMain');
+Route::get('/category/{category}', 'Category\CategoryController@category');
 
-Route::get('/follow/{shop}', 'ShopFollowController@show');
+Route::get('/follow/{shop}', 'Shop\FollowController@show');
 
 /*
 |--------------------------------------------------------------------------
@@ -182,7 +182,8 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::prefix('profile')->group(function () {
       Route::get('/mycollection', 'Collection\CollectionController@index')->name('myCollection');
-      Route::get('/following', 'FollowingController@index')->name('following');
+      Route::get('/following', 'User\FollowingController@index')->name('following');
+      Route::delete('/following/unfollow', 'User\FollowingController@unfollow')->name('unfollow');
 
       Route::get('/promotions/manage', 'PromotionController@index')->name('promotionEdit');
       Route::get('/promotions/manage/code', 'PromotionController@codePage')->name('promotionCode');
@@ -215,11 +216,11 @@ Route::group(['middleware' => ['auth']], function () {
   Route::delete('/product/used/{product}', 'Product\DeleteController@deleteUsedProduct');
   Route::delete('/product/{product}', 'Product\DeleteController@deleteNewProduct');
   //Comments
-  Route::post('/product/{product}/comments', 'ProductCommentController@create');
-  Route::delete('/product/{product}/comments/{comment}', 'ProductCommentController@delete');
+  Route::post('/product/{product}/comments', 'Product\Comment\CommentController@create');
+  Route::delete('/product/{product}/comments/{comment}', 'Product\Comment\CommentController@delete');
   //Votes
-  Route::post('/product/{product}/votes', 'ProductVoteController@create');
-  Route::delete('/product/{product}/votes', 'ProductVoteController@delete');
+  Route::post('/product/{product}/votes', 'Product\Vote\VoteController@create');
+  Route::delete('/product/{product}/votes', 'Product\Vote\VoteController@delete');
 /*
 |--------------------------------------------------------------------------
 | Product Edit Routes
@@ -263,11 +264,9 @@ Route::group(['middleware' => ['auth']], function () {
   Route::post('/product/used/{product}/comments', 'UsedCommentController@create');
   Route::delete('/product/used/{product}/comments/{comment}', 'UsedCommentController@delete');
 
-  Route::post('/follow/{shop}', 'ShopFollowController@create');
-  Route::delete('/follow/{shop}', 'ShopFollowController@delete');
+  Route::post('/follow/{shop}', 'Shop\FollowController@create');
+  Route::delete('/follow/{shop}', 'Shop\FollowController@delete');
 
-    // Route::get('/test/upload', 'Test\Test@index');
-    // Route::post('/test/upload/test', 'Test\Test@upload');
 }); //End auth middleware
 /*
 |--------------------------------------------------------------------------
@@ -292,7 +291,6 @@ Route::namespace('Shop')->group(function () {
   Route::post('/{shop}/reviews', 'ReviewController@create');
   //Route::delete('/{shop}/reviews/delete/{feedback}', 'ReviewController@delete');
 
-
 });
 /*
 |--------------------------------------------------------------------------
@@ -316,7 +314,6 @@ Route::group(['middleware' => ['auth']], function () {
   Route::put('/{shop}/edit/contact/{contact}', 'Shop\Settings\ContactController@update');
   Route::delete('/{shop}/edit/contact/{contact}/delete', 'Shop\Settings\ContactController@delete');
   Route::put('/{shop}/edit/contact/{contact}/show', 'Shop\Settings\ContactController@toggleShow');
-
 
   Route::get('/{shop}/edit/account/get', 'Shop\Settings\AccountController@get');
   Route::post('/{shop}/edit/account', 'Shop\Settings\AccountController@create');
