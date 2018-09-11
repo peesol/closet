@@ -96,16 +96,36 @@
             <button class="red-box normal-sq delete-btn" @click.prevent="deny(data.uid, index)">{{$trans.translation.cancle_order}}</button>
           </td>
         </tr>
+        <tr v-show="!data.trans && !bankAccount.length">
+          <td colspan="4">
+            <button class="normal-sq help-btn" @click.prevent="getBankAccount(data.reciever)">{{$trans.translation.transaction_confirm}}</button>
+          </td>
+        </tr>
+        <tr v-show="!data.trans && bankAccount.length" v-for="account in bankAccount">
+          <td col>{{ account.provider_name }}</td>
+          <td colspan="2">{{ account.number }}</td>
+          <td>{{ account.name }}</td>
+        </tr>
       </table>
     </div>
     <!-- Transaction Confirm Form -->
-    <form v-on:submit.prevent="confirm(data.uid, index)" method="post" v-if="!data.trans">
+    <form v-on:submit.prevent="confirm(data.uid, index)" method="post" v-if="!data.trans && bankAccount.length">
       <div class="padding-15-horizontal padding-15-bottom">
         <table class="shipping-table">
           <tr>
             <td><h4 class="no-margin font-grey">{{$trans.translation.payment_date}}</h4></td>
-            <td><input required pattern=".{10}" @keyup="cleave" class="form-input date width-120" id="date" type="text" v-model="date" :placeholder="$trans.translation.date_placeholder"></td>
-            <td><input required @keyup="cleave" class="form-input width-120" id="time" type="text" v-model="time" placeholder="00 : 00 : 00"></td>
+            <td><h4 class="no-margin font-grey">{{$trans.translation.account_provider}}</h4></td>
+          </tr>
+          <tr>
+            <td>
+              <input required pattern=".{10}" @keyup="cleave" class="form-input date width-120" id="date" type="text" v-model="date" :placeholder="$trans.translation.date_placeholder">
+              <input required @keyup="cleave" class="form-input width-120" id="time" type="text" v-model="time" placeholder="00 : 00 : 00">
+            </td>
+            <td>
+              <select required class="select-input" v-model="provider">
+                <option v-for="account in bankAccount" :value="account.provider_name">{{account.provider_name}}</option>
+              </select>
+            </td>
           </tr>
         </table>
       </div>
@@ -135,10 +155,12 @@ export default {
       data: [],
       date: null,
       time: null,
+      provider: null,
       name: this.userName,
       address: this.userAddress,
       phone: this.userPhone,
       index: null,
+      bankAccount: []
     }
   },
   components: {
@@ -172,6 +194,8 @@ export default {
       this.address = null;
       this.name = null;
       this.phone = null;
+      this.provider = null;
+      this.bankAccount = [];
     },
     confirm(uid, index) {
       this.$Progress.start();
@@ -181,12 +205,15 @@ export default {
         address: this.address,
         name: this.name,
         phone: this.phone,
+        phone: this.phone,
+        provider: this.provider,
       }).then((response) => {
         this.date = null;
         this.time = null;
         this.address = null;
         this.name = null;
         this.phone = null;
+        this.provider = null;
         this.$modal.hide('open-msg');
         this.$set(this.orders[index], 'trans', true);
         toastr.success(this.$trans.translation.success);
@@ -216,6 +243,13 @@ export default {
           this.$Progress.finish();
         });
       }
+    },
+    getBankAccount(id) {
+      this.$Progress.start();
+      this.$http.get(this.$root.url + '/api/getter/shop_account/' + id).then((response) => {
+        this.bankAccount = response.body
+        this.$Progress.finish();
+      });
     }
   },
   created() {

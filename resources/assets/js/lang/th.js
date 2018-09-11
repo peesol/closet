@@ -127,6 +127,7 @@ export default {
     address_edit: 'คลิกเพื่อใช้ที่อยู่อื่น',
     order: 'รายการสั่งซื้อ',
     wait_transaction: 'รอแจ้งชำระเงิน',
+    transaction_confirm: 'แจ้งชำระเงิน',
     completed_transaction: 'แจ้งชำระเงินแล้ว',
     transacted: 'แจ้งโอนเงินแล้ว',
     shipped: 'ส่งสินค้าแล้ว',

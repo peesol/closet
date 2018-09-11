@@ -75,13 +75,21 @@ window.Closet = {
                   </tr>
                 </table>
               </div>
-
               <h4 class="font-red">*{{__('message.transaction_notice')}}</h4>
               <form method="post" action="/order/{{$order->uid}}/transaction_email">
                 <div class="form-group">
-                  <label class="full-width font-15em">{{__('message.transaction_time')}}</label>
+                  <label class="full-width margin-20-bottom">{{__('message.transaction_time')}}</label>
                   <input class="width-120 form-input date" required pattern=".{10,}" name="date" placeholder="{{__('message.date_format')}}">
                   <input class="width-120 form-input time" required  name="time" placeholder="{{__('message.time_format')}}">
+                </div>
+                <div class="form-group">
+                  <label class="full-width margin-20-bottom">{{__('message.transaction_bank')}}</label>
+                  <select required class="select-input" name="provider">
+                    <option value="" selected disabled>--- Select ---</option>
+                    @foreach ($accounts as $account)
+                      <option value="{{$account->provider_name}}">{{$account->provider_name}}</option>
+                    @endforeach
+                  </select>
                 </div>
               <div class="align-center padding-30-top">
                 <button class="half-width-res padding-10 orange-btn" type="submit">{{__('message.confirm')}}</button>

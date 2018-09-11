@@ -127,6 +127,7 @@ export default {
     address_edit: 'Use other address',
     order: 'Order',
     wait_transaction: 'Waiting for transaction',
+    transaction_confirm: 'Confirm payment',
     completed_transaction: 'Payment confirmed',
     transacted: 'Transaction confirmed',
     shipped: 'Delivered',

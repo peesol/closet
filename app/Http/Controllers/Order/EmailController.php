@@ -29,7 +29,12 @@ class EmailController extends Controller
   }
   public function transactionPage(Order $order)
   {
-    return view('order.email.transaction', ['order' => $order]);
+    $accounts = Account::where('shop_id', $order->reciever_id)->get();
+
+    return view('order.email.transaction', [
+      'order' => $order,
+      'accounts' => $accounts
+    ]);
   }
   public function shippedPage(Order $order)
   {
@@ -73,7 +78,7 @@ class EmailController extends Controller
   {
     $order->update([
       'trans' => true,
-      'date_paid' => $request->date . ' ' . $request->time,
+      'date_paid' => $request->provider . ' ' . $request->date . ' ' . $request->time,
     ]);
 
     $reciever = User::find($order->reciever_id);

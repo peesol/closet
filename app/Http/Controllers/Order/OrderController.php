@@ -149,7 +149,7 @@ class OrderController extends Controller
   {
     $order->update([
       'trans' => true,
-      'date_paid' => $request->date . ' ' . $request->time,
+      'date_paid' => $request->provider . ' ' . $request->date . ' ' . $request->time,
     ]);
 
     $reciever = User::find($order->reciever_id);

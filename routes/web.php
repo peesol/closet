@@ -73,6 +73,7 @@ Route::group(['middleware' => ['admin']], function () {
 |--------------------------------------------------------------------------
 */
 Route::get('/api/getter/shop/{id}', 'Api\Getter@getShop');
+Route::get('/api/getter/shop_account/{id}', 'Api\Getter@getBankAccount');
 
 /*
 |--------------------------------------------------------------------------

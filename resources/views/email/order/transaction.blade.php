@@ -1,6 +1,8 @@
 @component('mail::message')
 
 #{{trans('message.transaction_subject')}} : {{ $order->sender }}
+##{{__('message.date_recieved').' '. $order->date_paid}}
+
 {{__('message.transaction_head')}}
 
 @component('mail::table')
@@ -25,7 +27,6 @@
 @endforeach
 @endcomponent
 
-##{{__('message.date_recieved').' '. $order->date_paid}}
 {{__('message.address')}}<br>
 {{ $order->address }}<br>
 
