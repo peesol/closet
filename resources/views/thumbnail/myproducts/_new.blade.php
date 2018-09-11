@@ -12,13 +12,13 @@
             @endif
 
             @if (!$product->discount_price)
-              <span class="price bottom-left">{{ number_format($product->price) }}&#3647;</span>
+              <span class="price bottom-left">{{ number_format($product->price) }}฿</span>
             @else
             <span class="sale top-right">Sale</span>
             <span class="price bottom-left">
-              <strike>{{ number_format($product->price) }}&#3647;</strike>
+              <strike>{{ number_format($product->price) }}฿</strike>
               <small class="icon-next-arrow"></small>
-              <font>{{ number_format($product->discount_price) }}&#3647;</font>
+              <font>{{ number_format($product->discount_price) }}฿</font>
             </span>
             @endif
         </div>
@@ -26,12 +26,12 @@
           <a class="link-text product-name" href="/product/{{ $product->uid}}">{{ $product->name }}</a>
 
           @if (!$product->discount_price)
-          <p class="product-p">{{__('message.price')}} : {{ number_format($product->price) }}&#3647;</p>
+          <p class="product-p">{{__('message.price')}} : {{ number_format($product->price) }}฿</p>
           @else
           <p class="product-p">
-            {{__('message.price')}}&nbsp;:&nbsp;<strike>{{ number_format($product->price) }}&#3647;</strike>
+            {{__('message.price')}}&nbsp;:&nbsp;<strike>{{ number_format($product->price) }}฿</strike>
             <small class="icon-next-arrow font-grey"></small>
-            <font class="font-green">{{ number_format($product->discount_price) }}&#3647;</font>
+            <font class="font-green">{{ number_format($product->discount_price) }}฿</font>
           </p>
           @endif
           <p class="product-p">{{ $product->category->showTranslate(App::getLocale())->name }} / {{ $product->subcategory->showTranslate(App::getLocale())->name }}</p>

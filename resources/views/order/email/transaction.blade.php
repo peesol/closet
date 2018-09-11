@@ -53,7 +53,7 @@ window.Closet = {
                   </tr>
                   @endforeach
                   <tr>
-                    <td colspan="4" class="no-border">{{__('message.total')}}&nbsp;:&nbsp;<span>{{ number_format($order->total).' '.__('message.baht') }}</span></td>
+                    <td colspan="4" class="no-border">{{__('message.total')}}&nbsp;:&nbsp;<span>{{ number_format($order->total).' '.'฿' }}</span></td>
                   </tr>
                   <tr>
                     <td colspan="4" class="no-border">{{__('message.shipping_fee')}}&nbsp;:&nbsp;
@@ -61,7 +61,7 @@ window.Closet = {
                         @if($shipping->free)
                         <span class="font-bold font-green">{{__('message.free_shipping')}}</span>
                         @else
-                        <span class="font-bold">{{ number_format($order->shipping_fee).' '.__('message.baht') }}</span>
+                        <span class="font-bold">{{ number_format($order->shipping_fee).' '.'฿' }}</span>
                         @endif
                       @endforeach
                     </td>
@@ -69,7 +69,7 @@ window.Closet = {
                   <tr>
                     <td colspan="4">
                       <h4 class="no-margin">
-                        {{__('message.total_price')}}&nbsp;:&nbsp;<span class="font-green">{{number_format($order->total + $order->shipping_fee)}}</span>&nbsp;{{__('message.baht')}}
+                        {{__('message.total_price')}}&nbsp;:&nbsp;<span class="font-green">{{number_format($order->total + $order->shipping_fee)}}</span>&nbsp;฿
                       </h4>
                     </td>
                   </tr>

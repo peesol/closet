@@ -82,7 +82,7 @@ class OrderController extends Controller
       'uid' => '0' . $request->sender_id . '-0' . $id . '-' . Carbon::now('Asia/Bangkok')->format('dmY-His'),
       'title' => 'Order' . ' - ' . $request->sender_name . ' [' . date("d-m-Y", time()) . ']',
       'body' => json_encode($data),
-      'total' => (int)str_replace(',', '', $request->total_price) + $request->input('shipping.fee'),
+      'total' => (int)str_replace(',', '', $request->total_price),
       'discount' => $request->discount,
       'shipping' => json_encode([$request->shipping]),
       'address' => $request->address

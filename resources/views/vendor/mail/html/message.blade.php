@@ -3,7 +3,7 @@
     {{-- Header --}}
     @slot('header')
         @component('mail::header', ['url' => config('app.url')])
-            <img src="https://s3-ap-southeast-1.amazonaws.com/images.closet.com/misc/logo2.png">
+            <img src="https://s3-ap-southeast-1.amazonaws.com/files.closet/etc/logo_white.svg">
         @endcomponent
     @endslot
 

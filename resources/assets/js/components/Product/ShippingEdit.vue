@@ -34,7 +34,7 @@
     <label class="heading">{{$trans.translation.shipping}}</label>
     <div v-for="(item, index) in shippings" class="padding-10" id="full-line">
       <button @click.prevent="remove(index)" class="flat-btn icon-bin" v-show="shippings.length > 1"></button>
-      {{ item.method }}&nbsp;/&nbsp;{{ item.time }}&nbsp;{{$trans.translation.days}}&nbsp;/&nbsp;{{ item.free ? 'free' : item.fee + '&#3647;' }}
+      {{ item.method }}&nbsp;/&nbsp;{{ item.time }}&nbsp;{{$trans.translation.days}}&nbsp;/&nbsp;{{ item.free ? 'free' : item.fee + '฿' }}
     </div>
     <div class="align-right full-width padding-15-top" v-show="!saved">
       <button @click.prevent="save" class="orange-btn normal-sq">{{$trans.translation.edit_submit}}</button>

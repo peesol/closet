@@ -4,13 +4,13 @@
     <img class="products-img-thumb" src="{{config('closet.buckets.images') . '/product/thumbnail/' . $product->thumbnail}}"alt="{{$product->thumbnail}} image">
   </a>
   @if (!$product->discount_price)
-  <span class="price">{{ number_format($product->price) }}&#3647;</span>
+  <span class="price">{{ number_format($product->price) }}฿</span>
   @else
   <span class="sale">Sale</span>
   <span class="price">
-    <strike>{{ number_format($product->price) }}&#3647;</strike>
+    <strike>{{ number_format($product->price) }}฿</strike>
     <small class="icon-next-arrow"></small>
-    <font>{{ number_format($product->discount_price) }}&#3647;</font>
+    <font>{{ number_format($product->discount_price) }}฿</font>
   </span>
   @endif
   <span class="shop">{{ $product->shop->name}}</span>

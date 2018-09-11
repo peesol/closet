@@ -10,9 +10,9 @@
 
       @if($product->discount_price)
         <span class="sale top-right">Sale</span>
-        <span class="thumb-price-discount bottom-left">{{ number_format($product->discount_price) }}&#3647;</span>
+        <span class="thumb-price-discount bottom-left">{{ number_format($product->discount_price) }}฿</span>
       @else
-        <span class="price bottom-left">{{ number_format($product->price) }}&#3647;</span>
+        <span class="price bottom-left">{{ number_format($product->price) }}฿</span>
       @endif
       
   </div>
@@ -21,12 +21,12 @@
     <a class="link-text product-name" href="/product/{{ $product->uid}}">{{ $product->name }}</a>
 
     @if (!$product->discount_price)
-      <p class="product-p">{{__('message.price')}}&nbsp;{{ number_format($product->price) }}&#3647;</p>
+      <p class="product-p">{{__('message.price')}}&nbsp;{{ number_format($product->price) }}฿</p>
     @else
       <p class="product-p">
-        {{__('message.price')}}&nbsp;<strike>{{ number_format($product->price) }}&#3647;</strike>
+        {{__('message.price')}}&nbsp;<strike>{{ number_format($product->price) }}฿</strike>
         <small class="icon-next-arrow font-grey"></small>
-        <font class="font-green">{{ number_format($product->discount_price) }}&#3647;</font>
+        <font class="font-green">{{ number_format($product->discount_price) }}฿</font>
       </p>
     @endif
   </div>

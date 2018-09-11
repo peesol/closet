@@ -16,7 +16,7 @@ class HomeController extends Controller
     {
       $categories = Cache::get('categories');
       $products = Product::popular()->take(10)->get();
-      $shops = Shop::orderBy('view_count', 'desc')->take(10)->get();
+      $shops = Shop::where('id', '!=', 1)->orderBy('view_count', 'desc')->take(10)->get();
       $banners =  DB::table('banners')->where('type', 'home')->get();
       return view('main.home', [
         'categories' => $categories,

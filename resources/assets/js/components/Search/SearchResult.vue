@@ -12,13 +12,13 @@
           <i v-show="product.shop_type === 2" class="icon-checkmark verified-profile top-left"></i>
 
           <div v-if="!product.discount_price">
-            <span class="price bottom-left">{{ $number.currency(product.price) }}&nbsp;&#3647;</span>
+            <span class="price bottom-left">{{ $number.currency(product.price) }}&nbsp;฿</span>
           </div>
 
           <div v-else>
             <span class="sale top-right">Sale</span>
             <span class="thumb-price-discount bottom-left display-mobile">
-              <font>{{ $number.currency(product.discount_price) }}&nbsp;&#3647;</font>
+              <font>{{ $number.currency(product.discount_price) }}&nbsp;฿</font>
             </span>
           </div>
 
@@ -26,13 +26,13 @@
         <div class="details">
           <a class="product-name" :href="$root.url + '/product/' + product.uid">{{product.name}}</a>
           <p v-if="!product.discount_price" class="product-p">
-            {{ $trans.translation.price }}&nbsp;<span>{{ $number.currency(product.price) }}&nbsp;&#3647;</span>
+            {{ $trans.translation.price }}&nbsp;<span>{{ $number.currency(product.price) }}&nbsp;฿</span>
           </p>
           <p v-else class="product-p">
             {{ $trans.translation.price }}&nbsp;
-            <strike>{{ $number.currency(product.price) }}&#3647;</strike>
+            <strike>{{ $number.currency(product.price) }}฿</strike>
             <small class="icon-next-arrow"></small>
-            <font class="font-green">{{ $number.currency(product.discount_price) }}&nbsp;&#3647;</font>
+            <font class="font-green">{{ $number.currency(product.discount_price) }}&nbsp;฿</font>
           </p>
         </div>
       </div>

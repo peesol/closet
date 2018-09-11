@@ -9,7 +9,7 @@
   <div class="details">
     <a class="link-text product-name" href="/product/{{ $product->uid}}">{{ $product->name }}</a>
 
-    <p class="product-p">{{__('message.price')}}&nbsp;{{ number_format($product->price) }}&#3647;</p>
+    <p class="product-p">{{__('message.price')}}&nbsp;{{ number_format($product->price) }}฿</p>
 
   </div>
 

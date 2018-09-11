@@ -52,12 +52,12 @@
         </tr>
         <tr v-for="item in data.shipping">
           <td colspan="4">
-            {{$trans.translation.shipping_fee}}&nbsp;:&nbsp;{{ item.free ? 'free' : item.fee + '&#3647;' }}&nbsp;({{ item.method + ' ' + item.time + ' ' + $trans.translation.days}})
+            {{$trans.translation.shipping_fee}}&nbsp;:&nbsp;{{ item.free ? 'free' : item.fee + '฿' }}&nbsp;({{ item.method + ' ' + item.time + ' ' + $trans.translation.days}})
           </td>
         </tr>
         <tr>
           <td colspan="4">
-            <h4 class="no-margin">{{$trans.translation.total_price}}&nbsp;:&nbsp;<span class="font-red">{{data.total}}</span>&nbsp;&#3647;</h4></td>
+            <h4 class="no-margin">{{$trans.translation.total_price}}&nbsp;:&nbsp;<span class="font-red">{{data.total}}</span>&nbsp;฿</h4></td>
         </tr>
         <tr>
           <td colspan="4">

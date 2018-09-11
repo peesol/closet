@@ -8,8 +8,8 @@
     </a>
     <span v-show="product.discount_price" class="sale top-right">Sale</span>
     <i v-show="product.shop_type === 2" class="icon-checkmark verified-profile top-left"></i>
-    <span v-if="product.discount_price" class="thumb-price-discount bottom-left">{{ $number.currency(product.discount_price) }}&#3647;</span>
-    <span v-else class="thumb-price bottom-left">{{ $number.currency(product.price) }}&#3647;</span>
+    <span v-if="product.discount_price" class="thumb-price-discount bottom-left">{{ $number.currency(product.discount_price) }}฿</span>
+    <span v-else class="thumb-price bottom-left">{{ $number.currency(product.price) }}฿</span>
 
     </div>
 

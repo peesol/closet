@@ -21,18 +21,18 @@
 			</tr>
 			<tr v-show="confirmed.shop !== key">
 				<td colspan="2" class="total-price">
-					<strong>{{$trans.translation.total_price}}&nbsp;:&nbsp;{{total(shop)}}</strong>&#3647;
+					<strong>{{$trans.translation.total_price}}&nbsp;:&nbsp;{{total(shop)}}</strong>฿
 				</td>
 				<td colspan="2"><button class="default float-right width-120" @click.prevent="proceed(key, total(shop))">{{$trans.translation.confirm_order}}</button></td>
 			</tr>
 			<tr v-show="confirmed.shop == key">
 				<td colspan="4">
-					<strong>{{$trans.translation.total_price}}&nbsp;:&nbsp;{{confirmed.totalPrice}}</strong>&#3647;
+					<strong>{{$trans.translation.total_price}}&nbsp;:&nbsp;{{confirmed.totalPrice}}</strong>฿
 					<a class="link-text padding-15-left" @click.prevent="toggleForm(key)" v-show="confirmed.discount_applied === false">{{$trans.translation.apply_discount}}</a>
 					<span class="font-green bold-font" v-show="confirmed.discount">{{$trans.translation.discount}}&nbsp;{{confirmed.discount}}</span>
 					<div v-show="formVisible == key && confirmed.discount_applied === false" class="input-group full-width padding-15-top">
-						<input v-model="code[key]" required type="text" min="1" placeholder="CODE">
-						<button @click.prevent="applyDiscount(shop[0].options.shop_id, key)" type="button" class="form-input-btn checkmark-btn"><small class="icon-checkmark"></small></button>
+						<input v-model="code" required type="text" placeholder="CODE">
+						<button @click.prevent="applyDiscount(shop[0].options.shop_id)" type="button" class="form-input-btn checkmark-btn"><small class="icon-checkmark"></small></button>
 					</div>
 				</td>
 			</tr>
@@ -42,7 +42,7 @@
 					<form @submit.prevent="confirmOrder(shop, key)">
 					<li class="list-no-style padding-5" v-for="item, index in shop[0].options.shipping">
 						<input required name="shipping" :id="index" type="radio" :value="item" v-model="confirmed.shipping">
-						<label :for="index">{{ item.method }}&nbsp;{{$trans.translation.shipping_time}}&nbsp;{{item.time}}&nbsp;{{$trans.translation.days}}&nbsp;{{ item.free ? 'free' : '+' + item.fee + '&#3647;' }}</label>
+						<label :for="index">{{ item.method }}&nbsp;{{$trans.translation.shipping_time}}&nbsp;{{item.time}}&nbsp;{{$trans.translation.days}}&nbsp;{{ item.free ? 'free' : '+' + item.fee + '฿' }}</label>
 					</li>
 						<label class="input-label margin-10-bottom">{{$trans.translation.address}}&nbsp;<a class="font-medium" @click.prevent="addressEdit = !addressEdit">{{ $trans.translation.address_edit }}</a></label>
 						<div v-show="!addressEdit" class="padding-5">
@@ -89,7 +89,7 @@ export default {
 				discount_applied: false,
 				shipping: null,
 			},
-			code: [],
+			code: null,
 			products: [],
 		}
 	},
@@ -183,30 +183,34 @@ export default {
 				});
 			}
 		},
-		applyDiscount(id, key) {
-				this.$http.post(this.$root.url + '/profile/promotions/code/validate', {code: this.code[key], shop_id: id}).then((response)=>{
+		applyDiscount(id) {
+				this.$http.post(this.$root.url + '/profile/promotions/code/validate', {code: this.code, shop_id: id}).then((response)=>{
 					if (response.body.status === true) {
 						if (response.body.type == 'percent') {
 							var price = this.confirmed.totalPrice.split(',').join('')
 							var calculated = price - ((response.body.discount / 100) * price).toFixed(0)
 							if (calculated < 0) {
 								alert(this.$trans.translation.discount_not_valid)
+								this.code = null
 							} else {
 								this.confirmed.totalPrice = this.$number.currency(calculated)
 								this.confirmed.discount = response.body.discount + '%'
 								this.confirmed.discount_applied = true
 								this.formVisible = null
+								this.code = null
 							}
 						} else if (response.body.type == 'baht') {
 							var price = this.confirmed.totalPrice.split(',').join('')
 							var calculated = price - response.body.discount
 							if (calculated < 0) {
 								alert(this.$trans.translation.discount_not_valid)
+								this.code = null
 							} else {
 								this.confirmed.totalPrice = this.$number.currency(calculated)
 								this.confirmed.discount = response.body.discount + ' ฿'
 								this.confirmed.discount_applied = true
 								this.formVisible = null
+								this.code = null
 							}
 						}
 					} else {

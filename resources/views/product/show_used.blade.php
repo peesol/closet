@@ -37,7 +37,7 @@
                         <div class="details-header">
                           <label class="input-label font-red">{{__('message.used')}}</label>
                           <p class="no-margin">
-                            <span class="font-bold font-grey">{{__('message.price')}}</span> : <span class="font-bold font-large">{{ number_format($product->price) }}</span>&nbsp;{{__('message.baht')}}
+                            <span class="font-bold font-grey">{{__('message.price')}}</span> : <span class="font-bold font-large">{{ number_format($product->price) }}</span>&nbsp;฿
                           </p>
                         </div>
 

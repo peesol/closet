@@ -56,7 +56,7 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'noreply@closet.com'),
+        'address' => env('MAIL_FROM_ADDRESS', 'noreply@closet.plus'),
         'name' => env('MAIL_FROM_NAME', 'Closet'),
     ],
 
@@ -113,7 +113,7 @@ return [
     */
 
     'markdown' => [
-        'theme' => 'default',
+        'theme' => 'orange',
 
         'paths' => [
             resource_path('views/vendor/mail'),

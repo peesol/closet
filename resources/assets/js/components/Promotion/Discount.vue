@@ -6,8 +6,8 @@
     <div class="col-4-flex-res full-width panel-heading" v-for="(item, index) in discount_products">
       <div class="text-nowrap text-row">{{item.name}}</div>
       <div class="text-row">
-        <strike>{{$number.currency(item.price)}}&nbsp;&#3647;</strike>&nbsp;<small class="icon-next-arrow"></small>
-        <font class="font-green">{{$number.currency(item.discount_price)}}&nbsp;&#3647;</font>
+        <strike>{{$number.currency(item.price)}}&nbsp;฿</strike>&nbsp;<small class="icon-next-arrow"></small>
+        <font class="font-green">{{$number.currency(item.discount_price)}}&nbsp;฿</font>
       </div>
       <div class="text-row">
         <font class="font-red">{{$trans.translation.expired}}&nbsp;{{item.discount_date}}</font>
@@ -23,7 +23,7 @@
   <div class="full-width" v-for="(item, index) in products">
     <div class="col-3-flex-res panel-heading">
       <div class="text-nowrap text-row">{{item.name}}</div>
-      <div class="text-row">{{$trans.translation.price}}&nbsp;{{$number.currency(item.price)}}&nbsp;&#3647;</div>
+      <div class="text-row">{{$trans.translation.price}}&nbsp;{{$number.currency(item.price)}}&nbsp;฿</div>
       <div class="align-right">
         <button @click.prevent="toggleForm(item.id)" class="round-btn"><small class="icon-plus font-grey"></small></button>
       </div>

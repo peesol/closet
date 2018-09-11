@@ -8,11 +8,11 @@
             <img class="products-img-thumb" src="{{$product->getImage()}}" alt="{{$product->thumbnail}}">
             </a>
             <span class="icon-refresh top-right caution"></span>
-            <span class="price bottom-left">{{ number_format($product->price) }}&#3647;</span>
+            <span class="price bottom-left">{{ number_format($product->price) }}฿</span>
         </div>
         <div class="details">
           <a class="link-text product-name" href="/product/used/{{ $product->uid}}">{{ $product->name }}</a>
-          <p class="product-p">{{__('message.price')}} : {{ number_format($product->price) }}&#3647;</p>
+          <p class="product-p">{{__('message.price')}} : {{ number_format($product->price) }}฿</p>
           <p class="product-p">{{ $product->category->showTranslate(App::getLocale())->name }} / {{ $product->subcategory->showTranslate(App::getLocale())->name }}</p>
           @if($product->type->id !== 1)
           <p class="product-p">{{ $product->type->showTranslate(App::getLocale())->name}}</p>
