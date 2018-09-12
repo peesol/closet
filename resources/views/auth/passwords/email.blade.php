@@ -2,9 +2,8 @@
 
 @section('content')
 <div class="container">
-    <div class="row">
         <div class="small-panel">
-                <div class="panel-heading"><label class="heading">{{__('message.reset_password')}}</label></div>
+                <div class="panel-heading"><label class="heading">{{__('auth.reset_password')}}</label></div>
                 <div class="panel-body">
                     @if (session('status'))
                         <div class="alert alert-success">
@@ -16,7 +15,7 @@
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="form-label">{{__('message.email')}}</label>
+                            <label for="email" class="form-label">{{__('auth.email')}}</label>
 
                                 <input id="email" type="email" class="form-input" name="email" value="{{ old('email') }}" required>
                                 @if ($errors->has('email'))
@@ -28,12 +27,11 @@
 
                         <div class="form-group">
                                 <button type="submit" class="btn btn-primary">
-                                    {{__('message.email_password_reset')}}
+                                    {{__('auth.email_password_reset')}}
                                 </button>
                         </div>
                     </form>
                 </div>
         </div>
-    </div>
 </div>
 @endsection

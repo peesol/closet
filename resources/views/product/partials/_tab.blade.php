@@ -15,7 +15,7 @@
           <div class="alert-box info">
             <label class="input-label full-label">
               <span class="icon-notification"></span>
-              {{__('auth.comment_notice')}}<a class="link-text font-bold" href="{{ route('login')}}">&nbsp;{{__('message.login')}}</a>
+              {{__('auth.comment_notice')}}<a class="link-text font-bold" href="{{ route('login')}}">&nbsp;{{__('auth.login')}}</a>
             </label>
           </div>
           @endif

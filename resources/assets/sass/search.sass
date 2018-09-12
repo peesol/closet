@@ -32,7 +32,7 @@
   top: 9px
   width: 64px
   height: 31px
-  margin-left: -4px
+  margin-left: -5px
   background-color: white
   border: 1px solid #b5b5b5
   border-left: none
@@ -69,7 +69,7 @@
   .search-form
     display: block
     position: absolute
-    margin-left: 200px
+    margin-left: 180px
     height: auto
     background: transparent
     padding: 0
@@ -79,15 +79,23 @@
     border-radius: 0
     font-size: 1em
     height: 31px
-    width: 350px
+    width: 300px
     &:focus
       border: 1px solid #1c62b9
   .algolia-autocomplete
-    width: 350px
+    width: 300px
     .aa-dropdown-menu
       .aa-suggestion
         font-size: 1em
         padding: 5px 4px
+
+@media (min-width: 992px)
+  .search-form
+    margin-left: 200px
+  .search-input
+    width: 350px
+  .algolia-autocomplete
+    width: 350px
 
 .filter
   ul

@@ -1,7 +1,7 @@
 @component('mail::message')
-# {{__('message.verification_welcome', ['name' => $name])}}.
+# {{__('auth.verification_welcome', ['name' => $name])}}.
 
-{{__('message.verify')}}
+{{__('auth.verify_link')}}
 
 @component('mail::button', ['url' => url('/register/verify/'.$email_token)])
 
@@ -11,7 +11,7 @@
 
 @component('mail::subcopy')
 
-{{__('message.verify_alt')}}
+{{__('auth.verify_alt')}}
 
 {{url('/register/verify/'.$email_token)}}
 

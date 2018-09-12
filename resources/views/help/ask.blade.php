@@ -17,7 +17,7 @@
             <form action="{{ route('askPost') }}" method="post">
               {{ csrf_field() }}
               <div class="form-group">
-                <label class="full-label input-label" for="email">{{__('message.email')}}</label>
+                <label class="full-label input-label" for="email">{{__('auth.email')}}</label>
                 <input required class="form-input" name="email" type="email" id="email">
               </div>
               <div class="form-group">

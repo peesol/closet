@@ -106,14 +106,14 @@ class RegisterController extends Controller
         {
             $this->validator($request->all())->validate();
             event(new Registered($user = $this->create($request->all())));
-            if($user->country == 'ไทย') {
+            if($user->country == 'th') {
               $locale = 'th';
             } else {
               $locale = 'en';
             }
             Mail::to($user->email)->queue((new EmailVerification($user, $locale))->onQueue('email_high'));
 
-            return view('email.verification');
+            return back()->with('success', 'success');
         }
     /**
     * Handle a registration request for the application.
@@ -124,7 +124,7 @@ class RegisterController extends Controller
     public function verify($token)
     {
       $user = User::where('email_token', $token)->first();
-      $user->verified = 1;
+      $user->verified = true;
 
       if($user->save()){
         return view('email.success');
@@ -140,19 +140,19 @@ class RegisterController extends Controller
 
       if($user) {
         if ($user->verified == false) {
-          if($user->country == 'ไทย') {
+          if($user->country == 'th') {
             $locale = 'th';
           } else {
             $locale = 'en';
           }
           Mail::to($user->email)->queue((new EmailVerification($user, $locale))->onQueue('email_high'));
-          return view('email.verification');
 
+          return redirect()->back()->with('success', __('auth.verification_sent'));
         } else {
-          return view('auth.email.resend', ['message' => __('auth.verified')]);
+          return redirect()->back()->with('error', __('auth.verified'));
         }
       } else {
-        return view('auth.email.resend', ['message' => __('auth.failed')]);
+        return redirect()->back()->with('error', __('auth.failed'));
       }
 
     }

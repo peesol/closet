@@ -10,7 +10,7 @@
     <button class="icon-search res-search-btn display-mobile"></button>
     <div class="login-box">
       @if (Auth::guest())
-          <li><a href="{{ route('login') }}">{{__('message.login')}}</a></li>
+          <li><a href="{{ route('login') }}">{{__('auth.login')}}</a></li>
           <li><a href="{{ route('register') }}">{{__('message.register')}}</a></li>
       @else
       <user-nav

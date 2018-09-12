@@ -35,6 +35,6 @@ class EmailVerification extends Mailable
         return $this->markdown('email.markdown.verifyemail')->with([
         'email_token' => $this->user->email_token,
         'name' => $this->user->name,
-        ])->subject(__('message.email_verification_subject'));
+        ])->subject(__('auth.email_verification_subject'));
     }
 }

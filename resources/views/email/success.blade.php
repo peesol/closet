@@ -3,14 +3,12 @@
 @section('content')
 
 <div class="container">
-    <div class="row">
             <div class="medium-panel">
-                <div class="panel-heading"><label class="heading">{{__('message.success')}}</label></div>
-                <div class="panel-body">
-                {{__('message.verification_finished')}} <a class="link-text" href="{{url('/login')}}">{{__('message.login')}}</a>
+                <div class="panel-body align-center">
+                <h2 class="font-green">{{__('auth.verification_finished')}}</h2>
+                <button class="help-btn padding-10 width-120" onclick='document.location.href="{{url('/login')}}"'>{{__('auth.login')}}</button>
                 </div>
             </div>
-    </div>
 </div>
 
 @endsection

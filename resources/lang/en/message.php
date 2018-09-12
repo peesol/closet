@@ -7,16 +7,6 @@ return [
     'cart' => 'Cart',
     'collection_edit' => 'Collection Edit',
     'notice' => 'Warning',
-    //general
-    'login' => 'Login',
-    'logout' => 'Logout',
-    'email' => 'E-mail Address',
-    'password' => 'Password',
-    'confirm_password' => 'Confirm Password',
-    'forgot_password' => 'Forgot Your Password?',
-    'reset_password' => 'Reset Password',
-    'email_password_reset' => 'Send password reset link',
-    'remember' => 'Remember Me',
     //register
     'register' => 'Register',
     'register_name' => 'Name',
@@ -33,15 +23,6 @@ return [
     'shop_name_placeholder' => 'Only letters or numbers between 6 and 50 characters',
     'password_placeholder' => 'Only letters or numbers between 8 and 20 characters',
     'address_tip' => 'This information below will be used for delivery and only you can see it.',
-    //Verification Email
-    'success' => 'Success',
-    'email_verification_subject' => 'Email Verification',
-    'verification_welcome' => 'Welcome, :name',
-    'verification_sent' => 'You have successfully registered. An email is sent to you for verification.',
-    'verification_sent_notice' => 'Sometimes the email could be sent to you late, Please wait around 5 minutes if you don\'t recieve the email then click this link to resend the email.',
-    'verification_finished' => 'Your Email is successfully verified. Click here to',
-    'verify' => 'Please, click this link to verify your email.',
-    'verify_alt' => 'If you’re having trouble clicking the "Verify" button, copy and paste the URL below into your web browser:',
     //Home
     'home_signup' => 'Shopping or Selling?',
     'home_signup_link' => 'Register',
