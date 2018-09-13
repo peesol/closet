@@ -11,7 +11,7 @@
             <input required class="form-input" type="text" v-model="name" name="name">
           </div>
           <div class="align-right">
-            <button class="orange-btn normal-sq" type="submit">{{$trans.translation.create}}</button>
+            <button :disabled="$root.loading" class="orange-btn normal-sq" type="submit">{{$trans.translation.create}}</button>
           </div>
         </form>
       </div>
@@ -24,7 +24,7 @@
     </div>
 
     <div class="align-right padding-15-vertical" v-show="showcases.length">
-      <button class="orange-btn normal-sq width-120" @click.prevent="save()">{{$trans.translation.edit_submit}}</button>
+      <button :disabled="$root.loading" class="orange-btn normal-sq width-120" @click.prevent="save()">{{$trans.translation.edit_submit}}</button>
     </div>
     <draggable :list="showcases" :options="{animation: 200, handle: '.showcase-handle', forceFallback: true }" @change="order">
 
@@ -84,16 +84,20 @@ export default {
     },
     create(index) {
       this.$Progress.start()
+      this.$root.loading = true
+      toastr.info(this.$trans.translation.wait);
       this.$http.post(this.$root.url + '/' + this.$route.params.shop + ' /edit/showcase/create', {
         name: this.name,
         order: this.showcases.length ? this.showcases.length + 1 : 1
       }).then((response) => {
         this.name = null;
         this.showcases.push(response.body)
-        toastr.success(this.$trans.translation.showcase_created);
         this.$Progress.finish()
+        this.$root.loading = false
+        toastr.success(this.$trans.translation.showcase_created);
       }, (response) => {
         this.$Progress.fail()
+        this.$root.loading = false
         toastr.error(this.$trans.translation.error);
       });
     },
@@ -131,13 +135,17 @@ export default {
     },
     save() {
       this.$Progress.start()
+      this.$root.loading = true
+      toastr.info(this.$trans.translation.wait);
       this.$http.put(this.$root.url + '/' + this.$route.params.shop + '/edit/showcase/order/update', {
         showcases: this.showcases
       }).then((response) => {
         this.$Progress.finish()
+        this.$root.loading = false
         toastr.success(this.$trans.translation.saved);
       }, (response) => {
         this.$Progress.fail()
+        this.$root.loading = false
         toastr.error(this.$trans.translation.error);
       });
     }

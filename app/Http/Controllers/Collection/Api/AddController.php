@@ -31,7 +31,7 @@ class AddController extends Controller
   public function getAddedProduct(Shop $shop, $productId)
   {
     $collection = $shop->collection()->latestFirst()->get();
-    return response()->json(Fractal::collection($collection,new AddProductTransformer(['id' => $productId])));
+    return response()->json(Fractal::collection($collection, new AddProductTransformer(['id' => $productId])));
   }
 
 }

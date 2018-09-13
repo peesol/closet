@@ -93,6 +93,24 @@ class CollectionEditController extends Controller
       return response()->json(null, 200);
   }
 
+  public function getMyProduct(Collection $collection, Request $request)
+  {
+    $products = $request->user()->products()->latestFirst()->get();
+
+    $data = [];
+
+    foreach ($products as $product) {
+      $data[] = [
+        'id' => $product->id,
+        'name' => $product->name,
+        'added' => $collection->addedToCollection($product->id),
+        'thumbnail' => $product->thumbnail,
+      ];
+    }
+
+    return response()->json($data);
+  }
+
   public function deleteProduct(CollectionProduct $collection, $collectionId, $productId)
   {
       $match = ['product_id' => $productId, 'collection_id' => $collectionId];

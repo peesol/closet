@@ -22,6 +22,7 @@ class ShowcaseController extends Controller
     $showcase = $shop->showcase()->create([
       'name' => $request->name,
       'order' => $request->order,
+      'show' => true
       ]);
     return response()->json($showcase);
   }
@@ -46,7 +47,7 @@ class ShowcaseController extends Controller
     }
     return response()->json(null, 200);
   }
-  
+
   public function updateOrder(Shop $shop, Request $request)
   {
     $this->authorize('update', $shop);

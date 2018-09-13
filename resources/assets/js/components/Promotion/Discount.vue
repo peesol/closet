@@ -73,7 +73,10 @@ export default {
       if (!confirm(this.$trans.translation.confirm + '?')) {
         return
       } else {
-        this.$http.put(this.$root.url + '/profile/promotions/manage/discount/' + uid + '/add', {discount:this.discount}).then((response) => {
+        this.$root.loading = true
+        this.$http.put(this.$root.url + '/profile/promotions/manage/discount/' + uid + '/add', {discount:this.discount}).then(response => {
+          this.$root.loading = false
+          toastr.success(this.$trans.translation.success);
           if (this.remaining_points === 0) {
             alert(this.$trans.translation.not_enough_points)
           } else {
@@ -82,6 +85,9 @@ export default {
             this.discount_products.push(response.body);
             this.discount = null;
           }
+        }, response => {
+          this.$root.loading = false
+          toastr.error(this.$trans.translation.error);
         });
       }
     },

@@ -32,7 +32,7 @@
 					<span class="font-green bold-font" v-show="confirmed.discount">{{$trans.translation.discount}}&nbsp;{{confirmed.discount}}</span>
 					<div v-show="formVisible == key && confirmed.discount_applied === false" class="input-group full-width padding-15-top">
 						<input v-model="code" required type="text" placeholder="CODE">
-						<button @click.prevent="applyDiscount(shop[0].options.shop_id)" type="button" class="form-input-btn checkmark-btn"><small class="icon-checkmark"></small></button>
+						<button :disabled="$root.loading" @click.prevent="applyDiscount(shop[0].options.shop_id)" type="button" class="form-input-btn checkmark-btn"><small class="icon-checkmark"></small></button>
 					</div>
 				</td>
 			</tr>
@@ -62,7 +62,7 @@
 							</div>
 						</div>
 					<div class="align-right padding-15-top">
-						<button class="green-btn border-radius-5 width-120-res" type="submit">{{$trans.translation.place_order}}</button>
+						<button :disabled="$root.loading" class="green-btn border-radius-5 width-120-res" type="submit">{{$trans.translation.place_order}}</button>
 					</div>
 					</form>
 				</td>
@@ -162,6 +162,7 @@ export default {
 				return
 			} else {
 				this.$Progress.start()
+				this.$root.loading = true
 				return this.$http.post(this.$root.url + '/order/sending', {
 					products: shop,
 					sender_id: this.user.id,
@@ -180,11 +181,16 @@ export default {
 					this.confirmed.shipping = null;
 					toastr.success(this.$trans.translation.success)
 					this.$Progress.finish()
+					this.$root.loading = false
+				}).then((response) => {
+					toastr.error(this.$trans.translation.error)
 				});
 			}
 		},
 		applyDiscount(id) {
-				this.$http.post(this.$root.url + '/profile/promotions/code/validate', {code: this.code, shop_id: id}).then((response)=>{
+			this.$root.loading = true
+				this.$http.post(this.$root.url + '/profile/promotions/code/validate', {code: this.code, shop_id: id}).then(response => {
+					this.$root.loading = false
 					if (response.body.status === true) {
 						if (response.body.type == 'percent') {
 							var price = this.confirmed.totalPrice.split(',').join('')
@@ -216,6 +222,9 @@ export default {
 					} else {
 						alert(this.$trans.translation.discount_not_valid)
 					}
+				}, response => {
+					this.$root.loading = false
+					toastr.error(this.$trans.translation.error);
 				});
 		}
 	},

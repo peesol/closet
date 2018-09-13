@@ -1,5 +1,24 @@
 <template>
 <div>
+  <div class="padding-30-bot-15">
+    <button class="orange-btn normal-sq" @click.prevent="open(products)" name="button">{{$trans.translation.add_your_product}}&nbsp;+</button>
+  </div>
+  <modal name="open-msg" @before-open="beforeOpen" :clickToClose="false" :scrollable="true" :height="'auto'" :adaptive="true" :minWidth="425" :width="'80%'">
+    <table class="c-table no-margin">
+      <tr>
+        <th colspan="2" class="align-center font-large">{{$trans.translation.add_your_product}}</th>
+      </tr>
+      <tr v-for="(item, index) in myProducts">
+        <td class="overflow-hidden">{{ item.name }}</td>
+        <td class="align-center">
+          <a @click.prevent="addToCollection(item.id, colId, index)" class="font-15em" :class="{'font-green icon-checked' : item.added, 'icon-unchecked font-grey' : !item.added}"></a>
+        </td>
+      </tr>
+    </table>
+    <div class="msg-btn">
+      <button class="msg-btn-full" @click.prevent="hide()">{{$trans.translation.close}}</button>
+    </div>
+  </modal>
   <div v-if="products.length">
 
     <div v-for="(product, index) in products" class="row-list flex flex-start">
@@ -34,15 +53,51 @@ export default {
   data() {
     return {
       products: [],
+      myProducts:[],
+      formVisible: false
     }
   },
   props: {
-    colId: null
+    colId: null,
+    colSlug: null
   },
   methods: {
+    beforeOpen(event) {
+      this.data = event.params.products;
+    },
+    open() {
+      if (!this.myProducts.length) {
+        this.$Progress.start()
+        this.$http.get(this.$root.url + '/collection/' + this.colSlug + '/edit/get_myproducts').then((response) => {
+          this.myProducts = response.body;
+          this.$Progress.finish()
+        });
+      }
+      this.$modal.show('open-msg', {
+        data: this.myProducts,
+      });
+    },
+    hide() {
+      this.$modal.hide('open-msg');
+      this.products = []
+      this.getProduct()
+    },
     getProduct() {
       this.$http.get(this.$root.url + '/collection_api/products/' + this.colId).then((response) => {
         this.products = response.body.data;
+      });
+    },
+    addToCollection(productId, collectionId, index) {
+      this.$http.post(this.$root.url + '/collection/' + collectionId + '/add/' + productId).then((response) => {
+        if (this.myProducts[index].added) {
+          this.$set(this.myProducts[index], 'added', false)
+          toastr.success(this.$trans.translation.delete_from_col)
+        } else {
+          this.$set(this.myProducts[index], 'added', true)
+          toastr.success(this.$trans.translation.added_to_col)
+        }
+      }, (response) => {
+        toastr.error(this.$trans.translation.error)
       });
     },
     removeProduct(productId, index) {

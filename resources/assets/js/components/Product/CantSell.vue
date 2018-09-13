@@ -27,7 +27,7 @@
         </div>
       </div>
       <div class="align-right padding-15-top">
-        <button class="orange-btn normal-sq">{{$trans.translation.edit_submit}}</button>
+        <button :disabled="$root.loading" type="submit" class="orange-btn normal-sq">{{$trans.translation.edit_submit}}</button>
       </div>
     </form>
   </div>
@@ -78,18 +78,21 @@ export default {
   methods: {
     add() {
       this.$Progress.start()
+      this.$root.loading = true
       toastr.info(this.$trans.translation.wait);
       this.$http.post(this.$root.url + '/' + this.shopSlug + '/edit/account', {
         provider: this.provider,
         number: this.number,
         name: this.name,
-      }).then((response) => {
+      }).then(response => {
         this.$Progress.finish()
+        this.$root.loading = false
         toastr.success(this.$trans.translation.saved)
         document.location.href = this.$root.url + '/sell/new';
-      }, (response) => {
-        toastr.error(this.$trans.translation.error)
+      }, response => {
         this.$Progress.fail()
+        this.$root.loading = false
+        toastr.error(this.$trans.translation.error)
       });
     },
   },

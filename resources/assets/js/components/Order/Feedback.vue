@@ -23,7 +23,7 @@
         <textarea  required class="comment-input" rows="5" cols="80" v-model="comment"></textarea>
       </div>
       <div v-show="shop !== null" class="align-right full-width margin-10-top">
-        <button class="orange-btn normal-sq" @click.prevent="submit">{{$trans.translation.edit_submit}}</button>
+        <button :disabled="$root.loading" class="orange-btn normal-sq" @click.prevent="submit">{{$trans.translation.edit_submit}}</button>
       </div>
     </form>
   </div>
@@ -63,18 +63,21 @@ export default {
     submit() {
       if (!this.reviewed) {
         this.$Progress.start()
+        this.$root.loading = true
         this.$http.post(this.$root.url + '/'+ this.shop.slug + '/reviews', {
           points: this.points,
           comment: this.comment,
           order_id: this.orderId
-        }).then((response) => {
+        }).then(response => {
           this.points = null
           this.comment = null
           this.$emit('submit')
           this.$Progress.finish()
+          this.$root.loading = false
           toastr.success(this.$trans.translation.success)
-        }, (response) => {
+        }, response => {
           this.$Progress.fail()
+          this.$root.loading = false
           toastr.error(this.$trans.translation.error)
         });
       }

@@ -28,7 +28,7 @@
       <div class="panel-heading">
         <label class="full-label heading">{{__('message.products')}}</label>
       </div>
-      <collection-product-edit col-id="{{$collection->id}}"></collection-product-edit>
+      <collection-product-edit col-id="{{$collection->id}}" col-slug="{{$collection->slug}}"></collection-product-edit>
 
   </div>
 </div>

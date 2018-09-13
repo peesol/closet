@@ -27,7 +27,7 @@
           </div>
         </div>
         <div class="align-right padding-15-top">
-          <button class="orange-btn normal-sq">{{$trans.translation.edit_submit}}</button>
+          <button :disabled="$root.loading" type="submit" class="orange-btn normal-sq">{{$trans.translation.edit_submit}}</button>
         </div>
       </form>
     </div>
@@ -107,6 +107,7 @@ export default {
       toastr.options.preventDuplicates = true;
       toastr.options.timeOut = 2000;
       this.$Progress.start()
+      this.$root.loading = true
       toastr.info(this.$trans.translation.wait);
       this.$http.post(this.$root.url + '/' + this.$route.params.shop + '/edit/account', {
         provider: this.provider,
@@ -114,14 +115,16 @@ export default {
         name: this.name,
       }).then((response) => {
         this.$Progress.finish()
+        this.$root.loading = false
         toastr.success(this.$trans.translation.saved)
         this.accounts.push(response.body)
         this.provider = null;
         this.number = null;
         this.name = null;
       }, (response) => {
-        toastr.error(this.$trans.translation.error)
         this.$Progress.fail()
+        this.$root.loading = false
+        toastr.error(this.$trans.translation.error)
       });
     },
     remove(accountId, index) {

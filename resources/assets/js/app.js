@@ -23,6 +23,9 @@ Vue.use(VueTrans)
 import number from './misc/number-filter'
 Vue.use(number)
 
+import timer from './misc/request-timer'
+Vue.use(timer)
+
 import VueValidate from 'vee-validate'
 Vue.use(VueValidate)
 
@@ -50,6 +53,7 @@ window.addEventListener('load', function () {
        authenticated: window.Closet.user.authenticated,
        locale: window.Closet.locale,
        user: window.Closet.user.user,
+       loading: false
      },
      store,
      router
@@ -88,7 +92,7 @@ Vue.component('shop-account-edit', require('./components/Shop/ShopAccountEdit.vu
 Vue.component('shop-user-edit', require('./components/Shop/ShopUserEdit.vue'));
 Vue.component('collection-edit', require('./components/Collection/CollectionEdit.vue'));
 Vue.component('collection-dropzone', require('./components/Collection/CollectionDropzone.vue'));
-Vue.component('collection-product', require('./components/Collection/CollectionProduct.vue'));
+Vue.component('collection-product', require('./components/Collection/CollectionAddFromProduct.vue'));
 Vue.component('collection-product-edit', require('./components/Collection/CollectionProductEdit.vue'));
 Vue.component('dropdown-language', require('./components/Language/DropdownLanguage.vue'));
 Vue.component('language-select', require('./components/Language/Language.vue'));

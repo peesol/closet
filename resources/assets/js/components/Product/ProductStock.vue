@@ -11,7 +11,7 @@
       <div class="half-width-res flex">
         <div class="input-group half-width">
           <input class="form-input-alt no-margin width-120" min="0" type="number" v-model="product.amount">
-          <button class="checkmark-btn icon-checkmark" type="submit" @click.prevent="setAmount(product.uid, product.amount, index)"></button>
+          <button :disabled="$root.loading" class="checkmark-btn icon-checkmark" type="submit" @click.prevent="setAmount(product.uid, product.amount, index)"></button>
         </div>
         <div class="half-width align-right">
           <span class="padding-10" :class="{ 'green-box' : product.amount >= 1, 'red-box' : product.amount == 0 }">{{product.amount >= 1 ? $trans.translation.instock : $trans.translation.outstock}}</span>
@@ -35,20 +35,22 @@ export default {
 	},
   methods: {
       getProduct() {
-          this.$http.get(this.$root.url + '/profile/myproduct/get').then((response)=> {
-            return response.json()
-            .then((json) => {
-              this.products = json;
-            });
+          this.$http.get(this.$root.url + '/api/getter/my_products').then(response=> {
+            this.products = response.body
           });
         },
 
         setAmount(productSlug, productAmount, index){
+          this.$root.loading = true
           this.$http.put(this.$root.url + '/profile/myproduct/stock/set_amount/' + productSlug , {
             amount: productAmount
-          }).then((response) => {
+          }).then(response => {
+            this.$requestTimer(2000)
             toastr.success(this.$trans.translation.saved);
             this.$set(this.products[index], 'amount', productAmount)
+          }, response => {
+            this.$root.loading = false
+            toastr.error(this.$trans.translation.error);
           });
         },
     },

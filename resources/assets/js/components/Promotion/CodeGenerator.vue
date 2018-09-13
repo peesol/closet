@@ -17,7 +17,6 @@
                 <option value="percent">%</option>
                 <option value="baht">{{$trans.translation.baht}}</option>
             </select>
-
         </div>
         <div class="form-group flex">
           <label class="input-label padding-15-right">{{$trans.translation.amount}}</label>
@@ -25,7 +24,7 @@
         </div>
 
         <div class="align-right full-width padding-15-top">
-          <button type="submit" class="orange-btn normal-sq">{{$trans.translation.edit_submit}}</button>
+          <button :disabled="$root.loading" type="submit" class="orange-btn normal-sq">{{$trans.translation.edit_submit}}</button>
         </div>
       </form>
     </div>
@@ -73,15 +72,22 @@ export default {
       });
     },
     create() {
+      this.$root.loading = true
       this.$http.post(this.$root.url + '/profile/promotions/manage/code', {
         code: this.code,
         discount: this.discount,
         amount: this.amount,
         type: this.type,
-      }).then((response) => {
+      }).then(response => {
+        this.code = null
+        this.discount = null
+        this.amount = null
+        this.type = null
+        this.$root.loading = false
         this.codes.push(response.body)
         toastr.success(this.$trans.translation.success);
-      }, (response) => {
+      }, response => {
+        this.$root.loading = false
         toastr.error(this.$trans.translation.error);
       });
     },
@@ -89,10 +95,10 @@ export default {
       if (!confirm(this.$trans.translation.delete_confirm)) {
         return
       }
-      this.$http.delete(this.$root.url + '/profile/promotions/manage/code/' + id).then((response) => {
+      this.$http.delete(this.$root.url + '/profile/promotions/manage/code/' + id).then(response => {
         this.codes.splice(index, 1)
         toastr.success(this.$trans.translation.success);
-      }, (response) => {
+      }, response => {
         toastr.error(this.$trans.translation.error);
       });
     }

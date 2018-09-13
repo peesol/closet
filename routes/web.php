@@ -74,6 +74,7 @@ Route::group(['middleware' => ['admin']], function () {
 */
 Route::get('/api/getter/shop/{id}', 'Api\Getter@getShop');
 Route::get('/api/getter/shop_account/{id}', 'Api\Getter@getBankAccount');
+Route::get('/api/getter/my_products', 'Api\Getter@getMyProduct');
 
 /*
 |--------------------------------------------------------------------------
@@ -108,12 +109,14 @@ Route::group(['middleware' => ['auth']], function () {
   Route::get('/collection/{collection}/edit', 'Collection\CollectionEditController@edit');
   Route::put('/collection/{collection}/edit', 'Collection\CollectionEditController@update');
 
+  Route::get('/collection/{collection}/edit/get_myproducts', 'Collection\CollectionEditController@getMyProduct');
+
   Route::post('/collection/{collection}/upload/{id}', 'Collection\CollectionEditController@uploadPhoto');
   Route::delete('/collection/image/{id}', 'Collection\CollectionEditController@deletePhoto');
   Route::get('/collection/image/{id}', 'Collection\CollectionEditController@photo');
   Route::delete('/collection/{collectionId}/delete/{productId}', 'Collection\CollectionEditController@deleteProduct');
 
-  // Add to collection api
+  // Add to collection from product page api
   Route::get('/collection_api/{shop}/add/{productId}', 'Collection\Api\AddController@getAddedProduct');
   Route::post('/collection/{collectionId}/add/{productId}', 'Collection\Api\AddController@create');
 
@@ -251,8 +254,6 @@ Route::group(['middleware' => ['auth']], function () {
 */
   Route::get('/profile/myproduct/new', 'Product\User\MyProductController@myproductPage');
   Route::get('/profile/myproduct/used', 'Product\User\MyProductController@myUsedProductPage');
-  // get my product
-  Route::get('/profile/myproduct/get', 'Product\User\MyProductController@getProduct');
   //Stock
   Route::get('/profile/myproduct/stock', 'Product\Stock\StockController@index');
   Route::put('/profile/myproduct/stock/set_amount/{product}', 'Product\Stock\StockController@update');

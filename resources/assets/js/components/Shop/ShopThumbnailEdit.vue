@@ -22,7 +22,7 @@
     </div>
 
     <div class="padding-15-vertical align-right">
-      <button @click.prevent="edit" class="orange-btn normal-sq">{{$trans.translation.edit_submit}}</button>
+      <button :disabled="$root.loading" type="submit" class="orange-btn normal-sq">{{$trans.translation.edit_submit}}</button>
     </div>
   </form>
 
@@ -47,15 +47,18 @@ export default {
 
       if (document.getElementById("thumb-input").files.length > 0) {
         this.$Progress.start();
+        this.$root.loading = true
         toastr.info(this.$trans.translation.wait);
         this.$http.put(this.$root.url + '/' + this.$parent.shopSlug + '/edit/thumbnail', {
           thumbnail: this.thumbnail,
         }).then((response) => {
           this.$Progress.finish();
+          this.$root.loading = false
           toastr.success(this.$trans.translation.success);
         }, (response) => {
           toastr.error(this.$trans.translation.error);
           this.$Progress.fail();
+          this.$root.loading = false
         });
       }
     },

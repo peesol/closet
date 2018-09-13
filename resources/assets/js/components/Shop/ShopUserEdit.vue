@@ -14,7 +14,7 @@
       <span v-show="errors.has('address')" class="span-error">{{ errors.first('address') }}</span>
     </div>
     <div class="padding-15-top align-right">
-      <button class="orange-btn normal-sq">{{$trans.translation.edit_submit}}</button>
+      <button :disabled="$root.loading" type="submit" class="orange-btn normal-sq">{{$trans.translation.edit_submit}}</button>
     </div>
   </form>
 </div>
@@ -33,15 +33,19 @@ export default {
       toastr.options.preventDuplicates = true;
       toastr.options.timeOut = 2000;
 
+      this.$Progress.start();
+      this.$root.loading = true
       this.$http.put(this.$root.url + '/' + this.$parent.shopSlug + '/edit/personal_info', {
         address: this.address,
         phone: this.phone,
       }).then((response) => {
         this.$Progress.finish();
+        this.$root.loading = false
         toastr.success(this.$trans.translation.success);
       }, (response) => {
-        toastr.error(this.$trans.translation.error);
         this.$Progress.fail();
+        this.$root.loading = false
+        toastr.error(this.$trans.translation.error);
       });
     },
   },

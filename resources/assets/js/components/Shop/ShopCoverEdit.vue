@@ -16,7 +16,7 @@
     </div>
 
     <div class="align-right padding-15-top">
-      <button @click.prevent="edit" class="orange-btn normal-sq">{{$trans.translation.edit_submit}}</button>
+      <button :disabled="$root.loading" type="submit" class="orange-btn normal-sq">{{$trans.translation.edit_submit}}</button>
     </div>
   </form>
 </div>
@@ -37,15 +37,18 @@ export default {
 
       if (document.getElementById("cover-input").files.length > 0) {
         this.$Progress.start();
+        this.$root.loading = true
         toastr.info(this.$trans.translation.wait);
         this.$http.put(this.$root.url + '/' + this.$parent.shopSlug + '/edit/cover', {
           cover: this.cover,
         }).then((response) => {
           this.$Progress.finish();
+          this.$root.loading = false
           toastr.success(this.$trans.translation.success);
         }, (response) => {
-          toastr.error(this.$trans.translation.error);
           this.$Progress.fail();
+          this.$root.loading = false
+          toastr.error(this.$trans.translation.error);
         });
       }
     },
@@ -53,7 +56,7 @@ export default {
       var input = event.target;
       if (input.files && input.files[0]) {
         if (input.files[0].size > 1048576) {
-          alert("File is too big!");
+          alert(this.$trans.translation.file_size_limit + ' 1 MB');
           this.removefile()
         }
         var reader = new FileReader();

@@ -1,27 +1,26 @@
 <template>
 <div>
-    <div class="half-width-res panel-body">
+    <div id="full-line" class="half-width-res panel-body">
 		<form>
       <label class="heading full-label">{{$trans.translation.name}}</label>
         <div class="input-group half-width-res">
 				   <input class="input-addon-field" type="text" v-model="name" name="name">
-          <button class="checkmark-btn" @click.prevent="edit"><span class="icon-checkmark"></span></button>
+          <button :disabled="$root.loading" class="checkmark-btn" @click.prevent="edit"><span class="icon-checkmark"></span></button>
         </div>
 		</form>
 		</div>
-    <div id="full-line"></div>
     <div class="panel-heading">
-      <label class="full-label heading">{{$trans.translation.showcase_products}}</label>
+      <label class="full-label heading">{{$trans.translation.showcase_products}}&nbsp;<span class="number" :class="{'not-empty' : added > 0}">{{ added }}</span></label>
     </div>
 
-    <div class="panel-body thumbnail-grid" id="full-line">
-        <img v-for="product in products" :src="product.thumbnail" v-show="product.added" class="products-img-thumb">
+    <div v-show="added > 0" class="panel-body thumbnail-grid" id="full-line">
+        <img v-for="product in products" v-show="product.added" :src="product.thumbnail" class="products-img-thumb">
     </div>
 
     <div class="panel-heading">
-      <label class="full-label heading">{{$trans.translation.shop_products}}</label>
+      <label class="full-label heading">{{$trans.translation.shop_products}}&nbsp;<span class="number" :class="{'not-empty' : products.length}">{{ products.length }}</span></label>
     </div>
-    <div class="panel-body">
+    <div v-show="products.length" class="panel-body">
       <table class="c-table">
         <tr>
           <th>{{$trans.translation.product_name}}</th>
@@ -55,18 +54,32 @@
       showcaseId: null,
       shopSlug: null,
 		},
+    computed: {
+      added: function () {
+        var total = 0;
+        this.products.forEach(function (item) {
+          if(item.added === true) {
+            total++;
+          }
+        });
+        return total;
+      }
+    },
 		methods: {
       getProduct() {
           this.$http.get(this.$root.url + '/' + this.shopSlug + '/edit/showcase/' + this.showcaseId + '/get_product').then((response)=> { this.products = response.body.data });
       },
 
       edit(){
+        this.$root.loading = true
 				this.$http.put(this.$root.url + '/' + this.shopSlug + '/edit/showcase/' + this.showcaseId + '/update',{
 					name: this.name
 				}).then((response)=> {
-  					toastr.success(this.$trans.translation.success)
+          this.$requestTimer(2000)
+			    toastr.success(this.$trans.translation.success)
 				}, (response) => {
-            toastr.error(this.$trans.translation.error)
+          this.$requestTimer(2000)
+          toastr.error(this.$trans.translation.error)
         });
 			},
 

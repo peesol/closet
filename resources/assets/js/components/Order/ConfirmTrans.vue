@@ -15,7 +15,7 @@
       <input required class="col-input" v-model="phone">
     </div>
   <div class="flex msg-btn margin-10-top">
-    <button type="submit">{{$trans.translation.confirm}}</button>
+    <button :disabled="$root.loading" type="submit">{{$trans.translation.confirm}}</button>
   </div>
 
   </form>
@@ -42,12 +42,16 @@ export default {
       this.$http.put(this.$root.url + '/order/' + uid + '/confirm', {
         shipping: this.shipping,
         shipping_fee: this.shipping_fee,
-      }).then((response) => {
+      }).then(response => {
         this.shipping = null;
         this.shipping_fee = null;
         toastr.success(this.$trans.translation.success);
         this.$Progress.finish()
+        this.$root.loading = false
         document.location.href= this.$root.url + '/order/' + uid + '/confirm';
+      }, response => {
+        this.$root.loading = false
+        toastr.error(this.$trans.translation.error);
       });
     },
     deny(uid) {

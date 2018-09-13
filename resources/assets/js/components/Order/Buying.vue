@@ -4,7 +4,7 @@
 
   <table class="c-table">
     <tr>
-      <th colspan="2">{{$trans.translation.wait_transaction}}</th>
+      <th colspan="2">{{$trans.translation.wait_transaction}}&nbsp;<span class="number" :class="{'not-empty' : added.ordered > 0}">{{ added.ordered }}</span></th>
     </tr>
     <tr v-for="(item, index) in orders" v-show="!item.trans">
       <td><a class="link-text" @click.prevent="open(item, index)">{{item.title}}</a></td>
@@ -14,7 +14,7 @@
 
   <table class="c-table">
     <tr>
-      <th colspan="2">{{$trans.translation.transacted}}</th>
+      <th colspan="2">{{$trans.translation.transacted}}&nbsp;<span class="number" :class="{'not-empty' : added.trans > 0}">{{ added.trans }}</span></th>
     </tr>
     <tr v-for="(item, index) in orders" v-show="item.trans && !item.shipped">
       <td><a class="link-text" @click.prevent="open(item, index)">{{item.title}}</a></td>
@@ -24,7 +24,7 @@
 
   <table class="c-table">
     <tr>
-      <th colspan="2">{{$trans.translation.shipped}}</th>
+      <th colspan="2">{{$trans.translation.shipped}}&nbsp;<span class="number" :class="{'not-empty' : added.shipped > 0}">{{ added.shipped }}</span></th>
     </tr>
     <tr v-for="(item, index) in orders" v-show="item.shipped">
       <td><a class="link-text" @click.prevent="open(item, index)">{{item.title}}</a></td>
@@ -67,20 +67,18 @@
         </tr>
         <tr v-show="!data.trans">
           <td colspan="4">
-            <h4 class="no-margin font-red">{{$trans.translation.wait_transaction}}</h4>
+            <h3 class="no-margin font-red">{{$trans.translation.wait_transaction}}</h3>
           </td>
         </tr>
         <tr v-show="data.trans && !data.shipped">
           <td colspan="4">
-            <h4 class="no-margin font-green">{{$trans.translation.wait_delivery}}</h4>
+            <h3 class="no-margin font-green">{{$trans.translation.wait_delivery}}</h3>
             <p>{{$trans.translation.payment_date}}&nbsp;{{ data.date_paid }}</p>
-            <label class="input-label">{{$trans.translation.address}}</label>
-            <p>{{ data.address }}</p>
           </td>
         </tr>
         <tr v-show="data.shipped">
           <td colspan="4">
-            <h4 class="no-margin font-green">{{$trans.translation.delivered}}</h4>
+            <h3 class="no-margin font-green">{{$trans.translation.delivered}}</h3>
             <p>{{$trans.translation.payment_date}}&nbsp;{{ data.date_paid }}</p>
             <p>{{$trans.translation.track_info}}&nbsp;{{data.carrier}}</p>
             <p>{{$trans.translation.track_number}}&nbsp;{{data.tracking_number}}</p>
@@ -93,7 +91,7 @@
         </tr>
         <tr v-show="!data.trans && !data.shipped">
           <td colspan="4">
-            <button class="red-box normal-sq delete-btn" @click.prevent="deny(data.uid, index)">{{$trans.translation.cancle_order}}</button>
+            <button class="delete-btn normal-sq red-box" @click.prevent="deny(data.uid, index)">{{$trans.translation.cancle_order}}</button>
           </td>
         </tr>
         <tr v-show="!data.trans && !bankAccount.length">
@@ -130,7 +128,7 @@
         </table>
       </div>
       <div class="msg-btn">
-        <button class="msg-btn-half" type="submit">{{$trans.translation.confirm}}</button>
+        <button :disabled="$root.loading" class="msg-btn-half" type="submit">{{$trans.translation.confirm}}</button>
         <button class="msg-btn-half" @click.prevent="hide()">{{$trans.translation.close}}</button>
       </div>
     </form>
@@ -171,6 +169,19 @@ export default {
     userAddress: null,
     userPhone: null,
   },
+  computed: {
+    added: function () {
+      var ordered = 0;
+      var trans = 0;
+      var shipped = 0;
+      this.orders.forEach(function (item) {
+        if(item.trans) { trans++; }
+        if(!item.trans) { ordered++; }
+        if(item.shipped) { shipped++; }
+      });
+      return { trans, ordered, shipped};
+    }
+  },
   methods: {
     getMessages() {
       this.$http.get(this.$root.url + '/profile/order/buying/get').then((response) => {
@@ -199,6 +210,7 @@ export default {
     },
     confirm(uid, index) {
       this.$Progress.start();
+      this.$root.loading = true
       this.$http.put(this.$root.url + '/profile/order/' + uid + '/transaction', {
         date: this.date,
         time: this.time,
@@ -207,7 +219,7 @@ export default {
         phone: this.phone,
         phone: this.phone,
         provider: this.provider,
-      }).then((response) => {
+      }).then(response => {
         this.date = null;
         this.time = null;
         this.address = null;
@@ -218,6 +230,11 @@ export default {
         this.$set(this.orders[index], 'trans', true);
         toastr.success(this.$trans.translation.success);
         this.$Progress.finish();
+        this.$root.loading = false
+      }, response => {
+        this.$Progress.fail();
+        this.$root.loading = false
+        toastr.error(this.$trans.translation.error);
       });
     },
     cleave() {
@@ -236,7 +253,7 @@ export default {
       } else {
         this.$http.put(this.$root.url + '/order/' + uid + '/deny', {
           type: 2
-        }).then((response) => {
+        }).then(response => {
           this.$modal.hide('open-msg');
           this.$delete(this.orders, index);
           toastr.success(this.$trans.translation.success);

@@ -4,7 +4,7 @@
 
   <table class="c-table">
     <tr>
-      <th colspan="2">{{$trans.translation.wait_transaction}}</th>
+      <th colspan="2">{{$trans.translation.wait_transaction}}&nbsp;<span class="number" :class="{'not-empty' : added.ordered > 0}">{{ added.ordered }}</span></th>
     </tr>
     <tr v-for="(item, index) in orders" v-show="!item.trans">
       <td><a class="link-text" @click.prevent="open(item, index)">{{item.title}}</a></td>
@@ -14,7 +14,7 @@
 
   <table class="c-table">
     <tr>
-      <th colspan="2">{{$trans.translation.transacted}}</th>
+      <th colspan="2">{{$trans.translation.transacted}}&nbsp;<span class="number" :class="{'not-empty' : added.trans > 0}">{{ added.trans }}</span></th>
     </tr>
     <tr v-for="(item, index) in orders" v-show="item.trans && !item.shipped">
       <td><a class="link-text" @click.prevent="open(item, index)">{{item.title}}</a></td>
@@ -24,7 +24,7 @@
 
   <table class="c-table">
     <tr>
-      <th colspan="2">{{$trans.translation.shipped}}</th>
+      <th colspan="2">{{$trans.translation.shipped}}&nbsp;<span class="number" :class="{'not-empty' : added.shipped > 0}">{{ added.shipped }}</span></th>
     </tr>
     <tr v-for="(item, index) in orders" v-show="item.shipped">
       <td><a class="link-text"  @click.prevent="open(item, index)">{{item.title}}</a></td>
@@ -83,10 +83,10 @@
         </tr>
         <tr v-show="!data.shipped">
           <td colspan="4">
-            <a class="flat-btn" @click.prevent="deny_form = !deny_form">{{$trans.translation.deny}}</a>
+            <button class="delete-btn normal-sq red-box" @click.prevent="deny_form = !deny_form">{{$trans.translation.deny}}</button>
             <form class="align-right" v-show="deny_form" @submit.prevent="deny(data.uid, index)">
               <input required type="text" class="margin-10-vertical full-width" :placeholder="$trans.translation.deny_reason" v-model="deny_reason">
-              <button type="submit" class="flat-btn">{{$trans.translation.confirm}}</button>
+              <button type="submit" class="delete-btn normal-sq red-box">{{$trans.translation.confirm}}</button>
             </form>
           </td>
         </tr>
@@ -112,7 +112,7 @@
           </table>
         </div>
         <div class="msg-btn">
-          <button class="msg-btn-half" type="submit">{{$trans.translation.confirm}}</button>
+          <button :disabled="$root.loading" class="msg-btn-half" type="submit">{{$trans.translation.confirm}}</button>
           <button class="msg-btn-half" @click.prevent="hide()">{{$trans.translation.close}}</button>
         </div>
       </form>
@@ -134,6 +134,19 @@ export default {
       deny_form: false,
       deny_reason: null,
       translate: this.$trans
+    }
+  },
+  computed: {
+    added: function () {
+      var ordered = 0;
+      var trans = 0;
+      var shipped = 0;
+      this.orders.forEach(function (item) {
+        if(item.trans) { trans++; }
+        if(!item.trans) { ordered++; }
+        if(item.shipped) { shipped++; }
+      });
+      return { trans, ordered, shipped};
     }
   },
   methods: {
@@ -158,16 +171,22 @@ export default {
     },
     confirmShipping(uid, index){
       this.$Progress.start();
+      this.$root.loading = true
       this.$http.put(this.$root.url + '/profile/order/' + uid + '/confirm_shipping', {
         carrier: this.track_info,
         tracking_number: this.tracking_number,
-      }).then((response) => {
+      }).then(response => {
         this.track_info = null;
         this.track_number = null;
         this.$modal.hide('open-msg');
         this.$set(this.orders[index], 'shipped', true);
-        toastr.success(this.$trans.translation.success);
         this.$Progress.finish();
+        this.$root.loading = false
+        toastr.success(this.$trans.translation.success);
+      }, response => {
+        this.$Progress.fail();
+        this.$root.loading = false
+        toastr.error(this.$trans.translation.error);
       });
     },
     deny(uid, index) {
@@ -177,7 +196,7 @@ export default {
         this.$http.put(this.$root.url + '/order/' + uid + '/deny', {
           reason: this.deny_reason,
           type: 1
-        }).then((response) => {
+        }).then(response => {
           this.deny_reason = null;
           this.deny_form = false;
           this.$modal.hide('open-msg');

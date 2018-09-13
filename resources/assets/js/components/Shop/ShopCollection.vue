@@ -28,7 +28,7 @@
 			</div>
 
 			<div class="align-right padding-15-vertical" style="padding-bottom:5px">
-				<button class="orange-btn normal-sq" type="submit">{{$trans.translation.create}}</button>
+				<button :disabled="$root.loading" class="orange-btn normal-sq" type="submit">{{$trans.translation.create}}</button>
 			</div>
 
 		</form>
@@ -95,6 +95,7 @@
   			},
 			create(){
 				this.$Progress.start();
+				this.$root.loading = true
 				this.$http.post(this.$root.url + '/collection_api/' + this.shopSlug ,{
 					name: this.name,
 					description: this.description,
@@ -105,9 +106,11 @@
 					this.visibility = null;
 					this.$Progress.finish()
 					this.collections.push(response.body.data)
-					toastr.success(this.$trans.translation.col_created, {timeOut: 1000});
+					this.$root.loading = false
+					toastr.success(this.$trans.translation.col_created);
 				}, (response) => {
-	          toastr.error(this.$trans.translation.error);
+					this.$root.loading = false
+          toastr.error(this.$trans.translation.error);
 	      });
 			},
 			edit(collectionSlug){

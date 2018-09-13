@@ -7,12 +7,6 @@ use Closet\Http\Controllers\Controller;
 
 class MyProductController extends Controller
 {
-  public function getProduct(Request $request)
-  {
-    $products = $request->user()->products()->latestFirst()->get();
-
-    return response()->json($products);
-  }
   public function myproductPage(Request $request)
   {
     $products = $request->user()->products()->latestFirst()->paginate(20);

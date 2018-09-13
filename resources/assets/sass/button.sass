@@ -13,6 +13,13 @@
 %white-font
   color: #fff
 
+button:disabled
+  color: #000
+  background: #ddd
+  opacity: 0.5
+  &:hover
+    background: #ddd
+
 button.normal-sq
   height: 40px
   padding: 0 15px
@@ -23,6 +30,9 @@ button.default
   color: #6c6c6c
   background: #efefef
   padding: 10px
+  &:hover
+    @extend %white-font
+    background: #ff8300
 
 .orange-btn
   @extend %btn-shadow

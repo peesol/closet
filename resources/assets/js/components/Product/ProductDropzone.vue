@@ -19,7 +19,7 @@
       <div class="dropzone" id="image">
         <div class="dz-message" data-dz-message>
           <span>{{$trans.translation.upload_photo_guide}}</span><br>
-          <span>{{$trans.translation.upload_photo_size_limit}} 2 MB</span>
+          <span>{{$trans.translation.upload_photo_size_limit}} 1.5 MB</span>
         </div>
       </div>
       <div class="align-right padding-15-top">
@@ -93,8 +93,8 @@ export default {
               if (this.files.length + self.images.length > 7 || this.files.length > 7) {
                 this.removeFile(this.files[0])
               }
-              if (file.size > 2097152) {
-                alert(self.$trans.translation.file_size_limit + ' 2 MB');
+              if (file.size > 1572864) {
+                alert(self.$trans.translation.file_size_limit + ' 1.5 MB');
                 this.removeFile(file)
               }
             });

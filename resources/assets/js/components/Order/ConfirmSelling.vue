@@ -22,7 +22,7 @@
   </table>
 
   <div class="msg-btn" style="margin-top:30px;">
-    <button class="msg-btn-half" type="submit">{{$trans.translation.confirm}}</button>
+    <button :disabled="$root.loading" class="msg-btn-half" type="submit">{{$trans.translation.confirm}}</button>
     <button class="msg-btn-half" @click.prevent="deny(uid)">{{$trans.translation.deny}}</button>
   </div>
 
@@ -48,14 +48,20 @@ export default {
   methods: {
     confirm(uid) {
       this.$Progress.start();
+      this.$root.loading = true
       this.$http.put(this.$root.url + '/order/' + uid + '/confirm', {
         shipping: this.shipping,
         shipping_fee: this.shipping_fee,
-      }).then((response) => {
+      }).then(response => {
         this.shipping = null;
         this.shipping_fee = null;
         this.$Progress.finish()
+        this.$root.loading = false
         document.location.href= this.$root.url + '/order/' + uid + '/confirm';
+      }, response => {
+        this.$Progress.fail()
+        this.$root.loading = false
+        toastr.error(this.$trans.translation.error)
       });
     },
     deny(uid) {

@@ -50,7 +50,7 @@
         <span v-show="errors.has('description')" class="span-error">{{ errors.first('description') }}</span>
       </div>
       <div class="align-right full-width padding-15-top">
-        <button class="orange-btn normal-sq width-120" type="submit">{{$trans.translation.edit_submit}}</button>
+        <button :disabled="$root.loading" class="orange-btn normal-sq width-120" type="submit">{{$trans.translation.edit_submit}}</button>
       </div>
     </div>
 
@@ -102,6 +102,7 @@ export default {
     edit() {
       toastr.options.preventDuplicates = true;
       toastr.options.timeOut = 2000;
+      this.$root.loading = true
       if (document.getElementById("image-input").files.length == 0) {
         this.$Progress.start();
         toastr.info(this.$trans.translation.wait);
@@ -110,12 +111,14 @@ export default {
           description: this.description,
           price: this.price,
           visibility: this.visibility,
-        }).then((response) => {
+        }).then(response => {
           this.$Progress.finish();
+          this.$root.loading = false
           toastr.success(this.$trans.translation.success);
-        }, (response) => {
-          toastr.error(this.$trans.translation.error);
+        }, response => {
           this.$Progress.fail();
+          this.$root.loading = false
+          toastr.error(this.$trans.translation.error);
         });
       } else if (document.getElementById("image-input").files.length > 0) {
         this.$Progress.start();
@@ -126,12 +129,14 @@ export default {
           price: this.price,
           thumbnail: this.image_filename,
           visibility: this.visibility,
-        }).then((response) => {
+        }).then(response => {
           this.$Progress.finish();
+          this.$root.loading = false
           toastr.success(this.$trans.translation.success);
-        }, (response) => {
-          toastr.error(this.$trans.translation.error);
+        }, response => {
           this.$Progress.fail();
+          this.$root.loading = false
+          toastr.error(this.$trans.translation.error);
         });
       }
     }

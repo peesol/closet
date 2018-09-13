@@ -39,7 +39,7 @@
 				</select>
       </div>
 			<div class="align-right padding-15-top">
-				<button class="orange-btn normal-sq" type="submit">{{$trans.translation.edit_submit}}</button>
+				<button :disabled="$root.loading" class="orange-btn normal-sq" type="submit">{{$trans.translation.edit_submit}}</button>
 			</div>
     </div>
 
@@ -68,6 +68,7 @@ export default {
     edit() {
       if (document.getElementById("image-input").files.length == 0) {
         this.$Progress.start();
+        this.$root.loading = true
         toastr.info(this.$trans.translation.wait);
         this.$http.put(this.$root.url + '/collection/' + this.colSlug + '/edit', {
           name: this.name,
@@ -75,14 +76,17 @@ export default {
           visibility: this.visibility,
         }).then((response) => {
           this.$Progress.finish();
+          this.$root.loading = false
           toastr.success(this.$trans.translation.success);
         }, (response) => {
-          toastr.error(this.$trans.translation.error);
           this.$Progress.fail();
+          this.$root.loading = false
+          toastr.error(this.$trans.translation.error);
         });
       }
       if (document.getElementById("image-input").files.length > 0) {
         this.$Progress.start();
+        this.$root.loading = true
         toastr.info(this.$trans.translation.wait);
         this.$http.put(this.$root.url + '/collection/' + this.colSlug + '/edit', {
           name: this.name,
@@ -91,18 +95,20 @@ export default {
           thumbnail: this.image_filename,
         }).then((response) => {
           this.$Progress.finish();
+          this.$root.loading = false
           toastr.success(this.$trans.translation.success);
         }, (response) => {
-          toastr.error(this.$trans.translation.error);
           this.$Progress.fail();
+          this.$root.loading = false
+          toastr.error(this.$trans.translation.error);
         });
       }
     },
     previewThumbnail(event) {
       var input = event.target;
       if (input.files && input.files[0]) {
-        if (input.files[0].size > 1048576) {
-          alert(this.$trans.translation.file_size_limit + ' 1 MB');
+        if (input.files[0].size > 524288) {
+          alert(this.$trans.translation.file_size_limit + ' 500 KB');
           this.removefile()
         }
         var reader = new FileReader();

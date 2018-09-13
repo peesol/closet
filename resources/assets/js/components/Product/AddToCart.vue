@@ -1,5 +1,6 @@
 <template>
 <div>
+  <vue-progress-bar></vue-progress-bar>
 <form name="myform" @submit.prevent="add" method="post">
   <div class="choice-wrapper">
     <label v-show="choices.length" class="full-label input-label margin-10-bottom">{{$trans.translation.choice}}</label>
@@ -9,7 +10,7 @@
   </div>
 
   <div v-if="$root.authenticated" class="add-cart">
-    <button v-show="loaded" type="submit" class="add-cart-btn">{{$trans.translation.add_to_cart}}</button>
+    <button v-show="productLoaded && choiceLoaded" type="submit" class="add-cart-btn">{{$trans.translation.add_to_cart}}</button>
   </div>
   <div v-else class="add-cart">
     <button type="button" class="add-cart-disabled">{{$trans.translation.add_to_cart}}</button>
@@ -30,7 +31,8 @@ export default {
       product: [],
       choices: [],
       selected: null,
-      loaded: false,
+      productLoaded: false,
+      choiceLoaded: false,
     }
   },
 
@@ -55,12 +57,15 @@ export default {
     getProduct() {
         this.$http.get(this.$root.url + '/cart/get_product/' + this.productSlug).then((response)=> {
             this.product = response.body.data;
+            this.productLoaded = true
         });
     },
     getChoice() {
+      this.$Progress.start();
         this.$http.get(this.$root.url + '/product/' + this.productSlug + '/get_choice').then((response)=> {
             this.choices = response.body;
-            this.loaded = true
+            this.choiceLoaded = true
+            this.$Progress.finish();
         });
     }
   },

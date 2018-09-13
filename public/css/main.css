@@ -482,7 +482,8 @@ button.input-addon:hover, button.input-addon:focus {
   background-color: #eee;
   color: #6c6c6c; }
   .form-input-btn:hover {
-    opacity: 0.8; }
+    background-color: #4aae2a;
+    color: #fff; }
 
 .select-input {
   font-size: 1.2em;
@@ -490,7 +491,8 @@ button.input-addon:hover, button.input-addon:focus {
   width: 100%;
   height: 35px;
   padding-left: 10px;
-  border: 1px solid #b5b5b5; }
+  border: 1px solid #b5b5b5;
+  outline: none; }
 
 .error-input {
   border: 1px solid #ff3333; }
@@ -574,7 +576,7 @@ input[type='file'] {
     opacity: 0.9; }
 
 table {
-  font-family: arial, sans-serif;
+  font-family: "Arial", sans-serif;
   border-collapse: collapse;
   width: 100%; }
 
@@ -785,7 +787,7 @@ tr.cart th {
     overflow: hidden;
     white-space: nowrap; }
     .product-p span {
-      font-family: "Roboto"; }
+      font-family: "Open Sans", sans-serif; }
 
   .products-img {
     height: 200px; } }
@@ -805,7 +807,7 @@ span.bottom-right, i.bottom-right {
   right: 5px; }
 
 span.sale, span.price, span.thumb-price, span.thumb-price-discount, i.sale, i.price, i.thumb-price, i.thumb-price-discount {
-  font-family: "Roboto" !important;
+  font-family: "Open Sans", sans-serif !important;
   padding: 5px;
   color: #fff;
   border-radius: 4px; }
@@ -2284,8 +2286,15 @@ button.default, .orange-btn, .green-btn, .help-btn, .round-btn {
 button.default, .orange-btn, .help-btn {
   border-radius: 3px; }
 
-.orange-btn, .green-btn, .delete-btn, .help-btn, .add-btn, .edit-btn, .round-btn span, .round-btn small, .contact-btn span, .contact-btn small {
+button.default:hover, .orange-btn, .green-btn, .delete-btn, .help-btn, .add-btn, .edit-btn, .round-btn span, .round-btn small, .contact-btn span, .contact-btn small {
   color: #fff; }
+
+button:disabled {
+  color: #000;
+  background: #ddd;
+  opacity: 0.5; }
+  button:disabled:hover {
+    background: #ddd; }
 
 button.normal-sq {
   height: 40px;
@@ -2295,6 +2304,8 @@ button.default {
   color: #6c6c6c;
   background: #efefef;
   padding: 10px; }
+  button.default:hover {
+    background: #ff8300; }
 
 .orange-btn {
   background-color: #ff8000; }
@@ -2464,26 +2475,39 @@ span.contact-btn.line, small.contact-btn.line {
   text-align: left;
   padding: 10px 15px;
   border-bottom: 1px solid #eee; }
-  .row-list.thumbnail-wrap {
+  .row-list .thumbnail-wrap {
     width: 100px;
     height: 100px; }
-    .row-list.thumbnail-wrap img {
+    .row-list .thumbnail-wrap img {
       width: 100%;
       height: 100%; }
-  .row-list.button-wrap {
+  .row-list .button-wrap {
     width: 40px;
     height: 40px;
     position: absolute;
     right: 15px; }
-  .row-list.middle-wrap {
+  .row-list .middle-wrap {
     width: calc(100% - 180px);
     height: 100%; }
-  .row-list.text-wrap {
+  .row-list .text-wrap {
     line-height: 35px;
     min-width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap; }
+
+span.number {
+  background: #b5b5b5;
+  font-size: 1.2rem;
+  display: inline-block;
+  text-align: center;
+  line-height: 30px;
+  color: #fff;
+  border-radius: 20px;
+  width: 40px;
+  height: 30px; }
+  span.number.not-empty {
+    background: #ff8300; }
 
 @media (min-width: 768px) {
   .row-list .thumbnail-wrap {
@@ -2985,6 +3009,12 @@ button.toast-close-button {
 .slide-down-showcase-enter, .slide-down-showcase-leave-to {
   opacity: 0;
   height: 0px; }
+
+:lang(th) {
+  font-family: "Athiti", sans-serif; }
+
+:lang(en) {
+  font-family: "Open Sans", sans-serif; }
 
 .full-banner img {
   width: 100%; }

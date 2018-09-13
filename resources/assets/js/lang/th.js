@@ -48,6 +48,7 @@ export default {
     delete_from_col: 'ลบออกจากคอลเล็คชั่นแล้ว',
     added_to_col: 'เพิ่มลงในคอลเล็คชั่นแล้ว',
     col_null: 'คุณไม่มีคอลเล็คชั่น',
+    add_your_product: 'เพิ่มจากสินค้าของฉัน',
     follow: 'ติดตาม',
     followers: 'ผู้ติดตาม',
     follower: 'ผู้ติดตาม',

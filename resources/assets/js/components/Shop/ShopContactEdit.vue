@@ -35,7 +35,7 @@
           </div>
         </div>
         <div class="align-right padding-15-top">
-          <button class="orange-btn normal-sq">{{$trans.translation.edit_submit}}</button>
+          <button :disabled="$root.loading" type="submit" class="orange-btn normal-sq">{{$trans.translation.edit_submit}}</button>
         </div>
       </form>
     </div>
@@ -50,14 +50,14 @@
       <div class="form-group">
         <div class="input-group">
           <input class="form-input-alt" type="text" v-model="contact.body">
-          <button class="icon-checkmark form-input-btn" type="button" @click.prevent="updateBody(contact.id,contact.body)"></button>
+          <button :disabled="$root.loading" class="icon-checkmark form-input-btn" type="button" @click.prevent="updateBody(contact.id,contact.body)"></button>
         </div>
       </div>
 
       <div class="form-group">
         <div class="input-group">
           <input class="form-input-alt" type="text" placeholder="http://www.yourlink.com" v-model="contact.link">
-          <button class="icon-checkmark form-input-btn" type="button" @click.prevent="updateLink(contact.id,contact.link)"></button>
+          <button :disabled="$root.loading" class="icon-checkmark form-input-btn" type="button" @click.prevent="updateLink(contact.id,contact.link)"></button>
         </div>
       </div>
 
@@ -104,18 +104,23 @@ export default {
       });
     },
     updateBody(contactId, contactBody) {
+      this.$root.loading = true
       this.$http.put(this.$root.url + '/' + this.$route.params.shop + '/edit/contact/' + contactId, {
         body: contactBody,
       }).then((response) => {
+        this.$requestTimer(3000)
         toastr.success(this.$trans.translation.saved);
       }, (response) => {
+        this.$requestTimer(1000)
         toastr.error(this.$trans.translation.error);
       });
     },
     updateLink(contactId, contactLink) {
+      this.$root.loading = true
       this.$http.put(this.$root.url + '/' + this.$route.params.shop + '/edit/contact/' + contactId, {
         link: contactLink,
       }).then((response) => {
+        this.$requestTimer(3000)
         toastr.success(this.$trans.translation.saved);
       }, (response) => {
         if (response.body.link) {
@@ -123,6 +128,7 @@ export default {
         } else {
           toastr.error(this.$trans.translation.error);
         }
+        this.$requestTimer(1000)
       });
     },
     toggle(contactId, index) {
@@ -141,6 +147,7 @@ export default {
       toastr.options.preventDuplicates = true;
       toastr.options.timeOut = 2000;
       this.$Progress.start();
+      this.$root.loading = true
       toastr.info(this.$trans.translation.wait);
       this.$http.post(this.$root.url + '/' + this.$route.params.shop + '/edit/contact', {
         type: this.type,
@@ -148,6 +155,7 @@ export default {
         link: this.link,
       }).then((response) => {
         this.$Progress.finish();
+        this.$root.loading = false
         toastr.success(this.$trans.translation.saved);
         this.contacts.push(response.body)
       }, (response) => {
@@ -157,6 +165,7 @@ export default {
           toastr.error(this.$trans.translation.error);
         }
         this.$Progress.fail();
+        this.$root.loading = false
       });
     },
 

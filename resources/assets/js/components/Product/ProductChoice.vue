@@ -8,7 +8,7 @@
       </label>
       <div class="input-group">
         <input class="input-addon-field" type="text" v-model="name" name="name">
-        <button class="input-addon checkmark-btn icon-checkmark" type="submit" @click.prevent="add"></button>
+        <button :disabled="$root.loading" class="input-addon checkmark-btn icon-checkmark" type="submit" @click.prevent="add"></button>
       </div>
     </form>
   </div>
@@ -47,8 +47,7 @@ export default {
   data() {
     return {
       choices: [],
-      name: null,
-      status: null,
+      name: null
     }
   },
 
@@ -64,11 +63,16 @@ export default {
     },
 
     add() {
+      this.$root.loading = true
       this.$http.post(this.$root.url + '/product/' + this.productSlug + '/create', {
         name: this.name
-      }).then((response) => {
+      }).then(response => {
+        this.name = null
+        this.$requestTimer(2000)
         this.choices.push(response.body)
-      }, (response) => {
+        toastr.success(this.$trans.translation.saved)
+      }, response => {
+        this.$root.loading = false
         toastr.error(this.$trans.translation.error)
       });
     },
@@ -76,14 +80,14 @@ export default {
     toggleChoice(choiceId, index) {
       this.$http.put(this.$root.url + '/product/' + this.productSlug + '/toggle_choice', {
         id: choiceId
-      }).then((response) => {
+      }).then(response => {
         toastr.success(this.$trans.translation.saved)
         if (this.choices[index].stock) {
           this.$set(this.choices[index], 'stock', false)
         } else {
           this.$set(this.choices[index], 'stock', true)
         }
-      }, (response) => {
+      }, response => {
         toastr.error(this.$trans.translation.error)
       });
     },

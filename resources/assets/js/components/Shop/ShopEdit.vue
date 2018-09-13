@@ -26,7 +26,7 @@
         <span v-show="errors.has('description')" class="span-error">{{ errors.first('description') }}</span>
       </div>
       <div class="align-right padding-15-vertical">
-        <button class="orange-btn normal-sq">{{$trans.translation.edit_submit}}</button>
+        <button :disabled="$root.loading" class="orange-btn normal-sq">{{$trans.translation.edit_submit}}</button>
       </div>
     </form>
     <shop-user-edit></shop-user-edit>
@@ -44,7 +44,7 @@ export default {
     return {
       name: this.shopName,
       slug: this.shopSlug,
-      description: this.shopDescription,
+      description: this.shopDescription
     }
   },
   components: {
@@ -65,7 +65,9 @@ export default {
     edit() {
       toastr.options.preventDuplicates = true
       toastr.options.timeOut = 2000
+
       this.$Progress.start()
+      this.$root.loading = true
       toastr.info(this.$trans.translation.wait)
       this.$http.put(this.$root.url + '/' + this.shopSlug + '/edit/public_info', {
         name: this.name,
@@ -74,10 +76,12 @@ export default {
       }).then((response) => {
         this.$Progress.finish()
         toastr.success(this.$trans.translation.success)
+        this.loading = false
         document.location.href = this.$root.url + '/' + this.slug + '/edit/general'
       }, (response) => {
         toastr.error(this.$trans.translation.error)
         this.$Progress.fail()
+        this.$root.loading = false
       });
     },
   },
