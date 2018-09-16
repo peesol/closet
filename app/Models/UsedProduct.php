@@ -47,7 +47,7 @@ class UsedProduct extends Model
     }
     public function contactsProduct()
     {
-      return $this->shop->contact()->where('show_product', true)->get();
+      return $this->shop->contact()->where('show', true)->get();
     }
     public function productimages()
     {

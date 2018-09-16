@@ -2,7 +2,7 @@
     <div class="tab-nav">
         <ul class="tab-nav-ul">
             <button class="tab-nav-btn static current" data-tab="#tab-1">{{__('message.details')}}</button>
-            <button class="tab-nav-btn static" data-tab="#tab-2">{{__('message.comment')}}</button>
+            <button class="tab-nav-btn static" v-on:click="$root.tab = 'comment'" data-tab="#tab-2">{{__('message.comment')}}</button>
         </ul>
     </div>
 

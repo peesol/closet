@@ -13,7 +13,7 @@
   <div v-for="comment in comments" class="panel-body">
     <div class="comments-thumb">
       <a v-bind:href="'/' + comment.shop.data.slug">
-				<img class="round-btn" v-bind:src=" comment.shop.data.image" :alt=" comment.shop.data.name">
+				<img class="round-btn" v-bind:src=" comment.shop.data.image" :alt="comment.shop.data.name">
 			</a>
     </div>
     <div class="comments-body">
@@ -159,8 +159,14 @@ export default {
       });
     },
   },
-  created() {
-    this.getComments();
+  watch: {
+    '$root.tab' : {
+      handler() {
+        if (this.$root.tab == 'comment') {
+          this.getComments()
+        }
+      }
+    }
   }
 }
 </script>

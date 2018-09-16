@@ -9220,7 +9220,8 @@ window.addEventListener('load', function () {
       authenticated: window.Closet.user.authenticated,
       locale: window.Closet.locale,
       user: window.Closet.user.user,
-      loading: false
+      loading: false,
+      tab: null
     },
     store: __WEBPACK_IMPORTED_MODULE_7__store_store__["a" /* store */],
     router: __WEBPACK_IMPORTED_MODULE_8__route_router__["a" /* router */]
@@ -23538,8 +23539,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       });
     }
   },
-  created: function created() {
-    this.getComments();
+  watch: {
+    '$root.tab': {
+      handler: function handler() {
+        if (this.$root.tab == 'comment') {
+          this.getComments();
+        }
+      }
+    }
   }
 };
 
@@ -25775,9 +25782,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     edit: function edit() {
       var _this = this;
 
-      toastr.options.preventDuplicates = true;
-      toastr.options.timeOut = 2000;
-
       this.$Progress.start();
       this.$root.loading = true;
       toastr.info(this.$trans.translation.wait);
@@ -26077,9 +26081,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     edit: function edit() {
       var _this = this;
 
-      toastr.options.preventDuplicates = true;
-      toastr.options.timeOut = 2000;
-
       this.$Progress.start();
       this.$root.loading = true;
       this.$http.put(this.$root.url + '/' + this.$parent.shopSlug + '/edit/personal_info', {
@@ -26220,7 +26221,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       if (!confirm(this.$trans.translation.delete_confirm)) {
         return;
       }
-      this.$http.delete(this.$root.url + '/' + this.$route.params.shop + '/edit/showcase/' + showcaseId + '/delete').then(function () {
+      this.$http.delete(this.$root.url + '/' + this.$route.params.shop + '/edit/showcase/' + showcaseId + '/delete').then(function (response) {
         _this3.showcases.splice(index, 1);
         toastr.success(_this3.$trans.translation.success);
       });

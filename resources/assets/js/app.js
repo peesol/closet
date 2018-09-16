@@ -53,7 +53,8 @@ window.addEventListener('load', function () {
        authenticated: window.Closet.user.authenticated,
        locale: window.Closet.locale,
        user: window.Closet.user.user,
-       loading: false
+       loading: false,
+       tab: null
      },
      store,
      router
