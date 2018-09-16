@@ -40,7 +40,7 @@ export default {
   },
   methods: {
     getVotes() {
-      this.$http.get(this.$root.url + '/' + this.shopSlug + '/votes').then((response) => {
+      this.$http.get(this.$root.url + '/' + this.shopSlug + '/votes').then(response => {
         this.up = response.body.data.up;
         this.down = response.body.data.down;
         this.userVote = response.body.data.user_vote;

@@ -67,30 +67,30 @@
     },
 		methods: {
       getProduct() {
-          this.$http.get(this.$root.url + '/' + this.shopSlug + '/edit/showcase/' + this.showcaseId + '/get_product').then((response)=> { this.products = response.body.data });
+          this.$http.get(this.$root.url + '/' + this.shopSlug + '/edit/showcase/' + this.showcaseId + '/get_product').then(response => { this.products = response.body.data });
       },
 
       edit(){
         this.$root.loading = true
 				this.$http.put(this.$root.url + '/' + this.shopSlug + '/edit/showcase/' + this.showcaseId + '/update',{
 					name: this.name
-				}).then((response)=> {
+				}).then(response => {
           this.$requestTimer(2000)
 			    toastr.success(this.$trans.translation.success)
-				}, (response) => {
+				}, response => {
           this.$requestTimer(2000)
           toastr.error(this.$trans.translation.error)
         });
 			},
 
       add(productId, index){
-        this.$http.post(this.$root.url + '/' + this.shopSlug + '/edit/showcase/' + this.showcaseId + '/add_product/' + productId).then((response)=> {
+        this.$http.post(this.$root.url + '/' + this.shopSlug + '/edit/showcase/' + this.showcaseId + '/add_product/' + productId).then(response => {
             if (this.products[index].added) {
               this.$set(this.products[index], 'added', false)
             } else {
               this.$set(this.products[index], 'added', true)
             }
-        }, (response) => {
+        }, response => {
             toastr.error(this.$trans.translation.error)
         });
       },

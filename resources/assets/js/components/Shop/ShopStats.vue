@@ -20,7 +20,7 @@ export default {
   },
   methods: {
     getStats() {
-      this.$http.get(this.$root.url + '/' + this.shopSlug + '/status').then((response) => {
+      this.$http.get(this.$root.url + '/' + this.shopSlug + '/status').then(response => {
         this.up = response.body.up;
         this.down = response.body.down;
         this.productsCount = response.body.products;

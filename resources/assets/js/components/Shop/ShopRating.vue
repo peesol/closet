@@ -16,7 +16,7 @@ export default {
   ],
   methods: {
     get() {
-      this.$http.get(this.$root.url + '/' + this.shopSlug + '/reviews/total').then((response) => {
+      this.$http.get(this.$root.url + '/' + this.shopSlug + '/reviews/total').then(response => {
         this.points = response.body
       })
     }

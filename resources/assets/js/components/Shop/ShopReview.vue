@@ -41,7 +41,7 @@ export default {
   methods: {
     getReviews() {
       this.$Progress.start()
-      this.$http.get(this.$root.url + '/' + this.shopSlug + '/reviews/get').then((response) => {
+      this.$http.get(this.$root.url + '/' + this.shopSlug + '/reviews/get').then(response => {
         this.reviews = response.body.reviews.data;
         this.user_review = response.body.user_review;
         this.shop_points = response.body.points;

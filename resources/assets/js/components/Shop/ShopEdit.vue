@@ -63,9 +63,6 @@ export default {
 
   methods: {
     edit() {
-      toastr.options.preventDuplicates = true
-      toastr.options.timeOut = 2000
-
       this.$Progress.start()
       this.$root.loading = true
       toastr.info(this.$trans.translation.wait)
@@ -73,12 +70,12 @@ export default {
         name: this.name,
         slug: this.slug,
         description: this.description,
-      }).then((response) => {
+      }).then(response => {
         this.$Progress.finish()
         toastr.success(this.$trans.translation.success)
         this.loading = false
         document.location.href = this.$root.url + '/' + this.slug + '/edit/general'
-      }, (response) => {
+      }, response => {
         toastr.error(this.$trans.translation.error)
         this.$Progress.fail()
         this.$root.loading = false

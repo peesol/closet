@@ -21,6 +21,7 @@ button {
   cursor: pointer; }
 
 input, textarea {
+  font-family: "Arial", sans-serif !important;
   outline: none; }
   input:invalid, textarea:invalid {
     box-shadow: none; }
@@ -38,9 +39,8 @@ a {
   color: #1782cf;
   text-decoration: none;
   cursor: pointer; }
-
-a:hover {
-  color: #3fa9f5; }
+  a:hover {
+    color: #3fa9f5; }
 
 label {
   display: inline-block; }
@@ -614,6 +614,7 @@ td.center, th.center {
     border-left: 3px solid #6c6c6c; }
   .c-table input[type="text"]:focus, .c-table input[type="number"]:focus {
     border-left: 3px solid #ff8000;
+    background-color: #f9f9f9;
     transition: all 0.5s ease; }
 
 tr.cart th {
@@ -2497,15 +2498,16 @@ span.contact-btn.line, small.contact-btn.line {
     white-space: nowrap; }
 
 span.number {
+  font-family: "Open Sans", sans-serif !important;
   background: #b5b5b5;
-  font-size: 1.2rem;
+  font-size: 1rem;
   display: inline-block;
   text-align: center;
-  line-height: 30px;
+  line-height: 25px;
   color: #fff;
   border-radius: 20px;
-  width: 40px;
-  height: 30px; }
+  width: 35px;
+  height: 25px; }
   span.number.not-empty {
     background: #ff8300; }
 

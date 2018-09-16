@@ -41,11 +41,11 @@ export default {
         toastr.info(this.$trans.translation.wait);
         this.$http.put(this.$root.url + '/' + this.$parent.shopSlug + '/edit/cover', {
           cover: this.cover,
-        }).then((response) => {
+        }).then(response => {
           this.$Progress.finish();
           this.$root.loading = false
           toastr.success(this.$trans.translation.success);
-        }, (response) => {
+        }, response => {
           this.$Progress.fail();
           this.$root.loading = false
           toastr.error(this.$trans.translation.error);

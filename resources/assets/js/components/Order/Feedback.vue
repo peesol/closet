@@ -53,7 +53,7 @@ export default {
       this.shop = null
       if (!this.formVisible) {
         this.formVisible = true
-        this.$http.get(this.$root.url + '/api/getter/shop/' + this.shopId).then((response) => {
+        this.$http.get(this.$root.url + '/api/getter/shop/' + this.shopId).then(response => {
           this.shop = response.body
         })
       } else {

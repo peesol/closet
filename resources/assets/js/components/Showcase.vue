@@ -77,7 +77,7 @@ export default {
   methods: {
     getShowcase() {
       this.$Progress.start()
-      this.$http.get(this.$root.url + '/' + this.$route.params.shop + '/edit/showcase/get').then((response) => {
+      this.$http.get(this.$root.url + '/' + this.$route.params.shop + '/edit/showcase/get').then(response => {
         this.showcases = response.body;
         this.$Progress.finish()
       });
@@ -89,13 +89,13 @@ export default {
       this.$http.post(this.$root.url + '/' + this.$route.params.shop + ' /edit/showcase/create', {
         name: this.name,
         order: this.showcases.length ? this.showcases.length + 1 : 1
-      }).then((response) => {
+      }).then(response => {
         this.name = null;
         this.showcases.push(response.body)
         this.$Progress.finish()
         this.$root.loading = false
         toastr.success(this.$trans.translation.showcase_created);
-      }, (response) => {
+      }, response => {
         this.$Progress.fail()
         this.$root.loading = false
         toastr.error(this.$trans.translation.error);
@@ -106,7 +106,7 @@ export default {
       if (!confirm(this.$trans.translation.delete_confirm)) {
         return;
       }
-      this.$http.delete(this.$root.url + '/' + this.$route.params.shop + '/edit/showcase/' + showcaseId + '/delete').then(() => {
+      this.$http.delete(this.$root.url + '/' + this.$route.params.shop + '/edit/showcase/' + showcaseId + '/delete').then(response => {
         this.showcases.splice(index, 1)
         toastr.success(this.$trans.translation.success)
       });
@@ -117,14 +117,14 @@ export default {
     },
 
     showToggle(showcaseId, index) {
-      this.$http.put(this.$root.url + '/' + this.$route.params.shop + '/edit/showcase/' + showcaseId + '/toggle_show').then((response) => {
+      this.$http.put(this.$root.url + '/' + this.$route.params.shop + '/edit/showcase/' + showcaseId + '/toggle_show').then(response => {
         toastr.success(this.$trans.translation.saved);
         if (this.showcases[index].show) {
           this.$set(this.showcases[index], 'show', false)
         } else {
           this.$set(this.showcases[index], 'show', true)
         }
-      }, (response) => {
+      }, response => {
         toastr.error(this.$trans.translation.error);
       });
     },
@@ -139,11 +139,11 @@ export default {
       toastr.info(this.$trans.translation.wait);
       this.$http.put(this.$root.url + '/' + this.$route.params.shop + '/edit/showcase/order/update', {
         showcases: this.showcases
-      }).then((response) => {
+      }).then(response => {
         this.$Progress.finish()
         this.$root.loading = false
         toastr.success(this.$trans.translation.saved);
-      }, (response) => {
+      }, response => {
         this.$Progress.fail()
         this.$root.loading = false
         toastr.error(this.$trans.translation.error);

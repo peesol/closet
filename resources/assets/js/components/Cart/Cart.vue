@@ -31,7 +31,7 @@
 					<a class="link-text padding-15-left" @click.prevent="toggleForm(key)" v-show="confirmed.discount_applied === false">{{$trans.translation.apply_discount}}</a>
 					<span class="font-green bold-font" v-show="confirmed.discount">{{$trans.translation.discount}}&nbsp;{{confirmed.discount}}</span>
 					<div v-show="formVisible == key && confirmed.discount_applied === false" class="input-group full-width padding-15-top">
-						<input v-model="code" required type="text" placeholder="CODE">
+						<input v-model="code" type="text" placeholder="CODE">
 						<button :disabled="$root.loading" @click.prevent="applyDiscount(shop[0].options.shop_id)" type="button" class="form-input-btn checkmark-btn"><small class="icon-checkmark"></small></button>
 					</div>
 				</td>
@@ -172,7 +172,7 @@ export default {
 					total_price: this.confirmed.totalPrice,
 					discount: this.confirmed.discount,
 					shipping: this.confirmed.shipping,
-				}).then((response) => {
+				}).then(response => {
 					this.$delete(this.products, key)
 					this.confirmed.shop = null;
 					this.confirmed.totalPrice = null;
@@ -182,7 +182,7 @@ export default {
 					toastr.success(this.$trans.translation.success)
 					this.$Progress.finish()
 					this.$root.loading = false
-				}).then((response) => {
+				}, response => {
 					toastr.error(this.$trans.translation.error)
 				});
 			}

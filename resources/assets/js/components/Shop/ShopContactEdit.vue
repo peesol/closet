@@ -98,7 +98,7 @@ export default {
   methods: {
     getContact() {
       this.$Progress.start();
-      this.$http.get(this.$root.url + '/' + this.$route.params.shop + '/edit/contact/get').then((response) => {
+      this.$http.get(this.$root.url + '/' + this.$route.params.shop + '/edit/contact/get').then(response => {
         this.contacts = response.body
         this.$Progress.finish();
       });
@@ -107,10 +107,10 @@ export default {
       this.$root.loading = true
       this.$http.put(this.$root.url + '/' + this.$route.params.shop + '/edit/contact/' + contactId, {
         body: contactBody,
-      }).then((response) => {
+      }).then(response => {
         this.$requestTimer(3000)
         toastr.success(this.$trans.translation.saved);
-      }, (response) => {
+      }, response => {
         this.$requestTimer(1000)
         toastr.error(this.$trans.translation.error);
       });
@@ -119,10 +119,10 @@ export default {
       this.$root.loading = true
       this.$http.put(this.$root.url + '/' + this.$route.params.shop + '/edit/contact/' + contactId, {
         link: contactLink,
-      }).then((response) => {
+      }).then(response => {
         this.$requestTimer(3000)
         toastr.success(this.$trans.translation.saved);
-      }, (response) => {
+      }, response => {
         if (response.body.link) {
           toastr.error(response.body.link);
         } else {
@@ -132,14 +132,14 @@ export default {
       });
     },
     toggle(contactId, index) {
-      this.$http.put(this.$root.url + '/' + this.$route.params.shop + '/edit/contact/' + contactId + '/show').then((response) => {
+      this.$http.put(this.$root.url + '/' + this.$route.params.shop + '/edit/contact/' + contactId + '/show').then(response => {
         if (this.contacts[index].show) {
           this.$set(this.contacts[index], 'show', false)
         } else {
           this.$set(this.contacts[index], 'show', true)
         }
         toastr.success(this.$trans.translation.saved)
-      }, (response) => {
+      }, response => {
         toastr.error(this.$trans.translation.error);
       });
     },
@@ -153,12 +153,12 @@ export default {
         type: this.type,
         body: this.body,
         link: this.link,
-      }).then((response) => {
+      }).then(response => {
         this.$Progress.finish();
         this.$root.loading = false
         toastr.success(this.$trans.translation.saved);
         this.contacts.push(response.body)
-      }, (response) => {
+      }, response => {
         if (response.body.link) {
           toastr.error(response.body.link);
         } else {
@@ -173,10 +173,10 @@ export default {
       if (!confirm(this.$trans.translation.delete_confirm)) {
         return;
       }
-      this.$http.delete(this.$root.url + '/' + this.$route.params.shop + '/edit/contact/' + contactId + '/delete').then((response) => {
+      this.$http.delete(this.$root.url + '/' + this.$route.params.shop + '/edit/contact/' + contactId + '/delete').then(response => {
         toastr.success(this.$trans.translation.success);
         this.contacts.splice(index, 1)
-      }, (response) => {
+      }, response => {
         toastr.error(this.$trans.translation.error);
       });
     }

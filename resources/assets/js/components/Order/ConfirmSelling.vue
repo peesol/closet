@@ -69,7 +69,7 @@ export default {
         return
       } else {
       this.$Progress.start();
-      this.$http.delete(this.$root.url + '/order/' + uid + '/deny').then((response) => {
+      this.$http.delete(this.$root.url + '/order/' + uid + '/deny').then(response => {
         this.$Progress.finish();
         document.location.href= this.$root.url;
       });

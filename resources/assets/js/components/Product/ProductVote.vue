@@ -38,14 +38,10 @@ export default {
 
   methods: {
     getVotes() {
-      this.$http.get(this.$root.url + '/product/' + this.productUid + '/votes').then((response) => {
-        return response.json()
-          .then((parsed) => {
-            this.up = parsed.data.up;
-            this.down = parsed.data.down;
-            this.userVote = parsed.data.user_vote;
-          });
-
+      this.$http.get(this.$root.url + '/product/' + this.productUid + '/votes').then(response => {
+            this.up = response.body.data.up;
+            this.down = response.body.data.down;
+            this.userVote = response.body.data.user_vote;
       });
     },
 

@@ -51,11 +51,11 @@ export default {
         toastr.info(this.$trans.translation.wait);
         this.$http.put(this.$root.url + '/' + this.$parent.shopSlug + '/edit/thumbnail', {
           thumbnail: this.thumbnail,
-        }).then((response) => {
+        }).then(response => {
           this.$Progress.finish();
           this.$root.loading = false
           toastr.success(this.$trans.translation.success);
-        }, (response) => {
+        }, response => {
           toastr.error(this.$trans.translation.error);
           this.$Progress.fail();
           this.$root.loading = false

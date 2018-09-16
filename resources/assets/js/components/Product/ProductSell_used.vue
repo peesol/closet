@@ -12,7 +12,7 @@
     <div class="dropzone margin-20-bottom" id="used">
       <div class="dz-message" data-dz-message>
         <span>{{$trans.translation.upload_photo_guide}}</span><br>
-        <span>{{$trans.translation.upload_photo_size_limit}} 2 MB</span>
+        <span>{{$trans.translation.upload_photo_size_limit}} 1.5 MB</span>
       </div>
     </div>
 
@@ -128,8 +128,8 @@ export default {
               if (this.files.length > 7) {
                 this.removeFile(this.files[0]);
               }
-              if (file.size > 2097152) {
-                alert(self.$trans.translation.file_size_limit + ' 2 MB');
+              if (file.size > 1572864) {
+                alert(self.$trans.translation.file_size_limit + ' 1.5 MB');
                 this.removeFile(file)
               }
             });
@@ -146,18 +146,14 @@ export default {
             self.$Progress.start();
           },
           success: function() {
-            toastr.success(self.$trans.translation.success, toastr.options = {
-              "preventDuplicates": true,
-            });
+            toastr.success(self.$trans.translation.success);
             this.removeFile(this.files[0]);
             self.$Progress.finish();
             document.location.href = self.$root.url + '/sell/used';
           },
           error: function() {
             self.$Progress.fail();
-            toastr.error(self.$trans.translation.error, toastr.options = {
-              "preventDuplicates": true,
-            });
+            toastr.error(self.$trans.translation.error);
             this.removeFile(this.files[0]);
           },
         });

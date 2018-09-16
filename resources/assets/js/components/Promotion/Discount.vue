@@ -64,7 +64,7 @@ export default {
       this.formVisible = id;
     },
     getProduct() {
-      this.$http.get(this.$root.url + '/profile/promotions/manage/discount/product').then((response) => {
+      this.$http.get(this.$root.url + '/profile/promotions/manage/discount/product').then(response => {
         this.products = response.body.products;
         this.discount_products = response.body.discount_products.data;
       });
@@ -95,7 +95,7 @@ export default {
       if (!confirm(this.$trans.translation.delete_confirm)) {
         return
       } else {
-        this.$http.put(this.$root.url + '/profile/promotions/manage/discount/' + uid + '/delete').then((response) => {
+        this.$http.put(this.$root.url + '/profile/promotions/manage/discount/' + uid + '/delete').then(response => {
             this.discount_products.splice(index, 1);
         });
       }

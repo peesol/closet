@@ -88,7 +88,7 @@ export default {
       });
     },
     addToCollection(productId, collectionId, index) {
-      this.$http.post(this.$root.url + '/collection/' + collectionId + '/add/' + productId).then((response) => {
+      this.$http.post(this.$root.url + '/collection/' + collectionId + '/add/' + productId).then(response => {
         if (this.myProducts[index].added) {
           this.$set(this.myProducts[index], 'added', false)
           toastr.success(this.$trans.translation.delete_from_col)
@@ -96,7 +96,7 @@ export default {
           this.$set(this.myProducts[index], 'added', true)
           toastr.success(this.$trans.translation.added_to_col)
         }
-      }, (response) => {
+      }, response => {
         toastr.error(this.$trans.translation.error)
       });
     },
@@ -104,7 +104,7 @@ export default {
       if (!confirm(this.$trans.translation.delete_confirm)) {
         return;
       }
-      this.$http.delete(this.$root.url + '/collection/' + this.colId + '/delete/' + productId).then((response) => {
+      this.$http.delete(this.$root.url + '/collection/' + this.colId + '/delete/' + productId).then(response => {
         toastr.success(this.$trans.translation.success)
         this.products.splice(index, 1)
       });

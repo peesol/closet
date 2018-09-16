@@ -57,7 +57,7 @@ export default {
 
   methods: {
     getChoice() {
-      this.$http.get(this.$root.url + '/product/' + this.productSlug + '/get_choice').then((response) => {
+      this.$http.get(this.$root.url + '/product/' + this.productSlug + '/get_choice').then(response => {
         this.choices = response.body;
       });
     },

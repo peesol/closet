@@ -160,7 +160,7 @@
 
 			},
 		},
-		created() {
+		mounted() {
 			this.getComments()
 		}
 	}

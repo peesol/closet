@@ -149,18 +149,14 @@ export default {
             self.$Progress.start();
           },
           success: function() {
-            toastr.success(self.$trans.translation.success, toastr.options = {
-              "preventDuplicates": true,
-            });
+            toastr.success(self.$trans.translation.success);
             this.removeFile(this.files[0]);
             self.$Progress.finish();
             document.location.href = self.$root.url + '/sell/new/after';
           },
           error: function() {
             self.$Progress.fail();
-            toastr.error(self.$trans.translation.error, toastr.options = {
-              "preventDuplicates": true,
-            });
+            toastr.error(self.$trans.translation.error);
             this.removeFile(this.files[0]);
           },
         });

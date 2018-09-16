@@ -184,7 +184,7 @@ export default {
   },
   methods: {
     getMessages() {
-      this.$http.get(this.$root.url + '/profile/order/buying/get').then((response) => {
+      this.$http.get(this.$root.url + '/profile/order/buying/get').then(response => {
         this.orders = response.body.data;
       });
     },

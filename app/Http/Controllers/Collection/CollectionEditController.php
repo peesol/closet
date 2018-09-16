@@ -75,6 +75,8 @@ class CollectionEditController extends Controller
 
       $this->dispatch((new CollectionPhotoUpload($images, $id))->onQueue('upload_medium'));
 
+      return response()->json(null, 200);
+
     } else {
       return false;
     }

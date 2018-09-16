@@ -74,12 +74,12 @@ export default {
       this.formVisible = number
     },
     getCollection() {
-      this.$http.get(this.$root.url + '/collection_api/' + this.shopSlug + '/add/' + this.productId).then((response) => {
+      this.$http.get(this.$root.url + '/collection_api/' + this.shopSlug + '/add/' + this.productId).then(response => {
         this.collections = response.body.data;
       });
     },
     addToCollection(productId, collectionId, index) {
-      this.$http.post(this.$root.url + '/collection/' + collectionId + '/add/' + productId).then((response) => {
+      this.$http.post(this.$root.url + '/collection/' + collectionId + '/add/' + productId).then(response => {
         if (this.collections[index].added) {
           this.$set(this.collections[index], 'added', false)
           toastr.success(this.$trans.translation.delete_from_col)
@@ -87,7 +87,7 @@ export default {
           this.$set(this.collections[index], 'added', true)
           toastr.success(this.$trans.translation.added_to_col)
         }
-      }, (response) => {
+      }, response => {
         toastr.error(this.$trans.translation.error)
       });
     },
@@ -95,7 +95,7 @@ export default {
       this.$http.post(this.$root.url + '/profile/note/add', {
         shop_id: this.$root.user,
         product_id: this.productId
-      }).then((response) => {
+      }).then(response => {
         if (this.addedToNote) {
           this.addedToNote = false
           toastr.success(this.$trans.translation.success)
@@ -103,7 +103,7 @@ export default {
           this.addedToNote = true
           toastr.success(this.$trans.translation.success)
         }
-      }, (response) => {
+      }, response => {
         toastr.error(this.$trans.translation.error)
       })
     },
@@ -113,10 +113,12 @@ export default {
     createCol() {
       this.$http.post(this.$root.url + '/collection_api/' + this.shopSlug, {
         name: this.col_name,
-      }).then((response) => {
+      }).then(response => {
         this.col_name = null
         this.collections.push(response.body.data)
         toastr.success(this.$trans.translation.col_created);
+      }, response => {
+        toastr.error(this.$trans.translation.error);
       });
     },
     report() {

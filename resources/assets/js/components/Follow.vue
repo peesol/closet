@@ -21,7 +21,7 @@ export default {
   methods: {
     getFollowStatus() {
       this.$http.get(this.$root.url + '/follow/' + this.shopSlug)
-        .then((response) => {
+        .then(response => {
           this.followers = response.data.data.count;
           this.userFollowed = response.data.data.user_followed;
           this.canFollow = response.data.data.can_follow;

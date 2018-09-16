@@ -50,13 +50,9 @@ export default {
   },
   methods: {
     getPhoto() {
-      this.$http.get(this.$root.url + '/collection_api/img/' + this.colSlug)
-        .then((response) => {
-          return response.json()
-            .then((json) => {
-              this.images = json.data;
-            });
-        });
+      this.$http.get(this.$root.url + '/collection_api/img/' + this.colSlug).then(response => {
+        this.images = response.body.data;
+      });
     },
     remove(imageId, index) {
       if (!confirm(this.$trans.translation.delete_confirm)) {
@@ -104,11 +100,11 @@ export default {
           success: function(file, response) {
             self.images.push({
               id: null,
-              filename: file.dataURL,
+              filename: file.dataURL
             })
             toastr.success(self.$trans.translation.success)
-            this.removeFile(this.files[0])
             self.$Progress.finish()
+            this.removeFile(this.files[0])
           },
           error: function() {
             self.$Progress.fail()

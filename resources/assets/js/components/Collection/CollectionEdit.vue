@@ -74,11 +74,11 @@ export default {
           name: this.name,
           description: this.description,
           visibility: this.visibility,
-        }).then((response) => {
+        }).then(response => {
           this.$Progress.finish();
           this.$root.loading = false
           toastr.success(this.$trans.translation.success);
-        }, (response) => {
+        }, response => {
           this.$Progress.fail();
           this.$root.loading = false
           toastr.error(this.$trans.translation.error);
@@ -93,11 +93,11 @@ export default {
           description: this.description,
           visibility: this.visibility,
           thumbnail: this.image_filename,
-        }).then((response) => {
+        }).then(response => {
           this.$Progress.finish();
           this.$root.loading = false
           toastr.success(this.$trans.translation.success);
-        }, (response) => {
+        }, response => {
           this.$Progress.fail();
           this.$root.loading = false
           toastr.error(this.$trans.translation.error);

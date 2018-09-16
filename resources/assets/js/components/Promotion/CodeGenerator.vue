@@ -67,7 +67,7 @@ export default {
   },
   methods: {
     getCodes() {
-      this.$http.get(this.$root.url + '/profile/promotions/manage/code_get').then((response) => {
+      this.$http.get(this.$root.url + '/profile/promotions/manage/code_get').then(response => {
         this.codes = response.body
       });
     },

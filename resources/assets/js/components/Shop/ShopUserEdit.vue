@@ -30,19 +30,16 @@ export default {
   },
   methods: {
     edit() {
-      toastr.options.preventDuplicates = true;
-      toastr.options.timeOut = 2000;
-
       this.$Progress.start();
       this.$root.loading = true
       this.$http.put(this.$root.url + '/' + this.$parent.shopSlug + '/edit/personal_info', {
         address: this.address,
         phone: this.phone,
-      }).then((response) => {
+      }).then(response => {
         this.$Progress.finish();
         this.$root.loading = false
         toastr.success(this.$trans.translation.success);
-      }, (response) => {
+      }, response => {
         this.$Progress.fail();
         this.$root.loading = false
         toastr.error(this.$trans.translation.error);

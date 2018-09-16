@@ -49,11 +49,8 @@ export default {
   methods: {
     getPhoto() {
       this.$http.get(this.$root.url + '/product/' + this.productSlug + '/get_photo')
-        .then((response) => {
-          return response.json()
-            .then((json) => {
-              this.images = json.data;
-            });
+        .then(response => {
+          this.images = response.body.data;
         });
     },
 
@@ -105,19 +102,15 @@ export default {
           success: function(file, response) {
             self.images.push({
               id: null,
-              filename: file.dataURL,
+              filename: file.dataURL
             })
-            toastr.success(self.$trans.translation.success, toastr.options = {
-              "preventDuplicates": true,
-            })
+            toastr.success(self.$trans.translation.success)
             this.removeFile(this.files[0])
             self.$Progress.finish()
           },
           error: function() {
             self.$Progress.fail();
-            toastr.error(self.$trans.translation.error, toastr.options = {
-              "preventDuplicates": true,
-            });
+            toastr.error(self.$trans.translation.error);
             this.removeFile(this.files[0]);
           },
 

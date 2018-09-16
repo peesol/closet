@@ -88,7 +88,7 @@
 		methods: {
 			getCollection() {
 					this.$Progress.start();
-  					this.$http.get(this.$root.url + '/collection_api/' + this.shopSlug).then((response)=> {
+  					this.$http.get(this.$root.url + '/collection_api/' + this.shopSlug).then(response=> {
 							this.collections = response.body.data
 							this.$Progress.finish()
 						});
@@ -100,7 +100,7 @@
 					name: this.name,
 					description: this.description,
 					visibility: this.visibility,
-				}).then((response)=> {
+				}).then(response=> {
 					this.name = null;
 					this.description = null;
 					this.visibility = null;
@@ -108,7 +108,7 @@
 					this.collections.push(response.body.data)
 					this.$root.loading = false
 					toastr.success(this.$trans.translation.col_created);
-				}, (response) => {
+				}, response => {
 					this.$root.loading = false
           toastr.error(this.$trans.translation.error);
 	      });
@@ -125,7 +125,7 @@
 					this.$delete(this.collections, index)
 					this.$Progress.finish()
 					toastr.success(this.$trans.translation.col_deleted, {timeOut: 1000})
-				}, (response) => {
+				}, response => {
 	          toastr.error(this.$trans.translation.error);
 	      });
 			},
