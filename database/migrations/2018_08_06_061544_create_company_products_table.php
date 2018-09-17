@@ -18,6 +18,7 @@ class CreateCompanyProductsTable extends Migration
           $table->integer('category_id')->unsigned();
           $table->integer('subcategory_id')->unsigned();
           $table->integer('type_id')->unsigned();
+          $table->integer('string', 20)->default('closet');
           $table->string('uid');
           $table->string('name');
           $table->integer('price');

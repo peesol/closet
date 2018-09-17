@@ -99,6 +99,19 @@ nav
   a:hover, li:hover
     background-color: #f7f7f7
 
+.dropdown-content
+  div.notification
+    min-width: 400px
+    max-height: 300px
+    overflow-y: auto
+    overflow-x: hidden
+    li
+      cursor: default
+      padding: 5px 12px
+      border-bottom: 1px solid #f2f2f2
+      a
+        line-height: 35px
+
 .toggled-list
   border-right: 3px solid $orange
   background-color: #f7f7f7
@@ -146,6 +159,7 @@ nav
   .footer-nav
     display: none
 
-span.icon-cart
-  font
-    font-family: 'Arial'
+span
+  &.icon-cart,&.icon-bell
+    font
+      font-family: 'Arial'

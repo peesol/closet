@@ -183,6 +183,7 @@ export default {
     login: 'Login',
     register: 'Register',
     help: 'Help',
+    view_all: 'View all',
     //review
     user_review: 'Your review',
     write_review: 'Leave review',
@@ -190,6 +191,10 @@ export default {
     //report
     report: 'Report',
     report_product: 'Report this product',
+    //Notification
+    clear_all: 'Clear all',
+    mark_all: 'Mark all as read',
+    notification_null: 'You have no notifications.',
     //place holder
     numeric_only: 'Number only without any spacial symbols',
   }

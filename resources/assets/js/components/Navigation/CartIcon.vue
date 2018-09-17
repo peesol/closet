@@ -1,8 +1,7 @@
 <template>
     <button class="dropdown-btn" @click="go">
-      <span class="icon-cart">&nbsp;<font class="show-screen">{{ count }}</font></span>
+      <span class="icon-cart" :class="{'font-orange' : count > 0}">&nbsp;<font>{{ count }}</font></span>
     </button>
-</div>
 </template>
 
 <script>

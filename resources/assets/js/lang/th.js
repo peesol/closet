@@ -183,6 +183,7 @@ export default {
     login: 'ล็อกอิน',
     register: 'สมัครสมาชิก',
     help: 'ช่วยเหลือ',
+    view_all: 'ดูทั้งหมด',
     //review
     user_review: 'รีวิวของคุณ',
     write_review: 'เขียนรีวิว',
@@ -190,6 +191,10 @@ export default {
     //report
     report: 'แจ้งปัญหา',
     report_product: 'แจ้งปัญหาสินค้า',
+    //Notification
+    clear_all: 'ล้างรายการทั้งหมด',
+    mark_all: 'บันทึกว่าอ่านแล้วทั้งหมด',
+    notification_null: 'คุณไม่มีการแจ้งเตือนใดๆ',
     //place holder
     numeric_only: 'กรอกตัวเลขเท่านั้น',
 }

@@ -15,6 +15,8 @@ use Closet\Transformer\OrderTransformer;
 use Closet\Mail\{OrderingSeller, OrderingBuyer, TransactionConfirmed, OrderShipped, OrderDeny, OrderCancle};
 use Closet\Jobs\Product\DecreaseProduct;
 
+use Closet\Notifications\Ordered;
+
 class OrderController extends Controller
 {
   public function sellingPage()
@@ -98,10 +100,13 @@ class OrderController extends Controller
     $accounts = Account::where('shop_id', $order->reciever_id)->get();
     $locale = $reciever->country;
 
+    $message =  __('user.notification.ordered') . ' ' . $order->sender;
+    $reciever->notify(new Ordered($message));
+
     Mail::to($reciever->email)->queue((new OrderingSeller($order, $locale, $sender))->onQueue('email_medium'));
     Mail::to($sender->email)->queue((new OrderingBuyer($order, $accounts, $locale))->onQueue('email_medium'));
 
-    return response($request->input('shipping.fee'));
+    return ;
   }
   /*
   |--------------------------------------------------------------------------

@@ -199,6 +199,17 @@ Route::group(['middleware' => ['auth']], function () {
       Route::put('/promotions/manage/discount/{product}/add', 'Management\PromotionController@applyDiscount');
       Route::put('/promotions/manage/discount/{product}/delete', 'Management\PromotionController@removeDiscount');
 
+      /*
+      |--------------------------------------------------------------------------
+      | Notification Routes
+      |--------------------------------------------------------------------------
+      */
+      Route::get('/notifications', 'Notification\NotificationController@index');
+      Route::get('/notifications/get', 'Notification\NotificationController@get');
+      Route::put('/notifications/read', 'Notification\NotificationController@markAsRead');
+      Route::put('/notifications/read_all', 'Notification\NotificationController@markAllAsRead');
+      Route::delete('/notifications/delete', 'Notification\NotificationController@clearAll');
+
     }); //End profile prefix
 
 /*

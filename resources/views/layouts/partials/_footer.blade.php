@@ -8,5 +8,6 @@
   <button onclick='document.location.href="{{ route('categoryMain') }}"' class="dropdown-btn" name="button">
     <span class="icon-category"></span>
   </button>
- <cart-icon element="footer"></cart-icon>
+  <notification-icon element="footer"></notification-icon>
+  <cart-icon element="footer"></cart-icon>
 </div>
