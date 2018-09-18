@@ -80,6 +80,12 @@ class RegisterController extends Controller
             'phone' => $data['phone'],
             'country' => 'th',
             'gender' => $data['gender'],
+            'options' => json_encode([
+              'order' => true,
+              'email' => true,
+              'comments' => true,
+              'following' => true
+            ]),
         ]);
 
         $shop = $user->shop()->create([
