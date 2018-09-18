@@ -6,6 +6,7 @@ const SearchResult = require('../components/Search/SearchResult.vue');
 const ShopContact = require('../components/Shop/ShopContactEdit.vue');
 const ShopEdit = require('../components/Shop/ShopEdit.vue');
 const ShopAccount = require('../components/Shop/ShopAccountEdit.vue');
+const NotificationSettings = require('../components/Notification/NotificationSettings.vue');
 const Showcase = require('../components/Showcase.vue');
 
 const routes = [
@@ -33,6 +34,11 @@ const routes = [
     name: 'accountEdit',
     path: '/:shop/edit/account',
     component: ShopAccount
+  },
+  {
+    name: 'notificationSettings',
+    path: '/:shop/edit/notification',
+    component: NotificationSettings
   },
 ];
 

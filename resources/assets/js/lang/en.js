@@ -195,6 +195,14 @@ export default {
     clear_all: 'Clear all',
     mark_all: 'Mark all as read',
     notification_null: 'You have no notifications.',
+    notification_settings: {
+      order: 'Order',
+      order_small: 'Notify you about selling orders',
+      email_small: 'Notify you via email about your orders and other things',
+      comments_small: 'Notify you when someone comment on your products',
+      following: 'Following',
+      following_small: 'Notify you when the profile you followed has update something',
+    },
     //place holder
     numeric_only: 'Number only without any spacial symbols',
   }

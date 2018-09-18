@@ -8,7 +8,8 @@
   margin: 0
   display: flex
   width: 100%
-  justify-content: space-around
+  overflow-x: scroll
+  white-space: nowrap
   button
     font-size: 1em
     font
@@ -17,14 +18,10 @@
       display: block
       font-size: 2em
   a
-    margin: 0px 5px
+    margin: 0 10px
     line-height: 50px
     display: inline-block
 
-@media (min-width: 400px)
-  .tab-nav-ul
-    a
-      font-size: 1.2em
 .tab-nav-ul
   button,
   a
@@ -40,11 +37,19 @@
   &:hover
     color: #ff8000
 
+@media (min-width: 400px)
+  .tab-nav-ul
+    a
+      font-size: 1.2em
+
 @media (min-width: 768px)
   .tab-nav-ul
     display: block
     padding-left: 40px
     margin: 0
+    overflow-x: hidden
+    white-space: normal
+    justify-content: space-around
     button
       font
         display: block

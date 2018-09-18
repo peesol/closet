@@ -315,6 +315,7 @@ Route::group(['middleware' => ['auth']], function () {
   Route::get('/{shop}/edit/contact', 'Shop\Settings\ShopEditController@index');
   Route::get('/{shop}/edit/account', 'Shop\Settings\ShopEditController@index');
   Route::get('/{shop}/edit/showcase', 'Shop\Settings\ShopEditController@index');
+  Route::get('/{shop}/edit/notification', 'Shop\Settings\ShopEditController@index');
   Route::put('/{shop}/edit/public_info', 'Shop\Settings\ShopEditController@updatePublicInfo');
   Route::put('/{shop}/edit/personal_info', 'Shop\Settings\ShopEditController@updatePrivateInfo');
   Route::put('/{shop}/edit/cover', 'Shop\Settings\ShopEditController@updateCover');
@@ -329,6 +330,9 @@ Route::group(['middleware' => ['auth']], function () {
   Route::get('/{shop}/edit/account/get', 'Shop\Settings\AccountController@get');
   Route::post('/{shop}/edit/account', 'Shop\Settings\AccountController@create');
   Route::delete('/{shop}/edit/account/{account}/delete', 'Shop\Settings\AccountController@delete');
+
+  Route::get('/{shop}/edit/notification/get', 'Notification\Settings\NotificationSettingsController@get');
+  Route::put('/{shop}/edit/notification/update', 'Notification\Settings\NotificationSettingsController@update');
 
   /*
   |--------------------------------------------------------------------------

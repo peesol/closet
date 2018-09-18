@@ -12,6 +12,7 @@
                 <router-link class="tab-nav-btn" :class="{'current' : $route.name == 'contactEdit'}" to="/{{$shop->slug}}/edit/contact">{{ __('message.contact')}}</router-link>
                 <router-link class="tab-nav-btn" :class="{'current' : $route.name == 'showcaseEdit'}" to="/{{$shop->slug}}/edit/showcase">{{ __('message.showcase')}}</router-link>
                 <router-link class="tab-nav-btn" :class="{'current' : $route.name == 'accountEdit'}" to="/{{$shop->slug}}/edit/account">{{ __('message.bank_account')}}</router-link>
+                <router-link class="tab-nav-btn" :class="{'current' : $route.name == 'notificationSettings'}" to="/{{$shop->slug}}/edit/notification">{{ __('user.notification.title')}}</router-link>
             </div>
         </div>
 

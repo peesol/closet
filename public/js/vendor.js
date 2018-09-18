@@ -10422,7 +10422,7 @@ function xhrClient (request) {
 
 function nodeClient (request) {
 
-    var client = __webpack_require__(554);
+    var client = __webpack_require__(557);
 
     return new PromiseObj(function (resolve) {
 
@@ -13898,7 +13898,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   }
 
   if (true) {
-    var Sortable = __webpack_require__(454);
+    var Sortable = __webpack_require__(455);
     module.exports = buildDraggable(Sortable);
   } else if (typeof define == "function" && define.amd) {
     define(['sortablejs'], function (Sortable) {
@@ -24589,7 +24589,7 @@ module.exports = function merge(destination/* , sources */) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = function omit(obj, test) {
-  var keys = __webpack_require__(450);
+  var keys = __webpack_require__(451);
   var foreach = __webpack_require__(33);
 
   var filtered = {};
@@ -41817,8 +41817,8 @@ IndexBrowser.prototype._clean = function() {
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {
 
-var global = __webpack_require__(442);
-var Promise = global.Promise || __webpack_require__(441).Promise;
+var global = __webpack_require__(443);
+var Promise = global.Promise || __webpack_require__(442).Promise;
 
 // This is the standalone browser build entry point
 // Browser implementation of the Algolia Search JavaScript client,
@@ -42061,7 +42061,7 @@ module.exports = function createAlgoliasearch(AlgoliaSearch, uaSuffix) {
 
 module.exports = inlineHeaders;
 
-var encode = __webpack_require__(452);
+var encode = __webpack_require__(453);
 
 function inlineHeaders(url, headers) {
   if (/\?/.test(url)) {
@@ -42451,7 +42451,7 @@ module.exports = '3.30.0';
 
 /***/ }),
 
-/***/ 441:
+/***/ 442:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process, global) {/*!
@@ -43638,7 +43638,7 @@ return Promise$1;
 
 /***/ }),
 
-/***/ 442:
+/***/ 443:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var win;
@@ -43659,7 +43659,7 @@ module.exports = win;
 
 /***/ }),
 
-/***/ 450:
+/***/ 451:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -43669,7 +43669,7 @@ module.exports = win;
 var has = Object.prototype.hasOwnProperty;
 var toStr = Object.prototype.toString;
 var slice = Array.prototype.slice;
-var isArgs = __webpack_require__(451);
+var isArgs = __webpack_require__(452);
 var isEnumerable = Object.prototype.propertyIsEnumerable;
 var hasDontEnumBug = !isEnumerable.call({ toString: null }, 'toString');
 var hasProtoEnumBug = isEnumerable.call(function () {}, 'prototype');
@@ -43808,7 +43808,7 @@ module.exports = keysShim;
 
 /***/ }),
 
-/***/ 451:
+/***/ 452:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -43833,7 +43833,7 @@ module.exports = function isArguments(value) {
 
 /***/ }),
 
-/***/ 452:
+/***/ 453:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -43926,7 +43926,7 @@ var objectKeys = Object.keys || function (obj) {
 
 /***/ }),
 
-/***/ 454:
+/***/ 455:
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**!
@@ -45828,14 +45828,14 @@ exports.mixin = mixin;
 
 /***/ }),
 
-/***/ 554:
+/***/ 557:
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
 /***/ }),
 
-/***/ 556:
+/***/ 559:
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(17);
@@ -46106,4 +46106,4 @@ module.exports = function deprecatedMessage(previousUsage, newUsage) {
 
 /***/ })
 
-},[556]);
+},[559]);
