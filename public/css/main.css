@@ -140,6 +140,8 @@ nav {
   .dropdown-content a:hover, .dropdown-content li:hover {
     background-color: #f7f7f7; }
 
+.dropdown-content a.view-all {
+  line-height: 25px !important; }
 .dropdown-content div.notification {
   min-width: 400px;
   max-height: 300px;
@@ -149,8 +151,6 @@ nav {
     cursor: default;
     padding: 5px 12px;
     border-bottom: 1px solid #f2f2f2; }
-    .dropdown-content div.notification li a {
-      line-height: 35px; }
 
 .toggled-list {
   border-right: 3px solid #ff8000;

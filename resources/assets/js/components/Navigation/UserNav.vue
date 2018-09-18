@@ -36,9 +36,10 @@
         {{ data.body }}<br>
         <small>{{ data.created_at }}</small>
       </li>
+      <li v-show="!notifications.length" class="align-center">{{ $trans.translation.notification_null }}</li>
     </div>
     <li class="align-center">
-      <a :href="$root.url + '/profile/notifications'">{{ $trans.translation.view_all }}</a>
+      <a class="view-all" :href="$root.url + '/profile/notifications'">{{ $trans.translation.view_all }}</a>
     </li>
   </div>
 </div>

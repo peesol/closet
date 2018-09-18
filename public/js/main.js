@@ -22018,6 +22018,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
 
 
 
@@ -55658,11 +55659,20 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "dropdown-content shadow-1"
   }, [_c('div', {
     staticClass: "notification"
-  }, _vm._l((_vm.notifications), function(data) {
+  }, [_vm._l((_vm.notifications), function(data) {
     return _c('li', [_vm._v("\n        " + _vm._s(data.body)), _c('br'), _vm._v(" "), _c('small', [_vm._v(_vm._s(data.created_at))])])
-  })), _vm._v(" "), _c('li', {
+  }), _vm._v(" "), _c('li', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (!_vm.notifications.length),
+      expression: "!notifications.length"
+    }],
+    staticClass: "align-center"
+  }, [_vm._v(_vm._s(_vm.$trans.translation.notification_null))])], 2), _vm._v(" "), _c('li', {
     staticClass: "align-center"
   }, [_c('a', {
+    staticClass: "view-all",
     attrs: {
       "href": _vm.$root.url + '/profile/notifications'
     }
