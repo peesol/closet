@@ -15,7 +15,7 @@ use Closet\Transformer\OrderTransformer;
 use Closet\Mail\{OrderingSeller, OrderingBuyer, TransactionConfirmed, OrderShipped, OrderDeny, OrderCancle};
 use Closet\Jobs\Product\DecreaseProduct;
 
-use Closet\Notifications\Ordered;
+use Closet\Notifications\Seller\{OrderPlaced, OrderCancled, OrderPaid};
 
 class OrderController extends Controller
 {

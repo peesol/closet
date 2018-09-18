@@ -28454,7 +28454,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 }, _defineProperty(_product_name$product, 'login', 'ล็อกอิน'), _defineProperty(_product_name$product, 'register', 'สมัครสมาชิก'), _defineProperty(_product_name$product, 'help', 'ช่วยเหลือ'), _defineProperty(_product_name$product, 'view_all', 'ดูทั้งหมด'), _defineProperty(_product_name$product, 'user_review', 'รีวิวของคุณ'), _defineProperty(_product_name$product, 'write_review', 'เขียนรีวิว'), _defineProperty(_product_name$product, 'no_reviews', 'ไม่มีรีวิว'), _defineProperty(_product_name$product, 'report', 'แจ้งปัญหา'), _defineProperty(_product_name$product, 'report_product', 'แจ้งปัญหาสินค้า'), _defineProperty(_product_name$product, 'clear_all', 'ล้างรายการทั้งหมด'), _defineProperty(_product_name$product, 'mark_all', 'บันทึกว่าอ่านแล้วทั้งหมด'), _defineProperty(_product_name$product, 'notification_null', 'คุณไม่มีการแจ้งเตือนใดๆ'), _defineProperty(_product_name$product, 'notification_settings', {
     order: 'การสั่งสินค้า',
     order_small: '*สำหรับผู้ขาย แจ้งเตือนเมื่อรายการขายมีความเคลื่อนไหว เช่น ชำระเงินและอื่นๆ',
-    email_small: 'แจ้งเตือนทางอีเมลเกี่ยวกับรายการสั่งซื้อ เช่น สถานะการจัดส่ง การชำระเงิน',
+    email_small: 'แจ้งเตือนทางอีเมล เช่น สถานะการส่งสินค้า การชำระเงิน และอื่นๆ',
     comments_small: '*สำหรับผู้ขาย แจ้งเตือนเมื่อมีการคอมเมนต์บนสินค้าของคุณ',
     following: 'การติดตาม',
     following_small: 'แจ้งเตือนเมื่อโปรไฟล์ที่คุณติดตามมีความเคลื่อนไหว'
