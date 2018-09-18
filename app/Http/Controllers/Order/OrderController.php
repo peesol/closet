@@ -91,10 +91,10 @@ class OrderController extends Controller
       'address' => $request->address
     ]);
 
-    // foreach ($request->products as $product) {
-    //   $rowId = array_get($product, 'rowId');
-    //   Cart::remove($rowId);
-    // }
+    foreach ($request->products as $product) {
+      $rowId = array_get($product, 'rowId');
+      Cart::remove($rowId);
+    }
 
     $reciever = User::find($order->reciever_id);
     $sender = User::find($order->sender_id);
