@@ -7,10 +7,11 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class Commented extends Notification
+class Commented extends Notification implements ShouldQueue
 {
     use Queueable;
 
+    public $message;
     /**
      * Create a new notification instance.
      *
@@ -18,7 +19,8 @@ class Commented extends Notification
      */
     public function __construct($message)
     {
-      $this->message = $message;
+        $this->message = $message;
+        $this->queue = 'notify';
     }
 
     /**
