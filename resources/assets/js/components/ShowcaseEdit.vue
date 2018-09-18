@@ -4,7 +4,7 @@
 		<form>
       <label class="heading full-label">{{$trans.translation.name}}</label>
         <div class="input-group half-width-res">
-				   <input class="input-addon-field" type="text" v-model="name" name="name">
+				   <input class="form-input" type="text" v-model="name" name="name">
           <button :disabled="$root.loading" class="checkmark-btn" @click.prevent="edit"><span class="icon-checkmark"></span></button>
         </div>
 		</form>

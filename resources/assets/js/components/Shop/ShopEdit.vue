@@ -14,8 +14,8 @@
         <div class="form-group">
           <label class="full-label input-label" for="URL">{{$trans.translation.shop_url}}</label>
           <div class="input-group" style="margin-bottom:8px;">
-            <span class="input-addon">{{ $root.url }}/</span>
-            <input type="text" v-validate="'required|alpha_dash|min:3|max:30'" :class="{'input-addon-field': true,'is-error': errors.has('URL')}" v-model="slug" name="URL">
+            <span class="input-addon left">{{ $root.url }}/</span>
+            <input type="text" v-validate="'required|alpha_dash|min:3|max:30'" class="input-addon-field right" :class="{'is-error': errors.has('URL')}" v-model="slug" name="URL">
           </div>
           <span v-show="errors.has('URL')" class="span-error">{{ errors.first('URL') }}</span>
         </div>

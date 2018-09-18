@@ -31,8 +31,8 @@
       </div>
       <transition name="slide-down-reply">
         <div class="input-group margin-10-top" v-show="replyFormVisible === comment.id">
-          <input type="text" class="input-addon-field" v-model="replyBody">
-          <button class="input-addon" @click.prevent="createReply(comment.id)"><span class="icon-next-arrow"></span></button>
+          <input type="text" class="input-addon-field left" v-model="replyBody">
+          <button class="input-addon right" @click.prevent="createReply(comment.id)"><span class="icon-next-arrow"></span></button>
         </div>
       </transition>
       <div class="replies-wrapper" v-if="showReply === comment.id" v-for="reply in comment.replies.data">

@@ -6,9 +6,9 @@
       <label for="name" class="full-label input-label">{{$trans.translation.choice_add}}&nbsp;
         <span class="font-light">{{$trans.translation.choice_name_ex}}</span>
       </label>
-      <div class="input-group">
-        <input class="input-addon-field" type="text" v-model="name" name="name">
-        <button :disabled="$root.loading" class="input-addon checkmark-btn icon-checkmark" type="submit" @click.prevent="add"></button>
+      <div class="input-group margin-10-top">
+        <input class="input-addon-field left" type="text" v-model="name" name="name">
+        <button :disabled="$root.loading" class="input-addon right checkmark-btn icon-checkmark" type="submit" @click.prevent="add"></button>
       </div>
     </form>
   </div>

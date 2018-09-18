@@ -10,7 +10,8 @@
   padding-left: 10px
   border: transparent
   background-color: #f9f9f9
-  border-bottom: 3px solid #b5b5b5
+  font-size: 1em
+  border-bottom: 3px solid #b5b5b5 !important
 
 %description-input
   width: 100%
@@ -59,6 +60,17 @@ button.input-addon
   border-bottom: 3px solid #b5b5b5
   background-color: #efefef
 
+.input-addon.left, .input-addon-field.left
+    border-top-left-radius: 15px
+    border-bottom-left-radius: 15px
+
+.input-addon.right, .input-addon-field.right
+    border-top-right-radius: 15px
+    border-bottom-right-radius: 15px
+
+.input-addon.both-radius, .input-addon-field.both-radius
+    border-radius: 15px
+
 .input-addon-no-bg
   border: none
   background-color: transparent
@@ -68,14 +80,15 @@ button.input-addon
   position: relative
   width: auto
   height: 35px
-  padding: 7px
+  padding: 0 7px
+  line-height: 35px
 
 .input-addon-field
   @extend %focus-border-bottom
-  @extend %normal-input
   flex: 1
-  font-size: 1em
   position: relative
+  line-height: 35px
+  border: 1px solid #ddd
 
 .description-input, .comment-input
   @extend %focus-border-bottom
@@ -83,6 +96,7 @@ button.input-addon
   resize: none
   font-size: 1em
   position: relative
+  border-radius: 8px
 
 .description-input
   height: 250px !important
@@ -90,7 +104,7 @@ button.input-addon
 .comment-input
   height: 100px !important
 
-.form-input
+.form-input, .input-addon-field
   border-bottom: 3px solid #b5b5b5 !important
   &:focus
     border-bottom: 3px solid #ff8000 !important
@@ -101,17 +115,23 @@ button.input-addon
     border-left: 3px solid #ff8000 !important
 
 
-.form-input-alt,.form-input
-    font-size: 1em
-    position: relative
-    width: 100%
-    height: 35px
-    padding-left: 10px
-    border: none
-    background-color: #f9f9f9
-    &:focus
-      transition: all 0.30s
-      background-color: #ffffff
+.form-input, .input-addon-field
+  @extend %normal-input
+  &:focus
+    transition: all 0.30s
+    background-color: #ffffff
+
+.form-input-alt
+  width: 100%
+  height: 35px
+  padding-left: 10px
+  background-color: #f9f9f9
+  font-size: 1em
+  border: none
+
+.form-input
+  border-radius: 15px
+  border: 1px solid #ddd
 
 .form-input-btn
   width: 35px
@@ -129,7 +149,7 @@ button.input-addon
   height: 35px
   padding-left: 10px
   border: 1px solid #b5b5b5
-  outline: none
+  border-radius: 15px
 
 .error-input
   border: 1px solid #ff3333

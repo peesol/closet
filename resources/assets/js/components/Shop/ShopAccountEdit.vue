@@ -22,7 +22,7 @@
           </div>
           <div class="form-group">
             <label class="full-label input-label">{{$trans.translation.account_name}}</label>
-            <input type="text" class="input-addon-field" v-validate="'required'" :class="{'is-error': errors.has('account_name')}" v-model="name" name="account_name">
+            <input type="text" class="form-input" v-validate="'required'" :class="{'is-error': errors.has('account_name')}" v-model="name" name="account_name">
             <span v-show="errors.has('account_name')" class="span-error">{{ errors.first('account_name') }}</span>
           </div>
         </div>

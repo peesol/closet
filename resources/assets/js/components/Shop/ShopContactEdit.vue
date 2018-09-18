@@ -12,7 +12,7 @@
         <div class="form-group margin-10-bottom">
           <div class="input-group">
 
-            <select required class="input-addon transparent-bg auto-width" name="type" v-model="type">
+            <select required class="input-addon left transparent-bg auto-width" name="type" v-model="type">
                 <option value="facebook">Facebook</option>
                 <option value="instagram">Instagram</option>
                 <option value="line">Line</option>
@@ -23,7 +23,7 @@
                 <option value="location">{{$trans.translation.location}}</option>
               </select>
 
-            <input type="text" v-validate="'required'" :class="{'input-addon-field': true,'is-error': errors.has('body')}" v-model="body" name="body">
+            <input type="text" v-validate="'required'" class="input-addon-field right" :class="{'is-error': errors.has('body')}" v-model="body" name="body">
           </div>
           <span v-show="errors.has('body')" class="span-error">{{ errors.first('body') }}</span>
         </div>
@@ -31,7 +31,7 @@
         <div class="form-group">
           <label class="full-label input-label">{{$trans.translation.link}}&nbsp;<small>({{$trans.translation.optional}})</small></label>
           <div class="input-group">
-            <input type="text" :class="{'input-addon-field': true,'is-error': errors.has('link')}" v-model="link" name="link" placeholder="http://www.yourlink.com">
+            <input type="text" class="form-input" :class="{'is-error': errors.has('link')}" v-model="link" name="link" placeholder="http://www.yourlink.com">
           </div>
         </div>
         <div class="align-right padding-15-top">
