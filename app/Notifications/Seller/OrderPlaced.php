@@ -48,7 +48,8 @@ class OrderPlaced extends Notification
     public function toDatabase($notifiable)
     {
         return [
-          'body' => __('user.notification.order_placed') . ' ' . $this->message
+          'type' => 'order_placed',
+          'body' => $this->message
         ];
     }
 }

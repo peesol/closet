@@ -9,7 +9,7 @@
       </tr>
       <tr :class="{'lightgrey-bg' : data.read}" v-for="(data, index) in notifications">
         <td>
-          {{ data.body }}<br>
+          {{ $trans.translation.notification_title[data.type] + ' ' + data.body }}<br>
           <small>{{ data.created_at }}</small>
         </td>
         <td class="align-center font-15em">

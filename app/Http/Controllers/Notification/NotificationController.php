@@ -27,6 +27,7 @@ class NotificationController extends Controller
       $json[] = array(
         'id' => $item->id,
         'body' => $item->data['body'],
+        'type' => $item->data['type'],
         'read' => $item->read_at ? true : false,
         'created_at' => Date::parse($item->created_at)->diffForHumans(),
       );

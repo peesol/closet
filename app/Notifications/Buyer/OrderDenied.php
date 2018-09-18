@@ -16,9 +16,9 @@ class OrderDenied extends Notification
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($message)
     {
-        //
+      $this->message = $message;
     }
 
     /**
@@ -55,6 +55,7 @@ class OrderDenied extends Notification
     public function toArray($notifiable)
     {
         return [
+          'type' => 'order_denied',
           'body' => $this->message
         ];
     }

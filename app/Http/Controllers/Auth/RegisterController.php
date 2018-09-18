@@ -79,6 +79,7 @@ class RegisterController extends Controller
             'address' => $data['address'],
             'phone' => $data['phone'],
             'country' => 'th',
+            'language' => 'th',
             'gender' => $data['gender'],
             'options' => json_encode([
               'order' => true,

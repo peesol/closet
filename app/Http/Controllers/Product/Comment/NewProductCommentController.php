@@ -4,9 +4,10 @@ namespace Closet\Http\Controllers\Product\Comment;
 
 use Fractal;
 use Illuminate\Http\Request;
-use Closet\Models\{Comment, Product};
+use Closet\Models\{Comment, Product, User};
 use Closet\Http\Controllers\Controller;
 use Closet\Transformer\CommentTransformer;
+use Closet\Notifications\Seller\Commented;
 use Closet\Http\Requests\CreateProductCommentRequest;
 
 class NewProductCommentController extends Controller
@@ -30,6 +31,12 @@ class NewProductCommentController extends Controller
     		'reply_id' => $request->get('reply_id', null),
     		'user_id' => $request->user()->id,
     		]);
+
+        $reciever = User::find($product->shop_id);
+
+        if ($reciever->options['comments'] && $request->user()->id !== $product->shop_id) {
+          $reciever->notify(new Commented($product->name));
+        }
 
     	return response()->json(
 

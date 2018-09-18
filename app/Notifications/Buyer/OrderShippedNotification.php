@@ -16,9 +16,9 @@ class OrderShippedNotification extends Notification
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($message)
     {
-        //
+      $this->message = $message;
     }
 
     /**
@@ -55,6 +55,7 @@ class OrderShippedNotification extends Notification
     public function toArray($notifiable)
     {
         return [
+          'type' => 'order_cancled',
           'body' => $this->message
         ];
     }
