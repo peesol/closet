@@ -2,6 +2,7 @@
 
 namespace Closet\Notifications\Seller;
 
+use App;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -47,7 +48,7 @@ class OrderPlaced extends Notification
     public function toDatabase($notifiable)
     {
         return [
-          'body' => $this->message
+          'body' => __('user.notification.order_placed') . ' ' . $this->message
         ];
     }
 }

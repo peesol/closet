@@ -18,6 +18,8 @@ class User extends Authenticatable
         'name', 'email', 'password','email_token','address','phone','country','gender', 'options'
     ];
 
+    protected $casts = ['options' => 'array'];
+
     /**
      * The attributes that should be hidden for arrays.
      *

@@ -16,6 +16,7 @@ use Closet\Mail\{OrderingSeller, OrderingBuyer, TransactionConfirmed, OrderShipp
 use Closet\Jobs\Product\DecreaseProduct;
 
 use Closet\Notifications\Seller\{OrderPlaced, OrderCancled, OrderPaid};
+use Closet\Notifications\Buyer\{OrderDenied, OrderShippedNotification};
 
 class OrderController extends Controller
 {
@@ -90,18 +91,20 @@ class OrderController extends Controller
       'address' => $request->address
     ]);
 
-    foreach ($request->products as $product) {
-      $rowId = array_get($product, 'rowId');
-      Cart::remove($rowId);
-    }
+    // foreach ($request->products as $product) {
+    //   $rowId = array_get($product, 'rowId');
+    //   Cart::remove($rowId);
+    // }
 
     $reciever = User::find($order->reciever_id);
     $sender = User::find($order->sender_id);
     $accounts = Account::where('shop_id', $order->reciever_id)->get();
     $locale = $reciever->country;
 
-    $message =  __('user.notification.ordered') . ' ' . $order->sender;
-    $reciever->notify(new Ordered($message));
+    if ($reciever->options['order']) {
+      $reciever->notify(new OrderPlaced($order->sender));
+    }
+
 
     Mail::to($reciever->email)->queue((new OrderingSeller($order, $locale, $sender))->onQueue('email_medium'));
     Mail::to($sender->email)->queue((new OrderingBuyer($order, $accounts, $locale))->onQueue('email_medium'));

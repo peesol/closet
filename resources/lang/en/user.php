@@ -4,7 +4,6 @@ return [
   'note' => 'My note',
   'notification' => [
     'title' => 'Notifications',
-    'null' => 'You have no notification.',
-    'ordered' => 'You got the order from',
+    'order_placed' => 'An order has been placed by',
   ]
 ];

@@ -7,7 +7,7 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class OrderShipped extends Notification
+class OrderShippedNotification extends Notification
 {
     use Queueable;
 
@@ -29,7 +29,7 @@ class OrderShipped extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ['database'];
     }
 
     /**
@@ -55,7 +55,7 @@ class OrderShipped extends Notification
     public function toArray($notifiable)
     {
         return [
-            //
+          'body' => $this->message
         ];
     }
 }

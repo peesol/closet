@@ -21054,6 +21054,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 					_this4.$Progress.finish();
 					_this4.$root.loading = false;
 				}, function (response) {
+					_this4.$root.loading = false;
 					toastr.error(_this4.$trans.translation.error);
 				});
 			}

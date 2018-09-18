@@ -183,6 +183,7 @@ export default {
 					this.$Progress.finish()
 					this.$root.loading = false
 				}, response => {
+					this.$root.loading = false
 					toastr.error(this.$trans.translation.error)
 				});
 			}

@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->text('address');
             $table->string('phone')->nullable();
             $table->string('country');
+            $table->string('language');
             $table->enum('gender', ['men', 'women', 'etc']);
             $table->json('options');
             $table->rememberToken();
