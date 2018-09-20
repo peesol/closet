@@ -21,6 +21,7 @@ class AdminSeeder extends Seeder
           'address' => 'not specified',
           'phone' => 'not specified',
           'country' => 'th',
+          'language' => 'th',
           'gender' => 'men',
       ]);
 
