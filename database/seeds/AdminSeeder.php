@@ -23,6 +23,12 @@ class AdminSeeder extends Seeder
           'country' => 'th',
           'language' => 'th',
           'gender' => 'men',
+          'options' => json_encode([
+            'order' => true,
+            'email' => true,
+            'comments' => true,
+            'following' => true
+          ]),
       ]);
 
       $shop = $user->shop()->create([
