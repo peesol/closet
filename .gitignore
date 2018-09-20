@@ -5,6 +5,14 @@
 /public/storage
 /public/hot
 /storage/*.key
+/storage/uploads/collection/photo/*
+/storage/uploads/collection/thumbnail/*
+/storage/uploads/product/photo/*
+/storage/uploads/product/thumbnail/*
+/storage/uploads/profile/cover/*
+/storage/uploads/profile/thumbnail/*
+/storage/uploads/collection/photo/*
+/storage/uploads/collection/thumbnail/*
 /vendor
 /.idea
 Homestead.json
