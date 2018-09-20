@@ -11,8 +11,8 @@
 /storage/uploads/product/thumbnail/*
 /storage/uploads/profile/cover/*
 /storage/uploads/profile/thumbnail/*
-/storage/uploads/collection/photo/*
-/storage/uploads/collection/thumbnail/*
+/storage/uploads/used/photo/*
+/storage/uploads/used/thumbnail/*
 /vendor
 /.idea
 Homestead.json
