@@ -6,21 +6,21 @@ use DB;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 
-class ClearDiscount extends Command
+class ClearNotification extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'discount:clear';
+    protected $signature = 'notifications:clear';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Set expired discount to null';
+    protected $description = 'Clear outdated or mark as read notifications';
 
     /**
      * Create a new command instance.
@@ -39,14 +39,16 @@ class ClearDiscount extends Command
      */
     public function handle()
     {
-        $time = Carbon::now('Asia/Bangkok')->subDays(30)->toDateTimeString();
-        $data = DB::table('products')->where('discount_date', '<=', $time);
+      $sevenDays = Carbon::now('Asia/Bangkok')->subDays(7)->toDateTimeString();
+      $day = Carbon::now('Asia/Bangkok')->subDays(1)->toDateTimeString();
 
-        $data->update([
-          'discount_price' => null,
-          'discount_date' => null,
+      $data = DB::table('notifications')->where('read_at', '<=', $day)->orWhere([
+          ['read_at', null],
+          ['created_at', '<=', $sevenDays]
         ]);
 
-        $this->info('All discounts are cleared!!!');
+      $data->delete();
+
+      $this->info('All discounts are cleared!!!');
     }
 }

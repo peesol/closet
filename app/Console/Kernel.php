@@ -20,6 +20,7 @@ class Kernel extends ConsoleKernel
         \Closet\Console\Commands\RemoveUsed::class,
         \Closet\Console\Commands\IndexProduct::class,
         \Closet\Console\Commands\MoveOrders::class,
+        \Closet\Console\Commands\ClearNotification::class,
     ];
 
     /**
@@ -33,6 +34,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('discount:clear')->daily()->timezone('Asia/Bangkok');
         $schedule->command('used:clear')->daily()->timezone('Asia/Bangkok');
         $schedule->command('orders:clear')->daily()->timezone('Asia/Bangkok');
+        $schedule->command('notifications:clear')->daily()->timezone('Asia/Bangkok');
     }
 
     /**

@@ -40,7 +40,7 @@ class MoveOrders extends Command
      */
     public function handle()
     {
-      $shipped = Carbon::now('Asia/Bangkok')->subDays(5)->toDateTimeString();
+      $shipped = Carbon::now('Asia/Bangkok')->subDays(7)->toDateTimeString();
       $ignored = Carbon::now('Asia/Bangkok')->subDays(3)->toDateTimeString();
 
       DB::table('orders')->where([
