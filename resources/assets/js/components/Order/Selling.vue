@@ -1,7 +1,7 @@
 <template>
-<div class="">
+<div class="relative">
   <vue-progress-bar></vue-progress-bar>
-
+  <load-overlay bg="white-bg" :show="!this.loaded"></load-overlay>
   <table class="c-table">
     <tr>
       <th colspan="2">{{$trans.translation.wait_transaction}}&nbsp;<span class="number" :class="{'not-empty' : added.ordered > 0}">{{ added.ordered }}</span></th>
@@ -133,7 +133,8 @@ export default {
       index: null,
       deny_form: false,
       deny_reason: null,
-      translate: this.$trans
+      translate: this.$trans,
+      loaded: false
     }
   },
   computed: {
@@ -151,8 +152,11 @@ export default {
   },
   methods: {
     getMessages() {
+      this.$Progress.start()
       this.$http.get(this.$root.url + '/profile/order/selling/get').then(response=> {
-         this.orders = response.body.data;
+         this.orders = response.body.data
+         this.$Progress.finish()
+         this.loaded = true
        });
     },
     beforeOpen (event) {

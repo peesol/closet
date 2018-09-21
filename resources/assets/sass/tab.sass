@@ -30,8 +30,11 @@
     background-color: transparent
     color: #6c6c6c
 
+.tab-nav-ul.static
+  justify-content: space-around
+
 .tab-nav-btn
-  &.current, &.static.current
+  &.current
     color: #ff8000 !important
     font-weight: 600
   &:hover
@@ -55,11 +58,12 @@
         display: block
       span
         display: none
-  .tab-nav-btn
     &.static
-      min-width: 100px !important
-      margin-right: 20px !important
-    &.current, &.static.current
+      .tab-nav-btn
+        min-width: 100px !important
+        margin-right: 20px !important
+  .tab-nav-btn
+    &.current
       color: #ff8000 !important
       border-bottom: 3px solid #ff8000
       font-weight: 600

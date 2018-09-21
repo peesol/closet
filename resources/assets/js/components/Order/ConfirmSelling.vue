@@ -1,7 +1,7 @@
 <template>
 <div style="margin-top: 20px;">
   <vue-progress-bar></vue-progress-bar>
-
+  <load-overlay bg="opacity-bg" :show="$root.loading"></load-overlay>
   <form v-on:submit.prevent="confirm(uid)">
   <table class="shipping-table">
     <tr>

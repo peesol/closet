@@ -102,7 +102,6 @@ Vue.component('showcase-edit', require('./components/ShowcaseEdit.vue'));
 Vue.component('order-selling', require('./components/Order/Selling.vue'));
 Vue.component('order-buying', require('./components/Order/Buying.vue'));
 Vue.component('order-history', require('./components/Order/History.vue'));
-Vue.component('confirm-selling', require('./components/Order/ConfirmSelling.vue'));
 Vue.component('confirm-trans', require('./components/Order/ConfirmTrans.vue'));
 Vue.component('cant-sell', require('./components/Product/CantSell.vue'));
 Vue.component('discount-code', require('./components/Promotion/CodeGenerator.vue'));
@@ -112,3 +111,8 @@ Vue.component('banner-slick', require('./components/BannerSlick.vue'));
 Vue.component('search-input', require('./components/Search/SearchInput.vue'));
 Vue.component('notification', require('./components/Notification/Notification.vue'));
 Vue.component('notification-icon', require('./components/Notification/NotificationIcon.vue'));
+
+Vue.component('load-overlay', {
+  props: ['bg','show'],
+  template: '<div class="load-overlay" :class="[{show : show}, bg]"><div class="lds-rolling"><div></div></div></div>'
+})

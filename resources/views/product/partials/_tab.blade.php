@@ -1,9 +1,9 @@
 <div class="medium-panel">
     <div class="tab-nav">
-        <ul class="tab-nav-ul">
-            <button class="tab-nav-btn static current" data-tab="#tab-1">{{__('message.details')}}</button>
-            <button class="tab-nav-btn static" v-on:click="$root.tab = 'comment'" data-tab="#tab-2">{{__('message.comment')}}</button>
-        </ul>
+        <div class="tab-nav-ul static">
+            <button class="tab-nav-btn current" data-tab="#tab-1">{{__('message.details')}}</button>
+            <button class="tab-nav-btn" v-on:click="$root.tab = 'comment'" data-tab="#tab-2">{{__('message.comment')}}</button>
+        </div>
     </div>
 
         <div class="tab-content current" id="tab-1">

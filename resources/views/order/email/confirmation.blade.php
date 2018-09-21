@@ -1,3 +1,5 @@
+{{-- THIS VIEW HAS BEEN DEACTIVATED SINCE WE DONT HAVE TO CONFIRM --}}
+
 <!DOCTYPE html>
 <html lang="{{ config('app.locale') }}">
 <head>

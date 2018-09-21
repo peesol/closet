@@ -1,13 +1,14 @@
 <template>
-<div class="comments-wrap">
+<div class="relative">
   <vue-progress-bar></vue-progress-bar>
+  <load-overlay bg="opacity-bg" :show="$root.loading"></load-overlay>
   <div class="comments-header">
     <p>{{ comments.length }}&nbsp;{{ comments.length > 1 ? $trans.translation.comments : $trans.translation.comment }}</p>
   </div>
   <div class="panel-body" v-if="$root.authenticated" id="full-line">
     <textarea :placeholder="$trans.translation.comment+ '...'" class="comment-input" v-model="body"></textarea>
     <div class="align-right full-width padding-15-top">
-      <button class="orange-btn normal-sq" type="submit" @click.prevent="createComment">{{$trans.translation.comment}}</button>
+      <button :disabled="post_comment" class="orange-btn normal-sq" type="submit" @click.prevent="createComment">{{$trans.translation.comment}}</button>
     </div>
   </div>
   <div v-for="comment in comments" class="panel-body">
@@ -32,7 +33,7 @@
       <transition name="slide-down-reply">
         <div class="input-group margin-10-top" v-show="replyFormVisible === comment.id">
           <input type="text" class="input-addon-field left" v-model="replyBody">
-          <button class="input-addon right" @click.prevent="createReply(comment.id)"><span class="icon-next-arrow"></span></button>
+          <button :disabled="post_comment" class="input-addon right" @click.prevent="createReply(comment.id)"><span class="icon-next-arrow"></span></button>
         </div>
       </transition>
       <div class="replies-wrapper" v-if="showReply === comment.id" v-for="reply in comment.replies.data">
@@ -64,6 +65,7 @@ export default {
       replyFormVisible: null,
       showReply: null,
       user_id: window.Closet.user.user,
+      post_comment: false
     }
   },
   props: {
@@ -94,11 +96,12 @@ export default {
     },
 
     createReply(commentId) {
-
+      this.post_comment = true
       this.$http.post(this.$root.url + '/product/' + this.productUid + '/comments', {
         body: this.replyBody,
         reply_id: commentId
       }).then((response) => {
+        this.post_comment = false
         this.comments.map((comment, index) => {
           this.replyBody = null;
           if (comment.id === commentId) {
@@ -108,17 +111,21 @@ export default {
           }
         })
       }, (response) => {
+        this.post_comment = false
         toastr.error(response.body.body);
       });
     },
 
     createComment() {
+      this.post_comment = true
       this.$http.post(this.$root.url + '/product/' + this.productUid + '/comments', {
         body: this.body
       }).then((response) => {
+        this.post_comment = false
         this.comments.unshift(response.body.data);
         this.body = null;
       }, (response) => {
+        this.post_comment = false
         toastr.error(response.body.body);
       });
     },
@@ -153,9 +160,11 @@ export default {
 
     getComments() {
       this.$Progress.start()
+      this.$root.loading = true
       this.$http.get(this.$root.url + '/product/' + this.productUid + '/comments').then((response) => {
         this.comments = response.body.data
         this.$Progress.finish()
+        this.$root.loading = false
       });
     },
   },

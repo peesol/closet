@@ -1,6 +1,7 @@
 <template>
-<div>
+<div class="relative">
   <vue-progress-bar></vue-progress-bar>
+  <load-overlay bg="white-bg" :show="!choiceLoaded"></load-overlay>
 <form name="myform" @submit.prevent="add" method="post">
   <div class="choice-wrapper">
     <label v-show="choices.length" class="full-label input-label margin-10-bottom">{{$trans.translation.choice}}</label>
@@ -71,8 +72,8 @@ export default {
   },
   created(){
     if (this.$root.authenticated) {
-      this.getProduct();
-      this.getChoice();
+      this.getProduct()
+      this.getChoice()
     }
   }
 }

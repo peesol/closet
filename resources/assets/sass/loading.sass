@@ -1,0 +1,59 @@
+.load-overlay
+  position: absolute
+  display: none
+  width: 100%
+  height: 100%
+  z-index: 2
+  &.show
+    display: block
+
+@-webkit-keyframes lds-rolling
+  0%
+    -webkit-transform: translate(-50%, -50%) rotate(0deg)
+    transform: translate(-50%, -50%) rotate(0deg)
+
+  100%
+    -webkit-transform: translate(-50%, -50%) rotate(360deg)
+    transform: translate(-50%, -50%) rotate(360deg)
+
+
+.lds-rolling
+  margin: 0 auto
+  position: relative
+  div
+    position: absolute
+    width: 110px
+    height: 110px
+    border: 10px solid #ff8300
+    border-top-color: transparent
+    border-radius: 50%
+    &:after
+      position: absolute
+      width: 110px
+      height: 110px
+      border: 8px solid #ff8300
+      border-top-color: transparent
+      border-radius: 50%
+      -webkit-transform: rotate(90deg)
+      transform: rotate(90deg)
+    -webkit-animation: lds-rolling 1s linear infinite
+    animation: lds-rolling 1s linear infinite
+    top: 100px
+    left: 100px
+  width: 90px !important
+  height: 90px !important
+  -webkit-transform: translate(-45px, -45px) scale(0.45) translate(45px, 45px)
+  transform: translate(-45px, -45px) scale(0.45) translate(45px, 45px)
+
+@media (min-width: 768px)
+  .lds-rolling
+    width: 120px !important
+    height: 120px !important
+    -webkit-transform: translate(-60px, -60px) scale(0.6) translate(60px, 60px)
+    transform: translate(-60px, -60px) scale(0.6) translate(60px, 60px)
+
+.opacity-bg
+  background-color: rgba(255, 255, 255, 0.8)
+
+.white-bg
+  background-color: #fff

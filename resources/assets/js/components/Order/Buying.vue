@@ -1,7 +1,7 @@
 <template>
-<div class="">
+<div class="relative">
   <vue-progress-bar></vue-progress-bar>
-
+  <load-overlay bg="white-bg" :show="!this.loaded"></load-overlay>
   <table class="c-table">
     <tr>
       <th colspan="2">{{$trans.translation.wait_transaction}}&nbsp;<span class="number" :class="{'not-empty' : added.ordered > 0}">{{ added.ordered }}</span></th>
@@ -158,7 +158,8 @@ export default {
       address: this.userAddress,
       phone: this.userPhone,
       index: null,
-      bankAccount: []
+      bankAccount: [],
+      loaded: false
     }
   },
   components: {
@@ -184,8 +185,11 @@ export default {
   },
   methods: {
     getMessages() {
+      this.$Progress.start()
       this.$http.get(this.$root.url + '/profile/order/buying/get').then(response => {
         this.orders = response.body.data;
+        this.$Progress.finish()
+        this.loaded = true
       });
     },
     beforeOpen(event) {

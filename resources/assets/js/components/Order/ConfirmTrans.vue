@@ -1,6 +1,7 @@
 <template>
 <div style="margin-top: 20px;">
   <vue-progress-bar></vue-progress-bar>
+  <load-overlay bg="opacity-bg" :show="$root.loading"></load-overlay>
   <form v-on:submit.prevent="confirm(uid)" method="post">
     <div class="form-group">
       <label class="col-label" style="width:100%;">{{$trans.translation.name}}</label>
@@ -39,6 +40,7 @@ export default {
   methods: {
     confirm(uid) {
       this.$Progress.start();
+      this.$root.loading = true
       this.$http.put(this.$root.url + '/order/' + uid + '/confirm', {
         shipping: this.shipping,
         shipping_fee: this.shipping_fee,
@@ -69,6 +71,3 @@ export default {
   },
 }
 </script>
-<style lang="css">
-
-</style>
