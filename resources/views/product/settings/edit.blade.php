@@ -27,7 +27,7 @@
               <label class="full-label heading">{{ __('message.photo_upload') }}</label>
             </div>
           	<div class="alert-box info margin-30-horizontal margin-20-top">
-          		<label><span class="icon-notification"></span>&nbsp;{{ __('message.photo_limit', ['amount' => '7']) }}</label>
+          		<label><span class="fas fa-exclamation-circle"></span>&nbsp;{{ __('message.photo_limit', ['amount' => '7']) }}</label>
           	</div>
 
             <product-dropzone product-slug="{{$product->uid}}" product-id="{{$product->id}}"></product-dropzone>

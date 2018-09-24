@@ -13,7 +13,7 @@
           <small>{{ data.created_at }}</small>
         </td>
         <td class="align-center font-15em">
-          <a @click.prevent="markAsRead(data.id, index)" :class="{'icon-checked font-green' : data.read, 'icon-unchecked font-grey' : !data.read}"></a>
+          <a @click.prevent="markAsRead(data.id, index)" class="fas fa-check-square" :class="{'font-green' : data.read, 'font-grey' : !data.read}"></a>
         </td>
       </tr>
     </table>

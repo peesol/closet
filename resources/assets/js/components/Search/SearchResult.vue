@@ -9,7 +9,7 @@
           <a :href="$root.url + '/product/' + product.uid">
             <img class="products-img-thumb" :src="src + product.thumbnail"alt="image">
           </a>
-          <i v-show="product.shop_type === 2" class="icon-checkmark verified-profile top-left"></i>
+          <i v-show="product.shop_type === 2" class="fas fa-check-circle verified-profile top-left"></i>
 
           <div v-if="!product.discount_price">
             <span class="price bottom-left">{{ $number.currency(product.price) }}&nbsp;฿</span>
@@ -30,8 +30,7 @@
           </p>
           <p v-else class="product-p">
             {{ $trans.translation.price }}&nbsp;
-            <strike>{{ $number.currency(product.price) }}฿</strike>
-            <small class="icon-next-arrow"></small>
+            <s>{{ $number.currency(product.price) }}฿</s>&nbsp;
             <font class="font-green">{{ $number.currency(product.discount_price) }}&nbsp;฿</font>
           </p>
         </div>

@@ -19,11 +19,11 @@ window.addEventListener("load",function(){var t=document.querySelectorAll(".tab-
 
                 <div class="product-show-wrap">
 
-                  <div class="half-width-res padding-15-horizontal">
+                  <div class="half-width-res">
                     <vue-slick :imgs="{{json_encode($product->productimages)}}" path="/product/photo/" slick-for="product"></vue-slick>
                   </div>
 
-                    <div class="half-width-res relative padding-15-horizontal">
+                    <div class="half-width-res relative">
 
                       @include('product.partials._heading')
 

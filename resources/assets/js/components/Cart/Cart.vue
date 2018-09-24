@@ -15,7 +15,7 @@
 				</tr>
 				<tr v-for="(item, index) in shop">
 					<td class="overflow-hidden">
-						<button v-show="confirmed.shop !== key" class="icon-bin flat-btn" @click.prevent="removeProduct(item.rowId, index, item.options.shop_name)"></button>&nbsp;{{item.name}}
+						<button v-show="confirmed.shop !== key" class="fas fa-times flat-btn delete" @click.prevent="removeProduct(item.rowId, index, item.options.shop_name)"></button>&nbsp;{{item.name}}
 					</td>
 					<td class="m-cell overflow-hidden">{{item.options.choice ? item.options.choice : '---'}}</td>
 					<td class="s-cell">{{$number.currency(item.price)}}</td>
@@ -34,7 +34,7 @@
 						<span class="font-green bold-font" v-show="confirmed.discount">{{$trans.translation.discount}}&nbsp;{{confirmed.discount}}</span>
 						<div v-show="formVisible == key && confirmed.discount_applied === false" class="input-group full-width padding-15-top">
 							<input v-model="code" type="text" placeholder="CODE">
-							<button :disabled="$root.loading" @click.prevent="applyDiscount(shop[0].options.shop_id)" type="button" class="form-input-btn checkmark-btn"><small class="icon-checkmark"></small></button>
+							<button :disabled="$root.loading" @click.prevent="applyDiscount(shop[0].options.shop_id)" type="button" class="form-input-btn checkmark-btn"><i class="fas fa-check"></i></button>
 						</div>
 					</td>
 				</tr>

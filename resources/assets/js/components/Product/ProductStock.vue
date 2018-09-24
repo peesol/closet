@@ -11,7 +11,7 @@
       <div class="half-width-res flex">
         <div class="input-group half-width">
           <input class="form-input-alt no-margin width-120" min="0" type="number" v-model="product.amount">
-          <button :disabled="$root.loading" class="checkmark-btn icon-checkmark" type="submit" @click.prevent="setAmount(product.uid, product.amount, index)"></button>
+          <button :disabled="$root.loading" class="checkmark-btn fas fa-check" type="submit" @click.prevent="setAmount(product.uid, product.amount, index)"></button>
         </div>
         <div class="half-width align-right">
           <span class="padding-10" :class="{ 'green-box' : product.amount >= 1, 'red-box' : product.amount == 0 }">{{product.amount >= 1 ? $trans.translation.instock : $trans.translation.outstock}}</span>

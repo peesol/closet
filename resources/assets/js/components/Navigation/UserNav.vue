@@ -2,18 +2,18 @@
 <div v-on-clickaway="hide" v-show="$root.authenticated">
   <notification-icon element="nav" @clicked="clicked"></notification-icon>
   <cart-nav element="nav"></cart-nav>
-  <button class="dropdown-btn" :class="{ 'btn-active' : toggled === 1 }" @click.prevent="toggle(1)"><span class="icon-user"></span></button>
+  <button class="dropdown-btn" :class="{ 'btn-active' : toggled === 1 }" @click.prevent="toggle(1)"><i class="fas fa-user"></i></button>
   <div @click.stop v-show="toggled === 1" class="dropdown-content shadow-1">
     <div class="dropdown-name">{{userName}}</div>
     <a :href="$root.url + '/' + userShop">{{ $trans.translation.my_profile }}</a>
-    <li v-bind:class="{'toggled-list' : toggledList === 1}" @click.prevent="toggleList(1)">{{ $trans.translation.my_products }}&nbsp;<small class="icon-arrow-down"></small></li>
+    <li v-bind:class="{'toggled-list' : toggledList === 1}" @click.prevent="toggleList(1)">{{ $trans.translation.my_products }}&nbsp;<i class="fas fa-chevron-down"></i></li>
     <transition name="slide-down-height">
       <div v-show="toggledList === 1">
         <a class="nested" :href="$root.url + '/profile/myproduct/new'">{{ $trans.translation.new }}</a>
         <a class="nested" :href="$root.url + '/profile/myproduct/used'">{{ $trans.translation.used }}</a>
       </div>
     </transition>
-    <li v-bind:class="{'toggled-list' : toggledList === 2}" @click.prevent="toggleList(2)">{{ $trans.translation.sell }}&nbsp;<small class="icon-arrow-down"></small></li>
+    <li v-bind:class="{'toggled-list' : toggledList === 2}" @click.prevent="toggleList(2)">{{ $trans.translation.sell }}&nbsp;<i class="fas fa-chevron-down"></i></li>
     <transition name="slide-down-height">
     <div v-show="toggledList === 2">
       <a class="nested" :href="$root.url + '/sell/new'">{{ $trans.translation.new }}</a>
@@ -21,7 +21,7 @@
     </div>
     </transition>
     <a :href="$root.url + '/' + userShop + '/edit/general'">{{ $trans.translation.setting }}</a>
-    <li v-bind:class="{'toggled-list' : toggledList === 3}" @click.prevent="toggleList(3)">{{ $trans.translation.language }}&nbsp;<small class="icon-arrow-down"></small>
+    <li v-bind:class="{'toggled-list' : toggledList === 3}" @click.prevent="toggleList(3)">{{ $trans.translation.language }}&nbsp;<i class="fas fa-chevron-down"></i>
     </li>
     <transition name="slide-down-height">
       <div v-show="toggledList === 3">

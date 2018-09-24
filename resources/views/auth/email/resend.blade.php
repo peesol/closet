@@ -9,11 +9,11 @@
     <div class="panel-body">
       @if (session('success'))
         <div class="alert-box success margin-10-bottom">
-            <i class="icon-checkmark font-green"></i> {{ session('success') }}
+            <i class="fas fa-check font-green"></i> {{ session('success') }}
         </div>
       @elseif (session('error'))
         <div class="alert-box error margin-10-bottom">
-            <i class="icon-cross font-red"></i> {{ session('error') }}
+            <i class="fas fa-exclamation-circle font-red"></i> {{ session('error') }}
         </div>
       @endif
       <form class="form-horizontal" role="form" method="POST" action="{{ route('resendEmailPost') }}">

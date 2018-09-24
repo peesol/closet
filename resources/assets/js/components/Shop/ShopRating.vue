@@ -1,6 +1,6 @@
 <template>
 <div class="profile-rating" v-show="points !== null">
-  <label><i class="icon-star-full"></i>&nbsp;<span>{{ points }}%</span></label>
+  <label><i class="fas fa-star"></i>&nbsp;<span>{{ points }}%</span></label>
 </div>
 </template>
 

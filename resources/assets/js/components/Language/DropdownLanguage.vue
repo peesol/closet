@@ -1,6 +1,6 @@
 <template>
 <div id="full-line">
-  <li class="nested" v-for="(lang, key) in langs" @click.prevent="selectLang(key)">{{lang}}&nbsp;<small v-show="key == $root.locale" class="icon-checkmark font-green"></small></li>
+  <li class="nested" v-for="(lang, key) in langs" @click.prevent="selectLang(key)">{{lang}}&nbsp;<small v-show="key == $root.locale" class="fas fa-check font-green"></small></li>
 </div>
 </template>
 

@@ -6,7 +6,7 @@
       <label class="heading full-label">{{$trans.translation.name}}</label>
         <div class="input-group half-width-res">
 				   <input class="input-addon-field left" type="text" v-model="name" name="name">
-          <button :disabled="$root.loading" class="checkmark-btn input-addon right" @click.prevent="edit"><i class="icon-checkmark"></i></button>
+          <button :disabled="$root.loading" class="checkmark-btn input-addon right" @click.prevent="edit"><i class="fas fa-check"></i></button>
         </div>
 		</form>
 		</div>
@@ -27,7 +27,7 @@
         </tr>
         <tr v-for="(product, index) in products">
           <td class="center">
-            <a @click.prevent="add(product.id, index)"><i v-bind:class="{ 'icon-checked font-green': product.added === true, 'icon-unchecked': product.added === false}"></i></a>
+            <a @click.prevent="add(product.id, index)"><i v-bind:class="{ 'fas fa-check-square font-green': product.added === true, 'far fa-square': product.added === false}"></i></a>
           </td>
           <td class="break-word">
             {{product.name}}

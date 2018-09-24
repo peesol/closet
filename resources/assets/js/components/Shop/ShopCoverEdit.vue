@@ -4,7 +4,7 @@
   <form v-on:submit.prevent="edit" method="post">
 
     <div class="cover-input margin-10-top">
-      <span class="icon-images"></span>
+      <span class="fas fa-images"></span>
       <img :src="cover">
     </div>
     <div class="flex flex-between padding-15-top">

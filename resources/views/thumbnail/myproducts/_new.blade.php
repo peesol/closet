@@ -8,7 +8,7 @@
             <img class="products-img-thumb" src="{{$product->getImage()}}" alt="{{$product->thumbnail}}">
             </a>
             @if($product->visibility === 'unlisted')
-              <span class="private icon-private" style="font-size:25px;"></span>
+              <span class="align-top-right fa-2x fa-eye-slash fa-inverse far" style="font-size:25px;"></span>
             @endif
 
             @if (!$product->discount_price)
@@ -16,8 +16,7 @@
             @else
             <span class="sale top-right">Sale</span>
             <span class="price bottom-left">
-              <strike>{{ number_format($product->price) }}฿</strike>
-              <small class="icon-next-arrow"></small>
+              <s>{{ number_format($product->price) }}฿</s>&nbsp;
               <font>{{ number_format($product->discount_price) }}฿</font>
             </span>
             @endif
@@ -29,8 +28,7 @@
           <p class="product-p">{{__('message.price')}} : {{ number_format($product->price) }}฿</p>
           @else
           <p class="product-p">
-            {{__('message.price')}}&nbsp;:&nbsp;<strike>{{ number_format($product->price) }}฿</strike>
-            <small class="icon-next-arrow font-grey"></small>
+            {{__('message.price')}}&nbsp;:&nbsp;<s>{{ number_format($product->price) }}฿</s>&nbsp;
             <font class="font-green">{{ number_format($product->discount_price) }}฿</font>
           </p>
           @endif
@@ -45,12 +43,12 @@
 
         <form action="/product/{{ $product->uid}}" method="post" class="align-right">
 
-        <button type="button" onclick='document.location.href="/product/{{ $product->uid}}/edit"' class="edit-btn round-btn">
-          <small class="icon-cog"></small>
+        <button type="button" onclick='document.location.href="/product/{{ $product->uid}}/edit"' class="flat-btn">
+          <i class="fas fa-pen"></i>
         </button>
 
-        <button type="submit" class="delete-btn round-btn" onclick="if(!confirm('{{ __('message.form_confirm') }}')) { return false; }">
-          <small class="icon-bin"></small>
+        <button type="submit" class="flat-btn delete" onclick="if(!confirm('{{ __('message.form_confirm') }}')) { return false; }">
+          <i class="fas fa-trash-alt"></i>
         </button>
 
         {{ csrf_field() }}

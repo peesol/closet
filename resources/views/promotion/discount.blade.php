@@ -17,7 +17,7 @@
     </div>
     <div class="panel-body">
       <div class="alert-box warning">
-        <span class="icon-warning"></span>&nbsp;{{__('message.product_discount_warn')}}
+        <span class="fas fa-exclamation-triangle"></span>&nbsp;{{__('message.product_discount_warn')}}
       </div>
       <product-discount points="{{$points->discount}}"></product-discount>
     </div>

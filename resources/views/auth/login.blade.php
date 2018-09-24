@@ -5,7 +5,7 @@
 @section('content')
 <div class="container">
             <div class="small-panel">
-                <div class="panel-heading"><label class="heading"><span class="icon-lock"></span>{{__('auth.login')}}</label></div>
+                <div class="panel-heading"><label class="heading"><i class="fas fa-lock"></i>{{__('auth.login')}}</label></div>
                 <div class="panel-body">
                    <form role="form" method="POST" action="{{ route('login') }}">
                     {{ csrf_field() }}

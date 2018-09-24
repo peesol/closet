@@ -33,7 +33,7 @@
   <div class="margin-20-top" v-show="shippings.length">
     <label class="heading">{{$trans.translation.shipping}}</label>
     <div v-for="(item, index) in shippings" class="padding-10" id="full-line">
-      <button @click.prevent="remove(index)" class="flat-btn icon-bin" v-show="shippings.length > 1"></button>
+      <button @click.prevent="remove(index)" class="flat-btn fas fa-trash-alt" v-show="shippings.length > 1"></button>
       {{ item.method }}&nbsp;/&nbsp;{{ item.time }}&nbsp;{{$trans.translation.days}}&nbsp;/&nbsp;{{ item.free ? 'free' : item.fee + '฿' }}
     </div>
     <div class="align-right full-width padding-15-top" v-show="!saved">

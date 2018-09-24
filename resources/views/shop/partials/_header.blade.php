@@ -2,7 +2,9 @@
 
 @if(Auth::check() && Auth::user()->id === $shop->user_id)
   <a href="/{{$shop->slug}}/edit/general">
-    <button class="align-top-right icon-cog edit-btn round-btn"></button>
+    <button class="align-top-right flat-btn icon-bg padding-10">
+      <i class="fas fa-pen"></i>
+    </button>
   </a>
 @endif
   <img src="{{ $shop->getCover() }}">
@@ -21,7 +23,7 @@
     <div class="profile-header-row flex">
       <label class="profile-name">{{ $shop->name }}&nbsp;
         @if ( $shop->usertype === 2)
-          <i class="icon-checkmark verified-profile"></i>
+          <i class="fas fa-check verified-profile"></i>
         @endif
       </label>
     </div>

@@ -21591,8 +21591,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = {
   data: function data() {
@@ -24492,15 +24490,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = {
   data: function data() {
@@ -24523,21 +24512,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       });
     },
     vote: function vote(type) {
-      if (this.userVote == type) {
-        this[type]--;
-        this.userVote = null;
-        this.deleteVote(type);
-        return;
+      if (this.$root.authenticated) {
+        if (this.userVote == type) {
+          this[type]--;
+          this.userVote = null;
+          this.deleteVote(type);
+          return;
+        }
+        if (this.userVote) {
+          this[type == 'up' ? 'down' : 'up']--;
+        }
+        this[type]++;
+        this.userVote = type;
+
+        this.createVote(type);
+      } else {
+        toastr.warning(this.$trans.translation.login_first);
       }
-
-      if (this.userVote) {
-        this[type == 'up' ? 'down' : 'up']--;
-      }
-
-      this[type]++;
-      this.userVote = type;
-
-      this.createVote(type);
     },
     deleteVote: function deleteVote(type) {
       this.$http.delete(this.$root.url + '/product/' + this.productUid + '/votes');
@@ -24546,9 +24537,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.$http.post(this.$root.url + '/product/' + this.productUid + '/votes', {
         type: type
       });
-    },
-    loginFirst: function loginFirst() {
-      toastr.warning(this.$trans.translation.login_first);
     },
     logView: function logView() {
       this.$http.put(this.$root.url + '/product/' + this.productUid + '/views', {
@@ -24850,6 +24838,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = {
   data: function data() {
@@ -24887,22 +24882,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       if (!confirm(this.$trans.translation.confirm + '?')) {
         return;
       } else {
-        this.$root.loading = true;
-        this.$http.put(this.$root.url + '/profile/promotions/manage/discount/' + uid + '/add', { discount: this.discount }).then(function (response) {
-          _this2.$root.loading = false;
-          toastr.success(_this2.$trans.translation.success);
-          if (_this2.remaining_points === 0) {
-            alert(_this2.$trans.translation.not_enough_points);
-          } else {
+        if (this.remaining_points < 1) {
+          alert(this.$trans.translation.not_enough_points);
+        } else {
+          this.$root.loading = true;
+          this.$http.put(this.$root.url + '/profile/promotions/manage/discount/' + uid + '/add', { discount: this.discount }).then(function (response) {
+            _this2.$root.loading = false;
+            toastr.success(_this2.$trans.translation.success);
             _this2.$delete(_this2.products, index);
             _this2.remaining_points--;
             _this2.discount_products.push(response.body);
             _this2.discount = null;
-          }
-        }, function (response) {
-          _this2.$root.loading = false;
-          toastr.error(_this2.$trans.translation.error);
-        });
+          }, function (response) {
+            _this2.$root.loading = false;
+            toastr.error(_this2.$trans.translation.error);
+          });
+        }
       }
     },
     remove: function remove(uid, index) {
@@ -24989,7 +24984,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_algoliasearch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_algoliasearch__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_algoliasearch_helper__ = __webpack_require__(192);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_algoliasearch_helper___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_algoliasearch_helper__);
-//
 //
 //
 //
@@ -25701,6 +25695,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = {
   data: function data() {
@@ -25713,7 +25708,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     };
   },
 
+  computed: {},
   methods: {
+    contactType: function contactType(type) {
+      var social = ['facebook', 'instagram', 'line', 'youtube'];
+      var general = {
+        phone: 'phone',
+        email: 'envelope',
+        location: 'map-marker-alt',
+        website: 'globe-americas'
+      };
+      if (social.includes(type)) {
+        return 'fab fa-' + type;
+      } else if (general.hasOwnProperty(type)) {
+        return 'fas fa-' + general[type];
+      }
+    },
     getContact: function getContact() {
       var _this = this;
 
@@ -26306,6 +26316,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
 //
 //
 //
@@ -50546,7 +50557,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }],
     staticClass: "align-right full-height"
   }, [_c('button', {
-    staticClass: "dropdown-btn icon-plus",
+    staticClass: "dropdown-btn light",
     class: {
       'btn-active': _vm.formVisible === 1
     },
@@ -50556,7 +50567,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.toggle(1)
       }
     }
-  }), _vm._v(" "), _c('div', {
+  }, [_c('i', {
+    staticClass: "fas fa-plus"
+  })]), _vm._v(" "), _c('div', {
     directives: [{
       name: "show",
       rawName: "v-show",
@@ -50589,9 +50602,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.addToNote()
       }
     }
-  }, [_c('span', {
+  }, [_c('i', {
     class: {
-      'icon-note font-green': _vm.addedToNote, 'icon-note font-grey': !_vm.addedToNote
+      'fas fa-book font-green': _vm.addedToNote, 'fas fa-book font-grey': !_vm.addedToNote
     }
   }), _vm._v("\n             " + _vm._s(_vm.$trans.translation.my_note) + "\n          ")])]), _vm._v(" "), _vm._l((_vm.collections), function(collection, index) {
     return _c('li', [_c('a', {
@@ -50602,9 +50615,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           _vm.addToCollection(_vm.productId, collection.id, index)
         }
       }
-    }, [_c('span', {
+    }, [_c('i', {
       class: {
-        'icon-checked font-green': collection.added, 'icon-unchecked font-grey': !collection.added
+        'fas fa-check-square font-green': collection.added, 'far fa-square': !collection.added
       }
     }), _vm._v("\n             " + _vm._s(collection.name) + "\n          ")])])
   })], 2), _vm._v(" "), _c('li', [_c('button', {
@@ -50653,10 +50666,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.createCol($event)
       }
     }
-  }, [_c('small', {
-    staticClass: "icon-checkmark"
+  }, [_c('i', {
+    staticClass: "fas fa-check"
   })])])]), _vm._v(" "), _c('button', {
-    staticClass: "dropdown-btn icon-sub-menu",
+    staticClass: "dropdown-btn light fas fa-ellipsis-v",
     class: {
       'btn-active': _vm.formVisible === 2
     },
@@ -51122,7 +51135,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('div', {
     staticClass: "image-file-input margin-center"
   }, [_c('span', {
-    staticClass: "icon-images"
+    staticClass: "fas fa-images"
   }), _vm._v(" "), _c('img', {
     attrs: {
       "src": _vm.image_filename
@@ -51553,26 +51566,32 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "color-heading grey-bg"
     }, [_c('label', {
       staticClass: "full-label input-label"
-    }, [_vm._v(_vm._s(showcase.name))])]), _vm._v(" "), _c('div', {
-      staticClass: "margin-10-top padding-15-bottom padding-15-horizontal"
-    }, [_c('div', {
-      staticClass: "form-group"
+    }, [_vm._v(_vm._s(showcase.name))])]), _vm._v(" "), _c('div', [_c('div', {
+      staticClass: "padding-10",
+      attrs: {
+        "id": "full-line"
+      }
     }, [_c('label', {
-      staticClass: "input-label"
-    }, [_vm._v(_vm._s(_vm.$trans.translation.show_cover))]), _vm._v(" "), _c('button', {
-      staticClass: "transparent-bg",
+      staticClass: "input-label margin-10-right"
+    }, [_vm._v(_vm._s(_vm.$trans.translation.show_cover))]), _vm._v(" "), _c('label', {
+      staticClass: "switch near-text"
+    }, [_c('input', {
+      attrs: {
+        "type": "checkbox"
+      },
+      domProps: {
+        "checked": showcase.show
+      },
       on: {
-        "click": function($event) {
+        "change": function($event) {
           $event.preventDefault();
           _vm.showToggle(showcase.id, index)
         }
       }
-    }, [_c('span', {
-      class: {
-        'icon-checked font-green': showcase.show == true, 'icon-unchecked font-link': showcase.show == false
-      }
+    }), _vm._v(" "), _c('span', {
+      staticClass: "slider"
     })])]), _vm._v(" "), _c('div', {
-      staticClass: "align-right margin-10-top"
+      staticClass: "align-right padding-10"
     }, [_c('div', {
       staticClass: "input-group lh-35 float-left"
     }, [_c('button', {
@@ -51582,7 +51601,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         value: (true),
         expression: "true"
       }],
-      staticClass: "flat-btn icon-arrow-down",
+      staticClass: "flat-btn fas fa-chevron-circle-down",
       attrs: {
         "disabled": index === _vm.showcases.length - 1
       },
@@ -51601,7 +51620,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         value: (true),
         expression: "true"
       }],
-      staticClass: "flat-btn icon-arrow-up",
+      staticClass: "flat-btn fas fa-chevron-circle-up",
       attrs: {
         "disabled": index === 0
       },
@@ -51612,7 +51631,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         }
       }
     })]), _vm._v(" "), _c('button', {
-      staticClass: "edit-btn round-btn",
+      staticClass: "flat-btn",
       on: {
         "click": function($event) {
           $event.preventDefault();
@@ -51620,9 +51639,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         }
       }
     }, [_c('i', {
-      staticClass: "icon-cog"
+      staticClass: "fas fa-pen"
     })]), _vm._v(" "), _c('button', {
-      staticClass: "delete-btn round-btn",
+      staticClass: "flat-btn delete",
       on: {
         "click": function($event) {
           $event.preventDefault();
@@ -51630,7 +51649,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         }
       }
     }, [_c('i', {
-      staticClass: "icon-bin"
+      staticClass: "fas fa-trash-alt"
     })])])])])
   }), _vm._v(" "), _c('div', {
     directives: [{
@@ -51670,7 +51689,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }
   }, [_vm._v(_vm._s(_vm.$trans.translation.choice) + " "), _c('small', {
-    staticClass: "icon-arrow-down"
+    staticClass: "fas fa-chevron-down"
   })])]), _vm._v(" "), _c('div', {
     directives: [{
       name: "show",
@@ -51872,8 +51891,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "margin-20-bottom"
   }, [_c('div', {
     staticClass: "image-file-input margin-center"
-  }, [_c('span', {
-    staticClass: "icon-images"
+  }, [_c('i', {
+    staticClass: "fas fa-images"
   }), _vm._v(" "), _c('img', {
     attrs: {
       "src": _vm.image_filename
@@ -52055,7 +52074,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         value: (key == _vm.$root.locale),
         expression: "key == $root.locale"
       }],
-      staticClass: "icon-checkmark font-green"
+      staticClass: "fas fa-check font-green"
     })])
   }))
 },staticRenderFns: []}
@@ -52102,8 +52121,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }, [_c('td', [_vm._v("\n        " + _vm._s(_vm.$trans.translation.notification_title[data.type] + ' ' + data.body)), _c('br'), _vm._v(" "), _c('small', [_vm._v(_vm._s(data.created_at))])]), _vm._v(" "), _c('td', {
       staticClass: "align-center font-15em"
     }, [_c('a', {
+      staticClass: "fas fa-check-square",
       class: {
-        'icon-checked font-green': data.read, 'icon-unchecked font-grey': !data.read
+        'font-green': data.read, 'font-grey': !data.read
       },
       on: {
         "click": function($event) {
@@ -52181,7 +52201,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }
   }, [_c('i', {
-    staticClass: "icon-checkmark"
+    staticClass: "fas fa-check"
   })])])])]), _vm._v(" "), _c('div', {
     staticClass: "panel-heading"
   }, [_c('label', {
@@ -52250,7 +52270,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }, [_c('i', {
       class: {
-        'icon-checked font-green': product.added === true, 'icon-unchecked': product.added === false
+        'fas fa-check-square font-green': product.added === true, 'far fa-square': product.added === false
       }
     })])]), _vm._v(" "), _c('td', {
       staticClass: "break-word"
@@ -52503,7 +52523,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }
   }), _vm._v(" "), _c('button', {
-    staticClass: "search-btn icon-search",
+    staticClass: "search-btn fas fa-search",
     attrs: {
       "type": "submit"
     }
@@ -52577,7 +52597,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           value: (_vm.confirmed.shop !== key),
           expression: "confirmed.shop !== key"
         }],
-        staticClass: "icon-bin flat-btn",
+        staticClass: "fas fa-times flat-btn delete",
         on: {
           "click": function($event) {
             $event.preventDefault();
@@ -52717,8 +52737,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           _vm.applyDiscount(shop[0].options.shop_id)
         }
       }
-    }, [_c('small', {
-      staticClass: "icon-checkmark"
+    }, [_c('i', {
+      staticClass: "fas fa-check"
     })])])])]), _vm._v(" "), _c('tr', {
       directives: [{
         name: "show",
@@ -52902,7 +52922,7 @@ if (false) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
-    staticClass: "padding-15-horizontal"
+    staticClass: "padding-15-horizontal overflow-x-auto"
   }, [_c('h2', {
     class: {
       'font-red': _vm.points === 0, 'font-green': _vm.points !== 0
@@ -52924,9 +52944,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "text-nowrap text-row"
     }, [_vm._v(_vm._s(item.name))]), _vm._v(" "), _c('div', {
       staticClass: "text-row"
-    }, [_c('strike', [_vm._v(_vm._s(_vm.$number.currency(item.price)) + " ฿")]), _vm._v(" "), _c('small', {
-      staticClass: "icon-next-arrow"
-    }), _vm._v(" "), _c('font', {
+    }, [_c('s', [_vm._v(_vm._s(_vm.$number.currency(item.price)) + " ฿")]), _vm._v(" \n        "), _c('font', {
       staticClass: "font-green"
     }, [_vm._v(_vm._s(_vm.$number.currency(item.discount_price)) + " ฿")])], 1), _vm._v(" "), _c('div', {
       staticClass: "text-row"
@@ -52935,40 +52953,36 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }, [_vm._v(_vm._s(_vm.$trans.translation.expired) + " " + _vm._s(item.discount_date))])], 1), _vm._v(" "), _c('div', {
       staticClass: "align-right"
     }, [_c('button', {
-      staticClass: "round-btn delete-btn",
+      staticClass: "flat-btn",
       on: {
         "click": function($event) {
           $event.preventDefault();
           _vm.remove(item.uid, index)
         }
       }
-    }, [_c('small', {
-      staticClass: "icon-cross"
+    }, [_c('i', {
+      staticClass: "fas fa-trash-alt"
     })])])])
   })], 2), _vm._v(" "), _c('label', {
-    staticClass: "full-label grey-bg heading padding-10"
+    staticClass: "full-label heading padding-10"
   }, [_vm._v(_vm._s(_vm.$trans.translation.shop_products))]), _vm._v(" "), _vm._l((_vm.products), function(item, index) {
     return _c('div', {
       staticClass: "full-width"
-    }, [_c('div', {
-      staticClass: "col-3-flex-res panel-heading"
-    }, [_c('div', {
-      staticClass: "text-nowrap text-row"
-    }, [_vm._v(_vm._s(item.name))]), _vm._v(" "), _c('div', {
-      staticClass: "text-row"
-    }, [_vm._v(_vm._s(_vm.$trans.translation.price) + " " + _vm._s(_vm.$number.currency(item.price)) + " ฿")]), _vm._v(" "), _c('div', {
-      staticClass: "align-right"
+    }, [_c('table', {
+      staticClass: "c-table no-margin"
+    }, [_c('tr', [_c('th', [_vm._v(_vm._s(_vm.$trans.translation.products))]), _vm._v(" "), _c('th', [_vm._v(_vm._s(_vm.$trans.translation.price))]), _vm._v(" "), _c('th')]), _vm._v(" "), _c('tr', [_c('td', [_vm._v(_vm._s(item.name))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(_vm.$number.currency(item.price)))]), _vm._v(" "), _c('td', {
+      staticClass: "center"
     }, [_c('button', {
-      staticClass: "round-btn",
+      staticClass: "flat-btn",
       on: {
         "click": function($event) {
           $event.preventDefault();
           _vm.toggleForm(item.id)
         }
       }
-    }, [_c('small', {
-      staticClass: "icon-plus font-grey"
-    })])])]), _vm._v(" "), _c('div', {
+    }, [_c('i', {
+      staticClass: "fas fa-plus font-15em"
+    })])])])]), _vm._v(" "), _c('div', {
       directives: [{
         name: "show",
         rawName: "v-show",
@@ -53017,18 +53031,14 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticStyle: {
         "border": "none"
       }
-    }, [_vm._v(_vm._s(_vm.$trans.translation.baht))]), _vm._v(" "), _vm._m(0, true)])])])])
+    }, [_vm._v(_vm._s(_vm.$trans.translation.baht))]), _vm._v(" "), _c('button', {
+      staticClass: "normal-sq green-box",
+      attrs: {
+        "type": "submit"
+      }
+    }, [_vm._v(_vm._s(_vm.$trans.translation.confirm))])])])])])
   })], 2)
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('button', {
-    staticClass: "round-btn add-btn",
-    attrs: {
-      "type": "submit"
-    }
-  }, [_c('small', {
-    staticClass: "icon-checkmark"
-  })])
-}]}
+},staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
@@ -53064,8 +53074,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "flex"
   }, [_c('div', {
     staticClass: "profile-thumbnail-input"
-  }, [_c('span', {
-    staticClass: "icon-images"
+  }, [_c('i', {
+    staticClass: "fas fa-images"
   }), _vm._v(" "), _c('img', {
     attrs: {
       "src": _vm.thumbnail
@@ -53156,7 +53166,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }
   }), _vm._v(" "), _c('button', {
-    staticClass: "input-addon right checkmark-btn icon-checkmark",
+    staticClass: "input-addon right checkmark-btn fas fa-check",
     attrs: {
       "disabled": _vm.$root.loading,
       "type": "submit"
@@ -53180,34 +53190,31 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "width": "100%"
       }
     }, [_vm._v(_vm._s(choice.name))]), _vm._v(" "), _c('td', {
-      staticClass: "s-cell"
-    }, [_c('button', {
-      staticClass: "round-btn font-white",
-      class: {
-        'green-bg': choice.stock, 'red-bg': !choice.stock
-      },
+      staticClass: "s-cell center"
+    }, [_c('a', {
       on: {
         "click": function($event) {
           $event.preventDefault();
           _vm.toggleChoice(choice.id, index)
         }
       }
-    }, [_c('small', {
+    }, [_c('i', {
+      staticClass: "fas fa-check-square",
       class: {
-        'icon-checkmark': choice.stock, 'icon-cross': !choice.stock
+        'font-green': choice.stock, 'font-grey': !choice.stock
       }
     })])]), _vm._v(" "), _c('td', {
-      staticClass: "s-cell"
+      staticClass: "s-cell center"
     }, [_c('button', {
-      staticClass: "delete-btn round-btn",
+      staticClass: "flat-btn delete",
       on: {
         "click": function($event) {
           $event.preventDefault();
           _vm.remove(choice.id, index)
         }
       }
-    }, [_c('small', {
-      staticClass: "icon-bin"
+    }, [_c('i', {
+      staticClass: "fas fa-trash-alt"
     })])])])
   })], 2)]) : _c('div')])
 },staticRenderFns: []}
@@ -53283,7 +53290,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('div', {
     staticClass: "cover-input margin-10-top"
   }, [_c('span', {
-    staticClass: "icon-images"
+    staticClass: "fas fa-images"
   }), _vm._v(" "), _c('img', {
     attrs: {
       "src": _vm.cover
@@ -53514,8 +53521,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }, [_c('div', {
       staticClass: "color-heading",
       class: contact.type
-    }, [_c('span', {
-      class: 'icon-' + contact.type
+    }, [_c('i', {
+      class: _vm.contactType(contact.type)
     })]), _vm._v(" "), _c('div', {
       staticClass: "padding-15-horizontal padding-15-top"
     }, [_c('div', {
@@ -53543,7 +53550,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         }
       }
     }), _vm._v(" "), _c('button', {
-      staticClass: "icon-checkmark form-input-btn",
+      staticClass: "fas fa-check form-input-btn",
       attrs: {
         "disabled": _vm.$root.loading,
         "type": "button"
@@ -53580,7 +53587,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         }
       }
     }), _vm._v(" "), _c('button', {
-      staticClass: "icon-checkmark form-input-btn",
+      staticClass: "fas fa-check form-input-btn",
       attrs: {
         "disabled": _vm.$root.loading,
         "type": "button"
@@ -53594,31 +53601,36 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     })])]), _vm._v(" "), _c('div', {
       staticClass: "form-group margin-10-top"
     }, [_c('label', {
-      staticClass: "font-grey input-label"
-    }, [_vm._v(_vm._s(_vm.$trans.translation.show))]), _vm._v(" "), _c('button', {
-      staticClass: "transparent-bg",
+      staticClass: "font-grey input-label margin-10-right"
+    }, [_vm._v(_vm._s(_vm.$trans.translation.show))]), _vm._v(" "), _c('label', {
+      staticClass: "switch near-text"
+    }, [_c('input', {
+      attrs: {
+        "type": "checkbox"
+      },
+      domProps: {
+        "checked": contact.show
+      },
       on: {
-        "click": function($event) {
+        "change": function($event) {
           $event.preventDefault();
           _vm.toggle(contact.id, index)
         }
       }
-    }, [_c('span', {
-      class: {
-        'icon-checked font-green': contact.show == true, 'icon-unchecked font-link': contact.show == false
-      }
+    }), _vm._v(" "), _c('span', {
+      staticClass: "slider"
     })])])]), _vm._v(" "), _c('div', {
       staticClass: "align-right panel-body"
     }, [_c('button', {
-      staticClass: "delete-btn round-btn",
+      staticClass: "flat-btn delete font-15em",
       on: {
         "click": function($event) {
           $event.preventDefault();
           _vm.remove(contact.id, index)
         }
       }
-    }, [_c('small', {
-      staticClass: "icon-bin"
+    }, [_c('i', {
+      staticClass: "fas fa-trash-alt"
     })])])])
   }), _vm._v(" "), _c('div', {
     directives: [{
@@ -53702,7 +53714,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         value: (product.shop_type === 2),
         expression: "product.shop_type === 2"
       }],
-      staticClass: "icon-checkmark verified-profile top-left"
+      staticClass: "fas fa-check-circle verified-profile top-left"
     }), _vm._v(" "), (!product.discount_price) ? _c('div', [_c('span', {
       staticClass: "price bottom-left"
     }, [_vm._v(_vm._s(_vm.$number.currency(product.price)) + " ฿")])]) : _c('div', [_c('span', {
@@ -53720,9 +53732,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "product-p"
     }, [_vm._v("\n            " + _vm._s(_vm.$trans.translation.price) + " "), _c('span', [_vm._v(_vm._s(_vm.$number.currency(product.price)) + " ฿")])]) : _c('p', {
       staticClass: "product-p"
-    }, [_vm._v("\n            " + _vm._s(_vm.$trans.translation.price) + " \n            "), _c('strike', [_vm._v(_vm._s(_vm.$number.currency(product.price)) + "฿")]), _vm._v(" "), _c('small', {
-      staticClass: "icon-next-arrow"
-    }), _vm._v(" "), _c('font', {
+    }, [_vm._v("\n            " + _vm._s(_vm.$trans.translation.price) + " \n            "), _c('s', [_vm._v(_vm._s(_vm.$number.currency(product.price)) + "฿")]), _vm._v(" \n            "), _c('font', {
       staticClass: "font-green"
     }, [_vm._v(_vm._s(_vm.$number.currency(product.discount_price)) + " ฿")])], 1)])])
   })), _vm._v(" "), _c('pagination', {
@@ -53746,7 +53756,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return (_vm.$root.authenticated) ? _c('div', [_c('div', {
+  return _c('div', [_c('div', {
     staticClass: "vote"
   }, [_c('button', {
     staticClass: "vote-btn",
@@ -53759,8 +53769,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.vote('up')
       }
     }
-  }, [_c('span', {
-    staticClass: "icon-heart"
+  }, [_c('i', {
+    staticClass: "fas fa-heart fa-stack"
   }), _vm._v(" " + _vm._s(_vm.up) + "\n\t\t")])]), _vm._v(" "), _c('div', {
     staticClass: "vote"
   }, [_c('button', {
@@ -53774,34 +53784,16 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.vote('down')
       }
     }
-  }, [_c('span', {
-    staticClass: "icon-heart-broken"
-  }), _vm._v(" " + _vm._s(_vm.down) + "\n\t\t")])])]) : _c('div', [_c('div', {
-    staticClass: "vote"
-  }, [_c('button', {
-    staticClass: "vote-btn",
-    on: {
-      "click": function($event) {
-        $event.preventDefault();
-        _vm.loginFirst($event)
-      }
-    }
-  }, [_c('span', {
-    staticClass: "icon-heart"
-  })]), _vm._v(" " + _vm._s(_vm.up) + "\n  ")]), _vm._v(" "), _c('div', {
-    staticClass: "vote"
-  }, [_c('button', {
-    staticClass: "vote-btn",
-    on: {
-      "click": function($event) {
-        $event.preventDefault();
-        _vm.loginFirst($event)
-      }
-    }
-  }, [_c('span', {
-    staticClass: "icon-heart-broken"
-  })]), _vm._v(" " + _vm._s(_vm.down) + "\n  ")])])
-},staticRenderFns: []}
+  }, [_vm._m(0), _vm._v(" " + _vm._s(_vm.down) + "\n\t\t")])])])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('span', {
+    staticClass: "fa-stack"
+  }, [_c('i', {
+    staticClass: "fa fa-heart fa-stack-1x"
+  }), _vm._v(" "), _c('i', {
+    staticClass: "fa fa-bolt fa-stack-1x fa-inverse"
+  })])
+}]}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
@@ -53941,7 +53933,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }],
     staticClass: "profile-rating"
   }, [_c('label', [_c('i', {
-    staticClass: "icon-star-full"
+    staticClass: "fas fa-star"
   }), _vm._v(" "), _c('span', [_vm._v(_vm._s(_vm.points) + "%")])])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
@@ -54185,15 +54177,15 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         value: (image.id && _vm.images.length > 0),
         expression: "image.id && images.length > 0"
       }],
-      staticClass: "align-top-right round-btn red-bg",
+      staticClass: "align-top-right flat-btn icon-bg padding-10",
       on: {
         "click": function($event) {
           $event.preventDefault();
           _vm.remove(image.id, index)
         }
       }
-    }, [_c('span', {
-      staticClass: "icon-bin"
+    }, [_c('i', {
+      staticClass: "fas fa-trash-alt"
     })])])
   })) : _c('div', {
     staticClass: "padding-15-vertical"
@@ -54641,8 +54633,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.clicked($event)
       }
     }
-  }, [_c('span', {
-    staticClass: "icon-bell",
+  }, [_c('i', {
+    staticClass: "fas fa-bell",
     class: {
       'font-orange': _vm.notificationCount > 0
     }
@@ -54670,7 +54662,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }],
     staticClass: "menu-btn-wrap"
   }, [_c('button', {
-    staticClass: "menu-btn icon-menu",
+    staticClass: "menu-btn fas fa-bars",
     class: {
       'btn-active': _vm.toggled
     },
@@ -54696,31 +54688,31 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "href": "/"
     }
   }, [_c('i', {
-    staticClass: "icon-home"
+    staticClass: "fas fa-home"
   }), _vm._v(_vm._s(_vm.$trans.translation.home))]), _vm._v(" "), _c('a', {
     attrs: {
       "href": "/trending"
     }
   }, [_c('i', {
-    staticClass: "icon-fire"
+    staticClass: "fas fa-fire"
   }), _vm._v(_vm._s(_vm.$trans.translation.trending))]), _vm._v(" "), _c('a', {
     attrs: {
       "href": "/secondhand"
     }
   }, [_c('i', {
-    staticClass: "icon-refresh"
+    staticClass: "fas fa-redo-alt"
   }), _vm._v(_vm._s(_vm.$trans.translation.used_market))]), _vm._v(" "), _c('a', {
     attrs: {
       "href": "/category/main"
     }
   }, [_c('i', {
-    staticClass: "icon-category"
+    staticClass: "fas fa-th-large"
   }), _vm._v(_vm._s(_vm.$trans.translation.categories))]), _vm._v(" "), _c('a', {
     attrs: {
       "href": "/help/home"
     }
   }, [_c('i', {
-    staticClass: "icon-info"
+    staticClass: "fas fa-question-circle"
   }), _vm._v(_vm._s(_vm.$trans.translation.help))])]), _vm._v(" "), _c('div', {
     attrs: {
       "id": "full-line"
@@ -54756,31 +54748,31 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "href": '/' + _vm.userShop
     }
   }, [_c('i', {
-    staticClass: "icon-user"
+    staticClass: "fas fa-user"
   }), _vm._v(_vm._s(_vm.$trans.translation.my_profile))]), _vm._v(" "), _c('a', {
     attrs: {
       "href": "/profile/note"
     }
   }, [_c('i', {
-    staticClass: "icon-note"
+    staticClass: "fas fa-book"
   }), _vm._v(_vm._s(_vm.$trans.translation.my_note))]), _vm._v(" "), _c('a', {
     attrs: {
       "href": "/profile/mycollection"
     }
   }, [_c('i', {
-    staticClass: "icon-map"
+    staticClass: "fas fa-map"
   }), _vm._v(_vm._s(_vm.$trans.translation.my_collection))]), _vm._v(" "), _c('a', {
     attrs: {
       "href": "/profile/following"
     }
   }, [_c('i', {
-    staticClass: "icon-star-full"
+    staticClass: "fas fa-star"
   }), _vm._v(_vm._s(_vm.$trans.translation.following))]), _vm._v(" "), _c('a', {
     attrs: {
       "href": "/profile/order/buying"
     }
   }, [_c('i', {
-    staticClass: "icon-order"
+    staticClass: "fas fa-list-ul"
   }), _vm._v(_vm._s(_vm.$trans.translation.buying_orders))]), _vm._v(" "), _c('a', {
     attrs: {
       "href": "#"
@@ -54792,7 +54784,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }
   }, [_c('i', {
-    staticClass: "icon-exit"
+    staticClass: "fas fa-sign-out-alt"
   }), _vm._v(_vm._s(_vm.$trans.translation.logout))])])]), _vm._v(" "), _c('div', {
     directives: [{
       name: "show",
@@ -54818,7 +54810,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }
   }, [_c('i', {
-    staticClass: "icon-plus"
+    staticClass: "fas fa-plus"
   }), _vm._v(_vm._s(_vm.$trans.translation.sell))]), _vm._v(" "), _c('div', {
     directives: [{
       name: "show",
@@ -54848,7 +54840,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }
   }, [_c('i', {
-    staticClass: "icon-box"
+    staticClass: "fas fa-archive"
   }), _vm._v(_vm._s(_vm.$trans.translation.my_products))]), _vm._v(" "), _c('div', {
     directives: [{
       name: "show",
@@ -54872,19 +54864,19 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "href": "/profile/promotions/manage"
     }
   }, [_c('i', {
-    staticClass: "icon-price-tag"
+    staticClass: "fas fa-tag"
   }), _vm._v(_vm._s(_vm.$trans.translation.promotions))]), _vm._v(" "), _c('a', {
     attrs: {
       "href": "/profile/order/selling"
     }
   }, [_c('i', {
-    staticClass: "icon-order"
+    staticClass: "fas fa-list-ul"
   }), _vm._v(_vm._s(_vm.$trans.translation.selling_orders))]), _vm._v(" "), _c('a', {
     attrs: {
       "href": _vm.$root.url + '/' + _vm.userShop + '/edit/general'
     }
   }, [_c('i', {
-    staticClass: "icon-cog"
+    staticClass: "fas fa-cog"
   }), _vm._v(_vm._s(_vm.$trans.translation.setting))])]), _vm._v(" "), _c('label', {
     attrs: {
       "id": "menu-label-grey"
@@ -55246,7 +55238,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         value: (_vm.accounts.length > 1),
         expression: "accounts.length > 1"
       }],
-      staticClass: "delete-btn round-btn",
+      staticClass: "flat-btn delete font-15em",
       attrs: {
         "type": "button"
       },
@@ -55256,8 +55248,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           _vm.remove(account.id, index)
         }
       }
-    }, [_c('small', {
-      staticClass: "icon-bin"
+    }, [_c('i', {
+      staticClass: "fas fa-trash-alt"
     })])])])
   }), _vm._v(" "), _c('div', {
     directives: [{
@@ -55504,7 +55496,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         value: (_vm.shippings.length > 1),
         expression: "shippings.length > 1"
       }],
-      staticClass: "flat-btn icon-bin",
+      staticClass: "flat-btn fas fa-trash-alt",
       on: {
         "click": function($event) {
           $event.preventDefault();
@@ -55555,20 +55547,20 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "full-label"
     }, [_vm._l((data.points), function(star) {
       return _c('i', {
-        staticClass: "icon-star-full"
+        staticClass: "fas fa-star"
       })
     }), _vm._v(" ")], 2), _vm._v(" "), _c('p', [_vm._v(_vm._s(data.comment))]), _vm._v(" "), _c('div', {
       staticClass: "not-display align-right full-width"
     }, [_c('button', {
-      staticClass: "delete-btn round-btn",
+      staticClass: "flat-btn delete",
       on: {
         "click": function($event) {
           $event.preventDefault();
           _vm.remove(data.id)
         }
       }
-    }, [_c('small', {
-      staticClass: "icon-bin"
+    }, [_c('i', {
+      staticClass: "fas fa-star"
     })])])])
   }), _vm._v(" "), _c('div', {
     directives: [{
@@ -55579,7 +55571,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }],
     staticClass: "total-rating"
   }, [_c('h2', [_c('i', {
-    staticClass: "icon-star-full"
+    staticClass: "fas fa-star"
   }), _vm._v(" "), _c('span', [_vm._v(_vm._s(_vm.shop_points) + "%")])])]), _vm._v(" "), _vm._l((_vm.reviews), function(review) {
     return _c('div', {
       directives: [{
@@ -55591,7 +55583,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "review-wrapper"
     }, [_c('label', _vm._l((review.points), function(star) {
       return _c('i', {
-        staticClass: "icon-star-full"
+        staticClass: "fas fa-star"
       })
     })), _vm._v(" "), _c('a', {
       staticClass: "text-nowrap"
@@ -55655,8 +55647,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.toggle(1)
       }
     }
-  }, [_c('span', {
-    staticClass: "icon-user"
+  }, [_c('i', {
+    staticClass: "fas fa-user"
   })]), _vm._v(" "), _c('div', {
     directives: [{
       name: "show",
@@ -55686,8 +55678,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.toggleList(1)
       }
     }
-  }, [_vm._v(_vm._s(_vm.$trans.translation.my_products) + " "), _c('small', {
-    staticClass: "icon-arrow-down"
+  }, [_vm._v(_vm._s(_vm.$trans.translation.my_products) + " "), _c('i', {
+    staticClass: "fas fa-chevron-down"
   })]), _vm._v(" "), _c('transition', {
     attrs: {
       "name": "slide-down-height"
@@ -55719,8 +55711,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.toggleList(2)
       }
     }
-  }, [_vm._v(_vm._s(_vm.$trans.translation.sell) + " "), _c('small', {
-    staticClass: "icon-arrow-down"
+  }, [_vm._v(_vm._s(_vm.$trans.translation.sell) + " "), _c('i', {
+    staticClass: "fas fa-chevron-down"
   })]), _vm._v(" "), _c('transition', {
     attrs: {
       "name": "slide-down-height"
@@ -55756,8 +55748,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.toggleList(3)
       }
     }
-  }, [_vm._v(_vm._s(_vm.$trans.translation.language) + " "), _c('small', {
-    staticClass: "icon-arrow-down"
+  }, [_vm._v(_vm._s(_vm.$trans.translation.language) + " "), _c('i', {
+    staticClass: "fas fa-chevron-down"
   })]), _vm._v(" "), _c('transition', {
     attrs: {
       "name": "slide-down-height"
@@ -55974,15 +55966,15 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         value: (image.id && _vm.images.length > 1),
         expression: "image.id && images.length > 1"
       }],
-      staticClass: "align-top-right round-btn red-bg",
+      staticClass: "align-top-right flat-btn icon-bg",
       on: {
         "click": function($event) {
           $event.preventDefault();
           _vm.remove(image.id, index)
         }
       }
-    }, [_c('span', {
-      staticClass: "icon-bin"
+    }, [_c('i', {
+      staticClass: "fas fa-trash-alt"
     })])])
   })), _vm._v(" "), _c('div', {
     staticClass: "padding-15-vertical"
@@ -56639,8 +56631,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           _vm.remove(code.id, index)
         }
       }
-    }, [_c('small', {
-      staticClass: "icon-bin"
+    }, [_c('i', {
+      staticClass: "fas fa-trash-alt"
     })])])])
   })], 2)])], 1)
 },staticRenderFns: []}
@@ -56902,7 +56894,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "click": _vm.go
     }
   }, [_c('span', {
-    staticClass: "icon-cart",
+    staticClass: "fas fa-shopping-cart",
     class: {
       'font-orange': _vm.count > 0
     }
@@ -57081,14 +57073,14 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       attrs: {
         "src": collection.thumbnail
       }
-    })]), _vm._v(" "), _c('span', {
+    })]), _vm._v(" "), _c('i', {
       directives: [{
         name: "show",
         rawName: "v-show",
-        value: (collection.visibility === 'private'),
-        expression: "collection.visibility === 'private'"
+        value: (collection.visibility == 'private'),
+        expression: "collection.visibility == 'private'"
       }],
-      staticClass: "private icon-private"
+      staticClass: "align-bot-right fa-2x fa-eye-slash fa-inverse far"
     })]), _vm._v(" "), _c('div', {
       directives: [{
         name: "show",
@@ -57098,25 +57090,25 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }],
       staticClass: "align-right padding-5"
     }, [_c('button', {
-      staticClass: "round-btn edit-btn",
+      staticClass: "flat-btn",
       on: {
         "click": function($event) {
           $event.preventDefault();
           _vm.edit(collection.slug)
         }
       }
-    }, [_c('small', {
-      staticClass: "icon-cog"
+    }, [_c('i', {
+      staticClass: "fas fa-pen"
     })]), _vm._v(" "), _c('button', {
-      staticClass: "round-btn delete-btn",
+      staticClass: "flat-btn delete",
       on: {
         "click": function($event) {
           $event.preventDefault();
           _vm.removeCol(collection.slug, index)
         }
       }
-    }, [_c('small', {
-      staticClass: "icon-bin"
+    }, [_c('i', {
+      staticClass: "fas fa-trash-alt"
     })])])])
   })) : _c('div', [_c('div', {
     staticClass: "padding-15-vertical align-center"
@@ -57645,7 +57637,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         value: (product.shop_type === 2),
         expression: "product.shop_type === 2"
       }],
-      staticClass: "icon-checkmark verified-profile top-left"
+      staticClass: "fas fa-check verified-profile top-left"
     }), _vm._v(" "), (product.discount_price) ? _c('span', {
       staticClass: "thumb-price-discount bottom-left"
     }, [_vm._v(_vm._s(_vm.$number.currency(product.discount_price)) + "฿")]) : _c('span', {
@@ -57894,7 +57886,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         }
       }
     }), _vm._v(" "), _c('button', {
-      staticClass: "checkmark-btn icon-checkmark",
+      staticClass: "checkmark-btn fas fa-check",
       attrs: {
         "disabled": _vm.$root.loading,
         "type": "submit"
@@ -57973,7 +57965,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }, [_c('a', {
       staticClass: "font-15em",
       class: {
-        'font-green icon-checked': item.added, 'icon-unchecked font-grey': !item.added
+        'font-green fas fa-check-square': item.added, 'fas fa-plus font-grey': !item.added
       },
       on: {
         "click": function($event) {
@@ -58025,16 +58017,14 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }, [_vm._v(_vm._s(product.shop))])])]), _vm._v(" "), _c('div', {
       staticClass: "button-wrap"
     }, [_c('button', {
-      staticClass: "delete-btn round-btn",
+      staticClass: "flat-btn delete fas fa-trash-alt font-15em",
       on: {
         "click": function($event) {
           $event.preventDefault();
           _vm.removeProduct(product.id)
         }
       }
-    }, [_c('small', {
-      staticClass: "icon-bin"
-    })])])])
+    })])])
   })) : _c('div', {
     staticClass: "panel-body"
   }, [_c('label', {
@@ -58168,8 +58158,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           _vm.toggleReply(comment.id)
         }
       }
-    }, [_vm._v(_vm._s(comment.replies.data.length > 1 ? _vm.$trans.translation.show_reply : _vm.$trans.translation.hide_reply) + " "), _c('small', {
-      staticClass: "icon-arrow-up"
+    }, [_vm._v(_vm._s(comment.replies.data.length > 1 ? _vm.$trans.translation.show_reply : _vm.$trans.translation.hide_reply) + " "), _c('i', {
+      staticClass: "fas fa-caret-up"
     })]), _vm._v(" "), _c('a', {
       directives: [{
         name: "show",
@@ -58184,8 +58174,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           _vm.toggleReply(comment.id)
         }
       }
-    }, [_vm._v(_vm._s(comment.replies.data.length > 1 ? _vm.$trans.translation.hide_reply : _vm.$trans.translation.show_reply) + " "), _c('small', {
-      staticClass: "icon-arrow-down"
+    }, [_vm._v(_vm._s(comment.replies.data.length > 1 ? _vm.$trans.translation.hide_reply : _vm.$trans.translation.show_reply) + " "), _c('i', {
+      staticClass: "fas fa-caret-down"
     })])]), _vm._v(" "), _c('transition', {
       attrs: {
         "name": "slide-down-reply"
@@ -58219,7 +58209,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         }
       }
     }), _vm._v(" "), _c('button', {
-      staticClass: "input-addon right",
+      staticClass: "input-addon right checkmark-btn",
       attrs: {
         "disabled": _vm.post_comment
       },
@@ -58229,8 +58219,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           _vm.createReply(comment.id)
         }
       }
-    }, [_c('span', {
-      staticClass: "icon-next-arrow"
+    }, [_c('i', {
+      staticClass: "fas fa-check"
     })])])]), _vm._v(" "), _vm._l((comment.replies.data), function(reply) {
       return (_vm.showReply === comment.id) ? _c('div', {
         staticClass: "replies-wrapper"

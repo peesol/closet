@@ -44,34 +44,35 @@
   <div v-for="(contact, index) in contacts" v-show="contacts.length" class="shadow-2 margin-20-top">
 
     <div class="color-heading" :class="contact.type">
-      <span :class="'icon-' + contact.type"></span>
+      <i :class="contactType(contact.type)"></i>
     </div>
     <div class="padding-15-horizontal padding-15-top">
       <div class="form-group">
         <div class="input-group">
           <input class="form-input-alt" type="text" v-model="contact.body">
-          <button :disabled="$root.loading" class="icon-checkmark form-input-btn" type="button" @click.prevent="updateBody(contact.id,contact.body)"></button>
+          <button :disabled="$root.loading" class="fas fa-check form-input-btn" type="button" @click.prevent="updateBody(contact.id,contact.body)"></button>
         </div>
       </div>
 
       <div class="form-group">
         <div class="input-group">
           <input class="form-input-alt" type="text" placeholder="http://www.yourlink.com" v-model="contact.link">
-          <button :disabled="$root.loading" class="icon-checkmark form-input-btn" type="button" @click.prevent="updateLink(contact.id,contact.link)"></button>
+          <button :disabled="$root.loading" class="fas fa-check form-input-btn" type="button" @click.prevent="updateLink(contact.id,contact.link)"></button>
         </div>
       </div>
 
       <div class="form-group margin-10-top">
-        <label class="font-grey input-label">{{$trans.translation.show}}</label>
-        <button class="transparent-bg" @click.prevent="toggle(contact.id, index)">
-          <span :class="{ 'icon-checked font-green': contact.show == true, 'icon-unchecked font-link': contact.show == false}"></span>
-        </button>
+        <label class="font-grey input-label margin-10-right">{{$trans.translation.show}}</label>
+        <label class="switch near-text">
+          <input @change.prevent="toggle(contact.id, index)" type="checkbox" :checked="contact.show">
+          <span class="slider"></span>
+        </label>
       </div>
     </div>
 
     <div class="align-right panel-body">
-      <button @click.prevent="remove(contact.id, index)" class="delete-btn round-btn">
-        <small class="icon-bin"></small>
+      <button @click.prevent="remove(contact.id, index)" class="flat-btn delete font-15em">
+        <i class="fas fa-trash-alt"></i>
       </button>
     </div>
 
@@ -95,7 +96,24 @@ export default {
       formVisible: false,
     }
   },
+  computed: {
+
+  },
   methods: {
+    contactType(type){
+      var social = ['facebook', 'instagram', 'line', 'youtube']
+      var general = {
+        phone: 'phone',
+        email: 'envelope',
+        location: 'map-marker-alt',
+        website: 'globe-americas',
+      }
+      if (social.includes(type)) {
+        return 'fab fa-' + type
+      } else if (general.hasOwnProperty(type)) {
+        return 'fas fa-' + general[type];
+      }
+    },
     getContact() {
       this.$Progress.start();
       this.$root.loading = true

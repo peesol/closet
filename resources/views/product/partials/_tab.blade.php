@@ -14,7 +14,7 @@
           @if(!Auth::check())
           <div class="alert-box info">
             <label class="input-label full-label">
-              <span class="icon-notification"></span>
+              <i class="fas fa-exclamation-circle"></i>
               {{__('auth.comment_notice')}}<a class="link-text font-bold" href="{{ route('login')}}">&nbsp;{{__('auth.login')}}</a>
             </label>
           </div>

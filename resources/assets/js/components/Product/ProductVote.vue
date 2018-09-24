@@ -1,26 +1,17 @@
 <template>
-<div v-if="$root.authenticated">
+<div>
   <div class="vote">
     <button class="vote-btn" v-bind:class="{'vote-btn-voted': userVote == 'up'}" @click.prevent="vote('up')">
-			<span class="icon-heart"></span>&nbsp;{{ up }}
+			<i class="fas fa-heart fa-stack"></i>&nbsp;{{ up }}
 		</button>
   </div>
   <div class="vote">
     <button class="vote-btn" v-bind:class="{'vote-btn-voted': userVote == 'down'}" @click.prevent="vote('down')">
-			<span class="icon-heart-broken"></span>&nbsp;{{ down }}
+      <span class="fa-stack">
+        <i class="fa fa-heart fa-stack-1x"></i>
+        <i class="fa fa-bolt fa-stack-1x fa-inverse"></i>
+      </span>&nbsp;{{ down }}
 		</button>
-  </div>
-</div>
-<div v-else>
-  <div class="vote">
-    <button class="vote-btn" @click.prevent="loginFirst">
-      <span class="icon-heart"></span>
-    </button>&nbsp;{{ up }}
-  </div>
-  <div class="vote">
-    <button class="vote-btn" @click.prevent="loginFirst">
-      <span class="icon-heart-broken"></span>
-    </button>&nbsp;{{ down }}
   </div>
 </div>
 </template>
@@ -46,21 +37,23 @@ export default {
     },
 
     vote(type) {
-      if (this.userVote == type) {
-        this[type]--;
-        this.userVote = null;
-        this.deleteVote(type);
-        return;
+      if (this.$root.authenticated) {
+        if (this.userVote == type) {
+          this[type]--;
+          this.userVote = null;
+          this.deleteVote(type);
+          return;
+        }
+        if (this.userVote) {
+          this[type == 'up' ? 'down' : 'up']--;
+        }
+        this[type]++;
+        this.userVote = type;
+
+        this.createVote(type);
+      } else {
+        toastr.warning(this.$trans.translation.login_first)
       }
-
-      if (this.userVote) {
-        this[type == 'up' ? 'down' : 'up']--;
-      }
-
-      this[type]++;
-      this.userVote = type;
-
-      this.createVote(type);
     },
 
     deleteVote(type) {
@@ -74,11 +67,6 @@ export default {
       });
 
     },
-
-    loginFirst() {
-      toastr.warning(this.$trans.translation.login_first)
-    },
-
     logView() {
       this.$http.put(this.$root.url + '/product/' + this.productUid + '/views', {
         product_id: this.productUid

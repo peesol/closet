@@ -22,7 +22,7 @@
         <label class="full-label heading">{{__('message.photo_upload')}}</label>
       </div>
       <div class="alert-box info margin-30-horizontal margin-20-top">
-        <label><span class="icon-notification"></span>&nbsp;{{ __('message.photo_limit', ['amount' => '10']) }}</label>
+        <label><i class="fas fa-exclamation-circle"></i>&nbsp;{{ __('message.photo_limit', ['amount' => '10']) }}</label>
       </div>
       <collection-dropzone col-id="{{$collection->id}}" col-slug="{{$collection->slug}}"></collection-dropzone>
       <div class="panel-heading">

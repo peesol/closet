@@ -27,11 +27,8 @@
   background: url(ajax-loader.gif) center center no-repeat #fff
 
 @font-face
-  font-family: icomoon
-  src: url(fonts/icomoon.eot?76p8pg)
-  src: url(fonts/icomoon.eot?76p8pg#iefix) format("embedded-opentype"), url(fonts/icomoon.ttf?76p8pg) format("truetype"), url(fonts/icomoon.woff?76p8pg) format("woff"), url(fonts/icomoon.svg?76p8pg#icomoon) format("svg")
-  font-weight: 400
-  font-style: normal
+  font-family: 'font-awesome'
+  src: url('https://use.fontawesome.com/releases/v5.3.1/css/all.css')
 
 .slick-next, .slick-prev
   font-size: 0
@@ -52,7 +49,8 @@
   outline: 0
   background: transparent
   &:before
-    font-family: icomoon
+    font-family: "Font Awesome 5 Free"
+    font-weight: 900
     font-size: 20px
     line-height: 1
     opacity: 1
@@ -106,10 +104,10 @@
   display: none !important
 
 .slick-prev:before, [dir=rtl] .slick-prev:before
-  content: "\e902"
+  content: "\f053"
 
 .slick-next:before, [dir=rtl] .slick-next:before
-  content: "\e903"
+  content: "\f054"
 
 @media (min-width: 768px)
   .slick-next, .slick-prev
@@ -120,7 +118,7 @@
 
 .slick-dots
   position: absolute
-  bottom: -25px
+  bottom: -20px
   display: block
   width: 100%
   padding: 0
@@ -144,15 +142,16 @@
       &:focus, &:hover
         outline: 0
       &:before
-        font-family: 'Arial'
-        font-size: 30px
+        font-family: "Font Awesome 5 Free"
+        font-weight: 900
+        content: "\f111"
+        font-size: 8px
         line-height: 40px
         position: absolute
         top: 0
         left: 0
         width: 20px
         height: 20px
-        content: '\2022'
         text-align: center
         opacity: .25
         color: #000

@@ -1,7 +1,7 @@
 <template>
 <div class="panel-body">
   <div class="padding-10">
-    <button class="orange-btn normal-sq width-120" @click.prevent="formVisible = !formVisible">{{ $trans.translation.choice}}&nbsp;<small class="icon-arrow-down"></small></button>
+    <button class="orange-btn normal-sq width-120" @click.prevent="formVisible = !formVisible">{{ $trans.translation.choice}}&nbsp;<small class="fas fa-chevron-down"></small></button>
   </div>
 
   <div v-show="formVisible" class="filter">

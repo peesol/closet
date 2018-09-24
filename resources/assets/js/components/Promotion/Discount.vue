@@ -1,39 +1,46 @@
 <template>
-<div class="padding-15-horizontal">
+<div class="padding-15-horizontal overflow-x-auto">
   <h2 v-bind:class="{ 'font-red' : points === 0 ,'font-green' : points !== 0}">{{$trans.translation.points}}&nbsp;:&nbsp;{{remaining_points}}</h2>
   <div class="padding-30-bottom" v-show="discount_products.length">
     <label class="full-label grey-bg heading padding-10">{{$trans.translation.discount}}</label>
     <div class="col-4-flex-res full-width panel-heading" v-for="(item, index) in discount_products">
       <div class="text-nowrap text-row">{{item.name}}</div>
       <div class="text-row">
-        <strike>{{$number.currency(item.price)}}&nbsp;฿</strike>&nbsp;<small class="icon-next-arrow"></small>
+        <s>{{$number.currency(item.price)}}&nbsp;฿</s>&nbsp;
         <font class="font-green">{{$number.currency(item.discount_price)}}&nbsp;฿</font>
       </div>
       <div class="text-row">
         <font class="font-red">{{$trans.translation.expired}}&nbsp;{{item.discount_date}}</font>
       </div>
       <div class="align-right">
-        <button @click.prevent="remove(item.uid, index)" class="round-btn delete-btn"><small class="icon-cross"></small></button>
+        <button @click.prevent="remove(item.uid, index)" class="flat-btn"><i class="fas fa-trash-alt"></i></button>
       </div>
     </div>
   </div>
 
-  <label class="full-label grey-bg heading padding-10">{{$trans.translation.shop_products}}</label>
+  <label class="full-label heading padding-10">{{$trans.translation.shop_products}}</label>
 
   <div class="full-width" v-for="(item, index) in products">
-    <div class="col-3-flex-res panel-heading">
-      <div class="text-nowrap text-row">{{item.name}}</div>
-      <div class="text-row">{{$trans.translation.price}}&nbsp;{{$number.currency(item.price)}}&nbsp;฿</div>
-      <div class="align-right">
-        <button @click.prevent="toggleForm(item.id)" class="round-btn"><small class="icon-plus font-grey"></small></button>
-      </div>
-    </div>
+    <table class="c-table no-margin">
+      <tr>
+        <th>{{$trans.translation.products}}</th>
+        <th>{{$trans.translation.price}}</th>
+        <th></th>
+      </tr>
+      <tr>
+        <td>{{item.name}}</td>
+        <td>{{$number.currency(item.price)}}</td>
+        <td class="center">
+          <button @click.prevent="toggleForm(item.id)" class="flat-btn"><i class="fas fa-plus font-15em"></i></button>
+        </td>
+      </tr>
+    </table>
     <div class="full-width grey-bg padding-10" v-show="formVisible === item.id">
         <div class="input-group">
           <form v-on:submit.prevent="apply(item.uid, index)">
             <input required class="form-input-alt auto-width" type="number" v-model="discount" :placeholder="$trans.translation.discount" min="1" :max="item.price - 1">
             <span class="input-addon" style="border:none;">{{$trans.translation.baht}}</span>
-            <button type="submit" class="round-btn add-btn"><small class="icon-checkmark"></small></button>
+            <button type="submit" class="normal-sq green-box">{{$trans.translation.confirm}}</button>
           </form>
         </div>
     </div>
@@ -73,22 +80,22 @@ export default {
       if (!confirm(this.$trans.translation.confirm + '?')) {
         return
       } else {
-        this.$root.loading = true
-        this.$http.put(this.$root.url + '/profile/promotions/manage/discount/' + uid + '/add', {discount:this.discount}).then(response => {
-          this.$root.loading = false
-          toastr.success(this.$trans.translation.success);
-          if (this.remaining_points === 0) {
-            alert(this.$trans.translation.not_enough_points)
-          } else {
+        if (this.remaining_points < 1) {
+          alert(this.$trans.translation.not_enough_points)
+        } else {
+          this.$root.loading = true
+          this.$http.put(this.$root.url + '/profile/promotions/manage/discount/' + uid + '/add', {discount:this.discount}).then(response => {
+            this.$root.loading = false
+            toastr.success(this.$trans.translation.success);
             this.$delete(this.products, index);
             this.remaining_points--
             this.discount_products.push(response.body);
             this.discount = null;
-          }
-        }, response => {
-          this.$root.loading = false
-          toastr.error(this.$trans.translation.error);
-        });
+          }, response => {
+            this.$root.loading = false
+            toastr.error(this.$trans.translation.error);
+          });
+        }
       }
     },
     remove(uid, index) {

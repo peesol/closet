@@ -11,7 +11,7 @@
       <tr v-for="(item, index) in myProducts">
         <td class="overflow-hidden">{{ item.name }}</td>
         <td class="align-center">
-          <a @click.prevent="addToCollection(item.id, colId, index)" class="font-15em" :class="{'font-green icon-checked' : item.added, 'icon-unchecked font-grey' : !item.added}"></a>
+          <a @click.prevent="addToCollection(item.id, colId, index)" class="font-15em" :class="{'font-green fas fa-check-square' : item.added, 'fas fa-plus font-grey' : !item.added}"></a>
         </td>
       </tr>
     </table>
@@ -35,9 +35,7 @@
       </div>
 
       <div class="button-wrap">
-        <button @click.prevent="removeProduct(product.id)" class="delete-btn round-btn">
-						<small class="icon-bin"></small>
-					</button>
+        <button @click.prevent="removeProduct(product.id)" class="flat-btn delete fas fa-trash-alt font-15em"></button>
       </div>
     </div>
 

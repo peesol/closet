@@ -48,14 +48,14 @@
 					<a v-bind:href="'/collection/' + collection.slug">
 						<img class="products-img-thumb" v-bind:src="collection.thumbnail">
 					</a>
-					<span class="private icon-private" v-show="collection.visibility === 'private'"></span>
+					<i class="align-bot-right fa-2x fa-eye-slash fa-inverse far" v-show="collection.visibility == 'private'"></i>
 				</div>
 				<div v-show="user_id == shopUser" class="align-right padding-5">
-					<button class="round-btn edit-btn"  @click.prevent="edit(collection.slug)">
-						<small class="icon-cog"></small>
+					<button class="flat-btn"  @click.prevent="edit(collection.slug)">
+						<i class="fas fa-pen"></i>
 					</button>
-					<button class="round-btn delete-btn" @click.prevent="removeCol(collection.slug, index)">
-						<small class="icon-bin"></small>
+					<button class="flat-btn delete" @click.prevent="removeCol(collection.slug, index)">
+						<i class="fas fa-trash-alt"></i>
 					</button>
 				</div>
 			</div>

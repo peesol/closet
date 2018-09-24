@@ -28,13 +28,13 @@
         @foreach ($reports as $item)
           <tr>
             <td>{{$item->id}}</td>
-            <td><i class="icon-arrow-down flat-btn" id="{{$item->id}}"></i></td>
+            <td><i class="fas fa-chevron-down flat-btn" id="{{$item->id}}"></i></td>
             <td>{{$item->user->name}}</td>
             <td>{{$item->user->email}}</td>
             <td>
               <form class="" action="{{ route('reportDelete') }}" method="post">
                 <input type="hidden" name="id" value="{{$item->id}}">
-                <button type="submit" class="icon-bin flat-btn"></button>
+                <button type="submit" class="fas fa-trash-alt flat-btn"></button>
                 @csrf
                 @method('DELETE')
               </form>
@@ -58,7 +58,7 @@
 <script>
 $(document).ready(function(){
   $(".body").hide();
-    $("i.icon-arrow-down").click(function(){
+    $("i.fa-chevron-down").click(function(){
       $('#body' + this.id).toggle();
       $(this).toggleClass('font-red');
     });

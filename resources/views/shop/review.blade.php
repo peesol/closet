@@ -13,11 +13,11 @@
 
             <div class="tab-nav">
                 <ul class="tab-nav-ul static">
-                  <button class="tab-nav-btn" onclick='document.location.href="/{{$shop->slug}}"'><span class="icon-home"></span><font>{{__('message.home')}}</font></button>
-                  <button class="tab-nav-btn" onclick='document.location.href="/{{$shop->slug}}/products"'><span class="icon-silhouette"></span><font>{{__('message.product')}}</font></button>
-                  <button class="tab-nav-btn" onclick='document.location.href="/{{$shop->slug}}/collection"'><span class="icon-map"></span><font>{{__('message.collection')}}</font></button>
-                  <button class="tab-nav-btn" onclick='document.location.href="/{{$shop->slug}}/about"'><span class="icon-user"></span><font>{{__('message.about')}}</font></button>
-                  <button class="tab-nav-btn current"><span class="icon-star-full"></span><font>{{__('message.review')}}</font></button>
+                  <button class="tab-nav-btn" onclick='document.location.href="/{{$shop->slug}}"'><i class="fas fa-home"></i><font>{{__('message.home')}}</font></button>
+                  <button class="tab-nav-btn" onclick='document.location.href="/{{$shop->slug}}/products"'><i class="fas fa-shopping-bag"></i><font>{{__('message.product')}}</font></button>
+                  <button class="tab-nav-btn" onclick='document.location.href="/{{$shop->slug}}/collection"'><i class="fas fa-map"></i><font>{{__('message.collection')}}</font></button>
+                  <button class="tab-nav-btn" onclick='document.location.href="/{{$shop->slug}}/about"'><i class="fas fa-user"></i><font>{{__('message.about')}}</font></button>
+                  <button class="tab-nav-btn current"><i class="fas fa-star"></i><font>{{__('message.review')}}</font></button>
                 </ul>
             </div>
 

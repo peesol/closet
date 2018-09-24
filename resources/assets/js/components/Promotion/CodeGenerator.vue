@@ -43,7 +43,7 @@
         <td class="s-cell center">{{code.amount}}</td>
         <td class="s-cell center">
           <button @click.prevent="remove(code.id, index)" class="delete-btn round-btn">
-            <small class="icon-bin"></small>
+            <i class="fas fa-trash-alt"></i>
           </button>
         </td>
       </tr>

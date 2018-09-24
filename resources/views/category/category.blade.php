@@ -22,7 +22,7 @@ window.addEventListener('load', function () {
                 <label class="heading">{{$category->showTranslate(App::getLocale())->name}}</label>
               </div>
               <div class="panel-body">
-                <button class="orange-btn normal-sq category-nav-btn">{{__('message.category')}}&nbsp;<small class="icon-arrow-down"></small></button>
+                <button class="orange-btn normal-sq category-nav-btn">{{__('message.category')}}&nbsp;<i class="fas fa-chevron-down"></i></button>
 
                 <div class="filter margin-20-top" style="display:none">
                   <div class="categories">

@@ -16,7 +16,7 @@ $(document).ready(function(){
 @section('content')
 <div class="panel-body">
   <h2>ศูนย์ช่วยเหลือ</h2>
-  <h2><a href="{{ route('sellerGuide') }}">สำหรับผู้ขาย&nbsp;<small class="icon-next-arrow"></small></a></h2>
+  <h2><a href="{{ route('sellerGuide') }}">สำหรับผู้ขาย&nbsp;<i class="fas fa-chevron-right"></i></a></h2>
   <div id="full-line">
     <ul class="list-no-style">
       <li class="font-15em">เริ่มต้นขาย</li>
@@ -37,7 +37,7 @@ $(document).ready(function(){
       </ul>
     </ul>
   </div>
-  <h2><a href="{{ route('buyerGuide') }}">สำหรับผู้ซื้อ&nbsp;<small class="icon-next-arrow"></small></a></h2>
+  <h2><a href="{{ route('buyerGuide') }}">สำหรับผู้ซื้อ&nbsp;<i class="fas fa-chevron-right"></i></a></h2>
   <div id="full-line">
     <ul class="list-no-style">
       <li class="font-15em">การสั่งซื้อสินค้า</li>
@@ -57,7 +57,7 @@ $(document).ready(function(){
   <h2>สอบถามปัญหาอื่นๆ</h2>
   <div id="full-line">
     <ul>
-      <a class="font-large" href="{{ route('askPage') }}">คลิกที่นี่เพื่อสอบถามปัญหา&nbsp;<small class="icon-next-arrow"></small></a>
+      <a class="font-large" href="{{ route('askPage') }}">คลิกที่นี่เพื่อสอบถามปัญหา&nbsp;<i class="fas fa-chevron-right"></i></a>
     </ul>
 
   </div>

@@ -23,21 +23,22 @@
         <div class="color-heading grey-bg">
           <label class="full-label input-label">{{showcase.name}}</label>
         </div>
-        <div class="margin-10-top padding-15-bottom padding-15-horizontal">
-          <div class="form-group">
-            <label class="input-label">{{$trans.translation.show_cover}}</label>
-            <button class="transparent-bg" @click.prevent="showToggle(showcase.id, index)">
-              <span :class="{ 'icon-checked font-green': showcase.show == true, 'icon-unchecked font-link': showcase.show == false}"></span>
-            </button>
+        <div>
+          <div id="full-line" class="padding-10">
+            <label class="input-label margin-10-right">{{$trans.translation.show_cover}}</label>
+            <label class="switch near-text">
+              <input @change.prevent="showToggle(showcase.id, index)" type="checkbox" :checked="showcase.show">
+              <span class="slider"></span>
+            </label>
           </div>
-          <div class="align-right margin-10-top">
+          <div class="align-right padding-10">
             <div class="input-group lh-35 float-left">
-              <button :disabled="index === showcases.length - 1" class="flat-btn icon-arrow-down" v-show="true" @click.prevent="setArrayDown(index, showcase.order)"></button>
+              <button :disabled="index === showcases.length - 1" class="flat-btn fas fa-chevron-circle-down" v-show="true" @click.prevent="setArrayDown(index, showcase.order)"></button>
               <span class="padding-15-horizontal arial font-large">{{ index + 1 }}</span>
-              <button :disabled="index === 0" class="flat-btn icon-arrow-up" v-show="true" @click.prevent="setArrayUp(index, showcase.order)"></button>
+              <button :disabled="index === 0" class="flat-btn fas fa-chevron-circle-up" v-show="true" @click.prevent="setArrayUp(index, showcase.order)"></button>
             </div>
-            <button @click.prevent="edit(showcase.id)" class="edit-btn round-btn"><i class="icon-cog"></i></button>
-            <button @click.prevent="remove(showcase.id, index)" class="delete-btn round-btn"><i class="icon-bin"></i></button>
+            <button @click.prevent="edit(showcase.id)" class="flat-btn"><i class="fas fa-pen"></i></button>
+            <button @click.prevent="remove(showcase.id, index)" class="flat-btn delete"><i class="fas fa-trash-alt"></i></button>
           </div>
         </div>
       </div>

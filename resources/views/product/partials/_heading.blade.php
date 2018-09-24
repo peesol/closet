@@ -6,7 +6,7 @@
       <div class="profile-name-wrap">
         <a class="profile-name" href="/{{ $product->shop->slug }}">{{ $product->shop->name }}&nbsp;
           @if ($product->shop_type === 2)
-            <i class="icon-checkmark verified-profile"></i>
+            <i class="fas fa-check verified-profile"></i>
           @endif
         </a>
       </div>

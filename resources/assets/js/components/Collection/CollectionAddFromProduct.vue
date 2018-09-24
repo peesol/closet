@@ -1,6 +1,6 @@
 <template>
 <div v-on-clickaway="hide" class="align-right full-height" v-show="$root.authenticated">
-  <button class="dropdown-btn icon-plus" @click.prevent="toggle(1)" v-bind:class="{'btn-active': formVisible === 1}"></button>
+  <button class="dropdown-btn light" @click.prevent="toggle(1)" v-bind:class="{'btn-active': formVisible === 1}"><i class="fas fa-plus"></i></button>
 
   <div @click.stop class="col-add shadow-1" v-show="formVisible === 1">
     <ul id="full-line">
@@ -9,13 +9,13 @@
       </li>
       <li>
         <a @click.prevent="addToNote()">
-            <span :class="{'icon-note font-green' : addedToNote, 'icon-note font-grey' : !addedToNote}"></span>
+            <i :class="{'fas fa-book font-green' : addedToNote, 'fas fa-book font-grey' : !addedToNote}"></i>
             &nbsp;{{$trans.translation.my_note}}
           </a>
       </li>
       <li v-for="(collection, index) in collections">
         <a class="text-nowrap" @click.prevent="addToCollection(productId,collection.id, index)">
-            <span :class="{'icon-checked font-green' : collection.added, 'icon-unchecked font-grey' : !collection.added}"></span>
+            <i :class="{'fas fa-check-square font-green' : collection.added, 'far fa-square' : !collection.added}"></i>
             &nbsp;{{ collection.name }}
           </a>
       </li>
@@ -29,11 +29,11 @@
     <li class="input-group padding-10" v-show="create">
       <input class="form-input" type="text" v-model="col_name">
       <button class="checkmark-btn form-input-btn" @click.prevent="createCol">
-            <small class="icon-checkmark"></small>
+            <i class="fas fa-check"></i>
           </button>
     </li>
   </div>
-  <button class="dropdown-btn icon-sub-menu" @click.prevent="toggle(2)" v-bind:class="{'btn-active': formVisible === 2}"></button>
+  <button class="dropdown-btn light fas fa-ellipsis-v" @click.prevent="toggle(2)" v-bind:class="{'btn-active': formVisible === 2}"></button>
   <div @click.stop class="col-add shadow-1" v-show="formVisible === 2">
     <ul id="full-line">
       <li>

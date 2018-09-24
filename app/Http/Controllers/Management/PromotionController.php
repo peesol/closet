@@ -91,7 +91,7 @@ class PromotionController extends Controller
   {
     $amount = $request->user()->shop->availablePromotions->discount;
     if ($amount === 0) {
-      return response()->json(false, 200);
+      return response()->json(false, 406);
     } else {
       $request->user()->shop->availablePromotions->decrement('discount', 1);
       $target = $product->update([

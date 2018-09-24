@@ -3,7 +3,7 @@
   <div class="thumbnail-grid" v-if="images.length">
     <div v-for="(image, index) in images" class="products-img">
       <img class="object-contain black-bg" :alt="image.filename" :src="image.filename">
-      <button v-show="image.id && images.length > 0" @click.prevent="remove(image.id, index)" class="align-top-right round-btn red-bg"><span class="icon-bin"></span></button>
+      <button v-show="image.id && images.length > 0" @click.prevent="remove(image.id, index)" class="align-top-right flat-btn icon-bg padding-10"><i class="fas fa-trash-alt"></i></button>
     </div>
   </div>
   <div v-else class="padding-15-vertical">

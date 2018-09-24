@@ -18,7 +18,7 @@
               @else
               <p class="product-p">
                 {{__('message.price')}}&nbsp;:&nbsp;
-                <small class="icon-price-tag font-green"></small>
+                <i class="fas fa-tag font-green"></i>
                 <font class="font-green">{{ number_format($product->discount_price) }}฿</font>
               </p>
               @endif

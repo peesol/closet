@@ -1,6 +1,6 @@
 <template>
     <button class="dropdown-btn" @click="go">
-      <span class="icon-cart" :class="{'font-orange' : count > 0}">&nbsp;<font>{{ count }}</font></span>
+      <span class="fas fa-shopping-cart" :class="{'font-orange' : count > 0}">&nbsp;<font>{{ count }}</font></span>
     </button>
 </template>
 

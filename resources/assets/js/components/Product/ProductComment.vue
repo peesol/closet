@@ -27,13 +27,13 @@
       <div class="comments-action">
         <a class="font-red margin-10-right" v-show="user_id === comment.user_id" @click.prevent="deleteComment(comment.id)">{{$trans.translation.delete}}</a>
         <a @click.prevent="toggleReplyForm(comment.id)">{{ replyFormVisible === comment.id ? $trans.translation.cancle : $trans.translation.reply }}</a>
-        <a class="margin-10-left" v-show="showReply === comment.id && comment.replies.data.length" @click.prevent="toggleReply(comment.id)">{{ comment.replies.data.length > 1 ? $trans.translation.show_reply : $trans.translation.hide_reply }}&nbsp;<small class="icon-arrow-up"></small></a>
-        <a class="margin-10-left" v-show="showReply !== comment.id && comment.replies.data.length" @click.prevent="toggleReply(comment.id)">{{ comment.replies.data.length > 1 ? $trans.translation.hide_reply : $trans.translation.show_reply }}&nbsp;<small class="icon-arrow-down"></small></a>
+        <a class="margin-10-left" v-show="showReply === comment.id && comment.replies.data.length" @click.prevent="toggleReply(comment.id)">{{ comment.replies.data.length > 1 ? $trans.translation.show_reply : $trans.translation.hide_reply }}&nbsp;<i class="fas fa-caret-up"></i></a>
+        <a class="margin-10-left" v-show="showReply !== comment.id && comment.replies.data.length" @click.prevent="toggleReply(comment.id)">{{ comment.replies.data.length > 1 ? $trans.translation.hide_reply : $trans.translation.show_reply }}&nbsp;<i class="fas fa-caret-down"></i></a>
       </div>
       <transition name="slide-down-reply">
         <div class="input-group margin-10-top" v-show="replyFormVisible === comment.id">
           <input type="text" class="input-addon-field left" v-model="replyBody">
-          <button :disabled="post_comment" class="input-addon right" @click.prevent="createReply(comment.id)"><span class="icon-next-arrow"></span></button>
+          <button :disabled="post_comment" class="input-addon right checkmark-btn" @click.prevent="createReply(comment.id)"><i class="fas fa-check"></i></button>
         </div>
       </transition>
       <div class="replies-wrapper" v-if="showReply === comment.id" v-for="reply in comment.replies.data">

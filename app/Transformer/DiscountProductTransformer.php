@@ -18,6 +18,7 @@ class DiscountProductTransformer extends TransformerAbstract
 		      'id' => $product->id,
 		      'name' => $product->name,
 		      'price' => $product->price,
+		      'uid' => $product->uid,
 		      'discount_price' => $product->discount_price,
 		      'discount_date' => date('d-m-Y', strtotime($product->discount_date)),
         ];

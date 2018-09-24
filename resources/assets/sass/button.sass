@@ -88,6 +88,17 @@ button.default
   &:disabled
     background: transparent !important
     color: #6c6c6c
+  &.icon-bg
+    color: #ddd
+    background-color: rgba(0, 0, 0, 0.3)
+    border-radius: 5px
+    &:hover
+      color: #fff
+      background-color: rgba(0, 0, 0, 0.5)
+  &.delete
+    color: #e22f2f
+    &:hover
+      color: #ff3333
 
 span.contact-btn, small.contact-btn
   position: relative
@@ -140,6 +151,10 @@ span.contact-btn.line, small.contact-btn.line
 .vote-btn
   color: #b3b3b3
   background: transparent
+  .fa-bolt
+    font-size: 50%
+    top: -8%
+    left: 2%
 
 .vote-btn:hover, .vote-btn-voted
   color: #e43727
@@ -151,6 +166,8 @@ span.contact-btn.line, small.contact-btn.line
   height: 25px
   input
     display: none
+  &.near-text
+    vertical-align: text-top
 
 .slider
   position: absolute

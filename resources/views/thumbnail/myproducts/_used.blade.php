@@ -7,7 +7,7 @@
             <a href="/product/used/{{$product->uid}}">
             <img class="products-img-thumb" src="{{$product->getImage()}}" alt="{{$product->thumbnail}}">
             </a>
-            <span class="icon-refresh top-right caution"></span>
+            <i class="fas fa-redo-alt top-right caution"></i>
             <span class="price bottom-left">{{ number_format($product->price) }}฿</span>
         </div>
         <div class="details">
@@ -20,8 +20,8 @@
         </div>
 
         <form action="/product/used/{{ $product->uid}}" method="post" class="align-right">
-        <button type="submit" onclick="if(!confirm('{{ __('message.form_confirm') }}')) { return false; }" class="delete-btn round-btn">
-          <small class="icon-bin"></small>
+        <button type="submit" onclick="if(!confirm('{{ __('message.form_confirm') }}')) { return false; }" class="flat-btn delete">
+          <i class="fas fa-trash-alt"></i>
         </button>
 
         {{ csrf_field() }}

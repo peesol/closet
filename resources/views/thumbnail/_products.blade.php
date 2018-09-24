@@ -5,7 +5,7 @@
       </a>
 
       @if ($product->shop_type === 2)
-        <i class="icon-checkmark verified-profile top-left"></i>
+        <i class="fas fa-check verified-profile top-left"></i>
       @endif
 
       @if($product->discount_price)
@@ -14,7 +14,7 @@
       @else
         <span class="price bottom-left">{{ number_format($product->price) }}฿</span>
       @endif
-      
+
   </div>
 
   <div class="details">
@@ -24,8 +24,7 @@
       <p class="product-p">{{__('message.price')}}&nbsp;{{ number_format($product->price) }}฿</p>
     @else
       <p class="product-p">
-        {{__('message.price')}}&nbsp;<strike>{{ number_format($product->price) }}฿</strike>
-        <small class="icon-next-arrow font-grey"></small>
+        {{__('message.price')}}&nbsp;<s>{{ number_format($product->price) }}฿</s>&nbsp;
         <font class="font-green">{{ number_format($product->discount_price) }}฿</font>
       </p>
     @endif

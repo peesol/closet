@@ -3,7 +3,8 @@
   justify-content: center
   flex-flow: column
   border-bottom: 1px solid #efefef
-  padding-bottom: 20px
+  > div:first-child
+    border-bottom: 1px solid #efefef
 
 .product-details
   width: 100%
@@ -12,7 +13,7 @@
 .details-header
   width: 100%
   height: auto
-  padding: 15px 0 0
+  padding: 10px
   border-bottom: .5px solid #efefef
   div
     line-height: 50px
@@ -21,10 +22,13 @@
 
 @media (min-width: 768px)
   .product-show-wrap
-    padding-bottom: 15px
     justify-content: flex-start
     flex-flow: row
-
+    > div
+      padding: 0 15px
+      &:first-child
+        border-bottom: none
+        
   .details-header
     height: 70px
     padding: 10px 15px

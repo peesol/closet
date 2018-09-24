@@ -3,7 +3,7 @@
       <a href="/product/{{ $product->uid}}">
         <img class="products-img-thumb" src="{{$product->getImage()}}" alt="{{$product->thumbnail}}">
       </a>
-      <i class="icon-refresh caution top-right"></i>
+      <i class="fas fa-redo-alt caution top-right"></i>
   </div>
 
   <div class="details">

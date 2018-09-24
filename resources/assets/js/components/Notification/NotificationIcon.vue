@@ -1,6 +1,6 @@
 <template>
   <button class="dropdown-btn" @click.prevent="clicked">
-    <span class="icon-bell" :class="{'font-orange' : notificationCount > 0}">&nbsp;<font>{{ notificationCount }}</font></span>
+    <i class="fas fa-bell" :class="{'font-orange' : notificationCount > 0}">&nbsp;<font>{{ notificationCount }}</font></i>
   </button>
 </div>
 </template>

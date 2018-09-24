@@ -42,8 +42,8 @@
       <label class="full-label input-label font-green">{{account.number}}</label>
     </div>
     <div class="align-right panel-body">
-      <button v-show="accounts.length > 1" type="button" @click.prevent="remove(account.id, index)" class="delete-btn round-btn">
-        <small class="icon-bin"></small>
+      <button v-show="accounts.length > 1" type="button" @click.prevent="remove(account.id, index)" class="flat-btn delete font-15em">
+        <i class="fas fa-trash-alt"></i>
       </button>
     </div>
   </div>

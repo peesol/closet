@@ -7,7 +7,7 @@
       </a>
     </div>
     <search-input></search-input>
-    <button class="icon-search res-search-btn display-mobile"></button>
+    <button class="fas fa-search res-search-btn display-mobile"></button>
     <div class="login-box">
       @if (Auth::guest())
           <li><a href="{{ route('login') }}">{{__('auth.login')}}</a></li>
@@ -24,19 +24,19 @@
 <div class="second-nav">
     <div class="second-nav-cont">
       <a href="{{ route('home') }}">
-        <span class="icon-home"></span>
+        <span class="fas fa-home"></span>
         <font>{{ __('message.home') }}</font>
       </a>
       <a href="{{ route('categoryMain') }}">
-        <span class="icon-category"></span>
+        <span class="fas fa-th-large"></span>
         <font>{{ __('message.category') }}</font>
       </a>
       <a href="{{ route('trending') }}">
-        <span class="icon-fire"></span>
+        <span class="fas fa-fire"></span>
         <font>{{ __('message.trending') }}</font>
       </a>
       <a href="{{ route('secondhand') }}">
-        <span class="icon-refresh"></span>
+        <span class="fas fa-redo-alt"></span>
         <font>{{ __('message.used') }}</font>
       </a>
     </div>

@@ -1,14 +1,14 @@
 <template>
 <div v-on-clickaway="hide" class="menu-btn-wrap">
-  <button class="menu-btn icon-menu" :class="{ 'btn-active' : toggled }" @click.prevent="toggled = !toggled"></button>
+  <button class="menu-btn fas fa-bars" :class="{ 'btn-active' : toggled }" @click.prevent="toggled = !toggled"></button>
   <div  class="menu-wrapper" v-bind:class="{'toggled' : toggled}">
       <div class="menu">
         <div id="full-line">
-          <a href="/"><i class="icon-home"></i>{{ $trans.translation.home }}</a>
-          <a href="/trending"><i class="icon-fire"></i>{{ $trans.translation.trending }}</a>
-          <a href="/secondhand"><i class="icon-refresh"></i>{{ $trans.translation.used_market }}</a>
-          <a href="/category/main" ><i class="icon-category"></i>{{ $trans.translation.categories }}</a>
-          <a href="/help/home" ><i class="icon-info"></i>{{ $trans.translation.help }}</a>
+          <a href="/"><i class="fas fa-home"></i>{{ $trans.translation.home }}</a>
+          <a href="/trending"><i class="fas fa-fire"></i>{{ $trans.translation.trending }}</a>
+          <a href="/secondhand"><i class="fas fa-redo-alt"></i>{{ $trans.translation.used_market }}</a>
+          <a href="/category/main" ><i class="fas fa-th-large"></i>{{ $trans.translation.categories }}</a>
+          <a href="/help/home" ><i class="fas fa-question-circle"></i>{{ $trans.translation.help }}</a>
         </div>
         <div id="full-line">
           <label id="menu-label-grey">{{ $trans.translation.profile }}</label>
@@ -17,29 +17,29 @@
             <a :href="$root.url + '/register'">{{ $trans.translation.register }}</a>
           </div>
           <div v-show="$root.authenticated">
-            <a :href="'/' + userShop"><i class="icon-user"></i>{{ $trans.translation.my_profile }}</a>
-            <a href="/profile/note"><i class="icon-note"></i>{{ $trans.translation.my_note }}</a>
-            <a href="/profile/mycollection"><i class="icon-map"></i>{{ $trans.translation.my_collection }}</a>
-            <a href="/profile/following"><i class="icon-star-full"></i>{{ $trans.translation.following }}</a>
-            <a href="/profile/order/buying"><i class="icon-order"></i>{{ $trans.translation.buying_orders }}</a>
-            <a href="#" @click.prevent="logout()"><i class="icon-exit"></i>{{ $trans.translation.logout }}</a>
+            <a :href="'/' + userShop"><i class="fas fa-user"></i>{{ $trans.translation.my_profile }}</a>
+            <a href="/profile/note"><i class="fas fa-book"></i>{{ $trans.translation.my_note }}</a>
+            <a href="/profile/mycollection"><i class="fas fa-map"></i>{{ $trans.translation.my_collection }}</a>
+            <a href="/profile/following"><i class="fas fa-star"></i>{{ $trans.translation.following }}</a>
+            <a href="/profile/order/buying"><i class="fas fa-list-ul"></i>{{ $trans.translation.buying_orders }}</a>
+            <a href="#" @click.prevent="logout()"><i class="fas fa-sign-out-alt"></i>{{ $trans.translation.logout }}</a>
           </div>
         </div>
         <div id="full-line" v-show="$root.authenticated">
           <label id="menu-label-grey">{{ $trans.translation.management }}</label>
-          <a :class="{'transparent-bg toggled-list' : toggledList === 1}" @click.prevent="toggleList(1)"><i class="icon-plus"></i>{{ $trans.translation.sell }}</a>
+          <a :class="{'transparent-bg toggled-list' : toggledList === 1}" @click.prevent="toggleList(1)"><i class="fas fa-plus"></i>{{ $trans.translation.sell }}</a>
           <div v-show="toggledList === 1" id="full-line">
             <a href="/sell/new">{{ $trans.translation.new }}</a>
             <a href="/sell/used">{{ $trans.translation.used }}</a>
           </div>
-          <a :class="{'transparent-bg toggled-list' : toggledList === 2}" @click.prevent="toggleList(2)"><i class="icon-box"></i>{{ $trans.translation.my_products }}</a>
+          <a :class="{'transparent-bg toggled-list' : toggledList === 2}" @click.prevent="toggleList(2)"><i class="fas fa-archive"></i>{{ $trans.translation.my_products }}</a>
           <div v-show="toggledList === 2" id="full-line">
             <a href="/profile/myproduct/new">{{ $trans.translation.new }}</a>
             <a href="/profile/myproduct/used">{{ $trans.translation.used }}</a>
           </div>
-          <a href="/profile/promotions/manage"><i class="icon-price-tag"></i>{{ $trans.translation.promotions }}</a>
-          <a href="/profile/order/selling"><i class="icon-order"></i>{{ $trans.translation.selling_orders }}</a>
-          <a :href="$root.url + '/' + userShop + '/edit/general'"><i class="icon-cog"></i>{{ $trans.translation.setting }}</a>
+          <a href="/profile/promotions/manage"><i class="fas fa-tag"></i>{{ $trans.translation.promotions }}</a>
+          <a href="/profile/order/selling"><i class="fas fa-list-ul"></i>{{ $trans.translation.selling_orders }}</a>
+          <a :href="$root.url + '/' + userShop + '/edit/general'"><i class="fas fa-cog"></i>{{ $trans.translation.setting }}</a>
         </div>
 
           <label id="menu-label-grey">{{ $trans.translation.language }}</label>

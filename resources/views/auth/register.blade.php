@@ -49,7 +49,7 @@
 
                 <div class="form-group{{ $errors->has('shop_name') ? ' has-error' : '' }}">
                     <label for="shop_name" class="full-label">{{__('message.register_shop')}}
-                      <span class="link-text" data-balloon="{{__('message.shop_name_tip')}}" data-balloon-pos="right"><span class="icon-info"></span></span>
+                      <span class="link-text" data-balloon="{{__('message.shop_name_tip')}}" data-balloon-pos="right"><i class="fas fa-question-circle"></i></span>
                     </label>
                         <input id="shop_name" type="text" class="form-input {{ $errors->has('shop_name') ? ' error-input' : '' }}" name="shop_name" required placeholder="{{__('message.shop_name_placeholder')}}">
 

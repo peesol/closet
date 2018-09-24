@@ -7,7 +7,7 @@
     <div class="half-width-res flex flex-start-res">
       <div class="margin-20-bottom">
         <div class="image-file-input margin-center">
-          <span class="icon-images"></span>
+          <i class="fas fa-images"></i>
           <img :src="image_filename">
         </div>
       </div>

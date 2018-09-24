@@ -36,7 +36,7 @@
             <td>{{number_format($product->view_count)}}</td>
             <td>{{$product->amount}}</td>
             <td>
-              <a href="{{ route('productEdit', ['product' => $product->uid]) }}"><i class="icon-cog"></i></a>
+              <a href="{{ route('productEdit', ['product' => $product->uid]) }}"><i class="fas fa-pen"></i></a>
             </td>
           </tr>
         @endforeach

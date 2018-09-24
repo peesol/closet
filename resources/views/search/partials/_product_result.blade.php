@@ -8,8 +8,7 @@
   @else
   <span class="sale">Sale</span>
   <span class="price">
-    <strike>{{ number_format($product->price) }}฿</strike>
-    <small class="icon-next-arrow"></small>
+    <s>{{ number_format($product->price) }}฿</s>&nbsp;
     <font>{{ number_format($product->discount_price) }}฿</font>
   </span>
   @endif

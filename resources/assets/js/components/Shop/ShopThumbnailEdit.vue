@@ -8,7 +8,7 @@
   <form v-on:submit.prevent="edit" method="post">
     <div class="flex">
       <div class="profile-thumbnail-input">
-        <span class="icon-images"></span>
+        <i class="fas fa-images"></i>
         <img :src="thumbnail">
       </div>
 

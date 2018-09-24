@@ -20,7 +20,7 @@
             <li><p class="no-margin">{{__('message.discount_code_info2')}}</p></li>
           </ul>
           <div class="align-right padding-15-vertical">
-            <a class="flat-btn font-15em" href="{{route('promotionCode')}}">{{__('message.proceed')}}&nbsp;<small class="icon-next-arrow"></small></a>
+            <a class="flat-btn font-15em" href="{{route('promotionCode')}}">{{__('message.proceed')}}&nbsp;<i class="fas fa-angle-double-right"></i></a>
           </div>
         </div>
       </div>
@@ -41,7 +41,7 @@
             <li><p class="no-margin font-red">{{__('message.product_discount_info4')}}</p></li>
           </ul>
           <div class="align-right padding-15-vertical">
-            <a class="flat-btn font-15em" href="{{route('promotionDiscount')}}">{{__('message.proceed')}}&nbsp;<small class="icon-next-arrow"></small></a>
+            <a class="flat-btn font-15em" href="{{route('promotionDiscount')}}">{{__('message.proceed')}}&nbsp;<i class="fas fa-angle-double-right"></i></a>
           </div>
         </div>
       </div>

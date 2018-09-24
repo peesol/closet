@@ -8,7 +8,7 @@
       </label>
       <div class="input-group margin-10-top">
         <input class="input-addon-field left" type="text" v-model="name" name="name">
-        <button :disabled="$root.loading" class="input-addon right checkmark-btn icon-checkmark" type="submit" @click.prevent="add"></button>
+        <button :disabled="$root.loading" class="input-addon right checkmark-btn fas fa-check" type="submit" @click.prevent="add"></button>
       </div>
     </form>
   </div>
@@ -23,14 +23,14 @@
       </tr>
       <tr v-for="(choice, index) in choices">
         <td class="m-cell overflow-hidden" style="width:100%;">{{choice.name}}</td>
-        <td class="s-cell">
-          <button @click.prevent="toggleChoice(choice.id, index)" class="round-btn font-white" :class="{'green-bg' : choice.stock, 'red-bg' : !choice.stock}">
-            <small :class="{'icon-checkmark' : choice.stock, 'icon-cross' : !choice.stock}"></small>
-          </button>
+        <td class="s-cell center">
+          <a @click.prevent="toggleChoice(choice.id, index)">
+            <i class="fas fa-check-square" :class="{'font-green' : choice.stock, 'font-grey' : !choice.stock}"></i>
+          </a>
         </td>
-        <td class="s-cell">
-          <button @click.prevent="remove(choice.id, index)" class="delete-btn round-btn">
-              <small class="icon-bin"></small>
+        <td class="s-cell center">
+          <button @click.prevent="remove(choice.id, index)" class="flat-btn delete">
+              <i class="fas fa-trash-alt"></i>
           </button>
         </td>
       </tr>
