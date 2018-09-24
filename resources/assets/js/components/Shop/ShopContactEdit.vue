@@ -77,8 +77,8 @@
 
   </div>
 
-  <div v-show="!contacts.length" class="padding-15-vertical">
-    <label class="full-label input-label">{{$trans.translation.no_contact}}</label>
+  <div v-show="!contacts.length" class="padding-15-vertical align-center">
+    <h2 class="font-grey">{{$trans.translation.no_contact}}</h2>
   </div>
 
 </div>
@@ -98,9 +98,11 @@ export default {
   methods: {
     getContact() {
       this.$Progress.start();
+      this.$root.loading = true
       this.$http.get(this.$root.url + '/' + this.$route.params.shop + '/edit/contact/get').then(response => {
         this.contacts = response.body
         this.$Progress.finish();
+        this.$root.loading = false
       });
     },
     updateBody(contactId, contactBody) {

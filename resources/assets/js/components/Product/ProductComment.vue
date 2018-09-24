@@ -1,7 +1,7 @@
 <template>
 <div class="relative">
   <vue-progress-bar></vue-progress-bar>
-  <load-overlay bg="opacity-bg" :show="$root.loading"></load-overlay>
+  <load-overlay bg="opacity-bg" :show="$root.loading" padding="30px 0"></load-overlay>
   <div class="comments-header">
     <p>{{ comments.length }}&nbsp;{{ comments.length > 1 ? $trans.translation.comments : $trans.translation.comment }}</p>
   </div>

@@ -20,7 +20,7 @@
     <p>{{ review.comment }}</p>
   </div>
   <div v-show="!reviews.length" class="align-center">
-    <h3 class="font-grey">{{$trans.translation.no_reviews}}</h3>
+    <h2 class="font-grey">{{$trans.translation.no_reviews}}</h2>
   </div>
 </div>
 </template>
@@ -41,11 +41,13 @@ export default {
   methods: {
     getReviews() {
       this.$Progress.start()
+      this.$root.loading = true
       this.$http.get(this.$root.url + '/' + this.shopSlug + '/reviews/get').then(response => {
         this.reviews = response.body.reviews.data;
         this.user_review = response.body.user_review;
         this.shop_points = response.body.points;
         this.$Progress.finish()
+        this.$root.loading = false
       });
     }
   },

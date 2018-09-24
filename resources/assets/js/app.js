@@ -113,6 +113,6 @@ Vue.component('notification', require('./components/Notification/Notification.vu
 Vue.component('notification-icon', require('./components/Notification/NotificationIcon.vue'));
 
 Vue.component('load-overlay', {
-  props: ['bg','show'],
-  template: '<div class="load-overlay" :class="[{show : show}, bg]"><div class="lds-rolling"><div></div></div></div>'
+  props: ['bg','show', 'padding'],
+  template: '<div class="load-overlay" :style="{ padding : padding }" :class="[{show : show}, bg]"><div class="lds-rolling"><div></div></div></div>'
 })

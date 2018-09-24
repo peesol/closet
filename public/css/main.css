@@ -609,7 +609,7 @@ input[type='file'] {
     opacity: 0.9; }
 
 table {
-  font-family: "Arial", sans-serif;
+  font-family: "Arial", sans-serif !important;
   border-collapse: collapse;
   width: 100%; }
 
@@ -639,6 +639,8 @@ td.center, th.center {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap; }
+  .c-table .break-word {
+    word-break: break-all; }
   .c-table input[type="text"], .c-table input[type="number"] {
     height: 35px;
     border: none;
@@ -1523,6 +1525,9 @@ span.verified-profile, i.verified-profile {
   .link-text:hover {
     color: #0a92f9; }
 
+.arial {
+  font-family: "Arial", sans-serif !important; }
+
 .filter ul, .filter .price, .filter .breadcrumb {
   border-radius: 5px;
   box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 7px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -1px rgba(0, 0, 0, 0.2);
@@ -1845,6 +1850,9 @@ span.verified-profile, i.verified-profile {
   cursor: pointer; }
   .link-text:hover {
     color: #0a92f9; }
+
+.arial {
+  font-family: "Arial", sans-serif !important; }
 
 .menu-btn-wrap {
   position: absolute;
@@ -2329,7 +2337,8 @@ button.default:hover, .orange-btn, .green-btn, .delete-btn, .help-btn, .add-btn,
 button:disabled {
   color: #000;
   background: #ddd;
-  opacity: 0.5; }
+  opacity: 0.5;
+  cursor: not-allowed; }
   button:disabled:hover {
     background: #ddd; }
 
@@ -2382,6 +2391,9 @@ button.default {
   font-size: 1.2em; }
   .flat-btn:hover {
     color: #ff8000; }
+  .flat-btn:disabled {
+    background: transparent !important;
+    color: #6c6c6c; }
 
 span.contact-btn, small.contact-btn {
   position: relative;
@@ -3100,7 +3112,13 @@ button.toast-close-button {
   display: none;
   width: 100%;
   height: 100%;
-  z-index: 2; }
+  min-height: 100px;
+  min-width: 200px;
+  z-index: 2;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0; }
   .load-overlay.show {
     display: block; }
 

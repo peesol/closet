@@ -1,6 +1,8 @@
 <template>
-<div class="panel-body-alt">
+<div class="panel-body-alt relative">
 <vue-progress-bar></vue-progress-bar>
+<load-overlay bg="white-bg" :show="$root.loading" padding="30px 0"></load-overlay>
+
 	<div class="margin-10-bottom">
 		<button class="orange-btn normal-sq" @click.prevent="formVisible = !formVisible" v-show="user_id == shopUser">{{$trans.translation.add_col}}</button>
 	</div>
@@ -60,8 +62,8 @@
 
 	</div>
 	<div v-else>
-		<div class="panel-body">
-			<h4 class="no-margin">{{$trans.translation.col_none}}</h4>
+		<div class="padding-15-vertical align-center">
+			<h2 class="font-grey">{{$trans.translation.col_none}}</h2>
 		</div>
 	</div>
 </div>
@@ -88,9 +90,11 @@
 		methods: {
 			getCollection() {
 					this.$Progress.start();
+					this.$root.loading = true
   					this.$http.get(this.$root.url + '/collection_api/' + this.shopSlug).then(response=> {
 							this.collections = response.body.data
 							this.$Progress.finish()
+							this.$root.loading = false
 						});
   			},
 			create(){

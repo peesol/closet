@@ -17,6 +17,7 @@ button:disabled
   color: #000
   background: #ddd
   opacity: 0.5
+  cursor: not-allowed
   &:hover
     background: #ddd
 
@@ -84,6 +85,9 @@ button.default
   font-size: 1.2em
   &:hover
     color: #ff8000
+  &:disabled
+    background: transparent !important
+    color: #6c6c6c
 
 span.contact-btn, small.contact-btn
   position: relative

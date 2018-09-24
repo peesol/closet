@@ -1,5 +1,5 @@
 <template>
-<div class="panel-body">
+<div class="panel-body relative">
   <vue-progress-bar></vue-progress-bar>
   <div class="padding-15-bottom">
     <button class="orange-btn normal-sq width-120" @click.prevent="formVisible = !formVisible">{{$trans.translation.add}}</button>
@@ -48,8 +48,8 @@
     </div>
   </div>
 
-  <div v-show="!accounts.length" class="padding-15-vertical">
-    <label class="full-label input-label">{{$trans.translation.no_account}}</label>
+  <div v-show="!accounts.length" class="padding-15-vertical align-center">
+    <h2 class="font-grey">{{$trans.translation.no_account}}</h2>
   </div>
 
 </div>
@@ -98,9 +98,11 @@ export default {
   methods: {
     getAccounts() {
       this.$Progress.start()
+      this.$root.loading = true
       this.$http.get(this.$root.url + '/' + this.$route.params.shop + '/edit/account/get').then(response => {
         this.accounts = response.body
         this.$Progress.finish()
+        this.$root.loading = false
       });
     },
     add() {

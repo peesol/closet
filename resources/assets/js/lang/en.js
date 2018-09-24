@@ -84,7 +84,6 @@ export default {
     showcase_empty: 'Your showcase has no product.',
     showcase_products: 'Products in your showcase',
     showcase_choice: 'Show on your shop homepage',
-    showcase_drag: 'You can change the order of your showcases by dragging the number.',
     no_showcase: 'You don\'t have any showcase.',
     no_contact: 'You don\'t have any contact.',
     no_account: 'You don\'t have any account.',

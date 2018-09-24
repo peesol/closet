@@ -1,5 +1,5 @@
 table
-  font-family: 'Arial', sans-serif
+  font-family: 'Arial', sans-serif !important
   border-collapse: collapse
   width: 100%
 
@@ -29,6 +29,8 @@ td.center, th.center
     overflow: hidden
     text-overflow: ellipsis
     white-space: nowrap
+  .break-word
+    word-break: break-all
   input
     &[type="text"], &[type="number"]
       height: 35px

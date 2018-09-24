@@ -2,6 +2,7 @@
 <div class="panel-body">
   <vue-progress-bar></vue-progress-bar>
   <button class="orange-btn normal-sq width-120" @click.prevent="toggled = !toggled">{{$trans.translation.add}}</button>
+  <button :disabled="$root.loading" class="orange-btn normal-sq width-120 float-right" @click.prevent="save()">{{$trans.translation.edit_submit}}</button>
   <transition name="slide-down-height">
     <div v-show="toggled" class="padding-15-vertical">
       <div class="panel-body shadow-2">
@@ -17,21 +18,10 @@
       </div>
     </div>
   </transition>
-  <div class="margin-10-top">
-
-    <div class="alert-box info margin-20-top" v-show="showcases.length">
-      <span class="icon-notification"></span>&nbsp;{{$trans.translation.showcase_drag}}
-    </div>
-
-    <div class="align-right padding-15-vertical" v-show="showcases.length">
-      <button :disabled="$root.loading" class="orange-btn normal-sq width-120" @click.prevent="save()">{{$trans.translation.edit_submit}}</button>
-    </div>
-    <draggable :list="showcases" :options="{animation: 200, handle: '.showcase-handle', forceFallback: true }" @change="order">
-
+  <div class="margin-30-top">
       <div class="shadow-2 margin-20-bottom" v-for="(showcase, index) in showcases" v-show="showcases.length">
         <div class="color-heading grey-bg">
           <label class="full-label input-label">{{showcase.name}}</label>
-
         </div>
         <div class="margin-10-top padding-15-bottom padding-15-horizontal">
           <div class="form-group">
@@ -41,17 +31,19 @@
             </button>
           </div>
           <div class="align-right margin-10-top">
-            <button class="add-btn round-btn showcase-handle">{{showcase.order}}</button>
+            <div class="input-group lh-35 float-left">
+              <button :disabled="index === showcases.length - 1" class="flat-btn icon-arrow-down" v-show="true" @click.prevent="setArrayDown(index, showcase.order)"></button>
+              <span class="padding-15-horizontal arial font-large">{{ index + 1 }}</span>
+              <button :disabled="index === 0" class="flat-btn icon-arrow-up" v-show="true" @click.prevent="setArrayUp(index, showcase.order)"></button>
+            </div>
             <button @click.prevent="edit(showcase.id)" class="edit-btn round-btn"><i class="icon-cog"></i></button>
             <button @click.prevent="remove(showcase.id, index)" class="delete-btn round-btn"><i class="icon-bin"></i></button>
           </div>
         </div>
-
       </div>
-    </draggable>
 
-    <div v-show="!showcases.length" class="padding-15-vertical">
-      <label class="full-label input-label">{{$trans.translation.no_showcase}}</label>
+    <div v-show="!showcases.length" class="padding-15-vertical align-center">
+      <h2 class="font-grey">{{$trans.translation.no_showcase}}</h2>
     </div>
 
   </div>
@@ -59,8 +51,6 @@
 </template>
 
 <script>
-import draggable from 'vuedraggable'
-
 export default {
   data() {
     return {
@@ -70,16 +60,29 @@ export default {
       toggled: false,
     }
   },
-  components: {
-    draggable,
-  },
 
   methods: {
+    setArrayDown(index, order) {
+      let array = [this.showcases[index], this.showcases[index + 1]];
+      this.showcases.splice(index, 2, array[1], array[0] );
+    },
+    setArrayUp(index, order) {
+      let array = [this.showcases[index], this.showcases[index + 1], this.showcases[index - 1]];
+      if (index < this.showcases.length - 1) {
+        this.showcases.splice(index - 1, 3, array[0], array[2], array[1] );
+      } else if (index === this.showcases.length - 1 && this.showcases.length !== 2) {
+        this.showcases.splice(index - 1, this.showcases.length - 1, array[0], array[2] );
+      } else if (this.showcases.length === 2) {
+        this.showcases.splice(index - 1, this.showcases.length, array[0], array[2] );
+      }
+    },
     getShowcase() {
       this.$Progress.start()
+      this.$root.loading = true
       this.$http.get(this.$root.url + '/' + this.$route.params.shop + '/edit/showcase/get').then(response => {
         this.showcases = response.body;
         this.$Progress.finish()
+        this.$root.loading = false
       });
     },
     create(index) {

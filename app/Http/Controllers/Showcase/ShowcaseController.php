@@ -51,8 +51,8 @@ class ShowcaseController extends Controller
   public function updateOrder(Shop $shop, Request $request)
   {
     $this->authorize('update', $shop);
-    foreach ($request->showcases as $showcaseUpdate) {
-      Showcase::find($showcaseUpdate['id'])->update(['order' => $showcaseUpdate['order']]);
+    foreach ($request->showcases as $index => $showcase) {
+      Showcase::find($showcase['id'])->update(['order' => $index]);
     }
     return response()->json($request->user()->showcase);
   }

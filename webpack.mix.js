@@ -25,7 +25,6 @@ mix.js([
 	'vue-js-modal',
 	'vue-progressbar',
 	'vue-router',
-	'vuedraggable',
 ], 'public/js/vendor.js');
 //
 //mix.sass('resources/assets/sass/app.sass', 'public/css/main.css');

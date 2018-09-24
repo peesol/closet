@@ -16,7 +16,8 @@
             </div>
         </div>
 
-          <div class="panel-body">
+          <div class="panel-body relative">
+            <load-overlay bg="white-bg" :show="$root.loading" padding="40px 0"></load-overlay>
             <router-view shop-name="{{$shop->name}}"
               shop-description="{{$shop->description}}"
               shop-thumbnail="{{$shop->getThumbnail()}}"
