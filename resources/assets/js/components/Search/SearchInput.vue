@@ -1,8 +1,10 @@
 <template>
 <div class="search-form">
   <form @submit.prevent="search(keyword)">
-    <input type="text" class="search-input" id="search-bar" v-model="keyword">
-    <button class="search-btn fas fa-search" type="submit"></button>
+    <input type="text" class="search-input no-margin" id="search-bar" v-model="keyword">
+    <button class="search-btn" type="submit">
+      <i class="fas fa-search"></i>
+    </button>
   </form>
 </div>
 </template>
