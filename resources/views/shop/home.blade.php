@@ -3,11 +3,6 @@
 {{$shop->name.' - '}}
 @endsection
 
-@section('scripts')
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
-
-@endsection
-
 @section('content')
 
 <div class="container">
@@ -25,23 +20,20 @@
                     </div>
                     <div class="panel-body" id="full-line">
                       @if($shop->description)
-                      <p>{!! nl2br(e($shop->description)) !!}</p>
+                        <div class="padding-10">
+                          <p>{!! nl2br(e($shop->description)) !!}</p>
+                        </div>
                       @else
+                        <div class="padding-10">
                         {{__('message.no_description')}}
+                        </div>
                       @endif
                       @if($shop->contact->count())
                       <div>
-                        @foreach($shop->contact as $contact)
-                          <div class="full-label" style="height:40px">
-                            @if($contact->link)
-                              <span class="contact-btn {{$contact->type}} fas fa-{{$contact->type}}"></span>&nbsp;
-                              <a class="link-text" href="{{$contact->link}}">{{$contact->body}}</a>
-                            @else
-                              <span class="contact-btn {{$contact->type}} fas fa-{{$contact->type}}"></span>&nbsp;<label class="font-grey font-light">{{$contact->body}}</label>
-                            @endif
-                          </div>
-                        @endforeach
-                      </div>
+                        <button class="flat-btn" @click="$root.tab = !$root.tab">{{__('message.contact')}}&nbsp;<i class="fas fa-caret-down"></i></button>
+                        <div class="contacts" v-show="$root.tab">
+                          <contacts-show :contacts="{{ json_encode($shop->contact->where('show', true)) }}"></contacts-show>
+                        </div>
                       @endif
                     </div>
 

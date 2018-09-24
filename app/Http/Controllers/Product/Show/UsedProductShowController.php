@@ -14,7 +14,7 @@ class UsedProductShowController extends Controller
 {
   public function show(UsedProduct $product)
   {
-      $contacts = $product->contactsProduct();
+      $contacts = $product->contactsProduct()->where('show', true);
       return view('product.show_used', [
         'product' => $product,
         'contacts' => $contacts,

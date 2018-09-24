@@ -2,7 +2,7 @@
 
 @if(Auth::check() && Auth::user()->id === $shop->user_id)
   <a href="/{{$shop->slug}}/edit/general">
-    <button class="align-top-right flat-btn icon-bg padding-10">
+    <button class="align-top-right flat-btn icon-bg">
       <i class="fas fa-pen"></i>
     </button>
   </a>

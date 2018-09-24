@@ -111,6 +111,7 @@ Vue.component('banner-slick', require('./components/BannerSlick.vue'));
 Vue.component('search-input', require('./components/Search/SearchInput.vue'));
 Vue.component('notification', require('./components/Notification/Notification.vue'));
 Vue.component('notification-icon', require('./components/Notification/NotificationIcon.vue'));
+Vue.component('contacts-show', require('./components/ContactsRender.vue'));
 
 Vue.component('load-overlay', {
   props: ['bg','show', 'padding'],

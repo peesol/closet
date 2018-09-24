@@ -21,7 +21,7 @@ class NewProductShowController extends Controller
 {
   public function show(Product $product)
   {
-    $contacts = $product->contacts();
+    $contacts = $product->contacts()->where('show', true);
     if (Auth::check()) {
       $noted = Note::where(['product_id' => $product->id, 'shop_id' => Auth::user()->id])->count();
     } else {

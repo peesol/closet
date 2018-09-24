@@ -442,6 +442,9 @@ div.website {
 div.line {
   background-color: #4ecd00; }
 
+div.email {
+  background-color: #4285f4; }
+
 .input-addon-field:focus, .description-input:focus, .comment-input:focus {
   background-color: #ffffff;
   border-bottom: 3px solid #ff8000;
@@ -2228,41 +2231,44 @@ button.default {
     .flat-btn.delete:hover {
       color: #ff3333; }
 
-span.contact-btn, small.contact-btn {
+span.contact-btn, i.contact-btn {
   position: relative;
   cursor: pointer;
   -moz-background-clip: border;
   -moz-background-inline-policy: continuous;
   -moz-background-origin: padding;
   font-size: 1.8em;
-  top: 10px; }
+  vertical-align: top; }
 
-span.contact-btn.instagram, small.contact-btn.instagram {
+span.contact-btn.instagram, i.contact-btn.instagram {
   background: #d6249f;
   background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
   border-radius: 15px;
   color: #fff; }
 
-span.contact-btn.facebook, small.contact-btn.facebook {
+span.contact-btn.facebook, i.contact-btn.facebook {
   color: #316fbb; }
 
-span.contact-btn.youtube, small.contact-btn.youtube {
+span.contact-btn.youtube, i.contact-btn.youtube {
   color: #f00; }
 
-span.contact-btn.phone, small.contact-btn.phone {
+span.contact-btn.phone, i.contact-btn.phone {
   color: #34a853; }
 
-span.contact-btn.mail, small.contact-btn.mail {
+span.contact-btn.email, i.contact-btn.email {
   color: #4285f4; }
 
-span.contact-btn.twitter, small.contact-btn.twitter {
+span.contact-btn.twitter, i.contact-btn.twitter {
   color: #41abe1; }
 
-span.contact-btn.website, small.contact-btn.website {
+span.contact-btn.website, i.contact-btn.website {
   color: #167ac6; }
 
-span.contact-btn.line, small.contact-btn.line {
+span.contact-btn.line, i.contact-btn.line {
   color: #4ecd00; }
+
+span.contact-btn.location, i.contact-btn.location {
+  color: #ff8300; }
 
 .round-btn {
   border-radius: 100%;

@@ -10422,7 +10422,7 @@ function xhrClient (request) {
 
 function nodeClient (request) {
 
-    var client = __webpack_require__(547);
+    var client = __webpack_require__(550);
 
     return new PromiseObj(function (resolve) {
 
@@ -24200,7 +24200,7 @@ module.exports = function merge(destination/* , sources */) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = function omit(obj, test) {
-  var keys = __webpack_require__(447);
+  var keys = __webpack_require__(448);
   var foreach = __webpack_require__(33);
 
   var filtered = {};
@@ -41428,8 +41428,8 @@ IndexBrowser.prototype._clean = function() {
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {
 
-var global = __webpack_require__(439);
-var Promise = global.Promise || __webpack_require__(438).Promise;
+var global = __webpack_require__(440);
+var Promise = global.Promise || __webpack_require__(439).Promise;
 
 // This is the standalone browser build entry point
 // Browser implementation of the Algolia Search JavaScript client,
@@ -41672,7 +41672,7 @@ module.exports = function createAlgoliasearch(AlgoliaSearch, uaSuffix) {
 
 module.exports = inlineHeaders;
 
-var encode = __webpack_require__(449);
+var encode = __webpack_require__(450);
 
 function inlineHeaders(url, headers) {
   if (/\?/.test(url)) {
@@ -42062,7 +42062,7 @@ module.exports = '3.30.0';
 
 /***/ }),
 
-/***/ 438:
+/***/ 439:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process, global) {/*!
@@ -43249,7 +43249,7 @@ return Promise$1;
 
 /***/ }),
 
-/***/ 439:
+/***/ 440:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var win;
@@ -43270,7 +43270,7 @@ module.exports = win;
 
 /***/ }),
 
-/***/ 447:
+/***/ 448:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -43280,7 +43280,7 @@ module.exports = win;
 var has = Object.prototype.hasOwnProperty;
 var toStr = Object.prototype.toString;
 var slice = Array.prototype.slice;
-var isArgs = __webpack_require__(448);
+var isArgs = __webpack_require__(449);
 var isEnumerable = Object.prototype.propertyIsEnumerable;
 var hasDontEnumBug = !isEnumerable.call({ toString: null }, 'toString');
 var hasProtoEnumBug = isEnumerable.call(function () {}, 'prototype');
@@ -43419,7 +43419,7 @@ module.exports = keysShim;
 
 /***/ }),
 
-/***/ 448:
+/***/ 449:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -43444,7 +43444,7 @@ module.exports = function isArguments(value) {
 
 /***/ }),
 
-/***/ 449:
+/***/ 450:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -43888,14 +43888,14 @@ exports.mixin = mixin;
 
 /***/ }),
 
-/***/ 547:
+/***/ 550:
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
 /***/ }),
 
-/***/ 549:
+/***/ 552:
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(17);
@@ -44165,4 +44165,4 @@ module.exports = function deprecatedMessage(previousUsage, newUsage) {
 
 /***/ })
 
-},[549]);
+},[552]);

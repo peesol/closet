@@ -34,19 +34,8 @@
                 @endif
 
                 @if($shop->contact->count())
-                <label class="heading">{{__('message.contact')}}</label>
-                <div class="">
-                  @foreach($shop->contact as $contact)
-                    <div class="full-label" style="height:40px">
-                      @if($contact->link)
-                        <span class="contact-btn {{$contact->type}} fas fa-{{$contact->type}}"></span>&nbsp;
-                        <a class="link-text" href="{{$contact->link}}">{{$contact->body}}</a>
-                      @else
-                        <span class="contact-btn {{$contact->type}} fas fa-{{$contact->type}}"></span>&nbsp;<label class="font-grey font-light">{{$contact->body}}</label>
-                      @endif
-                    </div>
-                  @endforeach
-                </div>
+                <label class="heading full-label">{{__('message.contact')}}</label>
+                <contacts-show :contacts="{{ json_encode($shop->contact->where('show', true)) }}"></contacts-show>
                 @endif
 
             </div>
