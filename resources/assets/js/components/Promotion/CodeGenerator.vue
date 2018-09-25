@@ -29,8 +29,8 @@
       </form>
     </div>
   </transition>
-  <div class="padding-15-vertical">
-    <table class="c-table" v-show="codes.length">
+  <div class="padding-15-vertical" v-if="codes.length">
+    <table class="c-table">
       <tr>
         <th>Code</th>
         <th>{{$trans.translation.discount}}</th>
@@ -42,12 +42,15 @@
         <td class="s-cell">{{code.discount}}{{code.type == 'percent' ? '%' : ' '+$trans.translation.baht}}</td>
         <td class="s-cell center">{{code.amount}}</td>
         <td class="s-cell center">
-          <button @click.prevent="remove(code.id, index)" class="delete-btn round-btn">
+          <button @click.prevent="remove(code.id, index)" class="flat-btn">
             <i class="fas fa-trash-alt"></i>
           </button>
         </td>
       </tr>
     </table>
+  </div>
+  <div v-else class="panel-body align-center">
+    <h2 class="font-grey">{{ $trans.translation.code_null }}</h2>
   </div>
 
 </div>
@@ -67,8 +70,10 @@ export default {
   },
   methods: {
     getCodes() {
+      this.$root.loading = true
       this.$http.get(this.$root.url + '/profile/promotions/manage/code_get').then(response => {
         this.codes = response.body
+        this.$root.loading = false
       });
     },
     create() {
@@ -88,7 +93,7 @@ export default {
         toastr.success(this.$trans.translation.success);
       }, response => {
         this.$root.loading = false
-        toastr.error(this.$trans.translation.error);
+        toastr.error(response.body);
       });
     },
     remove(id, index) {

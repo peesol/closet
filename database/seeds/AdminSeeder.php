@@ -41,12 +41,11 @@ class AdminSeeder extends Seeder
           'cover' => 'closet_cover.jpg',
           'view_count' => 0,
           'shipping' => null,
-      ]);
-
-      $shop->availablePromotions()->create([
-        'discount' => 5,
-        'get_another' => 5,
-        'flash_sale' => 2,
+          'promotion_points' => json_encode([
+            'discount' => 5,
+            'get_another' => 5,
+            'flash_sale' => 2,
+          ]),
       ]);
     }
 }

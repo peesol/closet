@@ -202,6 +202,7 @@ return [
     'discount_code_info1' => 'Create discount codes to give it to your costumers. The code can only be applied to',
     'discount_code_info1_end' => ' not each product.',
     'discount_code_info2' => 'You can create as any as you want.',
+    'code_exist' => 'You can not create the same discount code.',
     'flash_sale' => 'Flash sale',
     'flash_sale_info' => 'Post your product in flash sale campaign.',
     'product_discount' => 'Product discount',

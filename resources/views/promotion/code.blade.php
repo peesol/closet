@@ -16,7 +16,8 @@
         </ul>
     </div>
     <div class="panel-body">
-      <div class="tab-content current" id="tab-1">
+      <div class="tab-content current relative" id="tab-1">
+        <load-overlay bg="white-bg" :show="$root.loading" padding="30px 0"></load-overlay>
         <discount-code></discount-code>
       </div>
     </div>

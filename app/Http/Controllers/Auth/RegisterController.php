@@ -93,12 +93,11 @@ class RegisterController extends Controller
           'name' => $data['shop_name'],
           'slug' => uniqid('shop_'),
           'profile_type' => $data['profile_type'],
-        ]);
-
-        $shop->availablePromotions()->create([
-          'discount' => 5,
-          'get_another' => 5,
-          'flash_sale' => 2,
+          'promotion_points' => json_encode([
+            'discount' => 5,
+            'get_another' => 5,
+            'flash_sale' => 2,
+          ])
         ]);
 
         return $user;

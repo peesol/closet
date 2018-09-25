@@ -12,6 +12,8 @@
     min-width: 100%
     &.text-row
       line-height: 30px
+      &:nth-child(n+2)
+        padding-left: 0
 
 @media (min-width: 992px)
   .col-3-grid-res
@@ -21,7 +23,9 @@
     justify-content: flex-start
     flex-flow: row
     div.text-row
-      line-height: 40px
+      &:nth-child(n+2)
+        padding-left: 10px
+
   .col-4-flex-res
     div
       min-width: 25%

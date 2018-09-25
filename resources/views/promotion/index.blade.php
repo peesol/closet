@@ -31,7 +31,7 @@
         </div>
         <div class="panel-body">
           <label class="heading">
-            <font class="{{$points->discount ? 'font-green' : 'font-red'}}">{{__('message.promotions_points')}}&nbsp;:&nbsp;{{$points->discount}}</font>
+            <font class="{{$points['discount'] ? 'font-green' : 'font-red'}}">{{__('message.promotions_points')}}&nbsp;:&nbsp;{{$points['discount']}}</font>
           </label>
           <ul>
             <li>{{__('message.product_discount_info1')}}</li>
@@ -46,12 +46,6 @@
         </div>
       </div>
     </div>
-
-
-
-
-
-
 
   </div>
 

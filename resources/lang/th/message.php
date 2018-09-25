@@ -204,6 +204,7 @@ return [
     'discount_code_info1' => 'สร้างโค๊ดในการใช้ลดราคาสินค้าในร้านของคุณ ใช้ลดราคาจาก ',
     'discount_code_info1_end' => ' ไม่ใช่รายชิ้น',
     'discount_code_info2' => 'สามารถสร้างได้จำนวนไม่จำกัด',
+    'code_exist' => 'คุณจะสร้างโค๊ดซ้ำกันไม่ได้',
     'flash_sale' => 'Flash sale',
     'flash_sale_info' => 'ลงขายสินค้าของคุณใน Flash sale หน้าเว็บไซต์',
     'product_discount' => 'ลดราคาสินค้า',

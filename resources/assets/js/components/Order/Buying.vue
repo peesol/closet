@@ -32,7 +32,7 @@
     </tr>
   </table>
 
-  <modal name="open-msg" @before-open="beforeOpen" :clickToClose="false" :scrollable="true" :height="'auto'">
+  <modal name="open-msg" @before-open="beforeOpen" :clickToClose="false" :scrollable="true" :height="'auto'" :adaptive="true">
     <div class="panel-heading">
       <h4 class="no-margin">{{ data.title }}</h4>
     </div>

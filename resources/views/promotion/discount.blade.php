@@ -15,11 +15,12 @@
           <button class="tab-nav-btn current">{{__('message.product_discount')}}</button>
         </ul>
     </div>
-    <div class="panel-body">
+    <div class="panel-body relative">
       <div class="alert-box warning">
         <span class="fas fa-exclamation-triangle"></span>&nbsp;{{__('message.product_discount_warn')}}
       </div>
-      <product-discount points="{{$points->discount}}"></product-discount>
+      <load-overlay bg="white-bg" :show="$root.loading" padding="30px 0"></load-overlay>
+      <product-discount :points="{{$points['discount']}}"></product-discount>
     </div>
   </div>
 </div>

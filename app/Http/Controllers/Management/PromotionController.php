@@ -2,6 +2,7 @@
 
 namespace Closet\Http\Controllers\Management;
 
+use DB;
 use Date;
 use Fractal;
 use Carbon\Carbon;
@@ -14,13 +15,14 @@ class PromotionController extends Controller
 {
   public function index(Request $request)
   {
-    $promotions = $request->user()->shop->availablePromotions;
-    return view('promotion.index', ['points' => $promotions]);
+    $promotions = $request->user()->shop->promotion_points;
+  //  return dd(json_decode($promotions));
+    return view('promotion.index', ['points' => json_decode($promotions, true)]);
   }
 
   public function getShopPromotion(Request $request)
   {
-    $promotions = $request->user()->shop->availablePromotions;
+    $promotions = $request->user()->shop->promotion_points;
     return response()->json($promotions);
   }
 
@@ -38,13 +40,22 @@ class PromotionController extends Controller
 
   public function createCode(Request $request)
   {
-    $code = $request->user()->shop->code()->create([
-      'code' => $request->code,
-      'discount' => $request->discount,
-      'type' => $request->type,
-      'amount' => $request->amount,
-    ]);
-    return response()->json($code);
+    $check = DB::table('discounts')->where([
+      ['shop_id', $request->user()->id],
+      ['code', $request->code]
+    ])->get();
+
+    if (count($check)) {
+      return response(__('message.code_exist'), 406);
+    } else {
+      $code = $request->user()->shop->code()->create([
+        'code' => $request->code,
+        'discount' => $request->discount,
+        'type' => $request->type,
+        'amount' => $request->amount,
+      ]);
+      return response()->json($code);
+    }
   }
 
   public function removeCode(Request $request, Discount $discount)
@@ -70,30 +81,33 @@ class PromotionController extends Controller
   //Product Discount
   public function discountPage(Request $request)
   {
-    $promotions = $request->user()->shop->availablePromotions;
+    $promotions = $request->user()->shop->promotion_points;
     return view('promotion.discount', [
-      'points' => $promotions,
+      'points' => json_decode($promotions, true),
     ]);
   }
   public function getProduct(Request $request)
   {
-    $products = $request->user()->shop->product->where('discount_price', null);
-    $discount = $request->user()->shop->product->where('discount_price','!==', null);
+    $products = DB::table('products')->where([
+      ['shop_id', $request->user()->id],
+      ['discount_price', null]
+    ])->get();
+
+    $discount = $request->user()->products->where('discount_price','!==', null);
     $discount = Fractal::collection($discount, new DiscountProductTransformer());
 
     return response()->json([
       'products' => $products,
       'discount_products' => $discount
     ]);
-
   }
   public function applyDiscount(Product $product, Request $request)
   {
-    $amount = $request->user()->shop->availablePromotions->discount;
-    if ($amount === 0) {
+    $amount = json_decode($request->user()->shop->promotion_points, true);
+    if ($amount['discount'] < 1) {
       return response()->json(false, 406);
     } else {
-      $request->user()->shop->availablePromotions->decrement('discount', 1);
+      $request->user()->shop()->update(['promotion_points->discount' => $amount['discount'] - 1]);
       $target = $product->update([
         'discount_price' => $product->price - $request->discount,
         'discount_date' => Carbon::now('Asia/Bangkok')->addMonths(+1)
@@ -102,6 +116,7 @@ class PromotionController extends Controller
       return response()->json([
         'name' => $product->name,
         'price' => $product->price,
+        'uid' => $product->uid,
         'discount_price' => $product->discount_price,
         'discount_date' => $product->discount_date->format('d-m-Y')
       ]);

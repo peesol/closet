@@ -108,10 +108,6 @@ class Shop extends Model
     {
       return $this->hasMany(Discount::class);
     }
-    public function availablePromotions()
-    {
-      return $this->hasOne(ShopPromotion::class);
-    }
     public function reports()
     {
       return $this->morphMany(Report::class, 'reportable');

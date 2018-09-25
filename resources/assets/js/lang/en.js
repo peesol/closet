@@ -155,6 +155,7 @@ export default {
     points: 'Points',
     expired: 'Exp',
     not_enough_points: 'You don\'t have enough points.',
+    code_null: 'You currently have no promotions',
     search: 'Search',
     search_query: 'Search for',
     search_not_found: 'Not found what you\'re looking for',
