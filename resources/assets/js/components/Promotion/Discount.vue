@@ -28,8 +28,8 @@
     </div>
   </div>
 
-  <modal name="open-msg" @before-open="beforeOpen" :clickToClose="false" :scrollable="true" :height="'auto'" :adaptive="true">
-    <form @submit.prevent="apply(data.uid, index)">
+  <modal>
+    <form slot="body" @submit.prevent="apply(data.uid, index)">
       <p class="break-word padding-15-horizontal">{{$trans.translation.product}}&nbsp;:&nbsp;{{ data.name }}</p>
       <div class="padding-15-horizontal padding-15-bottom align-center">
         <p>{{$trans.translation.price}}&nbsp;:{{ $number.currency(data.price) }}&nbsp;฿
@@ -67,18 +67,13 @@ export default {
     discounted(price) {
       return this.$number.currency(price - this.discount);
     },
-    beforeOpen(event) {
-      this.data = event.params.data
-      this.index = event.params.index
-    },
     open(product, index) {
-      this.$modal.show('open-msg', {
-        data: product,
-        index: index
-      });
+      this.$root.showModal = true
+      this.data = product
+      this.index = index
     },
     hide() {
-      this.$modal.hide('open-msg');
+      this.$root.showModal = false
       this.data = []
       this.index = null
     },

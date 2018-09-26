@@ -32,9 +32,6 @@ Vue.use(VueValidate)
 import VueResource from 'vue-resource'
 Vue.use(VueResource)
 
-import VModal from 'vue-js-modal'
-Vue.use(VModal)
-
 import VueProgressBar from 'vue-progressbar'
 Vue.use(VueProgressBar, {
   color: '#ff8300',
@@ -54,7 +51,9 @@ window.addEventListener('load', function () {
        locale: window.Closet.locale,
        user: window.Closet.user.user,
        loading: false,
-       tab: null
+       tab: null,
+       showModal: false,
+       modalData: []
      },
      store,
      router
@@ -112,6 +111,7 @@ Vue.component('search-input', require('./components/Search/SearchInput.vue'));
 Vue.component('notification', require('./components/Notification/Notification.vue'));
 Vue.component('notification-icon', require('./components/Notification/NotificationIcon.vue'));
 Vue.component('contacts-show', require('./components/ContactsRender.vue'));
+Vue.component('modal', require('./components/modal.vue'));
 
 Vue.component('load-overlay', {
   props: ['bg','show', 'padding'],

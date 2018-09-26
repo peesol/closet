@@ -4,8 +4,8 @@
   <div class="padding-30-bot-15">
     <button class="orange-btn normal-sq" @click.prevent="open(products)" name="button">{{$trans.translation.add_your_product}}&nbsp;+</button>
   </div>
-  <modal name="open-msg" @before-open="beforeOpen" :clickToClose="false" :scrollable="true" :height="'auto'" :adaptive="true" :minWidth="425" :width="'80%'">
-    <div class="relative" style="min-height: 120px">
+  <modal>
+    <div slot="body" class="relative" style="min-height: 120px">
       <load-overlay bg="white-bg" :show="$root.loading"></load-overlay>
       <table class="c-table no-margin">
         <tr>
@@ -19,7 +19,7 @@
         </tr>
       </table>
     </div>
-    <div class="msg-btn">
+    <div slot="footer" class="msg-btn">
       <button class="msg-btn-full" @click.prevent="hide()">{{$trans.translation.close}}</button>
     </div>
   </modal>
@@ -65,9 +65,6 @@ export default {
     colSlug: null
   },
   methods: {
-    beforeOpen(event) {
-      this.data = event.params.products;
-    },
     open() {
       if (!this.myProducts.length) {
         this.$Progress.start()
@@ -78,16 +75,15 @@ export default {
           this.$root.loading = false
         });
       }
-      this.$modal.show('open-msg', {
-        data: this.myProducts,
-      });
+      this.$root.showModal = true
     },
     hide() {
-      this.$modal.hide('open-msg');
+      this.$root.showModal = false
       this.products = []
       this.getProduct()
     },
     getProduct() {
+      this.loaded = false
       this.$http.get(this.$root.url + '/collection_api/products/' + this.colId).then((response) => {
         this.products = response.body.data;
         this.loaded = true

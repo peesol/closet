@@ -31,7 +31,8 @@ class OrderTransformer extends TransformerAbstract
 		'tracking_number' => $order->tracking_number,
 		'address' => $order->address,
 		'date_paid' => $order->date_paid,
-    'created_at' => Date::parse($order->created_at)->diffForHumans(),
+    'created_at' => Date::parse($order->updated_at)->diffForHumans(),
+    'cancled' => (bool) $order->deleted_type != null,
 		];
 	}
 

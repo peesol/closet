@@ -1,7 +1,7 @@
 <template>
 <div class="relative">
   <vue-progress-bar></vue-progress-bar>
-  <load-overlay bg="white-bg" :show="!this.loaded"></load-overlay>
+  <load-overlay bg="white-bg" :show="!loaded"></load-overlay>
   <div id="full-line" class="padding-10 full-width lightgrey-bg">
     <a class="flat-btn" :class="{'font-orange font-15em' : tab === 1}" @click="toggleTab(1)">{{$trans.translation.wait_transaction}}&nbsp;
       <span class="number font-medium" :class="{'not-empty' : added.ordered > 0}">{{ added.ordered }}</span>
@@ -42,26 +42,32 @@
     </div>
   </div>
 
-  <modal name="open-msg" @before-open="beforeOpen" :clickToClose="false" :height="'auto'" :adaptive="true" :scrollable="true">
-    <div class="relative scrollable">
+  <modal>
+    <div slot="body" class="relative">
       <load-overlay bg="white-bg" :show="$root.loading" padding="70px 0"></load-overlay>
       <div class="panel-heading">
         <h4 class="no-margin">{{ data.title }}</h4>
+        <sub>#{{ data.uid }}</sub>
       </div>
-      <div class="panel-body">
+      <div id="full-line" class="padding-10">
+        <span class="red-box padding-5" v-show="!data.trans">{{$trans.translation.wait_transaction}}</span>
+        <div v-show="data.trans && !data.shipped">
+          <span class="yellow-box padding-5">{{$trans.translation.wait_delivery}}</span>
+          <p><strong>{{$trans.translation.payment_date}}</strong>&nbsp;{{ data.date_paid }}</p>
+        </div>
+        <div v-show="data.shipped">
+          <span class="green-box padding-5">{{$trans.translation.delivered}}</span>
+          <p><strong>{{$trans.translation.track_info}}</strong>&nbsp;{{data.carrier}}</p>
+          <p><strong>{{$trans.translation.track_number}}</strong>&nbsp;{{data.tracking_number}}</p>
+          <p><strong>{{$trans.translation.payment_date}}</strong>&nbsp;{{ data.date_paid }}</p>
+        </div>
+      </div>
+      <div class="col-2-flex-res order-product" v-for="item in data.body">
+        <div class="text-row">{{item.name}}&nbsp;{{item.options.choice ? item.options.choice :  '---'}}</div>
+        <div class="text-row">{{$trans.translation.price}}&nbsp;{{ $number.currency(item.price) }}&nbsp;{{$trans.translation.amount}}&nbsp;:&nbsp;{{item.qty}}</div>
+      </div>
+      <div>
         <table class="c-table">
-          <tr>
-            <th class="overflow-hidden">{{$trans.translation.product_name}}</th>
-            <th>{{$trans.translation.choice}}</th>
-            <th>{{$trans.translation.price}}</th>
-            <th>{{$trans.translation.amount}}</th>
-          </tr>
-          <tr v-for="item in data.body">
-            <td class="overflow-hidden">{{item.name}}</td>
-            <td class="m-cell">{{item.options.choice ? item.options.choice :  '---'}}</td>
-            <td class="s-cell">{{item.price}}</td>
-            <td class="s-cell">{{item.qty}}</td>
-          </tr>
           <tr v-for="item in data.shipping">
             <td colspan="4">
               {{$trans.translation.shipping_fee}}&nbsp;:&nbsp;{{ item.free ? 'free' : item.fee + '฿' }}&nbsp;({{ item.method + ' ' + item.time + ' ' + $trans.translation.days}})
@@ -72,25 +78,8 @@
           </tr>
           <tr>
             <td colspan="4">
-              <label class="input-label">{{$trans.translation.address}}</label>
-              <p>{{ data.address }}</p>
-            </td>
-          </tr>
-          <tr v-show="!data.trans">
-            <td colspan="4"><h4 class="no-margin font-red">{{$trans.translation.wait_transaction}}</h4></td>
-          </tr>
-          <tr v-show="data.trans && !data.shipped">
-            <td colspan="4">
-              <h4 class="no-margin font-green">{{$trans.translation.completed_transaction}}</h4>
-              <h4>{{$trans.translation.payment_date}}&nbsp;{{ data.date_paid }}</h4>
-            </td>
-          </tr>
-          <tr v-show="data.shipped">
-            <td colspan="4">
-              <h4 class="no-margin font-green">{{$trans.translation.delivered}}</h4>
-              <p>{{$trans.translation.payment_date}}&nbsp;{{ data.date_paid }}</p>
-              <p>{{$trans.translation.track_info}}&nbsp;{{data.carrier}}</p>
-              <p>{{$trans.translation.track_number}}&nbsp;{{data.tracking_number}}</p>
+              <span class="font-bold">{{$trans.translation.address}}</span>
+              <p class="break-word">{{ data.address }}</p>
             </td>
           </tr>
           <tr v-show="!data.shipped">
@@ -107,11 +96,11 @@
     </div>
 
     <!-- Transaction waiting & Delivered -->
-    <div class="msg-btn" v-show="!data.trans || data.shipped">
+    <div slot="footer" class="msg-btn" v-show="!data.trans || data.shipped">
       <button class="msg-btn-full" @click.prevent="hide()">{{$trans.translation.close}}</button>
     </div>
     <!-- Shipped form -->
-      <form v-on:submit.prevent="confirmShipping(data.uid, index)" method="post" v-show="data.trans && !data.shipped">
+      <form slot="footer" v-on:submit.prevent="confirmShipping(data.uid, index)" method="post" v-show="data.trans && !data.shipped">
         <div class="padding-15-horizontal padding-15-bottom">
           <table class="shipping-table">
             <tr>
@@ -180,15 +169,15 @@ export default {
       }
       this.tab = id;
     },
-    beforeOpen (event) {
-        this.data = event.params.data;
-        this.index = event.params.index;
-    },
     open(order, index) {
-      this.$modal.show('open-msg', { data: order, index: index,});
+      this.$root.showModal = true
+      this.data = order
+      this.index = index
     },
     hide() {
-      this.$modal.hide('open-msg');
+      this.$root.showModal = false
+      this.data = []
+      this.index = null
       this.track_info = null;
       this.track_number = null;
       this.deny_reason = null;
@@ -203,7 +192,6 @@ export default {
       }).then(response => {
         this.track_info = null;
         this.track_number = null;
-        this.$modal.hide('open-msg');
         this.$set(this.orders[index], 'shipped', true);
         this.$Progress.finish();
         this.$root.loading = false
@@ -214,7 +202,7 @@ export default {
         toastr.error(this.$trans.translation.error);
       });
     },
-    deny(uid, index) {
+    deny(uid) {
       if (!confirm(this.$trans.translation.deny + '?')) {
         return
       } else {
@@ -224,10 +212,10 @@ export default {
         }).then(response => {
           this.deny_reason = null;
           this.deny_form = false;
-          this.$modal.hide('open-msg');
-          this.$delete(this.orders, index);
+          this.$delete(this.orders, this.index);
           toastr.success(this.$trans.translation.success);
           this.$Progress.finish();
+          this.hide()
         });
       }
     }

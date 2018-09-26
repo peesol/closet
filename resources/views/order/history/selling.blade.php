@@ -11,7 +11,8 @@
     <div class="panel-heading">
       <label class="heading">{{ __('message.selling_history') }}</label>
     </div>
-    <div class="panel-body">
+    <div class="panel-body relative">
+      <load-overlay bg="white-bg" :show="$root.loading"></load-overlay>
       <order-history type="selling"></order-history>
     </div>
   </div>

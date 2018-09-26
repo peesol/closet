@@ -22,7 +22,6 @@ mix.js([
 	'vue-resource',
 	'vee-validate',
 	'vue-clickaway',
-	'vue-js-modal',
 	'vue-progressbar',
 	'vue-router',
 ], 'public/js/vendor.js');

@@ -56,14 +56,14 @@ class OrderController extends Controller
   public function getSellingHistory()
   {
     $id = Auth::id();
-    $order = Order::onlyTrashed()->where(['reciever_id' => $id], ['deleted_type', '!=', null])->latest()->paginate(40);
-    return response($order);
+    $order = Order::onlyTrashed()->where(['reciever_id' => $id])->latest()->paginate(40);
+    return Fractal::collection($order, new OrderTransformer);
   }
   public function getBuyingHistory()
   {
     $id = Auth::id();
-    $order = Order::onlyTrashed()->where(['sender_id' => $id], ['deleted_type', '!=', null])->latest()->paginate(40);
-    return response($order);
+    $order = Order::onlyTrashed()->where(['sender_id' => $id])->latest()->paginate(40);
+    return Fractal::collection($order, new OrderTransformer);
   }
   /*
   |--------------------------------------------------------------------------
