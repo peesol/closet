@@ -13,7 +13,8 @@ class Shop extends Model
       'description',
       'thumbnail',
       'cover',
-      'shipping'
+      'shipping',
+      'promotion_points'
     ];
 
     public function user()
