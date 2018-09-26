@@ -15,7 +15,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     @yield('css')
     <!-- Scripts -->
-    @yield('script')
+    @yield('scripts')
     <script>
 window.Laravel = {!! json_encode(['csrfToken' => csrf_token()]) !!};
 

@@ -1,5 +1,6 @@
 <template>
-<div class="padding-30-bot-15" id="full-line">
+<div class="padding-30-bot-15 relative" id="full-line">
+  <load-overlay bg="white-bg" :show="!loaded"></load-overlay>
   <div class="thumbnail-grid" v-if="images.length">
     <div v-for="(image, index) in images" class="products-img">
       <img class="object-contain black-bg" :alt="image.filename" :src="image.filename">
@@ -42,6 +43,7 @@ export default {
       images: [],
       formVisible: false,
       dropzoneUrl: this.$root.url + '/collection/' + this.colSlug + '/upload/' + this.colId,
+      loaded: false
     }
   },
   props: {
@@ -52,6 +54,7 @@ export default {
     getPhoto() {
       this.$http.get(this.$root.url + '/collection_api/img/' + this.colSlug).then(response => {
         this.images = response.body.data;
+        this.loaded = true
       });
     },
     remove(imageId, index) {

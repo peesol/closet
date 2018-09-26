@@ -16,7 +16,7 @@ class PromotionController extends Controller
   public function index(Request $request)
   {
     $promotions = $request->user()->shop->promotion_points;
-  //  return dd(json_decode($promotions));
+
     return view('promotion.index', ['points' => json_decode($promotions, true)]);
   }
 

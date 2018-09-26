@@ -2,53 +2,65 @@
 <div class="relative">
   <vue-progress-bar></vue-progress-bar>
   <load-overlay bg="white-bg" :show="!this.loaded"></load-overlay>
-  <table class="c-table">
-    <tr>
-      <th colspan="2">{{$trans.translation.wait_transaction}}&nbsp;<span class="number" :class="{'not-empty' : added.ordered > 0}">{{ added.ordered }}</span></th>
-    </tr>
-    <tr v-for="(item, index) in orders" v-show="!item.trans">
-      <td><a class="link-text" @click.prevent="open(item, index)">{{item.title}}</a></td>
-      <td><span class="float-right">{{item.created_at}}</span></td>
-    </tr>
-  </table>
 
-  <table class="c-table">
-    <tr>
-      <th colspan="2">{{$trans.translation.transacted}}&nbsp;<span class="number" :class="{'not-empty' : added.trans > 0}">{{ added.trans }}</span></th>
-    </tr>
-    <tr v-for="(item, index) in orders" v-show="item.trans && !item.shipped">
-      <td><a class="link-text" @click.prevent="open(item, index)">{{item.title}}</a></td>
-      <td><span class="float-right">{{item.created_at}}</span></td>
-    </tr>
-  </table>
-
-  <table class="c-table">
-    <tr>
-      <th colspan="2">{{$trans.translation.shipped}}&nbsp;<span class="number" :class="{'not-empty' : added.shipped > 0}">{{ added.shipped }}</span></th>
-    </tr>
-    <tr v-for="(item, index) in orders" v-show="item.shipped">
-      <td><a class="link-text" @click.prevent="open(item, index)">{{item.title}}</a></td>
-      <td><span class="float-right">{{item.created_at}}</span></td>
-    </tr>
-  </table>
+  <div id="full-line" class="padding-10 full-width lightgrey-bg">
+    <a class="flat-btn" :class="{'font-orange font-15em' : tab === 1}" @click="toggleTab(1)">{{$trans.translation.wait_transaction}}&nbsp;
+      <span class="number font-medium" :class="{'not-empty' : added.ordered > 0}">{{ added.ordered }}</span>
+    </a>
+  </div>
+  <div id="full-line" v-for="(item, index) in orders" class="col-2-flex-res padding-5" v-show="tab === 1 && !item.trans">
+    <div class="text-row">
+      <a class="link-text" @click.prevent="open(item, index)">{{item.title}}</a>
+    </div>
+    <div class="text-row align-right-res">
+      {{item.created_at}}
+    </div>
+  </div>
+  <div id="full-line" class="padding-10 full-width lightgrey-bg">
+    <a class="flat-btn" @click="toggleTab(2)" :class="{'font-orange font-15em' : tab === 2}">{{$trans.translation.transacted}}&nbsp;
+      <span class="number font-medium" :class="{'not-empty' : added.trans > 0}">{{ added.trans }}</span>
+    </a>
+  </div>
+  <div id="full-line" v-for="(item, index) in orders" class="col-2-flex-res padding-5" v-show="tab === 2 && item.trans && !item.shipped">
+    <div class="text-row">
+      <a class="link-text" @click.prevent="open(item, index)">{{item.title}}</a>
+    </div>
+    <div class="text-row align-right-res">
+      {{item.created_at}}
+    </div>
+  </div>
+  <div id="full-line" class="padding-10 full-width lightgrey-bg">
+    <a class="flat-btn" @click="toggleTab(3)" :class="{'font-orange font-15em' : tab === 3}">{{$trans.translation.shipped}}&nbsp;
+      <span class="number font-medium" :class="{'not-empty' : added.shipped > 0}">{{ added.shipped }}</span>
+    </a>
+  </div>
+  <div id="full-line" v-for="(item, index) in orders" class="col-2-flex-res padding-5" v-show="tab === 3 && item.shipped">
+    <div class="text-row">
+      <a class="link-text" @click.prevent="open(item, index)">{{item.title}}</a>
+    </div>
+    <div class="text-row align-right-res">
+      {{item.created_at}}
+    </div>
+  </div>
 
   <modal name="open-msg" @before-open="beforeOpen" :clickToClose="false" :scrollable="true" :height="'auto'" :adaptive="true">
     <div class="panel-heading">
       <h4 class="no-margin">{{ data.title }}</h4>
     </div>
-    <div class="panel-body">
+    <div class="panel-body relative scrollable">
+      <load-overlay bg="white-bg" :show="$root.loading" padding="70px 0"></load-overlay>
       <table class="c-table">
         <tr>
           <th class="overflow-hidden">{{$trans.translation.product_name}}</th>
-          <th>{{$trans.translation.choice}}</th>
-          <th>{{$trans.translation.price}}</th>
-          <th>{{$trans.translation.amount}}</th>
+          <th class="center">{{$trans.translation.choice}}</th>
+          <th class="center">{{$trans.translation.price}}</th>
+          <th class="center">{{$trans.translation.amount}}</th>
         </tr>
         <tr v-for="item in data.body">
           <td class="overflow-hidden">{{item.name}}</td>
-          <td class="m-cell">{{item.options.choice ? item.options.choice : '---'}}</td>
-          <td class="s-cell">{{item.price}}</td>
-          <td class="s-cell">{{item.qty}}</td>
+          <td class="m-cell center">{{item.options.choice ? item.options.choice : '---'}}</td>
+          <td class="s-cell center">{{item.price}}</td>
+          <td class="s-cell center">{{item.qty}}</td>
         </tr>
         <tr v-for="item in data.shipping">
           <td colspan="4">
@@ -159,7 +171,8 @@ export default {
       phone: this.userPhone,
       index: null,
       bankAccount: [],
-      loaded: false
+      loaded: false,
+      tab: null,
     }
   },
   components: {
@@ -191,6 +204,13 @@ export default {
         this.$Progress.finish()
         this.loaded = true
       });
+    },
+    toggleTab(id) {
+      if (this.tab === id) {
+        this.tab = null;
+        return;
+      }
+      this.tab = id;
     },
     beforeOpen(event) {
       this.data = event.params.data;
@@ -267,9 +287,11 @@ export default {
     },
     getBankAccount(id) {
       this.$Progress.start();
+      this.$root.loading = true
       this.$http.get(this.$root.url + '/api/getter/shop_account/' + id).then((response) => {
         this.bankAccount = response.body
         this.$Progress.finish();
+        this.$root.loading = false
       });
     }
   },

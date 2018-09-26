@@ -4,7 +4,7 @@
   grid-template-columns: repeat(auto-fill, minmax(100%, 1fr))
   justify-items: center
 
-.col-4-flex-res, .col-3-flex-res
+.col-4-flex-res, .col-3-flex-res, .col-2-flex-res
   display: flex
   justify-content: flex-start
   flex-flow: column
@@ -14,18 +14,25 @@
       line-height: 30px
       &:nth-child(n+2)
         padding-left: 0
+  .align-right-res
+    text-align: left
 
 @media (min-width: 992px)
   .col-3-grid-res
     grid-template-columns: repeat(auto-fill, minmax(30%, 1fr))
 
-  .col-4-flex-res, .col-3-flex-res
+  .col-4-flex-res, .col-3-flex-res , .col-2-flex-res
     justify-content: flex-start
     flex-flow: row
     div.text-row
       &:nth-child(n+2)
         padding-left: 10px
+    .align-right-res
+      text-align: right
 
+  .col-2-flex-res
+    div
+      min-width: 50%
   .col-4-flex-res
     div
       min-width: 25%

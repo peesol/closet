@@ -13,7 +13,7 @@
     </div>
     <div class="panel-body">
       <h2 class="font-green no-margin">{{__('message.after_sell_heading')}}</h2>
-      <p class="font-large">{{__('message.after_sell_notice')}}&nbsp;<a href="/myproduct/stock">{{__('message.after_sell_link')}}</a></p>
+      <p class="font-large">{{__('message.after_sell_notice')}}&nbsp;<a href="{{ config('app.url') }}/profile/myproduct/stock">{{__('message.after_sell_link')}}</a></p>
       <p class="font-red font-large">{{__('message.after_sell_notice_2')}}</p>
       <p>*{{__('message.after_sell_notice_3')}}</p>
       <a class="font-15em" href="/sell/new"><<&nbsp;{{__('message.after_sell_back')}}</a><br>

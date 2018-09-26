@@ -95,6 +95,11 @@ export default {
       visibility: null,
     }
   },
+  watch: {
+    price: function (val) {
+      return this.price = val.replace(/\W+/g, '');
+    }
+  },
   methods: {
     selectCategory(category) {
       this.subcategories = category.subcategory

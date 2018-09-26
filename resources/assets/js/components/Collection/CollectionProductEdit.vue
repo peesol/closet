@@ -1,20 +1,24 @@
 <template>
-<div>
+<div class="relative">
+  <load-overlay bg="white-bg" :show="!loaded"></load-overlay>
   <div class="padding-30-bot-15">
     <button class="orange-btn normal-sq" @click.prevent="open(products)" name="button">{{$trans.translation.add_your_product}}&nbsp;+</button>
   </div>
   <modal name="open-msg" @before-open="beforeOpen" :clickToClose="false" :scrollable="true" :height="'auto'" :adaptive="true" :minWidth="425" :width="'80%'">
-    <table class="c-table no-margin">
-      <tr>
-        <th colspan="2" class="align-center font-large">{{$trans.translation.add_your_product}}</th>
-      </tr>
-      <tr v-for="(item, index) in myProducts">
-        <td class="overflow-hidden">{{ item.name }}</td>
-        <td class="align-center">
-          <a @click.prevent="addToCollection(item.id, colId, index)" class="font-15em" :class="{'font-green fas fa-check-square' : item.added, 'fas fa-plus font-grey' : !item.added}"></a>
-        </td>
-      </tr>
-    </table>
+    <div class="relative" style="min-height: 120px">
+      <load-overlay bg="white-bg" :show="$root.loading"></load-overlay>
+      <table class="c-table no-margin">
+        <tr>
+          <th colspan="2" class="align-center font-large">{{$trans.translation.add_your_product}}</th>
+        </tr>
+        <tr v-for="(item, index) in myProducts">
+          <td class="overflow-hidden">{{ item.name }}</td>
+          <td class="align-center">
+            <a @click.prevent="addToCollection(item.id, colId, index)" class="font-15em" :class="{'font-green fas fa-check-square' : item.added, 'fas fa-plus font-grey' : !item.added}"></a>
+          </td>
+        </tr>
+      </table>
+    </div>
     <div class="msg-btn">
       <button class="msg-btn-full" @click.prevent="hide()">{{$trans.translation.close}}</button>
     </div>
@@ -52,7 +56,8 @@ export default {
     return {
       products: [],
       myProducts:[],
-      formVisible: false
+      formVisible: false,
+      loaded: false
     }
   },
   props: {
@@ -66,9 +71,11 @@ export default {
     open() {
       if (!this.myProducts.length) {
         this.$Progress.start()
+        this.$root.loading = true
         this.$http.get(this.$root.url + '/collection/' + this.colSlug + '/edit/get_myproducts').then((response) => {
           this.myProducts = response.body;
           this.$Progress.finish()
+          this.$root.loading = false
         });
       }
       this.$modal.show('open-msg', {
@@ -83,6 +90,7 @@ export default {
     getProduct() {
       this.$http.get(this.$root.url + '/collection_api/products/' + this.colId).then((response) => {
         this.products = response.body.data;
+        this.loaded = true
       });
     },
     addToCollection(productId, collectionId, index) {

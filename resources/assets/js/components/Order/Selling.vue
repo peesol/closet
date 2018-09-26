@@ -2,95 +2,108 @@
 <div class="relative">
   <vue-progress-bar></vue-progress-bar>
   <load-overlay bg="white-bg" :show="!this.loaded"></load-overlay>
-  <table class="c-table">
-    <tr>
-      <th colspan="2">{{$trans.translation.wait_transaction}}&nbsp;<span class="number" :class="{'not-empty' : added.ordered > 0}">{{ added.ordered }}</span></th>
-    </tr>
-    <tr v-for="(item, index) in orders" v-show="!item.trans">
-      <td><a class="link-text" @click.prevent="open(item, index)">{{item.title}}</a></td>
-      <td><span class="float-right">{{item.created_at}}</span></td>
-    </tr>
-  </table>
-
-  <table class="c-table">
-    <tr>
-      <th colspan="2">{{$trans.translation.transacted}}&nbsp;<span class="number" :class="{'not-empty' : added.trans > 0}">{{ added.trans }}</span></th>
-    </tr>
-    <tr v-for="(item, index) in orders" v-show="item.trans && !item.shipped">
-      <td><a class="link-text" @click.prevent="open(item, index)">{{item.title}}</a></td>
-      <td><span class="float-right">{{item.created_at}}</span></td>
-    </tr>
-  </table>
-
-  <table class="c-table">
-    <tr>
-      <th colspan="2">{{$trans.translation.shipped}}&nbsp;<span class="number" :class="{'not-empty' : added.shipped > 0}">{{ added.shipped }}</span></th>
-    </tr>
-    <tr v-for="(item, index) in orders" v-show="item.shipped">
-      <td><a class="link-text"  @click.prevent="open(item, index)">{{item.title}}</a></td>
-      <td><span class="float-right">{{item.created_at}}</span></td>
-    </tr>
-  </table>
-
-  <modal name="open-msg" @before-open="beforeOpen" :clickToClose="false" :height="'auto'" :adaptive="true">
-    <div class="panel-heading">
-      <h4 class="no-margin">{{ data.title }}</h4>
+  <div id="full-line" class="padding-10 full-width lightgrey-bg">
+    <a class="flat-btn" :class="{'font-orange font-15em' : tab === 1}" @click="toggleTab(1)">{{$trans.translation.wait_transaction}}&nbsp;
+      <span class="number font-medium" :class="{'not-empty' : added.ordered > 0}">{{ added.ordered }}</span>
+    </a>
+  </div>
+  <div id="full-line" v-for="(item, index) in orders" class="col-2-flex-res padding-5" v-show="tab === 1 && !item.trans">
+    <div class="text-row">
+      <a class="link-text" @click.prevent="open(item, index)">{{item.title}}</a>
     </div>
-    <div class="panel-body">
-      <table class="c-table">
-        <tr>
-          <th class="overflow-hidden">{{$trans.translation.product_name}}</th>
-          <th>{{$trans.translation.choice}}</th>
-          <th>{{$trans.translation.price}}</th>
-          <th>{{$trans.translation.amount}}</th>
-        </tr>
-        <tr v-for="item in data.body">
-          <td class="overflow-hidden">{{item.name}}</td>
-          <td class="m-cell">{{item.options.choice ? item.options.choice :  '---'}}</td>
-          <td class="s-cell">{{item.price}}</td>
-          <td class="s-cell">{{item.qty}}</td>
-        </tr>
-        <tr v-for="item in data.shipping">
-          <td colspan="4">
-            {{$trans.translation.shipping_fee}}&nbsp;:&nbsp;{{ item.free ? 'free' : item.fee + '฿' }}&nbsp;({{ item.method + ' ' + item.time + ' ' + $trans.translation.days}})
-          </td>
-        </tr>
-        <tr>
-          <td colspan="4"><h4 class="no-margin">{{$trans.translation.total_price}}&nbsp;:&nbsp;<span class="font-red">{{data.total}}</span>&nbsp;฿</h4></td>
-        </tr>
-        <tr>
-          <td colspan="4">
-            <label class="input-label">{{$trans.translation.address}}</label>
-            <p>{{ data.address }}</p>
-          </td>
-        </tr>
-        <tr v-show="!data.trans">
-          <td colspan="4"><h4 class="no-margin font-red">{{$trans.translation.wait_transaction}}</h4></td>
-        </tr>
-        <tr v-show="data.trans && !data.shipped">
-          <td colspan="4">
-            <h4 class="no-margin font-green">{{$trans.translation.completed_transaction}}</h4>
-            <h4>{{$trans.translation.payment_date}}&nbsp;{{ data.date_paid }}</h4>
-          </td>
-        </tr>
-        <tr v-show="data.shipped">
-          <td colspan="4">
-            <h4 class="no-margin font-green">{{$trans.translation.delivered}}</h4>
-            <p>{{$trans.translation.payment_date}}&nbsp;{{ data.date_paid }}</p>
-            <p>{{$trans.translation.track_info}}&nbsp;{{data.carrier}}</p>
-            <p>{{$trans.translation.track_number}}&nbsp;{{data.tracking_number}}</p>
-          </td>
-        </tr>
-        <tr v-show="!data.shipped">
-          <td colspan="4">
-            <button class="delete-btn normal-sq red-box" @click.prevent="deny_form = !deny_form">{{$trans.translation.deny}}</button>
-            <form class="align-right" v-show="deny_form" @submit.prevent="deny(data.uid, index)">
-              <input required type="text" class="margin-10-vertical full-width" :placeholder="$trans.translation.deny_reason" v-model="deny_reason">
-              <button type="submit" class="delete-btn normal-sq red-box">{{$trans.translation.confirm}}</button>
-            </form>
-          </td>
-        </tr>
-      </table>
+    <div class="text-row align-right-res">
+      {{item.created_at}}
+    </div>
+  </div>
+  <div id="full-line" class="padding-10 full-width lightgrey-bg">
+    <a class="flat-btn" @click="toggleTab(2)" :class="{'font-orange font-15em' : tab === 2}">{{$trans.translation.transacted}}&nbsp;
+      <span class="number font-medium" :class="{'not-empty' : added.trans > 0}">{{ added.trans }}</span>
+    </a>
+  </div>
+  <div id="full-line" v-for="(item, index) in orders" class="col-2-flex-res padding-5" v-show="tab === 2 && item.trans && !item.shipped">
+    <div class="text-row">
+      <a class="link-text" @click.prevent="open(item, index)">{{item.title}}</a>
+    </div>
+    <div class="text-row align-right-res">
+      {{item.created_at}}
+    </div>
+  </div>
+  <div id="full-line" class="padding-10 full-width lightgrey-bg">
+    <a class="flat-btn" @click="toggleTab(3)" :class="{'font-orange font-15em' : tab === 3}">{{$trans.translation.shipped}}&nbsp;
+      <span class="number font-medium" :class="{'not-empty' : added.shipped > 0}">{{ added.shipped }}</span>
+    </a>
+  </div>
+  <div id="full-line" v-for="(item, index) in orders" class="col-2-flex-res padding-5" v-show="tab === 3 && item.shipped">
+    <div class="text-row">
+      <a class="link-text" @click.prevent="open(item, index)">{{item.title}}</a>
+    </div>
+    <div class="text-row align-right-res">
+      {{item.created_at}}
+    </div>
+  </div>
+
+  <modal name="open-msg" @before-open="beforeOpen" :clickToClose="false" :height="'auto'" :adaptive="true" :scrollable="true">
+    <div class="relative scrollable">
+      <load-overlay bg="white-bg" :show="$root.loading" padding="70px 0"></load-overlay>
+      <div class="panel-heading">
+        <h4 class="no-margin">{{ data.title }}</h4>
+      </div>
+      <div class="panel-body">
+        <table class="c-table">
+          <tr>
+            <th class="overflow-hidden">{{$trans.translation.product_name}}</th>
+            <th>{{$trans.translation.choice}}</th>
+            <th>{{$trans.translation.price}}</th>
+            <th>{{$trans.translation.amount}}</th>
+          </tr>
+          <tr v-for="item in data.body">
+            <td class="overflow-hidden">{{item.name}}</td>
+            <td class="m-cell">{{item.options.choice ? item.options.choice :  '---'}}</td>
+            <td class="s-cell">{{item.price}}</td>
+            <td class="s-cell">{{item.qty}}</td>
+          </tr>
+          <tr v-for="item in data.shipping">
+            <td colspan="4">
+              {{$trans.translation.shipping_fee}}&nbsp;:&nbsp;{{ item.free ? 'free' : item.fee + '฿' }}&nbsp;({{ item.method + ' ' + item.time + ' ' + $trans.translation.days}})
+            </td>
+          </tr>
+          <tr>
+            <td colspan="4"><h4 class="no-margin">{{$trans.translation.total_price}}&nbsp;:&nbsp;<span class="font-red">{{data.total}}</span>&nbsp;฿</h4></td>
+          </tr>
+          <tr>
+            <td colspan="4">
+              <label class="input-label">{{$trans.translation.address}}</label>
+              <p>{{ data.address }}</p>
+            </td>
+          </tr>
+          <tr v-show="!data.trans">
+            <td colspan="4"><h4 class="no-margin font-red">{{$trans.translation.wait_transaction}}</h4></td>
+          </tr>
+          <tr v-show="data.trans && !data.shipped">
+            <td colspan="4">
+              <h4 class="no-margin font-green">{{$trans.translation.completed_transaction}}</h4>
+              <h4>{{$trans.translation.payment_date}}&nbsp;{{ data.date_paid }}</h4>
+            </td>
+          </tr>
+          <tr v-show="data.shipped">
+            <td colspan="4">
+              <h4 class="no-margin font-green">{{$trans.translation.delivered}}</h4>
+              <p>{{$trans.translation.payment_date}}&nbsp;{{ data.date_paid }}</p>
+              <p>{{$trans.translation.track_info}}&nbsp;{{data.carrier}}</p>
+              <p>{{$trans.translation.track_number}}&nbsp;{{data.tracking_number}}</p>
+            </td>
+          </tr>
+          <tr v-show="!data.shipped">
+            <td colspan="4">
+              <button class="delete-btn normal-sq red-box" @click.prevent="deny_form = !deny_form">{{$trans.translation.deny}}</button>
+              <form class="align-right" v-show="deny_form" @submit.prevent="deny(data.uid, index)">
+                <input required type="text" class="margin-10-vertical full-width" :placeholder="$trans.translation.deny_reason" v-model="deny_reason">
+                <button type="submit" class="delete-btn normal-sq red-box">{{$trans.translation.confirm}}</button>
+              </form>
+            </td>
+          </tr>
+        </table>
+      </div>
     </div>
 
     <!-- Transaction waiting & Delivered -->
@@ -134,7 +147,8 @@ export default {
       deny_form: false,
       deny_reason: null,
       translate: this.$trans,
-      loaded: false
+      loaded: false,
+      tab: null
     }
   },
   computed: {
@@ -158,6 +172,13 @@ export default {
          this.$Progress.finish()
          this.loaded = true
        });
+    },
+    toggleTab(id) {
+      if (this.tab === id) {
+        this.tab = null;
+        return;
+      }
+      this.tab = id;
     },
     beforeOpen (event) {
         this.data = event.params.data;
