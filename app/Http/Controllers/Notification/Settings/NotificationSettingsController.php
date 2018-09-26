@@ -11,14 +11,14 @@ class NotificationSettingsController extends Controller
   {
     $data = $request->user()->options;
 
-    return response()->json($data);
+    return response()->json(json_decode($data));
   }
 
   public function update(Request $request)
   {
     $update = $request->changes;
     $request->user()->update([
-      'options' => $update
+      'options' => json_encode($update)
     ]);
 
     return ;
