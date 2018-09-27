@@ -37,19 +37,15 @@ class ProductUpdate implements ShouldQueue
      */
     public function handle()
     {
-      $exploded = explode(',', $this->thumbnail);
-
-      $decoded = base64_decode($exploded[1]);
-
       $local_path = storage_path('uploads/product/thumbnail/') . $this->fileName;
 
-      file_put_contents($local_path, $decoded);
-
-      $img = Image::make($local_path)->encode('jpg')->fit(200, 200, function ($c){
+      $background = Image::canvas(200, 200, '#ffffff');
+      $img = Image::make($local_path)->encode('jpg', 10)->resize(200, 200, function ($c) {
           $c->upsize();
+          $c->aspectRatio();
       });
-
-      $img = $img->stream();
+      $background->insert($img, 'center');
+      $img = $background->stream();
 
       Storage::disk('s3images')->put('product/thumbnail/' . $this->fileName . '.jpg', $img->__toString());
 

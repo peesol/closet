@@ -35,7 +35,15 @@ class UpdateController extends Controller
           $this->dispatch((new DeleteImage($path))->onQueue('delete_img'));
         }
         $thumbnail = $request->thumbnail;
+
         $fileName = uniqid('p_thumb');
+
+        $exploded = explode(',', $thumbnail);
+
+        $decoded = base64_decode($exploded[1]);
+
+        Storage::disk('uploads')->put('product/thumbnail/' . $fileName, $decoded);
+
         $this->dispatch((new ProductUpdate($product, $thumbnail, $fileName))->onQueue('upload_medium'));
     }
     return response()->json(null, 200);
