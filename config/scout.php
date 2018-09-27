@@ -42,7 +42,7 @@ return [
     */
 
     'queue' => [
-      'queue' => env('SCOUT_QUEUE_NAME', null),
+      'queue' => 'indexing',
       'connection' => env('QUEUE_DRIVER')
     ],
 

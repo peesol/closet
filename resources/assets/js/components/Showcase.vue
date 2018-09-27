@@ -2,7 +2,7 @@
 <div class="panel-body">
   <vue-progress-bar></vue-progress-bar>
   <button class="orange-btn normal-sq width-120" @click.prevent="toggled = !toggled">{{$trans.translation.add}}</button>
-  <button :disabled="$root.loading" class="orange-btn normal-sq width-120 float-right" @click.prevent="save()">{{$trans.translation.edit_submit}}</button>
+  <button :disabled="$root.loading" v-show="showcases.length" class="orange-btn normal-sq width-120 float-right" @click.prevent="save()">{{$trans.translation.edit_submit}}</button>
   <transition name="slide-down-height">
     <div v-show="toggled" class="padding-15-vertical">
       <div class="panel-body shadow-2">

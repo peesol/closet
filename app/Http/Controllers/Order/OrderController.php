@@ -101,7 +101,7 @@ class OrderController extends Controller
     $accounts = Account::where('shop_id', $order->reciever_id)->get();
     $locale = $reciever->country;
 
-    if ($reciever->options['order']) {
+    if ($reciever->where('options->order', true)) {
       $reciever->notify(new OrderPlaced($order->sender));
     }
 
@@ -141,7 +141,7 @@ class OrderController extends Controller
     if ($request->type === 1) {
       $sender = User::find($order->sender_id);
       $locale = $sender->country;
-      if ($sender->options['order']) {
+      if ($sender->where('options->order', true)) {
         $sender->notify(new OrderDenied($order->title));
       }
       Mail::to($sender->email)->queue((new OrderDeny($order, $locale, $request->reason))->onQueue('email_low'));
@@ -149,7 +149,7 @@ class OrderController extends Controller
       $reciever = User::find($order->reciever_id);
       $locale = $reciever->country;
       $contact = $reciever->email . ' / ' . $reciever->phone;
-      if ($reciever->options['order']) {
+      if ($reciever->where('options->order', true)) {
         $reciever->notify(new OrderCancled($order->title));
       }
       Mail::to($reciever->email)->queue((new OrderCancle($order, $locale, $contact))->onQueue('email_low'));
@@ -168,7 +168,7 @@ class OrderController extends Controller
     $reciever = User::find($order->reciever_id);
     $locale = $reciever->country;
 
-    if ($reciever->options['order']) {
+    if ($reciever->where('options->order', true)) {
       $reciever->notify(new OrderPaid($order->title));
     }
     Mail::to($reciever->email)->queue((new TransactionConfirmed($order, $locale))->onQueue('email_medium'));
@@ -190,7 +190,7 @@ class OrderController extends Controller
     $sender = User::find($order->sender_id);
     $locale = $sender->country;
 
-    if ($sender->options['order']) {
+    if ($sender->where('options->order', true)) {
       $sender->notify(new OrderShippedNotification($order->title));
     }
     Mail::to($sender->email)->queue((new OrderShipped($order, $locale))->onQueue('email_medium'));

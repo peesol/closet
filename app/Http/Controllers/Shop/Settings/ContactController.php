@@ -26,6 +26,7 @@ class ContactController extends Controller
       'type' => $request->type,
       'body' => $request->body,
       'link' => $request->link,
+      'show' => true,
     ]);
     return response()->json($data);
   }
