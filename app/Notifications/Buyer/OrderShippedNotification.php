@@ -57,7 +57,7 @@ class OrderShippedNotification extends Notification implements ShouldQueue
     public function toArray($notifiable)
     {
         return [
-          'type' => 'order_cancled',
+          'type' => 'order_shipped',
           'body' => $this->message
         ];
     }
