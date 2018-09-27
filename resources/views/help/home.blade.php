@@ -1,6 +1,6 @@
 @extends('help.layout')
 
-@section('scripts')
+@section('script')
 <script>
 $(document).ready(function(){
     $("#hide").click(function(){
