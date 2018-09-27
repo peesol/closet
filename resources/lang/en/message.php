@@ -91,6 +91,7 @@ return [
     'review' => 'Reviews',
     'description' => 'Description',
     'no_description' => 'No description.',
+    'no_contact' => 'No contact found.',
     'popular' => 'Popular',
     'no_shop_product' => 'There is no product here.',
     'latest_product' => 'Latest Product',

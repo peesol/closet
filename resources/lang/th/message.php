@@ -92,6 +92,7 @@ return [
     'review' => 'รีวิว',
     'description' => 'รายละเอียด',
     'no_description' => 'ไม่มีรายละเอียด',
+    'no_contact' => 'ไม่พบช่องทางการติดต่อ',
     'popular' => 'ยอดนิยม',
     'no_shop_product' => 'ไม่มีสินค้า',
     'latest_product' => 'สินค้าล่าสุด',

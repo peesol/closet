@@ -34,7 +34,7 @@ class NewProductCommentController extends Controller
 
         $reciever = User::find($product->shop_id);
 
-        if ($reciever->options['comments'] && $request->user()->id !== $product->shop_id) {
+        if ($reciever->where('options->comments', true) && $request->user()->id !== $product->shop_id) {
           $reciever->notify(new Commented($product->name));
         }
 

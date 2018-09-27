@@ -11,7 +11,13 @@
           @include('product.partials._description')
         </div>
         <div class="tab-content" id="tab-2">
-          <contacts-show :contacts="{{ json_encode($contacts) }}"></contacts-show>
+          @if (count($contacts))
+            <contacts-show :contacts="{{ json_encode($contacts) }}"></contacts-show>
+          @else
+            <div class="align-center">
+              <h2 class="font-grey">{{__('message.no_contact')}}</h2>
+            </div>
+          @endif
         </div>
         <div class="tab-content" id="tab-3">
           @if(!Auth::check())
