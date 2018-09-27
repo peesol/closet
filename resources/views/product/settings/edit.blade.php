@@ -22,9 +22,11 @@
             <div class="panel-heading">
               <label class="full-label heading">{{ __('message.photo_upload') }}</label>
             </div>
-          	<div class="alert-box info margin-30-horizontal margin-20-top">
-          		<label><span class="fas fa-exclamation-circle"></span>&nbsp;{{ __('message.photo_limit', ['amount' => '7']) }}</label>
-          	</div>
+
+            <div class="alert-box info light">
+              <label class="font-bold">{{ __('message.photo_limit', ['amount' => '7']) }}</label><br>
+              <sub class="arial"><small class="fas fa-asterisk font-red"></small>&nbsp;{{ __('message.product_ratio', ['ratio' => '1:1', 'size' => '500px*500px']) }}</sub>
+            </div>
 
             <product-dropzone product-slug="{{$product->uid}}" product-id="{{$product->id}}"></product-dropzone>
         <div class="panel-heading">

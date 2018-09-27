@@ -75,6 +75,7 @@ export default {
     fill_every: 'Please fill out every field.',
     product_photo_limit: 'You can upload up to 7 photos.',
     product_photo_notice: 'First photo will be this product thumbnail.',
+    product_photo_ratio: 'Photo with 1:1 aspect ratio will gives best display result.',
     used_notice: 'Used product is valid for 30 days and will be removed after.',
     new: 'New',
     used: 'Used',

@@ -10,7 +10,7 @@
       <label class="full-label heading">{{__('message.promotions_manage')}}</label>
     </div>
     <div class="tab-nav">
-        <ul class="tab-nav-ul">
+        <ul class="tab-nav-ul static">
             <button class="tab-nav-btn current">{{__('message.discount_code')}}</button>
             <button class="tab-nav-btn" onclick='document.location.href="{{route('promotionDiscount')}}"'>{{__('message.product_discount')}}</button>
         </ul>

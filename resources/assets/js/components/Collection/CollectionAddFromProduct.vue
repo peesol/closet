@@ -27,8 +27,8 @@
     </li>
 
     <li class="input-group padding-10" v-show="create">
-      <input class="form-input" type="text" v-model="col_name">
-      <button class="checkmark-btn form-input-btn" @click.prevent="createCol">
+      <input class="input-addon-field left" type="text" v-model="col_name">
+      <button class="checkmark-btn input-addon right" @click.prevent="createCol">
             <i class="fas fa-check"></i>
           </button>
     </li>

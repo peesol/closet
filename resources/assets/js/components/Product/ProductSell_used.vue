@@ -6,6 +6,7 @@
     <li class="font-red font-bold">{{$trans.translation.fill_every}}</li>
     <li>{{$trans.translation.product_photo_limit}}</li>
     <li>{{$trans.translation.product_photo_notice}}</li>
+    <li>{{$trans.translation.product_photo_ratio}}</li>
   </ul>
 
   <form v-on:submit.prevent="submit" method="post">

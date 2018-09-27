@@ -76,6 +76,8 @@ return [
     //Settings
     'photo_upload' => 'Upload Photo',
     'photo_limit' => 'You can only have :amount photos.',
+    'collection_ratio' => 'Your photos must have aspect ratio of :ratio or resolution of :size to display perfectly. If not, it will be cropped or placed inside a :ratio canvas with black background.',
+    'product_ratio' => 'Your photos must have aspect ratio of :ratio or resolution of :size to display perfectly. If not, it will be cropped or placed inside a :ratio canvas with white background.',
     //search
     'search' => 'Search...',
     'search_result' => 'Search result for',
