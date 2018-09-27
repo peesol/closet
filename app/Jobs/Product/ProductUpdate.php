@@ -16,17 +16,15 @@ class ProductUpdate implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     public $product;
-    public $thumbnail;
     public $fileName;
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct(Product $product, $thumbnail, $fileName)
+    public function __construct(Product $product, $fileName)
     {
         $this->product = $product;
-        $this->thumbnail = $thumbnail;
         $this->fileName = $fileName;
     }
 

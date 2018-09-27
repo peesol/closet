@@ -45,7 +45,7 @@ class UpdateController extends Controller
 
         Storage::disk('uploads')->put('product/thumbnail/' . $fileName, $decoded);
 
-        $this->dispatch((new ProductUpdate($product, $thumbnail, $fileName))->onQueue('upload_medium'));
+        $this->dispatch((new ProductUpdate($product, $fileName))->onQueue('upload_medium'));
     }
     return response()->json(null, 200);
   }
