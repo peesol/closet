@@ -2,11 +2,10 @@
 
 namespace Closet\Notifications\Seller;
 
-use App;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Notifications\Messages\BroadcastMessage;
 
 class OrderPlaced extends Notification implements ShouldQueue
 {
@@ -32,15 +31,9 @@ class OrderPlaced extends Notification implements ShouldQueue
      */
     public function via($notifiable)
     {
-        return ['database'];
+        return ['broadcast'];
     }
 
-    /**
-     * Get the mail representation of the notification.
-     *
-     * @param  mixed  $notifiable
-     * @return \Illuminate\Notifications\Messages\MailMessage
-     */
     /**
      * Get the array representation of the notification.
      *
@@ -53,5 +46,13 @@ class OrderPlaced extends Notification implements ShouldQueue
           'type' => 'order_placed',
           'body' => $this->message
         ];
+    }
+
+    public function toBroadcast($notifiable)
+    {
+      return (new BroadcastMessage([
+        'translate' => 'order_placed',
+        'body' => $this->message
+      ]))->onQueue('notify');
     }
 }

@@ -5,7 +5,7 @@ namespace Closet\Notifications\Seller;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Notifications\Messages\BroadcastMessage;
 
 class OrderPaid extends Notification implements ShouldQueue
 {
@@ -31,21 +31,7 @@ class OrderPaid extends Notification implements ShouldQueue
      */
     public function via($notifiable)
     {
-        return ['database'];
-    }
-
-    /**
-     * Get the mail representation of the notification.
-     *
-     * @param  mixed  $notifiable
-     * @return \Illuminate\Notifications\Messages\MailMessage
-     */
-    public function toMail($notifiable)
-    {
-        return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+        return ['broadcast'];
     }
 
     /**
@@ -60,5 +46,13 @@ class OrderPaid extends Notification implements ShouldQueue
           'type' => 'order_paid',
           'body' => $this->message
         ];
+    }
+
+    public function toBroadcast($notifiable)
+    {
+      return (new BroadcastMessage([
+        'translate' => 'order_paid',
+        'body' => $this->message
+      ]))->onQueue('notify');
     }
 }

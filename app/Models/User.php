@@ -3,6 +3,7 @@
 namespace Closet\Models;
 
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
@@ -81,5 +82,9 @@ class User extends Authenticatable
     public function ownsShop(Shop $shop)
     {
       return (bool) $this->shop()->where('id', $shop->id)->first();
+    }
+    public function receivesBroadcastNotificationsOn()
+    {
+        return 'users.' . $this->id;
     }
 }

@@ -12,3 +12,4 @@ Homestead.yaml
 .env
 /.sass-cache
 /bower_components
+laravel-echo-server.json

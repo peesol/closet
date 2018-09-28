@@ -182,7 +182,7 @@ return [
          */
         Closet\Providers\AppServiceProvider::class,
         Closet\Providers\AuthServiceProvider::class,
-        // Closet\Providers\BroadcastServiceProvider::class,
+        Closet\Providers\BroadcastServiceProvider::class,
         Closet\Providers\EventServiceProvider::class,
         Closet\Providers\RouteServiceProvider::class,
         Closet\Providers\ComposerServiceProvider::class,
