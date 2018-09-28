@@ -31,7 +31,7 @@ class OrderPlaced extends Notification implements ShouldQueue
      */
     public function via($notifiable)
     {
-        return ['broadcast'];
+        return ['database', 'broadcast'];
     }
 
     /**
@@ -43,7 +43,7 @@ class OrderPlaced extends Notification implements ShouldQueue
     public function toDatabase($notifiable)
     {
         return [
-          'type' => 'order_placed',
+          'translate' => 'order_placed',
           'body' => $this->message
         ];
     }
@@ -52,7 +52,9 @@ class OrderPlaced extends Notification implements ShouldQueue
     {
       return (new BroadcastMessage([
         'translate' => 'order_placed',
-        'body' => $this->message
+        'body' => $this->message,
+        'read' => false,
+        'created_at' => '2018-06-11 06:27:58'
       ]))->onQueue('notify');
     }
 }

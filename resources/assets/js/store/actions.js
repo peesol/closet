@@ -34,8 +34,15 @@ export const getNotification = ({ commit }) => {
   })
 }
 
-export const markAllAsRead = ({ commit }) => {
+export const addNotification = ({ commit }, { notification }) => {
 
+  commit('addToNotifications', { notification } )
+
+  return Promise.resolve()
+
+}
+
+export const markAllAsRead = ({ commit }) => {
   return Vue.http.put(window.Closet.url + '/profile/notifications/read_all').then((response) => {
 
     commit('markAllAsRead')

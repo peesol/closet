@@ -31,7 +31,7 @@ class OrderCancled extends Notification implements ShouldQueue
      */
     public function via($notifiable)
     {
-        return ['broadcast'];
+        return ['database', 'broadcast'];
     }
 
     /**
@@ -40,7 +40,7 @@ class OrderCancled extends Notification implements ShouldQueue
      * @param  mixed  $notifiable
      * @return array
      */
-    public function toArray($notifiable)
+    public function toDatabase($notifiable)
     {
         return [
           'type' => 'order_cancled',

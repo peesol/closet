@@ -33,7 +33,7 @@
   <div v-show="toggled === 2" class="dropdown-content shadow-1">
     <div class="notification">
       <li v-for="data in notifications">
-        {{ $trans.translation.notification_title[data.type] + ' ' + data.body }}<br>
+        {{ $trans.translation.notification_title[data.translate] + ' ' + data.body }}<br>
         <small>{{ data.created_at }}</small>
       </li>
       <li v-show="!notifications.length" class="align-center">{{ $trans.translation.notification_null }}</li>

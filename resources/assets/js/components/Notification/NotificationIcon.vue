@@ -1,7 +1,6 @@
 <template>
   <button class="dropdown-btn" @click.prevent="clicked">
     <i class="fas fa-bell" :class="{'font-orange' : notificationCount > 0}">&nbsp;<font>{{ notificationCount }}</font></i>
-    <i>{{ notif }}</i>
   </button>
 </div>
 </template>
@@ -12,8 +11,7 @@ import { mapGetters, mapActions } from 'vuex'
 export default {
   data() {
     return {
-      datas: [],
-      notif: null
+      datas: []
     }
   },
   props: [
@@ -27,7 +25,8 @@ export default {
   },
   methods: {
     ...mapActions([
-      'getNotification'
+      'getNotification',
+      'addNotification'
     ]),
     clicked(event) {
       if (this.element == 'footer') {
@@ -38,11 +37,10 @@ export default {
   },
   created() {
     if (this.element == 'nav') {
-      //this.getNotification()
+      this.getNotification()
       Echo.private('users.' + this.$root.user)
       .notification((notification) => {
-          console.log(notification);
-          this.notif = notification
+          this.addNotification({ notification })
       })
     }
   }

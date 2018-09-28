@@ -1,9 +1,11 @@
 export const setCount = (state, items) => {
   state.cart = items
 }
+
 export const removeCount = (state) => {
   state.cart.splice(0, 1)
 }
+
 export const appendToCart = (state, { product, choice }) => {
   const existing = state.cart.find((item) => {
     return item.id === product.id && item.choice == choice
@@ -16,6 +18,11 @@ export const appendToCart = (state, { product, choice }) => {
       id, choice
     })
   }
+}
+
+export const addToNotifications = (state, { notification }) => {
+    state.notification.unshift(notification)
+    state.all_read = false
 }
 
 export const setNotificationCount = (state, items) => {

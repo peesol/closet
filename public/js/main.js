@@ -25737,21 +25737,19 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
-//
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = {
   data: function data() {
     return {
-      datas: [],
-      notif: null
+      datas: []
     };
   },
 
   props: ['element'],
   computed: _extends({}, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_vuex__["mapGetters"])(['notificationCount', 'notifications'])),
-  methods: _extends({}, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_vuex__["mapActions"])(['getNotification']), {
+  methods: _extends({}, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_vuex__["mapActions"])(['getNotification', 'addNotification']), {
     clicked: function clicked(event) {
       if (this.element == 'footer') {
         document.location.href = this.$root.url + '/profile/notifications';
@@ -25763,10 +25761,9 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
     var _this = this;
 
     if (this.element == 'nav') {
-      //this.getNotification()
+      this.getNotification();
       Echo.private('users.' + this.$root.user).notification(function (notification) {
-        console.log(notification);
-        _this.notif = notification;
+        _this.addNotification({ notification: notification });
       });
     }
   }
@@ -32238,6 +32235,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getCartCount", function() { return getCartCount; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeFromCart", function() { return removeFromCart; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getNotification", function() { return getNotification; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addNotification", function() { return addNotification; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "markAllAsRead", function() { return markAllAsRead; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "clearNotifications", function() { return clearNotifications; });
 
@@ -32287,20 +32285,30 @@ var getNotification = function getNotification(_ref5) {
   });
 };
 
-var markAllAsRead = function markAllAsRead(_ref6) {
+var addNotification = function addNotification(_ref6, _ref7) {
   var commit = _ref6.commit;
+  var notification = _ref7.notification;
 
 
-  return __WEBPACK_IMPORTED_MODULE_0_vue___default.a.http.put(window.Closet.url + '/profile/notifications/read_all').then(function (response) {
+  commit('addToNotifications', { notification: notification });
 
-    commit('markAllAsRead');
-
-    return Promise.resolve();
-  });
+  return Promise.resolve();
 };
 
-var clearNotifications = function clearNotifications(_ref7) {
-  var commit = _ref7.commit;
+var markAllAsRead = function markAllAsRead(_ref8) {
+  var commit = _ref8.commit;
+
+  commit('markAllAsRead');
+  // return Vue.http.put(window.Closet.url + '/profile/notifications/read_all').then((response) => {
+  //
+  //   commit('markAllAsRead')
+  //
+  //   return Promise.resolve()
+  // })
+};
+
+var clearNotifications = function clearNotifications(_ref9) {
+  var commit = _ref9.commit;
 
   commit('clearNotifications');
 };
@@ -32347,15 +32355,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setCount", function() { return setCount; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeCount", function() { return removeCount; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "appendToCart", function() { return appendToCart; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addToNotifications", function() { return addToNotifications; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setNotificationCount", function() { return setNotificationCount; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "markAllAsRead", function() { return markAllAsRead; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "clearNotifications", function() { return clearNotifications; });
 var setCount = function setCount(state, items) {
   state.cart = items;
 };
+
 var removeCount = function removeCount(state) {
   state.cart.splice(0, 1);
 };
+
 var appendToCart = function appendToCart(state, _ref) {
   var product = _ref.product,
       choice = _ref.choice;
@@ -32369,6 +32380,13 @@ var appendToCart = function appendToCart(state, _ref) {
       id: id, choice: choice
     });
   }
+};
+
+var addToNotifications = function addToNotifications(state, _ref2) {
+  var notification = _ref2.notification;
+
+  state.notification.unshift(notification);
+  state.all_read = false;
 };
 
 var setNotificationCount = function setNotificationCount(state, items) {
@@ -64978,7 +64996,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     class: {
       'font-orange': _vm.notificationCount > 0
     }
-  }, [_vm._v(" "), _c('font', [_vm._v(_vm._s(_vm.notificationCount))])], 1), _vm._v(" "), _c('i', [_vm._v(_vm._s(_vm.notif))])])
+  }, [_vm._v(" "), _c('font', [_vm._v(_vm._s(_vm.notificationCount))])], 1)])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -66124,7 +66142,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('div', {
     staticClass: "notification"
   }, [_vm._l((_vm.notifications), function(data) {
-    return _c('li', [_vm._v("\n        " + _vm._s(_vm.$trans.translation.notification_title[data.type] + ' ' + data.body)), _c('br'), _vm._v(" "), _c('small', [_vm._v(_vm._s(data.created_at))])])
+    return _c('li', [_vm._v("\n        " + _vm._s(_vm.$trans.translation.notification_title[data.translate] + ' ' + data.body)), _c('br'), _vm._v(" "), _c('small', [_vm._v(_vm._s(data.created_at))])])
   }), _vm._v(" "), _c('li', {
     directives: [{
       name: "show",
