@@ -22,6 +22,7 @@ class CreateCollectionsTable extends Migration
             $table->string('description')->nullable();
             $table->string('thumbnail')->nullable();
             $table->boolean('show')->default(false);
+            $table->integer('view_count')->nullable();
 
             $table->foreign('shop_id')->references('id')->on('shops')->onDelete('cascade');
             $table->timestamps();

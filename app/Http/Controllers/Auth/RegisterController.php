@@ -133,8 +133,12 @@ class RegisterController extends Controller
       $user->verified = true;
 
       if($user->save()){
-        return view('email.success');
+        return redirect()->route('successRegister');
       }
+    }
+    public function success()
+    {
+      return view('email.success');
     }
     public function resendEmailPage()
     {

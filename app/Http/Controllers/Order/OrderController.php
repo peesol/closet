@@ -133,29 +133,30 @@ class OrderController extends Controller
   //
   public function deny(Order $order, Request $request)
   {
-    $order->update([
-      'deleted_type' => $request->type
-    ]);
-    $order->delete();
+    if (!$order->trans) {
+      $order->update([
+        'deleted_type' => $request->type
+      ]);
+      $order->delete();
 
-    if ($request->type === 1) {
-      $sender = User::find($order->sender_id);
-      $locale = $sender->country;
-      if ($sender->where('options->order', true)) {
-        $sender->notify(new OrderDenied($order->title));
+      if ($request->type === 1) {
+        $sender = User::find($order->sender_id);
+        $locale = $sender->country;
+        if ($sender->where('options->order', true)) {
+          $sender->notify(new OrderDenied($order->title));
+        }
+        Mail::to($sender->email)->queue((new OrderDeny($order, $locale, $request->reason))->onQueue('email_low'));
+      } else {
+        $reciever = User::find($order->reciever_id);
+        $locale = $reciever->country;
+        $contact = $reciever->email . ' / ' . $reciever->phone;
+        if ($reciever->where('options->order', true)) {
+          $reciever->notify(new OrderCancled($order->title));
+        }
+        Mail::to($reciever->email)->queue((new OrderCancle($order, $locale, $contact))->onQueue('email_low'));
       }
-      Mail::to($sender->email)->queue((new OrderDeny($order, $locale, $request->reason))->onQueue('email_low'));
-    } else {
-      $reciever = User::find($order->reciever_id);
-      $locale = $reciever->country;
-      $contact = $reciever->email . ' / ' . $reciever->phone;
-      if ($reciever->where('options->order', true)) {
-        $reciever->notify(new OrderCancled($order->title));
-      }
-      Mail::to($reciever->email)->queue((new OrderCancle($order, $locale, $contact))->onQueue('email_low'));
     }
-
-    return response()->json();
+    return ;
   }
 
   public function transactionConfirm(Order $order, Request $request)

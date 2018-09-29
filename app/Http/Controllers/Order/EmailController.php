@@ -85,7 +85,7 @@ class EmailController extends Controller
     $locale = $reciever->country;
 
     Mail::to($reciever->email)->queue((new TransactionConfirmed($order, $locale))->onQueue('email_medium'));
-    return view('order.after.transaction');
+    return redirect()->route('orderPaid');
   }
 
   public function confirmShipping(Order $order, Request $request)
@@ -100,34 +100,45 @@ class EmailController extends Controller
     $locale = $sender->country;
 
     Mail::to($sender->email)->queue((new OrderShipped($order, $locale))->onQueue('email_medium'));
-    return view('order.after.confirmed');
+    return redirect()->route('orderShipped');
   }
   public function deny(Order $order, Request $request)
   {
-    $order->update([
-      'deleted_type' => 1
-    ]);
-    $order->delete();
+    if (!$order->trans) {
+      $order->update([
+        'deleted_type' => 1
+      ]);
+      $order->delete();
 
-    $sender = User::find($order->sender_id);
-    $locale = $sender->country;
-    Mail::to($sender->email)->queue((new OrderDeny($order, $locale, $request->textarea))->onQueue('email_low'));
+      $sender = User::find($order->sender_id);
+      $locale = $sender->country;
+      Mail::to($sender->email)->queue((new OrderDeny($order, $locale, $request->textarea))->onQueue('email_low'));
 
-    return response()->view('order.after.deleted');
+      return redirect()->route('orderDeleted');
+    } else {
+      return false;
+    }
   }
   public function cancle(Order $order)
   {
-    $order->update([
-      'deleted_type' => 2
-    ]);
-    $order->delete();
+    if (!$order->trans) {
+      $order->update([
+        'deleted_type' => 2
+      ]);
+      $order->delete();
 
-    $reciever = User::find($order->reciever_id);
-    $locale = $reciever->country;
-    $contact = $reciever->email . ' / ' . $reciever->phone;
-    Mail::to($reciever->email)->queue((new OrderCancle($order, $locale, $contact))->onQueue('email_low'));
+      $reciever = User::find($order->reciever_id);
+      $locale = $reciever->country;
+      $contact = $reciever->email . ' / ' . $reciever->phone;
+      Mail::to($reciever->email)->queue((new OrderCancle($order, $locale, $contact))->onQueue('email_low'));
 
+      return redirect()->route('orderDeleted');
+    } else {
+      return false;
+    }
+  }
+  public function deletedView()
+  {
     return view('order.after.deleted');
-
   }
 }
