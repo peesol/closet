@@ -20,7 +20,7 @@ class OrderShippedNotification extends Notification implements ShouldQueue
     public function __construct($message)
     {
         $this->message = $message;
-        $this->queue = 'notify';
+        $this->queue = 'low';
     }
 
     /**

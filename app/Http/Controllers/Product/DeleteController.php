@@ -11,12 +11,13 @@ class DeleteController extends Controller
 {
   public function deleteUsedProduct(UsedProduct $product)
   {
-      $path = 'used/thumbnail/' . $product->thumbnail;
-      $this->dispatch((new DeleteImage($path))->onQueue('delete_img'));
+    $target = [];
     foreach ($product->productimages as $image) {
-      $path = 'used/photo/' . $image->filename;
-      $this->dispatch((new DeleteImage($path))->onQueue('delete_img'));
+      $target[] = 'used/photo/' . $image->filename;
     }
+    $thumbnail = 'used/thumbnail/' . $product->thumbnail;
+    array_push($target, $thumbnail);
+    $this->dispatch((new DeleteImage($target))->onQueue('delete_img'));
     $product->delete();
 
     return redirect()->back();
@@ -24,13 +25,13 @@ class DeleteController extends Controller
 
   public function deleteNewProduct(Product $product)
   {
-    $this->authorize('delete', $product);
-      $path = 'product/thumbnail/' . $product->thumbnail;
-      $this->dispatch((new DeleteImage($path))->onQueue('delete_img'));
+    $target = [];
     foreach ($product->productimages as $image) {
-      $path = 'product/photo/' . $image->filename;
-      $this->dispatch((new DeleteImage($path))->onQueue('delete_img'));
+      $target[] = 'product/photo/' . $image->filename;
     }
+    $thumbnail = 'product/thumbnail/' . $product->thumbnail;
+    array_push($target, $thumbnail);
+    $this->dispatch((new DeleteImage($target))->onQueue('delete_img'));
     $product->delete();
 
     return redirect()->back();

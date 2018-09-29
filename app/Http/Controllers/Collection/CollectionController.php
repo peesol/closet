@@ -67,13 +67,19 @@ class CollectionController extends Controller
   {
     $this->authorize('delete', $collection);
 
-    $path = 'collection/thumbnail/'.$collection->image_filename;
-    $this->dispatch((new DeleteImage($path))->onQueue('delete_img'));
-
     $photos = $collection->images->pluck('filename');
+
+    $target = [];
     foreach($photos as $photo){
-    Storage::disk('s3images')->delete('collection/photo/' . $photo);
+      $target[] = 'collection/photo/' . $photo;
     }
+
+    $thumbnail = 'collection/thumbnail/'.$collection->image_filename;
+
+    array_push($target, $thumbnail);
+
+    $this->dispatch((new DeleteImage($target))->onQueue('delete_img'));
+
     $collection->delete();
 
     return ;

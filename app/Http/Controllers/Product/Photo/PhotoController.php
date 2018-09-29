@@ -35,7 +35,7 @@ class PhotoController extends Controller
           ]);
           $response[] = $created;
         }
-        $this->dispatch((new UploadProductPhoto($photos))->onQueue('upload_medium'));
+        $this->dispatch((new UploadProductPhoto($photos))->onQueue('upload'));
         return response()->json($response);
 
       } else {

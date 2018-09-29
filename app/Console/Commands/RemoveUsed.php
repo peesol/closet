@@ -43,6 +43,7 @@ class RemoveUsed extends Command
         $thumbnails = DB::table('used_products')->where('created_at', '<=', Carbon::now()->subDays(30))->pluck('thumbnail');
         $images = DB::table('used_product_images')->where('created_at', '<=', Carbon::now()->subDays(30))->pluck('filename');
 
+        
         foreach ($thumbnails as $thumbnail) {
           $path = 'used/thumbnail/' . $thumbnail;
           dispatch(new DeleteImage($path));

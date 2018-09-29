@@ -71,7 +71,7 @@ class ShopEditController extends Controller
 
     Storage::disk('uploads')->put('profile/thumbnail/' . $fileName, $decoded);
 
-    $this->dispatch((new UploadThumbnail($shop, $fileName))->onQueue('upload_medium'));
+    $this->dispatch((new UploadThumbnail($shop, $fileName))->onQueue('upload'));
 
     return response()->json(null, 200);
   }
@@ -93,7 +93,7 @@ class ShopEditController extends Controller
 
     Storage::disk('uploads')->put('profile/cover/' . $fileName, $decoded);
 
-    $this->dispatch((new UploadCover($shop, $fileName))->onQueue('upload_medium'));
+    $this->dispatch((new UploadCover($shop, $fileName))->onQueue('upload'));
 
     return response()->json(null, 200);
   }

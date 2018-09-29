@@ -105,8 +105,8 @@ class OrderController extends Controller
       $reciever->notify(new OrderPlaced($order->sender));
     }
 
-    Mail::to($reciever->email)->queue((new OrderingSeller($order, $locale, $sender))->onQueue('email_medium'));
-    Mail::to($sender->email)->queue((new OrderingBuyer($order, $accounts, $locale))->onQueue('email_medium'));
+    Mail::to($reciever->email)->queue((new OrderingSeller($order, $locale, $sender))->onQueue('email'));
+    Mail::to($sender->email)->queue((new OrderingBuyer($order, $accounts, $locale))->onQueue('email'));
 
     return ;
   }
@@ -145,7 +145,7 @@ class OrderController extends Controller
         if ($sender->where('options->order', true)) {
           $sender->notify(new OrderDenied($order->title));
         }
-        Mail::to($sender->email)->queue((new OrderDeny($order, $locale, $request->reason))->onQueue('email_low'));
+        Mail::to($sender->email)->queue((new OrderDeny($order, $locale, $request->reason))->onQueue('low'));
       } else {
         $reciever = User::find($order->reciever_id);
         $locale = $reciever->country;
@@ -153,7 +153,7 @@ class OrderController extends Controller
         if ($reciever->where('options->order', true)) {
           $reciever->notify(new OrderCancled($order->title));
         }
-        Mail::to($reciever->email)->queue((new OrderCancle($order, $locale, $contact))->onQueue('email_low'));
+        Mail::to($reciever->email)->queue((new OrderCancle($order, $locale, $contact))->onQueue('low'));
       }
     }
     return ;
@@ -172,7 +172,7 @@ class OrderController extends Controller
     if ($reciever->where('options->order', true)) {
       $reciever->notify(new OrderPaid($order->title));
     }
-    Mail::to($reciever->email)->queue((new TransactionConfirmed($order, $locale))->onQueue('email_medium'));
+    Mail::to($reciever->email)->queue((new TransactionConfirmed($order, $locale))->onQueue('email'));
     return response()->json($order);
   }
 
@@ -186,7 +186,7 @@ class OrderController extends Controller
 
     //Decrease stock
     $data = json_decode($order->body);
-    DecreaseProduct::dispatch($data)->onQueue('email_low');
+    DecreaseProduct::dispatch($data)->onQueue('low');
 
     $sender = User::find($order->sender_id);
     $locale = $sender->country;
@@ -194,7 +194,7 @@ class OrderController extends Controller
     if ($sender->where('options->order', true)) {
       $sender->notify(new OrderShippedNotification($order->title));
     }
-    Mail::to($sender->email)->queue((new OrderShipped($order, $locale))->onQueue('email_medium'));
+    Mail::to($sender->email)->queue((new OrderShipped($order, $locale))->onQueue('email'));
     return response()->json($data);
   }
 }

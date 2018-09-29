@@ -84,7 +84,7 @@ class EmailController extends Controller
     $reciever = User::find($order->reciever_id);
     $locale = $reciever->country;
 
-    Mail::to($reciever->email)->queue((new TransactionConfirmed($order, $locale))->onQueue('email_medium'));
+    Mail::to($reciever->email)->queue((new TransactionConfirmed($order, $locale))->onQueue('email'));
     return redirect()->route('orderPaid');
   }
 
@@ -99,7 +99,7 @@ class EmailController extends Controller
     $sender = User::find($order->sender_id);
     $locale = $sender->country;
 
-    Mail::to($sender->email)->queue((new OrderShipped($order, $locale))->onQueue('email_medium'));
+    Mail::to($sender->email)->queue((new OrderShipped($order, $locale))->onQueue('email'));
     return redirect()->route('orderShipped');
   }
   public function deny(Order $order, Request $request)
@@ -112,7 +112,7 @@ class EmailController extends Controller
 
       $sender = User::find($order->sender_id);
       $locale = $sender->country;
-      Mail::to($sender->email)->queue((new OrderDeny($order, $locale, $request->textarea))->onQueue('email_low'));
+      Mail::to($sender->email)->queue((new OrderDeny($order, $locale, $request->textarea))->onQueue('low'));
 
       return redirect()->route('orderDeleted');
     } else {
@@ -130,7 +130,7 @@ class EmailController extends Controller
       $reciever = User::find($order->reciever_id);
       $locale = $reciever->country;
       $contact = $reciever->email . ' / ' . $reciever->phone;
-      Mail::to($reciever->email)->queue((new OrderCancle($order, $locale, $contact))->onQueue('email_low'));
+      Mail::to($reciever->email)->queue((new OrderCancle($order, $locale, $contact))->onQueue('low'));
 
       return redirect()->route('orderDeleted');
     } else {

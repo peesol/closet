@@ -6,7 +6,8 @@
     "watch-poll": "node node_modules/cross-env/dist/bin/cross-env.js NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --watch-poll --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
     "hot": "node node_modules/cross-env/dist/bin/cross-env.js NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
     "production": "node node_modules/cross-env/dist/bin/cross-env.js NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=webpack.config.js",
-    "sass": "sass --watch resources/assets/sass/app.sass:public/css/main.css --style compressed"
+    "sass": "sass --watch resources/assets/sass/app.sass:public/css/main.css --style compressed",
+    "queue": "php artisan queue:work --queue=high,upload,email,low,delete_img"
   },
   "devDependencies": {
     "babel-plugin-transform-object-rest-spread": "^6.26.0",

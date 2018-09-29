@@ -45,7 +45,7 @@ class UsedProductController extends Controller
       $photos[] = $photo;
     }
 
-    $this->dispatch((new UsedUpload($product, $thumbnail, $photos))->onQueue('upload_high'));
+    $this->dispatch((new UsedUpload($product, $thumbnail, $photos))->onQueue('upload'));
     return response()->json();
   }
 

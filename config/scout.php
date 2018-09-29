@@ -42,7 +42,7 @@ return [
     */
 
     'queue' => [
-      'queue' => 'indexing',
+      'queue' => 'low',
       'connection' => env('QUEUE_DRIVER')
     ],
 

@@ -49,7 +49,7 @@ class CollectionEditController extends Controller
 
         Storage::disk('uploads')->put('collection/thumbnail/' . $fileName, $decoded);
 
-        $this->dispatch((new CollectionThumbnailUpload($collection, $fileName))->onQueue('upload_medium'));
+        $this->dispatch((new CollectionThumbnailUpload($collection, $fileName))->onQueue('upload'));
     }
 
     return response()->json($update);
@@ -73,7 +73,7 @@ class CollectionEditController extends Controller
         ]);
       }
 
-      $this->dispatch((new CollectionPhotoUpload($images, $id))->onQueue('upload_medium'));
+      $this->dispatch((new CollectionPhotoUpload($images, $id))->onQueue('upload'));
 
       return response()->json(null, 200);
 
