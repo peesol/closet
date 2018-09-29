@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title')
-{{$keyword.' - '}}
+{{__('message.search_result').' '.$keyword.' - '}}
 @endsection
 @section('content')
 

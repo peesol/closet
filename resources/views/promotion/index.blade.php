@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title')
-
+{{__('message.promotions_manage').' - '}}
 @endsection
 @section('content')
 

@@ -7,6 +7,8 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta property="og:title" content="@yield('title'){{config('app.name') }}">
+    <meta property="og:image" content="https://s3-ap-southeast-1.amazonaws.com/files.closet/etc/FB_sharing_closet.jpg">
 
     <title>@yield('title'){{config('app.name') }}</title>
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">

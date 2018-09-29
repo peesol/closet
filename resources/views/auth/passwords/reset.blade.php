@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title')
-{{__('auth.reset_password')}}
+{{__('auth.reset_password') . ' - '}}
 @endsection
 @section('content')
 <div class="container">
