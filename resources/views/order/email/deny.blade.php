@@ -17,7 +17,7 @@
 </head>
 <body>
 <div class="container margin-30-top">
-  @if(!$order->deleted_at || !$order->trans)
+  @if(!$order->deleted_at)
   <div class="small-panel">
     <div class="panel-heading">
       <label class="heading">{{__('message.deny_order')}}</label>
@@ -56,7 +56,7 @@
   </div>
   @else
     <div class="panel-body align-center">
-      <h3 class="font-green">{{__('message.already_transacted')}}</h3>
+      <h3 class="font-green">{{__('message.order_deleted')}}</h3>
     </div>
   @endif
 </div>

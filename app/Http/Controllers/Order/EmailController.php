@@ -146,7 +146,7 @@ class EmailController extends Controller
     }
   }
 
-  public function deletedView()
+  public function deletedView(Order $order)
   {
     if ($order->trans || $order->shipped) {
       $message = __('message.order_undeniable');
