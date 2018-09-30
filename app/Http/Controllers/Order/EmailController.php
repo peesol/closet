@@ -27,6 +27,7 @@ class EmailController extends Controller
   {
     return view('order.after.confirmed');
   }
+
   public function transactionPage(Order $order)
   {
     $accounts = Account::where('shop_id', $order->reciever_id)->get();
@@ -36,17 +37,28 @@ class EmailController extends Controller
       'accounts' => $accounts
     ]);
   }
+
   public function shippedPage(Order $order)
   {
     return view('order.email.shipped', ['order' => $order]);
   }
+
   public function denyPage(Order $order)
   {
-    return view('order.email.deny', ['order' => $order]);
+    if (!$order->trans || !$order->deleted_at) {
+      return view('order.email.deny', ['order' => $order]);
+    } else {
+      return redirect()->route('orderDeleted', ['order' => $order]);
+    }
   }
+
   public function canclePage(Order $order)
   {
-    return view('order.email.cancle', ['order' => $order]);
+    if (!$order->trans || !$order->deleted_at) {
+      return view('order.email.cancle', ['order' => $order]);
+    } else {
+      return redirect()->route('orderDeleted', ['order' => $order]);
+    }
   }
   /*
   |--------------------------------------------------------------------------
@@ -85,7 +97,7 @@ class EmailController extends Controller
     $locale = $reciever->country;
 
     Mail::to($reciever->email)->queue((new TransactionConfirmed($order, $locale))->onQueue('email'));
-    return redirect()->route('orderPaid');
+    return redirect()->route('successOrder', ['order' => $order]);
   }
 
   public function confirmShipping(Order $order, Request $request)
@@ -100,7 +112,7 @@ class EmailController extends Controller
     $locale = $sender->country;
 
     Mail::to($sender->email)->queue((new OrderShipped($order, $locale))->onQueue('email'));
-    return redirect()->route('orderShipped');
+    return redirect()->route('successOrder', ['order' => $order]);
   }
   public function deny(Order $order, Request $request)
   {
@@ -114,9 +126,7 @@ class EmailController extends Controller
       $locale = $sender->country;
       Mail::to($sender->email)->queue((new OrderDeny($order, $locale, $request->textarea))->onQueue('low'));
 
-      return redirect()->route('orderDeleted');
-    } else {
-      return false;
+      return redirect()->route('orderDeleted', ['order' => $order]);
     }
   }
   public function cancle(Order $order)
@@ -132,13 +142,27 @@ class EmailController extends Controller
       $contact = $reciever->email . ' / ' . $reciever->phone;
       Mail::to($reciever->email)->queue((new OrderCancle($order, $locale, $contact))->onQueue('low'));
 
-      return redirect()->route('orderDeleted');
-    } else {
-      return false;
+      return redirect()->route('orderDeleted', ['order' => $order]);
     }
   }
+
   public function deletedView()
   {
-    return view('order.after.deleted');
+    if ($order->trans || $order->shipped) {
+      $message = __('message.order_undeniable');
+    } elseif ($order->deleted_at) {
+      $message = __('message.order_deleted');
+    }
+    return view('order.after.error', ['message' => $message]);
+  }
+
+  public function successView(Order $order)
+  {
+    if ($order->trans) {
+      $message = __('message.already_transacted');
+    } elseif ($order->shipped) {
+      $message = __('message.already_shipped');
+    }
+    return view('order.after.success', ['message' => $message]);
   }
 }

@@ -14,7 +14,7 @@
 <div class="container margin-30-top">
   <div class="medium-panel">
     <div class="panel-body">
-      <h3 class="font-red">{{__('message.order_deleted')}}</h3>
+      <h3 class="font-red">{{ $message }}</h3>
     </div>
   </div>
 </div>

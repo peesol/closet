@@ -17,7 +17,7 @@
 </head>
 <body>
 <div class="container margin-30-top">
-  @if(!$order->deleted_at)
+  @if(!$order->deleted_at || !$order->trans)
   <div class="small-panel">
     <div class="panel-heading">
       <label class="heading">{{__('message.cancle_order')}}</label>
@@ -52,6 +52,10 @@
       </form>
     </div>
   </div>
+  @else
+    <div class="panel-body align-center">
+      <h3 class="font-green">{{__('message.already_transacted')}}</h3>
+    </div>
   @endif
 </div>
 <script type="text/javascript">

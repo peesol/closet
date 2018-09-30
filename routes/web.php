@@ -147,17 +147,16 @@ Route::namespace('Cart')->group(function () {
 /**BUYER**/
 Route::get('/order/{order}/transaction_email', 'Order\EmailController@transactionPage');
 Route::put('/order/{order}/transaction_email', 'Order\EmailController@transactionConfirm');
-Route::get('/order/{order}/transaction_email/after', 'Order\EmailController@transactionAfter')->name('orderPaid');
 Route::get('/order/{order}/cancle_email', 'Order\EmailController@canclePage');
 Route::put('/order/{order}/cancle_email', 'Order\EmailController@cancle');
 
 /**SELLER**/
 Route::get('/order/{order}/shipped_email', 'Order\EmailController@shippedPage');
 Route::put('/order/{order}/shipped_email', 'Order\EmailController@confirmShipping');
-Route::get('/order/{order}/shipped_email/after', 'Order\EmailController@shippingAfter')->name('orderShipped');
 Route::get('/order/{order}/deny_email', 'Order\EmailController@denyPage');
 Route::put('/order/{order}/deny_email', 'Order\EmailController@deny');
 
+Route::get('/order/{order}/order_email/success', 'Order\EmailController@successView')->name('successOrder');
 Route::get('/order/{order}/order_email/deleted', 'Order\EmailController@deletedView')->name('orderDeleted');
 /*
 |--------------------------------------------------------------------------

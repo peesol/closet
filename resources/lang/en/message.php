@@ -162,6 +162,7 @@ return [
     'cancleable_order' => 'You can deny this order if you don\'t want the product anymore by clicking the link below',
     'cancleable_order_alt' => 'Or you can cancle this order via website by going to menu > Buying Orders and select the order you want to cancle.',
     'order_deleted' => 'This order has been deleted but you can still search it from the buying/selling history on the website',
+    'order_undeniable' => 'You can not deny/cancle this order because it has been paid or shipped.',
     //transaction
     'transaction' => 'Payment Confirmation',
     'transaction_time' => 'Date and time as in reciept',
@@ -195,6 +196,7 @@ return [
     'shipped_track' => 'Tracking number',
     'shipped_warning' => 'If you have any issues about products or shipping please contact the seller directly.',
     'not_defined' => 'Not Specified',
+    'already_shipped' => 'Your order has been shipped.',
     //Promotion
     'promotions' => 'Promotions',
     'promotions_manage' => 'Promotions management',
