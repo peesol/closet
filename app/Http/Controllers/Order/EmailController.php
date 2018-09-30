@@ -45,7 +45,7 @@ class EmailController extends Controller
 
   public function denyPage(Order $order)
   {
-    if (!$order->trans || !$order->deleted_at) {
+    if (!$order->trans && !$order->deleted_at) {
       return view('order.email.deny', ['order' => $order]);
     } else {
       return redirect()->route('orderDeleted', ['order' => $order]);
@@ -54,7 +54,7 @@ class EmailController extends Controller
 
   public function canclePage(Order $order)
   {
-    if (!$order->trans || !$order->deleted_at) {
+    if (!$order->trans && !$order->deleted_at) {
       return view('order.email.cancle', ['order' => $order]);
     } else {
       return redirect()->route('orderDeleted', ['order' => $order]);
