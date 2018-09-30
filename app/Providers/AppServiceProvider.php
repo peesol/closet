@@ -3,6 +3,7 @@
 namespace Closet\Providers;
 
 use URL;
+use Horizon;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
@@ -25,6 +26,10 @@ class AppServiceProvider extends ServiceProvider
       if($this->app->environment('production')) {
         URL::forceScheme('https');
       }
+
+      Horizon::auth(function ($request) {
+        return $request->user()->id === 1;
+      });
     }
 
     /**

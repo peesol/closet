@@ -70,7 +70,7 @@ return [
     |
     */
     //Database driver
-    'connection' => 'mysql',
+    'connection' => env('SESSION_CONNECTION', 'mysql'),
     //For redis
     //'connection' => 'clusters',
 
