@@ -39,7 +39,7 @@ Vue.use(VueProgressBar, {
   thickness: '5px'
 });
 
-// Vue.config.devtools = true;
+Vue.config.devtools = true;
 
 import {store} from './store/store'
 import {router} from './route/router'
@@ -107,6 +107,7 @@ Vue.component('confirm-trans', require('./components/Order/ConfirmTrans.vue'));
 Vue.component('cant-sell', require('./components/Product/CantSell.vue'));
 Vue.component('discount-code', require('./components/Promotion/CodeGenerator.vue'));
 Vue.component('product-discount', require('./components/Promotion/Discount.vue'));
+Vue.component('product-campaign', require('./components/Promotion/Campaign.vue'));
 Vue.component('vue-slick', require('./components/VueSlick.vue'));
 Vue.component('banner-slick', require('./components/BannerSlick.vue'));
 Vue.component('search-input', require('./components/Search/SearchInput.vue'));

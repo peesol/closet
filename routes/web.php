@@ -69,6 +69,10 @@ Route::group(['middleware' => ['admin']], function () {
 
   Route::get('/secret/admin/database', 'Admin\AdminController@databasePage')->name('databaseAdmin');
   Route::get('/secret/admin/database/query', 'Admin\AdminController@query')->name('databaseQuery');
+
+  Route::get('/secret/admin/campaign', 'Admin\Campaign\CampaignController@index')->name('campaignAdmin');
+  Route::post('/secret/admin/campaign/add', 'Admin\Campaign\CampaignController@post')->name('campaignAdd');
+  Route::delete('/secret/admin/campaign/delete', 'Admin\Campaign\CampaignController@delete')->name('campaignDelete');
 });
 
 /*
@@ -205,6 +209,11 @@ Route::group(['middleware' => ['auth']], function () {
       Route::put('/promotions/manage/discount/{product}/add', 'Management\PromotionController@applyDiscount');
       Route::put('/promotions/manage/discount/{product}/delete', 'Management\PromotionController@removeDiscount');
 
+      Route::get('/promotions/manage/campaign', 'Management\PromotionController@campaignPage')->name('promotionCampaign');
+      Route::get('/promotions/manage/campaign/get_product', 'Management\PromotionController@getCampaignProduct');
+      Route::post('/promotions/manage/campaign/add/{product}', 'Management\PromotionController@addToCampaign');
+      Route::delete('/promotions/manage/campaign/remove/{product}', 'Management\PromotionController@removeFromCampaign');
+
       /*
       |--------------------------------------------------------------------------
       | Notification Routes
@@ -217,7 +226,6 @@ Route::group(['middleware' => ['auth']], function () {
       Route::delete('/notifications/delete', 'Notification\NotificationController@clearAll');
 
     }); //End profile prefix
-
 /*
 |--------------------------------------------------------------------------
 | Product Routes

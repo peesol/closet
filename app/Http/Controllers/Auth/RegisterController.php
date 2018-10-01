@@ -95,7 +95,7 @@ class RegisterController extends Controller
           'profile_type' => $data['profile_type'],
           'promotion_points' => json_encode([
             'discount' => 5,
-            'get_another' => 5,
+            'campaign' => 2,
             'flash_sale' => 2,
           ])
         ]);

@@ -17,12 +17,11 @@ class CreateCampaignProductsTable extends Migration
           $table->increments('id');
           $table->integer('shop_id')->unsigned();
           $table->integer('product_id')->unsigned();
-          $table->integer('price');
-          $table->integer('discont_price');
-          $table->timestamps();
+          $table->integer('campaign_id')->unsigned();
 
           $table->foreign('shop_id')->references('id')->on('shops')->onDelete('cascade');
           $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
+          $table->foreign('campaign_id')->references('id')->on('campaigns')->onDelete('cascade');
         });
     }
 

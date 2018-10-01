@@ -73,6 +73,10 @@ class Product extends Model
     {
       return $this->hasMany(ProductView::class);
     }
+    public function campaign()
+    {
+      return $this->belongsToMany(Campaign::class,'campaign_products', 'product_id', 'campaign_id');
+    }
     public function showcase()
     {
       return $this->belongsToMany(Showcase::class, 'showcase_products');
