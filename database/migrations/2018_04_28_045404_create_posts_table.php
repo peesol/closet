@@ -19,7 +19,7 @@ class CreatePostsTable extends Migration
             $table->string('image')->nullable();
             $table->string('title');
             $table->text('body');
-            $table->integer('view_count');
+            $table->integer('view_count')->default(0);
             $table->timestamps();
 
             $table->foreign('shop_id')->references('id')->on('shops')->onDelete('cascade');

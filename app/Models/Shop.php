@@ -45,6 +45,10 @@ class Shop extends Model
     {
       return $this->hasMany(Post::class);
     }
+    public function campaignProduct()
+    {
+      return $this->hasMany(CampaignProduct::class);
+    }
     public function getRouteKeyName()
     {
       return 'slug';

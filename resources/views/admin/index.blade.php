@@ -11,6 +11,7 @@
       <li><a class="font-large" href="{{ route('bannerAdmin')}}">Banner</a></li>
       <li><a class="font-large" href="{{ route('productAdmin')}}">Product</a></li>
       <li><a class="font-large" href="{{ route('reportsAdmin')}}">Reports</a></li>
+      <li><a class="font-large" href="{{ route('databaseAdmin')}}">Query</a></li>
     </div>
 
   </div>

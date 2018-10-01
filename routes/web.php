@@ -66,6 +66,9 @@ Route::group(['middleware' => ['admin']], function () {
   Route::get('/secret/admin/products', 'Admin\Product\CompanyProductController@index')->name('productAdmin');
   Route::get('/secret/admin/reports', 'Admin\Report\ReportController@index')->name('reportsAdmin');
   Route::delete('/secret/admin/reports/delete', 'Admin\Report\ReportController@delete')->name('reportDelete');
+
+  Route::get('/secret/admin/database', 'Admin\AdminController@databasePage')->name('databaseAdmin');
+  Route::get('/secret/admin/database/query', 'Admin\AdminController@query')->name('databaseQuery');
 });
 
 /*
