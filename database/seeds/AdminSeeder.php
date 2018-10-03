@@ -43,7 +43,7 @@ class AdminSeeder extends Seeder
           'shipping' => null,
           'promotion_points' => json_encode([
             'discount' => 5,
-            'get_another' => 5,
+            'campaign' => 2,
             'flash_sale' => 2,
           ]),
       ]);
