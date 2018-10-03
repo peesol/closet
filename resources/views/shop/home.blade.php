@@ -23,10 +23,6 @@
                         <div class="padding-10">
                           <p>{!! nl2br(e($shop->description)) !!}</p>
                         </div>
-                      @else
-                        <div class="padding-10">
-                        {{__('message.no_description')}}
-                        </div>
                       @endif
                       @if($shop->contact->count())
                       <div>

@@ -66,14 +66,14 @@ export default {
     get() {
       this.$Progress.start()
       this.$root.loading = true
-      this.$http.get(this.$root.url + '/' + this.$route.params.shop + '/edit/notification/get').then(response => {
+      this.$http.get(this.$root.url + '/settings/notification/get').then(response => {
         this.options = response.body
         this.$root.loading = false
         this.$Progress.finish()
       })
     },
     edit() {
-      this.$http.put(this.$root.url + '/' + this.$route.params.shop + '/edit/notification/update', {
+      this.$http.put(this.$root.url + '/settings/notification/update', {
         changes: this.options
       }).then(response => {
         toastr.success(this.$trans.translation.saved)

@@ -2,7 +2,7 @@
 <div class="panel-body">
   <vue-progress-bar></vue-progress-bar>
   <button class="orange-btn normal-sq width-120" @click.prevent="toggled = !toggled">{{$trans.translation.add}}</button>
-  <button :disabled="$root.loading" v-show="showcases.length" class="orange-btn normal-sq width-120 float-right" @click.prevent="save()">{{$trans.translation.edit_submit}}</button>
+  <button :disabled="$root.loading" v-show="showcases.length" class="orange-btn normal-sq width-120 float-right" @click.prevent="save()">{{$trans.translation.showcase_order_save}}</button>
   <transition name="slide-down-height">
     <div v-show="toggled" class="padding-15-vertical">
       <div class="panel-body shadow-2">
@@ -80,7 +80,7 @@ export default {
     getShowcase() {
       this.$Progress.start()
       this.$root.loading = true
-      this.$http.get(this.$root.url + '/' + this.$route.params.shop + '/edit/showcase/get').then(response => {
+      this.$http.get(this.$root.url +'/manage/showcase/get').then(response => {
         this.showcases = response.body;
         this.$Progress.finish()
         this.$root.loading = false
@@ -90,7 +90,7 @@ export default {
       this.$Progress.start()
       this.$root.loading = true
       toastr.info(this.$trans.translation.wait);
-      this.$http.post(this.$root.url + '/' + this.$route.params.shop + ' /edit/showcase/create', {
+      this.$http.post(this.$root.url +'/manage/showcase/create', {
         name: this.name,
         order: this.showcases.length ? this.showcases.length + 1 : 1
       }).then(response => {
@@ -110,18 +110,18 @@ export default {
       if (!confirm(this.$trans.translation.delete_confirm)) {
         return;
       }
-      this.$http.delete(this.$root.url + '/' + this.$route.params.shop + '/edit/showcase/' + showcaseId + '/delete').then(response => {
+      this.$http.delete(this.$root.url +'/manage/showcase/' + showcaseId + '/delete').then(response => {
         this.showcases.splice(index, 1)
         toastr.success(this.$trans.translation.success)
       });
     },
 
     edit(showcaseId) {
-      document.location.href = this.$root.url + '/' + this.$route.params.shop + '/edit/showcase/' + showcaseId + '/edit';
+      document.location.href = this.$root.url +'/manage/showcase/' + showcaseId + '/edit';
     },
 
     showToggle(showcaseId, index) {
-      this.$http.put(this.$root.url + '/' + this.$route.params.shop + '/edit/showcase/' + showcaseId + '/toggle_show').then(response => {
+      this.$http.put(this.$root.url +'/manage/showcase/' + showcaseId + '/toggle_show').then(response => {
         toastr.success(this.$trans.translation.saved);
         if (this.showcases[index].show) {
           this.$set(this.showcases[index], 'show', false)
@@ -141,7 +141,7 @@ export default {
       this.$Progress.start()
       this.$root.loading = true
       toastr.info(this.$trans.translation.wait);
-      this.$http.put(this.$root.url + '/' + this.$route.params.shop + '/edit/showcase/order/update', {
+      this.$http.put(this.$root.url +'/manage/showcase/order/update', {
         showcases: this.showcases
       }).then(response => {
         this.$Progress.finish()

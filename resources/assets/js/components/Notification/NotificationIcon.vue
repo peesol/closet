@@ -29,7 +29,7 @@ export default {
     ]),
     clicked(event) {
       if (this.element == 'footer') {
-        document.location.href = this.$root.url + '/profile/notifications'
+        document.location.href = this.$root.url + '/notification'
       }
       this.$emit('clicked', true)
     }

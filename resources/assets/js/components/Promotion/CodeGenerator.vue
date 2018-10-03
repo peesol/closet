@@ -71,14 +71,14 @@ export default {
   methods: {
     getCodes() {
       this.$root.loading = true
-      this.$http.get(this.$root.url + '/profile/promotions/manage/code_get').then(response => {
+      this.$http.get(this.$root.url + '/promotions/code_get').then(response => {
         this.codes = response.body
         this.$root.loading = false
       });
     },
     create() {
       this.$root.loading = true
-      this.$http.post(this.$root.url + '/profile/promotions/manage/code', {
+      this.$http.post(this.$root.url + '/promotions/code', {
         code: this.code,
         discount: this.discount,
         amount: this.amount,
@@ -100,7 +100,7 @@ export default {
       if (!confirm(this.$trans.translation.delete_confirm)) {
         return
       }
-      this.$http.delete(this.$root.url + '/profile/promotions/manage/code/' + id).then(response => {
+      this.$http.delete(this.$root.url + '/promotions/code/' + id).then(response => {
         this.codes.splice(index, 1)
         toastr.success(this.$trans.translation.success);
       }, response => {

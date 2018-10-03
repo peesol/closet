@@ -86,7 +86,7 @@ export default {
     },
     getProduct() {
       this.$root.loading = true
-      this.$http.get(this.$root.url + '/profile/promotions/manage/discount/product').then(response => {
+      this.$http.get(this.$root.url + '/promotions/discount/product').then(response => {
         this.products = response.body.products;
         this.discount_products = response.body.discount_products.data;
         this.$root.loading = false
@@ -100,7 +100,7 @@ export default {
           alert(this.$trans.translation.not_enough_points)
         } else {
           this.$root.loading = true
-          this.$http.put(this.$root.url + '/profile/promotions/manage/discount/' + uid + '/add', {discount:this.discount}).then(response => {
+          this.$http.put(this.$root.url + '/promotions/discount/' + uid + '/add', {discount:this.discount}).then(response => {
             this.hide()
             this.$root.loading = false
             toastr.success(this.$trans.translation.success);
@@ -121,7 +121,7 @@ export default {
       if (!confirm(this.$trans.translation.delete_confirm)) {
         return
       } else {
-        this.$http.put(this.$root.url + '/profile/promotions/manage/discount/' + uid + '/delete').then(response => {
+        this.$http.put(this.$root.url + '/promotions/discount/' + uid + '/delete').then(response => {
             this.products.push(this.discount_products[index]);
             this.discount_products.splice(index, 1);
         });

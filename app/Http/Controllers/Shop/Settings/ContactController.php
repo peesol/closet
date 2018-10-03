@@ -8,31 +8,31 @@ use Closet\Http\Controllers\Controller;
 
 class ContactController extends Controller
 {
-  public function get(Request $request, Shop $shop)
+  public function get(Request $request)
   {
-    $contacts = $shop->contact()->get();
+    $contacts = $request->user()->contact;
 
     return response()->json($contacts);
   }
 
-  public function create(Request $request,Shop $shop)
+  public function create(Request $request)
   {
-    $this->authorize('update', $shop);
-
     $this->validate($request, ['link' => 'sometimes|nullable|url']);
 
-    $data = $shop->contact()->create([
-      'shop_id' => $request->shop->id,
+    $data = $request->user()->contact()->create([
+      'shop_id' => $request->user()->shop->id,
       'type' => $request->type,
       'body' => $request->body,
       'link' => $request->link,
       'show' => true,
     ]);
+
     return response()->json($data);
   }
-  public function update(Request $request, Shop $shop, Contact $contact)
+  public function update(Request $request, Contact $contact)
   {
     $this->validate($request, ['link' => 'url',]);
+
     if($request->body !== null){
       $contact->update(['body' => $request->body]);
     } elseif($request->link !== null) {
@@ -41,14 +41,14 @@ class ContactController extends Controller
     return ;
   }
 
-  public function delete(Request $request, Shop $shop, Contact $contact)
+  public function delete(Request $request, Contact $contact)
   {
     $contact->delete();
 
     return response()->json(null, 200);
   }
 
-  public function toggleShow(Request $request, Shop $shop, Contact $contact)
+  public function toggleShow(Request $request, Contact $contact)
   {
     if($contact->show == true) {
       $update = $contact->update([ 'show' => false ]);

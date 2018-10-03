@@ -6,10 +6,10 @@
       <label for="name" class="full-label input-label">{{$trans.translation.choice_add}}&nbsp;
         <span class="font-light">{{$trans.translation.choice_name_ex}}</span>
       </label>
-      <div class="input-group margin-10-top">
-        <input class="input-addon-field left" type="text" v-model="name" name="name">
-        <button :disabled="$root.loading" class="input-addon right checkmark-btn fas fa-check" type="submit" @click.prevent="add"></button>
-      </div>
+        <form class="input-group margin-10-top" @submit="add" method="post">
+          <input required class="input-addon-field left" type="text" v-model="name" name="name">
+          <button :disabled="$root.loading" class="input-addon right checkmark-btn fas fa-check" type="submit"></button>
+        </form>
     </form>
   </div>
 

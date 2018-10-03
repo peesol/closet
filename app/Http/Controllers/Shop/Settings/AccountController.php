@@ -8,18 +8,19 @@ use Closet\Http\Controllers\Controller;
 
 class AccountController extends Controller
 {
-  public function get(Shop $shop)
+  public function get(Request $request)
   {
-    $accounts = $shop->account;
+    $accounts = $request->user()->account;
     return response()->json($accounts);
   }
 
-  public function create(Request $request, Shop $shop)
+  public function create(Request $request)
   {
     $data = $request->number;
     $number = substr($data, 0, 3) .' - '. substr($data, 3, 1) .' - '. substr($data, 4, 5).' - '. substr($data, 9);
 
-    $create = $shop->account()->create([
+    $create = $request->user()->account()->create([
+      'shop_id' => $request->user()->shop->id,
       'provider_name' => $request->provider['name'],
       'provider' => $request->provider['code'],
       'name' => $request->name,
@@ -29,7 +30,7 @@ class AccountController extends Controller
     return response()->json($create);
   }
 
-  public function delete(Shop $shop, Account $account)
+  public function delete(Account $account)
   {
     $account->delete();
     return;

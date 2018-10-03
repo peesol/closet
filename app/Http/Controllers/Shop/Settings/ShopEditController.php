@@ -12,30 +12,34 @@ use Closet\Jobs\ShopImage\{UploadCover, UploadThumbnail};
 
 class ShopEditController extends Controller
 {
-  public function index(Shop $shop)
+  public function index()
   {
-    $this->authorize('edit', $shop);
-
-    return view('shop.settings.edit' , [ 'shop' => $shop ]);
+    return view('shop.settings.edit');
   }
 
-  public function getUserInfomation(Shop $shop)
+  public function managePage()
   {
+    return view('shop.settings.manage');
+  }
+
+  public function getUserInfomation(Request $request)
+  {
+    $user = $request->user();
     $data = [
-      'id' => $shop->id,
-      'cover' => $shop->getCover(),
-      'thumbnail' => $shop->getThumbnail(),
-      'description' => $shop->description,
-      'name' => $shop->name,
-      'slug' => $shop->slug,
+      'id' => $user->shop->id,
+      'cover' => $user->shop->getCover(),
+      'thumbnail' => $user->shop->getThumbnail(),
+      'description' => $user->shop->description,
+      'name' => $user->shop->name,
+      'slug' => $user->shop->slug,
+      'phone' => $user->phone,
+      'address' => $user->address,
     ];
     return response()->json($data);
   }
-  public function updatePublicInfo(ShopUpdateRequest $request, Shop $shop)
+  public function updatePublicInfo(ShopUpdateRequest $request)
   {
-    $this->authorize('update', $shop);
-
-    $shop->update([
+    $request->user()->shop->update([
       'name' => $request->name,
       'slug' => $request->slug,
       'description' => $request->description,
@@ -44,21 +48,20 @@ class ShopEditController extends Controller
     return response()->json();
   }
 
-  public function updatePrivateInfo(Request $request, Shop $shop)
+  public function updatePrivateInfo(Request $request)
   {
-    $this->authorize('update', $shop);
-
-    $shop->user->update([
+    $request->user()->update([
       'address' => $request->address,
       'phone' => $request->phone,
     ]);
 
     return response()->json(null, 200);
   }
-  public function updateThumbnail(Request $request, Shop $shop)
+
+  public function updateThumbnail(Request $request)
   {
-    if (!empty($shop->thumbnail)) {
-      $path = 'profile/thumbnail/' . $shop->thumbnail;
+    if (!empty($request->user()->shop->thumbnail)) {
+      $path = 'profile/thumbnail/' . $request->user()->shop->thumbnail;
       $this->dispatch((new DeleteImage($path))->onQueue('delete_img'));
     }
     $thumbnail = $request->thumbnail;
@@ -71,15 +74,18 @@ class ShopEditController extends Controller
 
     Storage::disk('uploads')->put('profile/thumbnail/' . $fileName, $decoded);
 
-    $this->dispatch((new UploadThumbnail($shop, $fileName))->onQueue('upload'));
+    $this->dispatch((new UploadThumbnail($fileName))->onQueue('upload'));
+
+    $request->user()->shop->thumbnail = $fileName . '.jpg';
+    $request->user()->shop->save();
 
     return response()->json(null, 200);
   }
 
-  public function updateCover(Request $request, Shop $shop)
+  public function updateCover(Request $request)
   {
-    if (!empty($shop->cover)) {
-      $path = 'profile/cover/'.$shop->cover;
+    if (!empty($request->user()->shop->cover)) {
+      $path = 'profile/cover/'. $request->user()->shop->cover;
       $this->dispatch((new DeleteImage($path))->onQueue('delete_img'));
     }
 
@@ -93,7 +99,10 @@ class ShopEditController extends Controller
 
     Storage::disk('uploads')->put('profile/cover/' . $fileName, $decoded);
 
-    $this->dispatch((new UploadCover($shop, $fileName))->onQueue('upload'));
+    $this->dispatch((new UploadCover($fileName))->onQueue('upload'));
+
+    $request->user()->shop->cover = $fileName . '.jpg';
+    $request->user()->shop->save();
 
     return response()->json(null, 200);
   }

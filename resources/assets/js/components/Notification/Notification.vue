@@ -51,7 +51,7 @@ export default {
     },
     markAsRead(id, index) {
       if (!this.notifications[index].read) {
-        this.$http.put(this.$root.url + '/profile/notifications/read', {id: id}).then(response => {
+        this.$http.put(this.$root.url + '/notification/read', {id: id}).then(response => {
           this.$set(this.notifications[index], 'read', true)
           toastr.success(this.$trans.translation.saved)
         }, response => {
@@ -60,7 +60,7 @@ export default {
       }
     },
     clearAll() {
-      this.$http.delete(this.$root.url + '/profile/notifications/delete').then(response => {
+      this.$http.delete(this.$root.url + '/notification/delete').then(response => {
         toastr.success(this.$trans.translation.success)
         this.clearNotifications()
       }, response => {

@@ -156,7 +156,7 @@ export default {
   methods: {
     getMessages() {
       this.$Progress.start()
-      this.$http.get(this.$root.url + '/profile/order/selling/get').then(response=> {
+      this.$http.get(this.$root.url + '/order/selling/get').then(response=> {
          this.orders = response.body.data
          this.$Progress.finish()
          this.loaded = true
@@ -186,7 +186,7 @@ export default {
     confirmShipping(uid, index){
       this.$Progress.start();
       this.$root.loading = true
-      this.$http.put(this.$root.url + '/profile/order/' + uid + '/confirm_shipping', {
+      this.$http.put(this.$root.url + '/order/' + uid + '/confirm_shipping', {
         carrier: this.track_info,
         tracking_number: this.tracking_number,
       }).then(response => {

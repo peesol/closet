@@ -27,7 +27,7 @@
         </div>
       </div>
       <div class="align-right padding-15-top">
-        <button :disabled="$root.loading" type="submit" class="orange-btn normal-sq">{{$trans.translation.edit_submit}}</button>
+        <button :disabled="$root.loading || errors.any()" type="submit" class="orange-btn normal-sq">{{$trans.translation.edit_submit}}</button>
       </div>
     </form>
   </div>

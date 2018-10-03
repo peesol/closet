@@ -53,14 +53,14 @@ export default {
   methods: {
     get() {
       this.$root.loading = true
-      this.$http.get(this.$root.url + '/profile/promotions/manage/campaign/get_product').then(response => {
+      this.$http.get(this.$root.url + '/promotions/campaign/get_product').then(response => {
         this.products = response.body.data
         this.$root.loading = false
       })
     },
     join(uid, index) {
       this.loading = true
-      this.$http.post(this.$root.url + '/profile/promotions/manage/campaign/add/' + uid, {
+      this.$http.post(this.$root.url + '/promotions/campaign/add/' + uid, {
         campaign_id: this.selected_campaign.id
       }).then(response => {
         this.$set(this.products[index], 'in_campaign', true)
@@ -85,7 +85,7 @@ export default {
           alert(this.$trans.translation.not_enough_points)
         } else {
           this.$root.loading = true
-          this.$http.delete(this.$root.url + '/profile/promotions/manage/campaign/remove/' + uid).then(response => {
+          this.$http.delete(this.$root.url + '/promotions/campaign/remove/' + uid).then(response => {
             this.$set(this.products[index], 'in_campaign', false)
             this.$root.loading = false
             toastr.success(this.$trans.translation.success)

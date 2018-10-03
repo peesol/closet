@@ -42,7 +42,7 @@ export default {
 
         setAmount(productSlug, productAmount, index){
           this.$root.loading = true
-          this.$http.put(this.$root.url + '/profile/myproduct/stock/set_amount/' + productSlug , {
+          this.$http.put(this.$root.url + '/myproduct/stock/set_amount/' + productSlug , {
             amount: productAmount
           }).then(response => {
             this.$requestTimer(2000)

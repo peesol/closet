@@ -50,7 +50,7 @@
         <span v-show="errors.has('description')" class="span-error">{{ errors.first('description') }}</span>
       </div>
       <div class="align-right full-width padding-15-top">
-        <button :disabled="$root.loading" class="orange-btn normal-sq width-120" type="submit">{{$trans.translation.edit_submit}}</button>
+        <button :disabled="$root.loading || errors.any()" class="orange-btn normal-sq width-120" type="submit">{{$trans.translation.edit_submit}}</button>
       </div>
     </div>
 

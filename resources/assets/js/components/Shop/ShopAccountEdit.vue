@@ -27,7 +27,7 @@
           </div>
         </div>
         <div class="align-right padding-15-top">
-          <button :disabled="$root.loading" type="submit" class="orange-btn normal-sq">{{$trans.translation.edit_submit}}</button>
+          <button :disabled="$root.loading || errors.any()" type="submit" class="orange-btn normal-sq">{{$trans.translation.edit_submit}}</button>
         </div>
       </form>
     </div>
@@ -99,7 +99,7 @@ export default {
     getAccounts() {
       this.$Progress.start()
       this.$root.loading = true
-      this.$http.get(this.$root.url + '/' + this.$route.params.shop + '/edit/account/get').then(response => {
+      this.$http.get(this.$root.url + '/manage/account/get').then(response => {
         this.accounts = response.body
         this.$Progress.finish()
         this.$root.loading = false
@@ -111,7 +111,7 @@ export default {
       this.$Progress.start()
       this.$root.loading = true
       toastr.info(this.$trans.translation.wait);
-      this.$http.post(this.$root.url + '/' + this.$route.params.shop + '/edit/account', {
+      this.$http.post(this.$root.url + '/manage/account', {
         provider: this.provider,
         number: this.number,
         name: this.name,
@@ -120,9 +120,10 @@ export default {
         this.$root.loading = false
         toastr.success(this.$trans.translation.saved)
         this.accounts.push(response.body)
-        this.provider = null;
-        this.number = null;
-        this.name = null;
+        this.provider = null
+        this.number = null
+        this.name = null
+        formVisible = false
       }, response => {
         this.$Progress.fail()
         this.$root.loading = false
@@ -133,7 +134,7 @@ export default {
       if (!confirm(this.$trans.translation.delete_confirm)) {
         return
       }
-      this.$http.delete(this.$root.url + '/' + this.$route.params.shop + '/edit/account/' + accountId + '/delete').then(response => {
+      this.$http.delete(this.$root.url + '/manage/account/' + accountId + '/delete').then(response => {
         toastr.success(this.$trans.translation.success)
         this.$delete(this.accounts, index)
       }, response => {

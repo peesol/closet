@@ -15,29 +15,29 @@ const routes = [
     component: SearchResult
   },
   {
-    name: 'generalEdit',
-    path: '/:shop/edit/general',
+    name: 'profileEdit',
+    path: '/settings/profile',
     component: ShopEdit,
     props: true
   },
   {
     name: 'contactEdit',
-    path: '/:shop/edit/contact',
+    path: '/manage/contact',
     component: ShopContact
   },
   {
     name: 'showcaseEdit',
-    path: '/:shop/edit/showcase',
+    path: '/manage/showcase',
     component: Showcase
   },
   {
     name: 'accountEdit',
-    path: '/:shop/edit/account',
+    path: '/manage/account',
     component: ShopAccount
   },
   {
     name: 'notificationSettings',
-    path: '/:shop/edit/notification',
+    path: '/settings/notification',
     component: NotificationSettings
   },
 ];

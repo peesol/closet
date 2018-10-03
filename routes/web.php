@@ -19,16 +19,15 @@ Route::put('/locale_ajax/{lang}', 'Language\LanguageController@languageChange');
 Route::get('/search/result', 'Search\SearchController@index')->name('result');
 Route::get('/search/result/products', 'Search\SearchController@productResult');
 
-Route::prefix('product')->group(function () {
-  Route::get('/{product}', 'Product\Show\NewProductShowController@show');
-  Route::get('/{product}/get', 'Product\Show\NewProductShowController@productAjax');
-  Route::get('/{product}/get_choice', 'Product\Show\NewProductShowController@choiceAjax');
-  Route::get('/{product}/votes', 'Product\Vote\VoteController@show');
-  //UPDATE LATER IF NEEDED
-  //Route::get('/{product}/views', 'Product\Show\NewProductShowController@viewCount');
-  Route::put('/{product}/views', 'Product\Show\NewProductShowController@logView');
-  Route::get('/{product}/comments', 'Product\Comment\NewProductCommentController@index');
-});
+
+Route::get('/product/{product}', 'Product\Show\NewProductShowController@show');
+Route::get('/product/{product}/get', 'Product\Show\NewProductShowController@productAjax');
+Route::get('/product/{product}/get_choice', 'Product\Show\NewProductShowController@choiceAjax');
+Route::get('/product/{product}/votes', 'Product\Vote\VoteController@show');
+//UPDATE LATER IF NEEDED
+//Route::get('/{product}/views', 'Product\Show\NewProductShowController@viewCount');
+Route::put('/product/{product}/views', 'Product\Show\NewProductShowController@logView');
+Route::get('/product/{product}/comments', 'Product\Comment\NewProductCommentController@index');
 
 Route::get('/product/used/{product}', 'Product\Show\UsedProductShowController@show');
 Route::get('/product/used/{product}/comments', 'Product\Comment\UsedProductCommentController@index');
@@ -148,7 +147,7 @@ Route::namespace('Cart')->group(function () {
 
 /*
 |--------------------------------------------------------------------------
-| Order via Email
+| Order via Email auth middleware not applied
 |--------------------------------------------------------------------------
 */
 /**BUYER**/
@@ -171,19 +170,19 @@ Route::get('/order/{order}/order_email/deleted', 'Order\EmailController@deletedV
 |--------------------------------------------------------------------------
 */
 Route::group(['middleware' => ['auth']], function () {
-  Route::get('/profile/order/selling/get', 'Order\OrderController@getSellingInbox');
-  Route::get('/profile/order/buying/get', 'Order\OrderController@getBuyingInbox');
+  Route::get('/order/selling/get', 'Order\OrderController@getSellingInbox');
+  Route::get('/order/buying/get', 'Order\OrderController@getBuyingInbox');
 
-  Route::get('/profile/order/selling/history', 'Order\OrderController@sellingHistoryPage');
-  Route::get('/profile/order/buying/history', 'Order\OrderController@buyingHistoryPage');
-  Route::get('/profile/order/selling/history/get', 'Order\OrderController@getSellingHistory');
-  Route::get('/profile/order/buying/history/get', 'Order\OrderController@getBuyingHistory');
+  Route::get('/order/selling/history', 'Order\OrderController@sellingHistoryPage');
+  Route::get('/order/buying/history', 'Order\OrderController@buyingHistoryPage');
+  Route::get('/order/selling/history/get', 'Order\OrderController@getSellingHistory');
+  Route::get('/order/buying/history/get', 'Order\OrderController@getBuyingHistory');
 
   Route::post('/order/sending', 'Order\OrderController@store');
-  Route::get('/profile/order/selling', 'Order\OrderController@sellingPage')->name('sellingOrder');
-  Route::get('/profile/order/buying', 'Order\OrderController@buyingPage')->name('buyingOrder');
-  Route::put('/profile/order/{order}/transaction', 'Order\OrderController@transactionConfirm');
-  Route::put('/profile/order/{order}/confirm_shipping', 'Order\OrderController@confirmShipping');
+  Route::get('/order/selling', 'Order\OrderController@sellingPage')->name('sellingOrder');
+  Route::get('/order/buying', 'Order\OrderController@buyingPage')->name('buyingOrder');
+  Route::put('/order/{order}/transaction', 'Order\OrderController@transactionConfirm');
+  Route::put('/order/{order}/confirm_shipping', 'Order\OrderController@confirmShipping');
 
   Route::put('/order/{order}/deny', 'Order\OrderController@deny');
 });
@@ -191,41 +190,21 @@ Route::group(['middleware' => ['auth']], function () {
 
 Route::group(['middleware' => ['auth']], function () {
 
+  Route::get('/mycollection', 'Collection\CollectionController@index')->name('myCollection');
+  Route::get('/following', 'User\FollowingController@index')->name('following');
+  Route::delete('/unfollow', 'User\FollowingController@unfollow')->name('unfollow');
+  /*
+  |--------------------------------------------------------------------------
+  | Notification Routes
+  |--------------------------------------------------------------------------
+  */
+  Route::get('/notification', 'Notification\NotificationController@index');
+  Route::get('/notification/get', 'Notification\NotificationController@get');
+  Route::put('/notification/read', 'Notification\NotificationController@markAsRead');
+  Route::put('/notification/read_all', 'Notification\NotificationController@markAllAsRead');
+  Route::delete('/notification/delete', 'Notification\NotificationController@clearAll');
 
-    Route::prefix('profile')->group(function () {
-      Route::get('/mycollection', 'Collection\CollectionController@index')->name('myCollection');
-      Route::get('/following', 'User\FollowingController@index')->name('following');
-      Route::delete('/following/unfollow', 'User\FollowingController@unfollow')->name('unfollow');
 
-      Route::get('/promotions/manage', 'Management\PromotionController@index')->name('promotionEdit');
-      Route::get('/promotions/manage/code', 'Management\PromotionController@codePage')->name('promotionCode');
-      Route::get('/promotions/manage/code_get', 'Management\PromotionController@getCodes');
-      Route::post('/promotions/manage/code', 'Management\PromotionController@createCode');
-      Route::delete('/promotions/manage/code/{discount}', 'Management\PromotionController@removeCode');
-      Route::post('/promotions/code/validate', 'Management\PromotionController@validateCode');
-
-      Route::get('/promotions/manage/discount', 'Management\PromotionController@discountPage')->name('promotionDiscount');
-      Route::get('/promotions/manage/discount/product', 'Management\PromotionController@getProduct');
-      Route::put('/promotions/manage/discount/{product}/add', 'Management\PromotionController@applyDiscount');
-      Route::put('/promotions/manage/discount/{product}/delete', 'Management\PromotionController@removeDiscount');
-
-      Route::get('/promotions/manage/campaign', 'Management\PromotionController@campaignPage')->name('promotionCampaign');
-      Route::get('/promotions/manage/campaign/get_product', 'Management\PromotionController@getCampaignProduct');
-      Route::post('/promotions/manage/campaign/add/{product}', 'Management\PromotionController@addToCampaign');
-      Route::delete('/promotions/manage/campaign/remove/{product}', 'Management\PromotionController@removeFromCampaign');
-
-      /*
-      |--------------------------------------------------------------------------
-      | Notification Routes
-      |--------------------------------------------------------------------------
-      */
-      Route::get('/notifications', 'Notification\NotificationController@index');
-      Route::get('/notifications/get', 'Notification\NotificationController@get');
-      Route::put('/notifications/read', 'Notification\NotificationController@markAsRead');
-      Route::put('/notifications/read_all', 'Notification\NotificationController@markAllAsRead');
-      Route::delete('/notifications/delete', 'Notification\NotificationController@clearAll');
-
-    }); //End profile prefix
 /*
 |--------------------------------------------------------------------------
 | Product Routes
@@ -277,14 +256,14 @@ Route::group(['middleware' => ['auth']], function () {
 | My Product Routes
 |--------------------------------------------------------------------------
 */
-  Route::get('/profile/myproduct/new', 'Product\User\MyProductController@myproductPage');
-  Route::get('/profile/myproduct/used', 'Product\User\MyProductController@myUsedProductPage');
+  Route::get('/myproduct/new', 'Product\User\MyProductController@myproductPage');
+  Route::get('/myproduct/used', 'Product\User\MyProductController@myUsedProductPage');
   //Stock
-  Route::get('/profile/myproduct/stock', 'Product\Stock\StockController@index');
-  Route::put('/profile/myproduct/stock/set_amount/{product}', 'Product\Stock\StockController@update');
+  Route::get('/myproduct/stock', 'Product\Stock\StockController@index');
+  Route::put('/myproduct/stock/set_amount/{product}', 'Product\Stock\StockController@update');
   //Shipping edit for all products
-  Route::get('/profile/myproduct/shipping', 'Shop\Settings\ShippingController@index');
-  Route::put('/profile/myproduct/shipping/update', 'Shop\Settings\ShippingController@update');
+  Route::get('/myproduct/shipping', 'Shop\Settings\ShippingController@index');
+  Route::put('/myproduct/shipping/update', 'Shop\Settings\ShippingController@update');
 
   Route::post('/product/used/{product}/comments', 'Product\Comment\UsedProductCommentController@create');
   Route::delete('/product/used/{product}/comments/{comment}', 'Product\Comment\UsedProductCommentController@delete');
@@ -293,6 +272,74 @@ Route::group(['middleware' => ['auth']], function () {
   Route::delete('/follow/{shop}', 'Shop\FollowController@delete');
 
 }); //End auth middleware
+
+/*
+|--------------------------------------------------------------------------
+| Shop Edit Routes
+|--------------------------------------------------------------------------
+*/
+Route::group(['middleware' => ['auth']], function () {
+  Route::get('/settings/profile', 'Shop\Settings\ShopEditController@index');
+  Route::get('/settings/get_user', 'Shop\Settings\ShopEditController@getUserInfomation');
+  Route::put('/settings/public_info', 'Shop\Settings\ShopEditController@updatePublicInfo');
+  Route::put('/settings/personal_info', 'Shop\Settings\ShopEditController@updatePrivateInfo');
+  Route::put('/settings/cover', 'Shop\Settings\ShopEditController@updateCover');
+  Route::put('/settings/thumbnail', 'Shop\Settings\ShopEditController@updateThumbnail');
+
+  Route::get('/settings/notification', 'Shop\Settings\ShopEditController@index');
+  Route::get('/settings/notification/get', 'Notification\Settings\NotificationSettingsController@get');
+  Route::put('/settings/notification/update', 'Notification\Settings\NotificationSettingsController@update');
+
+  Route::get('/manage', 'Shop\Settings\ShopEditController@managePage');
+
+  Route::get('/manage/contact', 'Shop\Settings\ShopEditController@index');
+  Route::get('/manage/account', 'Shop\Settings\ShopEditController@index');
+  Route::get('/manage/showcase', 'Shop\Settings\ShopEditController@index');
+
+  Route::get('/manage/contact/get', 'Shop\Settings\ContactController@get');
+  Route::post('/manage/contact/create', 'Shop\Settings\ContactController@create');
+  Route::put('/manage/contact/{contact}', 'Shop\Settings\ContactController@update');
+  Route::delete('/manage/contact/{contact}/delete', 'Shop\Settings\ContactController@delete');
+  Route::put('/manage/contact/{contact}/show', 'Shop\Settings\ContactController@toggleShow');
+
+  Route::get('/manage/account/get', 'Shop\Settings\AccountController@get');
+  Route::post('/manage/account', 'Shop\Settings\AccountController@create');
+  Route::delete('/manage/account/{account}/delete', 'Shop\Settings\AccountController@delete');
+  /*
+  |--------------------------------------------------------------------------
+  | Showcases Routes
+  |--------------------------------------------------------------------------
+  */
+  Route::get('/manage/showcase/get', 'Showcase\ShowcaseController@get');
+  Route::post('/manage/showcase/create', 'Showcase\ShowcaseController@create');
+  Route::put('/manage/showcase/order/update', 'Showcase\ShowcaseController@updateOrder');
+  Route::delete('/manage/showcase/{showcase}/delete', 'Showcase\ShowcaseController@remove');
+  Route::put('/manage/showcase/{showcase}/toggle_show', 'Showcase\ShowcaseController@showOption');
+  //Showcase Edit
+  Route::get('/manage/showcase/{showcase}/edit', 'Showcase\ShowcaseEditController@index');
+  Route::get('/manage/showcase/{showcase}/get_product', 'Showcase\ShowcaseEditController@getProduct');
+  Route::post('/manage/showcase/{showcase}/add_product/{id}', 'Showcase\ShowcaseEditController@storeProduct');
+  Route::put('/manage/showcase/{showcase}/update', 'Showcase\ShowcaseEditController@update');
+
+  Route::get('/promotions', 'Management\PromotionController@index')->name('promotionEdit');
+  Route::get('/promotions/code', 'Management\PromotionController@codePage')->name('promotionCode');
+  Route::get('/promotions/code_get', 'Management\PromotionController@getCodes');
+  Route::post('/promotions/code', 'Management\PromotionController@createCode');
+  Route::delete('/promotions/code/{discount}', 'Management\PromotionController@removeCode');
+  Route::post('/promotions/code/validate', 'Management\PromotionController@validateCode');
+
+  Route::get('/promotions/discount', 'Management\PromotionController@discountPage')->name('promotionDiscount');
+  Route::get('/promotions/discount/product', 'Management\PromotionController@getProduct');
+  Route::put('/promotions/discount/{product}/add', 'Management\PromotionController@applyDiscount');
+  Route::put('/promotions/discount/{product}/delete', 'Management\PromotionController@removeDiscount');
+
+  Route::get('/promotions/campaign', 'Management\PromotionController@campaignPage')->name('promotionCampaign');
+  Route::get('/promotions/campaign/get_product', 'Management\PromotionController@getCampaignProduct');
+  Route::post('/promotions/campaign/add/{product}', 'Management\PromotionController@addToCampaign');
+  Route::delete('/promotions/campaign/remove/{product}', 'Management\PromotionController@removeFromCampaign');
+
+});
+
 /*
 |--------------------------------------------------------------------------
 | Shop Routes
@@ -317,53 +364,3 @@ Route::namespace('Shop')->group(function () {
   //Route::delete('/{shop}/reviews/delete/{feedback}', 'ReviewController@delete');
 
 });
-/*
-|--------------------------------------------------------------------------
-| Shop Edit Routes
-|--------------------------------------------------------------------------
-*/
-Route::group(['middleware' => ['auth']], function () {
-
-  Route::get('/{shop}/edit/general', 'Shop\Settings\ShopEditController@index');
-  Route::get('/{shop}/edit/general/get', 'Shop\Settings\ShopEditController@getUserInfomation');
-  Route::get('/{shop}/edit/contact', 'Shop\Settings\ShopEditController@index');
-  Route::get('/{shop}/edit/account', 'Shop\Settings\ShopEditController@index');
-  Route::get('/{shop}/edit/showcase', 'Shop\Settings\ShopEditController@index');
-  Route::get('/{shop}/edit/notification', 'Shop\Settings\ShopEditController@index');
-  Route::put('/{shop}/edit/public_info', 'Shop\Settings\ShopEditController@updatePublicInfo');
-  Route::put('/{shop}/edit/personal_info', 'Shop\Settings\ShopEditController@updatePrivateInfo');
-  Route::put('/{shop}/edit/cover', 'Shop\Settings\ShopEditController@updateCover');
-  Route::put('/{shop}/edit/thumbnail', 'Shop\Settings\ShopEditController@updateThumbnail');
-
-  Route::get('/{shop}/edit/contact/get', 'Shop\Settings\ContactController@get');
-  Route::post('/{shop}/edit/contact', 'Shop\Settings\ContactController@create');
-  Route::put('/{shop}/edit/contact/{contact}', 'Shop\Settings\ContactController@update');
-  Route::delete('/{shop}/edit/contact/{contact}/delete', 'Shop\Settings\ContactController@delete');
-  Route::put('/{shop}/edit/contact/{contact}/show', 'Shop\Settings\ContactController@toggleShow');
-
-  Route::get('/{shop}/edit/account/get', 'Shop\Settings\AccountController@get');
-  Route::post('/{shop}/edit/account', 'Shop\Settings\AccountController@create');
-  Route::delete('/{shop}/edit/account/{account}/delete', 'Shop\Settings\AccountController@delete');
-
-  Route::get('/{shop}/edit/notification/get', 'Notification\Settings\NotificationSettingsController@get');
-  Route::put('/{shop}/edit/notification/update', 'Notification\Settings\NotificationSettingsController@update');
-
-  /*
-  |--------------------------------------------------------------------------
-  | Showcases Routes
-  |--------------------------------------------------------------------------
-  */
-  Route::get('/{shop}/edit/showcase/get', 'Showcase\ShowcaseController@get');
-  Route::post('/{shop}/edit/showcase/create', 'Showcase\ShowcaseController@create');
-  Route::put('/{shop}/edit/showcase/order/update', 'Showcase\ShowcaseController@updateOrder');
-  Route::delete('/{shop}/edit/showcase/{showcase}/delete', 'Showcase\ShowcaseController@remove');
-  Route::put('/{shop}/edit/showcase/{showcase}/toggle_show', 'Showcase\ShowcaseController@showOption');
-  //Showcase Edit
-  Route::get('/{shop}/edit/showcase/{showcase}/edit', 'Showcase\ShowcaseEditController@index');
-  Route::get('/{shop}/edit/showcase/{showcase}/get_product', 'Showcase\ShowcaseEditController@getProduct');
-  Route::post('/{shop}/edit/showcase/{showcase}/add_product/{id}', 'Showcase\ShowcaseEditController@storeProduct');
-  Route::put('/{shop}/edit/showcase/{showcase}/update', 'Showcase\ShowcaseEditController@update');
-
-});
-
-Route::get('/test/cat', 'Test\TestController@test');

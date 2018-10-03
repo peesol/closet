@@ -38,7 +38,7 @@ return [
     'digits_between'       => 'The :attribute must be between :min and :max digits.',
     'dimensions'           => 'The :attribute has invalid image dimensions.',
     'distinct'             => 'The :attribute field has a duplicate value.',
-    'email'                => 'The :attribute must be a valid email address.',
+    'email'                => 'ต้องเป็นอีเมลเท่านั้น',
     'exists'               => 'The selected :attribute is invalid.',
     'file'                 => 'The :attribute must be a file.',
     'filled'               => 'The :attribute field must have a value.',
@@ -49,7 +49,7 @@ return [
     'ip'                   => 'The :attribute must be a valid IP address.',
     'json'                 => 'The :attribute must be a valid JSON string.',
     'max'                  => [
-        'numeric' => 'ต้องมีจำนวนไม่เกิน than :max.',
+        'numeric' => 'ต้องมีความยาวไม่เกิน than :max.',
         'file'    => 'The :attribute may not be greater than :max kilobytes.',
         'string'  => 'ต้องมีความยาวไม่เกิน :max ตัวอักษร',
         'array'   => 'The :attribute may not have more than :max items.',
@@ -57,13 +57,13 @@ return [
     'mimes'                => 'The :attribute must be a file of type: :values.',
     'mimetypes'            => 'The :attribute must be a file of type: :values.',
     'min'                  => [
-        'numeric' => 'The :attribute must be at least :min.',
-        'file'    => 'The :attribute must be at least :min kilobytes.',
-        'string'  => 'The :attribute must be at least :min characters.',
-        'array'   => 'The :attribute must have at least :min items.',
+        'numeric' => ':attribute ต้องมีความยาวอย่างน้อย :min.',
+        'file'    => ':attribute must be at least :min kilobytes.',
+        'string'  => ':attribute must be at least :min characters.',
+        'array'   => ':attribute must have at least :min items.',
     ],
     'not_in'               => 'The selected :attribute is invalid.',
-    'numeric'              => 'The :attribute must be a number.',
+    'numeric'              => ':attributeต้องเป็นตัวเลขเท่านั้น',
     'present'              => 'The :attribute field must be present.',
     'regex'                => 'The :attribute format is invalid.',
     'required'             => 'กรุณากรอกข้อมูลในช่องนี้',
@@ -82,7 +82,7 @@ return [
     ],
     'string'               => 'The :attribute must be a string.',
     'timezone'             => 'The :attribute must be a valid zone.',
-    'unique'               => 'The :attribute has already been taken.',
+    'unique'               => ':attribute นี้ถูกใช้ไปแล้ว',
     'uploaded'             => 'The :attribute failed to upload.',
     'url'                  => 'รูปแบบ URL ไม่ถูกต้อง',
 
@@ -114,6 +114,10 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+      'slug' => 'URL',
+      'name' => 'ชื่อ',
+      'description' => 'คำอธิบาย',
+    ],
 
 ];

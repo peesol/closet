@@ -15,16 +15,14 @@ class UploadThumbnail implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    public $shop;
     public $fileName;
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct(Shop $shop,$fileName)
+    public function __construct($fileName)
     {
-      $this->shop = $shop;
       $this->fileName = $fileName;
     }
 
@@ -46,7 +44,5 @@ class UploadThumbnail implements ShouldQueue
       Storage::disk('s3images')->put('profile/thumbnail/' . $this->fileName . '.jpg', $img->__toString());
 
       unlink($path);
-      $this->shop->thumbnail = $this->fileName . '.jpg';
-      $this->shop->save();
     }
 }

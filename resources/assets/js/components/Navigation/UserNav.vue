@@ -9,8 +9,8 @@
     <li v-bind:class="{'toggled-list' : toggledList === 1}" @click.prevent="toggleList(1)">{{ $trans.translation.my_products }}&nbsp;<i class="fas fa-chevron-down"></i></li>
     <transition name="slide-down-height">
       <div v-show="toggledList === 1">
-        <a class="nested" :href="$root.url + '/profile/myproduct/new'">{{ $trans.translation.new }}</a>
-        <a class="nested" :href="$root.url + '/profile/myproduct/used'">{{ $trans.translation.used }}</a>
+        <a class="nested" :href="$root.url + '/myproduct/new'">{{ $trans.translation.new }}</a>
+        <a class="nested" :href="$root.url + '/myproduct/used'">{{ $trans.translation.used }}</a>
       </div>
     </transition>
     <li v-bind:class="{'toggled-list' : toggledList === 2}" @click.prevent="toggleList(2)">{{ $trans.translation.sell }}&nbsp;<i class="fas fa-chevron-down"></i></li>
@@ -20,7 +20,7 @@
       <a class="nested" :href="$root.url + '/sell/used'">{{ $trans.translation.used }}</a>
     </div>
     </transition>
-    <a :href="$root.url + '/' + userShop + '/edit/general'">{{ $trans.translation.setting }}</a>
+    <a :href="$root.url + '/settings/profile'">{{ $trans.translation.setting }}</a>
     <li v-bind:class="{'toggled-list' : toggledList === 3}" @click.prevent="toggleList(3)">{{ $trans.translation.language }}&nbsp;<i class="fas fa-chevron-down"></i>
     </li>
     <transition name="slide-down-height">
@@ -39,7 +39,7 @@
       <li v-show="!notifications.length" class="align-center">{{ $trans.translation.notification_null }}</li>
     </div>
     <li class="align-center">
-      <a class="view-all" :href="$root.url + '/profile/notifications'">{{ $trans.translation.view_all }}</a>
+      <a class="view-all" :href="$root.url + '/notification'">{{ $trans.translation.view_all }}</a>
     </li>
   </div>
 </div>

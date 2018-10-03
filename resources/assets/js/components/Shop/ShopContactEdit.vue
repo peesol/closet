@@ -7,7 +7,7 @@
 
   <transition name="slide-down-height">
     <div v-show="formVisible">
-      <form class="panel-body shadow-2" v-on:submit.prevent="edit" method="post">
+      <form class="panel-body shadow-2" @submit.prevent="create" method="post">
 
         <div class="form-group margin-10-bottom">
           <div class="input-group">
@@ -31,11 +31,12 @@
         <div class="form-group">
           <label class="full-label input-label">{{$trans.translation.link}}&nbsp;<small>({{$trans.translation.optional}})</small></label>
           <div class="input-group">
-            <input type="text" class="form-input" :class="{'is-error': errors.has('link')}" v-model="link" name="link" placeholder="http://www.yourlink.com">
+            <input data-vv-as="*" v-validate="'url:require_protocol'" type="text" class="form-input" :class="{'is-error': errors.has('link')}" v-model="link" name="link" placeholder="http://www.example.com">
           </div>
+          <span v-show="errors.has('link')" class="span-error">{{ errors.first('link') }}</span>
         </div>
         <div class="align-right padding-15-top">
-          <button :disabled="$root.loading" type="submit" class="orange-btn normal-sq">{{$trans.translation.edit_submit}}</button>
+          <button :disabled="$root.loading || errors.any()" type="submit" class="orange-btn normal-sq">{{$trans.translation.edit_submit}}</button>
         </div>
       </form>
     </div>
@@ -48,17 +49,18 @@
     </div>
     <div class="padding-15-horizontal padding-15-top">
       <div class="form-group">
-        <div class="input-group">
-          <input class="form-input-alt" type="text" v-model="contact.body">
-          <button :disabled="$root.loading" class="fas fa-check form-input-btn" type="button" @click.prevent="updateBody(contact.id,contact.body)"></button>
-        </div>
+        <form class="input-group" @submit="updateBody(contact.id,contact.body)">
+          <input required class="form-input-alt" type="text" v-model="contact.body">
+          <button :disabled="$root.loading" class="fas fa-check form-input-btn" type="submit"></button>
+        </form>
       </div>
 
       <div class="form-group">
         <div class="input-group">
-          <input class="form-input-alt" type="text" placeholder="http://www.yourlink.com" v-model="contact.link">
-          <button :disabled="$root.loading" class="fas fa-check form-input-btn" type="button" @click.prevent="updateLink(contact.id,contact.link)"></button>
+          <input data-vv-as="*" v-validate="'url:require_protocol'" :name="'link' + index" class="form-input-alt" type="text" placeholder="http://www.yourlink.com" v-model="contact.link">
+          <button :disabled="$root.loading || errors.any()" class="fas fa-check form-input-btn" type="button" @click.prevent="updateLink(contact.id,contact.link)"></button>
         </div>
+        <span v-show="errors.has('link' + index)" class="span-error">{{ errors.first('link' + index) }}</span>
       </div>
 
       <div class="form-group margin-10-top">
@@ -96,9 +98,6 @@ export default {
       formVisible: false,
     }
   },
-  computed: {
-
-  },
   methods: {
     contactType(type){
       var social = ['facebook', 'instagram', 'line', 'youtube']
@@ -117,7 +116,7 @@ export default {
     getContact() {
       this.$Progress.start();
       this.$root.loading = true
-      this.$http.get(this.$root.url + '/' + this.$route.params.shop + '/edit/contact/get').then(response => {
+      this.$http.get(this.$root.url + '/manage/contact/get').then(response => {
         this.contacts = response.body
         this.$Progress.finish();
         this.$root.loading = false
@@ -125,7 +124,7 @@ export default {
     },
     updateBody(contactId, contactBody) {
       this.$root.loading = true
-      this.$http.put(this.$root.url + '/' + this.$route.params.shop + '/edit/contact/' + contactId, {
+      this.$http.put(this.$root.url + '/manage/contact/' + contactId, {
         body: contactBody,
       }).then(response => {
         this.$requestTimer(3000)
@@ -137,22 +136,18 @@ export default {
     },
     updateLink(contactId, contactLink) {
       this.$root.loading = true
-      this.$http.put(this.$root.url + '/' + this.$route.params.shop + '/edit/contact/' + contactId, {
+      this.$http.put(this.$root.url + '/manage/contact/' + contactId, {
         link: contactLink,
       }).then(response => {
         this.$requestTimer(3000)
         toastr.success(this.$trans.translation.saved);
       }, response => {
-        if (response.body.link) {
-          toastr.error(response.body.link);
-        } else {
-          toastr.error(this.$trans.translation.error);
-        }
+        toastr.error(this.$trans.translation.error);
         this.$requestTimer(1000)
       });
     },
     toggle(contactId, index) {
-      this.$http.put(this.$root.url + '/' + this.$route.params.shop + '/edit/contact/' + contactId + '/show').then(response => {
+      this.$http.put(this.$root.url + '/manage/contact/' + contactId + '/show').then(response => {
         if (this.contacts[index].show) {
           this.$set(this.contacts[index], 'show', false)
         } else {
@@ -163,13 +158,13 @@ export default {
         toastr.error(this.$trans.translation.error);
       });
     },
-    edit() {
+    create() {
       toastr.options.preventDuplicates = true;
       toastr.options.timeOut = 2000;
       this.$Progress.start();
       this.$root.loading = true
       toastr.info(this.$trans.translation.wait);
-      this.$http.post(this.$root.url + '/' + this.$route.params.shop + '/edit/contact', {
+      this.$http.post(this.$root.url + '/manage/contact/create', {
         type: this.type,
         body: this.body,
         link: this.link,
@@ -178,12 +173,10 @@ export default {
         this.$root.loading = false
         toastr.success(this.$trans.translation.saved);
         this.contacts.push(response.body)
+        this.body = null
+        this.link = null
       }, response => {
-        if (response.body.link) {
-          toastr.error(response.body.link);
-        } else {
-          toastr.error(this.$trans.translation.error);
-        }
+        toastr.error(this.$trans.translation.error);
         this.$Progress.fail();
         this.$root.loading = false
       });
@@ -193,7 +186,7 @@ export default {
       if (!confirm(this.$trans.translation.delete_confirm)) {
         return;
       }
-      this.$http.delete(this.$root.url + '/' + this.$route.params.shop + '/edit/contact/' + contactId + '/delete').then(response => {
+      this.$http.delete(this.$root.url + '/manage/contact/' + contactId + '/delete').then(response => {
         toastr.success(this.$trans.translation.success);
         this.contacts.splice(index, 1)
       }, response => {

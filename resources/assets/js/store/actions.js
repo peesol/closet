@@ -26,7 +26,7 @@ export const removeFromCart = ({ commit }) => {
 
 export const getNotification = ({ commit }) => {
 
-  return Vue.http.get(window.Closet.url + '/profile/notifications/get').then((response) => {
+  return Vue.http.get(window.Closet.url + '/notification/get').then((response) => {
 
     commit('setNotificationCount', response.data)
 
@@ -36,7 +36,7 @@ export const getNotification = ({ commit }) => {
 
 export const markAllAsRead = ({ commit }) => {
 
-  return Vue.http.put(window.Closet.url + '/profile/notifications/read_all').then((response) => {
+  return Vue.http.put(window.Closet.url + '/notification/read_all').then((response) => {
 
     commit('markAllAsRead')
 

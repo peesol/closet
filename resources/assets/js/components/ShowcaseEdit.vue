@@ -2,13 +2,11 @@
 <div class="relative">
   <load-overlay bg="white-bg" :show="!loaded" padding="50px 0"></load-overlay>
     <div id="full-line" class="half-width-res panel-body">
-		<form>
       <label class="heading full-label">{{$trans.translation.name}}</label>
-        <div class="input-group half-width-res">
-				   <input class="input-addon-field left" type="text" v-model="name" name="name">
-          <button :disabled="$root.loading" class="checkmark-btn input-addon right" @click.prevent="edit"><i class="fas fa-check"></i></button>
-        </div>
-		</form>
+      <form class="input-group half-width-res" @submit="edit" method="post">
+        <input required class="input-addon-field left" type="text" v-model="name" name="name">
+        <button :disabled="$root.loading" class="checkmark-btn input-addon right" @click="edit"><i class="fas fa-check"></i></button>
+      </form>
 		</div>
     <div class="panel-heading">
       <label class="full-label heading">{{$trans.translation.showcase_products}}&nbsp;<span class="number" :class="{'not-empty' : added > 0}">{{ added }}</span></label>
@@ -51,12 +49,7 @@
         loaded: false
 			}
 		},
-
-		props: {
-      showcaseName: null,
-      showcaseId: null,
-      shopSlug: null,
-		},
+		props: ['showcaseName', 'showcaseId'],
     computed: {
       added: function () {
         var total = 0;
@@ -70,7 +63,7 @@
     },
 		methods: {
       getProduct() {
-          this.$http.get(this.$root.url + '/' + this.shopSlug + '/edit/showcase/' + this.showcaseId + '/get_product').then(response => {
+          this.$http.get(this.$root.url + '/manage/showcase/' + this.showcaseId + '/get_product').then(response => {
             this.products = response.body.data
             this.loaded = true
           });
@@ -78,7 +71,7 @@
 
       edit(){
         this.$root.loading = true
-				this.$http.put(this.$root.url + '/' + this.shopSlug + '/edit/showcase/' + this.showcaseId + '/update',{
+				this.$http.put(this.$root.url + '/manage/showcase/' + this.showcaseId + '/update', {
 					name: this.name
 				}).then(response => {
           this.$requestTimer(2000)
@@ -90,11 +83,13 @@
 			},
 
       add(productId, index){
-        this.$http.post(this.$root.url + '/' + this.shopSlug + '/edit/showcase/' + this.showcaseId + '/add_product/' + productId).then(response => {
+        this.$http.post(this.$root.url + '/manage/showcase/' + this.showcaseId + '/add_product/' + productId).then(response => {
             if (this.products[index].added) {
               this.$set(this.products[index], 'added', false)
+              toastr.success(this.$trans.translation.saved)
             } else {
               this.$set(this.products[index], 'added', true)
+              toastr.success(this.$trans.translation.saved)
             }
         }, response => {
             toastr.error(this.$trans.translation.error)

@@ -37,7 +37,7 @@
       {{ item.method }}&nbsp;/&nbsp;{{ item.time }}&nbsp;{{$trans.translation.days}}&nbsp;/&nbsp;{{ item.free ? 'free' : item.fee + '฿' }}
     </div>
     <div class="align-right full-width padding-15-top" v-show="!saved">
-      <button :disabled="$root.loading" @click.prevent="save" class="orange-btn normal-sq">{{$trans.translation.edit_submit}}</button>
+      <button :disabled="$root.loading || errors.any()" @click.prevent="save" class="orange-btn normal-sq">{{$trans.translation.edit_submit}}</button>
     </div>
   </div>
 
@@ -72,7 +72,7 @@ export default {
     save() {
       this.$Progress.start()
       this.$root.loading = true
-      this.$http.put(this.$root.url + '/profile/myproduct/shipping/update', {
+      this.$http.put(this.$root.url + '/myproduct/shipping/update', {
         shipping: this.shippings,
       }).then(response => {
         this.$Progress.finish()

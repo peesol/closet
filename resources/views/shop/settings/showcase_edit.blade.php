@@ -11,10 +11,7 @@
     <div class="panel-heading">
       <label class="full-label heading">{{__('message.showcase_edit')}}</label>
     </div>
-      <showcase-edit showcase-name="{{$showcase->name}}"
-      shop-slug="{{$shop->slug}}"
-      showcase-id="{{$showcase->id}}">
-      </showcase-edit>
+      <showcase-edit showcase-name="{{$showcase->name}}" showcase-id="{{$showcase->id}}"></showcase-edit>
     </div>
 </div>
 

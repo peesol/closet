@@ -15,16 +15,14 @@ class UploadCover implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    public $shop;
     public $fileName;
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct(Shop $shop, $fileName)
+    public function __construct($fileName)
     {
-      $this->shop = $shop;
       $this->fileName = $fileName;
     }
 
@@ -49,7 +47,5 @@ class UploadCover implements ShouldQueue
       Storage::disk('s3images')->put('profile/cover/' . $this->fileName . '.jpg', $img->__toString());
 
       unlink($path);
-      $this->shop->cover = $this->fileName . '.jpg';
-      $this->shop->save();
     }
 }

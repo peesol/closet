@@ -84,8 +84,9 @@ export default {
     showcase_add: 'Add',
     showcase_empty: 'Your showcase has no product.',
     showcase_products: 'Products in your showcase',
-    showcase_choice: 'Show on your shop homepage',
+    showcase_choice: 'Show on your profile homepage',
     no_showcase: 'You don\'t have any showcase.',
+    showcase_order_save: 'Save order',
     no_contact: 'You don\'t have any contact.',
     no_account: 'You don\'t have any account.',
     shop_products: 'My products',
@@ -186,6 +187,7 @@ export default {
     register: 'Register',
     help: 'Help',
     view_all: 'View all',
+    manage: 'Management',
     //review
     user_review: 'Your review',
     write_review: 'Leave review',

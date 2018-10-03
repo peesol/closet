@@ -20,10 +20,10 @@
       </div>
       <div class="form-group">
         <label class="full-label input-label">{{$trans.translation.comment}}</label>
-        <textarea  required class="comment-input" rows="5" cols="80" v-model="comment"></textarea>
+        <textarea required class="comment-input" rows="5" cols="80" v-model="comment"></textarea>
       </div>
       <div v-show="shop !== null" class="align-right full-width margin-10-top">
-        <button :disabled="$root.loading" class="orange-btn normal-sq" @click.prevent="submit">{{$trans.translation.edit_submit}}</button>
+        <button :disabled="$root.loading || !points" class="orange-btn normal-sq" @click.prevent="submit">{{$trans.translation.edit_submit}}</button>
       </div>
     </form>
   </div>

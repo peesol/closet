@@ -1,7 +1,7 @@
 <div class="cover-wrap">
 
 @if(Auth::check() && Auth::user()->id === $shop->user_id)
-  <a href="/{{$shop->slug}}/edit/general">
+  <a href="/settings/profile">
     <button class="align-top-right flat-btn icon-bg">
       <i class="fas fa-pen"></i>
     </button>

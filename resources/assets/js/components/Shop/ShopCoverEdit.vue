@@ -1,11 +1,12 @@
 <template>
-<div class="padding-15-vertical" id="full-line">
+<div class="padding-15-vertical relative" id="full-line">
+  <load-overlay bg="white-bg" :show="loading" padding="40px 0"></load-overlay>
   <label class="full-label heading">{{$trans.translation.cover}}&nbsp;<span class="font-small">1100px * 315px</span></label>
   <form v-on:submit.prevent="edit" method="post">
 
     <div class="cover-input margin-10-top">
-      <span class="fas fa-images"></span>
-      <img :src="cover">
+      <i class="fas fa-images"></i>
+      <img :src="cover" alt="uploading...">
     </div>
     <div class="flex flex-between padding-15-top">
       <label class="file-input shadow-1">
@@ -26,7 +27,8 @@
 export default {
   data() {
     return {
-      cover: this.$parent.shopCover,
+      cover: null,
+      loading: false
     }
   },
   methods: {
@@ -37,17 +39,17 @@ export default {
 
       if (document.getElementById("cover-input").files.length > 0) {
         this.$Progress.start();
-        this.$root.loading = true
+        this.loading = true
         toastr.info(this.$trans.translation.wait);
-        this.$http.put(this.$root.url + '/' + this.$parent.shopSlug + '/edit/cover', {
+        this.$http.put(this.$root.url + '/settings/cover', {
           cover: this.cover,
         }).then(response => {
           this.$Progress.finish();
-          this.$root.loading = false
+          this.loading = false
           toastr.success(this.$trans.translation.success);
         }, response => {
           this.$Progress.fail();
-          this.$root.loading = false
+          this.loading = false
           toastr.error(this.$trans.translation.error);
         });
       }

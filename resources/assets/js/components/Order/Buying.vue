@@ -190,7 +190,7 @@ export default {
   methods: {
     getMessages() {
       this.$Progress.start()
-      this.$http.get(this.$root.url + '/profile/order/buying/get').then(response => {
+      this.$http.get(this.$root.url + '/order/buying/get').then(response => {
         this.orders = response.body.data;
         this.$Progress.finish()
         this.loaded = true
@@ -223,7 +223,7 @@ export default {
     confirm(uid, index) {
       this.$Progress.start();
       this.$root.loading = true
-      this.$http.put(this.$root.url + '/profile/order/' + uid + '/transaction', {
+      this.$http.put(this.$root.url + '/order/' + uid + '/transaction', {
         date: this.date,
         time: this.time,
         address: this.address,

@@ -8,7 +8,7 @@
   <div class="panel-body" v-if="$root.authenticated" id="full-line">
     <textarea :placeholder="$trans.translation.comment+ '...'" class="comment-input" v-model="body"></textarea>
     <div class="align-right full-width padding-15-top">
-      <button :disabled="post_comment" class="orange-btn normal-sq" type="submit" @click.prevent="createComment">{{$trans.translation.comment}}</button>
+      <button :disabled="post_comment || !body" class="orange-btn normal-sq" type="submit" @click.prevent="createComment">{{$trans.translation.comment}}</button>
     </div>
   </div>
   <div v-for="comment in comments" class="panel-body">
@@ -33,7 +33,7 @@
       <transition name="slide-down-reply">
         <div class="input-group margin-10-top" v-show="replyFormVisible === comment.id">
           <input type="text" class="input-addon-field left" v-model="replyBody">
-          <button :disabled="post_comment" class="input-addon right checkmark-btn" @click.prevent="createReply(comment.id)"><i class="fas fa-check"></i></button>
+          <button :disabled="post_comment || !replyBody" class="input-addon right checkmark-btn" @click.prevent="createReply(comment.id)"><i class="fas fa-check"></i></button>
         </div>
       </transition>
       <div class="replies-wrapper" v-if="showReply === comment.id" v-for="reply in comment.replies.data">
@@ -126,7 +126,7 @@ export default {
         this.body = null;
       }, (response) => {
         this.post_comment = false
-        toastr.error(response.body.body);
+        toastr.error(this.$trans.translation.error);
       });
     },
 

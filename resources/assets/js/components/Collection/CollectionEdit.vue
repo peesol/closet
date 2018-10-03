@@ -39,7 +39,7 @@
 				</select>
       </div>
 			<div class="align-right padding-15-top">
-				<button :disabled="$root.loading" class="orange-btn normal-sq" type="submit">{{$trans.translation.edit_submit}}</button>
+				<button :disabled="$root.loading || errors.any()" class="orange-btn normal-sq" type="submit">{{$trans.translation.edit_submit}}</button>
 			</div>
     </div>
 

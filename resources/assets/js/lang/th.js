@@ -86,6 +86,7 @@ export default {
     showcase_products: 'สินค้าที่แสดงอยู่',
     showcase_choice: 'แสดงบนหน้าแรกของร้าน',
     no_showcase: 'คุณไม่มีตู้แสดงสินค้า',
+    showcase_order_save: 'บันทึกลำดับ',
     no_contact: 'คุณไม่มีช่องทางการติดต่อ',
     no_account: 'คุณไม่มีบัญชีธนาคาร',
     shop_products: 'สินค้าในร้านของฉัน',
@@ -186,6 +187,7 @@ export default {
     register: 'สมัครสมาชิก',
     help: 'ช่วยเหลือ',
     view_all: 'ดูทั้งหมด',
+    manage: 'จัดการหลังร้าน',
     //review
     user_review: 'รีวิวของคุณ',
     write_review: 'เขียนรีวิว',

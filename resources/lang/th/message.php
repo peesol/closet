@@ -97,6 +97,8 @@ return [
     'no_shop_product' => 'ไม่มีสินค้า',
     'latest_product' => 'สินค้าล่าสุด',
     'link' => 'เว็บไซต์',
+    'management_guide' => 'คุณสามารถจัดการกับหลังร้านของคุณได้ที่นี่',
+    'management_guide2' => 'โดยคลิกที่ตัวเลือกด้านบน',
     //shop settings
     'general' => 'ทั่วไป',
     'cover' => 'ภาพปก',

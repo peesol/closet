@@ -99,7 +99,7 @@ export default {
   methods: {
     get() {
       this.$root.loading = true
-        this.$http.get(this.$root.url + '/profile/order/'+ this.type +'/history/get').then((response)=> {
+        this.$http.get(this.$root.url + '/order/'+ this.type +'/history/get').then((response)=> {
            this.orders = response.body.data;
            this.meta.push({total_pages: response.body.last_page, current_page: response.body.current_page})
            this.$root.loading = false
@@ -108,7 +108,7 @@ export default {
     switched(){
       this.$Progress.start()
       this.$root.loading = true
-      this.$http.get(this.$root.url + '/profile/order/'+ this.type +'/history/get?page=' + this.$route.query.page ).then((response) => {
+      this.$http.get(this.$root.url + '/order/'+ this.type +'/history/get?page=' + this.$route.query.page ).then((response) => {
         this.orders = [];
         this.orders = response.body.data
         this.$Progress.finish()

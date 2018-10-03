@@ -10,10 +10,9 @@ use Closet\Transformer\ShowcaseProductTransformer;
 
 class ShowcaseEditController extends Controller
 {
-  public function index(Request $request, Shop $shop, Showcase $showcase)
+  public function index(Request $request, Showcase $showcase)
   {
-    $this->authorize('edit', $shop);
-    $shop = $request->user()->shop()->first();
+    $shop = $request->user()->shop;
 
     return view('shop.settings.showcase_edit', [
               'showcase' => $showcase,
@@ -21,9 +20,8 @@ class ShowcaseEditController extends Controller
     ]);
   }
 
-  public function update(Shop $shop, Showcase $showcase, Request $request)
+  public function update(Request $request, Showcase $showcase)
   {
-    $this->authorize('update', $shop);
     $showcase->update([
       'name' => $request->name,
     ]);
@@ -31,16 +29,15 @@ class ShowcaseEditController extends Controller
     return response()->json(null, 200);
   }
 
-  public function getProduct(Shop $shop, Showcase $showcase)
+  public function getProduct(Request $request, Showcase $showcase)
   {
-      $product = $shop->product->where('visibility', 'public');
+      $product = $request->user()->products->where('visibility', 'public');
 
       return response()->json(Fractal::collection($product, new ShowcaseProductTransformer($showcase->id) ));
   }
 
-  public function storeProduct(Shop $shop, Showcase $showcase, $productId)
+  public function storeProduct(Showcase $showcase, $productId)
   {
-    $this->authorize('update', $shop);
 
     $match = ['product_id' => $productId, 'showcase_id' => $showcase->id];
 

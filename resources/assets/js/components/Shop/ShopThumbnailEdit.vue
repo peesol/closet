@@ -1,5 +1,6 @@
 <template>
 <div id="full-line">
+  <load-overlay bg="white-bg" :show="loading" padding="40px 0"></load-overlay>
   <label class="full-label heading padding-15-bottom">
     {{$trans.translation.thumbnail}}
     <span class="font-small">100px*100px (500KB)</span>
@@ -9,7 +10,7 @@
     <div class="flex">
       <div class="profile-thumbnail-input">
         <i class="fas fa-images"></i>
-        <img :src="thumbnail">
+        <img :src="thumbnail" alt="uploading...">
       </div>
 
       <div class="flex-start padding-15-left" style="width:180px">
@@ -33,7 +34,8 @@
 export default {
   data() {
     return {
-      thumbnail: this.$parent.shopThumbnail,
+      thumbnail: null,
+      loading: false
     }
   },
   methods: {
@@ -47,18 +49,18 @@ export default {
 
       if (document.getElementById("thumb-input").files.length > 0) {
         this.$Progress.start();
-        this.$root.loading = true
+        this.loading = true
         toastr.info(this.$trans.translation.wait);
-        this.$http.put(this.$root.url + '/' + this.$parent.shopSlug + '/edit/thumbnail', {
+        this.$http.put(this.$root.url + '/settings/thumbnail', {
           thumbnail: this.thumbnail,
         }).then(response => {
           this.$Progress.finish();
-          this.$root.loading = false
+          this.loading = false
           toastr.success(this.$trans.translation.success);
         }, response => {
           toastr.error(this.$trans.translation.error);
           this.$Progress.fail();
-          this.$root.loading = false
+          this.loading = false
         });
       }
     },

@@ -96,6 +96,8 @@ return [
     'no_shop_product' => 'There is no product here.',
     'latest_product' => 'Latest Product',
     'link' => 'Website',
+    'management_guide' => 'You can manage functions of your shop here.',
+    'management_guide2' => 'Choose from above options',
     //shop settings
     'general' => 'General',
     'cover' => 'Cover',

@@ -14,12 +14,10 @@ class ShowcaseController extends Controller
       return response()->json($showcase);
   }
 
-  public function create(Request $request, Shop $shop, Showcase $showcase)
+  public function create(Request $request, Showcase $showcase)
   {
-    $this->authorize('update', $shop);
-    $shop = $request->user()->shop()->first();
-
-    $showcase = $shop->showcase()->create([
+    $showcase = $request->user()->showcase()->create([
+      'shop_id' => $request->user()->shop->id,
       'name' => $request->name,
       'order' => $request->order,
       'show' => true
@@ -27,18 +25,15 @@ class ShowcaseController extends Controller
     return response()->json($showcase);
   }
 
-  public function remove(Shop $shop, Showcase $showcase)
+  public function remove(Showcase $showcase)
   {
-    $this->authorize('delete', $shop);
     $showcase->delete();
 
     return response()->json(null, 200);
   }
 
-  public function showOption(Request $request, Shop $shop, Showcase $showcase)
+  public function showOption(Request $request, Showcase $showcase)
   {
-    $this->authorize('update', $shop);
-
     if($showcase->show == true)
     {
       $showcase->update([ 'show' => false ]);
@@ -48,9 +43,8 @@ class ShowcaseController extends Controller
     return response()->json(null, 200);
   }
 
-  public function updateOrder(Shop $shop, Request $request)
+  public function updateOrder(Request $request)
   {
-    $this->authorize('update', $shop);
     foreach ($request->showcases as $index => $showcase) {
       Showcase::find($showcase['id'])->update(['order' => $index]);
     }
