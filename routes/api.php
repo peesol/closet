@@ -13,4 +13,4 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', 'Api\MiddlewareApi');
+Route::middleware('auth:api')->get('/user', 'Api\MiddlewareApi@api');
