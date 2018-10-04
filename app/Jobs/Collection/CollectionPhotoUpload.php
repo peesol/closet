@@ -37,8 +37,8 @@ class CollectionPhotoUpload implements ShouldQueue
 
           $local_path = storage_path('uploads/collection/photo/') . $image;
 
-          $background = Image::canvas(768, 432, '#000000');
-          $img = Image::make($local_path)->resize(768, 432, function ($c) {
+          $background = Image::canvas(880, 495, '#000000');
+          $img = Image::make($local_path)->resize(880, 495, function ($c) {
             $c->aspectRatio();
             $c->upsize();
           });
