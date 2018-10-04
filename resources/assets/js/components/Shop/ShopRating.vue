@@ -19,10 +19,16 @@ export default {
       this.$http.get(this.$root.url + '/' + this.shopSlug + '/reviews/total').then(response => {
         this.points = response.body
       })
+    },
+    logView() {
+      this.$http.put(this.$root.url + '/' + this.shopSlug + '/views')
     }
   },
   created() {
-    this.get()
+    this.get()    
+  },
+  mounted() {
+    setTimeout(this.logView, 7000)
   }
 }
 </script>

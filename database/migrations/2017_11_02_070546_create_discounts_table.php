@@ -21,6 +21,7 @@ class CreateDiscountsTable extends Migration
             $table->string('type');
             $table->integer('amount');
             $table->integer('used')->default(0);
+            $table->boolean('global')->default(false);
 
             $table->foreign('shop_id')->references('id')->on('shops')->onDelete('cascade');
             $table->timestamps();

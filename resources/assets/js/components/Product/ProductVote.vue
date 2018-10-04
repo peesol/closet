@@ -68,10 +68,7 @@ export default {
 
     },
     logView() {
-      this.$http.put(this.$root.url + '/product/' + this.productUid + '/views', {
-        product_id: this.productUid
-      });
-      clearInterval(this.timer);
+      this.$http.put(this.$root.url + '/product/' + this.productUid + '/views');
     }
   },
 
@@ -85,7 +82,7 @@ export default {
   },
 
   mounted() {
-    this.timer = setInterval(this.logView, 7000);
+    setTimeout(this.logView, 7000);
   }
 
 }

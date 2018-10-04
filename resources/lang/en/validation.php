@@ -118,6 +118,12 @@ return [
       'slug' => 'URL',
       'name' => 'name',
       'description' => 'description',
+      'shop_name' => 'name',
+      'email' => 'Email',
+      'password' => 'password',
+      'date' => 'date',
+      'month' => 'month',
+      'year' => 'year',
     ],
 
 ];

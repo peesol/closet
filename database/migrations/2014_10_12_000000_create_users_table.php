@@ -25,6 +25,7 @@ class CreateUsersTable extends Migration
             $table->string('country');
             $table->char('language', 3);
             $table->enum('gender', ['men', 'women', 'etc']);
+            $table->date('birth_date');
             $table->json('options');
             $table->rememberToken();
             $table->timestamps();

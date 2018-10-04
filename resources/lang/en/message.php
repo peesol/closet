@@ -12,12 +12,18 @@ return [
     'register_name' => 'Name',
     'register_shop' => 'Profile name',
     'gender' => 'Gender',
+    'birth_date' => 'Birth date',
+    'date_placeholder' => 'DD',
+    'month_placeholder' => 'MM',
+    'year_placeholder' => 'YYYY',
     'men' => 'Men',
     'women' => 'Women',
     'etc' => 'etc',
     'proceed' => 'Proceed',
     'profile_type' => 'Profile type',
     'shop' => 'Shop',
+    //validate
+    'numbers_only' => 'Must be numbers only',
     //tooltip
     'shop_name_tip' => 'This will be your profile and shop name',
     'shop_name_placeholder' => 'Only letters or numbers between 6 and 50 characters',

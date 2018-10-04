@@ -21,11 +21,17 @@
   background-color: #f9f9f9
   border-bottom: 3px solid #b5b5b5
 
+input
+  &::-webkit-inner-spin-button, ::-webkit-outer-spin-button,
+    -webkit-appearance: none
+    margin: 0
+
+
 .form-group
   width: 100%
 
 .form-group
-  margin-bottom: 8px
+  margin-bottom: 10px
   label
     margin-bottom: 5px
     font-size: 1.3em !important
@@ -51,6 +57,14 @@ label.input-label
 
 .input-group
   display: flex
+
+.date-input
+  input
+    &:nth-child(1n+1)
+      width: 50px
+      margin-right: 10px
+    &:last-child
+      width: 70px
 
 button.input-addon
   &:hover, &:focus

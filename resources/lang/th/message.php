@@ -12,12 +12,18 @@ return [
     'register_name' => 'ชื่อ นามสกุล',
     'register_shop' => 'ชื่อโปรไฟล์',
     'gender' => 'เพศ',
+    'birth_date' => 'วันเกิด',
+    'date_placeholder' => 'วว',
+    'month_placeholder' => 'ดด',
+    'year_placeholder' => 'ปปปป',
     'men' => 'ชาย',
     'women' => 'หญิง',
     'etc' => 'อื่นๆ',
     'proceed' => 'ดำเนินการ',
     'profile_type' => 'ประเภทโปรไฟล์',
     'shop' => 'ร้านค้า',
+    //validate
+    'numbers_only' => 'เป็นตัวเลขเท่านั้น',
     //tooltip
     'shop_name_tip' => 'เป็นชื่อร้านหรือชื่อโปรไฟล์ของคุณ',
     'shop_name_placeholder' => 'ตัวเลขหรือตัวอักษรอย่างน้อย 6 ตัว แต่ไม่เกิน 50',

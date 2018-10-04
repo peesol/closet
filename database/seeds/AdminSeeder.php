@@ -23,6 +23,7 @@ class AdminSeeder extends Seeder
           'country' => 'th',
           'language' => 'th',
           'gender' => 'men',
+          'birth_date' => '1997-07-18',
           'options' => json_encode([
             'order' => true,
             'email' => true,

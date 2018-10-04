@@ -23,8 +23,6 @@
         <div class="panel-heading"><label class="heading">{{__('message.register')}}</label></div>
         <div class="panel-body">
             <form role="form" method="POST" action="{{ route('register') }}">
-                {{ csrf_field() }}
-
                 <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                     <label for="name" class="full-label">{{__('message.register_name')}}</label>
                         <input id="name" type="text" class="form-input {{ $errors->has('name') ? ' error-input' : '' }}" name="name" required autofocus>
@@ -35,9 +33,27 @@
 
                 <div class="form-group">
                   <label for="gender">{{__('message.gender')}}</label>
-                  <input required type="radio" name="gender" value="men"><font>&nbsp;{{__('message.men')}}</font>
-                  <input required type="radio" name="gender" value="women"><font>&nbsp;{{__('message.women')}}</font>
-                  <input required type="radio" name="gender" value="etc"><font>&nbsp;{{__('message.etc')}}</font>
+                  <input required type="radio" name="gender" value="men"><font class="font-large">&nbsp;{{__('message.men')}}</font>
+                  <input required type="radio" name="gender" value="women"><font class="font-large">&nbsp;{{__('message.women')}}</font>
+                  <input required type="radio" name="gender" value="etc"><font class="font-large">&nbsp;{{__('message.etc')}}</font>
+                </div>
+
+                <div class="form-group">
+                  <div class="input-group date-input">
+                    <label class="margin-10-right" for="date">{{__('message.birth_date')}}</label>&nbsp;
+                    <input required maxlength="2" oninput="this.value=this.value.slice(0,this.maxLength)" min="1" max="31" class="form-input" type="number" name="date" placeholder="{{__('message.date_placeholder')}}">
+                    <input required maxlength="2" oninput="this.value=this.value.slice(0,this.maxLength)" min="1" max="12" class="form-input" type="number" name="month" placeholder="{{__('message.month_placeholder')}}">
+                    <input required maxlength="4" oninput="this.value=this.value.slice(0,this.maxLength)" max="{{ now()->year }}" class="form-input" type="number" name="year" placeholder="{{__('message.year_placeholder')}}">
+                  </div>
+                  @if ($errors->has('date'))
+                      <span class="full-width span-error">{{ $errors->first('date') }}</span>
+                  @endif
+                  @if ($errors->has('month'))
+                      <span class="full-width span-error">{{ $errors->first('month') }}</span>
+                  @endif
+                  @if ($errors->has('year'))
+                      <span class="full-width span-error">{{ $errors->first('year') }}</span>
+                  @endif
                 </div>
 
                 <div class="display-hidden">
@@ -91,13 +107,13 @@
 
                 <div class="form-group">
                     <label for="phone" class="full-label">{{__('message.phone')}}</label>
-                    <input id="phone" type="text" class="form-input {{ $errors->has('phone') ? ' error-input' : '' }}" name="phone" required>
+                    <input pattern="^[0-9]*$" title="{{__('message.numbers_only')}}" id="phone" type="text" class="form-input {{ $errors->has('phone') ? ' error-input' : '' }}" name="phone" required>
                 </div>
 
                 <div class="padding-15-top align-right">
                   <button type="submit" class="orange-btn normal-sq">{{__('message.register')}}</button>
                 </div>
-
+                @csrf
             </form>
         </div>
     </div>

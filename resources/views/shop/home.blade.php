@@ -36,7 +36,7 @@
                     @if ($showcases->count())
                         @foreach ($showcases as $showcase)
                           <div class="panel-body" id="full-line">
-                            <label class="heading">{{$showcase->name}}</label>
+                            <label class="heading padding-15-bottom">{{$showcase->name}}</label>
                             <div class="shop-carousel">
                                 <vue-slick :products="{{$showcase->product()->get()}}" path="/product/thumbnail/" slick-for="shop"></vue-slick>
                             </div>

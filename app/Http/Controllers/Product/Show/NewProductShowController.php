@@ -57,7 +57,7 @@ class NewProductShowController extends Controller
        * 'ip' => $ip
        * ]);
       */
-    $request->product->increment('view_count');
+    $product->increment('view_count');
     return response()->json(null, 200);
   }
 }
