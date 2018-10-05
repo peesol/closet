@@ -339,9 +339,6 @@ Route::group(['middleware' => ['auth']], function () {
   Route::delete('/promotions/campaign/remove/{product}', 'Management\PromotionController@removeFromCampaign');
 
 });
-Route::get('/test', function() {
-  return view('errors.429');
-});
 /*
 |--------------------------------------------------------------------------
 | Shop Routes
