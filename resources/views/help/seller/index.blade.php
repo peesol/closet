@@ -106,8 +106,8 @@
   <button class="flat-btn align-left padding-10" id="7">เพิ่มช่องทางติดต่อและ Social network&nbsp;<small class="fas fa-chevron-down"></small></button>
   <div class="panel padding-15-bottom" id="panel7">
     <ul class="no-margin" style="list-style-type: decimal">
-      <li>ไปที่เมนู <i class="fas fa-bars"></i> หรือ <i class="fas fa-user"></i> คลิกที่ <strong>ตั้งค่าโปรไฟล์</strong></li>
-      <li>คุณก็จะเข้าสู่หน้าการตั้งค่าโปรไฟล์</li>
+      <li>ไปที่เมนู <i class="fas fa-bars"></i> คลิกที่ <strong>จัดการหลังร้าน</strong></li>
+      <li>คุณก็จะเข้าสู่หน้าการตั้งค่าจัดการหลังร้าน</li>
       <li>
         ในแถบ <strong>ติดต่อ</strong> คุณสามารถเพิ่มหรือแก้ไขช่องทางการติดต่อของคุณได้<br>
         เมื่อคุณทำการเพิ่มแล้ว ช่องทางติดต่อของคุณก็จะ<u>แสดงอยู่บนหน้าร้าน</u>และ<u>หน้าแสดงสินค้าของคุณ</u>
@@ -120,8 +120,8 @@
   <div class="panel padding-15-bottom" id="panel8">
     <p class="padding-15-horizontal"><strong>ตู้แสดงสินค้า</strong>&nbsp;เป็นเครื่องมือสำคัญที่จะทำให้คุณสามารถแสดงสินค้าที่ต้องการได้บนหน้าร้านของคุณ</p>
     <ul class="no-margin" style="list-style-type: decimal">
-      <li>ไปที่เมนู <i class="fas fa-bars"></i> หรือ <i class="fas fa-user"></i> คลิกที่ <strong>ตั้งค่าโปรไฟล์</strong></li>
-      <li>คุณก็จะเข้าสู่หน้าการตั้งค่าโปรไฟล์</li>
+      <li>ไปที่เมนู <i class="fas fa-bars"></i> คลิกที่ <strong>จัดการหลังร้าน</strong></li>
+      <li>คุณก็จะเข้าสู่หน้าการตั้งค่าจัดการหลังร้าน</li>
       <li>
         ในแถบ <strong>ตู้แสดงสินค้า</strong> คุณสามารถเพิ่มหรือแก้ไขตู้แสดงสินค้าได้<br>
         หากต้องการแก้ไขสินค้าเลือก <i class="fas fa-pen"></i> หากต้องการลบเลือก <i class="fas fa-trash-alt"></i>
@@ -135,8 +135,8 @@
   <div class="panel padding-15-bottom" id="panel9">
     <p class="padding-15-horizontal"><strong>คอลเล็คชั่น</strong>&nbsp;เป็นเครื่องมือที่ทำให้คุณสามารถนำเสนอรูปภาพ พร้อมกับอ้างอิงสินค้าลงไปในคอลเล็คชั่นได้ ทำให้คุณสามารถแสดงสินค้าได้หลายชิ้นพร้อมรูปตัวอย่างภายในคราวเดียว</p>
     <ul class="no-margin" style="list-style-type: decimal">
-      <li>ไปที่เมนู <i class="fas fa-bars"></i> หรือ <i class="fas fa-user"></i> คลิกที่ <strong>ตั้งค่าโปรไฟล์</strong></li>
-      <li>คุณก็จะเข้าสู่หน้าการตั้งค่าโปรไฟล์</li>
+      <li>ไปที่เมนู <i class="fas fa-bars"></i> คลิกที่ <strong>จัดการหลังร้าน</strong></li>
+      <li>คุณก็จะเข้าสู่หน้าการตั้งค่าจัดการหลังร้าน</li>
       <li>
         ในแถบ <strong>ตู้แสดงสินค้า</strong> คุณสามารถเพิ่มหรือแก้ไขตู้แสดงสินค้าได้<br>
         หากต้องการแก้ไขสินค้าเลือก <i class="fas fa-pen"></i> หากต้องการลบเลือก <i class="fas fa-trash-alt"></i>
@@ -148,10 +148,10 @@
 <div class="full-width" id="full-line">
   <button class="flat-btn align-left padding-10" id="10">บัญชีธนาคาร&nbsp;<small class="fas fa-chevron-down"></small></button>
   <div class="panel padding-15-bottom" id="panel10">
-    <p class="padding-15-horizontal"><strong>บัญชีธนาคาร</strong>&nbsp;จะแสดงในอีเมลของผู้ซื้อเมื่อสั่งสินค้าเพื่อชำระเงิน</p>
+    <p class="padding-15-horizontal"><strong>บัญชีธนาคาร</strong>&nbsp;จะแสดงในรายการสั่งซื้อของผู้ซื้อเมื่อสั่งสินค้าเพื่อชำระเงิน</p>
     <ul class="no-margin" style="list-style-type: decimal">
-      <li>ไปที่เมนู <i class="fas fa-bars"></i> หรือ <i class="fas fa-user"></i> คลิกที่ <strong>ตั้งค่าโปรไฟล์</strong></li>
-      <li>คุณก็จะเข้าสู่หน้าการตั้งค่าโปรไฟล์</li>
+      <li>ไปที่เมนู <i class="fas fa-bars"></i> คลิกที่ <strong>จัดการหลังร้าน</strong></li>
+      <li>คุณก็จะเข้าสู่หน้าการตั้งค่าจัดการหลังร้าน</li>
       <li>
         ในแถบ <strong>บัญชีธนาคาร</strong> คุณสามารถเพิ่มหรือลบบัญชีธนาคารได้<br>
       </li>
