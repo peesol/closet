@@ -44,7 +44,16 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        return parent::render($request, $exception);
+        if($request->hasCookie('locale')) {
+
+        $cookie = $request->cookie('locale');
+
+        $cookie = strlen($cookie) > 2 ? decrypt($cookie) : $cookie;
+
+        app()->setLocale($cookie);
+      }
+
+      return parent::render($request, $exception);
     }
 
     /**

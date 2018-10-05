@@ -21,7 +21,7 @@ class SetLocale
 
         if ($request->cookie('locale')) {
 
-              $locale = $request->cookie('locale');
+            $locale = $request->cookie('locale');
 
         } elseif (Session::has('locale')) {
 
@@ -39,7 +39,7 @@ class SetLocale
 
         App::setLocale($locale);
 
-          return $next($request);
+        return $next($request);
 
     }
 }

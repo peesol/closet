@@ -17,7 +17,7 @@ return [
     'throttle' => 'Too many attempts. Please try again in :seconds seconds.',
     'verified' => 'Your email address is already verified. Please ',
     'resend' => 'Resend email',
-    'register' => 'Dont\'t have an account? ',
+    'register' => 'Don\'t have an account? ',
     'verify' => 'Haven\'t received the confirmation email yet? ',
     'login_notice' => 'You must login to buy or sell.',
     'login_notice2' => 'If you don\'t have an account yet',
