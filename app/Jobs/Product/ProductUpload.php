@@ -17,7 +17,7 @@ class ProductUpload implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    protected $product;
+    protected $productId;
     protected $thumbnail;
     protected $photos = array();
     /**
@@ -25,9 +25,9 @@ class ProductUpload implements ShouldQueue
      *
      * @return void
      */
-    public function __construct($product, $thumbnail, array $photos)
+    public function __construct($productId, $thumbnail, array $photos)
     {
-        $this->product = $product;
+        $this->product = $productId;
         $this->thumbnail = $thumbnail;
         $this->photos[] = $photos;
     }
@@ -49,12 +49,10 @@ class ProductUpload implements ShouldQueue
         $background->insert($img, 'center');
         $img = $background->stream();
         Storage::disk('s3images')->put('product/thumbnail/' . $this->thumbnail . '.jpg', $img->__toString());
-        $this->product->thumbnail = $this->thumbnail . '.jpg';
-        $this->product->save();
         unlink($file);
       }
       $photos = array_flatten($this->photos);
-      
+
       foreach($photos as $photo) {
           $file = storage_path() . '/uploads/product/photo/' . $photo;
           $background = Image::canvas(500, 500, '#ffffff');
@@ -67,7 +65,7 @@ class ProductUpload implements ShouldQueue
           Storage::disk('s3images')->put('product/photo/' . $photo . '.jpg', $img->__toString());
 
           ProductImage::create([
-            'product_id' => $this->product->id,
+            'product_id' => $this->product,
             'filename' => $photo . '.jpg'
             ]);
           unlink($file);

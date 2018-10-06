@@ -80,7 +80,7 @@ export default {
       this.$Progress.start()
       this.$root.loading = true
       toastr.info(this.$trans.translation.wait);
-      this.$http.post(this.$root.url + '/' + this.shopSlug + '/edit/account', {
+      this.$http.post(this.$root.url + '/manage/account', {
         provider: this.provider,
         number: this.number,
         name: this.name,

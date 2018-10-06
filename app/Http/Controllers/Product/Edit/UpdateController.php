@@ -22,15 +22,11 @@ class UpdateController extends Controller
   {
     $this->authorize('update', $product);
 
-    $update = $product->update([
-      'name' => $request->name,
-      'price' => $request->price,
-      'description' => $request->description,
-      'visibility' => $request->visibility,
-    ]);
-
+    $product->name = $request->name;
+    $product->price = $request->price;
+    $product->description = $request->description;
+    $product->visibility = $request->visibility;
     if (!empty($request->thumbnail)) {
-
         if (!empty($product->thumbnail)) {
           $path = 'product/thumbnail/' . $product->thumbnail;
           $this->dispatch((new DeleteImage($path))->onQueue('delete_img'));
@@ -45,8 +41,12 @@ class UpdateController extends Controller
 
         Storage::disk('uploads')->put('product/thumbnail/' . $fileName, $decoded);
 
+        $product->thumbnail = $fileName . '.jpg';
+
         $this->dispatch((new ProductUpdate($product, $fileName))->onQueue('upload'));
     }
+
+    $product->save();
     return response()->json(null, 200);
   }
 }

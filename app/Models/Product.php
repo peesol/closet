@@ -2,7 +2,8 @@
 
 namespace Closet\Models;
 
-use Laravel\Scout\Searchable;
+//use Laravel\Scout\Searchable;
+use Catzilla\ScoutNoindex\Searchable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Closet\Filters\Product\ProductFilters;
@@ -37,6 +38,16 @@ class Product extends Model
       'updated_at',
     ];
 
+    protected $index = ['name'];
+
+    protected $noindex = [
+      'description',
+      'stock',
+      'amount',
+      'updated_at',
+      'created_at',
+    ];
+    
     public function shop()
     {
     	return $this->belongsTo(Shop::class);
@@ -127,6 +138,26 @@ class Product extends Model
     }
     public function scopeFilter(Builder $builder, Request $request, array $filters = [])
     {
-        return (new ProductFilters(request()))->add($filters)->filter($builder);
+      return (new ProductFilters(request()))->add($filters)->filter($builder);
+    }
+    public function shouldBeSearchable()
+    {
+        return $this->visibility == 'public';
+    }
+    public function toSearchableArray()
+    {
+        return [
+          'id' => $this->id,
+          'category_id' => $this->category_id,
+          'subcategory_id' => $this->subcategory_id,
+          'type_id' => $this->type_id,
+          'shop_type' => $this->shop_type,
+          'uid' => $this->uid,
+          'name' => $this->name,
+          'price' => $this->price,
+          'discount_date' => $this->discount_date,
+          'discount_price' => $this->discount_price,
+          'thumbnail' => $this->thumbnail
+        ];
     }
 }

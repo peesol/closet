@@ -26,6 +26,7 @@ class NewProductController extends Controller
     $type_id = $request->type_id == 'null' ? '1' : $request->type_id;
     $uid = uniqid('p_');
     $shop = $request->user()->shop()->first();
+    $thumbnail = uniqid('p_thumb_').$request->user()->id;
     $product = $shop->product()->create([
       'uid' => $uid,
       'name' => $request->name,
@@ -36,12 +37,11 @@ class NewProductController extends Controller
       'price' => $request->price,
       'description' => $request->description,
       'visibility' => $request->visibility,
-      'thumbnail' => '',
+      'thumbnail' => $thumbnail . '.jpg',
     ]);
 
     $images =  $request->file('image');
     if($images[0]) {
-      $thumbnail = uniqid('p_thumb_').$request->user()->id;
       Storage::disk('uploads')->putFileAs('product/thumbnail/', $images[0], $thumbnail);
     }
     $photos = [];
@@ -51,7 +51,7 @@ class NewProductController extends Controller
       $photos[] = $photo;
     }
 
-    $this->dispatch((new ProductUpload($product, $thumbnail, $photos))->onQueue('upload'));
+    $this->dispatch((new ProductUpload($product->id, $thumbnail, $photos))->onQueue('upload'));
 
     return response()->json();
   }

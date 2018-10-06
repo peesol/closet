@@ -48,8 +48,5 @@ class ProductUpdate implements ShouldQueue
       Storage::disk('s3images')->put('product/thumbnail/' . $this->fileName . '.jpg', $img->__toString());
 
       unlink($local_path);
-
-      $this->product->thumbnail = $this->fileName . '.jpg';
-      $this->product->save();
     }
 }

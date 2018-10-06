@@ -62,7 +62,12 @@ export default {
   methods: {
     add() {
       this.shippings.push(this.form)
-      this.form = {}
+      this.form = {
+        method: null,
+        fee: null,
+        time: null,
+        free: null
+      }
       this.saved = false
     },
     remove(index) {
