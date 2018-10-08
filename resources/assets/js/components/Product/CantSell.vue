@@ -7,17 +7,21 @@
         <div class="form-group">
           <label class="input-label full-label">{{$trans.translation.account_provider}}</label>
           <select required class="select-input" name="provider" v-model="provider">
-                                        <option v-for="option in options" :value="{'name': option.name, 'code': option.code}">{{option.name}}</option>
-                                      </select>
+            <option v-for="option in options" :value="{'name': option.name, 'code': option.code}">{{option.name}}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="input-label full-label">{{$trans.translation.account_type}}</label>
+          <select required class="select-input" name="account_number" v-model="type">
+            <option value="account">{{$trans.translation.account}}</option>
+            <option value="promptpay">PromptPay</option>
+          </select>
         </div>
         <div class="form-group">
           <label class="input-label full-label">{{$trans.translation.account_number}}</label>
-          <div class="input-group">
-            <input class="form-input" :placeholder="$trans.translation.numeric_only" type="text" v-validate="'required|numeric|min:10|max:12'" :class="{'is-error': errors.has('account_number')}" v-model="number" name="account_number">
-          </div>
+          <input maxlength="15" oninput="this.value=this.value.slice(0,this.maxLength)" class="form-input" :placeholder="$trans.translation.numeric_only" type="number" v-validate="'required|numeric|min:10|max:15'" :class="{'is-error': errors.has('account_number')}" v-model="number" name="account_number">
           <span v-show="errors.has('account_number')" class="span-error">{{ errors.first('account_number') }}</span>
         </div>
-
         <div class="form-group">
           <label class="input-label full-label">{{$trans.translation.account_name}}</label>
           <div class="input-group">
@@ -41,6 +45,7 @@ export default {
       provider: null,
       number: null,
       name: null,
+      type: null,
       options: [{
           'name': 'ธนาคารกรุงเทพ',
           'code': 'BBL'
@@ -84,6 +89,7 @@ export default {
         provider: this.provider,
         number: this.number,
         name: this.name,
+        type: this.type,
       }).then(response => {
         this.$Progress.finish()
         this.$root.loading = false

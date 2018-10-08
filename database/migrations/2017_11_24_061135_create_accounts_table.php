@@ -18,6 +18,7 @@ class CreateAccountsTable extends Migration
             $table->integer('shop_id')->unsigned();
             $table->string('provider');
             $table->string('provider_name');
+            $table->string('type', 20)->default('account');
             $table->string('name', 100);
             $table->string('number', 25);
 

@@ -16,6 +16,13 @@
             </select>
           </div>
           <div class="form-group">
+            <label class="input-label full-label">{{$trans.translation.account_type}}</label>
+            <select required class="select-input" name="account_number" v-model="type">
+              <option value="account">{{$trans.translation.account}}</option>
+              <option value="promptpay">PromptPay</option>
+            </select>
+          </div>
+          <div class="form-group">
             <label class="full-label input-label">{{$trans.translation.account_number}}</label>
             <input type="text" class="form-input" v-validate="'required|numeric|min:10|max:12'" :class="{'is-error': errors.has('account_number')}" v-model="number" name="account_number">
             <span v-show="errors.has('account_number')" class="span-error">{{ errors.first('account_number') }}</span>
@@ -63,6 +70,7 @@ export default {
       provider: null,
       number: null,
       name: null,
+      type: null,
       formVisible: false,
       options: [{
           'name': 'ธนาคารกรุงเทพ',
@@ -115,6 +123,7 @@ export default {
         provider: this.provider,
         number: this.number,
         name: this.name,
+        type: this.type
       }).then(response => {
         this.$Progress.finish()
         this.$root.loading = false
@@ -123,7 +132,7 @@ export default {
         this.provider = null
         this.number = null
         this.name = null
-        formVisible = false
+        this.formVisible = false
       }, response => {
         this.$Progress.fail()
         this.$root.loading = false

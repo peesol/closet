@@ -17,7 +17,11 @@ class AccountController extends Controller
   public function create(Request $request)
   {
     $data = $request->number;
-    $number = substr($data, 0, 3) .' - '. substr($data, 3, 1) .' - '. substr($data, 4, 5).' - '. substr($data, 9);
+    if ($request->type == 'account') {
+      $number = substr($data, 0, 3) .' - '. substr($data, 3, 1) .' - '. substr($data, 4, 5).' - '. substr($data, 9);
+    } else {
+      $number = $data;
+    }
 
     $create = $request->user()->account()->create([
       'shop_id' => $request->user()->shop->id,
@@ -25,6 +29,7 @@ class AccountController extends Controller
       'provider' => $request->provider['code'],
       'name' => $request->name,
       'number' => $number,
+      'type' => $request->type,
     ]);
 
     return response()->json($create);
