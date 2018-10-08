@@ -6,7 +6,6 @@ use Image;
 use File;
 use Storage;
 use Closet\Models\ProductImage;
-use Closet\Models\Product;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
@@ -17,7 +16,7 @@ class ProductUpload implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    protected $productId;
+    protected $product;
     protected $thumbnail;
     protected $photos = array();
     /**
@@ -25,9 +24,9 @@ class ProductUpload implements ShouldQueue
      *
      * @return void
      */
-    public function __construct($productId, $thumbnail, array $photos)
+    public function __construct($product, $thumbnail, array $photos)
     {
-        $this->product = $productId;
+        $this->product = $product;
         $this->thumbnail = $thumbnail;
         $this->photos[] = $photos;
     }
@@ -65,7 +64,7 @@ class ProductUpload implements ShouldQueue
           Storage::disk('s3images')->put('product/photo/' . $photo . '.jpg', $img->__toString());
 
           ProductImage::create([
-            'product_id' => $this->product,
+            'product_id' => $this->product->id,
             'filename' => $photo . '.jpg'
             ]);
           unlink($file);

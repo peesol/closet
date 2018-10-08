@@ -21,7 +21,7 @@ class NewProductController extends Controller
     }
   }
 
-  public function create(Request $request, Product $product, ProductImage $productimage)
+  public function create(Request $request, ProductImage $productimage)
   {
     $type_id = $request->type_id == 'null' ? '1' : $request->type_id;
     $uid = uniqid('p_');
@@ -50,10 +50,9 @@ class NewProductController extends Controller
       Storage::disk('uploads')->putFileAs('product/photo/', $image, $photo);
       $photos[] = $photo;
     }
+    $this->dispatch((new ProductUpload($product, $thumbnail, $photos))->onQueue('upload'));
 
-    $this->dispatch((new ProductUpload($product->id, $thumbnail, $photos))->onQueue('upload'));
-
-    return response()->json();
+    return response()->json($product);
   }
   public function after()
   {

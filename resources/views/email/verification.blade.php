@@ -13,7 +13,7 @@
       <div class="padding-15-vertical">
         <a class="help-btn padding-10" href="{{ route('resendEmail') }}">{{ __('auth.verify_resend') }}</a>
       </div>
-      <h3><a href="{{route('home')}}" class="link-text"><<< {{ __('error.404_home_route') }}</a></h3>
+      <h3><a href="{{route('home')}}" class="link-text"><<< {{ __('error.home_route') }}</a></h3>
       </div>
   </div>
 </div>
