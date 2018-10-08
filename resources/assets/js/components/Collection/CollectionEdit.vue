@@ -1,9 +1,11 @@
 <template>
-<div class="padding-30-bot-15" id="full-line">
+<div id="full-line">
+  <div class="panel-heading">
+    <label class="heading">{{ title }}</label>
+  </div>
   <vue-progress-bar></vue-progress-bar>
 
-  <form v-on:submit.prevent="edit" method="post" enctype="multipart/form-data" class="flex full-width flex-start-res">
-
+  <form v-on:submit.prevent="edit" method="post" enctype="multipart/form-data" class="flex full-width flex-start-res padding-30-bot-15">
     <div class="half-width-res flex flex-start-res">
       <div class="margin-20-bottom">
         <div class="image-file-input margin-center">
@@ -52,6 +54,7 @@ export default {
   data() {
     return {
       image_filename: this.imageSrc,
+      title: this.colName,
       name: this.colName,
       description: this.colDescription,
       visibility: this.colVisibility,
@@ -78,6 +81,7 @@ export default {
           this.$Progress.finish();
           this.$root.loading = false
           toastr.success(this.$trans.translation.success);
+          this.title = this.name
         }, response => {
           this.$Progress.fail();
           this.$root.loading = false
@@ -96,7 +100,8 @@ export default {
         }).then(response => {
           this.$Progress.finish();
           this.$root.loading = false
-          toastr.success(this.$trans.translation.success);
+          toastr.success(this.$trans.translation.success)
+          this.title = this.name
         }, response => {
           this.$Progress.fail();
           this.$root.loading = false

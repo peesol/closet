@@ -9,9 +9,6 @@
 
 <div class="container">
   <div class="medium-panel">
-    <div class="panel-heading">
-      <label class="heading">{{$collection->name}}</label>
-    </div>
 
       <collection-edit col-slug="{{$collection->slug}}" col-name="{{$collection->name}}" col-description="{{$collection->description}}" col-visibility="{{$collection->visibility}}" image-src="{{$collection->getImage()}}"></collection-edit>
       <div class="panel-heading">

@@ -114,7 +114,7 @@ export default {
         }).then(response => {
           this.$Progress.finish();
           this.$root.loading = false
-          toastr.success(this.$trans.translation.success);
+          toastr.success(this.$trans.translation.success)
         }, response => {
           this.$Progress.fail();
           this.$root.loading = false
@@ -132,7 +132,7 @@ export default {
         }).then(response => {
           this.$Progress.finish();
           this.$root.loading = false
-          toastr.success(this.$trans.translation.success);
+          toastr.success(this.$trans.translation.success)
         }, response => {
           this.$Progress.fail();
           this.$root.loading = false

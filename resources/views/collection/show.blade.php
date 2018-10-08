@@ -19,26 +19,23 @@
                 	<div class="panel-body" id="full-line"><p>{{__('message.no_image')}}</p></div>
                 @endif
 
-                <div class="panel-body">
-                  <label class="heading full-label">{{__('message.description')}}</label>
-                </div>
-
                 @if ($collection->description != null)
+                  <div class="padding-15-horizontal">
+                    <label class="heading full-label">{{__('message.description')}}</label>
+                  </div>
                 	<div class="padding-15-bottom padding-30-horizontal" id="full-line">
                 		<p class="no-margin">{{$collection->description}}</p>
                 	</div>
+                  <div class="panel-body" id="full-line">
+                    <p>{{__('message.no_description')}}</p>
+                  </div>
                 @else
-
-                <div class="panel-body" id="full-line">
-                	<p>{{__('message.no_description')}}</p>
-                </div>
 
                 @endif
 
-                <div class="panel-body">
-                  <label class="heading full-label">{{__('message.featured_product')}}</label>
-                </div>
-
+              <div class="panel-body">
+                <label class="heading full-label">{{__('message.featured_product')}}</label>
+              </div>
 
               <div class="panel-body thumbnail-grid">
                 @if ($products->count())

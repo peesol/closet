@@ -3,7 +3,7 @@
   <load-overlay bg="white-bg" :show="!loaded"></load-overlay>
   <div class="thumbnail-grid" v-if="images.length">
     <div v-for="(image, index) in images" class="products-img">
-      <img class="object-contain black-bg" :alt="image.filename" :src="image.filename">
+      <img class="object-cover black-bg" :alt="image.filename" :src="image.filename">
       <button v-show="image.id && images.length > 0" @click.prevent="remove(image.id, index)" class="align-top-right flat-btn icon-bg padding-10"><i class="fas fa-trash-alt"></i></button>
     </div>
   </div>
