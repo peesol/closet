@@ -13,8 +13,8 @@
         <div class="form-group">
           <label class="input-label full-label">{{$trans.translation.account_type}}</label>
           <select required class="select-input" name="account_number" v-model="type">
-            <option value="account">{{$trans.translation.account}}</option>
-            <option value="promptpay">PromptPay</option>
+            <option value="Bank">{{$trans.translation.account}}</option>
+            <option value="PromptPay">PromptPay</option>
           </select>
         </div>
         <div class="form-group">

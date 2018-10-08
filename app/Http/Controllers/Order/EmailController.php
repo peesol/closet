@@ -10,7 +10,10 @@ use Illuminate\Http\Request;
 use Closet\Models\{Order, User, Account};
 use Closet\Http\Controllers\Controller;
 use Closet\Transformer\OrderTransformer;
+use Closet\Jobs\Product\DecreaseProduct;
 use Closet\Mail\{Ordering, OrderConfirmed, TransactionConfirmed, OrderShipped, OrderDeny, OrderCancle};
+use Closet\Notifications\Seller\{OrderPlaced, OrderCancled, OrderPaid};
+use Closet\Notifications\Buyer\{OrderDenied, OrderShippedNotification};
 
 class EmailController extends Controller
 {
@@ -96,6 +99,10 @@ class EmailController extends Controller
     $reciever = User::find($order->reciever_id);
     $locale = $reciever->country;
 
+    if ($reciever->where('options->order', true)) {
+      $reciever->notify(new OrderPaid($order->title));
+    }
+
     Mail::to($reciever->email)->queue((new TransactionConfirmed($order, $locale))->onQueue('email'));
     return redirect()->route('successOrder', ['order' => $order]);
   }
@@ -111,9 +118,17 @@ class EmailController extends Controller
     $sender = User::find($order->sender_id);
     $locale = $sender->country;
 
+    $data = json_decode($order->body);
+    DecreaseProduct::dispatch($data)->onQueue('low');
+
+    if ($sender->where('options->order', true)) {
+      $sender->notify(new OrderShippedNotification($order->title));
+    }
+
     Mail::to($sender->email)->queue((new OrderShipped($order, $locale))->onQueue('email'));
     return redirect()->route('successOrder', ['order' => $order]);
   }
+
   public function deny(Order $order, Request $request)
   {
     if (!$order->trans) {
@@ -124,6 +139,11 @@ class EmailController extends Controller
 
       $sender = User::find($order->sender_id);
       $locale = $sender->country;
+
+      if ($sender->where('options->order', true)) {
+        $sender->notify(new OrderDenied($order->title));
+      }
+
       Mail::to($sender->email)->queue((new OrderDeny($order, $locale, $request->textarea))->onQueue('low'));
 
       return redirect()->route('orderDeleted', ['order' => $order]);
@@ -140,6 +160,11 @@ class EmailController extends Controller
       $reciever = User::find($order->reciever_id);
       $locale = $reciever->country;
       $contact = $reciever->email . ' / ' . $reciever->phone;
+
+      if ($reciever->where('options->order', true)) {
+        $reciever->notify(new OrderCancled($order->title));
+      }
+
       Mail::to($reciever->email)->queue((new OrderCancle($order, $locale, $contact))->onQueue('low'));
 
       return redirect()->route('orderDeleted', ['order' => $order]);

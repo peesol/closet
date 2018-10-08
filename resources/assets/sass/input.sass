@@ -21,10 +21,11 @@
   background-color: #f9f9f9
   border-bottom: 3px solid #b5b5b5
 
-input
-  &::-webkit-inner-spin-button, ::-webkit-outer-spin-button,
+input[type=number]
+  &::-webkit-outer-spin-button, &::-webkit-inner-spin-button
     -webkit-appearance: none
     margin: 0
+  -moz-appearance: textfield
 
 
 .form-group

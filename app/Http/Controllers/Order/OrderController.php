@@ -14,7 +14,6 @@ use Closet\Models\{Order, User, Account};
 use Closet\Transformer\OrderTransformer;
 use Closet\Mail\{OrderingSeller, OrderingBuyer, TransactionConfirmed, OrderShipped, OrderDeny, OrderCancle};
 use Closet\Jobs\Product\DecreaseProduct;
-
 use Closet\Notifications\Seller\{OrderPlaced, OrderCancled, OrderPaid};
 use Closet\Notifications\Buyer\{OrderDenied, OrderShippedNotification};
 
@@ -150,9 +149,11 @@ class OrderController extends Controller
         $reciever = User::find($order->reciever_id);
         $locale = $reciever->country;
         $contact = $reciever->email . ' / ' . $reciever->phone;
+
         if ($reciever->where('options->order', true)) {
           $reciever->notify(new OrderCancled($order->title));
         }
+
         Mail::to($reciever->email)->queue((new OrderCancle($order, $locale, $contact))->onQueue('low'));
       }
     }

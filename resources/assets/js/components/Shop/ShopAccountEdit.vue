@@ -18,8 +18,8 @@
           <div class="form-group">
             <label class="input-label full-label">{{$trans.translation.account_type}}</label>
             <select required class="select-input" name="account_number" v-model="type">
-              <option value="account">{{$trans.translation.account}}</option>
-              <option value="promptpay">PromptPay</option>
+              <option value="Bank">{{$trans.translation.account}}</option>
+              <option value="PromptPay">PromptPay</option>
             </select>
           </div>
           <div class="form-group">
@@ -42,7 +42,7 @@
 
   <div v-for="(account, index) in accounts" class="shadow-2 margin-20-top" v-show="accounts.length">
     <div class="color-heading grey-bg">
-      <label class="input-label">{{account.provider_name}}&nbsp;<font v-show="account.type == 'promptpay'" class="font-large">({{ $trans.translation.promptpay }})</font></label>
+      <label class="input-label">{{account.provider_name}}&nbsp;<font v-show="account.type == 'PromptPay'" class="font-large">({{ $trans.translation.promptpay }})</font></label>
     </div>
     <div class="padding-15-top padding-15-horizontal">
       <label class="full-label heading margin-10-bottom">{{account.name}}</label>

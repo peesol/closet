@@ -87,7 +87,7 @@ window.Closet = {
                   <select required class="select-input" name="provider">
                     <option value="" selected disabled>--- Select ---</option>
                     @foreach ($accounts as $account)
-                      <option value="{{$account->provider_name}}">{{$account->provider_name}}</option>
+                      <option value="{{$account->provider_name}}{{ ' '. $account->type }}">{{ $account->provider_name }}{{ ' ' . $account->type == 'PromptPay' ? 'PromptPay' : null}}</option>
                     @endforeach
                   </select>
                 </div>
