@@ -292,9 +292,9 @@ Route::group(['middleware' => ['auth']], function () {
 
   Route::get('/manage', 'Shop\Settings\ShopEditController@managePage');
 
-  Route::get('/manage/contact', 'Shop\Settings\ShopEditController@index');
-  Route::get('/manage/account', 'Shop\Settings\ShopEditController@index');
-  Route::get('/manage/showcase', 'Shop\Settings\ShopEditController@index');
+  Route::get('/manage/contact', 'Shop\Settings\ShopEditController@managePage');
+  Route::get('/manage/account', 'Shop\Settings\ShopEditController@managePage');
+  Route::get('/manage/showcase', 'Shop\Settings\ShopEditController@managePage');
 
   Route::get('/manage/contact/get', 'Shop\Settings\ContactController@get');
   Route::post('/manage/contact/create', 'Shop\Settings\ContactController@create');

@@ -142,6 +142,7 @@ export default {
     deny_reason: 'reason for denying',
     cancle_order: 'Cancle this order',
     account: 'Bank account',
+    promptpay: 'PromptPay',
     account_number: 'Account number',
     account_name: 'Account name',
     account_type: 'Account type',

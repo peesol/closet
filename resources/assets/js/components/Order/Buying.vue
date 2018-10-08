@@ -102,7 +102,7 @@
         </table>
         <div id="full-line" class="col-3-flex-res padding-10" v-for="account in bankAccount" v-show="!data.trans && bankAccount.length">
           <div class="text-row">
-            <strong>{{ account.provider_name }}</strong>&nbsp;{{ account.name }}
+            <strong>{{ account.provider_name }}</strong>&nbsp;<i v-show="account.type == 'promptpay'" class="font blue-bg">{{ $trans.translation.promptpay }}</i>&nbsp;{{ account.name }}
           </div>
           <div class="text-row font-green">{{ account.number }}</div>
         </div>
