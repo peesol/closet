@@ -34,7 +34,7 @@
 | {{__('message.provider')}}| {{__('message.account_number')}} | {{__('message.account_name')}}  |
 | :-------------|:-------------:| --------:|
 @foreach($accounts as $account)
-| {{$account->provider_name}} {{$account->type == 'PromptPay' ? 'PromptPay' : null}} | {{$account->number}} | {{$account->name}} |
+| {{$account->provider_name}} {{$account->type == 'PromptPay' ? __('message.promptpay') : null}} | {{$account->number}} | {{$account->name}} |
 @endforeach
 
 @endcomponent

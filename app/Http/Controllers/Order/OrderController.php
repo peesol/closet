@@ -35,6 +35,11 @@ class OrderController extends Controller
   {
     return view('order.history.buying');
   }
+  public function checkout(Order $order)
+  {
+    $accounts = Account::where('shop_id', $order->reciever_id)->get();
+    return view('order.checkout', ['order' => $order, 'accounts' => $accounts]);
+  }
   /*
   |--------------------------------------------------------------------------
   | Ajax
@@ -107,7 +112,7 @@ class OrderController extends Controller
     Mail::to($reciever->email)->queue((new OrderingSeller($order, $locale, $sender))->onQueue('email'));
     Mail::to($sender->email)->queue((new OrderingBuyer($order, $accounts, $locale))->onQueue('email'));
 
-    return ;
+    return response($order->uid);
   }
   /*
   |--------------------------------------------------------------------------

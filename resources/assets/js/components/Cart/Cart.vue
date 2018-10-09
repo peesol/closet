@@ -186,9 +186,9 @@ export default {
 					this.confirmed.discount = null;
 					this.confirmed.discount_applied = null;
 					this.confirmed.shipping = null;
-					toastr.success(this.$trans.translation.success)
 					this.$Progress.finish()
 					this.$root.loading = false
+					window.location.href = this.$root.url + '/order/' + response.body + '/checkout'
 				}, response => {
 					this.$root.loading = false
 					toastr.error(this.$trans.translation.error)

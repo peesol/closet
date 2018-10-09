@@ -248,4 +248,8 @@ return [
     'unfollow' => 'เลิกติดตาม',
     //action prompt
     'form_confirm' => 'คุณแน่ใจหรือไม่?',
+    //checkout
+    'order_checkout' => 'รายการสั่งซื้อของคุณ',
+    'order_checkout_notice' => 'คุณสามารถทำการแจ้งชำระเงินได้ผ่านทางอีเมล หรือผ่านทางเว็บไซต์ได้ที่',
+    'promptpay' => 'พร้อมเพย์',
 ];

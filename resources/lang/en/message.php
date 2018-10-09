@@ -246,4 +246,8 @@ return [
     'unfollow' => 'Unfollow',
     //action prompt
     'form_confirm' => 'Are you sure?',
+    //checkout
+    'order_checkout' => 'Your order',
+    'order_checkout_notice' => 'You must notify seller after you paid',
+    'promptpay' => 'PromptPay',
 ];

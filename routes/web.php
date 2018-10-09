@@ -183,8 +183,8 @@ Route::group(['middleware' => ['auth']], function () {
   Route::get('/order/buying', 'Order\OrderController@buyingPage')->name('buyingOrder');
   Route::put('/order/{order}/transaction', 'Order\OrderController@transactionConfirm');
   Route::put('/order/{order}/confirm_shipping', 'Order\OrderController@confirmShipping');
-
   Route::put('/order/{order}/deny', 'Order\OrderController@deny');
+  Route::get('/order/{order}/checkout', 'Order\OrderController@checkout')->name('checkout');
 });
 
 
