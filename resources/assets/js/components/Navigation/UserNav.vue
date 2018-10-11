@@ -6,14 +6,14 @@
   <div @click.stop v-show="toggled === 1" class="dropdown-content shadow-1">
     <div class="dropdown-name">{{userName}}</div>
     <a :href="$root.url + '/' + userShop">{{ $trans.translation.my_profile }}</a>
-    <li v-bind:class="{'toggled-list' : toggledList === 1}" @click="window.location.href = $root.url + '/myproduct/new'">{{ $trans.translation.my_products }}</li>
+    <li v-bind:class="{'toggled-list' : toggledList === 1}" @click="go($root.url + '/myproduct/new')">{{ $trans.translation.my_products }}</li>
     <!-- <transition name="slide-down-height">
       <div v-show="toggledList === 1">
         <a class="nested" :href="$root.url + '/myproduct/new'">{{ $trans.translation.new }}</a>
         <a class="nested" :href="$root.url + '/myproduct/used'">{{ $trans.translation.used }}</a>
       </div>
     </transition> -->
-    <li v-bind:class="{'toggled-list' : toggledList === 2}" @click="window.location.href = $root.url + '/sell/new'">{{ $trans.translation.sell }}</li>
+    <li v-bind:class="{'toggled-list' : toggledList === 2}" @click="go($root.url + '/sell/new')">{{ $trans.translation.sell }}</li>
     <!-- <transition name="slide-down-height">
     <div v-show="toggledList === 2">
       <a class="nested" :href="$root.url + '/sell/new'">{{ $trans.translation.new }}</a>
@@ -81,6 +81,9 @@ export default {
       this.$http.post(this.logoutRoute).then((response) => {
         window.location.replace(this.$root.url)
       });
+    },
+    go(url) {
+      window.location.href = url
     },
     toggle(id) {
       if (this.toggled === id){

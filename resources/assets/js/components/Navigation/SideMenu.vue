@@ -6,7 +6,7 @@
         <div id="full-line">
           <a href="/"><i class="fas fa-home"></i>{{ $trans.translation.home }}</a>
           <a href="/trending"><i class="fas fa-fire"></i>{{ $trans.translation.trending }}</a>
-          <a href="/secondhand"><i class="fas fa-redo-alt"></i>{{ $trans.translation.used_market }}</a>
+          <!-- <a href="/secondhand"><i class="fas fa-redo-alt"></i>{{ $trans.translation.used_market }}</a> -->
           <a href="/category/main" ><i class="fas fa-th-large"></i>{{ $trans.translation.categories }}</a>
           <a href="/help/home" ><i class="fas fa-question-circle"></i>{{ $trans.translation.help }}</a>
         </div>
@@ -28,12 +28,12 @@
         </div>
         <div id="full-line" v-show="$root.authenticated">
           <label id="menu-label-grey">{{ $trans.translation.management }}</label>
-          <a :class="{'transparent-bg toggled-list' : toggledList === 2}" @click="window.location.href = $root.url + '/myproduct/new'"><i class="fas fa-plus"></i>{{ $trans.translation.sell }}</a>
+          <a :class="{'transparent-bg toggled-list' : toggledList === 2}" @click="go($root.url + '/myproduct/new')"><i class="fas fa-plus"></i>{{ $trans.translation.sell }}</a>
           <!-- <div v-show="toggledList === 2" id="full-line">
             <a href="/sell/new">{{ $trans.translation.new }}</a>
             <a href="/sell/used">{{ $trans.translation.used }}</a>
           </div> -->
-          <a :class="{'transparent-bg toggled-list' : toggledList === 3}" @click="window.location.href = $root.url + '/sell/new'"><i class="fas fa-archive"></i>{{ $trans.translation.my_products }}</a>
+          <a :class="{'transparent-bg toggled-list' : toggledList === 3}" @click="go($root.url + '/sell/new')"><i class="fas fa-archive"></i>{{ $trans.translation.my_products }}</a>
           <!-- <div v-show="toggledList === 3" id="full-line">
             <a href="/myproduct/new">{{ $trans.translation.new }}</a>
             <a href="/myproduct/used">{{ $trans.translation.used }}</a>
@@ -71,6 +71,9 @@ export default {
       this.$http.post( this.$root.url + '/logout').then((response) => {
         window.location.replace(this.$root.url)
       });
+    },
+    go(url) {
+      window.location.href = url
     },
     toggleList(id) {
       if (this.toggledList === id){
