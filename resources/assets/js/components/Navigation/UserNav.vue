@@ -6,20 +6,20 @@
   <div @click.stop v-show="toggled === 1" class="dropdown-content shadow-1">
     <div class="dropdown-name">{{userName}}</div>
     <a :href="$root.url + '/' + userShop">{{ $trans.translation.my_profile }}</a>
-    <li v-bind:class="{'toggled-list' : toggledList === 1}" @click.prevent="toggleList(1)">{{ $trans.translation.my_products }}&nbsp;<i class="fas fa-chevron-down"></i></li>
-    <transition name="slide-down-height">
+    <li v-bind:class="{'toggled-list' : toggledList === 1}" @click="window.location.href = $root.url + '/myproduct/new'">{{ $trans.translation.my_products }}</li>
+    <!-- <transition name="slide-down-height">
       <div v-show="toggledList === 1">
         <a class="nested" :href="$root.url + '/myproduct/new'">{{ $trans.translation.new }}</a>
         <a class="nested" :href="$root.url + '/myproduct/used'">{{ $trans.translation.used }}</a>
       </div>
-    </transition>
-    <li v-bind:class="{'toggled-list' : toggledList === 2}" @click.prevent="toggleList(2)">{{ $trans.translation.sell }}&nbsp;<i class="fas fa-chevron-down"></i></li>
-    <transition name="slide-down-height">
+    </transition> -->
+    <li v-bind:class="{'toggled-list' : toggledList === 2}" @click="window.location.href = $root.url + '/sell/new'">{{ $trans.translation.sell }}</li>
+    <!-- <transition name="slide-down-height">
     <div v-show="toggledList === 2">
       <a class="nested" :href="$root.url + '/sell/new'">{{ $trans.translation.new }}</a>
       <a class="nested" :href="$root.url + '/sell/used'">{{ $trans.translation.used }}</a>
     </div>
-    </transition>
+    </transition> -->
     <a :href="$root.url + '/settings/profile'">{{ $trans.translation.setting }}</a>
     <li v-bind:class="{'toggled-list' : toggledList === 3}" @click.prevent="toggleList(3)">{{ $trans.translation.language }}&nbsp;<i class="fas fa-chevron-down"></i>
     </li>

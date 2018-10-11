@@ -28,16 +28,16 @@
         </div>
         <div id="full-line" v-show="$root.authenticated">
           <label id="menu-label-grey">{{ $trans.translation.management }}</label>
-          <a :class="{'transparent-bg toggled-list' : toggledList === 2}" @click.prevent="toggleList(2)"><i class="fas fa-plus"></i>{{ $trans.translation.sell }}</a>
-          <div v-show="toggledList === 2" id="full-line">
+          <a :class="{'transparent-bg toggled-list' : toggledList === 2}" @click="window.location.href = $root.url + '/myproduct/new'"><i class="fas fa-plus"></i>{{ $trans.translation.sell }}</a>
+          <!-- <div v-show="toggledList === 2" id="full-line">
             <a href="/sell/new">{{ $trans.translation.new }}</a>
             <a href="/sell/used">{{ $trans.translation.used }}</a>
-          </div>
-          <a :class="{'transparent-bg toggled-list' : toggledList === 3}" @click.prevent="toggleList(3)"><i class="fas fa-archive"></i>{{ $trans.translation.my_products }}</a>
-          <div v-show="toggledList === 3" id="full-line">
+          </div> -->
+          <a :class="{'transparent-bg toggled-list' : toggledList === 3}" @click="window.location.href = $root.url + '/sell/new'"><i class="fas fa-archive"></i>{{ $trans.translation.my_products }}</a>
+          <!-- <div v-show="toggledList === 3" id="full-line">
             <a href="/myproduct/new">{{ $trans.translation.new }}</a>
             <a href="/myproduct/used">{{ $trans.translation.used }}</a>
-          </div>
+          </div> -->
           <a href="/promotions"><i class="fas fa-tag"></i>{{ $trans.translation.promotions }}</a>
           <a href="/manage"><i class="fas fa-briefcase"></i>{{ $trans.translation.manage }}</a>
           <a href="/order/selling"><i class="fas fa-list-ul"></i>{{ $trans.translation.selling_orders }}</a>

@@ -35,9 +35,9 @@
         <span class="fas fa-fire"></span>
         <font>{{ __('message.trending') }}</font>
       </a>
-      <a href="{{ route('secondhand') }}">
+      {{-- <a href="{{ route('secondhand') }}">
         <span class="fas fa-redo-alt"></span>
         <font>{{ __('message.used') }}</font>
-      </a>
+      </a> --}}
     </div>
 </div>
