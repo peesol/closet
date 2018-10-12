@@ -36,8 +36,8 @@
           <ul>
             <li>{{__('message.product_discount_info1')}}</li>
             <li><p class="no-margin">{{__('message.product_discount_info3')}}</p></li>
-            <li><p class="no-margin">{{__('message.promotion_points_info1', ['qty' => 5, 'points' => 1])}}</p></li>
-            <li><p class="no-margin font-red">{{__('message.promotion_points_info2', ['qty' => 5, 'points' => 5])}}</p></li>
+            <li><p class="no-margin">{{__('message.promotion_points_info1', ['qty' => 3, 'points' => 1])}}</p></li>
+            <li><p class="no-margin font-red">{{__('message.promotion_points_info2', ['qty' => 3, 'points' => 3])}}</p></li>
             <li><p class="no-margin font-red">{{__('message.product_discount_info4')}}</p></li>
           </ul>
           <div class="align-right padding-15-vertical">
@@ -45,7 +45,7 @@
           </div>
         </div>
       </div>
-{{-- 
+{{--
       <div class="shadow-2">
         <div class="color-heading">
           <label class="full-label heading font-white">{{__('message.campaign')}}</label>

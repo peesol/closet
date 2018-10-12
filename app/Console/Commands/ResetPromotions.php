@@ -40,7 +40,7 @@ class ResetPromotions extends Command
     {
       $user = DB::table('shops')->update([
         'promotion_points' => json_encode([
-          'discount' => 5,
+          'discount' => 3,
           'campaign' => 2,
           'flash_sale' => 2,
         ])

@@ -99,7 +99,7 @@ class RegisterController extends Controller
           'slug' => uniqid('shop_'),
           'profile_type' => $data['profile_type'],
           'promotion_points' => json_encode([
-            'discount' => 5,
+            'discount' => 3,
             'campaign' => 2,
             'flash_sale' => 2,
           ])
