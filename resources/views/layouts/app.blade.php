@@ -8,9 +8,16 @@
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <meta property="og:title" content="@yield('title'){{config('app.name') }}">
-  <meta property="og:image" content="https://s3-ap-southeast-1.amazonaws.com/files.closet/etc/FB_sharing_closet.jpg">
-  <meta property="og:description" content="ซื้อขายเสื้อผ้า สินค้าแฟชั่น เครื่องสำอาง อาหารเสริม เปิดร้านออนไลน์ฟรี">
-
+  @hasSection('og-image')
+    <meta property="og:image" content="@yield('og-image')">
+  @else
+    <meta property="og:image" content="https://s3-ap-southeast-1.amazonaws.com/files.closet/etc/FB_sharing_closet.jpg">
+  @endif
+  @hasSection('og-description')
+    <meta property="og:description" content="@yield('og-description')">
+  @else
+    <meta property="og:description" content="ซื้อขายเสื้อผ้า สินค้าแฟชั่น เครื่องสำอาง อาหารเสริม เปิดร้านออนไลน์ฟรี">
+  @endif
   <title>@yield('title'){{config('app.name') }}</title>
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">

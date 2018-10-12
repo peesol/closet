@@ -3,7 +3,16 @@
 @section('title')
 {{$collection->name.' - '}}
 @endsection
-
+@section('og-image')
+  @if (count($collection->images))
+  https://s3-ap-southeast-1.amazonaws.com/files.closet/collection/photo/{{$collection->images->first()->filename}}
+  @else
+  https://s3-ap-southeast-1.amazonaws.com/files.closet/collection/thumbnail/{{ $collection->thumbnail ? $collection->thumbnail : 'default.jpg' }}
+  @endif
+@endsection
+@section('og-description')
+{{$collection->description ? $collection->description : 'คอลเล็คชั่น ' . $collection->name}}
+@endsection
 @section('content')
 <div class="container">
             <div class="large-panel">

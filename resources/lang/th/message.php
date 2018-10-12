@@ -96,7 +96,7 @@ return [
     'collection' => 'คอลเล็คชั่น',
     'about' => 'เกี่ยวกับ',
     'review' => 'รีวิว',
-    'description' => 'รายละเอียด',
+    'description' => 'คำอธิบาย',
     'no_description' => 'ไม่มีรายละเอียด',
     'no_contact' => 'ไม่พบช่องทางการติดต่อ',
     'popular' => 'ยอดนิยม',
