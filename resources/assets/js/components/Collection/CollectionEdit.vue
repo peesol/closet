@@ -5,7 +5,7 @@
   </div>
   <vue-progress-bar></vue-progress-bar>
 
-  <form v-on:submit.prevent="edit" method="post" enctype="multipart/form-data" class="flex full-width flex-start-res padding-30-bot-15">
+  <form v-on:submit.prevent="edit" enctype="multipart/form-data" class="flex full-width flex-start-res padding-30-bot-15">
     <div class="half-width-res flex flex-start-res">
       <div class="margin-20-bottom">
         <div class="image-file-input margin-center">

@@ -8,7 +8,7 @@
     <li>{{$trans.translation.product_photo_ratio}}</li>
   </ul>
 
-  <form v-on:submit.prevent="submit" method="post">
+  <form v-on:submit.prevent="submit">
     <div class="dropzone margin-20-bottom" id="image">
       <div class="dz-message" data-dz-message>
         <span>{{$trans.translation.upload_photo_guide}}</span><br>

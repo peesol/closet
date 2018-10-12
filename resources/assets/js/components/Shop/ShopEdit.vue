@@ -4,7 +4,7 @@
   <thumbnail ref="thumbnail"></thumbnail>
   <cover ref="cover"></cover>
   <div class="panel-body">
-    <form @submit.prevent="edit" method="post" class="padding-15-top relative" id="full-line">
+    <form @submit.prevent="edit" class="padding-15-top relative" id="full-line">
       <load-overlay bg="white-bg" :show="loading" padding="40px 0"></load-overlay>
       <label class="full-label heading">{{$trans.translation.public_info}}</label>
         <div class="form-group">

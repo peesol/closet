@@ -28,12 +28,12 @@
         </div>
         <div id="full-line" v-show="$root.authenticated">
           <label id="menu-label-grey">{{ $trans.translation.management }}</label>
-          <a :class="{'transparent-bg toggled-list' : toggledList === 2}" @click="go($root.url + '/myproduct/new')"><i class="fas fa-plus"></i>{{ $trans.translation.sell }}</a>
+          <a :class="{'transparent-bg toggled-list' : toggledList === 2}" @click="go($root.url + '/sell/new')"><i class="fas fa-plus"></i>{{ $trans.translation.sell }}</a>
           <!-- <div v-show="toggledList === 2" id="full-line">
             <a href="/sell/new">{{ $trans.translation.new }}</a>
             <a href="/sell/used">{{ $trans.translation.used }}</a>
           </div> -->
-          <a :class="{'transparent-bg toggled-list' : toggledList === 3}" @click="go($root.url + '/sell/new')"><i class="fas fa-archive"></i>{{ $trans.translation.my_products }}</a>
+          <a :class="{'transparent-bg toggled-list' : toggledList === 3}" @click="go($root.url + '/myproduct/new')"><i class="fas fa-archive"></i>{{ $trans.translation.my_products }}</a>
           <!-- <div v-show="toggledList === 3" id="full-line">
             <a href="/myproduct/new">{{ $trans.translation.new }}</a>
             <a href="/myproduct/used">{{ $trans.translation.used }}</a>

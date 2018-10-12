@@ -1,7 +1,7 @@
 <template>
 <div class="padding-15-vertical relative" id="full-line">
   <load-overlay bg="white-bg" :show="loading" padding="40px 0"></load-overlay>
-  <form v-on:submit.prevent="edit" method="post">
+  <form v-on:submit.prevent="edit">
     <label class="full-label heading">{{$trans.translation.private_info}}</label>
     <div class="form-group">
       <label class="full-label input-label">{{$trans.translation.phone}}</label>

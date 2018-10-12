@@ -1,7 +1,7 @@
 <template>
 <div class="padding-30-bot-15" id="full-line">
   <vue-progress-bar></vue-progress-bar>
-  <form v-on:submit.prevent="edit" method="post" enctype="multipart/form-data" class=" full-width">
+  <form v-on:submit.prevent="edit" enctype="multipart/form-data" class=" full-width">
     <div class="flex flex-start-res">
 
       <div class="half-width-res flex flex-start-res">

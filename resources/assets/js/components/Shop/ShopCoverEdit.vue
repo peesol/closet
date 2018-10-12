@@ -2,7 +2,7 @@
 <div class="padding-15-vertical relative" id="full-line">
   <load-overlay bg="white-bg" :show="loading" padding="40px 0"></load-overlay>
   <label class="full-label heading">{{$trans.translation.cover}}&nbsp;<span class="font-small">1100px * 315px</span></label>
-  <form v-on:submit.prevent="edit" method="post">
+  <form v-on:submit.prevent="edit">
 
     <div class="cover-input margin-10-top">
       <i class="fas fa-images"></i>

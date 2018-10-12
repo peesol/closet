@@ -100,7 +100,7 @@
       <button class="msg-btn-full" @click.prevent="hide()">{{$trans.translation.close}}</button>
     </div>
     <!-- Shipped form -->
-      <form slot="footer" v-on:submit.prevent="confirmShipping(data.uid, index)" method="post" v-show="data.trans && !data.shipped">
+      <form slot="footer" v-on:submit.prevent="confirmShipping(data.uid, index)" v-show="data.trans && !data.shipped">
         <div class="padding-15-horizontal padding-15-bottom">
           <table class="shipping-table">
             <tr>

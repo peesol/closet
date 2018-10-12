@@ -2,7 +2,7 @@
 <div class="relative">
   <vue-progress-bar></vue-progress-bar>
   <load-overlay bg="white-bg" :show="!choiceLoaded"></load-overlay>
-<form name="myform" @submit.prevent="add" method="post">
+<form name="myform" @submit.prevent="add">
   <div class="choice-wrapper">
     <label v-show="choices.length" class="full-label input-label margin-10-bottom">{{$trans.translation.choice}}</label>
     <select v-show="choices.length" v-bind:required="choices.length >= 1" class="select-input" v-model="selected">

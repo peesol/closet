@@ -3,7 +3,7 @@
   <load-overlay bg="white-bg" :show="!loaded" padding="50px 0"></load-overlay>
     <div id="full-line" class="half-width-res panel-body">
       <label class="heading full-label">{{$trans.translation.name}}</label>
-      <form class="input-group half-width-res" @submit="edit" method="post">
+      <form class="input-group half-width-res" @submit.prevent="edit">
         <input required class="input-addon-field left" type="text" v-model="name" name="name">
         <button :disabled="$root.loading" class="checkmark-btn input-addon right" @click="edit"><i class="fas fa-check"></i></button>
       </form>

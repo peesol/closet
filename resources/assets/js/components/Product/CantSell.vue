@@ -2,7 +2,7 @@
 <div>
   <vue-progress-bar></vue-progress-bar>
   <div class="padding-30">
-    <form v-on:submit.prevent="add" method="post">
+    <form v-on:submit.prevent="add">
       <div>
         <div class="form-group">
           <label class="input-label full-label">{{$trans.translation.account_provider}}</label>

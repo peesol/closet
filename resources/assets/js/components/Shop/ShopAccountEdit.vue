@@ -7,7 +7,7 @@
 
   <transition name="slide-down-height">
     <div v-show="formVisible">
-      <form v-on:submit.prevent="add" method="post" class="panel-body shadow-2">
+      <form v-on:submit.prevent="add" class="panel-body shadow-2">
         <div>
           <div class="form-group margin-10-bottom">
             <label class="full-label input-label" style="padding: 0;">{{$trans.translation.account_provider}}</label>

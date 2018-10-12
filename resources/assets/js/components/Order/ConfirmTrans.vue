@@ -2,7 +2,7 @@
 <div style="margin-top: 20px;">
   <vue-progress-bar></vue-progress-bar>
   <load-overlay bg="opacity-bg" :show="$root.loading"></load-overlay>
-  <form v-on:submit.prevent="confirm(uid)" method="post">
+  <form v-on:submit.prevent="confirm(uid)">
     <div class="form-group">
       <label class="col-label" style="width:100%;">{{$trans.translation.name}}</label>
       <input required class="col-input" v-model="name">

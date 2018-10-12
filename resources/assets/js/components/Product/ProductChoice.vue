@@ -6,7 +6,7 @@
       <label for="name" class="full-label input-label">{{$trans.translation.choice_add}}&nbsp;
         <span class="font-light">{{$trans.translation.choice_name_ex}}</span>
       </label>
-        <form class="input-group margin-10-top" @submit="add" method="post">
+        <form class="input-group margin-10-top" @submit.prevent="add">
           <input required class="input-addon-field left" type="text" v-model="name" name="name">
           <button :disabled="$root.loading" class="input-addon right checkmark-btn fas fa-check" type="submit"></button>
         </form>
@@ -25,7 +25,7 @@
         <td class="m-cell overflow-hidden" style="width:100%;">{{choice.name}}</td>
         <td class="s-cell center">
           <a @click.prevent="toggleChoice(choice.id, index)">
-            <i class="fas fa-check-square" :class="{'font-green' : choice.stock, 'font-grey' : !choice.stock}"></i>
+            <i class="" :class="{'fas fa-check-square font-green' : choice.stock, 'far fa-square font-grey' : !choice.stock}"></i>
           </a>
         </td>
         <td class="s-cell center">

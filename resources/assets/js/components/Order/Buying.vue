@@ -110,7 +110,7 @@
     </div>
 
     <!-- Transaction Confirm Form -->
-    <form slot="footer" v-on:submit.prevent="confirm(data.uid, index)" method="post" v-if="!data.trans && bankAccount.length">
+    <form slot="footer" v-on:submit.prevent="confirm(data.uid, index)" v-if="!data.trans && bankAccount.length">
       <div class="padding-15-horizontal padding-15-bottom">
         <table class="shipping-table">
           <tr>

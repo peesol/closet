@@ -7,7 +7,7 @@
 
   <transition name="slide-down-height">
     <div v-show="formVisible">
-      <form class="panel-body shadow-2" @submit.prevent="create" method="post">
+      <form class="panel-body shadow-2" @submit.prevent="create">
 
         <div class="form-group margin-10-bottom">
           <div class="input-group">

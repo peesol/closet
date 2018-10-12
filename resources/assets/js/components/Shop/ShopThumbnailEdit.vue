@@ -6,7 +6,7 @@
     <span class="font-small">100px*100px (500KB)</span>
   </label>
 
-  <form v-on:submit.prevent="edit" method="post">
+  <form v-on:submit.prevent="edit">
     <div class="flex">
       <div class="profile-thumbnail-input">
         <i class="fas fa-images"></i>
