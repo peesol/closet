@@ -4,7 +4,7 @@
 
 <div class="container">
             <div class="medium-panel transparent-bg">
-              <div class="full-width full-banner">
+              <div class="full-width full-banner banner margin-10-top">
                 <banner-slick :banners="{{ $banners }}"></banner-slick>
               </div>
             </div>
