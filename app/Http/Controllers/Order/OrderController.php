@@ -38,7 +38,10 @@ class OrderController extends Controller
   public function checkout(Order $order)
   {
     $accounts = Account::where('shop_id', $order->reciever_id)->get();
-    return view('order.checkout', ['order' => $order, 'accounts' => $accounts]);
+    return view('order.checkout', [
+      'order' => $order,
+      'accounts' => $accounts
+    ]);
   }
   /*
   |--------------------------------------------------------------------------
@@ -89,16 +92,18 @@ class OrderController extends Controller
       'uid' => '0' . $request->sender_id . '-0' . $id . '-' . Carbon::now('Asia/Bangkok')->format('dmY-His'),
       'title' => 'Order' . ' - ' . $request->sender_name . ' [' . date("d-m-Y", time()) . ']',
       'body' => json_encode($data),
-      'total' => (int)str_replace(',', '', $request->total_price),
+      'subtotal' => $request->products_total,
+      'total' => $request->include_shipping,
+      'fee' => $request->shipping_fee,
       'discount' => $request->discount,
       'shipping' => json_encode([$request->shipping]),
       'address' => $request->address
     ]);
 
-    foreach ($request->products as $product) {
-      $rowId = array_get($product, 'rowId');
-      Cart::remove($rowId);
-    }
+    // foreach ($request->products as $product) {
+    //   $rowId = array_get($product, 'rowId');
+    //   Cart::remove($rowId);
+    // }
 
     $reciever = User::find($order->reciever_id);
     $sender = User::find($order->sender_id);

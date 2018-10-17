@@ -24,8 +24,6 @@ class CreateShopsTable extends Migration
             $table->string('thumbnail')->nullable();
             $table->string('cover')->nullable();
             $table->integer('view_count')->default(0);
-            $table->string('shipping_date', 30)->nullable();
-            $table->json('shipping')->nullable();
             $table->json('promotion_points');
 
             $table->timestamps();

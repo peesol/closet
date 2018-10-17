@@ -15,9 +15,10 @@
       <span class="fas fa-truck"></span>&nbsp;{{__('message.free_shipping')}}
     </label>
     <label class="full-label input-label font-bold">{{__('message.shipping')}}</label>
-    @foreach ( json_decode($product->shop->shipping) as $item)
-      <li class="list-no-style">{{$item->method}}&nbsp;{{__('message.shipping_time')}}&nbsp;{{$item->time}}&nbsp;{{__('message.days')}}
-        <font class="{{ $item->free ? 'font-green font-bold' : ''}}">{{ $item->free ? __('message.free_shipping') : $item->fee . ' ฿' }}</font>
-      </li>
+    @foreach ( $shipping as $item)
+      <div class="padding-5">{{$item->method}}&nbsp;{{__('message.shipping_time')}}&nbsp;{{$item->time}}&nbsp;{{__('message.days')}}
+        <font class="{{ $item->free ? 'font-green font-bold' : ''}}">{{ $item->free ? __('message.free_shipping') : $item->fee . ' ฿' }}</font><br>
+        <small>{{ $item->multiply ? ' +' . $item->multiply_by . ' ฿ ' . __('message.shipping_multiply') : null }}</small>
+      </div>
     @endforeach
 </div>

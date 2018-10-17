@@ -82,6 +82,7 @@ Route::group(['middleware' => ['admin']], function () {
 Route::get('/api/getter/shop/{id}', 'Api\Getter@getShop');
 Route::get('/api/getter/shop_account/{id}', 'Api\Getter@getBankAccount');
 Route::get('/api/getter/my_products', 'Api\Getter@getMyProduct');
+Route::get('/api/getter/shipping_info/{id}', 'Api\Getter@getShipping');
 
 /*
 |--------------------------------------------------------------------------
@@ -142,6 +143,7 @@ Route::namespace('Cart')->group(function () {
   Route::put('/cart/update/qty', 'CartController@updateQty');
   Route::put('/cart/remove/{rowId}', 'CartController@removeProduct');
   Route::get('/cart/mycart', 'CartController@userCart');
+  Route::put('/cart/mycart/clear', 'CartController@clear');
 });
 
 

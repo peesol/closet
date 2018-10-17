@@ -64,9 +64,9 @@ class PromotionController extends Controller
     return response()->json();
   }
 
-  public function validateCode(Request $request, Discount $discount)
+  public function validateCode(Request $request)
   {
-    $match = Discount::where(['code' => $request->code, 'shop_id' => $request->shop_id])->first();
+    $match = DB::table('discounts')->where(['code' => $request->code, 'shop_id' => $request->shop_id])->first();
     if ($match) {
       return response()->json([
         'status' => true,

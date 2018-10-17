@@ -126,6 +126,8 @@ return [
     'shipping' => 'การจัดส่งสินค้า',
     'shipping_fee' => 'ค่าจัดส่งสินค้า',
     'shipping_time' => 'ส่งภายใน',
+    'shipping_multiply' => 'สำหรับชิ้นที่สองขึ้นไป',
+    'shipping_multiply_sub' => 'สินค้าชิ้นแรกไม่คิดค่าขนส่งเพิ่ม',
     'days' => 'วัน',
     'undefined' => 'ไม่ระบุ',
     'free_shipping' => 'จัดส่งฟรี',
@@ -141,7 +143,7 @@ return [
     'ordering_subject' => 'การสั่งซื้อสินค้าจาก',
     'ordering_body' => 'มีการสั่งซื้อสินค้าโดยมีรายการดังนี้',
     'confirm_order' => 'คุณสามารถยืนยันรายการสั่งซื้อนี้ได้โดยการคลิกที่นี่',
-    'total' => 'รวมทั้งหมด',
+    'total' => 'ค่าสินค้า',
     //confirmed order mail
     'confirmation' => 'การยืนยันรายการสั่งซื้อ',
     'from' => 'จาก',

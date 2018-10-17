@@ -98,13 +98,17 @@ class RegisterController extends Controller
           'name' => $data['shop_name'],
           'slug' => uniqid('shop_'),
           'profile_type' => $data['profile_type'],
-          'shipping_date' => null,
-          'shipping' => null,
           'promotion_points' => json_encode([
             'discount' => 3,
             'campaign' => 2,
             'flash_sale' => 2,
           ])
+        ]);
+
+        $shop->shipping()->create([
+          'shipping_date' => null,
+          'shipping_methods' => null,
+          'shipping_promotion' => null,
         ]);
 
         return $user;

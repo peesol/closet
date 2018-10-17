@@ -47,7 +47,7 @@ class Product extends Model
       'updated_at',
       'created_at',
     ];
-    
+
     public function shop()
     {
     	return $this->belongsTo(Shop::class);
@@ -79,6 +79,10 @@ class Product extends Model
     public function contacts()
     {
       return $this->shop->contact()->get();
+    }
+    public function shipping()
+    {
+      return $this->shop->shipping();
     }
     public function views()
     {

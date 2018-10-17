@@ -125,6 +125,8 @@ return [
     'shipping' => 'Shipping',
     'shipping_fee' => 'Shipping Fee',
     'shipping_time' => 'Shipping within',
+    'shipping_multiply' => 'each if you buy more than 1',
+    'shipping_multiply_sub' => 'Only if you buy more than one',
     'days' => 'days',
     'undefined' => 'unknown',
     'free_shipping' => 'Free Shipping',
@@ -139,7 +141,7 @@ return [
     //order mail
     'ordering_subject' => 'Order from',
     'ordering_body' => 'This order includes the following products',
-    'total' => 'Total',
+    'total' => 'Total products cost',
     //confirmed order mail
     'confirmation' => 'Order Confirmation',
     'from' => 'From',

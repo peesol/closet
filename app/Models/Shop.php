@@ -13,14 +13,7 @@ class Shop extends Model
       'description',
       'thumbnail',
       'cover',
-      'shipping_date',
-      'shipping',
       'promotion_points'
-    ];
-
-    protected  $casts = [
-      'shipping_date' => 'array',
-      'shipping' => 'array'
     ];
 
     public function user()
@@ -46,6 +39,10 @@ class Shop extends Model
     public function feedback()
     {
       return $this->hasMany(Feedback::class);
+    }
+    public function shipping()
+    {
+      return $this->hasOne(Shipping::class);
     }
     public function post()
     {

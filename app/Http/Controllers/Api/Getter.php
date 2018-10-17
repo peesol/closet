@@ -33,4 +33,11 @@ class Getter extends Controller
 
     return response()->json($data);
   }
+
+  public function getShipping($id)
+  {
+    $data = DB::table('shippings')->where('shop_id', $id)->get();
+
+    return response()->json(json_decode($data[0]->shipping_methods, true));
+  }
 }

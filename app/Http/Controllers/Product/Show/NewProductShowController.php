@@ -27,9 +27,10 @@ class NewProductShowController extends Controller
     } else {
       $noted = null;
     }
-
+    //dd($product->shipping->shipping_methods);
     return view('product.show', [
       'product' => $product,
+      'shipping' => $product->shipping->shipping_methods,
       'contacts' => $contacts,
       'noted' => $noted,
     ]);

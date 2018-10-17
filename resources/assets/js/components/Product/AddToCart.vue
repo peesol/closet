@@ -39,7 +39,6 @@ export default {
 
   props: [
     'productSlug',
-    'shippings',
     'productStock'
   ],
   methods: {
@@ -50,7 +49,6 @@ export default {
       this.addToCart({
         product: this.product,
         choice: this.selected ,
-        shipping: this.shippings,
         stock: this.productStock
       });
       toastr.success(this.$trans.translation.added_to_cart);

@@ -20943,6 +20943,19 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -20951,23 +20964,59 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 		return {
 			formVisible: null,
 			addressEdit: false,
+			shippingChoice: null,
 			confirmed: {
 				shop: null,
 				totalPrice: null,
 				discount: null,
-				discount_applied: false,
-				shipping: null
+				discountApplied: false,
+				shipping: null,
+				totalQty: null
 			},
+			confirmedTotal: null,
+			shippingFee: null,
 			code: null,
 			products: [],
-			loaded: false
+			loaded: false,
+			loadShipping: false
 		};
 	},
 
 	props: ['user'],
+	watch: {
+		'confirmed.discountApplied': {
+			handler: function handler() {
+				this.includeFee();
+			}
+		}
+	},
 	methods: _extends({
+		includeFee: function includeFee() {
+			var price = [];
+			var oldPrice = parseInt(this.confirmed.totalPrice.replace(/[^0-9]/g, ''), 10);
+			if (!this.confirmed.shipping.free) {
+				price.push(oldPrice);
+				price.push(this.confirmed.shipping.fee);
+				var feeIncluded = price.reduce(function (total, num) {
+					return total + num;
+				}, 0);
+				if (this.confirmed.shipping.multiply) {
+					var multiply = this.confirmed.shipping.multiply_by * [this.confirmed.totalQty - 1];
+					var totalMultiply = feeIncluded + multiply;
+					this.confirmedTotal = this.$number.currency(totalMultiply);
+					this.shippingFee = this.confirmed.shipping.fee + multiply;
+				} else {
+					this.shippingFee = this.confirmed.shipping.fee;
+					this.confirmedTotal = this.$number.currency(feeIncluded);
+				}
+			} else {
+				this.confirmedTotal = this.confirmed.totalPrice;
+			}
+		},
+
 		total: function total(shop) {
 			var totalPrice = [];
+			var totalQty = [];
 			Object.entries(shop).forEach(function (_ref) {
 				var _ref2 = _slicedToArray(_ref, 2),
 				    key = _ref2[0],
@@ -20975,10 +21024,12 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 				var subTotal = val.price * val.qty;
 				totalPrice.push(subTotal);
+				totalQty.push(val.qty);
 			});
 			var total = totalPrice.reduce(function (total, num) {
 				return total + num;
 			}, 0);
+			this.confirmed.totalQty = totalQty;
 			return this.$number.currency(total);
 		}
 	}, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_vuex__["mapActions"])(['removeFromCart']), {
@@ -21024,93 +21075,123 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 				});
 			}
 		},
-		proceed: function proceed(key, total) {
+		proceed: function proceed(key, total, id) {
+			var _this4 = this;
+
 			if (!confirm(this.$trans.translation.confirm_order_notice)) {
 				return;
 			} else {
 				if (this.confirmed.shop === key) {
-					this.confirmed.shop = null;
-					this.confirmed.totalPrice = null;
+					_.mapValues(this.confirmed, function () {
+						return null;
+					});
 					return;
 				}
 				this.confirmed.shop = key;
 				this.confirmed.totalPrice = total;
+				this.loadShipping = true;
+				this.$Progress.start();
+				this.$http.get(this.$root.url + '/api/getter/shipping_info/' + id).then(function (response) {
+					_this4.shippingChoice = response.body;
+					_this4.loadShipping = false;
+					_this4.$Progress.finish();
+				}, function (response) {
+					_this4.loadShipping = false;
+					_this4.$Progress.fail();
+				});
 			}
 		},
 		confirmOrder: function confirmOrder(shop, key) {
-			var _this4 = this;
+			var _this5 = this;
 
 			if (!confirm(this.$trans.translation.confirm_order + '?')) {
 				return;
 			} else {
 				this.$Progress.start();
-				this.$root.loading = true;
+				this.loaded = false;
 				return this.$http.post(this.$root.url + '/order/sending', {
 					products: shop,
 					sender_id: this.user.id,
 					sender_name: this.user.name,
 					reciever_name: key,
 					address: this.user.name + ' ' + this.user.address + ' (phone ' + this.user.phone + ')',
-					total_price: this.confirmed.totalPrice,
+					products_total: this.confirmed.totalPrice,
+					include_shipping: this.confirmedTotal,
 					discount: this.confirmed.discount,
-					shipping: this.confirmed.shipping
+					shipping: this.confirmed.shipping,
+					shipping_fee: this.shippingFee
 				}).then(function (response) {
-					_this4.$delete(_this4.products, key);
-					_this4.confirmed.shop = null;
-					_this4.confirmed.totalPrice = null;
-					_this4.confirmed.discount = null;
-					_this4.confirmed.discount_applied = null;
-					_this4.confirmed.shipping = null;
-					_this4.$Progress.finish();
-					_this4.$root.loading = false;
-					window.location.href = _this4.$root.url + '/order/' + response.body + '/checkout';
+					_this5.$delete(_this5.products, key);
+					_.mapValues(_this5.confirmed, function () {
+						return null;
+					});
+					window.location.href = _this5.$root.url + '/order/' + response.body + '/checkout';
+					_this5.$Progress.finish();
+					_this5.loaded = false;
 				}, function (response) {
-					_this4.$root.loading = false;
-					toastr.error(_this4.$trans.translation.error);
+					_this5.$Progress.fail();
+					_this5.loaded = false;
+					toastr.error(_this5.$trans.translation.error);
 				});
 			}
 		},
 		applyDiscount: function applyDiscount(id) {
-			var _this5 = this;
+			var _this6 = this;
 
 			this.$root.loading = true;
-			this.$http.post(this.$root.url + '/profile/promotions/code/validate', { code: this.code, shop_id: id }).then(function (response) {
-				_this5.$root.loading = false;
+			this.$http.post(this.$root.url + '/promotions/code/validate', { code: this.code, shop_id: id }).then(function (response) {
+				_this6.$root.loading = false;
 				if (response.body.status === true) {
 					if (response.body.type == 'percent') {
-						var price = _this5.confirmed.totalPrice.split(',').join('');
+						var price = _this6.confirmed.totalPrice.split(',').join('');
 						var calculated = price - (response.body.discount / 100 * price).toFixed(0);
 						if (calculated < 0) {
-							alert(_this5.$trans.translation.discount_not_valid);
-							_this5.code = null;
+							alert(_this6.$trans.translation.discount_not_valid);
+							_this6.code = null;
 						} else {
-							_this5.confirmed.totalPrice = _this5.$number.currency(calculated);
-							_this5.confirmed.discount = response.body.discount + '%';
-							_this5.confirmed.discount_applied = true;
-							_this5.formVisible = null;
-							_this5.code = null;
+							_this6.confirmed.totalPrice = _this6.$number.currency(calculated);
+							_this6.confirmed.discount = response.body.discount + '%';
+							_this6.confirmed.discountApplied = true;
+							_this6.formVisible = null;
+							_this6.code = null;
 						}
 					} else if (response.body.type == 'baht') {
-						var price = _this5.confirmed.totalPrice.split(',').join('');
+						var price = _this6.confirmed.totalPrice.split(',').join('');
 						var calculated = price - response.body.discount;
 						if (calculated < 0) {
-							alert(_this5.$trans.translation.discount_not_valid);
-							_this5.code = null;
+							alert(_this6.$trans.translation.discount_not_valid);
+							_this6.code = null;
 						} else {
-							_this5.confirmed.totalPrice = _this5.$number.currency(calculated);
-							_this5.confirmed.discount = response.body.discount + ' ฿';
-							_this5.confirmed.discount_applied = true;
-							_this5.formVisible = null;
-							_this5.code = null;
+							_this6.confirmed.totalPrice = _this6.$number.currency(calculated);
+							_this6.confirmed.discount = response.body.discount + ' ฿';
+							_this6.confirmed.discountApplied = true;
+							_this6.formVisible = null;
+							_this6.code = null;
 						}
 					}
 				} else {
-					alert(_this5.$trans.translation.discount_not_valid);
+					alert(_this6.$trans.translation.discount_not_valid);
 				}
 			}, function (response) {
-				_this5.$root.loading = false;
-				toastr.error(_this5.$trans.translation.error);
+				_this6.$root.loading = false;
+				toastr.error(_this6.$trans.translation.error);
 			});
+		},
+		clearCart: function clearCart() {
+			var _this7 = this;
+
+			if (!confirm(this.$trans.translation.delete_confirm)) {
+				return;
+			} else {
+				this.$root.loading = true;
+				this.$http.put(this.$root.url + '/cart/mycart/clear').then(function (response) {
+					_this7.products = [];
+					_this7.$root.loading = false;
+				}, function (response) {
+					_this7.products = [];
+					_this7.$root.loading = false;
+				});
+			}
 		}
 	}),
 	mounted: function mounted() {
@@ -23368,13 +23449,12 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
   },
 
 
-  props: ['productSlug', 'shippings', 'productStock'],
+  props: ['productSlug', 'productStock'],
   methods: _extends({}, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_vuex__["mapActions"])(['addToCart']), {
     add: function add() {
       this.addToCart({
         product: this.product,
         choice: this.selected,
-        shipping: this.shippings,
         stock: this.productStock
       });
       toastr.success(this.$trans.translation.added_to_cart);
@@ -24740,12 +24820,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = {
   data: function data() {
     return {
-      shipping_date: this.days,
-      shipping_methods: this.shipping,
+      shipping_date: this.shipping.shipping_date ? this.shipping.shipping_date : [],
+      shipping_methods: this.shipping.shipping_methods ? this.shipping.shipping_methods : [],
+      shipping_promotion: this.shipping.shipping_promotion ? this.shipping.shipping_promotion : [],
       toggled: null,
       form: {
         method: null,
@@ -24760,8 +24842,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     };
   },
 
-  props: ['shipping', 'days', 'view'],
-
+  props: ['shipping', 'view'],
   methods: {
     add: function add() {
       this.shipping_methods.push(this.form);
@@ -24790,12 +24871,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           days: this.shipping_date.sort(),
           methods: this.shipping_methods
         }).then(function (response) {
-          _this.$Progress.finish();
           _this.$root.loading = false;
           toastr.success(_this.$trans.translation.saved);
           if (_this.$route.path == '/sell/new') {
             document.location.href = _this.$root.url + '/sell/new';
           }
+          _this.$Progress.finish();
         }, function (response) {
           _this.$Progress.fail();
           _this.$root.loading = false;
@@ -24825,12 +24906,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         this.shipping_date.push(0, 1, 2, 3, 4, 5, 6);
       }
     }
-  },
-  created: function created() {
-    // if (!this.shopShipping.length) {
-    //   this.shipping_date = this.shopShipping.days
-    //   this.shipping_methods = this.shopShipping.methods
-    // }
   }
 };
 
@@ -28556,6 +28631,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   shipping_ex: 'ex.Post,DHL,etc.',
   shipping_multiply: 'Charge per-product shipping cost?',
   multiply_by: 'per product',
+  multiply_sub: 'First of each product not included.',
   choice_add: 'Add options',
   choice: 'Options',
   choice_name_ex: 'ex.color,size',
@@ -28569,7 +28645,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   field: 'this field',
   added_to_cart: 'Added to cart',
   add_to_cart: 'Add to cart',
+  cart: 'Cart',
+  cart_clear: 'Clear cart',
   total_price: 'total price',
+  total_shipping: 'Price includes shipping fee',
   address_edit: 'Use other address',
   order: 'Order',
   wait_transaction: 'Waiting for transaction',
@@ -28679,7 +28758,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   upload_photo_guide: 'คลิกเพื่อเลือกไฟล์รูปภาพ',
   upload_photo_size: 'รูปภาพที่อัพโหลดจะถูกเปลี่ยนขนาดเป็น 500px * 500px',
   upload_photo_size_limit: 'ขนาดของไฟล์รูปภาพไม่เกินรูปละ',
-  delete_confirm: 'คุณแน่ใจหรือไม่ว่าจะลบ?',
+  delete_confirm: 'คุณแน่ใจหรือไม่?',
   upload_submit: 'อัพโหลด',
   name: 'ชื่อ',
   shop_name: 'ชื่อโปรไฟล์',
@@ -28784,6 +28863,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   shipping_ex: 'เช่น EMS kerry หรือ อื่นๆ',
   shipping_multiply: 'คิดเพิ่มตามจำนวนสินค้า',
   multiply_by: 'ต่อชิ้น',
+  multiply_sub: 'ไม่รวมสินค้าชิ้นแรก',
   choice_add: 'เพิ่มตัวเลือก',
   choice: 'ตัวเลือก',
   choice_name_ex: 'เช่น สี ไซส์',
@@ -28797,7 +28877,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   field: 'ข้อมูล',
   added_to_cart: 'เพิ่มในตะกร้าแล้ว',
   add_to_cart: 'เพิ่มลงตระกร้า',
+  cart: 'รถเข็น',
+  cart_clear: 'เคลียร์รถเข็น',
   total_price: 'รวมทั้งหมด',
+  total_shipping: 'ราคารวมค่าส่ง',
   address_edit: 'คลิกเพื่อใช้ที่อยู่อื่น',
   order: 'รายการสั่งซื้อ',
   wait_transaction: 'รอแจ้งชำระเงิน',
@@ -29004,14 +29087,13 @@ var addToCart = function addToCart(_ref, _ref2) {
   var commit = _ref.commit;
   var product = _ref2.product,
       choice = _ref2.choice,
-      shipping = _ref2.shipping,
       stock = _ref2.stock;
 
 
-  commit('appendToCart', { product: product, choice: choice, shipping: shipping, stock: stock });
+  commit('appendToCart', { product: product, choice: choice, stock: stock });
 
   return __WEBPACK_IMPORTED_MODULE_0_vue___default.a.http.post(window.Closet.url + '/cart/add/' + product.name, {
-    product: product, choice: choice, shipping: shipping, stock: stock
+    product: product, choice: choice, stock: stock
   });
 };
 
@@ -53265,9 +53347,28 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "relative"
-  }, [_c('vue-progress-bar'), _vm._v(" "), _c('load-overlay', {
+  return _c('div', [_c('vue-progress-bar'), _vm._v(" "), _c('div', {
+    staticClass: "panel-heading"
+  }, [_c('label', {
+    staticClass: "heading"
+  }, [_vm._v(_vm._s(_vm.$trans.translation.cart))]), _vm._v(" "), _c('button', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (Object.keys(_vm.products).length),
+      expression: "Object.keys(products).length"
+    }],
+    staticClass: "flat-btn float-right font-15em",
+    on: {
+      "click": function($event) {
+        _vm.clearCart()
+      }
+    }
+  }, [_vm._v(_vm._s(_vm.$trans.translation.cart_clear) + " "), _c('i', {
+    staticClass: "fas fa-times"
+  })])]), _vm._v(" "), _c('div', {
+    staticClass: "panel-body-res relative"
+  }, [_c('load-overlay', {
     attrs: {
       "bg": "white-bg",
       "show": !_vm.loaded
@@ -53310,7 +53411,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
             _vm.removeProduct(item.rowId, index, item.options.shop_name)
           }
         }
-      }), _vm._v(" " + _vm._s(item.name) + "\n\t\t\t\t")]), _vm._v(" "), _c('td', {
+      }), _vm._v(" " + _vm._s(item.name) + "\n\t\t\t\t\t")]), _vm._v(" "), _c('td', {
         staticClass: "m-cell overflow-hidden"
       }, [_vm._v(_vm._s(item.options.choice ? item.options.choice : '---'))]), _vm._v(" "), _c('td', {
         staticClass: "s-cell"
@@ -53358,7 +53459,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       attrs: {
         "colspan": "2"
       }
-    }, [_c('strong', [_vm._v(_vm._s(_vm.$trans.translation.total_price) + " : " + _vm._s(_vm.total(shop)))]), _vm._v("฿\n\t\t\t\t")]), _vm._v(" "), _c('td', {
+    }, [_c('strong', [_vm._v(_vm._s(_vm.$trans.translation.total_price) + " : " + _vm._s(_vm.total(shop)))]), _vm._v(" ฿\n\t\t\t\t\t")]), _vm._v(" "), _c('td', {
       attrs: {
         "colspan": "2"
       }
@@ -53367,7 +53468,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       on: {
         "click": function($event) {
           $event.preventDefault();
-          _vm.proceed(key, _vm.total(shop))
+          _vm.proceed(key, _vm.total(shop), shop[0].options.shop_id)
         }
       }
     }, [_vm._v(_vm._s(_vm.$trans.translation.confirm_order))])])]), _vm._v(" "), _c('tr', {
@@ -53381,12 +53482,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       attrs: {
         "colspan": "4"
       }
-    }, [_c('strong', [_vm._v(_vm._s(_vm.$trans.translation.total_price) + " : " + _vm._s(_vm.confirmed.totalPrice))]), _vm._v("฿\n\t\t\t\t\t"), _c('a', {
+    }, [_c('strong', [_vm._v(_vm._s(_vm.$trans.translation.total_price) + " : " + _vm._s(_vm.confirmed.totalPrice))]), _vm._v("฿\n\t\t\t\t\t\t"), _c('a', {
       directives: [{
         name: "show",
         rawName: "v-show",
-        value: (_vm.confirmed.discount_applied === false),
-        expression: "confirmed.discount_applied === false"
+        value: (_vm.confirmed.discountApplied === false),
+        expression: "confirmed.discountApplied === false"
       }],
       staticClass: "link-text padding-15-left",
       on: {
@@ -53407,8 +53508,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       directives: [{
         name: "show",
         rawName: "v-show",
-        value: (_vm.formVisible == key && _vm.confirmed.discount_applied === false),
-        expression: "formVisible == key && confirmed.discount_applied === false"
+        value: (_vm.formVisible == key && _vm.confirmed.discountApplied === false),
+        expression: "formVisible == key && confirmed.discountApplied === false"
       }],
       staticClass: "input-group full-width padding-15-top"
     }, [_c('input', {
@@ -53459,13 +53560,19 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }, [_c('label', {
       staticClass: "input-label"
     }, [_vm._v(_vm._s(_vm.$trans.translation.shipping))]), _vm._v(" "), _c('form', {
+      staticClass: "relative",
       on: {
         "submit": function($event) {
           $event.preventDefault();
           _vm.confirmOrder(shop, key)
         }
       }
-    }, [_vm._l((shop[0].options.shipping), function(item, index) {
+    }, [_c('load-overlay', {
+      attrs: {
+        "bg": "white-bg",
+        "show": _vm.loadShipping
+      }
+    }), _vm._v(" "), _vm._l((_vm.shippingChoice), function(item, index) {
       return _c('li', {
         staticClass: "list-no-style padding-5"
       }, [_c('input', {
@@ -53486,6 +53593,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           "checked": _vm._q(_vm.confirmed.shipping, item)
         },
         on: {
+          "click": function($event) {
+            _vm.includeFee()
+          },
           "__c": function($event) {
             _vm.confirmed.shipping = item
           }
@@ -53494,8 +53604,18 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         attrs: {
           "for": index
         }
-      }, [_vm._v(_vm._s(item.method) + " " + _vm._s(_vm.$trans.translation.shipping_time) + " " + _vm._s(item.time) + " " + _vm._s(_vm.$trans.translation.days) + " " + _vm._s(item.free ? 'free' : '+' + item.fee + '฿'))])])
-    }), _vm._v(" "), _c('label', {
+      }, [_vm._v("\n\t\t\t\t\t\t\t\t" + _vm._s(item.method) + " " + _vm._s(_vm.$trans.translation.shipping_time) + " " + _vm._s(item.time) + " " + _vm._s(_vm.$trans.translation.days) + " " + _vm._s(item.free ? 'free' : item.fee + '฿') + "\n\t\t\t\t\t\t\t\t " + _vm._s(item.multiply ? '+' + item.multiply_by + ' ฿ ' + _vm.$trans.translation.multiply_by : '') + "\n\t\t\t\t\t\t\t")])])
+    }), _vm._v(" "), _c('div', {
+      directives: [{
+        name: "show",
+        rawName: "v-show",
+        value: (_vm.confirmedTotal !== null),
+        expression: "confirmedTotal !== null"
+      }],
+      staticClass: "full-width padding-10"
+    }, [_c('h3', {
+      staticClass: "font-green no-margin"
+    }, [_vm._v(_vm._s(_vm.$trans.translation.total_shipping) + " " + _vm._s(_vm.confirmedTotal) + " ฿")])]), _vm._v(" "), _c('label', {
       staticClass: "input-label margin-10-bottom"
     }, [_vm._v(_vm._s(_vm.$trans.translation.address) + " "), _c('a', {
       staticClass: "font-medium",
@@ -53513,7 +53633,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         expression: "!addressEdit"
       }],
       staticClass: "padding-5"
-    }, [_vm._v("\n\t\t\t\t\t\t\t" + _vm._s(_vm.user.name)), _c('br'), _vm._v("\n\t\t\t\t\t\t\t" + _vm._s(_vm.user.address)), _c('br'), _vm._v("\n\t\t\t\t\t\t\t" + _vm._s(_vm.$trans.translation.phone + ' ' + _vm.user.phone)), _c('br')]), _vm._v(" "), _c('div', {
+    }, [_vm._v("\n\t\t\t\t\t\t\t\t" + _vm._s(_vm.user.name)), _c('br'), _vm._v("\n\t\t\t\t\t\t\t\t" + _vm._s(_vm.user.address)), _c('br'), _vm._v("\n\t\t\t\t\t\t\t\t" + _vm._s(_vm.$trans.translation.phone + ' ' + _vm.user.phone)), _c('br')]), _vm._v(" "), _c('div', {
       directives: [{
         name: "show",
         rawName: "v-show",
@@ -53602,7 +53722,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "type": "submit"
       }
     }, [_vm._v(_vm._s(_vm.$trans.translation.place_order))])])], 2)])])], 2)
-  })), _vm._v(" "), _c('div', {
+  }))], 1), _vm._v(" "), _c('div', {
     directives: [{
       name: "show",
       rawName: "v-show",
@@ -56187,7 +56307,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "for": "shipping"
     }
-  }, [_vm._v(_vm._s(_vm.$trans.translation.shipping_methodss_add))])]), _vm._v(" "), _c('form', {
+  }, [_vm._v(_vm._s(_vm.$trans.translation.shipping_methods_add))])]), _vm._v(" "), _c('form', {
     staticClass: "panel-body",
     on: {
       "submit": function($event) {
@@ -56429,7 +56549,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "for": "no2"
     }
-  }, [_vm._v(_vm._s(_vm.$trans.translation.no))])])]), _vm._v(" "), _c('div', {
+  }, [_vm._v(_vm._s(_vm.$trans.translation.no))]), _c('br'), _vm._v(" "), _c('small', {
+    staticClass: "font-red"
+  }, [_vm._v("(" + _vm._s(_vm.$trans.translation.multiply_sub) + ")")])])]), _vm._v(" "), _c('div', {
     directives: [{
       name: "show",
       rawName: "v-show",

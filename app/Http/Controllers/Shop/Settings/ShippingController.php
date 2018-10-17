@@ -11,19 +11,15 @@ class ShippingController extends Controller
 {
   public function index()
   {
-    $shipping = Auth::user()->shop->shipping ? Auth::user()->shop->shipping : json_encode([]);
-    $days = Auth::user()->shop->shipping_date ? Auth::user()->shop->shipping_date : json_encode([]);
-    return view('shop.settings.shipping', [
-      'shipping' => $shipping,
-      'days' => $days
-    ]);
+    $shipping = Auth::user()->shop->shipping;
+    return view('shop.settings.shipping', ['shipping' => $shipping]);
   }
 
   public function update(Request $request)
   {
-    Auth::user()->shop->update([
-      'shipping' => json_encode($request->methods),
-      'shipping_date' => json_encode($request->days)
+    Auth::user()->shop->shipping->update([
+      'shipping_methods' => $request->methods,
+      'shipping_date' => $request->days
     ]);
     return ;
   }

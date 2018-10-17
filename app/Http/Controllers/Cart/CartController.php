@@ -23,7 +23,6 @@ class CartController extends Controller
           'shop_name' => $request->input('product.shop_name'),
           'shop_id' => $request->input('product.shop_id'),
           'choice' => $request->input('choice'),
-          'shipping' => $request->input('shipping'),
           'stock' => $request->input('stock'),
         ]
     ]);
@@ -72,5 +71,11 @@ class CartController extends Controller
   public function removeProduct(Request $request, $rowId)
   {
     return Cart::remove($rowId);
+  }
+
+  public function clear()
+  {
+    Cart::destroy();
+    return;
   }
 }

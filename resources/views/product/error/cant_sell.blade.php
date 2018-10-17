@@ -21,7 +21,7 @@
       </div>
     @endif
 
-    @if ($shop->shipping == null)
+    @if ($shop->shipping->shipping_methods == null)
       <div class="medium-panel margin-20-bottom panel-body">
         <div>
           <h3 class="font-red">{{__('message.cant_sell_shipping')}}</h3>
@@ -29,8 +29,9 @@
           <p>{{__('message.cant_sell_shipping_guide')}}</p>
         </div>
       </div>
-      <div class="small-panel">
-        <shipping-edit :shipping="[]" :days="[]" view="cant_sell"></shipping-edit>
+      <div class="small-panel relative">
+        <load-overlay bg="white-bg" :show="$root.loading" padding="60px 0"></load-overlay>
+        <shipping-edit :shipping="{{ $shipping }}" view="cant_sell"></shipping-edit>
       </div>
     @endif
 

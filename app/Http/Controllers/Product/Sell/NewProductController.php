@@ -14,8 +14,12 @@ class NewProductController extends Controller
 {
   public function index()
   {
-    if(!Auth::user()->account->count() || !Auth::user()->shop->shipping) {
-      return view('product.error.cant_sell', ['shop' => Auth::user()->shop]);
+    if(!Auth::user()->account->count() || !Auth::user()->shop->shipping->shipping_methods) {
+      $shipping = [
+        'shipping_date' => null,
+        'shipping_methods' => null,
+      ];
+      return view('product.error.cant_sell', ['shop' => Auth::user()->shop, 'shipping' => json_encode($shipping)]);
     } else {
       return view('product.sell');
     }

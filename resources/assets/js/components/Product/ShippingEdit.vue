@@ -20,7 +20,7 @@
 
   <div id="full-line" v-show="shipping_methods.length < 4">
     <div class="panel-heading">
-      <label class="heading" for="shipping">{{$trans.translation.shipping_methodss_add}}</label>
+      <label class="heading" for="shipping">{{$trans.translation.shipping_methods_add}}</label>
     </div>
     <form class="panel-body" @submit.prevent="add">
       <div class="form-group">
@@ -50,7 +50,8 @@
           <input :required="!form.free" id="yes2" type="radio" v-model="form.multiply" name="multiply" :value="true">
           <label for="yes2" class="input-label">{{$trans.translation.yes}}</label>
           <input id="no2" type="radio" v-model="form.multiply" name="multiply" :value="false">
-          <label for="no2" class="input-label">{{$trans.translation.no}}</label>
+          <label for="no2" class="input-label">{{$trans.translation.no}}</label><br>
+          <small class="font-red">({{$trans.translation.multiply_sub}})</small>
         </div>
       </div>
 
@@ -85,8 +86,9 @@
 export default {
   data() {
     return {
-      shipping_date: this.days,
-      shipping_methods: this.shipping,
+      shipping_date: this.shipping.shipping_date ? this.shipping.shipping_date : [],
+      shipping_methods: this.shipping.shipping_methods ? this.shipping.shipping_methods : [],
+      shipping_promotion: this.shipping.shipping_promotion ? this.shipping.shipping_promotion : [],
       toggled: null,
       form: {
         method: null,
@@ -97,11 +99,10 @@ export default {
         multiply_by: null,
       },
       saved: true,
-      daySaved: true
+      daySaved: true,
     }
   },
-  props: [ 'shipping', 'days', 'view'],
-
+  props: [ 'shipping', 'view'],
   methods: {
     add() {
       this.shipping_methods.push(this.form)
@@ -128,12 +129,12 @@ export default {
           days: this.shipping_date.sort(),
           methods: this.shipping_methods
         }).then(response => {
-          this.$Progress.finish()
           this.$root.loading = false
           toastr.success(this.$trans.translation.saved)
           if (this.$route.path == '/sell/new') {
             document.location.href = this.$root.url + '/sell/new';
           }
+          this.$Progress.finish()
         }, response => {
           this.$Progress.fail()
           this.$root.loading = false
@@ -163,12 +164,6 @@ export default {
         this.shipping_date.push(0,1,2,3,4,5,6)
       }
     }
-  },
-  created() {
-    // if (!this.shopShipping.length) {
-    //   this.shipping_date = this.shopShipping.days
-    //   this.shipping_methods = this.shopShipping.methods
-    // }
   }
 }
 </script>

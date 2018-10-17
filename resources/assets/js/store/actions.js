@@ -1,11 +1,11 @@
 import Vue from 'vue'
 
-export const addToCart = ({ commit }, { product, choice, shipping, stock }) => {
+export const addToCart = ({ commit }, { product, choice, stock }) => {
 
-  commit('appendToCart', { product, choice, shipping, stock } )
+  commit('appendToCart', { product, choice, stock } )
 
   return Vue.http.post(window.Closet.url + '/cart/add/' + product.name, {
-    product, choice, shipping, stock
+    product, choice, stock
   })
 
 }
