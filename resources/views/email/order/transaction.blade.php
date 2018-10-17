@@ -15,16 +15,19 @@
 @endcomponent
 
 @component('mail::panel')
-@foreach (json_decode($order->shipping) as $shipping)
-{{__('message.total')}} {{number_format($order->total)}} ฿
-@if($order->discount)
-({{__('message.discount')}} {{$order->discount}})
-@endif
-<br>
-{{__('message.shipping_fee')}} {{ $shipping->free ? __('message.free_shipping') : number_format($shipping->fee).' ฿' }}<br>
-{{__('message.shipping')}} {{ $shipping->method }} {{ __('message.shipping_time') . ' ' . $shipping->time . ' ' . __('message.days')}}<br>
-#{{__('message.total_price')}} {{number_format($order->total + $shipping->fee)}} ฿
-@endforeach
+
+  @foreach (json_decode($order->shipping) as $shipping)
+  {{__('message.total')}} {{ $order->subtotal }} ฿
+  @if($order->discount)
+  ({{__('message.discount')}} {{$order->discount}})
+  @endif
+  <br>
+  {{__('message.shipping_fee')}} {{ $shipping->free ? __('message.free_shipping') : $order->fee . ' ฿' }}<br>
+  {{__('message.shipping')}} {{ $shipping->method }} {{ __('message.shipping_time') . ' ' . $shipping->time . ' ' . __('message.days')}}<br>
+  {{ $shipping->multiply ? ' +' . $shipping->multiply_by . ' ฿ ' . __('message.shipping_multiply') : null }}<br>
+  #{{__('message.total_price')}} {{ $order->total }} ฿
+  @endforeach
+  
 @endcomponent
 
 {{__('message.address')}}<br>

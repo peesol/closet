@@ -99,7 +99,7 @@ class OrderController extends Controller
       'shipping' => json_encode([$request->shipping]),
       'address' => $request->address
     ]);
-
+    //
     // foreach ($request->products as $product) {
     //   $rowId = array_get($product, 'rowId');
     //   Cart::remove($rowId);
