@@ -30,7 +30,7 @@
         </div>
       </div>
       <div class="small-panel">
-        <shipping-edit :shop-shipping="[]"></shipping-edit>
+        <shipping-edit :shipping="[]" :days="[]" view="cant_sell"></shipping-edit>
       </div>
     @endif
 

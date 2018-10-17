@@ -13,8 +13,14 @@ class Shop extends Model
       'description',
       'thumbnail',
       'cover',
+      'shipping_date',
       'shipping',
       'promotion_points'
+    ];
+
+    protected  $casts = [
+      'shipping_date' => 'array',
+      'shipping' => 'array'
     ];
 
     public function user()
