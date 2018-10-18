@@ -23,7 +23,7 @@
       <label class="heading">{{__('message.cancle_order')}}</label>
     </div>
     <div class="inbox-wrap panel-body">
-      <h4>{{__('message.from')}}&nbsp;:&nbsp;{{$order->sender}}</h4>
+      <h4>{{__('message.to')}}&nbsp;:&nbsp;{{$order->sender}}</h4>
       {{__('message.ordering_body')}}
       <table class="c-table margin-10-top">
         <tr>
@@ -42,10 +42,28 @@
         @endforeach
       </table>
     </div>
+
+    <div class="padding-15-horizontal">
+      @foreach (json_decode($order->shipping) as $shipping)
+        <div class="form-group">
+          {{__('message.total')}} {{ $order->subtotal }} ฿
+          @if($order->discount)
+          ({{__('message.discount')}} {{$order->discount}})
+          @endif
+        </div>
+        <div class="form-group">
+          {{__('message.shipping_fee')}} {{ $shipping->free ? __('message.free_shipping') : $order->fee.' ฿' }}<br>
+          {{__('message.shipping')}} {{ $shipping->method }} {{ __('message.shipping_time') . ' ' . $shipping->time . ' ' . __('message.days')}}<br>
+          <small>{{ $shipping->multiply ? ' +' . $shipping->multiply_by . ' ฿ ' . __('message.shipping_multiply') : null }}</small><br>
+        </div>
+        <strong class="font-green font-large">{{__('message.total_price')}} {{ $order->total }}&nbsp;฿</strong>
+      @endforeach
+    </div>
+
     <div class="panel-body">
-      <form action="{{ config('app.url') . '/order/'. $order->uid . '/cancle_email' }}" method="POST">
+      <form onsubmit="return proceed();" action="{{ config('app.url') . '/order/'. $order->uid . '/cancle_email' }}" method="POST">
         <div class="align-right full-width">
-          <button class="orange-btn normal-sq" onclick="proceed()" type="submit" >{{ __('message.proceed') }}</button>
+          <button class="orange-btn normal-sq" type="submit" >{{ __('message.proceed') }}</button>
         </div>
         {{ csrf_field() }}
         {{ method_field('PUT') }}
@@ -62,8 +80,9 @@
 function proceed() {
   if (confirm("{{__('message.confirm_prompt')}}")) {
     return true;
+  } else {
+    return false
   }
-  return false;
 }
 </script>
 </body>

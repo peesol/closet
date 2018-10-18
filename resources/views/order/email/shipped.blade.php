@@ -48,25 +48,23 @@ window.Closet = {
                     <td class="s-cell">{{$item->qty}}</td>
                   </tr>
                   @endforeach
-                  <tr>
-                    <td colspan="4" class="no-border">{{__('message.total')}}&nbsp;:&nbsp;<span>{{ number_format($order->total).' '.'฿' }}</span></td>
-                  </tr>
-                  <tr>
-                    <td colspan="4" class="no-border">{{__('message.shipping_fee')}}&nbsp;:&nbsp;
-                      @foreach (json_decode($order->shipping) as $shipping)
-                        @if($shipping->free)
-                        <span class="font-bold font-green">{{__('message.free_shipping')}}</span>
-                        @else
-                        <span class="font-bold">{{ number_format($order->shipping_fee).' '.'฿' }}</span>
-                        @endif
-                      @endforeach
-                    </td>
-                  </tr>
-                  <tr>
-                    <td colspan="4"><h4 class="no-margin">{{__('message.total_price')}}&nbsp;:&nbsp;<span style="color:#4aae2a; font-weight:600;">{{number_format($order->total + $order->shipping_fee)}}</span>&nbsp;฿</h4></td>
-                  </tr>
                 </table>
               </div>
+              
+              @foreach (json_decode($order->shipping) as $shipping)
+                <div class="form-group">
+                  {{__('message.total')}} {{ $order->subtotal }} ฿
+                  @if($order->discount)
+                  ({{__('message.discount')}} {{$order->discount}})
+                  @endif
+                </div>
+                <div class="form-group">
+                  {{__('message.shipping_fee')}} {{ $shipping->free ? __('message.free_shipping') : $order->fee.' ฿' }}<br>
+                  {{__('message.shipping')}} {{ $shipping->method }} {{ __('message.shipping_time') . ' ' . $shipping->time . ' ' . __('message.days')}}<br>
+                  <small>{{ $shipping->multiply ? ' +' . $shipping->multiply_by . ' ฿ ' . __('message.shipping_multiply') : null }}</small><br>
+                </div>
+                <strong class="font-green font-large">{{__('message.total_price')}} {{ $order->total }}&nbsp;฿</strong>
+              @endforeach
 
               <h4 class="font-red">*{{__('message.transaction_notice')}}</h4>
               <form method="post" action="/order/{{$order->uid}}/shipped_email">

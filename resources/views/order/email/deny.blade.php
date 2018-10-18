@@ -42,6 +42,20 @@
         @endforeach
       </table>
     </div>
+    @foreach (json_decode($order->shipping) as $shipping)
+      <div class="form-group">
+        {{__('message.total')}} {{ $order->subtotal }} ฿
+        @if($order->discount)
+        ({{__('message.discount')}} {{$order->discount}})
+        @endif
+      </div>
+      <div class="form-group">
+        {{__('message.shipping_fee')}} {{ $shipping->free ? __('message.free_shipping') : $order->fee.' ฿' }}<br>
+        {{__('message.shipping')}} {{ $shipping->method }} {{ __('message.shipping_time') . ' ' . $shipping->time . ' ' . __('message.days')}}<br>
+        <small>{{ $shipping->multiply ? ' +' . $shipping->multiply_by . ' ฿ ' . __('message.shipping_multiply') : null }}</small><br>
+      </div>
+      <strong class="font-green font-large">{{__('message.total_price')}} {{ $order->total }}&nbsp;฿</strong>
+    @endforeach
     <div class="panel-body">
       <form action="{{ config('app.url') . '/order/'. $order->uid . '/deny_email' }}" method="POST">
         <label class="input-label" for="textarea">{{ __('message.deny_reason') }}</label>

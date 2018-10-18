@@ -67,16 +67,21 @@
         <div class="text-row">{{item.name}}&nbsp;{{item.options.choice ? item.options.choice :  '---'}}</div>
         <div class="text-row">{{$trans.translation.price}}&nbsp;{{ $number.currency(item.price) }}&nbsp;{{$trans.translation.amount}}&nbsp;:&nbsp;{{item.qty}}</div>
       </div>
+      <div class="order-product">
+        {{$trans.translation.total_price}}&nbsp;:&nbsp;{{data.subtotal}}&nbsp;฿
+      </div>
       <div>
         <table class="c-table">
           <tr v-for="item in data.shipping">
             <td colspan="4">
-              {{$trans.translation.shipping_fee}}&nbsp;:&nbsp;{{ item.free ? 'free' : item.fee + '฿' }}&nbsp;({{ item.method + ' ' + item.time + ' ' + $trans.translation.days}})
+              {{$trans.translation.shipping_fee}}&nbsp;:&nbsp;{{ item.free ? 'free' : data.fee + '฿' }}&nbsp;({{ item.method + ' ' + item.time + ' ' + $trans.translation.days}}
+              &nbsp;<small>{{ item.multiply ? '+' + item.multiply_by + ' ฿ ' + $trans.translation.multiply_by : ''}}</small>)
             </td>
           </tr>
           <tr>
             <td colspan="4">
-              <h4 class="no-margin">{{$trans.translation.total_price}}&nbsp;:&nbsp;<span class="font-red">{{data.total}}</span>&nbsp;฿</h4></td>
+              <h4 class="no-margin">{{$trans.translation.total_shipping}}&nbsp;:&nbsp;<span class="font-red">{{data.total}}</span>&nbsp;฿</h4>
+            </td>
           </tr>
           <tr>
             <td colspan="4">
