@@ -41,12 +41,17 @@ class AdminSeeder extends Seeder
           'thumbnail' => 'closet_thumbnail.jpg',
           'cover' => 'closet_cover.jpg',
           'view_count' => 0,
-          'shipping' => null,
           'promotion_points' => json_encode([
             'discount' => 5,
             'campaign' => 2,
             'flash_sale' => 2,
           ]),
+      ]);
+
+      $shop->shipping()->create([
+        'shipping_date' => null,
+        'shipping_methods' => null,
+        'shipping_promotion' => null,
       ]);
     }
 }
