@@ -27,10 +27,25 @@ class NewProductShowController extends Controller
     } else {
       $noted = null;
     }
-    //dd($product->shipping->shipping_methods);
+
+    //$shippingDate = $product->shipping->shipping_date;
+    $dates = $product->shipping->shipping_date;
+
+    $shippingDate = [];
+    if (count($dates) == 7) {
+      $shippingDate[] = __('message.days.everyday');
+    } elseif (array_has($dates, [0,1,2,3,4]) && count($dates) == 5) {
+      $shippingDate[] = __('message.days.weekday');
+    } else {
+      foreach ($dates as $day) {
+        $shippingDate[] = __('message.days.'.$day);
+      }
+    }
+
     return view('product.show', [
       'product' => $product,
       'shipping' => $product->shipping->shipping_methods,
+      'shippingDate' => $shippingDate,
       'contacts' => $contacts,
       'noted' => $noted,
     ]);

@@ -11,12 +11,19 @@
         <font class="font-bold font-large">{{ number_format($product->price) }}</font>&nbsp;฿
       @endif
     </p>
+    <label class="input-label font-bold">วันจัดส่งสินค้า</label>
+    @foreach ($shippingDate as $day)
+      <font class="arial">
+        {{ $day }}
+      </font>
+    @endforeach
+
     <label class="full-label {{ $product->shipping_free ? 'font-green' : 'not-display'}}">
       <span class="fas fa-truck"></span>&nbsp;{{__('message.free_shipping')}}
     </label>
     <label class="full-label input-label font-bold">{{__('message.shipping')}}</label>
     @foreach ( $shipping as $item)
-      <div class="padding-5">{{$item->method}}&nbsp;{{__('message.shipping_time')}}&nbsp;{{$item->time}}&nbsp;{{__('message.days')}}
+      <div class="padding-5">{{$item->method}}&nbsp;{{__('message.shipping_time')}}&nbsp;{{$item->time}}&nbsp;{{__('message.days.days')}}
         <font class="{{ $item->free ? 'font-green font-bold' : ''}}">{{ $item->free ? __('message.free_shipping') : $item->fee . ' ฿' }}</font><br>
         <small>{{ $item->multiply ? ' +' . $item->multiply_by . ' ฿ ' . __('message.shipping_multiply') : null }}</small>
       </div>
