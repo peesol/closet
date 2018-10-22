@@ -123,11 +123,13 @@ class RegisterController extends Controller
         {
             $this->validator($request->all())->validate();
             event(new Registered($user = $this->create($request->all())));
+            
             if($user->country == 'th') {
               $locale = 'th';
             } else {
               $locale = 'en';
             }
+
             Mail::to($user->email)->queue((new EmailVerification($user, $locale))->onQueue('high'));
 
             return back()->with('success', 'success');
