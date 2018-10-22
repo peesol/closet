@@ -145,6 +145,7 @@ return [
     'shipping_edit_notice' => 'These settings will affect all of your products.',
     //Orders
     'orders' => 'My Orders',
+    'order_status' => 'Status',
     'selling_order' => 'Selling',
     'buying_order' => 'Buying',
     'selling_history' => 'Selling history',

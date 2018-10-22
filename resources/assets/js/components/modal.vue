@@ -1,6 +1,7 @@
 <template>
   <div v-show="$root.showModal" class="modal-backdrop">
-    <div class="modal">
+    <div class="modal relative">
+      <load-overlay bg="white-bg" :show="$root.loading" padding="70px 0"></load-overlay>
       <slot name="body"></slot>
       <slot name="footer"></slot>
     </div>

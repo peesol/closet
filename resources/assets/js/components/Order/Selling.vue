@@ -43,14 +43,20 @@
   </div>
 
   <modal>
-    <div slot="body" class="relative">
-      <load-overlay bg="white-bg" :show="$root.loading" padding="70px 0"></load-overlay>
+    <div slot="body">
       <div class="panel-heading">
         <h4 class="no-margin">{{ data.title }}</h4>
         <sub>#{{ data.uid }}</sub>
       </div>
       <div id="full-line" class="padding-10">
         <span class="red-box padding-5" v-show="!data.trans">{{$trans.translation.wait_transaction}}</span>
+        <button v-show="!data.shipped" class="flat-btn float-right" @click.prevent="deny_form = !deny_form">{{$trans.translation.deny}}</button>
+        <div v-show="deny_form">
+          <form class="align-right"  @submit.prevent="deny(data.uid, index)">
+            <input required type="text" class="margin-10-vertical form-input full-width" :placeholder="$trans.translation.deny_reason" v-model="deny_reason">
+            <button type="submit" class="delete-btn normal-sq red-box">{{$trans.translation.confirm}}</button>
+          </form>
+        </div>
         <div v-show="data.trans && !data.shipped">
           <span class="yellow-box padding-5">{{$trans.translation.wait_delivery}}</span>
           <p><strong>{{$trans.translation.payment_date}}</strong>&nbsp;{{ data.date_paid }}</p>
@@ -69,34 +75,15 @@
       <div class="order-product">
         {{$trans.translation.total_price}}&nbsp;:&nbsp;{{data.subtotal}}&nbsp;฿
       </div>
-      <div>
-        <table class="c-table">
-          <tr v-for="item in data.shipping">
-            <td colspan="4">
-              {{$trans.translation.shipping_fee}}&nbsp;:&nbsp;{{ item.free ? 'free' : data.fee + '฿' }}&nbsp;({{ item.method + ' ' + item.time + ' ' + $trans.translation.days}}
-              &nbsp;<small>{{ item.multiply ? '+' + item.multiply_by + ' ฿ ' + $trans.translation.multiply_by : ''}}</small>)
-            </td>
-          </tr>
-          <tr>
-            <h4 class="no-margin">{{$trans.translation.total_shipping}}&nbsp;:&nbsp;<span class="font-red">{{data.total}}</span>&nbsp;฿</h4>
-          </tr>
-          <tr>
-            <td colspan="4">
-              <span class="font-bold">{{$trans.translation.address}}</span>
-              <p class="break-word">{{ data.address }}</p>
-            </td>
-          </tr>
-          <tr v-show="!data.shipped">
-            <td colspan="4">
-              <button class="delete-btn normal-sq red-box" @click.prevent="deny_form = !deny_form">{{$trans.translation.deny}}</button>
-              <form class="align-right" v-show="deny_form" @submit.prevent="deny(data.uid, index)">
-                <input required type="text" class="margin-10-vertical full-width" :placeholder="$trans.translation.deny_reason" v-model="deny_reason">
-                <button type="submit" class="delete-btn normal-sq red-box">{{$trans.translation.confirm}}</button>
-              </form>
-            </td>
-          </tr>
-        </table>
-      </div>
+
+        <div class="padding-10" v-if="data.shipping">
+          {{$trans.translation.shipping_fee}}&nbsp;:&nbsp;{{ data.shipping.free ? 'free' : data.fee + '฿' }}&nbsp;({{ data.shipping.method + ' ' + data.shipping.time + ' ' + $trans.translation.days}}
+          &nbsp;<small>{{ data.shipping.multiply ? '+' + data.shipping.multiply_by + ' ฿ ' + $trans.translation.multiply_by : ''}}</small>)
+          <h4 class="no-margin font-green">{{$trans.translation.total_shipping}}&nbsp;{{data.total}}&nbsp;฿</h4>
+          <span class="font-bold">{{$trans.translation.address}}</span>
+          <p class="break-word no-margin padding-30-bottom">{{ data.address }}</p>
+        </div>
+
     </div>
 
     <!-- Transaction waiting & Delivered -->
@@ -150,7 +137,7 @@ export default {
       var trans = 0;
       var shipped = 0;
       this.orders.forEach(function (item) {
-        if(item.trans) { trans++; }
+        if(item.trans && !item.shipped) { trans++; }
         if(!item.trans) { ordered++; }
         if(item.shipped) { shipped++; }
       });
@@ -210,6 +197,7 @@ export default {
       if (!confirm(this.$trans.translation.deny + '?')) {
         return
       } else {
+        this.$root.loading = true
         this.$http.put(this.$root.url + '/order/' + uid + '/deny', {
           reason: this.deny_reason,
           type: 1
@@ -217,9 +205,13 @@ export default {
           this.deny_reason = null;
           this.deny_form = false;
           this.$delete(this.orders, this.index);
-          toastr.success(this.$trans.translation.success);
+          this.$root.loading = false
           this.$Progress.finish();
+          toastr.success(this.$trans.translation.success);
           this.hide()
+        }, response => {
+          this.$root.loading = false
+          toastr.error(this.$trans.translation.error)
         });
       }
     }

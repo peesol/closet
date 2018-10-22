@@ -7,10 +7,11 @@ use Cart;
 use Auth;
 use Fractal;
 use Mail;
+use DB;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Closet\Http\Controllers\Controller;
-use Closet\Models\{Order, User, Account};
+use Closet\Models\{Order, User, Shop, Account};
 use Closet\Transformer\OrderTransformer;
 use Closet\Mail\{OrderingSeller, OrderingBuyer, TransactionConfirmed, OrderShipped, OrderDeny, OrderCancle};
 use Closet\Jobs\Product\DecreaseProduct;
@@ -35,10 +36,15 @@ class OrderController extends Controller
   {
     return view('order.history.buying');
   }
-  public function checkout(Order $order)
+  public function orderView(Order $order)
   {
-    $accounts = Account::where('shop_id', $order->reciever_id)->get();
-    return view('order.checkout', [
+    if (!$order->status['trans']) {
+      $accounts = Account::where('shop_id', $order->reciever_id)->get();
+    } else {
+      $accounts = json_encode([]);
+    }
+
+    return view('order.index', [
       'order' => $order,
       'accounts' => $accounts
     ]);
@@ -91,15 +97,20 @@ class OrderController extends Controller
       'reciever' => $request->reciever_name,
       'uid' => '0' . $request->sender_id . '-0' . $id . '-' . Carbon::now('Asia/Bangkok')->format('dmY-His'),
       'title' => 'Order' . ' - ' . $request->sender_name . ' [' . date("d-m-Y", time()) . ']',
-      'body' => json_encode($data),
+      'body' => $data,
       'subtotal' => $request->products_total,
       'total' => $request->include_shipping,
       'fee' => $request->shipping_fee,
       'discount' => $request->discount,
-      'shipping' => json_encode([$request->shipping]),
+      'status' => [
+        'trans' => false,
+        'shipped' => false,
+        'feedback' => false
+      ],
+      'shipping' => $request->shipping,
       'address' => $request->address
     ]);
-    
+
     foreach ($request->products as $product) {
       $rowId = array_get($product, 'rowId');
       Cart::remove($rowId);
@@ -142,7 +153,7 @@ class OrderController extends Controller
   //
   public function deny(Order $order, Request $request)
   {
-    if (!$order->trans) {
+    if ($order->where('status->trans', false)) {
       $order->update([
         'deleted_type' => $request->type
       ]);
@@ -172,8 +183,8 @@ class OrderController extends Controller
 
   public function transactionConfirm(Order $order, Request $request)
   {
-    $order->update([
-      'trans' => true,
+    DB::table('orders')->where('id', $order->id)->update([
+      'status->trans' => true,
       'date_paid' => $request->provider . ' ' . $request->date . ' ' . $request->time,
     ]);
 
@@ -189,14 +200,14 @@ class OrderController extends Controller
 
   public function confirmShipping(Order $order, Request $request)
   {
-    $order->update([
-      'shipped' => true,
+    DB::table('orders')->where('id', $order->id)->update([
+      'status->shipped' => true,
       'carrier' => $request->carrier,
       'tracking_number' => $request->tracking_number,
     ]);
 
     //Decrease stock
-    $data = json_decode($order->body);
+    $data = $order->body;
     DecreaseProduct::dispatch($data)->onQueue('low');
 
     $sender = User::find($order->sender_id);
@@ -207,5 +218,20 @@ class OrderController extends Controller
     }
     Mail::to($sender->email)->queue((new OrderShipped($order, $locale))->onQueue('email'));
     return response()->json($data);
+  }
+
+  public function leaveReview(Order $order, Request $request)
+  {
+    DB::table('orders')->where('id', $order->id)->update([
+      'status->feedback' => true
+    ]);
+
+    Shop::find($order->reciever_id)->feedback()->create([
+      'giver_id' => Auth::id(),
+      'points' => $request->points,
+      'comment' => $request->comment
+    ]);
+
+    return ;
   }
 }

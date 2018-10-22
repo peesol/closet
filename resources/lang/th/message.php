@@ -146,6 +146,12 @@ return [
     'shipping_edit_notice' => 'การตั้งค่านี้จะมีผลกับสินค้าทั้งหมดของคุณ',
     //Orders
     'orders' => 'รายการสั่งซื้อ',
+    'order_status' => [
+      'wait_payment' => 'รอแจ้งชำระเงิน',
+      'wait_shipping' => 'เตรียมส่งสินค้า',
+      'shipped' => 'จัดส่งสินค้าแล้ว',
+    ],
+    'confirm_payment' => 'แจ้งชำระเงิน',
     'selling_order' => 'รายการขาย',
     'buying_order' => 'รายการสั่งซื้อ',
     'selling_history' => 'ประวัติการขายที่ผ่านมา',

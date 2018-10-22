@@ -183,10 +183,11 @@ Route::group(['middleware' => ['auth']], function () {
   Route::post('/order/sending', 'Order\OrderController@store');
   Route::get('/order/selling', 'Order\OrderController@sellingPage')->name('sellingOrder');
   Route::get('/order/buying', 'Order\OrderController@buyingPage')->name('buyingOrder');
-  Route::put('/order/{order}/transaction', 'Order\OrderController@transactionConfirm');
+  Route::get('/order/{order}', 'Order\OrderController@orderView')->name('orderView');
+  Route::put('/order/{order}/transaction', 'Order\OrderController@transactionConfirm')->name('confirmPayment');
   Route::put('/order/{order}/confirm_shipping', 'Order\OrderController@confirmShipping');
   Route::put('/order/{order}/deny', 'Order\OrderController@deny');
-  Route::get('/order/{order}/checkout', 'Order\OrderController@checkout')->name('checkout');
+  Route::post('/order/{order}/reviews', 'Order\OrderController@leaveReview');
 });
 
 
@@ -361,7 +362,6 @@ Route::namespace('Shop')->group(function () {
   //shop Reviews
   Route::get('/{shop}/reviews/get', 'ReviewController@get');
   Route::get('/{shop}/reviews/total', 'ReviewController@getTotalReview');
-  Route::post('/{shop}/reviews', 'ReviewController@create');
   //Route::delete('/{shop}/reviews/delete/{feedback}', 'ReviewController@delete');
 
 });

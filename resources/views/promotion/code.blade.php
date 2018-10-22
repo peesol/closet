@@ -13,7 +13,7 @@
         <ul class="tab-nav-ul static">
             <button class="tab-nav-btn current">{{__('message.discount_code')}}</button>
             <button class="tab-nav-btn" onclick='document.location.href="{{route('promotionDiscount')}}"'>{{__('message.product_discount')}}</button>
-            <button class="tab-nav-btn" onclick='document.location.href="{{route('promotionCampaign')}}"'>{{__('message.campaign')}}</button>
+            {{-- <button class="tab-nav-btn" onclick='document.location.href="{{route('promotionCampaign')}}"'>{{__('message.campaign')}}</button> --}}
         </ul>
     </div>
     <div class="panel-body">

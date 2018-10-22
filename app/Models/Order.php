@@ -19,9 +19,7 @@ class Order extends Model
       'uid', 'title',
       'body',
       'confirmed',
-      'shipped',
-      'trans',
-      'feedback',
+      'status',
       'subtotal',
       'total',
       'fee',
@@ -33,7 +31,11 @@ class Order extends Model
       'address',
       'deleted_type'
     ];
-
+    protected $casts = [
+      'status' => 'array',
+      'body' => 'array',
+      'shipping' => 'array'
+    ];
     public function getRouteKeyname()
     {
       return 'uid';

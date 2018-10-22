@@ -1,29 +1,26 @@
 <template>
-<div v-show="!reviewed">
+<div class="relative" v-show="!reviewed">
   <vue-progress-bar></vue-progress-bar>
-  <div>
-    <button class="orange-btn normal-sq full-width" @click.prevent="getShop(shopId)">{{$trans.translation.write_review}}</button>
+  <div class="panel-heading">
+    <h2 class="no-margin font-grey">{{$trans.translation.write_review}}</h2>
   </div>
-  <div class="grey-bg border-radius-5 panel-body margin-10-top" v-show="formVisible">
-    <form>
+  <div class="margin-10-top panel-body-res">
+    <form class="grey-bg border-radius-5 panel-body">
       <div class="full-width rating">
-        <input id="rating5" type="radio" :value="5" v-model="points"></input>
+        <input @click="valueChanged" id="rating5" type="radio" :value="5" v-model="points"></input>
         <label for="rating5"></label>
-        <input id="rating4" type="radio" :value="4" v-model="points"></input>
+        <input @click="valueChanged" id="rating4" type="radio" :value="4" v-model="points"></input>
         <label for="rating4"></label>
-        <input id="rating3" type="radio" :value="3" v-model="points"></input>
+        <input @click="valueChanged" id="rating3" type="radio" :value="3" v-model="points"></input>
         <label for="rating3"></label>
-        <input id="rating2" type="radio" :value="2" v-model="points"></input>
+        <input @click="valueChanged" id="rating2" type="radio" :value="2" v-model="points"></input>
         <label for="rating2"></label>
-        <input id="rating1" type="radio" :value="1" v-model="points"></input>
+        <input @click="valueChanged" id="rating1" type="radio" :value="1" v-model="points"></input>
         <label for="rating1"></label>
       </div>
       <div class="form-group">
         <label class="full-label input-label">{{$trans.translation.comment}}</label>
-        <textarea required class="comment-input" rows="5" cols="80" v-model="comment"></textarea>
-      </div>
-      <div v-show="shop !== null" class="align-right full-width margin-10-top">
-        <button :disabled="$root.loading || !points" class="orange-btn normal-sq" @click.prevent="submit">{{$trans.translation.edit_submit}}</button>
+        <textarea @keyup="valueChanged" class="comment-input" rows="5" cols="80" v-model="comment"></textarea>
       </div>
     </form>
   </div>
@@ -40,38 +37,33 @@ export default {
       shop_points: null,
       points: null,
       comment: null,
-      shop: null,
-      reviewed: this.$parent.$parent.data.feedback
+      reviewed: this.status,
     }
   },
   props: [
-    'shopId',
-    'orderId'
+    'order',
+    'status'
   ],
   methods: {
-    getShop() {
-      this.shop = null
-      if (!this.formVisible) {
-        this.formVisible = true
-        this.$http.get(this.$root.url + '/api/getter/shop/' + this.shopId).then(response => {
-          this.shop = response.body
-        })
+    valueChanged() {
+      if (this.points && this.comment) {
+        this.$emit('disable', false)
       } else {
-        this.formVisible = false
+        this.$emit('disable', true)
       }
     },
     submit() {
-      if (!this.reviewed) {
+      if (!this.reviewed && this.points && this.comment) {
         this.$Progress.start()
         this.$root.loading = true
-        this.$http.post(this.$root.url + '/'+ this.shop.slug + '/reviews', {
+        this.$http.post(this.$root.url + '/order/'+ this.order + '/reviews', {
           points: this.points,
           comment: this.comment,
           order_id: this.orderId
         }).then(response => {
           this.points = null
           this.comment = null
-          this.$emit('submit')
+          this.$emit('success')
           this.$Progress.finish()
           this.$root.loading = false
           toastr.success(this.$trans.translation.success)

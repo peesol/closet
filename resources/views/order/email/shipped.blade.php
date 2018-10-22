@@ -51,6 +51,7 @@ window.Closet = {
                 </table>
               </div>
               
+              <div class="padding-15-horizontal">
               @foreach (json_decode($order->shipping) as $shipping)
                 <div class="form-group">
                   {{__('message.total')}} {{ $order->subtotal }} ฿
@@ -65,6 +66,7 @@ window.Closet = {
                 </div>
                 <strong class="font-green font-large">{{__('message.total_price')}} {{ $order->total }}&nbsp;฿</strong>
               @endforeach
+              </div>
 
               <h4 class="font-red">*{{__('message.transaction_notice')}}</h4>
               <form method="post" action="/order/{{$order->uid}}/shipped_email">

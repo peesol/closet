@@ -42,6 +42,8 @@
         @endforeach
       </table>
     </div>
+
+    <div class="padding-15-horizontal">
     @foreach (json_decode($order->shipping) as $shipping)
       <div class="form-group">
         {{__('message.total')}} {{ $order->subtotal }} ฿
@@ -56,6 +58,8 @@
       </div>
       <strong class="font-green font-large">{{__('message.total_price')}} {{ $order->total }}&nbsp;฿</strong>
     @endforeach
+    </div>
+
     <div class="panel-body">
       <form action="{{ config('app.url') . '/order/'. $order->uid . '/deny_email' }}" method="POST">
         <label class="input-label" for="textarea">{{ __('message.deny_reason') }}</label>

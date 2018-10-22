@@ -239,7 +239,7 @@ export default {
 				}).then(response => {
 					this.$delete(this.products, key)
 					_.mapValues(this.confirmed, () => null);
-					window.location.href = this.$root.url + '/order/' + response.body + '/checkout'
+					window.location.href = this.$root.url + '/order/' + response.body
 					this.$Progress.finish()
 					this.loaded = false
 				}, response => {

@@ -31,9 +31,7 @@ class CreateOrdersTable extends Migration
           $table->string('tracking_number', 40)->nullable();
           $table->text('address')->nullable();
           $table->string('date_paid', 100)->nullable();
-          $table->boolean('trans')->default(false);
-          $table->boolean('shipped')->default(false);
-          $table->boolean('feedback')->default(false);
+          $table->json('status');
           $table->tinyInteger('deleted_type')->nullable();
 
           $table->timestamps();

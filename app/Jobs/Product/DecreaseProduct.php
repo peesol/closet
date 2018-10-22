@@ -32,8 +32,8 @@ class DecreaseProduct implements ShouldQueue
     public function handle()
     {
       foreach ($this->data as $item) {
-        $product = Product::find($item->id);
-        $product->decrement('amount', $item->qty);
+        $product = Product::find($item['id']);
+        $product->decrement('amount', $item['qty']);
         if ($product->amount <= 0) {
           $product->update(['stock' => false]);
         }

@@ -44,20 +44,6 @@ class ReviewController extends Controller
     ]);
   }
 
-  public function create(Shop $shop, Request $request)
-  {
-    Order::find($request->order_id)->update([
-      'feedback' => true
-    ]);
-    $response = $shop->feedback()->create([
-      'giver_id' => Auth::id(),
-      'points' => $request->points,
-      'comment' => $request->comment
-    ]);
-
-    return response()->json($response);
-  }
-
   // public function delete(Shop $shop, Feedback $feedback)
   // {
   //   if (Auth::id() === $feedback->giver_id) {
