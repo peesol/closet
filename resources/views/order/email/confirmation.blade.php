@@ -48,12 +48,12 @@ window.Closet = {
           <th>{{__('message.price')}}</th>
           <th>{{__('message.qty')}}</th>
         </tr>
-        @foreach(json_decode($order->body) as $item)
+        @foreach($order->body as $item)
         <tr>
-          <td class="overflow-hidden m-cell">{{$item->name}}</td>
-          <td class="m-cell">{{$item->options->choice ? $item->options->choice : '---'}}</td>
-          <td class="s-cell">{{$item->price}}</td>
-          <td class="s-cell">{{$item->qty}}</td>
+          <td class="overflow-hidden m-cell">{{$item['name']}}</td>
+          <td class="m-cell">{{$item['options']['choice'] ? $item['options']['choice'] : '---'}}</td>
+          <td class="s-cell">{{number_format($item['price'])}}</td>
+          <td class="s-cell">{{$item['qty']}}</td>
         </tr>
         @endforeach
       </table>

@@ -44,31 +44,29 @@ window.Closet = {
                     <th>{{__('message.price')}}</th>
                     <th>{{__('message.qty')}}</th>
                   </tr>
-                  @foreach(json_decode($order->body) as $item)
+                  @foreach($order->body as $item)
                   <tr>
-                    <td class="overflow-hidden m-cell">{{$item->name}}</td>
-                    <td class="m-cell">{{$item->options->choice ? $item->options->choice : '---'}}</td>
-                    <td class="s-cell">{{$item->price}}</td>
-                    <td class="s-cell">{{$item->qty}}</td>
+                    <td class="overflow-hidden m-cell">{{$item['name']}}</td>
+                    <td class="m-cell">{{$item['options']['choice'] ? $item['options']['choice'] : '---'}}</td>
+                    <td class="s-cell">{{number_format($item['price'])}}</td>
+                    <td class="s-cell">{{$item['qty']}}</td>
                   </tr>
                   @endforeach
                 </table>
 
                 <div class="padding-15-horizontal">
-                  @foreach (json_decode($order->shipping) as $shipping)
-                    <div class="form-group">
-                      {{__('message.total')}} {{ $order->subtotal }} ฿
-                      @if($order->discount)
-                      ({{__('message.discount')}} {{$order->discount}})
-                      @endif
-                    </div>
-                    <div class="form-group">
-                      {{__('message.shipping_fee')}} {{ $shipping->free ? __('message.free_shipping') : $order->fee.' ฿' }}<br>
-                      {{__('message.shipping')}} {{ $shipping->method }} {{ __('message.shipping_time') . ' ' . $shipping->time . ' ' . __('message.days.days')}}<br>
-                      <small>{{ $shipping->multiply ? ' +' . $shipping->multiply_by . ' ฿ ' . __('message.shipping_multiply') : null }}</small><br>
-                    </div>
-                    <strong class="font-green font-large">{{__('message.total_price')}} {{ $order->total }}&nbsp;฿</strong>
-                  @endforeach
+                  <div class="form-group">
+                    {{__('message.total')}} {{ $order->subtotal }} ฿
+                    @if($order->discount)
+                    ({{__('message.discount')}} {{$order->discount}})
+                    @endif
+                  </div>
+                  <div class="form-group">
+                    {{__('message.shipping_fee')}} {{ $order->shipping['free'] ? __('message.free_shipping') : $order->fee.' ฿' }}<br>
+                    {{__('message.shipping')}} {{ $order->shipping['method'] }} {{ __('message.shipping_time') . ' ' . $order->shipping['time'] . ' ' . __('message.days.days')}}<br>
+                    <small>{{ $order->shipping['multiply'] ? ' +' . $order->shipping['multiply_by'] . ' ฿ ' . __('message.shipping_multiply') : null }}</small><br>
+                  </div>
+                  <strong class="font-green font-large">{{__('message.total_price')}} {{ $order->total }}&nbsp;฿</strong>
                 </div>
 
               </div>

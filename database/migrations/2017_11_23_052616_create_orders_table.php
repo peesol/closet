@@ -23,7 +23,7 @@ class CreateOrdersTable extends Migration
           $table->string('title');
           $table->text('body');
           $table->char('subtotal', 20);
-          $table->char('fee', 20);
+          $table->char('fee', 20)->nullable();
           $table->char('total', 20);
           $table->string('discount')->nullable();
           $table->text('shipping')->nullable();
