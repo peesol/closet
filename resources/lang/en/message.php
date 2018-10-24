@@ -219,6 +219,8 @@ return [
     'shipped_warning' => 'If you have any issues about products or shipping please contact the seller directly.',
     'not_defined' => 'Not Specified',
     'already_shipped' => 'Your order has been shipped.',
+    'shipped_review' => 'After you have received all of the items you have ordered. Please, leave a seller review.',
+    'click' => 'Click here',
     //Promotion
     'promotions' => 'Promotions',
     'promotions_manage' => 'Promotions management',

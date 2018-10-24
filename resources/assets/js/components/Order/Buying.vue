@@ -60,7 +60,7 @@ export default {
       var trans = 0;
       var shipped = 0;
       this.orders.forEach(function (item) {
-        if(item.trans) { trans++; }
+        if(item.trans && !item.shipped) { trans++; }
         if(!item.trans) { ordered++; }
         if(item.shipped) { shipped++; }
       });

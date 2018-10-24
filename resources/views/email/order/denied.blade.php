@@ -22,7 +22,9 @@
   <br>
   {{__('message.shipping_fee')}} {{ $order->shipping['free'] ? __('message.free_shipping') : $order->fee . ' ฿' }}<br>
   {{__('message.shipping')}} {{ $order->shipping['method'] }} {{ __('message.shipping_time') . ' ' . $order->shipping['time'] . ' ' . __('message.days.days')}}<br>
-  {{ $order->shipping['multiply'] ? ' +' . $order->shipping['multiply_by'] . ' ฿ ' . __('message.shipping_multiply') : null }}<br>
+  @if($order->shipping['multiply'])
+    {{ ' +' . $order->shipping['multiply_by'] . ' ฿ ' . __('message.shipping_multiply')}}<br>
+  @endif
   #{{__('message.total_price')}} {{ $order->total }} ฿
 
 @endcomponent
