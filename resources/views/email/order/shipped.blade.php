@@ -40,6 +40,12 @@
 
 @endcomponent
 
+#{{__('message.shipped_review')}}
+@component('mail::button', ['url' => url('/order/'. $order->uid )])
+
+    Click
+
+@endcomponent
 
 @component('mail::subcopy')
 
