@@ -24,7 +24,7 @@ window.Closet = {
 </head>
 <body>
         <div class="padding-30-vertical">
-          @if(!$order->shipped)
+          @if(!$order->status['shipped'])
           <div class="small-panel">
             <div class="panel-heading">
               <label class="heading">{{__('message.shipped_confirm')}}</label>

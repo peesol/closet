@@ -2,6 +2,7 @@
 
 namespace Closet\Http\Controllers\Order;
 
+use DB;
 use App;
 use Cart;
 use Fractal;
@@ -33,12 +34,16 @@ class EmailController extends Controller
 
   public function transactionPage(Order $order)
   {
-    $accounts = Account::where('shop_id', $order->reciever_id)->get();
+    if (!$order->status['trans']) {
+      $accounts = Account::where('shop_id', $order->reciever_id)->get();
 
-    return view('order.email.transaction', [
-      'order' => $order,
-      'accounts' => $accounts
-    ]);
+      return view('order.email.transaction', [
+        'order' => $order,
+        'accounts' => $accounts
+      ]);
+    } else {
+      return view('order.after.success', ['message' => __('message.already_transacted')]);
+    }
   }
 
   public function shippedPage(Order $order)
@@ -48,19 +53,19 @@ class EmailController extends Controller
 
   public function denyPage(Order $order)
   {
-    if (!$order->trans && !$order->deleted_at) {
+    if (!$order->status['trans'] || !$order->status['shipped']) {
       return view('order.email.deny', ['order' => $order]);
     } else {
-      return redirect()->route('orderDeleted', ['order' => $order]);
+      return view('order.after.error', ['message' => __('message.order_undeniable')]);
     }
   }
 
   public function canclePage(Order $order)
   {
-    if (!$order->trans && !$order->deleted_at) {
+    if (!$order->status['trans']) {
       return view('order.email.cancle', ['order' => $order]);
     } else {
-      return redirect()->route('orderDeleted', ['order' => $order]);
+      return view('order.after.error', ['message' => __('message.order_undeniable')]);
     }
   }
   /*
@@ -91,8 +96,8 @@ class EmailController extends Controller
   // }
   public function transactionConfirm(Order $order, Request $request)
   {
-    $order->update([
-      'trans' => true,
+    DB::table('orders')->where('id', $order->id)->update([
+      'status->trans' => true,
       'date_paid' => $request->provider . ' ' . $request->date . ' ' . $request->time,
     ]);
 
@@ -104,13 +109,13 @@ class EmailController extends Controller
     }
 
     Mail::to($reciever->email)->queue((new TransactionConfirmed($order, $locale))->onQueue('email'));
-    return redirect()->route('successOrder', ['order' => $order]);
+    return redirect()->back();
   }
 
   public function confirmShipping(Order $order, Request $request)
   {
-    $order->update([
-      'shipped' => true,
+    DB::table('orders')->where('id', $order->id)->update([
+      'status->shipped' => true,
       'carrier' => $request->carrier,
       'tracking_number' => $request->tracking_number,
     ]);
@@ -126,12 +131,12 @@ class EmailController extends Controller
     }
 
     Mail::to($sender->email)->queue((new OrderShipped($order, $locale))->onQueue('email'));
-    return redirect()->route('successOrder', ['order' => $order]);
+    return redirect()->back();
   }
 
   public function deny(Order $order, Request $request)
   {
-    if (!$order->trans) {
+    if (!$order->status['trans']) {
       $order->update([
         'deleted_type' => 1
       ]);
@@ -146,12 +151,12 @@ class EmailController extends Controller
 
       Mail::to($sender->email)->queue((new OrderDeny($order, $locale, $request->textarea))->onQueue('low'));
 
-      return redirect()->route('orderDeleted', ['order' => $order]);
+      return redirect()->route('orderDeleted');
     }
   }
   public function cancle(Order $order)
   {
-    if (!$order->trans) {
+    if (!$order->status['trans']) {
       $order->update([
         'deleted_type' => 2
       ]);
@@ -167,27 +172,12 @@ class EmailController extends Controller
 
       Mail::to($reciever->email)->queue((new OrderCancle($order, $locale, $contact))->onQueue('low'));
 
-      return redirect()->route('orderDeleted', ['order' => $order]);
+      return redirect()->route('orderDeleted');
     }
   }
 
-  public function deletedView(Order $order)
+  public function deletedView()
   {
-    if ($order->trans || $order->shipped) {
-      $message = __('message.order_undeniable');
-    } elseif ($order->deleted_at) {
-      $message = __('message.order_deleted');
-    }
-    return view('order.after.error', ['message' => $message]);
-  }
-
-  public function successView(Order $order)
-  {
-    if ($order->trans) {
-      $message = __('message.already_transacted');
-    } elseif ($order->shipped) {
-      $message = __('message.already_shipped');
-    }
-    return view('order.after.success', ['message' => $message]);
+    return view('order.after.error', ['message' => __('message.order_deleted')]);
   }
 }

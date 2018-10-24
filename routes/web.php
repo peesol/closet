@@ -164,8 +164,7 @@ Route::put('/order/{order}/shipped_email', 'Order\EmailController@confirmShippin
 Route::get('/order/{order}/deny_email', 'Order\EmailController@denyPage');
 Route::put('/order/{order}/deny_email', 'Order\EmailController@deny');
 
-Route::get('/order/{order}/order_email/success', 'Order\EmailController@successView')->name('successOrder');
-Route::get('/order/{order}/order_email/deleted', 'Order\EmailController@deletedView')->name('orderDeleted');
+Route::get('/error/order_deleted', 'Order\EmailController@deletedView')->name('orderDeleted');
 /*
 |--------------------------------------------------------------------------
 | Order via Site with auth middleware

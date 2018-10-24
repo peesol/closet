@@ -28,7 +28,7 @@ window.Closet = {
 </head>
 <body>
         <div class="padding-30-vertical">
-          @if(!$order->trans)
+          @if(!$order->status['trans'])
           <div class="small-panel">
             <div class="panel-heading">
               <label class="heading">{{__('message.transaction')}}</label>
@@ -82,7 +82,7 @@ window.Closet = {
                   <select required class="select-input" name="provider">
                     <option value="" selected disabled>--- Select ---</option>
                     @foreach ($accounts as $account)
-                      <option value="{{$account->provider_name}}{{ ' '. $account->type }}">{{ $account->provider_name }}{{ ' ' . $account->type == 'PromptPay' ? 'PromptPay' : null}}</option>
+                      <option value="{{ $account->provider_name }}&nbsp;{{ $account->type }}">{{ $account->provider_name }}&nbsp;{{ $account->type == 'PromptPay' ? 'PromptPay' : null}}</option>
                     @endforeach
                   </select>
                 </div>

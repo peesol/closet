@@ -153,7 +153,7 @@ class OrderController extends Controller
   //
   public function deny(Order $order, Request $request)
   {
-    if ($order->where('status->trans', false)) {
+    if (!$order->status['trans'] || !$order->status['shipped']) {
       $order->update([
         'deleted_type' => $request->type
       ]);
