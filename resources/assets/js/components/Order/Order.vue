@@ -19,7 +19,7 @@
       {{ order.title }}<br>
       {{ $trans.translation.seller }}&nbsp;{{ order.reciever }}
     </p>
-    <button class="delete-btn margin-10-bottom normal-sq red-box" @click.prevent="deny(order.uid)">{{$trans.translation.cancle_order}}</button>
+    <button v-show="!order.status.trans" class="delete-btn margin-10-bottom normal-sq red-box" @click.prevent="deny(order.uid)">{{$trans.translation.cancle_order}}</button>
     <table class="c-table">
       <tr>
         <th>{{ $trans.translation.products }}</th>
@@ -145,18 +145,20 @@ export default {
       })
     },
     deny(uid) {
-      this.$root.loading = true
-      if (!confirm(this.$trans.translation.deny + '?')) {
-        return
-      } else {
-        this.$http.put(this.$root.url + '/order/' + uid + '/deny', {
-          type: 2
-        }).then(response => {
-          window.location.href = this.$root.url + '/order/buying'
-        }, response => {
-          this.$root.loading = false
-          toastr.error(this.$trans.translation.error)
-        });
+      if (!this.order.status.trans) {    
+        if (!confirm(this.$trans.translation.deny + '?')) {
+          return
+        } else {
+          this.$root.loading = true
+          this.$http.put(this.$root.url + '/order/' + uid + '/deny', {
+            type: 2
+          }).then(response => {
+            window.location.href = this.$root.url + '/order/buying'
+          }, response => {
+            this.$root.loading = false
+            toastr.error(this.$trans.translation.error)
+          });
+        }
       }
     },
   }
