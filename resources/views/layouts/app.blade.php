@@ -41,15 +41,6 @@
   @endif
   <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
   @yield('scripts')
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127032353-1"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-127032353-1');
-  </script>
   <script>
   window.Laravel = {!! json_encode(['csrfToken' => csrf_token()]) !!};
 
@@ -71,6 +62,14 @@
          document.querySelector('.res-search-btn').classList.toggle('icon-cross');
       });
     })
+  </script>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127032353-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-127032353-1');
   </script>
 </head>
 <body>
