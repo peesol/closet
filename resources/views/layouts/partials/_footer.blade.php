@@ -8,6 +8,8 @@
   <button onclick='document.location.href="{{ route('categoryMain') }}"' class="dropdown-btn" name="button">
     <span class="fas fa-th-large"></span>
   </button>
-  <notification-icon element="footer"></notification-icon>
-  <cart-icon element="footer"></cart-icon>
+  @if (Auth::check())
+    <notification-icon element="footer"></notification-icon>
+    <cart-icon element="footer"></cart-icon>
+  @endif
 </div>
