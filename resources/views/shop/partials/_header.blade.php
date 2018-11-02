@@ -1,10 +1,7 @@
 @section('fb-events')
-  <script>
-    fbq('track', 'ViewContent', {
-      content_ids: {{ $shop->id }},
-      content_type: 'shop',
-    });
-  </script>
+<script>
+  fbq('track', 'ViewContent', { content_ids: '{{ $shop->id }}', content_type: 'shop' });
+</script>
 @endsection
 <div class="cover-wrap">
 
