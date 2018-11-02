@@ -68,6 +68,7 @@ Route::group(['middleware' => ['admin']], function () {
 
   Route::get('/secret/admin/database', 'Admin\AdminController@databasePage')->name('databaseAdmin');
   Route::get('/secret/admin/database/query', 'Admin\AdminController@query')->name('databaseQuery');
+  Route::put('/secret/admin/database/query', 'Admin\AdminController@insert')->name('databaseInsert');
 
   Route::get('/secret/admin/campaign', 'Admin\Campaign\CampaignController@index')->name('campaignAdmin');
   Route::post('/secret/admin/campaign/add', 'Admin\Campaign\CampaignController@post')->name('campaignAdd');

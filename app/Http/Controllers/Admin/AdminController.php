@@ -22,10 +22,20 @@ class AdminController extends Controller
 
   public function query(Request $request)
   {
-    $where = $request->where;
     $data = DB::table($request->table)->where($request->where, $request->arg, $request->number)->get();
     $data= json_decode( json_encode($data), true);
 
     return view('admin.database.result', ['data' => $data]);
+  }
+
+  public function insert(Request $request)
+  {
+    if ($request->password == 'ThisIsCloset2018') {
+      $data = DB::table($request->table)->where($request->where, $request->arg, $request->number)->update([
+        $request->column => $request->value
+      ]);
+      $data= json_decode( json_encode($data), true);
+      return view('admin.database.result', ['data' => $data]);
+    }
   }
 }

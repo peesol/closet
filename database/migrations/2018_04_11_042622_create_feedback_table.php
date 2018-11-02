@@ -19,6 +19,7 @@ class CreateFeedbackTable extends Migration
             $table->integer('giver_id')->unsigned();
             $table->tinyInteger('points');
             $table->text('comment');
+            $table->boolean('verified')->default(false);
 
             $table->foreign('shop_id')->references('id')->on('shops')->onDelete('cascade');
             $table->foreign('giver_id')->references('id')->on('users')->onDelete('cascade');
