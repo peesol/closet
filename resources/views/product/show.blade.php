@@ -2,11 +2,11 @@
 @section('title')
 {{$product->name.' - '}}
 @endsection
-{{-- @section('og-image')
-https://s3-ap-southeast-1.amazonaws.com/files.closet/product/thumbnail/{{ $product->thumbnail }}
-@endsection --}}
+@section('og-image')
+<meta property="og:image" content="https://s3-ap-southeast-1.amazonaws.com/files.closet/product/thumbnail/{{ $product->thumbnail }}">
+@endsection
 @section('og-title')
-{{ $product->name }}
+<meta property="og:title" content="{{ $product->name }}">
 @endsection
 @section('fb-events')
 <script>
