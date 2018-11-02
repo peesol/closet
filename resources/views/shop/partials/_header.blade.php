@@ -1,3 +1,11 @@
+@section('fb-events')
+  <script>
+    fbq('track', 'ViewContent', {
+      content_ids: {{ $shop->id }},
+      content_type: 'shop',
+    });
+  </script>
+@endsection
 <div class="cover-wrap">
 
 @if(Auth::check() && Auth::user()->id === $shop->user_id)

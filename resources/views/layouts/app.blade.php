@@ -89,6 +89,7 @@
   </noscript>
 </head>
 <body>
+  @yield('fb-events')
   <div class="overlay"></div>
     <div id="app" v-cloak>
 
