@@ -3,11 +3,7 @@
 {{$product->name.' - '}}
 @endsection
 @section('og-image')
-  @if (count($product->productimages))
-  https://s3-ap-southeast-1.amazonaws.com/files.closet/product/photo/{{ $product->productimages->first()->filename}}
-  @else
-  https://s3-ap-southeast-1.amazonaws.com/files.closet/product/thumbnail/{{ $product->thumbnail }}
-  @endif
+https://s3-ap-southeast-1.amazonaws.com/files.closet/product/thumbnail/{{ $product->thumbnail }}
 @endsection
 @section('fb-events')
 <script>
