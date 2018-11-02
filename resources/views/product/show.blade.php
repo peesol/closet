@@ -12,7 +12,7 @@
 @endsection
 @section('og-catalog')
 <meta property="og:url" content="https://example.org/facebook">
-<meta property="product:brand" content="">
+<meta property="product:brand" content="{{ $product->name }}">
 <meta property="product:availability" content="{{ $product->stock ? 'in stock' : 'out of stock' }}">
 <meta property="product:condition" content="new">
 <meta property="product:price:amount" content="{{ $product->price }}">
