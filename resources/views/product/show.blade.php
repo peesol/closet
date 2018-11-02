@@ -3,7 +3,7 @@
 {{$product->name.' - '}}
 @endsection
 @section('og-image')
-<meta property="og:image" content="https://s3-ap-southeast-1.amazonaws.com/images.closet/product/thumbnail/{{ $product->thumbnail }}">
+<meta property="og:image" content="https://s3-ap-southeast-1.amazonaws.com/images.closet.com/product/thumbnail/{{ $product->thumbnail }}">
 @endsection
 @section('og-title')
 <meta property="og:title" content="{{ $product->name }}">
