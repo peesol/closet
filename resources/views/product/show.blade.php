@@ -10,6 +10,18 @@
   @endif
 @endsection
 @section('fb-events')
+<header>
+ <meta property="og:title" content="{{ $product->name }}">
+ <meta property="og:description" content="{{ $product->description }}">
+ <meta property="og:url" content="{{ config('app.url') . '/product/' . $product->uid }}">
+ <meta property="og:image" content="https://s3-ap-southeast-1.amazonaws.com/files.closet/product/thumbnail/{{ $product->thumbnail }}">
+ <meta property="product:brand" content="unidentified">
+ <meta property="product:availability" content="{{ $product->stock ? 'in stock' : 'out of stock' }}">
+ <meta property="product:condition" content="new">
+ <meta property="product:price:amount" content="{{ $product->price }}">
+ <meta property="product:price:currency" content="THB">
+ <meta property="product:retailer_item_id" content="{{ $product->id }}">
+</header>
 <script>
   fbq('track', 'ViewContent', {
     content_ids: {{ $product->id }},
@@ -24,18 +36,6 @@ window.addEventListener("load",function(){var t=document.querySelectorAll(".tab-
 </script>
 @endsection
 @section('content')
-<header>
- <meta property="og:title" content="{{ $product->name }}">
- <meta property="og:description" content="{{ $product->description }}">
- <meta property="og:url" content="{{ config('app.url') . '/product/' . $product->uid }}">
- <meta property="og:image" content="https://s3-ap-southeast-1.amazonaws.com/files.closet/product/thumbnail/{{ $product->thumbnail }}">
- <meta property="product:brand" content="unidentified">
- <meta property="product:availability" content="{{ $product->stock ? 'in stock' : 'out of stock' }}">
- <meta property="product:condition" content="new">
- <meta property="product:price:amount" content="{{ $product->price }}">
- <meta property="product:price:currency" content="THB">
- <meta property="product:retailer_item_id" content="{{ $product->id }}">
-</header>
 <div class="container">
   @include('product.partials._login_warn')
             <div class="medium-panel">
