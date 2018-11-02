@@ -5,6 +5,9 @@
 @section('og-image')
 https://s3-ap-southeast-1.amazonaws.com/files.closet/product/thumbnail/{{ $product->thumbnail }}
 @endsection
+@section('og-title')
+{{ $product->name }}
+@endsection
 @section('fb-events')
 <script>
   fbq('track', 'ViewContent', {
@@ -13,10 +16,7 @@ https://s3-ap-southeast-1.amazonaws.com/files.closet/product/thumbnail/{{ $produ
   });
 </script>
 <header>
- <meta property="og:title" content="{{ $product->name }}">
  <meta property="og:description" content="{{ $product->description }}">
- <meta property="og:url" content="{{ config('app.url') . '/product/' . $product->uid }}">
- <meta property="og:image" content="https://s3-ap-southeast-1.amazonaws.com/files.closet/product/thumbnail/{{ $product->thumbnail }}">
  <meta property="product:brand" content="unidentified">
  <meta property="product:availability" content="{{ $product->stock ? 'in stock' : 'out of stock' }}">
  <meta property="product:condition" content="new">

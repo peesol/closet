@@ -7,8 +7,8 @@
 
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
-  @hasSection('og-image')
-    @yield('og-title')
+  @hasSection('og-title')
+  <meta property="og:title" content="@yield('og-title')">
   @else
   <meta property="og:title" content="@yield('title'){{config('app.name') }}">
   @endif
@@ -23,6 +23,7 @@
     <meta property="og:description" content="ซื้อขายเสื้อผ้า สินค้าแฟชั่น เครื่องสำอาง อาหารเสริม เปิดร้านออนไลน์ฟรี">
   @endif
   @yield('og-catalog')
+  <meta property="og:url" content="{{ url()->full() }}">
   <title>@yield('title'){{config('app.name') }}</title>
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
