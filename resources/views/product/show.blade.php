@@ -10,7 +10,7 @@
   @endif
 @endsection
 @section('fb-events')
-<header>
+{{-- <header>
  <meta property="og:title" content="{{ $product->name }}">
  <meta property="og:description" content="{{ $product->description }}">
  <meta property="og:url" content="{{ config('app.url') . '/product/' . $product->uid }}">
@@ -21,13 +21,44 @@
  <meta property="product:price:amount" content="{{ $product->price }}">
  <meta property="product:price:currency" content="THB">
  <meta property="product:retailer_item_id" content="{{ $product->id }}">
-</header>
+</header> --}}
 <script>
   fbq('track', 'ViewContent', {
     content_ids: {{ $product->id }},
     content_type: 'product',
   });
 </script>
+<header>
+
+...
+
+<!-- Open Graph Metadata -->
+
+ <meta property="og:title" content="Facebook T-Shirt">
+
+ <meta property="og:description" content="Unisex Facebook T-shirt, Small">
+
+ <meta property="og:url" content="https://example.org/facebook">
+
+ <meta property="og:image" content="https://example.org/facebook.jpg">
+
+ <meta property="product:brand" content="Facebook">
+
+ <meta property="product:availability" content="in stock">
+
+ <meta property="product:condition" content="new">
+
+ <meta property="product:price:amount" content="9.99">
+
+ <meta property="product:price:currency" content="USD">
+
+ <meta property="product:retailer_item_id" content="facebook_tshirt_001">
+
+<!-- End Open Graph Metadata -->
+
+...
+
+</header>
 @endsection
 
 @section('scripts')
