@@ -2,13 +2,13 @@
 @section('title')
 {{$product->name.' - '}}
 @endsection
-@section('og-image')
+{{-- @section('og-image')
   @if (count($product->productimages))
   https://s3-ap-southeast-1.amazonaws.com/files.closet/product/photo/{{ $product->productimages->first()->filename}}
   @else
   https://s3-ap-southeast-1.amazonaws.com/files.closet/product/thumbnail/{{ $product->thumbnail }}
   @endif
-@endsection
+@endsection --}}
 @section('fb-events')
 {{-- <header>
  <meta property="og:title" content="{{ $product->name }}">
