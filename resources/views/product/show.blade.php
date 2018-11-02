@@ -2,9 +2,9 @@
 @section('title')
 {{$product->name.' - '}}
 @endsection
-@section('og-image')
-https://s3-ap-southeast-1.amazonaws.com/files.closet/product/thumbnail/p_thumb_5bdbd60f98b481.jpg
-@endsection
+{{-- @section('og-image')
+https://s3-ap-southeast-1.amazonaws.com/files.closet/product/thumbnail/{{ $product->thumbnail }}
+@endsection --}}
 @section('og-title')
 {{ $product->name }}
 @endsection
