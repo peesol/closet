@@ -10,9 +10,12 @@
   https://s3-ap-southeast-1.amazonaws.com/files.closet/product/thumbnail/{{ $product->thumbnail }}
   @endif
 @endsection
+@section('og-title')
+<meta property="og:title" content="{{ $product->name }}">
+@endsection
 @section('og-catalog')
 <meta property="og:url" content="https://example.org/facebook">
-<meta property="product:brand" content="{{ $product->name }}">
+<meta property="product:brand" content="unidentified">
 <meta property="product:availability" content="{{ $product->stock ? 'in stock' : 'out of stock' }}">
 <meta property="product:condition" content="new">
 <meta property="product:price:amount" content="{{ $product->price }}">
@@ -22,7 +25,7 @@
 <meta property="product:sale_price:currency" content="THB">
 @endif
 <meta property="product:retailer_title" content="{{ $product->shop->name }}">
-<meta property="product:retailer_item_id" content="{{ $product->shop->id }}">
+<meta property="product:retailer_item_id" content="{{ $product->id }}">
 @endsection
 @section('fb-events')
 <script>
