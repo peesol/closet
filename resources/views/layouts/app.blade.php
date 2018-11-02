@@ -8,7 +8,7 @@
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
   @hasSection('og-image')
-  <meta property="og:title" content="@yield('og-title')">
+    @yield('og-title')
   @else
   <meta property="og:title" content="@yield('title'){{config('app.name') }}">
   @endif
