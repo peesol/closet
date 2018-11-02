@@ -4,9 +4,18 @@
 @endsection
 @section('og-image')
 <meta property="og:image" content="https://s3-ap-southeast-1.amazonaws.com/images.closet.com/product/thumbnail/{{ $product->thumbnail }}">
+<meta property="product:brand" content="unidentified">
+<meta property="product:availability" content="{{ $product->stock ? 'in stock' : 'out of stock' }}">
+<meta property="product:condition" content="new">
+<meta property="product:price:amount" content="{{ $product->price }}">
+<meta property="product:price:currency" content="THB">
+<meta property="product:retailer_item_id" content="{{ $product->id }}">
 @endsection
 @section('og-title')
 <meta property="og:title" content="{{ $product->name }}">
+@endsection
+@section('og-description')
+{{ $product->description }}
 @endsection
 @section('fb-events')
 <script>
@@ -15,15 +24,6 @@
     content_type: 'product',
   });
 </script>
-<header>
- <meta property="og:description" content="{{ $product->description }}">
- <meta property="product:brand" content="unidentified">
- <meta property="product:availability" content="{{ $product->stock ? 'in stock' : 'out of stock' }}">
- <meta property="product:condition" content="new">
- <meta property="product:price:amount" content="{{ $product->price }}">
- <meta property="product:price:currency" content="THB">
- <meta property="product:retailer_item_id" content="{{ $product->id }}">
-</header>
 @endsection
 
 @section('scripts')
