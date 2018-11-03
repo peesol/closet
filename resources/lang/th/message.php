@@ -31,7 +31,7 @@ return [
     'address_tip' => 'ข้อมูลด้านล่างจะถูกใช้ในขั้นตอนการสั่งซื้อสินค้า',
     //Home
     'home_signup' => 'ช็อป หรือ ขาย?',
-    'home_signup_link' => 'สมัครสมาชิกเลย',
+    'home_signup_link' => 'สมัครสมาชิกที่นี่',
     'featured_product' => 'สินค้าแนะนำ',
     'featured_shops' => 'ร้านค้าแนะนำ',
     'trending_product' => 'สินค้ามาแรง',

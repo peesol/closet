@@ -2,6 +2,11 @@
 @section('title')
 {{__('message.register').' - '}}
 @endsection
+@section('fb-events')
+<script>
+  fbq('track', 'ViewContent');
+</script>
+@endsection
 @section('content')
 <div class="container">
   @if (session('success'))
