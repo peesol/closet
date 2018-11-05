@@ -38,6 +38,11 @@ class Getter extends Controller
   {
     $data = DB::table('shippings')->where('shop_id', $id)->get();
 
-    return response()->json(json_decode($data[0]->shipping_methods, true));
+    $data = [
+      'methods' => json_decode($data[0]->shipping_methods, true),
+      'promotion' => json_decode($data[0]->shipping_promotion, true),
+    ];
+
+    return response()->json($data);
   }
 }

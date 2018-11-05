@@ -45,7 +45,8 @@
 					</tr>
 					<tr v-show="confirmed.shop == key">
 						<td colspan="4">
-							<label class="input-label">{{$trans.translation.shipping}}</label>
+							<label class="input-label">{{$trans.translation.shipping}}</label><br>
+							<span class="font-green">{{ current_promotion }}</span>
 							<form @submit.prevent="confirmOrder(shop, key)" class="relative">
 							<load-overlay bg="white-bg" :show="loadShipping"></load-overlay>
 							<li class="list-no-style padding-5" v-for="item, index in shippingChoice">
@@ -101,6 +102,7 @@ export default {
 			formVisible: null,
 			addressEdit: false,
 			shippingChoice: null,
+			shippingPromotion: null,
 			confirmed: {
 				shop: null,
 				totalPrice: null,
@@ -115,6 +117,7 @@ export default {
 			products: [],
 			loaded: false,
 			loadShipping: false,
+			checkout: false,
 		}
 	},
 	props: ['user'],
@@ -122,6 +125,13 @@ export default {
 		'confirmed.discountApplied' : {
 			handler() {
 				this.includeFee()
+			}
+		}
+	},
+	computed: {
+		current_promotion() {
+			if (this.checkout && Object.keys(this.shippingPromotion).length) {
+				return this.$trans.translation.shipping_promotion_input.label + ' ' + this.$number.currency(this.shippingPromotion.amount) + ' ' + this.$trans.translation.shipping_promotion_input[this.shippingPromotion.type]
 			}
 		}
 	},
@@ -136,13 +146,40 @@ export default {
 				if (this.confirmed.shipping.multiply) {
 					var multiply = this.confirmed.shipping.multiply_by * [this.confirmed.totalQty - 1]
 					var totalMultiply = feeIncluded + multiply
-					this.confirmedTotal = this.$number.currency(totalMultiply)
 					this.shippingFee = this.confirmed.shipping.fee + multiply
+					//calculate multiply
+					if (Object.keys(this.shippingPromotion).length) {
+						var promotionFee = totalMultiply - this.shippingFee
+						if (this.shippingPromotion.type == 'cost' && oldPrice >=  this.shippingPromotion.amount) {
+							this.shippingFee = 0
+							this.confirmedTotal = this.$number.currency(promotionFee)
+						} else if (this.shippingPromotion.type == 'qty' && this.confirmed.totalQty >=  this.shippingPromotion.amount) {
+							this.shippingFee = 0
+							this.confirmedTotal = this.$number.currency(promotionFee)
+						} else {
+							this.confirmedTotal = this.$number.currency(totalMultiply)
+						}
+					} else {
+						this.confirmedTotal = this.$number.currency(totalMultiply)
+					}
 				} else {
-					this.shippingFee = this.confirmed.shipping.fee
-					this.confirmedTotal = this.$number.currency(feeIncluded)
+					if (Object.keys(this.shippingPromotion).length) {
+						var promotionFee = feeIncluded - this.confirmed.shipping.fee
+						if (this.shippingPromotion.type == 'cost' && oldPrice >=  this.shippingPromotion.amount) {
+							this.shippingFee = 0
+							this.confirmedTotal = this.$number.currency(promotionFee)
+						} else if (this.shippingPromotion.type == 'qty' && this.confirmed.totalQty >=  this.shippingPromotion.amount) {
+							this.shippingFee = 0
+							this.confirmedTotal = this.$number.currency(promotionFee)
+						} else {
+							this.confirmedTotal = this.$number.currency(feeIncluded)
+						}
+					} else {
+						this.shippingFee = this.confirmed.shipping.fee
+						this.confirmedTotal = this.$number.currency(feeIncluded)
+					}
 				}
-			} else {
+			} else { //free shipping
 				this.confirmedTotal = this.confirmed.totalPrice
 			}
 		},
@@ -152,7 +189,7 @@ export default {
 			Object.entries(shop).forEach(([key, val]) => {
 					var subTotal = val.price * val.qty
 					totalPrice.push(subTotal)
-					totalQty.push(val.qty)
+					totalQty = val.qty
 			});
 			var total = totalPrice.reduce(function(total, num){ return total + num }, 0);
 			this.confirmed.totalQty = totalQty
@@ -210,8 +247,10 @@ export default {
 			this.loadShipping = true
 			this.$Progress.start()
 			this.$http.get(this.$root.url + '/api/getter/shipping_info/' + id).then(response => {
-				this.shippingChoice = response.body
+				this.shippingChoice = response.body.methods
+				this.shippingPromotion = response.body.promotion[0]
 				this.loadShipping = false
+				this.checkout = true
 				this.$Progress.finish()
 			}, response => {
 				this.loadShipping = false
@@ -225,6 +264,7 @@ export default {
 			} else {
 				this.$Progress.start()
 				this.loaded = false
+				this.checkout = false
 				return this.$http.post(this.$root.url + '/order/sending', {
 					products: shop,
 					sender_id: this.user.id,

@@ -10,8 +10,18 @@
       @else
         <font class="font-bold font-large">{{ number_format($product->price) }}</font>&nbsp;฿
       @endif
+      <br>
+      @if ($shippingPromotion)
+        @foreach ($shippingPromotion as $promotion)
+          @if ($promotion['type'] == 'cost')
+            <span class="font-green">{{ __('message.shipping_promotion.title', ['type' => __('message.shipping_promotion.spend')]) }}&nbsp;{{ $promotion['amount'] }}&nbsp;{{ __('message.shipping_promotion.cost') }}</span>
+          @else
+            <span class="font-green">{{ __('message.shipping_promotion.title', ['type' => __('message.shipping_promotion.buy')]) }}&nbsp;{{ $promotion['amount'] }}&nbsp;{{ __('message.shipping_promotion.qty') }}</span>
+          @endif
+        @endforeach
+      @endif
     </p>
-    <label class="input-label font-bold">วันจัดส่งสินค้า</label>
+    <label class="input-label font-bold">{{__('message.days.title')}}</label>
     @foreach ($shippingDate as $day)
       <font class="arial">
         {{ $day }}

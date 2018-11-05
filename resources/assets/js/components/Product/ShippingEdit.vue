@@ -79,6 +79,30 @@
       <button :disabled="$root.loading || errors.any()" @click.prevent="save" class="orange-btn normal-sq">{{$trans.translation.edit_submit}}</button>
     </div>
   </div>
+
+
+  <div v-show="view !== 'cant_sell'">
+    <div class="panel-heading">
+      <label class="heading">{{$trans.translation.shipping_promotion}}</label>
+    </div>
+    <div class="padding-15-horizontal padding-15-top" v-show="shipping_promotion.length">
+      <span class="font-large green-box mar padding-5">{{current_promotion}}</span><br>
+      <button class="margin-10-top red-box" @click.prevent="canclePromotion()">{{$trans.translation.cancle_promotion}}</button>
+    </div>
+    <form @submit.prevent="updatePromotion()" class="panel-body form-group" method="post">
+      <label class="input-label" for="amount">{{$trans.translation.shipping_promotion_input.label}}</label>
+      <div class="input-group half-width-res">
+        <input class="input-addon-field left half-width" id="amount" type="number" :placeholder="$trans.translation.shipping_promotion_input.placeholder" v-model="promotion.amount">
+        <select class="input-addon right half-width white-bg" v-model="promotion.type">
+          <option value="cost">{{$trans.translation.shipping_promotion_input.cost}}</option>
+          <option value="qty">{{$trans.translation.shipping_promotion_input.qty}}</option>
+        </select>
+      </div>
+      <div class="align-right padding-30-top">
+        <button :disabled="$root.loading || errors.any() || buttonDisabled" class="orange-btn normal-sq" type="submit">{{$trans.translation.edit_submit}}</button>
+      </div>
+    </form>
+  </div>
 </div>
 </template>
 
@@ -98,12 +122,31 @@ export default {
         multiply: null,
         multiply_by: null,
       },
+      promotion: {
+        type: null,
+        amount: null
+      },
       saved: true,
-      daySaved: true,
+      daySaved: true
     }
+  },
+  computed: {
+    current_promotion() {
+      if (this.shipping_promotion.length) {
+        return this.$trans.translation.shipping_promotion_input.label + ' ' + this.shipping_promotion[0].amount + ' ' + this.$trans.translation.shipping_promotion_input[this.shipping_promotion[0].type]
+      }
+    },
+    buttonDisabled() {
+      if (this.promotion.amount && this.promotion.type !== null) {
+        return false;
+      } else {
+        return true;
+      }
+    },
   },
   props: [ 'shipping', 'view'],
   methods: {
+
     add() {
       this.shipping_methods.push(this.form)
       this.form = {
@@ -116,7 +159,7 @@ export default {
       this.saved = false
     },
     remove(index) {
-      this.shippings.splice(index, 1)
+      this.shipping_methods.splice(index, 1)
       this.saved = false
     },
     save() {
@@ -162,6 +205,42 @@ export default {
       } else if (day === 9) {
         this.shipping_date = []
         this.shipping_date.push(0,1,2,3,4,5,6)
+      }
+    },
+    updatePromotion() {
+      this.$Progress.start()
+      this.$root.loading = true
+      this.$http.put(this.$root.url + '/myproduct/shipping/update_promotion', {
+        promotion: this.promotion
+      }).then(response => {
+        this.$root.loading = false
+        toastr.success(this.$trans.translation.saved)
+        this.$Progress.finish()
+        this.shipping_promotion = []
+        this.shipping_promotion.push(response.body)
+        this.promotion.amount = null
+        this.promotion.type = null
+      }, response => {
+        this.$Progress.fail()
+        this.$root.loading = false
+        toastr.error(this.$trans.translation.error)
+      });
+    },
+    canclePromotion() {
+      if (!confirm(this.$trans.translation.delete_confirm)) {
+        return ;
+      } else {
+        this.$root.loading = true
+        this.$http.put(this.$root.url + '/myproduct/shipping/cancle_promotion', {
+          promotion: this.promotion
+        }).then(response => {
+          this.$root.loading = false
+          toastr.success(this.$trans.translation.saved)
+          this.shipping_promotion = []
+        }, response => {
+          this.$root.loading = false
+          toastr.error(this.$trans.translation.error)
+        });
       }
     }
   }

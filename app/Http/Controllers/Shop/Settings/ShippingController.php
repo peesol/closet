@@ -24,4 +24,19 @@ class ShippingController extends Controller
     return ;
   }
 
+  public function updatePromotion(Request $request)
+  {
+    Auth::user()->shop->shipping->update([
+      'shipping_promotion' => [$request->promotion],
+    ]);
+    return response($request->promotion);
+  }
+
+  public function canclePromotion()
+  {
+    Auth::user()->shop->shipping->update([
+      'shipping_promotion' => null,
+    ]);
+    return ;
+  }
 }

@@ -128,6 +128,7 @@ return [
     'shipping_multiply' => 'each if you buy more than 1',
     'shipping_multiply_sub' => 'Only if you buy more than one',
     'days' => [
+      'title' => 'Ship on',
       'days' => 'days',
       '0' => 'Mon.',
       '1' => 'Tue.',
@@ -138,6 +139,13 @@ return [
       '6' => 'Sun.',
       'weekday' => 'Mon - Fri',
       'everyday' => 'Everyday',
+    ],
+    'shipping_promotion' => [
+      'title' => 'Free shipping when you :type more than',
+      'cost' => '฿',
+      'qty' => 'products',
+      'spend' => 'spend',
+      'buy' => 'buy',
     ],
     'undefined' => 'unknown',
     'free_shipping' => 'Free Shipping',

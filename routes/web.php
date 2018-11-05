@@ -267,6 +267,8 @@ Route::group(['middleware' => ['auth']], function () {
   //Shipping edit for all products
   Route::get('/myproduct/shipping', 'Shop\Settings\ShippingController@index');
   Route::put('/myproduct/shipping/update', 'Shop\Settings\ShippingController@update');
+  Route::put('/myproduct/shipping/update_promotion', 'Shop\Settings\ShippingController@updatePromotion');
+  Route::put('/myproduct/shipping/cancle_promotion', 'Shop\Settings\ShippingController@canclePromotion');
 
   Route::post('/product/used/{product}/comments', 'Product\Comment\UsedProductCommentController@create');
   Route::delete('/product/used/{product}/comments/{comment}', 'Product\Comment\UsedProductCommentController@delete');

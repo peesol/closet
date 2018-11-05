@@ -28,7 +28,6 @@ class NewProductShowController extends Controller
       $noted = null;
     }
 
-    //$shippingDate = $product->shipping->shipping_date;
     $dates = $product->shipping->shipping_date;
 
     $shippingDate = [];
@@ -45,6 +44,7 @@ class NewProductShowController extends Controller
     return view('product.show', [
       'product' => $product,
       'shipping' => $product->shipping->shipping_methods,
+      'shippingPromotion' => $product->shipping->shipping_promotion,
       'shippingDate' => $shippingDate,
       'contacts' => $contacts,
       'noted' => $noted,
