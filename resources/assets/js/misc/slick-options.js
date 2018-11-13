@@ -50,7 +50,11 @@ export const options = ({view}) => {
         },
         {
           breakpoint: 480,
-          settings: { slidesToShow: 3, slidesToScroll: 3, mobileFirst: true }
+          settings: { slidesToShow: 2, slidesToScroll: 2, mobileFirst: true }
+        },
+        {
+          breakpoint: 350,
+          settings: { slidesToShow: 1, slidesToScroll: 1, mobileFirst: true }
         }
       ]
     }

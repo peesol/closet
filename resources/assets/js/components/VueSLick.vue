@@ -6,9 +6,12 @@
     <a :href="$root.url + '/product/' + product.uid">
       <img class="products-img-thumb" :src="img_source + path + product.thumbnail" :alt="product.thumbnail">
     </a>
-    <span v-show="product.discount_price" class="sale top-right">Sale</span>
+    <span v-show="product.discount_price" class="sale top-right"></span>
     <i v-show="product.shop_type === 2" class="fas fa-check verified-profile top-left"></i>
-    <span v-if="product.discount_price" class="thumb-price-discount bottom-left">{{ $number.currency(product.discount_price) }}฿</span>
+    <span v-if="product.discount_price" class="thumb-price-discount bottom-left">
+      <s>{{ $number.currency(product.price) }}</s><br>
+      {{ $number.currency(product.discount_price) }}฿
+    </span>
     <span v-else class="thumb-price bottom-left">{{ $number.currency(product.price) }}฿</span>
 
     </div>

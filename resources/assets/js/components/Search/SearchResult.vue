@@ -16,7 +16,7 @@
           </div>
 
           <div v-else>
-            <span class="sale top-right">Sale</span>
+            <span class="sale top-right"></span>
             <span class="thumb-price-discount bottom-left display-mobile">
               <font>{{ $number.currency(product.discount_price) }}&nbsp;฿</font>
             </span>

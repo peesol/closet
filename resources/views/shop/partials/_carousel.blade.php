@@ -4,7 +4,7 @@
         <img class="products-img-thumb" src="{{$product->getImage()}}" alt="{{$product->thumbnail}}">
       </a>
       @if($product->discount_price)
-      <span class="sale top-right">Sale</span>
+      <span class="sale top-right"></span>
       <span class="thumb-price-discount bottom-left">{{ number_format($product->discount_price) }}฿</span>
       @else
       <span class="price bottom-left">{{ number_format($product->price) }}฿</span>

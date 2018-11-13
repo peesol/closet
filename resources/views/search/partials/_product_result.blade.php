@@ -6,7 +6,7 @@
   @if (!$product->discount_price)
   <span class="price">{{ number_format($product->price) }}฿</span>
   @else
-  <span class="sale">Sale</span>
+  <span class="sale"></span>
   <span class="price">
     <s>{{ number_format($product->price) }}฿</s>&nbsp;
     <font>{{ number_format($product->discount_price) }}฿</font>

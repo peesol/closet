@@ -14,7 +14,7 @@
             @if (!$product->discount_price)
               <span class="price bottom-left">{{ number_format($product->price) }}฿</span>
             @else
-            <span class="sale top-right">Sale</span>
+            <span class="sale top-right"></span>
             <span class="price bottom-left">
               <s>{{ number_format($product->price) }}฿</s>&nbsp;
               <font>{{ number_format($product->discount_price) }}฿</font>

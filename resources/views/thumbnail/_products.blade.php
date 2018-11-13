@@ -9,8 +9,11 @@
       @endif
 
       @if($product->discount_price)
-        <span class="sale top-right">Sale</span>
-        <span class="thumb-price-discount bottom-left">{{ number_format($product->discount_price) }}฿</span>
+        <span class="sale top-right"></span>
+        <span class="thumb-price-discount bottom-left">
+          <s>{{ number_format($product->price) }}</s><br>
+          {{ number_format($product->discount_price) }}฿
+        </span>
       @else
         <span class="price bottom-left">{{ number_format($product->price) }}฿</span>
       @endif
