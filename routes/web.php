@@ -70,6 +70,11 @@ Route::group(['middleware' => ['admin']], function () {
   Route::get('/secret/admin/database/query', 'Admin\AdminController@query')->name('databaseQuery');
   Route::put('/secret/admin/database/query', 'Admin\AdminController@insert')->name('databaseInsert');
 
+  Route::get('/secret/admin/grant', 'Admin\AdminController@grantPage')->name('grantAdmin');
+  Route::get('/secret/admin/grant/get', 'Admin\AdminController@grantGet')->name('grantGet');
+  Route::put('/secret/admin/grant/type', 'Admin\AdminController@grantUser')->name('grantUser');
+  Route::put('/secret/admin/grant/promotion', 'Admin\AdminController@grantPromotion')->name('grantPromotion');
+
   Route::get('/secret/admin/campaign', 'Admin\Campaign\CampaignController@index')->name('campaignAdmin');
   Route::post('/secret/admin/campaign/add', 'Admin\Campaign\CampaignController@post')->name('campaignAdd');
   Route::delete('/secret/admin/campaign/delete', 'Admin\Campaign\CampaignController@delete')->name('campaignDelete');

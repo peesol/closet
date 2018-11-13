@@ -12,6 +12,7 @@
       <li><a class="font-large" href="{{ route('productAdmin')}}">Product</a></li>
       <li><a class="font-large" href="{{ route('reportsAdmin')}}">Reports</a></li>
       <li><a class="font-large" href="{{ route('databaseAdmin')}}">Query</a></li>
+      <li><a class="font-large" href="{{ route('grantAdmin')}}">Grant</a></li>
       <li><a class="font-large" href="{{ route('campaignAdmin')}}">Campaign</a></li>
     </div>
 
