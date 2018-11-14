@@ -70,11 +70,9 @@
                 </div>
 
                 <div class="form-group{{ $errors->has('shop_name') ? ' has-error' : '' }}">
-                    <label for="shop_name" class="full-label">{{__('message.register_shop')}}<br>
-                      <sub>{{__('message.shop_name_tip')}}</sub>
-                    </label>
-                        <input id="shop_name" type="text" class="form-input {{ $errors->has('shop_name') ? ' error-input' : '' }}" name="shop_name" required placeholder="{{__('message.shop_name_placeholder')}}">
-
+                    <label for="shop_name" class="full-label">{{__('message.register_shop')}}</label>
+                    <input id="shop_name" type="text" class="form-input {{ $errors->has('shop_name') ? ' error-input' : '' }}" name="shop_name" required placeholder="{{__('message.shop_name_placeholder')}}">
+                    <small class="arial font-orange">{{__('message.shop_name_tip')}}</small>
                         @if ($errors->has('shop_name'))
                             <span class="span-error">{{ $errors->first('shop_name') }}</span>
                         @endif

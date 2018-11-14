@@ -10,7 +10,7 @@ return [
     //register
     'register' => 'Register',
     'register_name' => 'Name',
-    'register_shop' => 'Profile name',
+    'register_shop' => 'Profile or shop name',
     'gender' => 'Gender',
     'birth_date' => 'Birth date',
     'date_placeholder' => 'DD',
@@ -25,7 +25,7 @@ return [
     //validate
     'numbers_only' => 'Must be numbers only',
     //tooltip
-    'shop_name_tip' => 'This will be your profile and shop name',
+    'shop_name_tip' => 'You can only use letters and numbers or . and _ not start or end with . or _',
     'shop_name_placeholder' => 'Only letters or numbers between 6 and 50 characters',
     'password_placeholder' => 'Only letters or numbers between 8 and 20 characters',
     'address_tip' => 'This information below will be used for delivery and only you can see it.',
