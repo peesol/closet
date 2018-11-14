@@ -163,7 +163,7 @@ export default {
     completed_transaction: 'Payment confirmed',
     transacted: 'Transaction confirmed',
     shipped: 'Delivered',
-    confirm_order: 'Confirm',
+    confirm_order: 'Confirm order',
     confirm_order_notice: 'Once you have confirmed this order you can\'t change order information anymore.',
     place_order: 'Place Order',
     close: 'Close',

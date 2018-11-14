@@ -163,7 +163,7 @@ export default {
     completed_transaction: 'แจ้งชำระเงินแล้ว',
     transacted: 'แจ้งโอนเงินแล้ว',
     shipped: 'ส่งสินค้าแล้ว',
-    confirm_order: 'ยืนยันการสั่งซื้อ',
+    confirm_order: 'ยืนยันรายการ',
     confirm_order_notice: 'เมื่อทำการยืนยันแล้วคุณจะไม่สามารถแก้ไขรายการสินค้าได้อีก',
     place_order: 'สั่งซื้อ',
     close: 'ปิด',

@@ -49,6 +49,7 @@ label.heading
   color: #6c6c6c
 
 label.input-label
+  word-break: keep-all
   font-size: 1.2em
   color: #6c6c6c
 
@@ -58,6 +59,31 @@ label.input-label
 
 .input-group
   display: flex
+
+.qty-input
+  input
+    width: 35px
+    height: 30px
+    border: 1px solid #b5b5b5
+    text-align: center
+    &:focus
+      border: 1px solid #ff8000
+  button
+    width: 30px
+    height: 30px
+    border: 1px solid #b5b5b5
+    background: #eee
+    font-size: large
+    color: #b5b5b5
+    line-height: 1
+    &:hover
+      border: #ff8000
+      background: #ff8000
+      color: #fff
+    &:first-child
+      border-right: none
+    &:last-child
+      border-left: none
 
 .date-input
   input

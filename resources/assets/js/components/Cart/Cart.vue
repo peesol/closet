@@ -5,93 +5,86 @@
 			<label class="heading">{{$trans.translation.cart}}</label>
 			<button v-show="Object.keys(products).length" class="flat-btn float-right font-15em" @click="clearCart()">{{$trans.translation.cart_clear}}&nbsp;<i class="fas fa-times"></i></button>
 		</div>
-		<div class="panel-body-res relative">
+		<div class="relative">
 			<load-overlay bg="white-bg" :show="!loaded"></load-overlay>
-			<div class="overflow-x-auto">
-				<table v-show="!products.length" class="c-table overflow-x-auto" v-for="shop, key in products">
-					<tr class="orange-bg">
-						<td colspan="4"><strong class="font-grey font-white">{{key}}</strong></td>
-					</tr>
-					<tr class="cart">
-						<th>{{$trans.translation.product_name}}</th>
-						<th>{{$trans.translation.choice}}</th>
-						<th>{{$trans.translation.price}}</th>
-						<th>{{$trans.translation.amount}}</th>
-					</tr>
-					<tr v-for="(item, index) in shop">
-						<td class="overflow-hidden">
-							<button v-show="confirmed.shop !== key" class="fas fa-times flat-btn delete" @click.prevent="removeProduct(item.rowId, index, item.options.shop_name)"></button>&nbsp;{{item.name}}
-						</td>
-						<td class="m-cell overflow-hidden">{{item.options.choice ? item.options.choice : '---'}}</td>
-						<td class="s-cell">{{$number.currency(item.price)}}</td>
-						<td class="s-cell"><input :disabled="confirmed.shop == key" type="number" min="1" :max="item.options.stock" @change.prevent="qtyChange(item, index, shop)" v-model="item.qty"></td>
-					</tr>
-					<tr v-show="confirmed.shop !== key">
-						<td colspan="2" class="total-price">
-							<strong>{{$trans.translation.total_price}}&nbsp;:&nbsp;{{ total(shop) }}</strong>&nbsp;฿
-						</td>
-						<td colspan="2"><button class="default float-right width-120" @click.prevent="proceed(key, total(shop), shop[0].options.shop_id)">{{$trans.translation.confirm_order}}</button></td>
-					</tr>
-					<tr v-show="confirmed.shop == key">
-						<td colspan="4">
-							<strong>{{$trans.translation.total_price}}&nbsp;:&nbsp;{{confirmed.totalPrice}}</strong>฿
-							<a class="link-text padding-15-left" @click.prevent="toggleForm(key)" v-show="confirmed.discountApplied === false">{{$trans.translation.apply_discount}}</a>
-							<span class="font-green bold-font" v-show="confirmed.discount">{{$trans.translation.discount}}&nbsp;{{confirmed.discount}}</span>
-							<div v-show="formVisible == key && confirmed.discountApplied === false" class="input-group full-width padding-15-top">
-								<input v-model="code" type="text" placeholder="CODE">
-								<button :disabled="$root.loading" @click.prevent="applyDiscount(shop[0].options.shop_id)" type="button" class="form-input-btn checkmark-btn"><i class="fas fa-check"></i></button>
+			<div class="panel-body-res" v-for="shop, key in products" v-if="products.length || Object.keys(products).length">
+				<div class="color-heading">
+					<strong>{{key}}</strong>
+				</div>
+				<div id="full-line" class="col-2-flex-res padding-10" v-for="(item, index) in shop">
+					<div class="text-row">
+						<button v-show="confirmed.shop !== key" class="fas fa-times flat-btn delete" @click.prevent="removeProduct(item.rowId, index, item.options.shop_name)"></button>
+						&nbsp;{{item.name}}&nbsp;<small>{{item.options.choice ? item.options.choice : ''}}</small>small
+					</div>
+					<div class="text-row">
+						{{$trans.translation.price}}&nbsp;{{$number.currency(item.price)}}&nbsp;฿
+						<div class="input-group qty-input float-right">
+							<button :disabled="confirmed.shop == key" type="button" @click.prevent="addQty(1, item , index)">-</button>
+							<input :disabled="confirmed.shop == key" type="number" min="1" :max="item.options.stock" @input.prevent="qtyChange(item, index, shop)" v-model="item.qty">
+							<button :disabled="confirmed.shop == key" type="button" @click.prevent="addQty(2, item, index)">+</button>
+						</div>
+					</div>
+				</div>
+				<div id="full-line" class="padding-10 flex">
+					<div class="half-width">
+							<strong class="font-large">{{$trans.translation.total_price}}&nbsp;:&nbsp;{{ total(shop) }}&nbsp;฿</strong><br>
+							<span class="font-green bold-font" v-show="confirmed.discount">{{$trans.translation.discount}}&nbsp;{{confirmed.discount}}&nbsp;(-{{confirmed.totalDiscount}}&nbsp;฿)</span>
+					</div>
+					<div class="half-width align-right">
+						<button :disabled="confirmed.totalQty < 1" v-show="confirmed.shop !== key" class="default width-120" @click.prevent="proceed(key, total(shop), shop[0].options.shop_id)">{{$trans.translation.confirm_order}}</button>
+					</div>
+				</div>
+				<div class="padding-10" v-show="confirmed.shop == key">
+					<div v-show="confirmed.discountApplied === false" class="half-width-res">
+						<label class="input-label">{{$trans.translation.apply_discount}}</label>
+						<div class="half-width-res input-group padding-5">
+							<input class="input-addon-field left" v-model="code" type="text" placeholder="CODE">
+							<button :disabled="$root.loading" @click.prevent="applyDiscount(shop[0].options.shop_id)" type="button" class="input-addon right form-input-btn checkmark-btn"><i class="fas fa-check"></i></button>
+						</div>
+					</div>
+						<label class="input-label">{{$trans.translation.shipping}}</label><br>
+						<span class="font-green">{{ current_promotion }}</span>
+						<form @submit.prevent="confirmOrder(shop, key)" class="relative">
+						<load-overlay bg="white-bg" :show="loadShipping"></load-overlay>
+						<li class="list-no-style padding-5" v-for="item, index in shippingChoice">
+							<input required @click="includeFee()" name="shipping" :id="index" type="radio" :value="item" v-model="confirmed.shipping">
+							<label :for="index">
+								{{ item.method }}&nbsp;{{$trans.translation.shipping_time}}&nbsp;{{item.time}}&nbsp;{{$trans.translation.days}}&nbsp;{{ item.free ? 'free' : item.fee + '฿' }}
+								&nbsp;{{ item.multiply ? '+' + item.multiply_by + ' ฿ ' + $trans.translation.multiply_by : ''}}
+							</label>
+						</li>
+						<div class="full-width padding-10" v-show="confirmedTotal !== null">
+							<h3 class="font-green no-margin">{{$trans.translation.total_shipping}}&nbsp;{{ confirmedTotal }}&nbsp;฿</h3>
+						</div>
+							<label class="input-label margin-10-bottom">{{$trans.translation.address}}&nbsp;
+								<a v-show="user.phone && user.address" class="font-medium" @click.prevent="addressEdit = !addressEdit">{{ $trans.translation.address_edit }}</a>
+							</label>
+							<div v-show="!addressEdit && user.phone && user.address" class="padding-5 half-width-res lightgrey-bg padding-5">
+								{{ user.name }}<br>
+								{{ user.address }}<br>
+								{{ $trans.translation.phone + ' ' + user.phone }}<br>
 							</div>
-						</td>
-					</tr>
-					<tr v-show="confirmed.shop == key">
-						<td colspan="4">
-							<label class="input-label">{{$trans.translation.shipping}}</label><br>
-							<span class="font-green">{{ current_promotion }}</span>
-							<form @submit.prevent="confirmOrder(shop, key)" class="relative">
-							<load-overlay bg="white-bg" :show="loadShipping"></load-overlay>
-							<li class="list-no-style padding-5" v-for="item, index in shippingChoice">
-								<input required @click="includeFee()" name="shipping" :id="index" type="radio" :value="item" v-model="confirmed.shipping">
-								<label :for="index">
-									{{ item.method }}&nbsp;{{$trans.translation.shipping_time}}&nbsp;{{item.time}}&nbsp;{{$trans.translation.days}}&nbsp;{{ item.free ? 'free' : item.fee + '฿' }}
-									&nbsp;{{ item.multiply ? '+' + item.multiply_by + ' ฿ ' + $trans.translation.multiply_by : ''}}
-								</label>
-							</li>
-							<div class="full-width padding-10" v-show="confirmedTotal !== null">
-								<h3 class="font-green no-margin">{{$trans.translation.total_shipping}}&nbsp;{{ confirmedTotal }}&nbsp;฿</h3>
-							</div>
-								<label class="input-label margin-10-bottom">{{$trans.translation.address}}&nbsp;
-									<a v-show="user.phone && user.address" class="font-medium" @click.prevent="addressEdit = !addressEdit">{{ $trans.translation.address_edit }}</a>
-								</label>
-								<div v-show="!addressEdit && user.phone && user.address" class="padding-5">
-									{{ user.name }}<br>
-									{{ user.address }}<br>
-									{{ $trans.translation.phone + ' ' + user.phone }}<br>
+							<div v-show="addressEdit || !user.phone || !user.address" class="padding-10 half-width-res shadow-2">
+								<div class="form-group">
+									<input :required="addressEdit || !user.phone || !user.address" class="form-input full-width" type="text" v-model="user.name" :placeholder="$trans.translation.name">
 								</div>
-								<div v-show="addressEdit || !user.phone || !user.address" class="padding-10 half-width-res shadow-2">
-									<div class="form-group">
-										<input :required="addressEdit || !user.phone || !user.address" class="form-input full-width" type="text" v-model="user.name" :placeholder="$trans.translation.name">
-									</div>
-									<div class="form-group">
-										<textarea :required="addressEdit || !user.phone || !user.address" class="comment-input" type="text" v-model="user.address" :placeholder="$trans.translation.address"></textarea>
-									</div>
-									<div class="form-group">
-										<input :required="addressEdit || !user.phone || !user.address" class="form-input full-width" type="text" v-model="user.phone" :placeholder="$trans.translation.phone">
-									</div>
+								<div class="form-group">
+									<textarea :required="addressEdit || !user.phone || !user.address" class="comment-input" type="text" v-model="user.address" :placeholder="$trans.translation.address"></textarea>
 								</div>
-							<div class="align-right padding-15-top">
-								<button :disabled="$root.loading" class="green-btn border-radius-5 width-120-res" type="submit">{{$trans.translation.place_order}}</button>
+								<div class="form-group">
+									<input :required="addressEdit || !user.phone || !user.address" class="form-input full-width" type="text" v-model="user.phone" :placeholder="$trans.translation.phone">
+								</div>
 							</div>
-							</form>
-						</td>
-					</tr>
-				</table>
+						<div class="align-right padding-15-top">
+							<button :disabled="$root.loading" class="green-btn border-radius-5 width-120-res" type="submit">{{$trans.translation.place_order}}</button>
+						</div>
+						</form>
+				</div>
+			</div>
+			<div v-else class="panel-body align-center">
+				<h2 class="font-grey">{{$trans.translation.product_none}}</h2>
 			</div>
 		</div>
-
-	  <div v-show="products.length === 0 || !Object.keys(products).length" class="panel-body align-center">
-			<h2 class="font-grey">{{$trans.translation.product_none}}</h2>
-		</div>
-
 	</div>
 </template>
 
@@ -101,7 +94,6 @@ import { mapActions } from 'vuex'
 export default {
 	data() {
 		return {
-			formVisible: null,
 			addressEdit: false,
 			shippingChoice: null,
 			shippingPromotion: null,
@@ -110,6 +102,7 @@ export default {
 				totalPrice: null,
 				discount: null,
 				discountApplied: false,
+				totalDiscount: null,
 				shipping: null,
 				totalQty: null,
 			},
@@ -196,32 +189,28 @@ export default {
 			});
 			var total = totalPrice.reduce(function(total, num){ return total + num }, 0);
 			this.confirmed.totalQty = totalQty
-			return this.$number.currency(total)
+			if (this.confirmed.discountApplied) {
+				return this.confirmed.totalPrice
+			} else {
+				return this.$number.currency(total)
+			}
+
 		},
 		...mapActions([
 			'removeFromCart',
 		]),
-		toggleForm(key) {
-			if (this.formVisible === key){
-				this.formVisible = null;
-				return;
-			}
-			this.formVisible = key;
-		},
 		getCart() {
 			this.$http.get(this.$root.url + '/cart/get_shop').then((response) => {
 				this.loaded = true
 				this.products = response.data
 			});
 		},
-		qtyChange(item, index, shop) {
+		qtyChange(item) {
 			if (item.qty > item.options.stock) {
 				alert(this.$trans.translation.stock_remain + ' ' + item.options.stock)
 				item.qty = item.options.stock
 			} else {
-				this.$http.put(this.$root.url + '/cart/update/qty', {rowId: item.rowId, qty: item.qty}).then((response)=>{
-					this.products[item.options.shop_name]
-				});
+				this.$http.put(this.$root.url + '/cart/update/qty', {rowId: item.rowId, qty: item.qty});
 			}
 		},
 		removeProduct(id, index, shop) {
@@ -248,6 +237,9 @@ export default {
 			this.confirmed.shop = key;
 			this.confirmed.totalPrice = total;
 			this.loadShipping = true
+			this.confirmed.discountApplied = false
+			this.confirmed.discount = null
+			this.confirmed.totalDiscount = null
 			this.$Progress.start()
 			this.$http.get(this.$root.url + '/api/getter/shipping_info/' + id).then(response => {
 				this.shippingChoice = response.body.methods
@@ -306,10 +298,11 @@ export default {
 								alert(this.$trans.translation.discount_not_valid)
 								this.code = null
 							} else {
+								this.confirmed.totalDiscount = ((response.body.discount / 100) * price).toFixed(0)
 								this.confirmed.totalPrice = this.$number.currency(calculated)
 								this.confirmed.discount = response.body.discount + '%'
 								this.confirmed.discountApplied = true
-								this.formVisible = null
+
 								this.code = null
 							}
 						} else if (response.body.type == 'baht') {
@@ -319,14 +312,15 @@ export default {
 								alert(this.$trans.translation.discount_not_valid)
 								this.code = null
 							} else {
+								this.confirmed.totalDiscount = response.body.discount
 								this.confirmed.totalPrice = this.$number.currency(calculated)
 								this.confirmed.discount = response.body.discount + ' ฿'
 								this.confirmed.discountApplied = true
-								this.formVisible = null
 								this.code = null
 							}
 						}
 					} else {
+						this.confirmed.discountApplied = false
 						alert(this.$trans.translation.discount_not_valid)
 					}
 				}, response => {
@@ -347,6 +341,20 @@ export default {
 					this.$root.loading = false
 				})
 			}
+		},
+		addQty(type, item) {
+				if (type === 1) {
+					if (item.qty > 0) {
+						item.qty = --item.qty
+						this.qtyChange(item)
+					}
+				} else {
+					item.qty = ++item.qty
+					this.qtyChange(item)
+				}
+		},
+		back() {
+			_.mapValues(this.confirmed, () => null);
 		}
 	},
 	mounted() {

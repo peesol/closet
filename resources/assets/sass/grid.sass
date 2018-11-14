@@ -8,7 +8,7 @@
   display: flex
   justify-content: flex-start
   flex-flow: column
-  div
+  > div
     min-width: 100%
     &.text-row
       line-height: 30px
@@ -24,7 +24,7 @@
   .col-4-flex-res, .col-3-flex-res , .col-2-flex-res
     justify-content: flex-start
     flex-flow: row
-    div.text-row
+    > div.text-row
       &:nth-child(n+2)
         padding-left: 10px
     .align-right-res
