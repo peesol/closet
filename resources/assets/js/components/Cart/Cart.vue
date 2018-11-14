@@ -59,21 +59,23 @@
 							<div class="full-width padding-10" v-show="confirmedTotal !== null">
 								<h3 class="font-green no-margin">{{$trans.translation.total_shipping}}&nbsp;{{ confirmedTotal }}&nbsp;฿</h3>
 							</div>
-								<label class="input-label margin-10-bottom">{{$trans.translation.address}}&nbsp;<a class="font-medium" @click.prevent="addressEdit = !addressEdit">{{ $trans.translation.address_edit }}</a></label>
-								<div v-show="!addressEdit" class="padding-5">
+								<label class="input-label margin-10-bottom">{{$trans.translation.address}}&nbsp;
+									<a v-show="user.phone && user.address" class="font-medium" @click.prevent="addressEdit = !addressEdit">{{ $trans.translation.address_edit }}</a>
+								</label>
+								<div v-show="!addressEdit && user.phone && user.address" class="padding-5">
 									{{ user.name }}<br>
 									{{ user.address }}<br>
 									{{ $trans.translation.phone + ' ' + user.phone }}<br>
 								</div>
-								<div v-show="addressEdit" class="padding-10 half-width-res shadow-2">
+								<div v-show="addressEdit || !user.phone || !user.address" class="padding-10 half-width-res shadow-2">
 									<div class="form-group">
-										<input :required="addressEdit" class="full-width" type="text" v-model="user.name" :placeholder="$trans.translation.name">
+										<input :required="addressEdit || !user.phone || !user.address" class="form-input full-width" type="text" v-model="user.name" :placeholder="$trans.translation.name">
 									</div>
 									<div class="form-group">
-										<textarea :required="addressEdit" class="comment-input" type="text" v-model="user.address" :placeholder="$trans.translation.address"></textarea>
+										<textarea :required="addressEdit || !user.phone || !user.address" class="comment-input" type="text" v-model="user.address" :placeholder="$trans.translation.address"></textarea>
 									</div>
 									<div class="form-group">
-										<input :required="addressEdit" class="full-width" type="text" v-model="user.phone" :placeholder="$trans.translation.phone">
+										<input :required="addressEdit || !user.phone || !user.address" class="form-input full-width" type="text" v-model="user.phone" :placeholder="$trans.translation.phone">
 									</div>
 								</div>
 							<div class="align-right padding-15-top">
@@ -118,6 +120,7 @@ export default {
 			loaded: false,
 			loadShipping: false,
 			checkout: false,
+			fill_address: false
 		}
 	},
 	props: ['user'],
@@ -248,7 +251,7 @@ export default {
 			this.$Progress.start()
 			this.$http.get(this.$root.url + '/api/getter/shipping_info/' + id).then(response => {
 				this.shippingChoice = response.body.methods
-				this.shippingPromotion = response.body.promotion[0]
+				this.shippingPromotion = response.body.promotion ? response.body.promotion[0] : {}
 				this.loadShipping = false
 				this.checkout = true
 				this.$Progress.finish()
@@ -270,12 +273,14 @@ export default {
 					sender_id: this.user.id,
 					sender_name: this.user.name,
 					reciever_name: key,
-					address: this.user.name + ' ' + this.user.address + ' (phone ' + this.user.phone + ')',
+					address:  this.user.address,
+					phone: this.user.phone,
 					products_total: this.confirmed.totalPrice,
 					include_shipping: this.confirmedTotal,
 					discount: this.confirmed.discount,
 					shipping: this.confirmed.shipping,
 					shipping_fee: this.shippingFee,
+					fill_address: this.fill_address,
 				}).then(response => {
 					this.$delete(this.products, key)
 					_.mapValues(this.confirmed, () => null);
@@ -346,6 +351,9 @@ export default {
 	},
 	mounted() {
 		this.getCart();
+		if (!this.user.address || !this.user.phone) {
+			this.fill_address = true
+		}
 	}
 }
 </script>

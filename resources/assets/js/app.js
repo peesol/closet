@@ -39,7 +39,7 @@ Vue.use(VueProgressBar, {
   thickness: '5px'
 });
 
-// Vue.config.devtools = true;
+Vue.config.devtools = true;
 
 import {store} from './store/store'
 import {router} from './route/router'

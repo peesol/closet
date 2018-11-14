@@ -108,7 +108,7 @@ class OrderController extends Controller
         'feedback' => false
       ],
       'shipping' => $request->shipping,
-      'address' => $request->address
+      'address' => $request->sender_name . ' ' . $request->address . ' phone.' . $request->phone
     ]);
 
     foreach ($request->products as $product) {
@@ -123,6 +123,13 @@ class OrderController extends Controller
 
     if ($reciever->where('options->order', true)) {
       $reciever->notify(new OrderPlaced($order->sender));
+    }
+
+    if ($request->fill_address) {
+      $sender->update([
+        'address' => $request->address,
+        'phone' => $request->phone,
+      ]);
     }
 
     Mail::to($reciever->email)->queue((new OrderingSeller($order, $locale, $sender))->onQueue('email'));

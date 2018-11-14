@@ -9,6 +9,7 @@ class Shop extends Model
     protected $fillable = [
       'name',
       'slug',
+      'shop_type',
       'profile_type',
       'description',
       'thumbnail',

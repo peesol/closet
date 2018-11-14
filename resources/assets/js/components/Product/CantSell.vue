@@ -2,7 +2,8 @@
 <div>
   <vue-progress-bar></vue-progress-bar>
   <div class="padding-30">
-    <form v-on:submit.prevent="add">
+    <form class="relative" v-on:submit.prevent="add">
+      <load-overlay bg="white-bg" :show="$root.loading" padding="40px 0"></load-overlay>
       <div>
         <div class="form-group">
           <label class="input-label full-label">{{$trans.translation.account_provider}}</label>
@@ -92,7 +93,6 @@ export default {
         type: this.type,
       }).then(response => {
         this.$Progress.finish()
-        this.$root.loading = false
         toastr.success(this.$trans.translation.saved)
         document.location.href = this.$root.url + '/sell/new';
       }, response => {

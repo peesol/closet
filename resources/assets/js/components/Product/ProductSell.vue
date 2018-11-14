@@ -8,7 +8,8 @@
     <li>{{$trans.translation.product_photo_ratio}}</li>
   </ul>
 
-  <form v-on:submit.prevent="submit">
+  <form class="relative" v-on:submit.prevent="submit">
+    <load-overlay bg="white-bg" :show="$root.loading" padding="60px 0"></load-overlay>
     <div class="dropzone margin-20-bottom" id="image">
       <div class="dz-message" data-dz-message>
         <span>{{$trans.translation.upload_photo_guide}}</span><br>
@@ -52,20 +53,20 @@
     </div>
     <div class="form-group">
       <label class="full-label input-label" for="decription">{{$trans.translation.description}}</label>
-      <textarea v-validate="'required'" class="description-input" name="description" v-model="description"></textarea>
+      <textarea required v-validate="'required'" class="description-input" name="description" v-model="description"></textarea>
       <span v-show="errors.has('description')" class="span-error">{{ errors.first('description') }}</span>
     </div>
 
     <div class="form-group">
       <label class="full-label input-label" for="visibility">{{$trans.translation.visibility}}</label>
       <select required class="select-input" :name="visibility" v-model="visibility">
-                              <option value="public">{{$trans.translation.public}}</option>
-                              <option value="unlisted">{{$trans.translation.unlisted}}</option>
-                            </select>
+        <option value="public">{{$trans.translation.public}}</option>
+        <option value="unlisted">{{$trans.translation.unlisted}}</option>
+      </select>
     </div>
 
     <div class="align-right full-width padding-15-vertical margin-10-top">
-      <button type="submit" id="submit-all" class="orange-btn normal-sq width-120">{{$trans.translation.sell_submit}}</button>
+      <button :disabled="$root.loading" type="submit" id="submit-all" class="orange-btn normal-sq width-120">{{$trans.translation.sell_submit}}</button>
     </div>
   </form>
 

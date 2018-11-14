@@ -58,8 +58,6 @@ class RegisterController extends Controller
             'shop_name' => 'required|min:6|max:50|unique:shops,name|alpha_num',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:8|max:20|confirmed|alpha_num',
-            'address' => 'required|max:1000',
-            'phone' => 'required|numeric',
             'gender' => 'required',
             'date' => 'required|numeric|digits_between:1,2|min:1|max:31',
             'month' => 'required|numeric|digits_between:1,2|min:1|max:12',
@@ -80,8 +78,6 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
             'email_token' => base64_encode($data['email']),
-            'address' => $data['address'],
-            'phone' => $data['phone'],
             'country' => 'th',
             'language' => 'th',
             'gender' => $data['gender'],
@@ -123,7 +119,7 @@ class RegisterController extends Controller
         {
             $this->validator($request->all())->validate();
             event(new Registered($user = $this->create($request->all())));
-            
+
             if($user->country == 'th') {
               $locale = 'th';
             } else {

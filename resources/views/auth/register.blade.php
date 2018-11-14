@@ -24,10 +24,11 @@
         </div>
     </div>
   @else
-    <div class="small-panel">
+    <div class="pop-up-panel">
         <div class="panel-heading"><label class="heading">{{__('message.register')}}</label></div>
-        <div class="panel-body">
-            <form role="form" method="POST" action="{{ route('register') }}">
+        <div class="panel-body relative">
+          <load-overlay bg="white-bg" :show="loading"></load-overlay>
+            <form role="form" method="POST" action="{{ route('register') }}" v-on:submit="$root.loading = true">
                 <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                     <label for="name" class="full-label">{{__('message.register_name')}}</label>
                         <input id="name" type="text" class="form-input {{ $errors->has('name') ? ' error-input' : '' }}" name="name" required autofocus>
@@ -38,9 +39,9 @@
 
                 <div class="form-group">
                   <label for="gender">{{__('message.gender')}}</label>
-                  <input required type="radio" name="gender" value="men"><font class="font-large">&nbsp;{{__('message.men')}}</font>
-                  <input required type="radio" name="gender" value="women"><font class="font-large">&nbsp;{{__('message.women')}}</font>
-                  <input required type="radio" name="gender" value="etc"><font class="font-large">&nbsp;{{__('message.etc')}}</font>
+                  <input id="men" required type="radio" name="gender" value="men"><label for="men" class="font-large">&nbsp;{{__('message.men')}}</label>
+                  <input id="women" required type="radio" name="gender" value="women"><label for="women" class="font-large">&nbsp;{{__('message.women')}}</label>
+                  <input id="etc" required type="radio" name="gender" value="etc"><label for="etc" class="font-large">&nbsp;{{__('message.etc')}}</label>
                 </div>
 
                 <div class="form-group">
@@ -69,8 +70,8 @@
                 </div>
 
                 <div class="form-group{{ $errors->has('shop_name') ? ' has-error' : '' }}">
-                    <label for="shop_name" class="full-label">{{__('message.register_shop')}}
-                      <span class="link-text" data-balloon="{{__('message.shop_name_tip')}}" data-balloon-pos="right"><i class="fas fa-question-circle"></i></span>
+                    <label for="shop_name" class="full-label">{{__('message.register_shop')}}<br>
+                      <sub>{{__('message.shop_name_tip')}}</sub>
                     </label>
                         <input id="shop_name" type="text" class="form-input {{ $errors->has('shop_name') ? ' error-input' : '' }}" name="shop_name" required placeholder="{{__('message.shop_name_placeholder')}}">
 
@@ -102,21 +103,9 @@
                     <label for="password-confirm" class="full-label">{{__('auth.confirm_password')}}</label>
                     <input id="password-confirm" type="password" class="form-input {{ $errors->has('password-confirm') ? ' error-input' : '' }}" name="password_confirmation" required>
                 </div>
-                <div class="alert-box info margin-15-vertical">
-                  <p class="no-margin">{{__('message.address_tip')}}</p>
-                </div>
-                <div class="form-group">
-                    <label for="address" class="full-label">{{__('message.address')}}</label>
-                    <textarea id="address" class="comment-input {{ $errors->has('address') ? ' error-input' : '' }}" name="address" rows="4" cols="80" required></textarea>
-                </div>
-
-                <div class="form-group">
-                    <label for="phone" class="full-label">{{__('message.phone')}}</label>
-                    <input pattern="^[0-9]*$" title="{{__('message.numbers_only')}}" id="phone" type="text" class="form-input {{ $errors->has('phone') ? ' error-input' : '' }}" name="phone" required>
-                </div>
 
                 <div class="padding-15-top align-right">
-                  <button type="submit" class="orange-btn normal-sq">{{__('message.register')}}</button>
+                  <button :disabled="$root.loading" type="submit" class="orange-btn normal-sq">{{__('message.register')}}</button>
                 </div>
                 @csrf
             </form>
