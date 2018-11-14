@@ -31,10 +31,6 @@ class User extends Authenticatable
     {
       return $this->hasOne(Shop::class);
     }
-    public function usertype()
-    {
-      return $this->hasOne(Usertype::class);
-    }
     public function account()
     {
       return $this->hasManyThrough(Account::class, Shop::class);

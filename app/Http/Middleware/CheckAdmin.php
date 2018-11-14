@@ -15,7 +15,7 @@ class CheckAdmin
      */
     public function handle($request, Closure $next)
     {
-      if ($request->user()->shop->usertype === 99) {
+      if ($request->user()->shop->shop_type === 99) {
         return $next($request);
       } else {
         return response('WORONG PLACE ASSHOLE');

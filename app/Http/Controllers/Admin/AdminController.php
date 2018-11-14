@@ -34,7 +34,7 @@ class AdminController extends Controller
   }
   public function grantUser(Request $request)
   {
-    DB::table('shops')->where('id', $request->id)->update(['usertype' => $request->type]);
+    DB::table('shops')->where('id', $request->id)->update(['shop_type' => $request->type]);
     DB::table('products')->where('shop_id', $request->id)->update(['shop_type' => $request->type]);
     return view('admin.database.grant', [
       'message' => 'Success',

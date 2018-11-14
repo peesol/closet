@@ -33,7 +33,7 @@ class AdminSeeder extends Seeder
       ]);
 
       $shop = $user->shop()->create([
-          'usertype' => 99,
+          'shop_type' => 99,
           'profile_type' => 1,
           'name' => 'Closet',
           'slug' => 'closet',

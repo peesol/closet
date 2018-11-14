@@ -22,7 +22,7 @@
 
     <div class="profile-header-row flex">
       <label class="profile-name">{{ $shop->name }}&nbsp;
-        @if ( $shop->usertype === 2)
+        @if ( $shop->shop_type === 2)
           <i class="fas fa-check verified-profile"></i>
         @endif
       </label>

@@ -39,7 +39,7 @@
           <tr>
             <td>{{ $value->id }}</td>
             <td>{{ $value->name }}</td>
-            <td>{{ $value->usertype }}</td>
+            <td>{{ $value->shop_type }}</td>
             <td>{{ $value->slug }}</td>
             <td>{{ $value->view_count }}</td>
           </tr>
