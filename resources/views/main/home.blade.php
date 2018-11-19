@@ -14,8 +14,19 @@
                 <p class="no-margin">{{__('message.home_signup')}}&nbsp;<a href="{{ route('register') }}" class="link-text">{{__('message.home_signup_link')}}</a></p>
               </div>
             </div>
+            <div class="medium-panel margin-10-top">
+              <div class="panel-body">
+                <h3 class="font-orange no-margin">{{ __('ads.title') }}</h3>
+                <ul>
+                  <li>{{ __('ads.1') }}</li>
+                  <li>{{ __('ads.2') }}</li>
+                  <li>{{ __('ads.3') }}</li>
+                  <li>{{ __('ads.4') }}</li>
+                  <li>{{ __('ads.5') }}</li>
+                </ul>
+              </div>
+            </div>
             @endif
-
             <div class="medium-panel margin-10-top">
               <div class="panel-heading-alt">
                 <label class="heading">{{__('message.trending_product')}}</label>
@@ -28,16 +39,14 @@
                   <label class="heading">{{__('message.trending_shops')}}</label>
                 </div>
 
-
-                  <div class="shops-list">
-                    @foreach ($shops as $shop)
-                      <div>
-                        <img src="{{ $shop->getThumbnail() }}">
-                        <a class="text-nowrap" href="/{{ $shop->slug }}">{{ $shop->name }}</a>
-                      </div>
-                    @endforeach
-                  </div>
-
+                <div class="shops-list">
+                  @foreach ($shops as $shop)
+                    <div>
+                      <img src="{{ $shop->getThumbnail() }}">
+                      <a class="text-nowrap" href="/{{ $shop->slug }}">{{ $shop->name }}</a>
+                    </div>
+                  @endforeach
+                </div>
 
             </div>
 
