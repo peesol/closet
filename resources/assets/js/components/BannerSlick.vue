@@ -1,8 +1,9 @@
 <template>
 <div>
   <slick ref="slick" :options="slickOptions">
-    <a v-for="banner in banners" :href="banner.link" v-show="banners.length">
-      <img :src="img_source + banner.filename" alt="banner">
+    <a class="banner" v-for="banner in banners" :href="banner.link" v-show="banners.length">
+        <img class="mobile-only" :src="img_source + banner.filename.mobile" alt="banner">
+        <img class="screen-only" :src="img_source + banner.filename.screen" alt="banner">
     </a>
   </slick>
 </div>

@@ -15,7 +15,8 @@
       <div class="grey-bg panel-body margin-20-bottom">
         <form action="/secret/admin/banner/add" method="POST">
           <input required type="text" name="type" placeholder="type">
-          <input required type="text" name="filename" placeholder="filemane">
+          <input required type="text" name="filename_mobile" placeholder="mobile">
+          <input required type="text" name="filename_screen" placeholder="screen">
           <input required type="text" name="link" placeholder="link">
           <input required type="text" name="password" placeholder="password">
           <button class="flat-btn" type="submit">ADD</button>

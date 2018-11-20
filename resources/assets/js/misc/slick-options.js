@@ -65,7 +65,13 @@ export const options = ({view}) => {
       dots: false,
       infinite: true,
       autoplay: true,
-      autoplaySpeed: 2000
+      autoplaySpeed: 2500,
+      responsive: [
+        {
+          breakpoint: 480,
+          settings: {mobileFirst:true}
+        }
+      ]
     }
   }
 }

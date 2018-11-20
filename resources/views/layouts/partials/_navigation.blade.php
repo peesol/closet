@@ -7,7 +7,7 @@
       </a>
     </div>
     <search-input></search-input>
-    <button class="fas fa-search res-search-btn display-mobile"></button>
+    <button class="fas fa-search res-search-btn mobile-only"></button>
     <div class="login-box">
       @if (Auth::guest())
           <li><a href="{{ route('login') }}">{{__('auth.login')}}</a></li>

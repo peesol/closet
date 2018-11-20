@@ -11,4 +11,13 @@ class Banner extends Model
     'filename',
     'link'
   ];
+
+  protected $casts = [
+    'filename' => 'object'
+  ];
+
+  public function getHomeBanner()
+  {
+    return $this->where('type', 'home')->get();
+  }
 }

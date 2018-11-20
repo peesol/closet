@@ -23,7 +23,10 @@ class BannerController extends Controller
     if(Hash::check($password, $hash)){
       Banner::create([
         'type' => $request->type,
-        'filename' => $request->filename,
+        'filename' => json_encode([
+          'mobile' => $request->filename_mobile,
+          'screen' => $request->filename_screen,
+        ]),
         'link' => $request->link
       ]);
       Session::flash('msg', "SUCCESS");

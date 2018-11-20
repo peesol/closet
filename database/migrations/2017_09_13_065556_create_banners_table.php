@@ -16,8 +16,8 @@ class CreateBannersTable extends Migration
         Schema::create('banners', function (Blueprint $table) {
             $table->increments('id');
             $table->string('type')->nullable();
-            $table->string('filename');
-            $table->string('link');
+            $table->text('filename');
+            $table->string('link')->nullable();
             $table->integer('view_count')->nullable();
 
             $table->timestamps();

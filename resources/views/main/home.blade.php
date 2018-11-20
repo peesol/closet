@@ -5,13 +5,13 @@
 <div class="container">
             <div class="medium-panel transparent-bg">
               <div class="full-width full-banner banner margin-10-top">
-                <banner-slick :banners="{{ $banners }}"></banner-slick>
+                <banner-slick :banners="{{ json_encode($banners) }}"></banner-slick>
               </div>
             </div>
             @if(Auth::guest())
             <div class="medium-panel margin-10-top">
               <div class="panel-body">
-                <p class="no-margin">{{__('message.home_signup')}}&nbsp;<a href="{{ route('register') }}" class="link-text">{{__('message.home_signup_link')}}</a></p>
+                <p class="no-margin">{{__('message.home_signup')}}&nbsp;<a href="{{ route('register') }}" class="help-btn padding-5">{{__('message.home_signup_link')}}</a></p>
               </div>
             </div>
             <div class="medium-panel margin-10-top">

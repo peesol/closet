@@ -6,7 +6,7 @@ use Cache;
 use Auth;
 use App;
 use DB;
-use Closet\Models\{Category, Translation, Product, Shop, UsedProduct};
+use Closet\Models\{Category, Translation, Product, Shop, UsedProduct, Banner};
 use Illuminate\Http\Request;
 use Closet\Repositories\UserRepository;
 
@@ -17,7 +17,7 @@ class HomeController extends Controller
       $categories = Cache::get('categories');
       $products = Product::popular()->take(10)->get();
       $shops = Shop::where('id', '!=', 1)->orderBy('view_count', 'desc')->take(10)->get();
-      $banners =  DB::table('banners')->where('type', 'home')->get();
+      $banners =  Banner::where('type', 'home')->get();
       return view('main.home', [
         'categories' => $categories,
         'products' => $products,

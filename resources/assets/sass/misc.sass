@@ -299,16 +299,27 @@
 .display-hidden
   display: none
 
-.display-mobile
-  display: block
+.banner
+  img.mobile-only
+    object-fit: cover
+    height: 90px
 
-.display-screen
-  display: none
+@media (min-width: 500px)
+  .banner
+    img.mobile-only
+      height: 100px
+
+.mobile-only
+  display: block !important
+
+.screen-only
+  display: none !important
+
 @media (min-width: 768px)
-  .display-mobile
-    display: none
-  .display-screen
-    display: block
+  .mobile-only
+    display: none !important
+  .screen-only
+    display: block !important
 
 .display
   display: block !important
