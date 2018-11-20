@@ -23,10 +23,10 @@ class BannerController extends Controller
     if(Hash::check($password, $hash)){
       Banner::create([
         'type' => $request->type,
-        'filename' => json_encode([
+        'filename' => [
           'mobile' => $request->filename_mobile,
           'screen' => $request->filename_screen,
-        ]),
+        ],
         'link' => $request->link
       ]);
       Session::flash('msg', "SUCCESS");
@@ -47,7 +47,10 @@ class BannerController extends Controller
     if(Hash::check($password, $hash)){
       $banner->update([
         'type' => $request->type,
-        'filename' => $request->filename,
+        'filename' => [
+          'mobile' => $request->filename_mobile,
+          'screen' => $request->filename_screen,
+        ],
         'link' => $request->link
       ]);
       Session::flash('msg', "SUCCESS");
