@@ -783,4 +783,27 @@ export default [
 		category_id: 8,
 		type: []
 	}]
+}, {
+  id: 9,
+  name: 'ไลฟ์สไตล์',
+  slug: 'life_style',
+  subcategory: [{
+    id: 29,
+    name: 'สิ่งทอ',
+    slug: 'fabrics',
+    category_id: 9,
+    type: []
+  }, {
+    id: 30,
+    name: 'เครื่องเขียน',
+    slug: 'stationary',
+    category_id: 9,
+    type: []
+  }, {
+    id: 31,
+    name: 'อื่นๆ',
+    slug: 'others',
+    category_id: 9,
+    type: []
+  }]
 }]

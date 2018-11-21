@@ -642,4 +642,27 @@ export default [{
 		category_id: 8,
 		type: []
 	}]
+}, {
+  id: 9,
+  name: 'Life Style',
+  slug: 'life_style',
+  subcategory: [{
+    id: 29,
+    name: 'Fabrics',
+    slug: 'fabrics',
+    category_id: 9,
+    type: []
+  }, {
+    id: 30,
+    name: 'Stationary',
+    slug: 'stationary',
+    category_id: 9,
+    type: []
+  }, {
+    id: 31,
+    name: 'Others',
+    slug: 'others',
+    category_id: 9,
+    type: []
+  }]
 }]
