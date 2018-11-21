@@ -16,6 +16,11 @@
             </div>
             <div class="medium-panel margin-10-top">
               <div class="panel-body">
+                <p class="no-margin">{{__('ads.example')}}&nbsp;<a href="{{ route('homeExample') }}" class="help-btn padding-5">Click</a></p>
+              </div>
+            </div>
+            <div class="medium-panel margin-10-top">
+              <div class="panel-body">
                 <h3 class="font-orange no-margin">{{ __('ads.title') }}</h3>
                 <ul>
                   <li>{{ __('ads.1') }}</li>

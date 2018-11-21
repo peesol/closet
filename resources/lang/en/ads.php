@@ -8,4 +8,5 @@ return [
   '4' => 'Create your own discount code or apply discount to your products.',
   '5' => 'If you\'re a brand we will advertise your brand via FB,IG',
   '6' => 'It\'s all Free!',
+  'example' => 'Take a look at shop page sample',
 ];
