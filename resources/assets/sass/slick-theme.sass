@@ -55,6 +55,8 @@
     line-height: 1
     opacity: 1
     color: #fff
+    background: rgba(0, 0, 0, 0.3)
+    border-radius: 3px
   &:focus, &:hover
     color: #fff
     outline: 0
@@ -62,6 +64,8 @@
 .slick-prev
   left: 0
   display: none
+  &:before
+    padding: 5px 8px 5px 5px
 
 [dir=rtl] .slick-prev
   right: -25px
@@ -70,6 +74,8 @@
 .slick-next
   right: 0
   display: none
+  &:before
+    padding: 5px 5px 5px 8px
 
 [dir=rtl] .slick-next
   right: auto
@@ -84,8 +90,11 @@
       color: #fff
       line-height: 0
       font-size: 24px
+      background: rgba(0, 0, 0, 0.3)
+      border-radius: 3px
   .slick-next
     right: 0
+
   .slick-prev
     left: 0
 
@@ -98,16 +107,19 @@
     -moz-box-shadow: #6c6c6c 0 2px 7px 0
     box-shadow: #6c6c6c 0 2px 7px 0
     &:before
+      background: transparent
       color: #6c6c6c
 
   .slick-next
     right: 5px
     &:before
+      padding: 0
       margin-left: 3px
 
   .slick-prev
     left: 5px
     &:before
+      padding: 0
       margin-right: 3px
 
   .banner

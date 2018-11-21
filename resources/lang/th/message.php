@@ -90,7 +90,6 @@ return [
     'search_result' => 'ผลการค้นหาของ',
     'search_no_match' => 'ไม่พบสิ่งที่ค้นหา',
     //shops
-    'contact' => 'ติดต่อ',
     'product' => 'สินค้า',
     'products' => 'สินค้า',
     'collection' => 'คอลเล็คชั่น',

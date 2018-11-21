@@ -21,14 +21,12 @@
 
                     @if($shop->description)
                       <div class="panel-body" id="full-line">
-                        <div class="padding-10">
-                          <p>{!! nl2br(e($shop->description)) !!}</p>
-                        </div>
+                        <p>{!! nl2br(e($shop->description)) !!}</p>
                       </div>
                     @endif
-                    
+
                     @if($shop->contact->count())
-                      <div>
+                      <div class="padding-10">
                         <button class="flat-btn" @click="$root.tab = !$root.tab">{{__('message.contact')}}&nbsp;<i class="fas fa-caret-down"></i></button>
                         <div class="contacts" v-show="$root.tab">
                           <contacts-show :contacts="{{ json_encode($shop->contact->where('show', true)) }}"></contacts-show>

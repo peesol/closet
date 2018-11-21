@@ -4,25 +4,11 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
-  @hasSection('og-title')
-    @yield('og-title')
-  @else
   <meta property="og:title" content="@yield('title'){{config('app.name') }}">
-  @endif
-  @hasSection('og-image')
-    @yield('og-image')
-  @else
-    <meta property="og:image" content="https://s3-ap-southeast-1.amazonaws.com/files.closet/etc/FB_sharing_closet.jpg">
-  @endif
-  @hasSection('og-description')
-    <meta property="og:description" content="@yield('og-description')">
-  @else
-    <meta property="og:description" content="ซื้อขายเสื้อผ้า สินค้าแฟชั่น เครื่องสำอาง อาหารเสริม เปิดร้านออนไลน์ฟรี">
-  @endif
-  @yield('og-catalog')
+  <meta property="og:image" content="https://s3-ap-southeast-1.amazonaws.com/files.closet/etc/FB_sharing_closet.jpg">
+  <meta property="og:description" content="ซื้อขายเสื้อผ้า สินค้าแฟชั่น เครื่องสำอาง อาหารเสริม เปิดร้านออนไลน์ฟรี">
   <meta property="og:url" content="{{ url()->full() }}">
   <title>@yield('title'){{config('app.name') }}</title>
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -36,16 +22,12 @@
   <!-- Scripts -->
   @if (App::environment('production'))
     <link href="https://s3-ap-southeast-1.amazonaws.com/files.closet/css/main.css?v=1.0" rel="stylesheet">
-    <script src="https://s3-ap-southeast-1.amazonaws.com/files.closet/js/manifest.js?v=1.0"></script>
-    <script src="https://s3-ap-southeast-1.amazonaws.com/files.closet/js/vendor.js?v=1.0"></script>
-    <script src="https://s3-ap-southeast-1.amazonaws.com/files.closet/js/main.js?v=1.0"></script>
   @else
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
-    <script src="{{ asset('js/manifest.js') }}"></script>
-    <script src="{{ asset('js/vendor.js') }}"></script>
-    <script src="{{ asset('js/main.js') }}"></script>
   @endif
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
   @yield('scripts')
   <script>
   window.Laravel = {!! json_encode(['csrfToken' => csrf_token()]) !!};
@@ -69,42 +51,27 @@
       });
     })
   </script>
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127032353-1"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'UA-127032353-1');
-  </script>
-  <!-- Facebook Pixel Code -->
-  <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '2274345159451987');
-    fbq('track', 'PageView');
-  </script>
-  <noscript>
-    <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=2274345159451987&ev=PageView&noscript=1"/>
-  </noscript>
+  <style media="screen">
+  .alert-box {
+    font-family: 'Arial', sans-serif !important;
+    margin: 0 10px;
+  }
+  sub {
+    font-family: 'Arial', sans-serif !important;
+  }
+  </style>
 </head>
 <body>
-  @yield('fb-events')
-  <div class="overlay"></div>
-    <div id="app" v-cloak>
 
-        @include('layouts.partials._navigation')
-
-        @yield('content')
-
-        @include('layouts.partials._footer')
+  <div id="app">
+    <div class="medium-panel" style="padding: 10px 0">
+      <div class="alert-box help">
+        <h3 class="no-margin">ตัวอย่างร้าน</h3>
+        **ข้อความที่อยู่ในกรอบแบบนี้จะไม่แสดงในหน้าร้านจริง
+      </div>
     </div>
+      @yield('content')
+  </div>
 
 </body>
 </html>

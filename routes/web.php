@@ -51,6 +51,16 @@ Route::get('/help/seller/home', 'Help\Seller\SellerGuideController@index')->name
 Route::get('/help/buyer/home', 'Help\Buyer\BuyerGuideController@index')->name('buyerGuide');
 /*
 |--------------------------------------------------------------------------
+| Example route
+|--------------------------------------------------------------------------
+*/
+Route::get('/example/profile_home', 'Example\ShopController@home')->name('homeExample');
+Route::get('/example/profile_product', 'Example\ShopController@product')->name('productExample');
+Route::get('/example/profile_collection', 'Example\ShopController@collection')->name('colExample');
+Route::get('/example/profile_about', 'Example\ShopController@about')->name('aboutExample');
+Route::get('/example/profile_review', 'Example\ShopController@review')->name('reviewExample');
+/*
+|--------------------------------------------------------------------------
 | Admin route
 |--------------------------------------------------------------------------
 */

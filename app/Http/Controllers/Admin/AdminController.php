@@ -22,7 +22,7 @@ class AdminController extends Controller
 
   public function grantPage()
   {
-    return view('admin.database.grant', ['data' => null]);
+    return view('admin.database.grant', ['data' => null, 'message' => 'null']);
   }
   public function grantGet(Request $request)
   {

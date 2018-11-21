@@ -89,7 +89,6 @@ return [
     'search_result' => 'Search result for',
     'search_no_match' => 'Not found anything.',
     //shops
-    'contact' => 'Contact',
     'product' => 'Product',
     'products' => 'Products',
     'collection' => 'Collection',
