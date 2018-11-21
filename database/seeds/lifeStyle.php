@@ -38,22 +38,24 @@ class lifeStyle extends Seeder
           'language' => 'th',
           'name' => 'ไลฟ์สไตล์',
           'slug' => 'life_style'
-        ],
-        [
-          'subcategory_id' => '29',
-          'language' => 'th',
-          'name' => 'สิ่งทอ'
-        ],
-        [
-          'subcategory_id' => '30',
-          'language' => 'th',
-          'name' => 'เครื่องเขียน'
-        ],
-        [
-          'subcategory_id' => '31',
-          'language' => 'th',
-          'name' => 'อื่นๆ'
-        ],
+        ]
+    ]);
+    DB::table('category_translation')->insert([
+      [
+        'subcategory_id' => '29',
+        'language' => 'th',
+        'name' => 'สิ่งทอ'
+      ],
+      [
+        'subcategory_id' => '30',
+        'language' => 'th',
+        'name' => 'เครื่องเขียน'
+      ],
+      [
+        'subcategory_id' => '31',
+        'language' => 'th',
+        'name' => 'อื่นๆ'
+      ]
     ]);
     }
 }
