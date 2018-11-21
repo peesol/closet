@@ -28,12 +28,12 @@ class SetLocale
             $locale = Session::get('locale', Config::get('closet.locale'));
 
         } else {
-
-            $locale = substr($request->server('HTTP_ACCEPT_LANGUAGE'), 0, 2);
-
-            if ($locale != 'th' && $locale != 'en') {
-                $locale = 'en';
-            }
+            $locale = 'th';
+            // $locale = substr($request->server('HTTP_ACCEPT_LANGUAGE'), 0, 2);
+            //
+            // if ($locale != 'th' && $locale != 'en') {
+            //     $locale = 'en';
+            // }
 
         }
 
